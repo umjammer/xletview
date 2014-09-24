@@ -1,0 +1,23 @@
+/*
+
+ This file is part of XleTView 
+ Copyright (C) 2003 Martin Svedén
+ 
+ This is free software, and you are 
+ welcome to redistribute it under 
+ certain conditions;
+
+ See LICENSE document for details.
+
+*/
+package net.beiker.xletview.io;
+
+/**
+ * 
+ * @author Martin Sveden 
+ */
+public interface OutputPrinter {
+
+    public void print(String s);
+
+}

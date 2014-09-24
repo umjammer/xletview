@@ -1,0 +1,15 @@
+/AudioLanguageControl.java/1.1/Fri Jul 11 06:37:54 2003//
+/FreezeControl.java/1.1/Fri Jul 11 06:37:54 2003//
+/LanguageControl.java/1.1/Fri Jul 11 06:37:54 2003//
+/LanguageNotAvailableException.java/1.2/Sun Jun  6 21:27:06 2004//
+/MediaFreezeException.java/1.2/Sun Jun  6 21:27:06 2004//
+/MediaLocator.java/1.2/Sun Jun  6 21:27:06 2004//
+/MediaPresentedEvent.java/1.2/Sun Jun  6 21:27:06 2004//
+/MediaTimePositionChangedEvent.java/1.1/Fri Jul 11 06:37:54 2003//
+/MediaTimePositionControl.java/1.1/Fri Jul 11 06:37:54 2003//
+/NotAuthorizedException.java/1.2/Sun Jun  6 21:27:06 2004//
+/NotAuthorizedMediaException.java/1.3/Mon Oct 25 17:10:55 2004//
+/ResourceReturnedEvent.java/1.2/Sun Jun  6 21:27:06 2004//
+/ResourceWithdrawnEvent.java/1.2/Sun Jun  6 21:27:06 2004//
+/SubtitlingLanguageControl.java/1.1/Fri Jul 11 06:37:54 2003//
+D

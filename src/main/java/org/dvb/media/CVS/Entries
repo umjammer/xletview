@@ -1,0 +1,25 @@
+/ActiveFormatDescriptionChangedEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/AspectRatioChangedEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/BackgroundVideoPresentationControl.java/1.1/Fri Jul 11 06:37:55 2003//
+/CAException.java/1.2/Sun Jun  6 21:37:58 2004//
+/CAStopEvent.java/1.3/Mon Oct 25 17:10:32 2004//
+/DFCChangedEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/DVBMediaSelectControl.java/1.4/Mon Oct 25 17:10:32 2004//
+/DripFeedDataSource.java/1.2/Mon Oct 25 17:10:32 2004//
+/DripFeedPermission.java/1.1/Fri Jul 11 06:37:55 2003//
+/NoComponentSelectedEvent.java/1.3/Mon Oct 25 17:10:32 2004//
+/PresentationChangedEvent.java/1.3/Mon Oct 25 17:10:32 2004//
+/ServiceRemovedEvent.java/1.3/Mon Oct 25 17:10:32 2004//
+/StopByResourceLossEvent.java/1.3/Mon Oct 25 17:10:32 2004//
+/SubtitleAvailableEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/SubtitleListener.java/1.1/Fri Jul 11 06:37:55 2003//
+/SubtitleNotAvailableEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/SubtitleNotSelectedEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/SubtitleSelectedEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/SubtitlingEventControl.java/1.1/Fri Jul 11 06:37:55 2003//
+/VideoFormatControl.java/1.1/Fri Jul 11 06:37:55 2003//
+/VideoFormatEvent.java/1.2/Sun Jun  6 21:37:58 2004//
+/VideoFormatListener.java/1.1/Fri Jul 11 06:37:55 2003//
+/VideoPresentationControl.java/1.2/Mon Oct 25 17:10:32 2004//
+/VideoTransformation.java/1.2/Sun Jun  6 21:37:58 2004//
+D
