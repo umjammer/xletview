@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -22,8 +22,8 @@ import xjavax.tv.service.Service;
 import xjavax.tv.service.ServiceType;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 2
  */

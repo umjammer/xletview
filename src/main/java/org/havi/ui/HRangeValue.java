@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -16,8 +16,8 @@ package org.havi.ui;
 
 
 public class HRangeValue extends HRange implements HAdjustmentValue{
-    
-	public HRangeValue(){
+
+    public HRangeValue(){
     }
 
     public HRangeValue(int orientation, int minimum, int maximum, int value,int x, int y, int width, int height){
@@ -65,12 +65,12 @@ public class HRangeValue extends HRange implements HAdjustmentValue{
         return(null);
     }
 
-	public void addHFocusListener(org.havi.ui.event.HFocusListener l){
+    public void addHFocusListener(org.havi.ui.event.HFocusListener l){
         return;
     }
 
 
-	public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
+    public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
         return;
     }
 
@@ -89,7 +89,7 @@ public class HRangeValue extends HRange implements HAdjustmentValue{
     public int getUnitIncrement(){
         return(1);
     }
-	
+
     public void setBlockIncrement(int increment){
         return;
     }
@@ -105,16 +105,16 @@ public class HRangeValue extends HRange implements HAdjustmentValue{
     public void removeAdjustmentListener(org.havi.ui.event.HAdjustmentListener l){
         return;
     }
-    
+
     public void setAdjustmentSound(HSound sound){
         return;
     }
-        
+
     public HSound getAdjustmentSound(){
         return(null);
     }
 
-	public boolean getAdjustMode(){
+    public boolean getAdjustMode(){
         return(true);
     }
 

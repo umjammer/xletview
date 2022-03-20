@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -38,12 +38,12 @@ import net.beiker.xletview.window.AppTreeWindow;
 public class AppGroupDataPanel extends JPanel implements KeyListener {
 
     public final static int NAME = 0;
-    
+
     private AppTreeWindow appWin;
-    
+
     private AppGroup group;
     private DefaultMutableTreeNode node;
-        
+
     private Container content;
     private JTextField[] fields;
     private JButton[] fieldButtons;
@@ -79,7 +79,7 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         //content.add(BorderLayout.NORTH, container);
         inputs.add(container);
         content.add(BorderLayout.CENTER, inputs);
-        
+
         add(content);
 
     }
@@ -88,14 +88,14 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 //        this(null);
 //    }
 
-//    public void setNode(DefaultMutableTreeNode node) {        
+//    public void setNode(DefaultMutableTreeNode node) {
 //        save();
 //        Object userObject = node.getUserObject();
 //        if (userObject instanceof IconData) {
 //            Object object = ((IconData) userObject).getObject();
 //            if (object instanceof AppGroup) {
 //                this.group = (AppGroup) object;
-//                fields[NAME].setText(group.getName());                                
+//                fields[NAME].setText(group.getName());
 //            }
 //        }
 //
@@ -117,7 +117,7 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         fields[NAME].setText(group.getName());
         this.group = group;
     }
-    
+
     /**
      * Saves the data to the active App
      *
@@ -126,7 +126,7 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         if (this.group != null) {
             //node.setUserObject(new IconData(null, null, group, group.getName()));
             this.group.setName(fields[NAME].getText());
-        }        
+        }
     }
 
 
@@ -143,15 +143,15 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         return true;
     }
 
-    public void keyTyped(KeyEvent arg0) {        
-        
+    public void keyTyped(KeyEvent arg0) {
+
     }
 
     public void keyPressed(KeyEvent arg0) {
 
     }
 
-    public void keyReleased(KeyEvent arg0) {        
+    public void keyReleased(KeyEvent arg0) {
         save();
         appWin.updateNodeText();
     }

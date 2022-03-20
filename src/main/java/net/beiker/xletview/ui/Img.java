@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -28,7 +28,7 @@ import net.beiker.cake.Logger;
 public class Img extends Component{
 
 	private static final Logger log = Log.getLogger(Img.class);
-	
+
     private Image image;
     private String imageUrl;
 
@@ -54,16 +54,16 @@ public class Img extends Component{
         this.height = this.image.getHeight(this);
         setBounds(x, y, this.width, this.height);
     }
-    
+
     public Img(Image image){
         this.image = loadImage(image, this);
         this.width = image.getWidth(this);
         this.height = image.getHeight(this);
         setBounds(0, 0, this.width, this.height);
     }
-    
+
     public Img(URL url, int width, int height){
-    	this(0, 0, width, height, url);
+        this(0, 0, width, height, url);
     }
 
     /**
@@ -83,16 +83,16 @@ public class Img extends Component{
         this.image = loadImage(null, url, this);
         this.width     = this.image.getWidth(this);
         this.height = this.image.getHeight(this);
-        setBounds(x, y, this.width, this.height);        
+        setBounds(x, y, this.width, this.height);
     }
-    
+
     public Img(int x, int y, int width, int height, URL url){
-    	this.image = loadImage(null, url, this);
-    	this.width     = width;
-    	this.height = height;
-    	setBounds(x, y, this.width, this.height);        
+        this.image = loadImage(null, url, this);
+        this.width     = width;
+        this.height = height;
+        setBounds(x, y, this.width, this.height);
     }
-    
+
     public Dimension getPreferredSize(){
         return new Dimension(this.width, this.height);
     }
@@ -105,7 +105,7 @@ public class Img extends Component{
      */
     private Image loadImage(Image image, Component component){
         MediaTracker mediatracker = new MediaTracker(component);
-        mediatracker.addImage(image, 0);        
+        mediatracker.addImage(image, 0);
         try{
             mediatracker.waitForID(0);
         }
@@ -141,7 +141,7 @@ public class Img extends Component{
             image = toolkit.getImage(url);
         }
 
-        mediatracker.addImage(image, 0);        
+        mediatracker.addImage(image, 0);
         try{
             mediatracker.waitForID(0);
         }

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -36,11 +36,11 @@ import net.beiker.cake.Logger;
 import net.beiker.xletview.ui.XContainer;
 
 public class VideoPlayer extends JFrame implements ControllerListener{
-    
-	/** Debugging facility. */
+
+    /** Debugging facility. */
 	private static final Logger logger = Log.getLogger(VideoPlayer.class);
-	
-	private static int count;
+
+    private static int count;
     public static final int WIDTH = 720;
     public static final int HEIGHT = 576;
     public static final char FS = File.separatorChar;
@@ -49,7 +49,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
     private Container cont;
     private XContainer cont2;
     private XContainer xcont;
-    
+
     public VideoPlayer(){
         this.setTitle("VideoPlayer");
         this.cont = getContentPane();
@@ -59,7 +59,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
         this.cont2.setLayout(new BorderLayout());
         this.cont2.setBounds(0,0,400,400);
         this.setContentPane(this.cont2);
-        
+
         createPlayer();
         if(this.player != null){
             this.player.realize();
@@ -68,7 +68,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
         else{
             logger.warn(this+toString() + "player is null");
         }
-        
+
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 System.exit(0);
@@ -126,7 +126,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
         logger.debug(this.toString() + "count = " + (count++));
       }
    }
-   
+
    public static void main(String[] args){
        new VideoPlayer();
    }

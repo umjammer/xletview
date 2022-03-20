@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,8 +18,8 @@ import java.awt.Image;
 
 
 public class HToggleButton extends HGraphicButton implements HSwitchable{
-    
-	public HToggleButton(){
+
+    public HToggleButton(){
     }
 
     public HToggleButton(Image image, int x, int y, int width, int height){
@@ -69,15 +69,15 @@ public class HToggleButton extends HGraphicButton implements HSwitchable{
     public boolean getSwitchableState(){
         return(false);
     }
-    
+
     public void setSwitchableState(boolean state){
         return;
     }
-    
+
     public void setUnsetActionSound(HSound sound){
         return;
     }
-    
+
     public HSound getUnsetActionSound(){
         return(null);
     }

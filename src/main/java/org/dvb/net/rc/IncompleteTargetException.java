@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -17,17 +17,17 @@
 package org.dvb.net.rc;
 
 /**
- * 
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class IncompleteTargetException extends java.lang.Exception{
 
-	public IncompleteTargetException(){
-		super();
-	}
+    public IncompleteTargetException(){
+        super();
+    }
 
-	public IncompleteTargetException(String reason) {
-		super(reason);
-	}
+    public IncompleteTargetException(String reason) {
+        super(reason);
+    }
 }

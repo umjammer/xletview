@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -20,7 +20,7 @@ public class HRangeLook implements HAdjustableLook{
 
     public HRangeLook(){
     }
-    
+
     public void showLook(java.awt.Graphics g, HVisible visible, int state){
         return;
     }
@@ -28,7 +28,7 @@ public class HRangeLook implements HAdjustableLook{
     public void widgetChanged (HVisible visible, HChangeData[] changes){
         return;
     }
-    
+
     public Dimension getMinimumSize(HVisible hvisible){
         return(null);
     }
@@ -55,7 +55,7 @@ public class HRangeLook implements HAdjustableLook{
 
     public java.lang.Integer getValue(HOrientable component, java.awt.Point pt){
         return(null);
-    } 
+    }
 }
 
 

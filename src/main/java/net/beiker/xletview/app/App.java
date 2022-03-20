@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -28,13 +28,13 @@ public class App implements UserObject{
     private static int count;
 
     public App(String projectName, String path, String xletName){
-        this.name = (projectName != null)? projectName: "new app " + (count++);        
+        this.name = (projectName != null)? projectName: "new app " + (count++);
         this.xletName = (xletName != null)? xletName: "undefined";
-        this.backgroundPath = (defaultBackgroundPath != null)? defaultBackgroundPath: "undefined";        
+        this.backgroundPath = (defaultBackgroundPath != null)? defaultBackgroundPath: "undefined";
         this.path = (path != null)? path: "";
         if(this.path.lastIndexOf(File.separator) > -1 && this.path.lastIndexOf(File.separator) == this.path.length()-1){
-            this.path = this.path.substring(0, this.path.length()-1);            
-        }    
+            this.path = this.path.substring(0, this.path.length()-1);
+        }
     }
 
     public void setBackgroundPath(String path){
@@ -76,7 +76,7 @@ public class App implements UserObject{
     public String getXletName(){
         return xletName;
     }
-    
+
     public String toString(){
         return name;
     }
@@ -84,7 +84,7 @@ public class App implements UserObject{
     /* (non-Javadoc)
      * @see net.beiker.xletview.ui.tree.UserObject#getObject()
      */
-    public Object getObject() {        
+    public Object getObject() {
         return this;
     }
 

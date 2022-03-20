@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -22,9 +22,9 @@ import net.beiker.cake.Logger;
 
 public class FileInfo{
 
-	/** Debugging facility */
+    /** Debugging facility */
 	private final static Logger logger = Log.getLogger(FileInfo.class);
-	
+
     private File file;
 
     public FileInfo(File file){

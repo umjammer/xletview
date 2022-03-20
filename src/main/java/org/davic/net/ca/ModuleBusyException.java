@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -15,19 +15,19 @@
 package org.davic.net.ca;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ModuleBusyException extends CAException {
 
-	public ModuleBusyException() {
-		super();
-	}
+    public ModuleBusyException() {
+        super();
+    }
 
-	public ModuleBusyException(String reason) {
-		super(reason);
-	}
+    public ModuleBusyException(String reason) {
+        super(reason);
+    }
 }
 

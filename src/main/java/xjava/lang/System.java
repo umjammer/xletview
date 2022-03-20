@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,14 +18,14 @@ import java.util.Properties;
 
 /**
  * Replaces java.lang.System for the Xlet
- * @author Martin Sveden 
+ * @author Martin Sveden
  */
 public class System {
 
     /** Don't let anyone instantiate this class */
     private System() {
     }
-    
+
     /*
      * Has to be public like in java.lang.System
      */
@@ -48,14 +48,14 @@ public class System {
     }
 
     /**
-     * Initialize the system class. 
+     * Initialize the system class.
      */
     private static void initSystem() {
         props = new Properties();
         initProperties(props);
         setIn(java.lang.System.in);
-        
-        
+
+
         /*try {
             OutputRedirector or = new OutputRedirector(new OutputServer(9999, System.out));
             PrintStream ps = new PrintStream(or);
@@ -63,14 +63,14 @@ public class System {
             //setErr(ps);
         }
         catch (IOException e) {
-        
+
             e.printStackTrace();
         }*/
-        
+
         setOut(java.lang.System.out);
         setErr(java.lang.System.err);
 
-        /* 
+        /*
          Uncomment to send the Xlet's output to a file
         try {
             File logFile = new File("application_out.txt");
@@ -130,7 +130,7 @@ public class System {
     }
 
     /**
-     * 
+     *
      */
     public static int identityHashCode(Object x) {
         return java.lang.System.identityHashCode(x);
@@ -162,14 +162,14 @@ public class System {
         Properties real = java.lang.System.getProperties();
         props.setProperty("java.version", real.getProperty("java.version"));
         props.setProperty("java.vendor", real.getProperty("java.vendor"));
-        
+
         /*
          * this one is not guaranteed to exist but I put it
          * here because there was applications at a broadcaster that use
          * it.
-         */  
+         */
         props.setProperty("java.vm.vendor", real.getProperty("java.vm.vendor"));
-        
+
         props.setProperty("java.vendor.url", real.getProperty("java.vendor.url"));
         props.setProperty("java.home", real.getProperty("java.home"));
         props.setProperty("java.class.version", real.getProperty("java.class.version"));
@@ -183,7 +183,7 @@ public class System {
         props.setProperty("user.name", real.getProperty("user.name"));
         props.setProperty("user.home", real.getProperty("user.home"));
         props.setProperty("user.dir", real.getProperty("user.dir"));
-        //props.list(java.lang.System.out);    
+        //props.list(java.lang.System.out);
         return props;
     }
 
@@ -245,7 +245,7 @@ public class System {
      System.loadLibrary,
      */
     public static void exit(int status) {
-    	throw new SecurityException("see spec 11.3.1.1");
+        throw new SecurityException("see spec 11.3.1.1");
     }
 
     public static void gc() {
@@ -289,7 +289,7 @@ public class System {
      System.loadLibrary,
      */
     public static void loadLibrary(String libname) {
-    	throw new SecurityException("see spec 11.3.1.1");
+        throw new SecurityException("see spec 11.3.1.1");
     }
 
     public static String mapLibraryName(String libname) {

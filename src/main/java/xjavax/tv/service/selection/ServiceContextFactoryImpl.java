@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -18,8 +18,8 @@ import net.beiker.xletview.xlet.XletContextImpl;
 import xjavax.tv.xlet.XletContext;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -31,30 +31,30 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
     }
 
     public ServiceContext getServiceContext(XletContext xletcontext) throws SecurityException, ServiceContextException {
-        
-    	if (xletcontext == null){
-            
-    		throw new NullPointerException("XletContext null");
-    		
+
+        if (xletcontext == null){
+
+            throw new NullPointerException("XletContext null");
+
         }
-        
-    	ServiceContext servicecontext = (ServiceContext) xletcontext.getXletProperty(XletContextImpl.SERVICE_CONTEXT);
-        
-    	if (servicecontext == null){
-            
-    		throw new ServiceContextException("xlet not running in a ServiceContext");
-    		
-    	}
-    	
+
+        ServiceContext servicecontext = (ServiceContext) xletcontext.getXletProperty(XletContextImpl.SERVICE_CONTEXT);
+
+        if (servicecontext == null){
+
+            throw new ServiceContextException("xlet not running in a ServiceContext");
+
+        }
+
         if (servicecontext instanceof ServiceContextImpl) {
-            
-        	ServiceContextImpl servicecontextimpl = (ServiceContextImpl) servicecontext;
-            
-        	if (servicecontextimpl.isDestroyed()){
-            
-        		throw new ServiceContextException("ServiceContext is destroyed");
-            
-        	}
+
+            ServiceContextImpl servicecontextimpl = (ServiceContextImpl) servicecontext;
+
+            if (servicecontextimpl.isDestroyed()){
+
+                throw new ServiceContextException("ServiceContext is destroyed");
+
+            }
         }
         return servicecontext;
     }

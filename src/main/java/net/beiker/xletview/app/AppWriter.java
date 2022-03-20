@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -32,9 +32,9 @@ import net.n3.nanoxml.XMLWriter;
  */
 public class AppWriter{
 
-	/** Debugging facility. */
+    /** Debugging facility. */
 	private static final Logger logger = Log.getLogger(AppWriter.class); 
-	
+
 //    public static void write(Vector projects, File file){
 //         XMLElement root = new XMLElement("PROJECTS");
 //         for(int i = 0; i < projects.size(); i++){
@@ -48,7 +48,7 @@ public class AppWriter{
 //            pathElement.setContent(project.getPath());
 //            XMLElement xletElement = new XMLElement("XLET");
 //            xletElement.setContent(project.getXletName());
-//                        
+//
 //            projectElement.addChild(nameElement);
 //            projectElement.addChild(pathElement);
 //            projectElement.addChild(xletElement);
@@ -63,37 +63,37 @@ public class AppWriter{
 //            e.printStackTrace();
 //         }
 //    }
-    
+
     public static void write(URL url, AppGroup group){
         XMLElement root = new XMLElement("APPLICATIONS");
-         
+
         build(group, root);
-        
+
         OutputStream out = null;
-        try {	
+        try {
             out = new FileOutputStream(new File(url.getFile()));
         }
         catch (Exception e1){
-        	try{
-        		out = url.openConnection().getOutputStream();
-        	}
-        	catch (Exception e2) {
+            try{
+                out = url.openConnection().getOutputStream();
+            }
+            catch (Exception e2) {
          	    logger.warn(url.toExternalForm() + Util.getStackTrace(e1) + "*** AND ***" + Util.getStackTrace(e2));               
-         	    return;
-        	}
+                 return;
+            }
          }
-        	
+
         XMLWriter writer = new XMLWriter(out);
         try {
-			writer.write(root, true, 0, false);
-			out.close();
+            writer.write(root, true, 0, false);
+            out.close();
         } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
     }
-    
+
     private static void build(AppGroup group, XMLElement parent){
 
 //        String name = group.getName();
@@ -114,30 +114,30 @@ public class AppWriter{
             // make a recursive call to this method
             build(subGroup, child);
         }
-        
+
         // get the applications in this group
         Vector apps = group.getApps();
         for(int i = 0; i < apps.size(); i++){
             App app = (App) apps.get(i);
             //Debug.info(app.getName());
             XMLElement appElement = new XMLElement("APPLICATION");
-            
+
             XMLElement nameElement = new XMLElement("NAME");
             nameElement.setContent(app.getName());
             XMLElement pathElement = new XMLElement("PATH");
             pathElement.setContent(app.getPath());
             XMLElement xletElement = new XMLElement("XLET");
             xletElement.setContent(app.getXletName());
-                        
+
             appElement.addChild(nameElement);
             appElement.addChild(pathElement);
             appElement.addChild(xletElement);
             parent.addChild(appElement);
-            
+
         }
-        
-        
+
+
     }
-    
+
 
 }

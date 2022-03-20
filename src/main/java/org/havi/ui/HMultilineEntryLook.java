@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,18 +18,18 @@ import java.awt.Dimension;
 
 
 public class HMultilineEntryLook extends HSinglelineEntryLook{
-    
-	public HMultilineEntryLook(){
+
+    public HMultilineEntryLook(){
     }
-    
+
     public void showLook(java.awt.Graphics g, HVisible visible, int state){
         return;
     }
-     
-	public void widgetChanged (HVisible visible, HChangeData[] changes){
+
+    public void widgetChanged (HVisible visible, HChangeData[] changes){
         return;
     }
-    
+
     public Dimension getMinimumSize(HVisible hvisible){
         return(null);
     }
@@ -51,25 +51,25 @@ public class HMultilineEntryLook extends HSinglelineEntryLook{
     }
 
     public int getCaretPositionNextLine(HVisible visible){
-		return (0);
+        return (0);
     }
 
     public int getCaretPositionPreviousLine(HVisible visible){
-		return (0);
-    }
-    
-    public int getCaretCharPositionForLine(HVisible visible, int line){ 
-		return 0;
+        return (0);
     }
 
-   public int[] getVisibleSoftLineBreakPositions(HVisible visible){ 
-	   return null;
-   }    
+    public int getCaretCharPositionForLine(HVisible visible, int line){
+        return 0;
+    }
 
-   public int[] getSoftLineBreakPositions(HVisible visible){ 
-	   return null;
+   public int[] getVisibleSoftLineBreakPositions(HVisible visible){
+       return null;
    }
-    
+
+   public int[] getSoftLineBreakPositions(HVisible visible){
+       return null;
+   }
+
 }
 
 

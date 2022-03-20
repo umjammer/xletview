@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,29 +18,29 @@ import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class RepositoryDescriptor implements ResourceProxy {
-   
-	private String repositoryName;
-	private ResourceClient client;
-	
+
+    private String repositoryName;
+    private ResourceClient client;
+
    /*
     * There are no public constructors in the API
     */
     public RepositoryDescriptor (String repositoryName, ResourceClient client) {
-    	this.repositoryName = repositoryName;
-    	this.client = client;
+        this.repositoryName = repositoryName;
+        this.client = client;
     }
-    
+
     public String getName () {
         return repositoryName;
     }
-    
-    public ResourceClient getClient() { 
+
+    public ResourceClient getClient() {
         return client;
     }
 

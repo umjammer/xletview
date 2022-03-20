@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -36,46 +36,46 @@ import xjavax.tv.service.Service;
  * filtering.
  * <A HREF="../../../../javax/tv/service/navigation/ServiceList.html"><CODE>ServiceList</CODE></A></DL>
  * <HR>
- * 
- * 
+ *
+ *
  */
 public final class SIElementFilter extends ServiceFilter
 {
-	//following variables are implicitely defined by getter- or setter-methods:
-	private SIElement filterValue;
+    //following variables are implicitely defined by getter- or setter-methods:
+    private SIElement filterValue;
 
-	/**
-	 * Constructs the filter based on a particular <code>SIElement</code>.
-	 * 
-	 * @param element - An SIElement indicating the services to be included in a resulting service list.
-	 * @throws FilterNotSupportedException - If element is not supported for filtering.
-	 */
-	public SIElementFilter( SIElement element) throws FilterNotSupportedException
-	{
-		//TODO implement SIElementFilter
-	}
+    /**
+     * Constructs the filter based on a particular <code>SIElement</code>.
+     *
+     * @param element - An SIElement indicating the services to be included in a resulting service list.
+     * @throws FilterNotSupportedException - If element is not supported for filtering.
+     */
+    public SIElementFilter( SIElement element) throws FilterNotSupportedException
+    {
+        //TODO implement SIElementFilter
+    }
 
-	/**
-	 * Reports the <code>SIElement</code> used to create this filter.
-	 * 
-	 * @return The SIElement used to create this filter.
-	 */
-	public SIElement getFilterValue()
-	{
-		return this.filterValue;
-	}
+    /**
+     * Reports the <code>SIElement</code> used to create this filter.
+     *
+     * @return The SIElement used to create this filter.
+     */
+    public SIElement getFilterValue()
+    {
+        return this.filterValue;
+    }
 
-	/**
-	 * Tests if the given service passes the filter.
-	 * 
-	 * @param service - An individual Service to be evaluated against the filtering algorithm.
-	 * @return true if service has a corresponding ServiceDetails which contains or is contained by the SIElement indicated by the filter value; false otherwise.
-	 * @see accept in class ServiceFilter
-	 */
-	public boolean accept( Service service)
-	{
-		return false;
-		//TODO implement accept
-	}
+    /**
+     * Tests if the given service passes the filter.
+     *
+     * @param service - An individual Service to be evaluated against the filtering algorithm.
+     * @return true if service has a corresponding ServiceDetails which contains or is contained by the SIElement indicated by the filter value; false otherwise.
+     * @see accept in class ServiceFilter
+     */
+    public boolean accept( Service service)
+    {
+        return false;
+        //TODO implement accept
+    }
 
 }

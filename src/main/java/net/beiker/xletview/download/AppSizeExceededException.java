@@ -15,8 +15,8 @@ public class AppSizeExceededException extends RuntimeException {
     }
 
     /**
-     * Constructs a <code>AppSizeExceededException</code> with the specified 
-     * detail message. 
+     * Constructs a <code>AppSizeExceededException</code> with the specified
+     * detail message.
      *
      * @param   s   the detail message.
      */

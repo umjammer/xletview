@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -59,8 +59,8 @@ public class FileFilterImpl extends FileFilter implements FilenameFilter{
 
     /**
      * FilenameFilter implementation
-     */ 
-    public boolean accept(File dir, String name) {        
+     */
+    public boolean accept(File dir, String name) {
         for (int i = 0; i < filters.length; i++) {
             if (name.toLowerCase().endsWith(filters[i])) {
                 return true;

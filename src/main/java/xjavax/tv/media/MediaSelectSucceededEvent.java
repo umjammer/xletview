@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -20,19 +20,19 @@ import xjavax.tv.locator.Locator;
  * <code>MediaSelectListener</code> that a selection operation
  * succeeded.
  * <HR>
- * 
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class MediaSelectSucceededEvent extends MediaSelectEvent{
-	/**
-	 * Creates a new <code>MediaSelectSucceededEvent</code>.
-	 * 
-	 * @param source - The Controller that generated this event.
-	 * @param selection - The Locator instances on which selection occurred.
-	 */
-	public MediaSelectSucceededEvent(javax.media.Controller source, Locator[] selection){
-		super(source, selection);
-	}
+    /**
+     * Creates a new <code>MediaSelectSucceededEvent</code>.
+     *
+     * @param source - The Controller that generated this event.
+     * @param selection - The Locator instances on which selection occurred.
+     */
+    public MediaSelectSucceededEvent(javax.media.Controller source, Locator[] selection){
+        super(source, selection);
+    }
 
 }

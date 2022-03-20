@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -15,8 +15,8 @@
 package org.havi.ui;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 2
  * @comment partially implemented
@@ -37,13 +37,13 @@ public class HStillImageBackgroundConfiguration extends HBackgroundConfiguration
            org.havi.ui.HPermissionDeniedException,
            org.havi.ui.HConfigurationException{
                net.beiker.xletview.media.BackgroundLayer bl = net.beiker.xletview.media.BackgroundLayer.getInstance();
-               
-               
+
+
                bl.removeAll();
               // if(bl.getComponent(0) != imgComponent){
                    bl.add(image);
-                   
-               //}               
+
+               //}
                image.setBounds(r);
                image.setVisible(true);
     }

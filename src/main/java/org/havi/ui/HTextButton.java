@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -21,15 +21,15 @@ import net.beiker.xletview.helper.HActionableHelper;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class HTextButton extends HText implements HActionable{
-	
-	private HActionableHelper helper;
-	
+
+    private HActionableHelper helper;
+
     private static HTextLook defaultHLook = new HTextLook();
 
     public HTextButton(){
@@ -57,11 +57,11 @@ public class HTextButton extends HText implements HActionable{
         init();
     }
     // constructors end //
-    
+
     private void init(){
-    	helper = new HActionableHelper(this);
+        helper = new HActionableHelper(this);
     }
-    
+
 
     public static void setDefaultLook(HTextLook hLook){
         HTextButton.defaultHLook = hLook;
@@ -73,37 +73,37 @@ public class HTextButton extends HText implements HActionable{
 
 
     public void addHActionListener(org.havi.ui.event.HActionListener listener){
-    	helper.addHActionListener(listener);
+        helper.addHActionListener(listener);
     }
 
     public void removeHActionListener(org.havi.ui.event.HActionListener listener){
-    	helper.removeHActionListener(listener);
+        helper.removeHActionListener(listener);
     }
 
     public void setActionCommand(String command){
-    	helper.setActionCommand(command);
+        helper.setActionCommand(command);
     }
 
     public void setActionSound(HSound sound){
-    	helper.setActionSound(sound);
+        helper.setActionSound(sound);
     }
 
     public HSound getActionSound(){
-    	return helper.getActionSound();
+        return helper.getActionSound();
     }
 
     public void processHActionEvent(org.havi.ui.event.HActionEvent evt){
-    	//Debug.write(this, "processHActionEvent");
-    	int state = getInteractionState();
-    	int newState = helper.getHActionEventResult(evt);
-    	
-    	if(state != newState){
-    		setInteractionState(newState);
-    	}
+        //Debug.write(this, "processHActionEvent");
+        int state = getInteractionState();
+        int newState = helper.getHActionEventResult(evt);
+
+        if(state != newState){
+            setInteractionState(newState);
+        }
     }
 
     public java.lang.String getActionCommand(){
-    	return helper.getActionCommand();
+        return helper.getActionCommand();
     }
-    
+
 }

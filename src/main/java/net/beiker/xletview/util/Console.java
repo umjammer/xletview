@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -29,22 +29,22 @@ import net.beiker.xletview.io.OutputRedirector;
 public class Console extends Container implements OutputPrinter{
 
 	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(Console.class);
-	
+
     //JTextArea textArea;
     private static JTextArea ta;
     private static JScrollPane scroll;
     private static boolean isPrinting;
     private static String[] string;
     private static int size = 10;
-   
 
-    public Console(){        
+
+    public Console(){
         setSize(500,300);
         setLayout(new BorderLayout());
 
         ta = new JTextArea(10, 80);
         ta.setEditable(false);
-        
+
         try{
             String font = Settings.getProperty("console.font");
             String strFontSize = Settings.getProperty("console.fontsize");
@@ -54,18 +54,18 @@ public class Console extends Container implements OutputPrinter{
         catch(Exception e){
             log.error("The font properties for the console is not working");
         }
-        
 
-        
+
+
         scroll = new JScrollPane(ta);
         add(scroll, BorderLayout.CENTER);
-        
+
         isPrinting = true;
         setVisible( true );
-        
+
         string = new String[size];
-        
-        hookStandards();        
+
+        hookStandards();
     }
 
     public static void setPrinting(boolean b){
@@ -77,12 +77,12 @@ public class Console extends Container implements OutputPrinter{
     }
 
 //    public static void print(Object o){
-//        if(isPrinting == true){   
+//        if(isPrinting == true){
 //             ta.append(s);
 //             ta.setCaretPosition(ta.getDocument().getLength());
 //         }
 //    }
-    
+
 //    private static String append(String s){
 //        String newStr = "";
 //        for(int i = 0; i < size-1; i++){
@@ -105,10 +105,10 @@ public class Console extends Container implements OutputPrinter{
      * @see net.beiker.xletview.io.OutputPrinter#print(java.lang.String)
      */
     public void print(String s) {
-        if(isPrinting == true){   
+        if(isPrinting == true){
              ta.append(s);
              ta.setCaretPosition(ta.getDocument().getLength());
          }
-        
+
     }
 }

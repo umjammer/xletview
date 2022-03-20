@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -24,32 +24,32 @@ import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
 
 /**
- * 
+ *
  *
  * @version  7.11.03
- * @author 	 Bengt Skogvall
+ * @author      Bengt Skogvall
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ConnectionRCInterface extends RCInterface implements ResourceProxy, Runnable{
 
-	/** Debugging facility. */
+    /** Debugging facility. */
 	private final static Logger logger = Log.getLogger(ConnectionRCInterface.class);
-	
+
     private boolean connected;
     private Vector listenerObjects;
     private static final ConnectionParameters defaultTarget;
     private ConnectionParameters currentTarget;
     private ResourceClient resourceClient; //only one client...
     private long starttime;
-    
+
     /** To fake the time it takes to make a connection with a modem */
     public static int FAKED_CONNECION_TIME = 1000;
 
     static{
-    	defaultTarget = new ConnectionParameters("12345", "user", "pw");
+        defaultTarget = new ConnectionParameters("12345", "user", "pw");
     }
-    
+
     protected ConnectionRCInterface() {
         this.connected = false;
         this.listenerObjects = new Vector();
@@ -70,22 +70,22 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
             RCInterfaceManager.getInstance().fireResorceStatusChanged(new RCInterfaceReservedEvent(this));
         }
         else{
-        	boolean releaseOk = this.resourceClient.requestRelease(this, null);
-        	/*
-        	 * We don't really care about if the ResourceClient
-        	 * wants to give up the resource or not, if another
-        	 * ResourceClient needs it we give it to that one 
-        	 * instead.
-        	 */
-        	
-        	// tell the ResourceClient that it's about to lose the resource
-        	this.resourceClient.release(this);
-        	
-        	// tell the ResourceClient that it has lost the resource
-        	this.resourceClient.notifyRelease(this);
-        	
-        	// give the resource to the new ResourceClient
-        	this.resourceClient = c;
+            boolean releaseOk = this.resourceClient.requestRelease(this, null);
+            /*
+             * We don't really care about if the ResourceClient
+             * wants to give up the resource or not, if another
+             * ResourceClient needs it we give it to that one
+             * instead.
+             */
+
+            // tell the ResourceClient that it's about to lose the resource
+            this.resourceClient.release(this);
+
+            // tell the ResourceClient that it has lost the resource
+            this.resourceClient.notifyRelease(this);
+
+            // give the resource to the new ResourceClient
+            this.resourceClient = c;
         }
         /*
         // not used since we always give permission
@@ -95,11 +95,11 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
         */
     }
 
-    public void release() {    	
-    	if(this.resourceClient != null){
-    		this.resourceClient = null;        
-    		RCInterfaceManager.getInstance().fireResorceStatusChanged(new RCInterfaceReleasedEvent(this));
-    	}
+    public void release() {
+        if(this.resourceClient != null){
+            this.resourceClient = null;
+            RCInterfaceManager.getInstance().fireResorceStatusChanged(new RCInterfaceReleasedEvent(this));
+        }
     }
 
     public void connect() throws IOException, PermissionDeniedException {
@@ -109,8 +109,8 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
 
     public void disconnect() throws PermissionDeniedException {
         if(this.connected){
-        	this.connected = false;
-        	fireConnectionEvent(new ConnectionTerminatedEvent(this));
+            this.connected = false;
+            fireConnectionEvent(new ConnectionTerminatedEvent(this));
         }
         else{
         	logger.warn("ConnectionRCInterface: was not connected");
@@ -118,7 +118,7 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
     }
 
     /**
-     * Get the current target for connections. 
+     * Get the current target for connections.
      *
      * @return the current set of connection target parameters
      * @throws IncompleteTargetException if the current target is not completely configured
@@ -137,13 +137,13 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
     }
 
     /**
-     * Set the target for connections to the default. 
+     * Set the target for connections to the default.
      *
      * @throws PermissionDeniedException if this application does not own the resource
      * @throws SecurityException if the application is not allowed to connect to the default target
      */
     public void setTargetToDefault() throws PermissionDeniedException {
-    	this.currentTarget = defaultTarget;
+        this.currentTarget = defaultTarget;
     }
 
     public int getConnectedTime() {

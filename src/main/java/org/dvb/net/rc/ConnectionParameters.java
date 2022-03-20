@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -17,10 +17,10 @@ package org.dvb.net.rc;
 import java.net.InetAddress;
 
 /**
- * 
+ *
  *
  * @version  14.9.03
- * @author 	 Bengt Skogvall
+ * @author      Bengt Skogvall
  * @statuscode 4
  */
 public class ConnectionParameters {
@@ -28,32 +28,32 @@ public class ConnectionParameters {
   private String userName;
   private String passWord;
 
-	public ConnectionParameters(String number, String username, String password){
+    public ConnectionParameters(String number, String username, String password){
           target=number;
           userName=username;
           passWord=password;
-	}
+    }
 
-	public ConnectionParameters(String number, String username, String password, InetAddress[] dns)	{
+    public ConnectionParameters(String number, String username, String password, InetAddress[] dns)    {
           target=number;
           userName=username;
           passWord=password;
           //ignore dns
-	}
+    }
 
-	public String getTarget(){
-		return target;
-	}
+    public String getTarget(){
+        return target;
+    }
 
-	public String getUsername()	{
-		return userName;
-	}
+    public String getUsername()    {
+        return userName;
+    }
 
-	public String getPassword() {
-		return passWord;
-	}
+    public String getPassword() {
+        return passWord;
+    }
 
-	public InetAddress[] getDNSServer() {
-		return null;   //not implemented
-	}
+    public InetAddress[] getDNSServer() {
+        return null;   //not implemented
+    }
 }

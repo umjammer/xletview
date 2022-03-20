@@ -4,12 +4,12 @@ package net.beiker.xletview.download;
 import java.io.File;
 
 /**
- * 
+ *
  * @author Martin Sveden
  *
  */
 public class RelFile {
-    
+
     private File file;
     private String relPath;
 
@@ -17,11 +17,11 @@ public class RelFile {
         this.file = file;
         this.relPath = relPath;
     }
-    
+
     public File getFile(){
         return file;
     }
-    
+
     public String getRelPath(){
         return relPath;
     }

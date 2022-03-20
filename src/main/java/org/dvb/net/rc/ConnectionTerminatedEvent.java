@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -15,14 +15,14 @@
 package org.dvb.net.rc;
 
 /**
- * 
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ConnectionTerminatedEvent extends ConnectionRCEvent{
 
-	public ConnectionTerminatedEvent(Object source){
-		super(source);
-	}
+    public ConnectionTerminatedEvent(Object source){
+        super(source);
+    }
 
 }

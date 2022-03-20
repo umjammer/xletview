@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -17,7 +17,7 @@ package xjavax.tv.service.selection;
  * <code>NormalContentEvent</code> is generated to indicate that the
  * normal content of a service is being presented. This event will be
  * generated in two situations: <ul>
- * 
+ *
  * <li>
  * At the end of a successful service selection operation, this
  * event will be generated as long as all of the service components
@@ -29,7 +29,7 @@ package xjavax.tv.service.selection;
  * <code>AlternativeContentEvent</code>) then that event will be
  * generated instead.
  * </li>
- * 
+ *
  * <li>
  * During the presentation of a service, this event will be generated
  * if alternative content was being presented and all of that
@@ -40,18 +40,18 @@ package xjavax.tv.service.selection;
  * </li>
  * </ul>
  * <HR>
- * 
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NormalContentEvent extends PresentationChangedEvent{
-	/**
-	 * Constructs the event.
-	 * 
-	 * @param source - The ServiceContext that generated the event.
-	 */
-	public NormalContentEvent( ServiceContext source){
-		super(source);
-	}
+    /**
+     * Constructs the event.
+     *
+     * @param source - The ServiceContext that generated the event.
+     */
+    public NormalContentEvent( ServiceContext source){
+        super(source);
+    }
 
 }

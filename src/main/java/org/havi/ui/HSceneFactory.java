@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -17,8 +17,8 @@ package org.havi.ui;
 import net.beiker.xletview.media.ScreenContainer;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 2
  * @comment always returns the same kind of HScene
@@ -63,7 +63,7 @@ public class HSceneFactory extends Object{
     public HScene getFullScreenScene(HGraphicsDevice device){
         return createScene();
     }
-    
+
     public void dispose(HScene scene){
         scene.setVisible(false);
     }

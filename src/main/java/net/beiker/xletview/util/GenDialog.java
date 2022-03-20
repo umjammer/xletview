@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -39,7 +39,7 @@ public class GenDialog extends JDialog implements ActionListener{
         super(owner, true);
         this.component = component;
         this.owner = owner;
-        
+
         Container content = this.getContentPane();
 
 
@@ -86,7 +86,7 @@ public class GenDialog extends JDialog implements ActionListener{
             if(component.isOk()){
                 isOk = true;
                 doClose();
-            }            
+            }
         }
     }
 
@@ -95,7 +95,7 @@ public class GenDialog extends JDialog implements ActionListener{
     }
 
     public void doClose() {
-        dispose();        
+        dispose();
         //System.exit(0);
     }
 }

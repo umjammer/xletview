@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -19,10 +19,10 @@ import java.net.DatagramSocket;
 
 public class DatagramSocketBufferControl {
 
-	DatagramSocketBufferControl(){}
+    DatagramSocketBufferControl(){}
 
-	public static void setReceiveBufferSize(DatagramSocket d, int size) throws java.net.SocketException {}
+    public static void setReceiveBufferSize(DatagramSocket d, int size) throws java.net.SocketException {}
 
-	public static int getReceiveBufferSize(DatagramSocket d) throws java.net.SocketException {return 0;}
+    public static int getReceiveBufferSize(DatagramSocket d) throws java.net.SocketException {return 0;}
 }
 

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,40 +18,38 @@ package org.havi.ui;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.logging.Logger;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class HVisible extends HComponent implements HState{
-	/** Debugging facility. */
+    /** Debugging facility. */
 	private static final Logger logger = Log.getLogger(HVisible.class);
-	
+
     public static final int HALIGN_LEFT                         = 0;
     public static final int HALIGN_CENTER                       = 1;
     public static final int HALIGN_RIGHT                        = 2;
     public static final int HALIGN_JUSTIFY                      = 3;
-    
+
     public static final int VALIGN_TOP                          = 0;
     public static final int VALIGN_CENTER                       = 4;
     public static final int VALIGN_BOTTOM                       = 8;
     public static final int VALIGN_JUSTIFY                      = 12;
-    
+
     public final static int RESIZE_NONE                         = 0;
     public static final int RESIZE_PRESERVE_ASPECT              = 1;
     public static final int RESIZE_ARBITRARY                    = 2;
-    
+
     public static final int NO_BACKGROUND_FILL                  = 0;
     public static final int BACKGROUND_FILL                     = 1;
-    
+
     public static final int FIRST_CHANGE                        = 0;
-    
+
     public static final int TEXT_CONTENT_CHANGE                 = 0;
     public static final int GRAPHIC_CONTENT_CHANGE              = 1;
     public static final int ANIMATE_CONTENT_CHANGE              = 2;
@@ -78,7 +76,7 @@ public class HVisible extends HComponent implements HState{
     public static final int LIST_SELECTION_CHANGE               = 23;
     public static final int UNKNOWN_CHANGE                      = 24;
     public static final int LAST_CHANGE                         = UNKNOWN_CHANGE;
-    
+
     public static final int NO_DEFAULT_WIDTH                    = -1;
     public static final int NO_DEFAULT_HEIGHT                   = -1;
 
@@ -131,7 +129,7 @@ public class HVisible extends HComponent implements HState{
         setBounds(x, y, width, height);
 
         //Debug.write(this, "default fontsize = " + getFont().getSize());
-        
+
         //hMatte = null; // set in HComponent
         callWidgetChanged();
     }
@@ -141,11 +139,11 @@ public class HVisible extends HComponent implements HState{
      */
     private void callWidgetChanged(){
         if(this.hLook != null){
-        	/*
-        	 * Since we pass null as the second argument
-        	 * instead of a HChangeData[] a full repaint
-        	 * will be made
-        	 */
+            /*
+             * Since we pass null as the second argument
+             * instead of a HChangeData[] a full repaint
+             * will be made
+             */
             this.hLook.widgetChanged(this, null);
         }
     }
@@ -153,132 +151,132 @@ public class HVisible extends HComponent implements HState{
     /*
         By default an HVisible component is not focus-traversable.
     */
-    public boolean isFocusTraversable(){    	
+    public boolean isFocusTraversable(){
         return false;
     }
 
     /**
      * Check the state argument
-     * @param state 
+     * @param state
      */
     private void checkStateArgument(int state){
-    	boolean result = true;
-    	switch (state) {
-			case HState.FOCUSED_STATE_BIT :
-			case HState.ACTIONED_STATE_BIT :
-			case HState.DISABLED_STATE_BIT :
-				result = false;
-				break;
-		}
-    	if(result == false){
-    		throw new java.lang.IllegalArgumentException("argument is STATE_BIT rather than a STATE");
-    	}
+        boolean result = true;
+        switch (state) {
+            case HState.FOCUSED_STATE_BIT :
+            case HState.ACTIONED_STATE_BIT :
+            case HState.DISABLED_STATE_BIT :
+                result = false;
+                break;
+        }
+        if(result == false){
+            throw new java.lang.IllegalArgumentException("argument is STATE_BIT rather than a STATE");
+        }
     }
-        
+
     public void setTextContent(String string, int state){
 
-    	checkStateArgument(state);    	
-    	if(state == HState.ALL_STATES){
-    		for(int i = this.textContents.length - 1; i > -1 ; i--){
-    			this.textContents[i] = string;
-    		}
-    	}
-    	else{
-    		this.textContents[state - HState.NORMAL_STATE] = string;
-    	}
-        callWidgetChanged();        
+        checkStateArgument(state);
+        if(state == HState.ALL_STATES){
+            for(int i = this.textContents.length - 1; i > -1 ; i--){
+                this.textContents[i] = string;
+            }
+        }
+        else{
+            this.textContents[state - HState.NORMAL_STATE] = string;
+        }
+        callWidgetChanged();
     }
 
     public void setGraphicContent(Image image, int state){
-    	if(state == HState.ALL_STATES){
-    		for(int i = this.graphicContents.length - 1; i > -1 ; i--){
-    			this.graphicContents[i] = image;
-    		}
-    	}
-    	else{
-    		this.graphicContents[state - HState.NORMAL_STATE] = image;
-    	}
-    	callWidgetChanged();
+        if(state == HState.ALL_STATES){
+            for(int i = this.graphicContents.length - 1; i > -1 ; i--){
+                this.graphicContents[i] = image;
+            }
+        }
+        else{
+            this.graphicContents[state - HState.NORMAL_STATE] = image;
+        }
+        callWidgetChanged();
     }
 
     public void setAnimateContent(Image[] imageArray, int state){
-    	if(state == HState.ALL_STATES){
-    		for(int i = this.animateContents.length - 1; i > -1 ; i--){
-    			this.animateContents[i] = imageArray;
-    		}
-    	}
-    	else{
-    		this.animateContents[state - HState.NORMAL_STATE] = imageArray;
-    	}
-    	callWidgetChanged();
+        if(state == HState.ALL_STATES){
+            for(int i = this.animateContents.length - 1; i > -1 ; i--){
+                this.animateContents[i] = imageArray;
+            }
+        }
+        else{
+            this.animateContents[state - HState.NORMAL_STATE] = imageArray;
+        }
+        callWidgetChanged();
     }
 
     public void setContent(Object object, int state){
-    	if(state == HState.ALL_STATES){
-    		for(int i = this.contents.length - 1; i > -1 ; i--){
-    			this.contents[i] = object;
-    		}
-    	}
-    	else{
-    		this.contents[state - HState.NORMAL_STATE] = object;
-    	}
-    	callWidgetChanged();
+        if(state == HState.ALL_STATES){
+            for(int i = this.contents.length - 1; i > -1 ; i--){
+                this.contents[i] = object;
+            }
+        }
+        else{
+            this.contents[state - HState.NORMAL_STATE] = object;
+        }
+        callWidgetChanged();
     }
 
     private Object getForNearestMatchingState(int state, Object[] contents){
-    	Object result = contents[state - HState.NORMAL_STATE];
+        Object result = contents[state - HState.NORMAL_STATE];
 
-    	if(result == null){
-    		switch (state) {
-    			case HState.FOCUSED_STATE :
-    				result = getForNearestMatchingState(HState.NORMAL_STATE, contents);
-    				break;
-    			case HState.ACTIONED_STATE :
-    				result = getForNearestMatchingState(HState.FOCUSED_STATE, contents);
-    				break;
-    			case HState.ACTIONED_FOCUSED_STATE :
-    				result = getForNearestMatchingState(HState.FOCUSED_STATE, contents);
-    				break;
-    			case HState.DISABLED_STATE :
-    				result = getForNearestMatchingState(HState.NORMAL_STATE, contents);
-    				break;
-    			case HState.DISABLED_FOCUSED_STATE :
-    				result = getForNearestMatchingState(HState.DISABLED_STATE, contents);
-    				break;
-    			case HState.DISABLED_ACTIONED_STATE :
-    				result = getForNearestMatchingState(HState.ACTIONED_STATE, contents);
-    				break;
-    			case HState.DISABLED_ACTIONED_FOCUSED_STATE :
-    				result = getForNearestMatchingState(HState.DISABLED_STATE, contents);
-    				break;
-    		}
-    	}    	
-    	
-    	return result;
+        if(result == null){
+            switch (state) {
+                case HState.FOCUSED_STATE :
+                    result = getForNearestMatchingState(HState.NORMAL_STATE, contents);
+                    break;
+                case HState.ACTIONED_STATE :
+                    result = getForNearestMatchingState(HState.FOCUSED_STATE, contents);
+                    break;
+                case HState.ACTIONED_FOCUSED_STATE :
+                    result = getForNearestMatchingState(HState.FOCUSED_STATE, contents);
+                    break;
+                case HState.DISABLED_STATE :
+                    result = getForNearestMatchingState(HState.NORMAL_STATE, contents);
+                    break;
+                case HState.DISABLED_FOCUSED_STATE :
+                    result = getForNearestMatchingState(HState.DISABLED_STATE, contents);
+                    break;
+                case HState.DISABLED_ACTIONED_STATE :
+                    result = getForNearestMatchingState(HState.ACTIONED_STATE, contents);
+                    break;
+                case HState.DISABLED_ACTIONED_FOCUSED_STATE :
+                    result = getForNearestMatchingState(HState.DISABLED_STATE, contents);
+                    break;
+            }
+        }
+
+        return result;
     }
-    
+
     public String getTextContent(int state){
-    	checkStateArgument(state);
-    	String str = (String)getForNearestMatchingState(state, this.textContents);
+        checkStateArgument(state);
+        String str = (String)getForNearestMatchingState(state, this.textContents);
         return str;
     }
 
     public Image getGraphicContent(int state){
-    	checkStateArgument(state);
-    	Image img = (Image) getForNearestMatchingState(state, this.graphicContents);
+        checkStateArgument(state);
+        Image img = (Image) getForNearestMatchingState(state, this.graphicContents);
         return img;
     }
 
     public Image[] getAnimateContent(int state){
-    	checkStateArgument(state);
-    	Image[] imgs = (Image[])getForNearestMatchingState(state, this.animateContents);
-        
-    	return imgs;
+        checkStateArgument(state);
+        Image[] imgs = (Image[])getForNearestMatchingState(state, this.animateContents);
+
+        return imgs;
     }
 
     public Object getContent(int state){
-    	checkStateArgument(state);
-    	Object obj = getForNearestMatchingState(state, this.contents);
+        checkStateArgument(state);
+        Object obj = getForNearestMatchingState(state, this.contents);
         return obj;
     }
 
@@ -324,8 +322,8 @@ public class HVisible extends HComponent implements HState{
     }
 
     protected void setInteractionState(int state) throws java.lang.IllegalArgumentException{
-    	checkStateArgument(state);
-    	this.state = state;
+        checkStateArgument(state);
+        this.state = state;
         callWidgetChanged();
     }
 

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -21,8 +21,8 @@ import org.dvb.ui.DVBGraphics;
 import org.dvb.ui.TestOpacity;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -78,13 +78,13 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
     protected void processEvent(AWTEvent awtevent) {
         super.processEvent(awtevent);
     }
-    
-	/**
-	 * @see java.awt.Component#getGraphics()
-	 */
-	public Graphics getGraphics()
-	{
-		return DVBGraphics.getDVBGraphics(super.getGraphics());
-	}
+
+    /**
+     * @see java.awt.Component#getGraphics()
+     */
+    public Graphics getGraphics()
+    {
+        return DVBGraphics.getDVBGraphics(super.getGraphics());
+    }
 
 }

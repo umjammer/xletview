@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,39 +18,39 @@ import java.util.Enumeration;
 
 public class AppsDatabase {
 
-	AppsDatabase() {
-	}
-
-
-    static public AppsDatabase getAppsDatabase() { 
-		return null ;
+    AppsDatabase() {
     }
-    
+
+
+    static public AppsDatabase getAppsDatabase() {
+        return null ;
+    }
+
 
     public int size() {
-		return 0 ; 
+        return 0 ;
     }
 
     public Enumeration getAppIDs(AppsDatabaseFilter filter) { 
-		return null ;
+        return null ;
     }
-    
+
     public Enumeration getAppAttributes(AppsDatabaseFilter filter) { 
-		return null ;
+        return null ;
     }
 
     public AppAttributes getAppAttributes (AppID key) {
-    	return  null;
+        return  null;
     }
 
     public AppProxy getAppProxy(AppID key) {
-    	return  null;
+        return  null;
     }
 
     public void addListener(AppsDatabaseEventListener listener){
     }
-   
+
     public void removeListener(AppsDatabaseEventListener listener){
     }
-    
+
 }

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -16,8 +16,8 @@ package org.havi.ui.event;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -31,8 +31,8 @@ public class HAdjustmentEvent extends java.awt.AWTEvent{
     public static final int ADJUST_PAGE_LESS = ADJUST_FIRST + 3;
     public static final int ADJUST_PAGE_MORE = ADJUST_FIRST + 4;
     public static final int ADJUST_END_CHANGE = ADJUST_FIRST + 5;
-    
+
     public HAdjustmentEvent(org.havi.ui.HAdjustmentInputPreferred source, int id){
-	    super(source, id);
+        super(source, id);
     }
 }

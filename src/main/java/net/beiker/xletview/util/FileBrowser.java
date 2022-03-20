@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -37,7 +37,7 @@ import javax.swing.JScrollPane;
 public class FileBrowser extends GenDialogComponent implements MouseListener, ActionListener{
 
 	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(FileBrowser.class);
-	
+
     private static final int FOLDER = 0;
     private static final int FILE   = 1;
     private int width;
@@ -214,7 +214,7 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
     public void setFilter(FileFilter filter){
         this.filter = filter;
     }
-    
+
     public boolean isOk(){
         return true;
     }

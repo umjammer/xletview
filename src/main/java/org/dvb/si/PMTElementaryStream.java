@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -16,18 +16,18 @@ package org.dvb.si;
 
 public interface PMTElementaryStream extends SIInformation {
 
-	public org.davic.net.dvb.DvbLocator getDvbLocator();
-  
-	public int getOriginalNetworkID();
+    public org.davic.net.dvb.DvbLocator getDvbLocator();
 
-	public int getTransportStreamID();
+    public int getOriginalNetworkID();
 
-	public int getServiceID();
+    public int getTransportStreamID();
 
-	public int getComponentTag();
+    public int getServiceID();
 
-	public byte getStreamType();
+    public int getComponentTag();
 
-	public short getElementaryPID();
+    public byte getStreamType();
+
+    public short getElementaryPID();
 }
 

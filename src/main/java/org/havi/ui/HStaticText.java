@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -19,8 +19,8 @@ import java.awt.Font;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -34,7 +34,7 @@ public class HStaticText extends HVisible implements HNoInputPreferred{
 
     public HStaticText(String textNormal, int x, int y, int width, int height){
         super(defaultHLook , x, y, width, height);
-        this.setTextContent(textNormal, HVisible.NORMAL_STATE);        
+        this.setTextContent(textNormal, HVisible.NORMAL_STATE);
         this.setTextLayoutManager(new HDefaultTextLayoutManager());
         this.setBackgroundMode(HVisible.BACKGROUND_FILL);
 
@@ -58,11 +58,11 @@ public class HStaticText extends HVisible implements HNoInputPreferred{
     }
 
     public void setLook(HLook hLook) throws HInvalidLookException{
-    	if(hLook instanceof HTextLook || hLook == null){
-    		super.setLook(hLook);
-    	}
-    	else{
-        	throw new HInvalidLookException("HLook was not a org.havi.ui.HTextLook");
+        if(hLook instanceof HTextLook || hLook == null){
+            super.setLook(hLook);
+        }
+        else{
+            throw new HInvalidLookException("HLook was not a org.havi.ui.HTextLook");
         }
     }
 
@@ -73,8 +73,8 @@ public class HStaticText extends HVisible implements HNoInputPreferred{
     public static HTextLook getDefaultLook(){
         return HStaticText.defaultHLook;
     }
-    
+
     public String toString(){
-    	return super.toString() + " text:" + getTextContent(getInteractionState());
+        return super.toString() + " text:" + getTextContent(getInteractionState());
     }
 }

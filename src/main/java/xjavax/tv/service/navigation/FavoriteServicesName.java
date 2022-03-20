@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -18,16 +18,16 @@ package xjavax.tv.service.navigation;
  * <code>Service</code> objects based on a user preference for
  * favorite services.
  * <HR>
- * 
- * 
+ *
+ *
  */
 public interface FavoriteServicesName
 {
-	/**
-	 * Provides a human-readable name for this favorite services preference.
-	 * 
-	 * @return The name of the favorite services preference.
-	 */
-	public java.lang.String getName();
+    /**
+     * Provides a human-readable name for this favorite services preference.
+     *
+     * @return The name of the favorite services preference.
+     */
+    public java.lang.String getName();
 
 }

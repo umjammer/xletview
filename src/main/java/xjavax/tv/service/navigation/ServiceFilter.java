@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -23,29 +23,29 @@ import xjavax.tv.service.Service;
  * custom filters may not be supported on certain filtering
  * operations.
  * <HR>
- * 
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public abstract class ServiceFilter extends java.lang.Object{
-	/**
-	 * Constructs the filter.</DL>
-	 * 
-	 * 
-	 */
-	protected ServiceFilter(){
-		//TODO implement ServiceFilter
-	}
+    /**
+     * Constructs the filter.</DL>
+     *
+     *
+     */
+    protected ServiceFilter(){
+        //TODO implement ServiceFilter
+    }
 
-	/**
-	 * Tests if a particular service passes this filter.
-	 * Subtypes of <code>ServiceFilter</code> override this method to
-	 * provide the logic for a filtering operation on individual
-	 * <code>Service</code> objects.
-	 * 
-	 * @param service - A Service to be evaluated against the filtering algorithm.
-	 * @return true if service satisfies the filtering algorithm; false otherwise.
-	 */
-	public abstract boolean accept( Service service);
+    /**
+     * Tests if a particular service passes this filter.
+     * Subtypes of <code>ServiceFilter</code> override this method to
+     * provide the logic for a filtering operation on individual
+     * <code>Service</code> objects.
+     *
+     * @param service - A Service to be evaluated against the filtering algorithm.
+     * @return true if service satisfies the filtering algorithm; false otherwise.
+     */
+    public abstract boolean accept( Service service);
 
 }

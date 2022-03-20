@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -26,21 +26,21 @@ import java.io.OutputStream;
  * Redirects an Outputstream to a class implementing OutputPrinter
  */
 public class OutputRedirector extends OutputStream {
-    
+
     private OutputPrinter outputPrinter;
-    
+
     // we keep a buffer around for creating 1-char strings, to
     // avoid the potential horror of thousads of array allocations
     // per second
     private byte littlebuf[] = new byte[1];
 
-    
+
     /**
-     * 
+     *
      * @param printer The OutputPrinter to redirect to
      */
     public OutputRedirector(OutputPrinter printer){
-        outputPrinter = printer;   
+        outputPrinter = printer;
     }
 
     // Redirect output to the console

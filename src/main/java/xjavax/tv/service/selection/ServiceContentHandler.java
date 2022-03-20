@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -25,17 +25,17 @@ import xjavax.tv.locator.Locator;
  * service component or to content within a service component (such as
  * an Xlet).
  * <HR>
- * 
- * 
+ *
+ *
  */
 public interface ServiceContentHandler
 {
-	/**
-	 * Reports the portions of the service on which this handler operates.
-	 * 
-	 * @return An array of locators representing the portions of the service on which this handler operates.
-	 * @see ServiceContext.select(Locator[] components)
-	 */
-	public Locator[] getServiceContentLocators();
+    /**
+     * Reports the portions of the service on which this handler operates.
+     *
+     * @return An array of locators representing the portions of the service on which this handler operates.
+     * @see ServiceContext.select(Locator[] components)
+     */
+    public Locator[] getServiceContentLocators();
 
 }

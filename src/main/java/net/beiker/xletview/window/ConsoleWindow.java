@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -34,9 +34,9 @@ import net.beiker.xletview.util.Util;
 public class ConsoleWindow extends JFrame implements ActionListener{
 
 	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(ConsoleWindow.class);
-	
+
     private static ConsoleWindow THE_INSTANCE;
-    
+
     private Container content;
     private JButton toggleButton;
     private JButton clearButton;
@@ -51,12 +51,12 @@ public class ConsoleWindow extends JFrame implements ActionListener{
 
     public static ConsoleWindow getInstance(){
         if(THE_INSTANCE == null){
-            THE_INSTANCE = new ConsoleWindow();            
+            THE_INSTANCE = new ConsoleWindow();
         }
         return THE_INSTANCE;
     }
 
-    private ConsoleWindow(){  
+    private ConsoleWindow(){
         content = this.getContentPane();
         content.setLayout(new BorderLayout());
         Console console = new Console();
@@ -98,9 +98,9 @@ public class ConsoleWindow extends JFrame implements ActionListener{
         int width = Util.parseInt(Settings.getProperty("console.width"));
         int height = Util.parseInt(Settings.getProperty("console.height"));
         setLocation(x, y);
-        setSize(width, height);        
+        setSize(width, height);
     }
-    
+
     /**
      * show/hides the window
      *

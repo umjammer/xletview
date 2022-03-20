@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -16,21 +16,21 @@ package org.dvb.si;
 
 public interface SIBouquet extends SIInformation{
 
-	public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
-	
-	public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
 
-	public short[] getDescriptorTags();
+    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-	public int getBouquetID();
+    public short[] getDescriptorTags();
 
-	public java.lang.String getName();
+    public int getBouquetID();
 
-	public String getShortBouquetName();
-  
-	public SIRequest retrieveSIBouquetTransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    public java.lang.String getName();
 
-	public org.davic.net.dvb.DvbLocator[] getSIServiceLocators();
+    public String getShortBouquetName();
+
+    public SIRequest retrieveSIBouquetTransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+
+    public org.davic.net.dvb.DvbLocator[] getSIServiceLocators();
 
 }
 

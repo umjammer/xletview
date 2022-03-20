@@ -9,19 +9,19 @@ import java.net.URL;
  */
 public class DVBClassLoaderImpl extends DVBClassLoader {
 
-	/**
-	 * @param urls
-	 * @param parent
-	 */
-	public DVBClassLoaderImpl(URL[] urls, ClassLoader parent) {
-		super(urls, parent);
-	}
+    /**
+     * @param urls
+     * @param parent
+     */
+    public DVBClassLoaderImpl(URL[] urls, ClassLoader parent) {
+        super(urls, parent);
+    }
 
-	/**
-	 * @param urls
-	 */
-	public DVBClassLoaderImpl(URL[] urls) {
-		super(urls);
-	}
+    /**
+     * @param urls
+     */
+    public DVBClassLoaderImpl(URL[] urls) {
+        super(urls);
+    }
 
 }

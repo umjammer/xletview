@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<remotecontrol width="130" height="100" imgroot="config/remote_images/" backgroundimage="remote_bg.png" backgroundcolor="">
+   
+    <buttons x="25" y="20" width="100" height="100"> 
+        <button img="button_red.png" x="0" y="0" width="20" height="14" keycode="HRcEvent.VK_COLORED_KEY_0"/>
+        <button img="button_green.png" x="20" y="0" width="20" height="14" keycode="HRcEvent.VK_COLORED_KEY_1"/>    
+        <button img="button_yellow.png" x="40" y="0" width="20" height="14" keycode="HRcEvent.VK_COLORED_KEY_2"/>    
+        <button img="button_blue.png" x="60" y="0" width="20" height="14" keycode="HRcEvent.VK_COLORED_KEY_3"/>    
+    </buttons>
+    
+    <buttons x="35" y="45" width="100" height="100">   
+    
+        <button img="button_arrow_up.png" x="20" y="0" width="20" height="20" keycode="HRcEvent.VK_UP"/>
+        <button img="button_arrow_left.png" x="0" y="20" width="20" height="20" keycode="HRcEvent.VK_LEFT"/>    
+        <button img="button_ok.png" x="20" y="20" width="20" height="20" keycode="HRcEvent.VK_ENTER"/>        
+        <button img="button_arrow_right.png" x="40" y="20" width="20" height="20" keycode="HRcEvent.VK_RIGHT"/>    
+        <button img="button_arrow_down.png" x="20" y="40" width="20" height="20" keycode="HRcEvent.VK_DOWN"/>        
+    
+    </buttons>
+    
+    <buttons x="35" y="110" width="100" height="100"> 
+        <button img="button_1.png" x="0" y="0" width="20" height="20" keycode="HRcEvent.VK_1"/>
+        <button img="button_2.png" x="20" y="0" width="20" height="20" keycode="HRcEvent.VK_2"/>
+        <button img="button_3.png" x="40" y="0" width="20" height="20" keycode="HRcEvent.VK_3"/>  
+        
+        <button img="button_4.png" x="0" y="20" width="20" height="20" keycode="HRcEvent.VK_4"/>
+        <button img="button_5.png" x="20" y="20" width="20" height="20" keycode="HRcEvent.VK_5"/>
+        <button img="button_6.png" x="40" y="20" width="20" height="20" keycode="HRcEvent.VK_6"/>  
+        
+        <button img="button_7.png" x="0" y="40" width="20" height="20" keycode="HRcEvent.VK_7"/>
+        <button img="button_8.png" x="20" y="40" width="20" height="20" keycode="HRcEvent.VK_8"/>
+        <button img="button_9.png" x="40" y="40" width="20" height="20" keycode="HRcEvent.VK_9"/>
+        
+        <button img="button_ast.png" x="0" y="60" width="20" height="20" keycode="HRcEvent.VK_ASTERISK"/>
+        <button img="button_0.png" x="20" y="60" width="20" height="20" keycode="HRcEvent.VK_0"/>
+        <button img="button_square.png" x="40" y="60" width="20" height="20" keycode="HRcEvent.VK_NUMBER_SIGN"/>
+    </buttons>
+    
+    
+    <buttons x="25" y="195" width="100" height="100">   
+        <button img="button_exit.png" x="25" y="0" width="30" height="20" keycode="HRcEvent.VK_ESCAPE"/>    
+    </buttons>    
+    
+    <buttons x="45" y="220" width="100" height="100">
+            <button img="button_channel_down.png" x="0" y="0" width="20" height="20" keycode="HRcEvent.VK_CHANNEL_DOWN"/>    
+            <button img="button_channel_up.png" x="20" y="0" width="20" height="20" keycode="HRcEvent.VK_CHANNEL_UP"/>                
+    </buttons>    
+    
+    
+</remotecontrol>

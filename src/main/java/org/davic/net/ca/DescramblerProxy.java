@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -25,48 +25,48 @@ public class DescramblerProxy implements ResourceProxy {
   }
 
 
-	public void startDescramblingDialog(Service s) throws CAException,  org.davic.mpeg.NotAuthorizedException {
-    }
-  
-	public void startDescramblingDialog(ElementaryStream[] streams) throws CAException, org.davic.mpeg.NotAuthorizedException  {
+    public void startDescramblingDialog(Service s) throws CAException,  org.davic.mpeg.NotAuthorizedException {
     }
 
-  
-	public synchronized CAModule startDescrambling(Service s, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
-		return null;
+    public void startDescramblingDialog(ElementaryStream[] streams) throws CAException, org.davic.mpeg.NotAuthorizedException  {
     }
 
-	public synchronized CAModule startDescrambling(ElementaryStream[] streams, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
-		return null;
+
+    public synchronized CAModule startDescrambling(Service s, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
+        return null;
     }
 
-	public synchronized void startDescrambling(Service s, CAModule module, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
+    public synchronized CAModule startDescrambling(ElementaryStream[] streams, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
+        return null;
     }
 
-	public synchronized void startDescrambling(ElementaryStream[] streams, CAModule module, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
+    public synchronized void startDescrambling(Service s, CAModule module, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
     }
-  
-	public void stopDescrambling() throws CAException {}
-  
-	public void stopDescrambling(ElementaryStream[] streams) throws CAException {}
 
-	public void addDescramblerListener(DescramblerListener l) {
-	}
+    public synchronized void startDescrambling(ElementaryStream[] streams, CAModule module, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
+    }
 
-	public void removeDescramblerListener(DescramblerListener l) {
-	}
+    public void stopDescrambling() throws CAException {}
 
-	public CAModule getCAModule() {
-		return null;
-	}
- 
-	public ResourceClient getClient() {
-		return null;
-	}
+    public void stopDescrambling(ElementaryStream[] streams) throws CAException {}
 
-	public ElementaryStream[] getElementaryStreams() {
-		return null;
-	}
+    public void addDescramblerListener(DescramblerListener l) {
+    }
+
+    public void removeDescramblerListener(DescramblerListener l) {
+    }
+
+    public CAModule getCAModule() {
+        return null;
+    }
+
+    public ResourceClient getClient() {
+        return null;
+    }
+
+    public ElementaryStream[] getElementaryStreams() {
+        return null;
+    }
 
 }
 

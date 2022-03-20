@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -26,8 +26,8 @@ import net.beiker.xletview.media.IframeDecoder;
 import org.havi.ui.event.HBackgroundImageListener;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 2
  * @comment not quite finished
@@ -35,71 +35,71 @@ import org.havi.ui.event.HBackgroundImageListener;
 public class HBackgroundImage extends Component{
 
 	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HBackgroundImage.class);
-	
+
     private Image image;
     private int width;
     private int height;
 
     private static final IframeDecoder decoder = new IframeDecoder();
-    
-	public HBackgroundImage(String filename){
-        
+
+    public HBackgroundImage(String filename){
+
 //        if(filename.indexOf(".mpg") > -1){
 //            log.info("Display of .mpg is not yet supported.\n" +
 //                "A workaround for now is to use a .jpg with the same name.");
 //            filename = filename.substring(0, filename.length() - 4) + ".jpg";
 //        }
-//		image = loadImage(filename, null, this);
-		
+//        image = loadImage(filename, null, this);
+
 		log.debug(filename);  
 
-		IframeDecoder decoder = new IframeDecoder();
-        
+        IframeDecoder decoder = new IframeDecoder();
+
         xjava.io.XFile virtualFile = new xjava.io.XFile(filename);
         File iframeFile = null;
-        
+
         try {
-        	iframeFile = xjava.io.FileSystem.getFile(virtualFile);
+            iframeFile = xjava.io.FileSystem.getFile(virtualFile);
         } catch (FileNotFoundException e) {
-        	e.printStackTrace();
+            e.printStackTrace();
         }
 
         decoder.decodeFile(iframeFile);
 
         image = decoder.getImage();
-        
+
         net.beiker.xletview.media.BackgroundLayer bl = net.beiker.xletview.media.BackgroundLayer.getInstance();
         bl.setBgImage(image);
         bl.repaint();
 
-	}
+    }
 
-	public HBackgroundImage(byte pixels[]){
-	}
+    public HBackgroundImage(byte pixels[]){
+    }
 
-	public HBackgroundImage(URL contents){
-	}
+    public HBackgroundImage(URL contents){
+    }
 
-	public void load(HBackgroundImageListener hbackgroundimagelistener){
-	}
+    public void load(HBackgroundImageListener hbackgroundimagelistener){
+    }
 
-	public int getHeight(){
-		return super.getHeight();
-	}
+    public int getHeight(){
+        return super.getHeight();
+    }
 
-	public int getWidth(){
-		return super.getWidth();
-	}
+    public int getWidth(){
+        return super.getWidth();
+    }
 
-	public void flush(){
-	}
-    
+    public void flush(){
+    }
+
     private Image loadImage(String name, URL url, Component component){
         MediaTracker mediatracker = new MediaTracker(component);
         xjava.awt.Toolkit toolkit = xjava.awt.Toolkit.getDefaultToolkit();
         Image image = null;
         if(name != null){
-            
+
             // to see if the path is correct
             try{
                 xjava.io.XFile f = new xjava.io.XFile(name);
@@ -122,7 +122,7 @@ public class HBackgroundImage extends Component{
             ex.printStackTrace();
         }
         return image;
-    }    
+    }
 
     public void setBounds(HScreenRectangle r){
         int x = (int) r.x;
@@ -132,11 +132,11 @@ public class HBackgroundImage extends Component{
         super.setBounds(x, y, width, height);
     }
 
-//    public void paint(Graphics g){        
+//    public void paint(Graphics g){
 //        if(image != null){
 //            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 //        }
-//        
+//
 //    }
-    
+
 }

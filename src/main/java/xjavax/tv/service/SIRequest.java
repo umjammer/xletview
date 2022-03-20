@@ -8,23 +8,23 @@ package xjavax.tv.service;
  * <code>SIRequest</code> objects generated at the time the operation
  * is initiated.
  * <HR>
- * 
- * 
+ *
+ *
  */
 public interface SIRequest
 {
-	/**
-	 * Cancels a pending SI retrieval request.  If the request is still
-	 * pending and can be canceled then the <code>notifyFailure()</code>
-	 * method of the <code>SIRequestor</code> that initiated the
-	 * asynchronous retrieval will be called with the
-	 * <code>SIRequestFailureType</code> code of
-	 * <code>CANCELED</code>. If the request is no longer pending then no
-	 * action is performed.
-	 * 
-	 * @return true if the request was pending and successfully canceled; false otherwise.
-	 * @see SIRequestor.notifyFailure(javax.tv.service.SIRequestFailureType), SIRequestFailureType.CANCELED
-	 */
-	public boolean cancel();
+    /**
+     * Cancels a pending SI retrieval request.  If the request is still
+     * pending and can be canceled then the <code>notifyFailure()</code>
+     * method of the <code>SIRequestor</code> that initiated the
+     * asynchronous retrieval will be called with the
+     * <code>SIRequestFailureType</code> code of
+     * <code>CANCELED</code>. If the request is no longer pending then no
+     * action is performed.
+     *
+     * @return true if the request was pending and successfully canceled; false otherwise.
+     * @see SIRequestor.notifyFailure(javax.tv.service.SIRequestFailureType), SIRequestFailureType.CANCELED
+     */
+    public boolean cancel();
 
 }

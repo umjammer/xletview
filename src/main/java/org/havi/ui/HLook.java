@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -19,19 +19,19 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 
-public interface HLook	extends Cloneable{
+public interface HLook    extends Cloneable{
 
-	public abstract void showLook(Graphics g, HVisible hvisible, int i);
+    public abstract void showLook(Graphics g, HVisible hvisible, int i);
 
-	public abstract void widgetChanged(HVisible hvisible, HChangeData ahchangedata[]);
+    public abstract void widgetChanged(HVisible hvisible, HChangeData ahchangedata[]);
 
-	public abstract Dimension getMinimumSize(HVisible hvisible);
+    public abstract Dimension getMinimumSize(HVisible hvisible);
 
-	public abstract Dimension getPreferredSize(HVisible hvisible);
+    public abstract Dimension getPreferredSize(HVisible hvisible);
 
-	public abstract Dimension getMaximumSize(HVisible hvisible);
+    public abstract Dimension getMaximumSize(HVisible hvisible);
 
-	public abstract boolean isOpaque(HVisible hvisible);
+    public abstract boolean isOpaque(HVisible hvisible);
 
-	public abstract Insets getInsets(HVisible hvisible);
+    public abstract Insets getInsets(HVisible hvisible);
 }

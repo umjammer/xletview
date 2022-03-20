@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -23,25 +23,25 @@ import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HFocusEvent;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class HIcon extends HStaticIcon implements HNavigable{
 
 	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HIcon.class);
-	
-	
-	private HNavigableHelper helper;
-	
-	
+
+
+    private HNavigableHelper helper;
+
+
     private static HGraphicLook defaultHLook    = new HGraphicLook();
 
 
     public HIcon(){
-    	super();
-    	init();
+        super();
+        init();
     }
 
     public HIcon(Image image){
@@ -61,9 +61,9 @@ public class HIcon extends HStaticIcon implements HNavigable{
 
     }
     // constructors end //
-    
+
     private void init(){
-    	helper = new HNavigableHelper(this);
+        helper = new HNavigableHelper(this);
     	log.debug("HIcon - init");
     }
 
@@ -76,56 +76,56 @@ public class HIcon extends HStaticIcon implements HNavigable{
     }
 
     public void setMove(int keyCode, HNavigable target){
-    	helper.setMove(keyCode, target);
+        helper.setMove(keyCode, target);
     }
 
     public HNavigable getMove(int keyCode){
-    	return helper.getMove(keyCode);
+        return helper.getMove(keyCode);
     }
 
     public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
-    	helper.setFocusTraversal(up, down, left, right);
+        helper.setFocusTraversal(up, down, left, right);
     }
 
     public boolean isSelected(){
-    	return helper.isSelected();
+        return helper.isSelected();
     }
 
     public void setGainFocusSound(HSound sound){
-    	helper.setGainFocusSound(sound);
+        helper.setGainFocusSound(sound);
     }
 
     public void setLoseFocusSound(HSound sound){
-    	helper.setLoseFocusSound(sound);
+        helper.setLoseFocusSound(sound);
     }
 
     public HSound getGainFocusSound(){
-    	return helper.getGainFocusSound();
+        return helper.getGainFocusSound();
     }
 
     public HSound getLoseFocusSound(){
-    	return helper.getLoseFocusSound();
+        return helper.getLoseFocusSound();
     }
 
     public synchronized void addHFocusListener(org.havi.ui.event.HFocusListener listener){
-    	helper.addHFocusListener(listener);
+        helper.addHFocusListener(listener);
     }
 
     public synchronized void removeHFocusListener(org.havi.ui.event.HFocusListener listener){
-    	helper.removeHFocusListener(listener);
+        helper.removeHFocusListener(listener);
     }
 
     public int[] getNavigationKeys(){
-    	return helper.getNavigationKeys();
+        return helper.getNavigationKeys();
     }
-    
+
     /*
      Overloaded from HVisible, is true for HNavigable
      */
     public boolean isFocusTraversable() {
-    	return true;
+        return true;
     }
-    
+
     /**
      * Since the Component will not get focus unless there is
      * a FocusListener registered we "secretly" add one in the
@@ -136,24 +136,24 @@ public class HIcon extends HStaticIcon implements HNavigable{
      * and takes care of that.
      */
     public synchronized FocusListener[] getFocusListeners(){
-    	return helper.getFocusListeners();
+        return helper.getFocusListeners();
     }
-    
+
 
     public void processFocusEvent(FocusEvent e){
-    	//super.processFocusEvent(e);
-    	HFocusEvent event = new HFocusEvent(this, e.getID());
-    	processHFocusEvent(event);
-    	
+        //super.processFocusEvent(e);
+        HFocusEvent event = new HFocusEvent(this, e.getID());
+        processHFocusEvent(event);
+
     }
 
-    
+
     public void processHFocusEvent(HFocusEvent evt) {
-    	int state = getInteractionState();
-    	int newState = helper.getHFocusEventResult(evt);
-    	
-    	if(state != newState){
-    		setInteractionState(newState);
-    	}
+        int state = getInteractionState();
+        int newState = helper.getHFocusEventResult(evt);
+
+        if(state != newState){
+            setInteractionState(newState);
+        }
     }
 }

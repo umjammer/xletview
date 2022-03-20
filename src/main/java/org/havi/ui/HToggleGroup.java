@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -29,16 +29,16 @@ public class HToggleGroup{
 
     public void setForcedSelection(boolean forceSelection){
     }
-    
+
     public boolean getForcedSelection(){
-		return (false);
+        return (false);
     }
-            
+
     public void setEnabled(boolean enable){
     }
-    
+
     public boolean isEnabled(){
-		return (true);
+        return (true);
     }
 
     protected void add(HToggleButton button){
@@ -46,6 +46,6 @@ public class HToggleGroup{
 
     protected void remove(HToggleButton button){
     }
-    
+
 }
 

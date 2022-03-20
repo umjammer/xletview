@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -23,15 +23,15 @@ import net.beiker.xletview.media.ScreenContainer;
 
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 2
  */
 public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
 
 	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(AWTVideoSizeControlImpl.class);
-	
+
     private static AWTVideoSizeControlImpl THE_INSTANCE;
 
     private AWTVideoSize defaultSize;
@@ -72,7 +72,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
 
     public boolean setSize(AWTVideoSize awtvideosize){
         currentSize = awtvideosize;
-        
+
         log.debug("setSize");
         MediaPlayer.getInstance().setSize(awtvideosize);
         return true;

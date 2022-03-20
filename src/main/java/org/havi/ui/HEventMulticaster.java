@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -43,8 +43,8 @@ import org.havi.ui.event.HTextEvent;
 import org.havi.ui.event.HTextListener;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -52,7 +52,7 @@ public class HEventMulticaster implements
 HBackgroundImageListener, HScreenConfigurationListener, HScreenLocationModifiedListener,
  java.awt.event.WindowListener, HActionListener, HAdjustmentListener, HFocusListener, HItemListener,
 HTextListener, HKeyListener, ResourceStatusListener{
-	
+
     protected final EventListener a, b;
 
     protected HEventMulticaster(EventListener a, EventListener b){
@@ -186,12 +186,12 @@ HTextListener, HKeyListener, ResourceStatusListener{
     }
 
     public void focusLost(FocusEvent e){
-    	((FocusListener)a).focusLost(e);
+        ((FocusListener)a).focusLost(e);
         ((FocusListener)b).focusLost(e);
     }
 
     public void focusGained(FocusEvent e)  {
-    	((FocusListener)a).focusGained(e);
+        ((FocusListener)a).focusGained(e);
         ((FocusListener)b).focusGained(e);
     }
 

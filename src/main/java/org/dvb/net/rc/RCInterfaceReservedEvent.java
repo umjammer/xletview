@@ -1,7 +1,7 @@
 /*
 
  This file is part of XleTView
- Copyright (C) 2003 Martin Svedén
+ Copyright (C) 2003 Martin SvedÃˆn
 
  This is free software, and you are
  welcome to redistribute it under
@@ -19,10 +19,10 @@ package org.dvb.net.rc;
 import org.davic.resources.ResourceStatusEvent;
 
 /**
- * 
+ *
  *
  * @version  14.9.03
- * @author 	 Bengt Skogvall
+ * @author      Bengt Skogvall
  * @statuscode 4
  */
 public class RCInterfaceReservedEvent

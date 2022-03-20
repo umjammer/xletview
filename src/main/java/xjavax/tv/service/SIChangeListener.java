@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -20,8 +20,8 @@ package xjavax.tv.service;
  * <code>SIElement</code> data must implement the appropriate
  * <code>SIChangeListener</code> sub-interface.
  * <HR>
- * 
- * 
+ *
+ *
  */
 public interface SIChangeListener extends java.util.EventListener
 {

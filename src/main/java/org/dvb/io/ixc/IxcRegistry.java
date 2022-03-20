@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2004 Christian Koeberl
 
- This is free software, and you are 
- welcome to redistribute it under 
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -26,8 +26,8 @@ import xjavax.tv.xlet.XletContext;
 
 /**
  * This is the bootstrap mechanism for obtaining references to remote objects
- * residing in other Xlets executing on the same MHP terminal, using a 
- * URL-like syntax. The identification of a remote object is given using a 
+ * residing in other Xlets executing on the same MHP terminal, using a
+ * URL-like syntax. The identification of a remote object is given using a
  * syntax indicating the organisation ID and application ID:
  * "/organisation_id/application_id/name".
  * <ul>
@@ -47,13 +47,13 @@ import xjavax.tv.xlet.XletContext;
  * communication initiated with IxcRegistry. If such stubs are present, they
  * shall be ignored.
  * <p>
- * Similarly, network RMI objects often extend the class server.RemoteObject, 
+ * Similarly, network RMI objects often extend the class server.RemoteObject,
  * in order to get appropriate implementations for Object.hashCode(),
- * Object.equals(), and Object.toString(). Overriding Object’s implementation 
+ * Object.equals(), and Object.toString(). Overriding Objectï¿½s implementation
  * of these methods in this way is not necessary for inter-xlet communication
  * initiated with IxcRegistry, although it is not harmful. Note that the class
  * server.RemoteObject is not required in all MHP profiles.
- * 
+ *
  * @author Christian K&ouml;berl
  * @version $Revision: 1.4 $
  */

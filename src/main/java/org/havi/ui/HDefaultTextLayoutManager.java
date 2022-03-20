@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -22,16 +22,16 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class HDefaultTextLayoutManager implements HTextLayoutManager{
 
-	private int caretPosition;
-	private boolean showCaret;
-	
+    private int caretPosition;
+    private boolean showCaret;
+
     public HDefaultTextLayoutManager(){
     }
 
@@ -91,84 +91,84 @@ public class HDefaultTextLayoutManager implements HTextLayoutManager{
 
         Color foreground = hVisible.getForeground();
         g.setColor(foreground);
-        
+
         for(int i = 0; i < strings.length; i++){
-        	stringWidth             = fontMetrics.stringWidth(strings[i]);
+            stringWidth             = fontMetrics.stringWidth(strings[i]);
 
-        	// get the x coordinate depending on horizontal alignment
+            // get the x coordinate depending on horizontal alignment
 
-        	int hAlign = hVisible.getHorizontalAlignment();
+            int hAlign = hVisible.getHorizontalAlignment();
 
-        	if(hAlign == HVisible.HALIGN_CENTER || hAlign == HVisible.HALIGN_JUSTIFY){
-        		x = ( hVisible.getWidth()/2 ) - ( stringWidth/2);
-        	}
-        	else if(hAlign == HVisible.HALIGN_LEFT){
-        		x = insetLeft;
-        	}
-        	else if(hAlign == HVisible.HALIGN_RIGHT){
-        		x = hVisible.getWidth() - stringWidth - insetRight;
-        	}
+            if(hAlign == HVisible.HALIGN_CENTER || hAlign == HVisible.HALIGN_JUSTIFY){
+                x = ( hVisible.getWidth()/2 ) - ( stringWidth/2);
+            }
+            else if(hAlign == HVisible.HALIGN_LEFT){
+                x = insetLeft;
+            }
+            else if(hAlign == HVisible.HALIGN_RIGHT){
+                x = hVisible.getWidth() - stringWidth - insetRight;
+            }
 
-        	// get the x coordinate depending on horizontal alignment
+            // get the x coordinate depending on horizontal alignment
 
-        	int vAlign = hVisible.getVerticalAlignment();
+            int vAlign = hVisible.getVerticalAlignment();
 
-        	if(vAlign == HVisible.VALIGN_CENTER || vAlign == HVisible.VALIGN_JUSTIFY){
-        		y = ( hVisible.getHeight()/2 ) - ( textHeight/2 ) + ascent + (i*stringHeight);
-        	}
-        	else if(vAlign == HVisible.VALIGN_TOP){
-        		y = insetTop + ascent + (i*stringHeight);
-        	}
-        	else if(vAlign == HVisible.VALIGN_BOTTOM){
-        		y = hVisible.getHeight() - insetBottom - textHeight + ascent + (i*stringHeight);
-        	}
+            if(vAlign == HVisible.VALIGN_CENTER || vAlign == HVisible.VALIGN_JUSTIFY){
+                y = ( hVisible.getHeight()/2 ) - ( textHeight/2 ) + ascent + (i*stringHeight);
+            }
+            else if(vAlign == HVisible.VALIGN_TOP){
+                y = insetTop + ascent + (i*stringHeight);
+            }
+            else if(vAlign == HVisible.VALIGN_BOTTOM){
+                y = hVisible.getHeight() - insetBottom - textHeight + ascent + (i*stringHeight);
+            }
 
-        	// draw the String
-        	g.drawString(strings[i], x, y );
-        	
-        	/*//////////////////////////////////////
-        	 * 
-        	 * added stuff for HSinglelineInput
-        	 * 
-        	 *//////////////////////////////////////
-        	
-        	//showCaret = true;
-        	//caretPosition = 3;
-        	if(showCaret){
-        		if(caretPosition > -1 && caretPosition < strings[i].length() + 1){        			
-        			
-        			char[] chars = strings[i].toCharArray();
-        			
-        			int caretX = x + fontMetrics.stringWidth(new String(chars, 0, caretPosition));
-        			int caretY = y + 4;
-        			int caretWidth = 0;
-        			if(caretPosition < chars.length){
-        				caretWidth = fontMetrics.stringWidth(chars[caretPosition] + "");
-        			}
-        			else{
-        				caretWidth = fontMetrics.stringWidth("m");
-        			}
-        			int caretHeight = 2;
-        			g.fillRect(caretX, caretY, caretWidth, caretHeight);
-        		}
-        		
-        		// always reset showCaret
-        		showCaret = false;
-        	}
+            // draw the String
+            g.drawString(strings[i], x, y );
+
+            /*//////////////////////////////////////
+             *
+             * added stuff for HSinglelineInput
+             *
+             *//////////////////////////////////////
+
+            //showCaret = true;
+            //caretPosition = 3;
+            if(showCaret){
+                if(caretPosition > -1 && caretPosition < strings[i].length() + 1){
+
+                    char[] chars = strings[i].toCharArray();
+
+                    int caretX = x + fontMetrics.stringWidth(new String(chars, 0, caretPosition));
+                    int caretY = y + 4;
+                    int caretWidth = 0;
+                    if(caretPosition < chars.length){
+                        caretWidth = fontMetrics.stringWidth(chars[caretPosition] + "");
+                    }
+                    else{
+                        caretWidth = fontMetrics.stringWidth("m");
+                    }
+                    int caretHeight = 2;
+                    g.fillRect(caretX, caretY, caretWidth, caretHeight);
+                }
+
+                // always reset showCaret
+                showCaret = false;
+            }
         }
     }
-    
+
     /*
-     * Added stuff for HSinglelineInput 
+     * Added stuff for HSinglelineInput
      */
-    
+
     void setCaretVisible(boolean b){
-    	showCaret = b;
+        showCaret = b;
     }
-    
+
     void setCaretPosition(int i){
-    	caretPosition = i;
+        caretPosition = i;
     }
-    
-    
+
+
 }

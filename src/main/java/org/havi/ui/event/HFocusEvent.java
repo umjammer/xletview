@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -15,8 +15,8 @@
 package org.havi.ui.event;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -45,7 +45,7 @@ public class HFocusEvent extends java.awt.event.FocusEvent{
     public int getTransferId(){
         return transferId;
     }
-    
+
     /**
      * Returns a parameter string identifying this event.
      * This method is useful for event-logging and for debugging.
@@ -53,26 +53,26 @@ public class HFocusEvent extends java.awt.event.FocusEvent{
      * @return a string identifying the event and its attributes
      */
     public String paramString() {
-    	String result = null;
-    	if(id == FOCUS_TRANSFER) {
-			result = "FOCUS_TRANSFER";
-			switch (transferId) {
-				case NO_TRANSFER_ID :
-					result += ",NO_TRANSFER_ID";
-					break;
+        String result = null;
+        if(id == FOCUS_TRANSFER) {
+            result = "FOCUS_TRANSFER";
+            switch (transferId) {
+                case NO_TRANSFER_ID :
+                    result += ",NO_TRANSFER_ID";
+                    break;
 
-				default :
-					result += ", transferId=" + transferId;
-					break;
-			}
-    	}
-    	if(result == null){
-    		return super.paramString();
-    	}
-    	else{
-    		return result;
-    	}
-    	
+                default :
+                    result += ", transferId=" + transferId;
+                    break;
+            }
+        }
+        if(result == null){
+            return super.paramString();
+        }
+        else{
+            return result;
+        }
+
     }
 
 }

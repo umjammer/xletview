@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -17,7 +17,7 @@ import xjavax.tv.locator.Locator;
 
 /**
  * The base interface of elements provided by the SI database.
- * 
+ *
  * The base interface of elements provided by the SI database.
  * <code>SIElement</code> objects represent immutable <em>copies</em>
  * of the service information data contained in the SI database.  If
@@ -35,52 +35,52 @@ import xjavax.tv.locator.Locator;
  * database between the times of their respective retrievals.
  * <A HREF="../../../javax/tv/service/SIManager.html#retrieveSIElement(javax.tv.locator.Locator, javax.tv.service.SIRequestor)"><CODE>SIManager.retrieveSIElement(javax.tv.locator.Locator, javax.tv.service.SIRequestor)</CODE></A></DL>
  * <HR>
- * 
- * 
+ *
+ *
  */
 public interface SIElement extends SIRetrievable
 {
-	/**
-	 * Reports the <code>Locator</code> of this <code>SIElement</code>.
-	 * 
-	 * @return Locator The locator referencing this SIElement
-	 */
-	public Locator getLocator();
+    /**
+     * Reports the <code>Locator</code> of this <code>SIElement</code>.
+     *
+     * @return Locator The locator referencing this SIElement
+     */
+    public Locator getLocator();
 
-	/**
-	 * Tests two <code>SIElement</code> objects for equality.  Returns
-	 * <code>true</code> if and only if:
-	 * <ul>
-	 * <li><code>obj</code>'s class is the
-	 * same as the class of this <code>SIElement</code>, and<p>
-	 * <li><code>obj</code>'s <code>Locator</code> is equal to
-	 * the <code>Locator</code> of this object (as reported by
-	 * <code>SIElement.getLocator()</code>, and<p>
-	 * <li><code>obj</code> and this object encapsulate identical data.
-	 * </ul>
-	 * 
-	 * @param obj - The object against which to test for equality.
-	 * @return true if the two SIElement objects are equal; false otherwise.
-	 * @see equals in class java.lang.Object
-	 */
-	public boolean equals(java.lang.Object obj);
+    /**
+     * Tests two <code>SIElement</code> objects for equality.  Returns
+     * <code>true</code> if and only if:
+     * <ul>
+     * <li><code>obj</code>'s class is the
+     * same as the class of this <code>SIElement</code>, and<p>
+     * <li><code>obj</code>'s <code>Locator</code> is equal to
+     * the <code>Locator</code> of this object (as reported by
+     * <code>SIElement.getLocator()</code>, and<p>
+     * <li><code>obj</code> and this object encapsulate identical data.
+     * </ul>
+     *
+     * @param obj - The object against which to test for equality.
+     * @return true if the two SIElement objects are equal; false otherwise.
+     * @see equals in class java.lang.Object
+     */
+    public boolean equals(java.lang.Object obj);
 
-	/**
-	 * Reports the hash code value of this <code>SIElement</code>.  Two
-	 * <code>SIElement</code> objects that are equal will have identical
-	 * hash codes.
-	 * 
-	 * @return The hash code value of this SIElement.
-	 * @see hashCode in class java.lang.Object
-	 */
-	public int hashCode();
+    /**
+     * Reports the hash code value of this <code>SIElement</code>.  Two
+     * <code>SIElement</code> objects that are equal will have identical
+     * hash codes.
+     *
+     * @return The hash code value of this SIElement.
+     * @see hashCode in class java.lang.Object
+     */
+    public int hashCode();
 
-	/**
-	 * Reports the SI format in which this <code>SIElement</code> was
-	 * delivered.
-	 * 
-	 * @return The SI format in which this SI element was delivered.
-	 */
-	public ServiceInformationType getServiceInformationType();
+    /**
+     * Reports the SI format in which this <code>SIElement</code> was
+     * delivered.
+     *
+     * @return The SI format in which this SI element was delivered.
+     */
+    public ServiceInformationType getServiceInformationType();
 
 }

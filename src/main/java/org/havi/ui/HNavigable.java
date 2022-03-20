@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -15,9 +15,9 @@
 package org.havi.ui;
 
 
-	public interface HNavigable extends HNavigationInputPreferred{
-    
-	public void setMove(int keyCode, HNavigable target);
+    public interface HNavigable extends HNavigationInputPreferred{
+
+    public void setMove(int keyCode, HNavigable target);
 
     public HNavigable getMove(int keyCode);
 
@@ -33,8 +33,8 @@ package org.havi.ui;
 
     public HSound getLoseFocusSound();
 
-	public void addHFocusListener(org.havi.ui.event.HFocusListener l);
+    public void addHFocusListener(org.havi.ui.event.HFocusListener l);
 
-	public void removeHFocusListener(org.havi.ui.event.HFocusListener l);
+    public void removeHFocusListener(org.havi.ui.event.HFocusListener l);
 
 }

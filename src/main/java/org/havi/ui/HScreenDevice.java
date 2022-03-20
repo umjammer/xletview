@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -17,17 +17,17 @@ package org.havi.ui;
 
 import java.awt.Dimension;
 
-import net.beiker.xletview.media.ScreenContainer;
-
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceStatusListener;
 import org.havi.ui.event.HScreenConfigurationListener;
 import org.havi.ui.event.HScreenDeviceReleasedEvent;
 import org.havi.ui.event.HScreenDeviceReservedEvent;
 
+import net.beiker.xletview.media.ScreenContainer;
+
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -38,7 +38,7 @@ public class HScreenDevice implements org.davic.resources.ResourceProxy, org.dav
     private ResourceStatusListener resourceStatusListener;
     private ResourceClient currentResourceClient;
 
-    public HScreenDevice(){        
+    public HScreenDevice(){
     }
 
     public String getIDstring(){
@@ -63,13 +63,13 @@ public class HScreenDevice implements org.davic.resources.ResourceProxy, org.dav
     }
 
     public boolean reserveDevice(ResourceClient client){
-        /* "Requests the right to call any method which may otherwise throw an HPermissionDeniedException." 
+        /* "Requests the right to call any method which may otherwise throw an HPermissionDeniedException."
          * */
         // at the moment anyone gets the right to call any method, why not?
-        currentResourceClient = client;   
+        currentResourceClient = client;
         if(resourceStatusListener != null){
             resourceStatusListener.statusChanged(new HScreenDeviceReservedEvent(currentResourceClient) );
-        }                
+        }
         boolean reserved = true;
         return reserved;
     }

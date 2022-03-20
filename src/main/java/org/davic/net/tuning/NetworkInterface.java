@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -17,37 +17,37 @@ import org.davic.mpeg.TransportStream;
 
 public class NetworkInterface {
 
-	protected NetworkInterface() {
-	}
+    protected NetworkInterface() {
+    }
 
-	public TransportStream getCurrentTransportStream() {
-		return null;
-	}
+    public TransportStream getCurrentTransportStream() {
+        return null;
+    }
 
-	public org.davic.net.Locator getLocator() {
-		return null;
-	}
+    public org.davic.net.Locator getLocator() {
+        return null;
+    }
 
-	public synchronized boolean isReserved() {
-	    return false;
-	}
-  
-	public boolean isLocal() {
-		return false;
-	}
+    public synchronized boolean isReserved() {
+        return false;
+    }
 
-	public TransportStream[] listAccessibleTransportStreams() {
-		return null;
-	}
+    public boolean isLocal() {
+        return false;
+    }
 
-	public int getDeliverySystemType() {
-		return 0;
-	}
+    public TransportStream[] listAccessibleTransportStreams() {
+        return null;
+    }
 
-	public void addNetworkInterfaceListener(NetworkInterfaceListener listener) {
-	}
+    public int getDeliverySystemType() {
+        return 0;
+    }
 
-	public void removeNetworkInterfaceListener(NetworkInterfaceListener listener) {
-	}
+    public void addNetworkInterfaceListener(NetworkInterfaceListener listener) {
+    }
+
+    public void removeNetworkInterfaceListener(NetworkInterfaceListener listener) {
+    }
 }
 

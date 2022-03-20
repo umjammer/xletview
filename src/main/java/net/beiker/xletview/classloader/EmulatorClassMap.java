@@ -8,8 +8,8 @@ import javassist.ClassMap;
  */
 public class EmulatorClassMap extends ClassMap{
 
-	public EmulatorClassMap(){
-		
-	}
+    public EmulatorClassMap(){
+
+    }
 
 }

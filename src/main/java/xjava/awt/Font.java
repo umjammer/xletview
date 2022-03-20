@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -22,7 +22,7 @@ package xjava.awt;
  * @author Martin Sveden
  */
 public class Font{
-	
+
     private static int offset = 0;
 
     /**
@@ -35,15 +35,15 @@ public class Font{
      * @return
      */
     public static java.awt.Font create(String name, int type, int size){
-        int resolution = Toolkit.getDefaultToolkit().getScreenResolution();        
-                
+        int resolution = Toolkit.getDefaultToolkit().getScreenResolution();
+
         //int newSize = (int)Math.round(size * resolution / 72.0);
         int newSize = size;
         newSize = newSize + offset;
-		
-		return new java.awt.Font(name, type, newSize);
+
+        return new java.awt.Font(name, type, newSize);
     }
-    
+
     public static void setOffset(int fontSizeOffset){
         offset = fontSizeOffset;
     }

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -32,23 +32,23 @@ public class KeyButton extends Container implements MouseListener{
 
     private Img image;
     private KeyListener keyListener;
-	private Component listenerComponent;
-    
-	private int keyCode;
-	private char theChar;
-	
+    private Component listenerComponent;
+
+    private int keyCode;
+    private char theChar;
+
     public KeyButton(URL imgUrl, int width, int height, int keyCode, char ch){
-    	image = new Img(imgUrl, width, height);
-    	//setSize(getPrefferedSize());
-    	setSize(image.getSize());
-    	add(image);
-    	
-    	this.keyCode = keyCode;
-    	this.theChar = ch;
-    	
-    	addMouseListener(this);
+        image = new Img(imgUrl, width, height);
+        //setSize(getPrefferedSize());
+        setSize(image.getSize());
+        add(image);
+
+        this.keyCode = keyCode;
+        this.theChar = ch;
+
+        addMouseListener(this);
     }
-    
+
     public void setNormal(){
         image.setLocation(0,0);
     }
@@ -59,7 +59,7 @@ public class KeyButton extends Container implements MouseListener{
 
     public Dimension getPrefferedSize(){
         //return new Dimension(image.getWidth(), image.getHeight());
-    	return new Dimension(getWidth(), getHeight());
+        return new Dimension(getWidth(), getHeight());
     }
 
     public Dimension getMinimumSize(){
@@ -73,21 +73,21 @@ public class KeyButton extends Container implements MouseListener{
     public void addKeyListener(KeyListener keyListener){
         this.keyListener = AWTEventMulticaster.add(this.keyListener, keyListener);
     }
-    
+
     public void setListenerComponent(Component c){
-		listenerComponent = c;
+        listenerComponent = c;
     }
 
     private void fireKeyEvent(int eventType){
         if(keyListener != null){
-            
+
             //KeyEvent keyEvent = new KeyEvent(this, keyCode, 0L, 0, keyCode);
             KeyEvent keyEvent = null;
             switch(eventType){
                 case KeyEvent.KEY_PRESSED:
-                    keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char)keyCode);                    
+                    keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char)keyCode);
                     keyListener.keyPressed(keyEvent);
-                break;                
+                break;
                 case KeyEvent.KEY_RELEASED:
                     keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char)keyCode);
                     keyListener.keyReleased(keyEvent);

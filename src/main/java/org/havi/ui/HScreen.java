@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
- Copyright (C) 2003 Martin Svedén
- 
- This is free software, and you are 
- welcome to redistribute it under 
+ This file is part of XleTView
+ Copyright (C) 2003 Martin SvedÃˆn
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -17,8 +17,8 @@ package org.havi.ui;
 import java.util.Vector;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -55,7 +55,7 @@ public class HScreen{
     public static HScreen[] getHScreens(){
         HScreen[] screens = new HScreen[hScreens.size()];
         for(int i = 0; i < screens.length; i++){
-            screens[i] = (HScreen) hScreens.get(i);            
+            screens[i] = (HScreen) hScreens.get(i);
         }
         return screens;
     }
