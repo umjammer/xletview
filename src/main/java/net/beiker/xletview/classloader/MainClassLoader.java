@@ -64,12 +64,12 @@ public class MainClassLoader extends URLClassLoader {
 
         // TODO: Throw that out, it belongs in a
         //       META-INF/MANIFEST.MF file
-    	paths.add("xletview.jar");
-    	paths.add("JMF2.1.1/lib/jmf.jar");
-    	paths.add("jars/nanoxml-2.2.3.jar");
-    	paths.add("jars/metouia.jar");
-    	paths.add("jars/javassist.jar");
-    	paths.add("jars/log4j-1.2.8.jar");
+//        paths.add("xletview.jar");
+//        paths.add("JMF2.1.1/lib/jmf.jar");
+//        paths.add("jars/nanoxml-2.2.3.jar");
+//        paths.add("jars/metouia.jar");
+//        paths.add("jars/javassist.jar");
+//        paths.add("jars/log4j-1.2.8.jar");
 
         URL[] urls = new URL[paths.size()];
 

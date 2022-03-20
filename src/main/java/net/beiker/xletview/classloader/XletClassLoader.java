@@ -15,6 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -80,9 +84,19 @@ public final class XletClassLoader extends MainClassLoader {
         this.xletClassMap = new XletClassMap();
 
 
-		ClassPath cp = new LoaderClassPath(this);
-		this.pool.insertClassPath(cp);						
+        Arrays.stream(virtualRoot).map(URL::getPath).forEach(s -> {
+            try {
+                pool.insertClassPath(s);
+            } catch (NotFoundException e) {
+                throw new IllegalArgumentException("xlet option: " + s);
+            }
+        });
 
+        try {
+            loadClass("xjava.io.XFile");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /*
@@ -205,9 +219,21 @@ logger.finer("try to load: " + name);
      * @return
      */
     public URL getResource(String resource){
-    	logger.debug("Locating RESOURCE '"+resource+"'.");
-		URL ret = super.getResource(resource);
-		logger.debug(ret == null ? "Resource was NOT FOUND." : "Resource was found.");
+        URL ret = null;
+        logger.fine("Locating RESOURCE '"+resource+"'.");
+        for (URL url : getURLs()) {
+            Path path = Paths.get(url.getPath(), resource);
+logger.fine("path: " + path);
+            if (Files.exists(path)) {
+                try {
+                    ret = path.toUri().toURL();
+                } catch (MalformedURLException e) {
+                    throw new IllegalArgumentException(path.toString());
+                }
+                break;
+            }
+        }
+        logger.fine(ret == null ? "Resource was NOT FOUND." : "Resource was found.");
         return ret;
     }
 
@@ -222,10 +248,22 @@ logger.finer("try to load: " + name);
     /* This method is called by "jassist"'s LoaderClassPath; i.e. jassist as
      * we use it calls this method.
      */
-	public InputStream getResourceAsStream(String arg0) {
-		logger.debug("Locating RESOURCE '"+arg0+"'.");
-		InputStream ret = super.getResourceAsStream(arg0);
-		logger.debug(ret == null ? "Resource was NOT FOUND." : "Resource was found.");
+    public InputStream getResourceAsStream(String name) {
+        InputStream ret = null;
+        logger.fine("Locating RESOURCE '"+name+"'.");
+        for (URL url : getURLs()) {
+            Path path = Paths.get(url.getPath(), name);
+logger.fine("path: " + path);
+            if (Files.exists(path)) {
+                try {
+                    ret = Files.newInputStream(path);
+                } catch (IOException e) {
+                    throw new IllegalArgumentException(path.toString());
+                }
+                break;
+            }
+        }
+        logger.fine(ret == null ? "Resource was NOT FOUND." : "Resource was found.");
         return ret;
     }
 }
