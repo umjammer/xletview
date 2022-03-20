@@ -21,13 +21,11 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
 import java.net.URL;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.logging.Logger;
 
 public class Img extends Component{
 
-	private static final Logger log = Log.getLogger(Img.class);
+    private static final Logger log = Logger.getLogger(Img.class.getName());
 
     private Image image;
     private String imageUrl;

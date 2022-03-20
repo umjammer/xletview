@@ -15,10 +15,9 @@
 package org.dvb.net.rc;
 
 import java.io.IOException;
-import java.util.Vector;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
@@ -34,10 +33,10 @@ import org.davic.resources.ResourceProxy;
 public class ConnectionRCInterface extends RCInterface implements ResourceProxy, Runnable{
 
     /** Debugging facility. */
-	private final static Logger logger = Log.getLogger(ConnectionRCInterface.class);
+    private final static Logger logger = Logger.getLogger(ConnectionRCInterface.class.getName());
 
     private boolean connected;
-    private Vector listenerObjects;
+    private List<ConnectionListener> listenerObjects;
     private static final ConnectionParameters defaultTarget;
     private ConnectionParameters currentTarget;
     private ResourceClient resourceClient; //only one client...
@@ -52,7 +51,7 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
 
     protected ConnectionRCInterface() {
         this.connected = false;
-        this.listenerObjects = new Vector();
+        this.listenerObjects = new ArrayList<>();
         this.currentTarget = defaultTarget;
     }
 
@@ -113,7 +112,7 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
             fireConnectionEvent(new ConnectionTerminatedEvent(this));
         }
         else{
-        	logger.warn("ConnectionRCInterface: was not connected");
+            logger.warning("ConnectionRCInterface: was not connected");
         }
     }
 
@@ -181,7 +180,7 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
             Thread.sleep(FAKED_CONNECION_TIME);
         }
         catch (InterruptedException ex) {
-            logger.warn("XleTView: Exception in Timer Thread");            
+            logger.warning("XleTView: Exception in Timer Thread");
             ex.printStackTrace();
         }
         this.starttime = System.currentTimeMillis();

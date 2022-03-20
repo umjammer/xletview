@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -16,6 +16,7 @@ package net.beiker.xletview.media;
 
 import java.awt.Component;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.media.ClockStoppedException;
 import javax.media.Control;
@@ -29,31 +30,28 @@ import javax.media.Time;
 import javax.media.TimeBase;
 import javax.media.protocol.DataSource;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
-
 public class ImagePlayer implements Player{
 
-	private static final Logger log = Log.getLogger(ImagePlayer.class);
-	
+    private static final Logger log = Logger.getLogger(ImagePlayer.class.getName());
+
     private ImagePlayerVisualComponent visualComponent;
     private ControllerListener controllerListener;
 
     public ImagePlayer(URL imageURL){
         visualComponent = new ImagePlayerVisualComponent(imageURL);
         visualComponent.setVisible(false);
-        log.debug("constructor");
+        log.fine("constructor");
     }
 
     public void addController(Controller newController){}
 
     public Component getControlPanelComponent(){ return null;}
     public GainControl getGainControl(){return null;}
-    
+
     public Component getVisualComponent(){
         return visualComponent;
     }
-    
+
     public void removeController(Controller oldController){}
 
     public void start(){
@@ -101,14 +99,14 @@ public class ImagePlayer implements Player{
     public Time getStartLatency(){return null;}
     public Control[] getControls(){return null;}
     public Control getControl(java.lang.String forName){return null;}
-    
+
     public void addControllerListener(ControllerListener listener){
         this.controllerListener = listener;
     }
     public void removeControllerListener(ControllerListener listener){
         this.controllerListener = null;
     }
-    
+
 
 
 }

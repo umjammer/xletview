@@ -24,7 +24,7 @@ package org.havi.ui;
  */
 public class HBackgroundDevice extends HScreenDevice{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HBackgroundDevice.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HBackgroundDevice.class.getName());
 
     private HBackgroundConfiguration hBackgroundConfiguration;
     private HBackgroundConfiguration[] hBackgroundConfigurations;

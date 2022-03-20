@@ -21,9 +21,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
-import net.beiker.xletview.media.IframeDecoder;
-
 import org.havi.ui.event.HBackgroundImageListener;
+
+import net.beiker.xletview.media.IframeDecoder;
 
 /**
  *
@@ -34,7 +34,7 @@ import org.havi.ui.event.HBackgroundImageListener;
  */
 public class HBackgroundImage extends Component{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HBackgroundImage.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HBackgroundImage.class.getName());
 
     private Image image;
     private int width;
@@ -51,7 +51,7 @@ public class HBackgroundImage extends Component{
 //        }
 //        image = loadImage(filename, null, this);
 
-		log.debug(filename);  
+        log.fine(filename);
 
         IframeDecoder decoder = new IframeDecoder();
 

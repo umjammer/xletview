@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -20,10 +20,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
-import java.util.Vector;
 
 import net.beiker.xletview.Startup;
 import net.beiker.xletview.window.ConsoleWindow;
@@ -33,14 +33,14 @@ import net.beiker.xletview.window.ConsoleWindow;
  */
 public class Settings {
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(Settings.class);
-	
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Settings.class.getName());
+
     private static Properties properties;
-    private static File file;
-    private static String instruction = "" + 
-    "#Mind that paths can not contain backslash" + System.getProperty("line.separator") +  
+//    private static File file;
+    private static String instruction = "" +
+    "#Mind that paths can not contain backslash" + System.getProperty("line.separator") +
     "#Make sure there are no spaces after the values" +  System.getProperty("line.separator");
-    
+
     private static String[] exclude = {"path.home"};
     private Settings() {
     }
@@ -50,7 +50,7 @@ public class Settings {
         Properties p = new Properties();
         properties = p;
         try {
-        	//InputStream fis = Settings.class.getClassLoader().getResourceAsStream(Constants.PATH_SETTINGS);
+            //InputStream fis = Settings.class.getClassLoader().getResourceAsStream(Constants.PATH_SETTINGS);
             //FileInputStream fis = new FileInputStream(file);
             p.load(is);
         }
@@ -70,29 +70,27 @@ public class Settings {
         beforeSave();
         //try {
             URLConnection settingsPath = Util.getURLConnection(Startup.class, Constants.PATH_SETTINGS);
-            //String settingsPath = Settings.getProperty("path.home") + Constants.PATH_SETTINGS;            
+            //String settingsPath = Settings.getProperty("path.home") + Constants.PATH_SETTINGS;
             //File file2 = new File(settingsPath);
             //System.out.println(file.getAbsolutePath());
             //FileOutputStream os = new FileOutputStream(settingsPath);
             OutputStream os = null;
-			try {
-				os = settingsPath.getOutputStream();
-			} catch (IOException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			OutputStreamWriter osw = new OutputStreamWriter(os);
-            
-            
-            // Sort 
-            Vector v = new Vector(properties.keySet());
+            try {
+                os = settingsPath.getOutputStream();
+            } catch (IOException e2) {
+                // TODO Auto-generated catch block
+                e2.printStackTrace();
+            }
+            OutputStreamWriter osw = new OutputStreamWriter(os);
+
+
+            // Sort
+            List<String> v = Arrays.asList(properties.keySet().toArray(new String[0]));
             Collections.sort(v);
 
             try {
                 osw.write(instruction + System.getProperty("line.separator"));
-                Enumeration enum_ = v.elements();
-                while (enum_.hasMoreElements()) {
-                    String name = (String) enum_.nextElement();
+                for (String name : v) {
                     boolean include = true;
                     for(int i = 0; i < exclude.length; i++){
                         if(name.indexOf(exclude[i]) != -1){
@@ -102,7 +100,7 @@ public class Settings {
                     }
                     if(include){
                         String value = properties.getProperty(name);
-                        log.debug(name + "=" + value);
+                        log.fine(name + "=" + value);
 
                         osw.write(name + "=" + fixPath(value) + System.getProperty("line.separator"));
                     }
@@ -125,7 +123,7 @@ public class Settings {
     }
 
     /**
-     * Used because it doesn't work to have backslash in the properties file 
+     * Used because it doesn't work to have backslash in the properties file
      */
     public static String fixPath(String path) {
         String s;

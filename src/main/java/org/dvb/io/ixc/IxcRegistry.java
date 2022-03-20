@@ -71,7 +71,7 @@ public class IxcRegistry {
         boolean external;
     }
 
-    private static Map registry = new HashMap();
+    private static Map<String, RegistryEntry> registry = new HashMap<>();
 
     private IxcRegistry() {
     }

@@ -39,16 +39,12 @@ public class Main {
         MainClassLoader loader = new MainClassLoader(systemLoader.getURLs());
 
         try {
-			Class dynamicClass = Class.forName("net.beiker.xletview.Startup", false, loader);
-			Class[] constructorArgumentTypes = { String[].class };
-			Constructor classConstructor = dynamicClass.getConstructor(constructorArgumentTypes);
+            Class<?> dynamicClass = Class.forName("net.beiker.xletview.Startup", false, loader);
+            Constructor<?> classConstructor = dynamicClass.getConstructor(String[].class);
             Object[] constructorArgs = { args };
             classConstructor.newInstance(constructorArgs);
         } catch (Exception e) {
             e.printStackTrace();
         }
-		
-		
     }
-
 }

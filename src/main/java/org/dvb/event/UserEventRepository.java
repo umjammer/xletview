@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -15,31 +15,32 @@
 package org.dvb.event ;
 
 import java.awt.event.KeyEvent;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.havi.ui.event.HRcEvent;
 
 /**
- * 
- * 
+ *
+ *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class UserEventRepository extends RepositoryDescriptor {
 
-    
-    private Vector userEvents;
+
+    private List<UserEvent> userEvents;
 
     public UserEventRepository (String name) {
         super(name, null);
-        userEvents = new Vector();
+        userEvents = new ArrayList<>();
     }
-    
+
     /*
      *  Events are considered to be already in the repository if an event with the same triplet of family,
      *  type and code is already in the repository. But since all events have the same family(UserEvent.UEF_KEY_EVENT)
      *  and type(KeyEvent.KeyPressed) we only check the code.
-     * */    
+     * */
     public void addUserEvent(UserEvent event) {
         //Debug.write(this, "event code = " + event.getCode());
         for(int i = 0; i < userEvents.size(); i++){
@@ -47,19 +48,19 @@ public class UserEventRepository extends RepositoryDescriptor {
             if(ue.getCode() == event.getCode()){
                 // it already exist so we don't want to add it
                 return;
-            }            
+            }
         }
-        
+
         // it didn't exist so we add it
         userEvents.add(event);
     }
-    
-    public UserEvent[] getUserEvent() { 
-        
+
+    public UserEvent[] getUserEvent() {
+
         UserEvent[] events = new UserEvent[userEvents.size()];
         for(int i = 0; i < userEvents.size(); i++){
             Object o = userEvents.get(i);
-            events[i] = (UserEvent) o;  
+            events[i] = (UserEvent) o;
         }
         return events;
     }
@@ -67,18 +68,18 @@ public class UserEventRepository extends RepositoryDescriptor {
     public void removeUserEvent (UserEvent event) {
         userEvents.remove(event);
     }
-    
-    public void addKey (int keyCode){        
-        addKeyCode(keyCode);        
+
+    public void addKey (int keyCode){
+        addKeyCode(keyCode);
     }
-   
+
     public void removeKey (int keyCode) {
         for(int i = 0; i < userEvents.size(); i++){
             UserEvent ue = (UserEvent) userEvents.get(i);
             if(ue.getCode() == keyCode){
                 // it already exist so we remove it
                 userEvents.remove(ue);
-            }            
+            }
         }
     }
 
@@ -106,7 +107,7 @@ public class UserEventRepository extends RepositoryDescriptor {
         addKeyCode(KeyEvent.VK_UP);
         addKeyCode(KeyEvent.VK_DOWN);
         addKeyCode(KeyEvent.VK_LEFT);
-        addKeyCode(KeyEvent.VK_RIGHT);        
+        addKeyCode(KeyEvent.VK_RIGHT);
     }
 
     public void removeAllNumericKeys(){

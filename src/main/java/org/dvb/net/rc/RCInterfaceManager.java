@@ -14,10 +14,9 @@ package org.dvb.net.rc;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URLConnection;
-import java.util.Vector;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import org.davic.resources.ResourceStatusEvent;
 import org.davic.resources.ResourceStatusListener;
@@ -32,11 +31,11 @@ import org.davic.resources.ResourceStatusListener;
 public class RCInterfaceManager implements org.davic.resources.ResourceServer {
 
     /** Debugging facility. */
-	private static final Logger logger = Log.getLogger(RCInterfaceManager.class); 
+    private static final Logger logger = Logger.getLogger(RCInterfaceManager.class.getName());
 
     private static RCInterfaceManager THE_INSTANCE;
     private RCInterface[] rcInterfaces;
-    private Vector resourceStatusEventObjects;
+    private List<ResourceStatusListener> resourceStatusEventObjects;
 
     private RCInterfaceManager() {
         System.out.println("XleTView: instanciate RCInterfaceManager");
@@ -61,7 +60,7 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
         this.rcInterfaces[5].setType(RCInterface.TYPE_MATV);
         this.rcInterfaces[6] = new ConnectionRCInterface();
         this.rcInterfaces[6].setType(RCInterface.TYPE_RCS);
-        this.resourceStatusEventObjects = new Vector();
+        this.resourceStatusEventObjects = new ArrayList<>();
     }
 
     public static RCInterfaceManager getInstance() {

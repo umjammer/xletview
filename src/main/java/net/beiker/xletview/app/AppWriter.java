@@ -19,10 +19,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.Vector;
+import java.util.List;
+import java.util.logging.Logger;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
 import net.beiker.xletview.util.Util;
 import net.n3.nanoxml.XMLElement;
 import net.n3.nanoxml.XMLWriter;
@@ -33,9 +32,9 @@ import net.n3.nanoxml.XMLWriter;
 public class AppWriter{
 
     /** Debugging facility. */
-	private static final Logger logger = Log.getLogger(AppWriter.class); 
+    private static final Logger logger = Logger.getLogger(AppWriter.class.getName());
 
-//    public static void write(Vector projects, File file){
+//    public static void write(List projects, File file){
 //         XMLElement root = new XMLElement("PROJECTS");
 //         for(int i = 0; i < projects.size(); i++){
 //            App project = (App) projects.get(i);
@@ -78,7 +77,7 @@ public class AppWriter{
                 out = url.openConnection().getOutputStream();
             }
             catch (Exception e2) {
-         	    logger.warn(url.toExternalForm() + Util.getStackTrace(e1) + "*** AND ***" + Util.getStackTrace(e2));               
+                 logger.warning(url.toExternalForm() + Util.getStackTrace(e1) + "*** AND ***" + Util.getStackTrace(e2));
                  return;
             }
          }
@@ -102,21 +101,21 @@ public class AppWriter{
 //        parent.addChild(element);
 
         // get the subgroups of this group
-        Vector subGroups = group.getSubGroups();
-        logger.debug(group.getName() + ", children = " +subGroups.size());
+        List<?> subGroups = group.getSubGroups();
+        logger.fine(group.getName() + ", children = " +subGroups.size());
         for(int i = 0; i < subGroups.size(); i++){
             AppGroup subGroup = (AppGroup)subGroups.get(i);
             String name = subGroup.getName();
             XMLElement child = new XMLElement("GROUP");
             child.setAttribute("NAME", name);
             parent.addChild(child);
-            logger.debug(subGroup.getName());
+            logger.fine(subGroup.getName());
             // make a recursive call to this method
             build(subGroup, child);
         }
 
         // get the applications in this group
-        Vector apps = group.getApps();
+        List<?> apps = group.getApps();
         for(int i = 0; i < apps.size(); i++){
             App app = (App) apps.get(i);
             //Debug.info(app.getName());

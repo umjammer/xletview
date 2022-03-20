@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -30,8 +30,8 @@ import javax.swing.event.HyperlinkListener;
 
 public class AboutWindow extends JDialog implements HyperlinkListener{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(AboutWindow.class);
-	
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AboutWindow.class.getName());
+
     public AboutWindow(Frame owner){
         super(owner, false);
 
@@ -85,21 +85,21 @@ public class AboutWindow extends JDialog implements HyperlinkListener{
         int x = (int) ( bounds.getWidth() - this.getWidth() ) /2 ;
         int y = (int) ( bounds.getHeight() - this.getHeight() ) /2;
         setLocation(x, y );
-        show();
+        setVisible(false);
     }
 
     public void hyperlinkUpdate(HyperlinkEvent e){
         HyperlinkEvent.EventType eventType = e.getEventType();
         if(eventType == HyperlinkEvent.EventType.ACTIVATED){
-            log.debug("" + e.getURL());
+            log.fine("" + e.getURL());
             try{
                 String url = e.getURL().toString();
-                log.debug("url = " + url);
+                log.fine("url = " + url);
                 String[] s = {"C:\\Program Files\\Internet Explorer\\iexplore.exe", url};
                 Runtime.getRuntime().exec(s);
             }
             catch(Exception ex){
-                log.error(ex);
+                log.severe(ex.toString());
             }
         }
     }

@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class HVisible extends HComponent implements HState{
     /** Debugging facility. */
-	private static final Logger logger = Log.getLogger(HVisible.class);
+    private static final Logger logger = Logger.getLogger(HVisible.class.getName());
 
     public static final int HALIGN_LEFT                         = 0;
     public static final int HALIGN_CENTER                       = 1;
@@ -435,7 +435,7 @@ public class HVisible extends HComponent implements HState{
         */
         if(resize != HVisible.RESIZE_NONE){
             String msg  = "\nScaling support is optional, however all implementations must support the RESIZE_NONE scaling mode. Platforms are not required to support scaling of textual content by default.";
-            logger.warn("setResizeMode(" + resize + ") is not supported, only HVisible.RESIZE_NONE is." + msg);
+            logger.warning("setResizeMode(" + resize + ") is not supported, only HVisible.RESIZE_NONE is." + msg);
         }
     }
 

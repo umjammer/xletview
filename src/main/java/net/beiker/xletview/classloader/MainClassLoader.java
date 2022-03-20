@@ -17,11 +17,11 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Hashtable;
-import java.util.Vector;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * This ClassLoader loads the emulator classes. This means that it's also the
@@ -30,40 +30,40 @@ import net.beiker.cake.Logger;
  * @author Martin Sveden
  */
 public class MainClassLoader extends URLClassLoader {
-	
-	/** Debugging facility. */
-	private static final Logger logger = Log.getLogger(MainClassLoader.class);
-	
-    private Hashtable loadedClasses;
+
+    /** Debugging facility. */
+    private static final Logger logger = Logger.getLogger(MainClassLoader.class.getName());
+
+    private Map<String, Class<?>> loadedClasses;
 
     public MainClassLoader(URL[] urls) {
-    	super(urls);
-    	addUrls();
+        super(urls);
+        addUrls();
 
-        this.loadedClasses = new Hashtable();
+        this.loadedClasses = new HashMap<>();
     }
 
 
     public void addClassPath(String classpath){
-    	String[] s = classpath.split(File.pathSeparator);
-    	
-    	for (int i = 0; i < s.length; i++) {    		
-    		try {
-    		    URL url = new File(s[i]).toURL();
-    			super.addURL(url);
-    			logger.debug("added " + url);
-    		} catch (MalformedURLException e) {
-    			e.printStackTrace();
-    		}
-    	}
+        String[] s = classpath.split(File.pathSeparator);
+
+        for (int i = 0; i < s.length; i++) {
+            try {
+                URL url = new File(s[i]).toURI().toURL();
+                super.addURL(url);
+                logger.fine("added " + url);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
     }
-    
+
     private URL[] addUrls() {
 
-    	Vector paths = new Vector();
+        List<String> paths = new ArrayList<>();
 
-    	// TODO: Throw that out, it belongs in a
-    	//       META-INF/MANIFEST.MF file
+        // TODO: Throw that out, it belongs in a
+        //       META-INF/MANIFEST.MF file
     	paths.add("xletview.jar");
     	paths.add("JMF2.1.1/lib/jmf.jar");
     	paths.add("jars/nanoxml-2.2.3.jar");
@@ -71,49 +71,49 @@ public class MainClassLoader extends URLClassLoader {
     	paths.add("jars/javassist.jar");
     	paths.add("jars/log4j-1.2.8.jar");
 
-    	URL[] urls = new URL[paths.size()];
+        URL[] urls = new URL[paths.size()];
 
-    	for (int i = 0; i < paths.size(); i++) {
-    		String s = (String) paths.get(i);
-    		File f = new File(s);
-    		try {
-    			urls[i] = f.toURL();
-    			super.addURL(urls[i]);
-    		} catch (MalformedURLException e) {
-    			e.printStackTrace();
-    		}
-    	}
-    	return urls;
+        for (int i = 0; i < paths.size(); i++) {
+            String s = (String) paths.get(i);
+            File f = new File(s);
+            try {
+                urls[i] = f.toURI().toURL();
+                super.addURL(urls[i]);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        return urls;
     }
 
     /*
      *  (non-Javadoc)
      * @see java.lang.ClassLoader#loadClass(java.lang.String)
      */
-    public Class loadClass(String name) throws ClassNotFoundException {
-    	
-    	name = name.replaceAll("/", ".");
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
 
-        Class theClass = null;
+        name = name.replaceAll("/", ".");
+
+        Class<?> theClass = null;
 
         boolean newClass = false;
         theClass = getLoadedClass(name);
-        
+
         //don't let an instance of this classloader load the class of itself
         if(theClass == null && !name.equals(getClass().getName())){
             newClass = true;
-            theClass = findClass(name);            
+            theClass = findClass(name);
         }
-        
-        if(theClass == null){        	
-            theClass = this.findSystemClass(name);            
+
+        if(theClass == null){
+            theClass = this.findSystemClass(name);
         }
 
 
         if(theClass == null){
             throw new ClassNotFoundException();
         }
-        
+
         if(newClass && theClass != null){
             this.loadedClasses.put(name, theClass);
         }
@@ -125,15 +125,15 @@ public class MainClassLoader extends URLClassLoader {
      * Returns a class if previously loaded by
      * this classloader.
      */
-    private Class getLoadedClass(String name){
-        return (Class)this.loadedClasses.get(name);
+    private Class<?> getLoadedClass(String name){
+        return (Class<?>)this.loadedClasses.get(name);
     }
 
     /*
-     * overridden to take care of the exception 
+     * overridden to take care of the exception
      */
-    protected Class findClass(String name) throws ClassNotFoundException {
-        Class theClass = null;
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        Class<?> theClass = null;
         try {
             theClass = super.findClass(name);
         }

@@ -16,7 +16,8 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Insets;
 import java.awt.Toolkit;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.dvb.user.GeneralPreference;
 import org.dvb.user.Preference;
@@ -64,7 +65,7 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
     private int textHeight;
     private int textWidth;
 
-	private Vector listeners;
+    private List<TextOverflowListener> listeners;
 
     public DVBTextLayoutManager() {
         this(HORIZONTAL_START_ALIGN, VERTICAL_START_ALIGN, LINE_ORIENTATION_HORIZONTAL, START_CORNER_UPPER_LEFT, true, -1234, 0, 56);
@@ -101,7 +102,7 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         this.letterSpace = letterspace;
         this.horizontalTabSpace = horizontalTabSpace;
 
-		this.listeners = new Vector();
+        this.listeners = new ArrayList<>();
 
     }
 

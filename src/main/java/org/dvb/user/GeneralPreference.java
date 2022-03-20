@@ -11,7 +11,7 @@
 
 package org.dvb.user;
 
-import java.util.Hashtable;
+import java.util.Map;
 
 /**
  *
@@ -21,7 +21,7 @@ import java.util.Hashtable;
  */
 public final class GeneralPreference extends Preference {
 
-	private Hashtable prefs;
+    private Map<?, ?> prefs;
 
     public GeneralPreference(String name) throws IllegalArgumentException {
         super(name, "");

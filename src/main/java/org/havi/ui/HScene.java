@@ -38,7 +38,7 @@ import net.beiker.xletview.xlet.XletManager;
  */
 public class HScene extends Container implements HComponentOrdering, ImageObserver, MenuContainer, Serializable {
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HScene.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HScene.class.getName());
 
     public static final int IMAGE_NONE = 0;
     public static final int IMAGE_STRETCH = 1;
@@ -302,11 +302,11 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
         switch(id) {
           case WindowEvent.WINDOW_ACTIVATED:
             this.windowListener.windowActivated(we);
-            log.debug("processWindowEvent, activated");
+            log.fine("processWindowEvent, activated");
           break;
           case WindowEvent.WINDOW_DEACTIVATED:
             this.windowListener.windowDeactivated(we);
-            log.debug("processWindowEvent, deactivated");
+            log.fine("processWindowEvent, deactivated");
           break;
         }
     }

@@ -31,11 +31,11 @@ public class AppsDatabase {
         return 0 ;
     }
 
-    public Enumeration getAppIDs(AppsDatabaseFilter filter) { 
+    public Enumeration<?> getAppIDs(AppsDatabaseFilter filter) {
         return null ;
     }
 
-    public Enumeration getAppAttributes(AppsDatabaseFilter filter) { 
+    public Enumeration<?> getAppAttributes(AppsDatabaseFilter filter) {
         return null ;
     }
 

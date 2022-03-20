@@ -26,7 +26,7 @@ public class XletContextImpl implements XletContext{
     /**
      * Debugging
      */
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(XletContextImpl.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(XletContextImpl.class.getName());
 
     // javaTV
     public static final String CONTAINER = "javax.tv.xlet.container";
@@ -50,7 +50,7 @@ public class XletContextImpl implements XletContext{
 
     private XletManager manager;
     private Xlet xlet;
-    private ClassLoader classLoader;
+//    private ClassLoader classLoader;
 
     private EmulatorFile applicationDirectory;
 
@@ -83,7 +83,7 @@ public class XletContextImpl implements XletContext{
      * @see xjavax.tv.xlet.XletContext#getXletProperty(java.lang.String)
      */
     public Object getXletProperty(String key){
-        log.debug("getXletProperty(" + key + ")");
+        log.fine("getXletProperty(" + key + ")");
         if(key.equals(XletContext.ARGS)){
             return xletArgs;
         }
@@ -100,15 +100,15 @@ public class XletContextImpl implements XletContext{
             return applicationDirectory;
         }
         else if(key.equals(PROPERTY_APP_ID)){
-        	log.debug("NOT IMPLEMENTED - RETURNING '0' AS APP_ID STRING.");
+            log.fine("NOT IMPLEMENTED - RETURNING '0' AS APP_ID STRING.");
             return "0";
         }
         else if(key.equals(PROPERTY_ORG_ID)){
-        	log.debug("NOT IMPLEMENTED - RETURNING '0' AS ORG_ID STRING.");
+            log.fine("NOT IMPLEMENTED - RETURNING '0' AS ORG_ID STRING.");
             return "0";
         }
         else{
-        	log.debug("getXletProperty() for a key '"+key+"' that is unknown. Returning null.");
+            log.fine("getXletProperty() for a key '"+key+"' that is unknown. Returning null.");
             return null;
         }
     }
@@ -145,7 +145,7 @@ public class XletContextImpl implements XletContext{
     }
 
     Xlet getXlet(){
-    	log.debug("xlet=" + xlet);
+        log.fine("xlet=" + xlet);
         return xlet;
     }
 

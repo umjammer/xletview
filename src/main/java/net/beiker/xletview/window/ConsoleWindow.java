@@ -33,7 +33,7 @@ import net.beiker.xletview.util.Util;
 
 public class ConsoleWindow extends JFrame implements ActionListener{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(ConsoleWindow.class);
+//    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(ConsoleWindow.class.getName());
 
     private static ConsoleWindow THE_INSTANCE;
 
@@ -84,8 +84,7 @@ public class ConsoleWindow extends JFrame implements ActionListener{
 
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
-                hide();
-                //System.exit(0);
+                setVisible(false);
             }
         });
 
@@ -106,12 +105,7 @@ public class ConsoleWindow extends JFrame implements ActionListener{
      *
      */
     public void toggle(){
-        if(isVisible()){
-            hide();
-        }
-        else{
-            show();
-        }
+        setVisible(isVisible());
     }
 
     public void actionPerformed(ActionEvent e){
@@ -131,5 +125,4 @@ public class ConsoleWindow extends JFrame implements ActionListener{
             Console.clear();
         }
     }
-
 }

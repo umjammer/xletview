@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -53,8 +53,8 @@ import net.sourceforge.mlf.metouia.MetouiaLookAndFeel;
  */
 public class AppTreeWindow extends JFrame implements ActionListener, TreeListener {
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(AppTreeWindow.class);
-	
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AppTreeWindow.class.getName());
+
     //private AppTree tree;
     private AppTreePanel tree;
     private JTextField currentSelectionField;
@@ -105,12 +105,12 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
     public Container getButtonPanel() {
         Container cont = new Container();
         cont.setLayout(new BorderLayout());
-        
+
 
         //Box buttonBox = new Box(BoxLayout.Y_AXIS);
         JPanel buttonCont = new JPanel();
         buttonCont.setPreferredSize(new Dimension(350, 60));
-        //buttonCont.setLayout(new FlowLayout());        
+        //buttonCont.setLayout(new FlowLayout());
         buttonCont.setLayout(new GridLayout(3, 1));
 
         newGroupButton = new JButton("New Group");
@@ -178,7 +178,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
             tree.insertApp(app);
         }
         else if (command.equals("delete")) {
-            log.debug("delete");
+            log.fine("delete");
             tree.removeSelected();
         }
         else if (command.equals("ok")) {
@@ -190,7 +190,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
 
         }
         else if (command.equals("cancel")) {
-        	log.debug("cancel");
+            log.fine("cancel");
 
         }
     }
@@ -215,12 +215,12 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
     }
 
     public void pathChanged(TreePath path) {
-        
+
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
         Object userObject = node.getUserObject();
         if (userObject instanceof UserObject) {
             Object object = ((UserObject) userObject).getObject();
-            
+
             if (object instanceof AppGroup) {
                 AppGroup group = (AppGroup) object;
                 if(group == AppManager.getInstance().getDefaultGroup()){
@@ -235,7 +235,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
                 groupPanel.setVisible(true);
                 groupPanel.setAppGroup(group);
             }
-            else if (object instanceof App) {                
+            else if (object instanceof App) {
                 App app = (App) object;
                 deleteButton.setEnabled(true);
                 newAppButton.setEnabled(false);

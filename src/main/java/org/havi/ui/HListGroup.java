@@ -15,7 +15,8 @@ See LICENSE document for details.
 package org.havi.ui;
 
 import java.awt.Dimension;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.havi.ui.event.HItemEvent;
 import org.havi.ui.event.HItemListener;
@@ -44,19 +45,19 @@ public class HListGroup extends HVisible implements HItemValue{
    private boolean selectionMode;
 
    // holds all HListElements
-   private Vector items;
+   private List<HListElement> items;
 
    private Dimension iconSize;
    private Dimension labelSize;
    private int orientation;
 
    // holds the HListElements that are selected
-   private Vector selectedIndexes;
+   private List<HListElement> selectedIndexes;
 
    // holds the index of the current item
    private int currentItemIndex;
 
-   private Vector itemListeners;
+   private List<HItemListener> itemListeners;
 
    /**
     * The scroll position determines the first HListElement to be drawn when the HListGroupLook lays out the list.
@@ -74,9 +75,9 @@ public class HListGroup extends HVisible implements HItemValue{
    public HListGroup(HListElement[] items, int x, int y, int width, int height){
        super(new  HListGroupLook(),x,y,width,height);
 
-       this.items = new Vector();
+       this.items = new ArrayList<>();
 
-       this.selectedIndexes = new Vector();
+       this.selectedIndexes = new ArrayList<>();
 
        this.setListContent(items);
        if (items != null){
@@ -88,7 +89,7 @@ public class HListGroup extends HVisible implements HItemValue{
        multiSelection = false;
        selectionMode = false;
 
-       itemListeners = new Vector();
+       itemListeners = new ArrayList<>();
 
        helper = new HNavigableHelper(this);
        helper.setGainFocusSound(null);
@@ -567,13 +568,9 @@ public class HListGroup extends HVisible implements HItemValue{
     */
    private void notifySelectionChanged(HItemEvent event){
 
-   	HItemListener[] arrListeners = new HItemListener[itemListeners.size()];
-   	itemListeners.copyInto(arrListeners);
+       for(HItemListener arrListener : itemListeners){
 
-   	
-   	for(int i = 0; i < arrListeners.length; i++){
-   		
-   		arrListeners[i].selectionChanged(event);
+           arrListener.selectionChanged(event);
 
        }
 
@@ -585,12 +582,9 @@ public class HListGroup extends HVisible implements HItemValue{
     */
    private void notifyItemChangedEvent(HItemEvent event){
 
-   	HItemListener[] arrListeners = new HItemListener[itemListeners.size()];
-   	itemListeners.copyInto(arrListeners);
-   	
-   	for(int i = 0; i < arrListeners.length; i++){
+       for(HItemListener arrListener : itemListeners){
 
-			arrListeners[i].currentItemChanged(event);
+            arrListener.currentItemChanged(event);
 
         }
 

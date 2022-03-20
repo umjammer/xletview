@@ -18,9 +18,9 @@ import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-import net.beiker.xletview.helper.HNavigableHelper;
-
 import org.havi.ui.event.HFocusEvent;
+
+import net.beiker.xletview.helper.HNavigableHelper;
 
 /**
  *
@@ -30,7 +30,7 @@ import org.havi.ui.event.HFocusEvent;
  */
 public class HIcon extends HStaticIcon implements HNavigable{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HIcon.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HIcon.class.getName());
 
 
     private HNavigableHelper helper;
@@ -64,7 +64,7 @@ public class HIcon extends HStaticIcon implements HNavigable{
 
     private void init(){
         helper = new HNavigableHelper(this);
-    	log.debug("HIcon - init");
+        log.fine("HIcon - init");
     }
 
     public static void setDefaultLook(HGraphicLook hGraphicLook){

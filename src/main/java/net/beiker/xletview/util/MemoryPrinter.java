@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -13,25 +13,25 @@
 
 package net.beiker.xletview.util;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+
+import java.util.logging.Logger;
 
 /**
- * 
- * @author Martin Sveden 
+ *
+ * @author Martin Sveden
  */
 public abstract class MemoryPrinter {
 
-	/** Debugging facility. */
-	private static final Logger logger = Log.getLogger(MemoryPrinter.class);
-	
-	/**
-	 *
-	 */
+    /** Debugging facility. */
+    private static final Logger logger = Logger.getLogger(MemoryPrinter.class.getName());
+
+    /**
+     *
+     */
     public static void print() {
         long total = Runtime.getRuntime().totalMemory();
         long free = Runtime.getRuntime().freeMemory();
-        logger.debug("free/used/total: " + format(free) + " / " + format(total - free) + " / " + format(total));
+        logger.fine("free/used/total: " + format(free) + " / " + format(total - free) + " / " + format(total));
     }
 
     private static String format(long size) {

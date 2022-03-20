@@ -29,7 +29,7 @@ public class HStaticAnimation
     extends HVisible
     implements HNoInputPreferred, HAnimateEffect {
 
-	private static net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HStaticAnimation.class);
+    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(HStaticAnimation.class.getName());
 
     private int delay;
     private int position;
@@ -55,7 +55,7 @@ public class HStaticAnimation
     private class AnimationTimerListner implements TVTimerWentOffListener{
         public void timerWentOff( TVTimerWentOffEvent e){
             boolean hasNewRepeat = false; // used to indicate if the animation has reached the end/start of loop
-			//logger.debug("animate event");
+            //logger.fine("animate event");
             Image[] images = getAnimateContent(getInteractionState());
 
             // check what next position is and if the loop is "repeated"
@@ -82,7 +82,7 @@ public class HStaticAnimation
                 }
             }
             if (isRunning == true){
-				//logger.debug( "new position=" + position );
+                //logger.fine( "new position=" + position );
                 repaint();
             }
         }
@@ -96,7 +96,7 @@ public class HStaticAnimation
         super(HStaticAnimation.getDefaultLook(), x, y, width, height);
         super.setAnimateContent(imagesNormal, HState.NORMAL_STATE);
 
-		log.debug("Constructor");
+        log.fine("Constructor");
         setDelay(delay);
         setPlayMode(playMode);
         setRepeatCount(repeatCount);
@@ -145,17 +145,17 @@ public class HStaticAnimation
         // add a timer to trigger paint event
         try{
             TVTimer.getTimer().scheduleTimerSpec(paintTask);
-			log.debug("Animation starting. delay = " + delay);
+            log.fine("Animation starting. delay = " + delay);
         }
         catch(TVTimerScheduleFailedException e){
-			log.error("Start animation failed. error: " + e.getMessage() );
+            log.severe("Start animation failed. error: " + e.getMessage() );
             isRunning = false;
         }
     }
 
     public void stop() {
         if (isRunning == true){
-			log.debug("Animation stopped");
+            log.fine("Animation stopped");
             isRunning = false;
             // deschedule animation event
             TVTimer.getTimer().deschedule(paintTask);

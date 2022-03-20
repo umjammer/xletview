@@ -13,7 +13,8 @@ package org.dvb.lang;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 import javassist.CannotCompileException;
 import javassist.ClassMap;
@@ -31,11 +32,11 @@ import net.beiker.xletview.classloader.XletCodeConverter;
  */
 public abstract class DVBClassLoader extends java.security.SecureClassLoader {
 
-	net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(DVBClassLoader.class);
+    java.util.logging.Logger log = java.util.logging.Logger.getLogger(DVBClassLoader.class.getName());
 
     private URL[] urls;
     private ClassLoader parent;
-	private Hashtable loaded;
+    private Map<String, Class<?>> loaded;
     private ClassPool pool;
     private ClassMap xletClassMap;
 
@@ -43,7 +44,7 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
     public DVBClassLoader(URL[] urls) {
         this.urls = urls;
         this.parent = getClass().getClassLoader();
-		loaded = new Hashtable();
+        loaded = new HashMap<>();
         pool = new ClassPool(null);
         xletClassMap = new net.beiker.xletview.classloader.XletClassMap();
         addUrls(urls);
@@ -62,7 +63,7 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
                 String path = urls[i].getPath();
                 path = path.substring(1);
                 pool.appendClassPath(path);
-				log.debug("DVBClassLoader, added " + path + " to the pool");
+                log.fine("DVBClassLoader, added " + path + " to the pool");
             } catch (NotFoundException e) {
                 e.printStackTrace();
             }
@@ -77,11 +78,11 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         return new DVBClassLoaderImpl(urls, parent);
     }
 
-	public Class loadClass(String name) throws ClassNotFoundException {
+    public Class<?> loadClass(String name) throws ClassNotFoundException {
         name = name.replaceAll("/", ".");
 
-//		logger.debug("loading - " + name);
-		Class theClass = null;		
+//        logger.fine("loading - " + name);
+        Class<?> theClass = null;
         boolean newClass = false;
 
         // check if it's already loaded by this loader
@@ -129,12 +130,12 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
 
     }
 
-	private Class getLoadedClass(String name) {
-		return (Class) loaded.get(name);
+    private Class<?> getLoadedClass(String name) {
+        return (Class<?>) loaded.get(name);
     }
 
 
-	protected Class findClass(String name) throws ClassNotFoundException {
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
         try {
             CtClass cc = pool.get(name);
 

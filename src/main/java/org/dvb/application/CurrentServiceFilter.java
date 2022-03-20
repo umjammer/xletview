@@ -27,7 +27,7 @@ import xjavax.tv.locator.Locator;
  */
 public class CurrentServiceFilter extends AppsDatabaseFilter {
 
-    private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(CurrentServiceFilter.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(CurrentServiceFilter.class.getName());
 
     public CurrentServiceFilter() {
         super();
@@ -50,7 +50,7 @@ public class CurrentServiceFilter extends AppsDatabaseFilter {
             currentServiceLocator.equals(appServiceLocator);
         }
         catch(NullPointerException e){
-	        log.debug("accept(AppID) not implemented");
+            log.fine("accept(AppID) not implemented");
         }
 
         return false;

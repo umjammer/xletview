@@ -16,6 +16,7 @@ package net.beiker.xletview.media;
 
 import java.awt.Component;
 import java.net.URL;
+import java.util.logging.Logger;
 
 import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
@@ -26,15 +27,13 @@ import javax.media.Player;
 import javax.media.RealizeCompleteEvent;
 import javax.media.Time;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
 import xjavax.tv.media.AWTVideoSize;
 import xjavax.tv.media.AWTVideoSizeControlImpl;
 
 
 public class MediaPlayer implements ControllerListener{
 
-	private static final Logger log = Log.getLogger(MediaPlayer.class);
+    private static final Logger log = Logger.getLogger(MediaPlayer.class.getName());
 
     private static MediaPlayer THE_INSTANCE;
     private Player player;
@@ -97,7 +96,7 @@ public class MediaPlayer implements ControllerListener{
 
             }
             else if(media.getType() == Media.TYPE_INVALID){
-                log.debug("media type is invalid");
+                log.fine("media type is invalid");
             }
 
             // play
@@ -145,7 +144,7 @@ public class MediaPlayer implements ControllerListener{
             Component comp;
             if ((comp = player.getVisualComponent()) != null){
                 visualComponent = player.getVisualComponent();
-                log.debug(VideoLayer.getInstance() + "");
+                log.fine(VideoLayer.getInstance() + "");
                 VideoLayer.getInstance().removeAll();
                 VideoLayer.getInstance().add(comp);
                 VideoLayer.getInstance().validate();
@@ -169,7 +168,7 @@ public class MediaPlayer implements ControllerListener{
             int videoWidth      = size.getDestination().width;
             int videoHeight     = size.getDestination().height;
             visualComponent.setBounds(videoX, videoY, videoWidth, videoHeight);
-            log.debug("setSize " + size);
+            log.fine("setSize " + size);
         }
     }
 

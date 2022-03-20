@@ -130,7 +130,7 @@ public class HGraphicLook implements HLook{
             drawY = vHeight - imgHeight;
         }
 
-    	//logger.debug("imageToDraw=" + imageToDraw + "drawX=" + drawX + ", drawY=" + drawY + ", hVisible=" + hVisible);
+        //logger.fine("imageToDraw=" + imageToDraw + "drawX=" + drawX + ", drawY=" + drawY + ", hVisible=" + hVisible);
         return g.drawImage(imageToDraw, drawX, drawY, hVisible);
     }
 

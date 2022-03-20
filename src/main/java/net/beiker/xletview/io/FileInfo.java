@@ -16,14 +16,12 @@ package net.beiker.xletview.io;
 
 
 import java.io.File;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.logging.Logger;
 
 public class FileInfo{
 
     /** Debugging facility */
-	private final static Logger logger = Log.getLogger(FileInfo.class);
+    private final static Logger logger = Logger.getLogger(FileInfo.class.getName());
 
     private File file;
 
@@ -32,7 +30,7 @@ public class FileInfo{
     }
 
     public String getPath(){
-        logger.debug("-->" + this.file.getPath());
+        logger.fine("-->" + this.file.getPath());
         return this.file.getPath();
     }
 

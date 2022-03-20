@@ -14,7 +14,8 @@
 
 package org.dvb.user ;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,10 +26,10 @@ import java.util.Vector;
 public abstract class Preference {
 
     private String name;
-	private Vector values;
+    private List<String> values;
 
     protected Preference(){
-		values = new Vector();
+        values = new ArrayList<>();
     }
 
     public Preference (String name, String value) {
@@ -104,7 +105,7 @@ public abstract class Preference {
     }
 
     public void removeAll(){
-		values.removeAllElements();
+        values.clear();
     }
 
     public void setMostFavourite (String value) {

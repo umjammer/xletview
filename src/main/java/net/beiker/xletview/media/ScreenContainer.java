@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -19,18 +19,17 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.util.logging.Logger;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import org.dvb.ui.DVBGraphics;
+import org.havi.ui.HScene;
+
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.ui.ProgressBar;
 import net.beiker.xletview.ui.SafeArea;
 import net.beiker.xletview.ui.XContainer;
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
-
-import org.dvb.ui.DVBGraphics;
-import org.havi.ui.HScene;
 
 
 /**
@@ -40,9 +39,9 @@ import org.havi.ui.HScene;
  *
  */
 public class ScreenContainer extends Container {
-	
-	private static final Logger log = Log.getLogger(ScreenContainer.class);
-	
+
+    private static final Logger log = Logger.getLogger(ScreenContainer.class.getName());
+
     private static ScreenContainer THE_INSTANCE;
 
 
@@ -64,12 +63,12 @@ public class ScreenContainer extends Container {
 
     public static int SCREEN_WIDTH = Util.parseInt(Settings.getProperty("tv.screenwidth"));
     public static int SCREEN_HEIGHT = Util.parseInt(Settings.getProperty("tv.screenheight"));
-    
+
     private boolean eventEnabled;
 
-    private static ProgressBar progressBar; 
+    private static ProgressBar progressBar;
 
-    
+
     /**
      *  Gets the instance attribute of the TV class
      *
@@ -152,7 +151,7 @@ public class ScreenContainer extends Container {
 
         // repaint it
         layers[ScreenContainer.GRAPHICS_LAYER].repaint();
-        log.debug("layers[TV.GRAPHICS_LAYER].getComponentCount() = " + layers[ScreenContainer.GRAPHICS_LAYER].getComponentCount());
+        log.fine("layers[TV.GRAPHICS_LAYER].getComponentCount() = " + layers[ScreenContainer.GRAPHICS_LAYER].getComponentCount());
     }
 
     public Container getXletContainer() {
@@ -166,31 +165,31 @@ public class ScreenContainer extends Container {
     public static void showProgressBar(){
         progressBar.setVisible(true);
     }
-    
+
     public static void hideProgressBar(){
         progressBar.setVisible(false);
     }
-    
+
     public static void updateProgressBar(int procent){
         progressBar.update(procent);
     }
 
     public void update(Graphics g){
-    	paint(g);
+        paint(g);
     }
-    
+
     public void paint(Graphics g) {
 //        for (int i = layers.length - 1; i > -1; i--) {
 //            layers[i].paint(g);
 //        }
-    	
-    	DVBGraphics dvbg = DVBGraphics.getDVBGraphics(g); 
-    	
+
+        DVBGraphics dvbg = DVBGraphics.getDVBGraphics(g);
+
         layers[ScreenContainer.BACKGROUND_LAYER].paint(g);
-        layers[ScreenContainer.VIDEO_LAYER].paint(g);                
+        layers[ScreenContainer.VIDEO_LAYER].paint(g);
         layers[ScreenContainer.GRAPHICS_LAYER].paint(dvbg);
         layers[ScreenContainer.EMULATOR_LAYER].paint(g);
-        
+
     }
 
 }

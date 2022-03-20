@@ -14,9 +14,11 @@ package org.dvb.user;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Hashtable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
-import java.util.Vector;
 
 /**
  *
@@ -27,7 +29,7 @@ import java.util.Vector;
  */
 public class UserPreferenceManager {
 
-	private static final Hashtable prefs;
+    private static final Map<String, String[]> prefs;
 
     private static UserPreferenceManager THE_INSTANCE;
 
@@ -41,17 +43,10 @@ public class UserPreferenceManager {
 
     private static final String settingsPath = "config/user.preference";
 
-	private Vector listeners;
+    private List<UserPreferenceChangeListener> listeners;
 
     static{
-		prefs = new Hashtable();
-		prefs.put(USER_LANGUAGE, "");
-		prefs.put(PARENTAL_RATING, "");
-		prefs.put(USERNAME, "");
-		prefs.put(ADDRESS, "");
-		prefs.put(EMAIL, "");
-		prefs.put(COUNTRYCODE, "");
-		prefs.put(FONTSIZE, "");	
+        prefs = new HashMap<>();
     }
 
     static boolean isValidPrefName(String name){
@@ -59,7 +54,7 @@ public class UserPreferenceManager {
     }
 
     private UserPreferenceManager() {
-		listeners = new Vector();
+        listeners = new ArrayList<>();
 
         Properties props = new Properties();
         try {

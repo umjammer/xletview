@@ -24,7 +24,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileFilter;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -36,14 +37,14 @@ import javax.swing.JScrollPane;
 
 public class FileBrowser extends GenDialogComponent implements MouseListener, ActionListener{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(FileBrowser.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(FileBrowser.class.getName());
 
     private static final int FOLDER = 0;
     private static final int FILE   = 1;
     private int width;
     private int height;
-    private JComboBox combo;
-    private JList fileList;
+    private JComboBox<String> combo;
+    private JList<String> fileList;
     private File currentFolder;
     private JScrollPane scroll;
     private File[] files;
@@ -66,14 +67,14 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         Container top = new Container();
         top.setLayout(new GridLayout(2, 1));
         roots = File.listRoots();
-        Vector rootPaths = new Vector();
+        List<String> rootPaths = new ArrayList<>();
         for(int i = 0; i < roots.length; i++){
             if(roots[i].isDirectory()){
-                log.debug(roots[i].getPath());
+                log.fine(roots[i].getPath());
                 rootPaths.add(roots[i].getPath());
             }
         }
-        combo = new JComboBox(rootPaths);
+        combo = new JComboBox<>(rootPaths.toArray(new String[rootPaths.size()]));
         combo.setActionCommand("changeDrive");
         combo.addActionListener(this);
         top.add(combo);
@@ -84,7 +85,7 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         top.add(pathLabel);
 
         // list for files
-        fileList = new JList();
+        fileList = new JList<>();
         scroll = new JScrollPane(fileList);
         setPreferredSize(new Dimension(width, height));
         scroll.setPreferredSize(new Dimension(width,height));
@@ -110,14 +111,14 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
                         currentFolder = roots[i];
                         break;
                     } catch (Exception e2) {
-                        //Debug.error(e2);
+                        //Debug.severe(e2);
                     }
 
                 }
-                //Debug.error(e);
+                //Debug.severe(e);
             }
 
-            log.debug("opened folder: " + currentFolder.getPath());
+            log.fine("opened folder: " + currentFolder.getPath());
 
         int totFiles = files.length;
         String[] names = new String[totFiles];
@@ -153,8 +154,8 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
             filesInFolder = folder.listFiles();
         }
 
-        Vector dir   = new Vector();
-        Vector file  = new Vector();
+        List<File> dir   = new ArrayList<>();
+        List<File> file  = new ArrayList<>();
         File parentFolder = folder.getParentFile();
         if(parentFolder != null){
             dir.add(parentFolder);
@@ -181,7 +182,7 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
     public void actionPerformed(ActionEvent e){
         String command = e.getActionCommand();
         if(command.equals("changeDrive")){
-            JComboBox cb = (JComboBox)e.getSource();
+            JComboBox<?> cb = (JComboBox<?>)e.getSource();
             String path = (String)cb.getSelectedItem();
             openFolder(path);
         }

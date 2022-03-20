@@ -40,13 +40,13 @@ public class HSound extends java.lang.Object{
     private boolean isLooping;
     private Player player;
 
-	private static net.beiker.cake.Logger logger = net.beiker.cake.Log.getLogger(HSound.class);	
+    private static java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HSound.class.getName());
     private MediaControllerListner playerListner;
 
     // Handles events that are created by the mediaplayer
     private class MediaControllerListner implements ControllerListener{
         public void controllerUpdate(ControllerEvent event){
-			logger.debug(event.toString());			
+            logger.fine(event.toString());
             if (event instanceof EndOfMediaEvent){
                 // check if the sound clip should be looped
                 if (isLooping){
@@ -67,7 +67,7 @@ public class HSound extends java.lang.Object{
     }
 
     public HSound(){
-		logger.debug("Constructor");
+        logger.fine("Constructor");
         isLooping = false; // used for when the method loop() is called.
 
         // create listner for the player
@@ -86,7 +86,7 @@ public class HSound extends java.lang.Object{
             player = Manager.createPlayer(contents);
         }
         catch(NoPlayerException e){
-			logger.debug(e.getMessage());
+            logger.fine(e.getMessage());
             e.printStackTrace();
         }
         player.addControllerListener(playerListner);
@@ -118,7 +118,7 @@ public class HSound extends java.lang.Object{
     }
 
     public void dispose(){
-		logger.debug("dispose");
+        logger.fine("dispose");
         if (player != null){
             player.removeControllerListener(playerListner);
             player.stop();

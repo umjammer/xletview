@@ -15,14 +15,12 @@ import java.io.File;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
 import net.beiker.xletview.classloader.MainClassLoader;
 import net.beiker.xletview.util.CommandLine;
 import net.beiker.xletview.util.Constants;
@@ -41,22 +39,8 @@ public class Startup {
     protected long start;
     protected long end;
 
-	// Done here because you need to set properties before
-	// creating a logger; static blocks are executed in the
-	// order of textual appearance.
-	// Static field assignments are a special case of static
-	// blocks such as this one.
-	static{
-		Properties props = new Properties();
-
-		//props.setProperty("net.beiker.", Log.LEVEL_INFO);
-		//props.setProperty("xjava.io.", Log.LEVEL_INFO);
-
-		net.beiker.cake.Log.setProperties(props);
-	}
-	
     /** Debugging facility. */
-	private final static Logger logger = Log.getLogger(Startup.class);
+    private final static Logger logger = Logger.getLogger(Startup.class.getName());
 
     public Startup(String[] args) {
 
@@ -106,24 +90,24 @@ public class Startup {
             URL url = pathString2URL(xPath);
 
             if (url != null){
-				Startup.logger.debug("Xlet URL is '"+url.toExternalForm()+"'");
+                Startup.logger.fine("Xlet URL is '"+url.toExternalForm()+"'");
             }
 
             if (xExtraPaths != null){
 
                 int numExtraPaths = xExtraPaths.length;
-				Startup.logger.debug("Xlet has '"+numExtraPaths+"' extra paths...");
+                Startup.logger.fine("Xlet has '"+numExtraPaths+"' extra paths...");
 
                 URL[] xExtraPathURLs = new URL[numExtraPaths];
                 for (int i=0; i<numExtraPaths; i++){
-					Startup.logger.debug("Processing extra path '"+xExtraPaths[i]+"'.");
+                    Startup.logger.fine("Processing extra path '"+xExtraPaths[i]+"'.");
                     xExtraPathURLs[i] = pathString2URL(xExtraPaths[i]);
                 }
-				Startup.logger.debug("Processed all extra paths.");
+                Startup.logger.fine("Processed all extra paths.");
                 XletManager.getInstance().setXlet(url, xExtraPathURLs, xName);
             }
             else { // no Extra paths
-				Startup.logger.debug("Xlet has NO extra paths.");
+                Startup.logger.fine("Xlet has NO extra paths.");
                 XletManager.getInstance().setXlet(url, xName);
             }
         }
@@ -160,7 +144,7 @@ public class Startup {
             url = new URL(path);
         }
         catch (MalformedURLException mue){
-			Startup.logger.debug("Xlet Path is not an URL, trying to prefix with 'file:'.");
+            Startup.logger.fine("Xlet Path is not an URL, trying to prefix with 'file:'.");
             try {
                 url = new URL("file:"+path);
             } catch (MalformedURLException e) {
@@ -176,7 +160,7 @@ public class Startup {
     }
 
     protected void showSplash() {
-		this.splash.show();
+        this.splash.setVisible(true);
     }
 
     protected void hideSplash() {
@@ -186,7 +170,7 @@ public class Startup {
 
     private void setProperties() {
         try {
-			Startup.logger.debug("setting properties...");
+            Startup.logger.fine("setting properties...");
             //String settingsPath = Util.getURLConnection(Startup.class, Constants.PATH_SETTINGS);
             //File settingsFile = new File(settingsPath);
             //Settings.load(settingsFile);

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -49,8 +49,8 @@ import net.beiker.xletview.util.Util;
 
 public class DirectoryExplorer extends JDialog implements TreeSelectionListener, TreeExpansionListener, ActionListener {
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(DirectoryExplorer.class);
-	
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(DirectoryExplorer.class.getName());
+
     //private JDialog frame;
     private JTree tree;
     private DefaultTreeModel model;
@@ -70,7 +70,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 //System.exit(0);
-            	doClose();
+                doClose();
             }
         });
 
@@ -133,7 +133,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
         Util.center(this);
 
-        show();
+        setVisible(true);
 
     }
 
@@ -146,7 +146,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
             tp = tree.getNextMatch(path[i], nextSearchRow, Position.Bias.Forward);
             if (tp != null) {
                 tree.expandPath(tp);
-                log.debug("match");
+                log.fine("match");
                 nextSearchRow = tree.getRowForPath(tp);
                 tmp = tp;
             }
@@ -175,7 +175,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
     }
 
     public void pathChanged(TreePath path) {
-    	log.debug(path.toString());
+        log.fine(path.toString());
         String filePath = "";
         for (int i = 1; i < path.getPathCount(); i++) {
             String s = path.getPathComponent(i).toString();

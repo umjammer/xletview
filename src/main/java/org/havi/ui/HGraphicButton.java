@@ -26,7 +26,7 @@ import net.beiker.xletview.helper.HActionableHelper;
  */
 public class HGraphicButton extends HIcon implements HActionable{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HGraphicButton.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HGraphicButton.class.getName());
 
     private HActionableHelper helper;
 
@@ -61,7 +61,7 @@ public class HGraphicButton extends HIcon implements HActionable{
 
     private void init(){
         helper = new HActionableHelper(this);
-    	log.debug("HGraphicButton - init");
+        log.fine("HGraphicButton - init");
     }
 
     public static void setDefaultLook(HGraphicLook hlook){

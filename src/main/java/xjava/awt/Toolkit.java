@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -35,18 +35,18 @@ import xjava.io.FileSystem;
 
 /**
  * Used to replace java.awt.Toolkit
- * 
+ *
  * @author Martin Sveden
  */
 public class Toolkit {
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(Toolkit.class);
-	
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Toolkit.class.getName());
+
     private static Toolkit thisToolkit;
     private static java.awt.Toolkit realToolkit;
 
     private Toolkit() {
-    	realToolkit = java.awt.Toolkit.getDefaultToolkit();
+        realToolkit = java.awt.Toolkit.getDefaultToolkit();
     }
 
     /**
@@ -102,21 +102,21 @@ public class Toolkit {
     }
 
     /**
-     * 
+     *
      * @see java.awt.Toolkit#getImage(String filename)
      */
     public Image getImage(String filename) {
-        log.debug("getImage(" + filename + ")");
+        log.fine("getImage(" + filename + ")");
         File f = null;
         try {
-			f = FileSystem.getFile(filename);
-		} catch (FileNotFoundException e) {
-			// don't show stack trace
-		}
-        if(f != null){
-        	filename = f.getPath();
+            f = FileSystem.getFile(filename);
+        } catch (FileNotFoundException e) {
+            // don't show stack trace
         }
-        
+        if(f != null){
+            filename = f.getPath();
+        }
+
         return realToolkit.getImage(filename);
     }
 
@@ -124,8 +124,8 @@ public class Toolkit {
      * @see java.awt.Toolkit#getImage(URL url)
      */
     public Image getImage(URL url) {
-    	log.debug("getImage(" + url + ")");
-    	// TODO fix
+        log.fine("getImage(" + url + ")");
+        // TODO fix
         return realToolkit.getImage(url);
     }
 
@@ -142,7 +142,7 @@ public class Toolkit {
     public int checkImage(Image image, int width, int height, ImageObserver observer) {
         return realToolkit.checkImage(image, width, height, observer);
     }
-    
+
     /**
      * @see java.awt.Toolkit#gcreateImage(ImageProducer producer)
      */
@@ -156,21 +156,21 @@ public class Toolkit {
     public Image createImage(byte[] imagedata) {
         return createImage(imagedata, 0, imagedata.length);
     }
-    
+
     /**
      * @see java.awt.Toolkit#createImage(byte[] imagedata)
      */
     public Image createImage(String filename) {
         File f = null;
         try {
-			f = FileSystem.getFile(filename);
-		} catch (FileNotFoundException e) {		
-			// don't show stack trace
-		}
-        if(f != null){
-        	filename = f.getPath();
+            f = FileSystem.getFile(filename);
+        } catch (FileNotFoundException e) {
+            // don't show stack trace
         }
-    	return realToolkit.createImage(filename);
+        if(f != null){
+            filename = f.getPath();
+        }
+        return realToolkit.createImage(filename);
     }
 
     /**
@@ -179,28 +179,28 @@ public class Toolkit {
     public Image createImage(byte[] imagedata, int imageoffset, int imagelength) {
         return realToolkit.createImage(imagedata, imageoffset, imagelength);
     }
-    
+
     /**
      * @see java.awt.Toolkit#getPrintJob(Frame frame, String jobtitle, Properties props)
      */
     public PrintJob getPrintJob(Frame frame, String jobtitle, Properties props) {
         return realToolkit.getPrintJob(frame, jobtitle, props);
     }
-    
+
     /**
      * @see java.awt.Toolkit#beep()
      */
     public void beep() {
         realToolkit.beep();
     }
-    
+
     /**
      * @see java.awt.Toolkit#getSystemClipboard()
      */
     public Clipboard getSystemClipboard() {
         return realToolkit.getSystemClipboard();
     }
-    
+
     /**
      * @see java.awt.Toolkit#getMenuShortcutKeyMask()
      */
@@ -210,7 +210,7 @@ public class Toolkit {
 
     /*
      * The methods below exist since 1.2(not part of MHP) but are here
-     * because they must be if the JVM is newer than 1.1.8 
+     * because they must be if the JVM is newer than 1.1.8
      */
 
     public static String getProperty(String key, String defaultValue) {

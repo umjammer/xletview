@@ -38,7 +38,7 @@ public class HStaticText extends HVisible implements HNoInputPreferred{
         this.setTextLayoutManager(new HDefaultTextLayoutManager());
         this.setBackgroundMode(HVisible.BACKGROUND_FILL);
 
-        //logger.debug("constructor");
+        //logger.fine("constructor");
     }
 
     public HStaticText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm){

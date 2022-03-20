@@ -28,7 +28,7 @@ import net.beiker.xletview.io.OutputRedirector;
 
 public class Console extends Container implements OutputPrinter{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(Console.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Console.class.getName());
 
     //JTextArea textArea;
     private static JTextArea ta;
@@ -52,7 +52,7 @@ public class Console extends Container implements OutputPrinter{
             ta.setFont(new Font(font, Font.PLAIN, fontSize));
         }
         catch(Exception e){
-            log.error("The font properties for the console is not working");
+            log.severe("The font properties for the console is not working");
         }
 
 

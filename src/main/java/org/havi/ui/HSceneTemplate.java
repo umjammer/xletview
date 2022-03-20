@@ -15,7 +15,8 @@
 package org.havi.ui;
 
 import java.awt.Dimension;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class HSceneTemplate{
 
@@ -30,10 +31,10 @@ public class HSceneTemplate{
     public static final int SCENE_SCREEN_DIMENSION  = 0x04;
     public static final int SCENE_SCREEN_LOCATION   = 0x08;
 
-    private Hashtable prefs;
+    private Map<?, ?> prefs;
 
     public HSceneTemplate(){
-        prefs = new Hashtable();
+        prefs = new HashMap<>();
     }
 
     public void setPreference(int preference, Object object, int priority){

@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -19,10 +19,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Vector;
-
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Downloads files from one source directory to a destination directory
@@ -30,17 +29,17 @@ import net.beiker.cake.Logger;
  *
  */
 public class Downloader {
-	
-	private static final Logger log = Log.getLogger(Downloader.class);
-	
-    private URL url;
+
+    private static final Logger log = Logger.getLogger(Downloader.class.getName());
+
+//    private URL url;
     private File source;
     private File destination;
-    private Vector relFiles;
-    private  final String destinationPath;
+    private List<RelFile> relFiles;
+//    private  final String destinationPath;
     private long byteLength;
     private final long maxByteSize = 8000000;
-    private Vector listeners;
+    private List<DownloadEventListener> listeners;
 
     //    public Downloader(URL url) {
     //        this.url = url;
@@ -68,16 +67,16 @@ public class Downloader {
     /**
      * Creates the folder to download if it doesn't exit.
      * Deletes all the content in the folder to download to.
-     * 
+     *
      *
      */
     public Downloader(String destinationPath) throws IOException {
-        synchronized (this){        
-            this.destinationPath = destinationPath;
-            listeners = new Vector();
-            relFiles = new Vector();
+        synchronized (this){
+//            this.destinationPath = destinationPath;
+            listeners = new ArrayList<>();
+            relFiles = new ArrayList<>();
             destination = new File(destinationPath);
-            log.debug("dest exist? " + destination.exists());
+            log.fine("dest exist? " + destination.exists());
             if (!destination.exists()) {
                 destination.mkdirs();
                 if (!destination.exists()) {
@@ -89,15 +88,15 @@ public class Downloader {
             }
         }
     }
-    
+
     public void addDownloadEventListener(DownloadEventListener listener){
         listeners.add(listener);
     }
-    
+
     public void removeDownloadEventListener(DownloadEventListener listener){
         listeners.remove(listener);
     }
-    
+
     /**
      * Downloads everything under the specified path to the destination directory.
      * @param rootPath The directory which content we want.
@@ -107,18 +106,18 @@ public class Downloader {
         synchronized (this){
             flush();
             File f = new File(rootPath.getFile());
-            if (!f.exists() || !f.isDirectory()) {                
-                throw new IOException("File " + f.toURL() + " does not exist or is not a valid resource directory");
+            if (!f.exists() || !f.isDirectory()) {
+                throw new IOException("File " + f.toURI().toURL() + " does not exist or is not a valid resource directory");
             }
             else {
-                source = f;                
+                source = f;
                 log.info("checking resources...");
                 resolveSource(source);
                 copy();
             }
         }
     }
-    
+
     /*
         public Downloader(String rootPath) throws IOException {
         this();
@@ -134,7 +133,7 @@ public class Downloader {
     }
 */
     /**
-     * 
+     *
      * @return The folder which is the destination where the
      * applications are downloaded to.
      */
@@ -149,7 +148,7 @@ public class Downloader {
     public void flush() {
         synchronized (this){
             // delete all previous content
-            File[] files = getDirContent(destination, new Vector());
+            File[] files = getDirContent(destination, new ArrayList<File>());
             deleteFiles(files);
         }
     }
@@ -158,7 +157,7 @@ public class Downloader {
      * Resolves a directory
      * @param dir The directory to resolve
      */
-    private void resolveSource(File dir) {        
+    private void resolveSource(File dir) {
         if (dir.isDirectory()) {
             File[] files = dir.listFiles();
             for (int i = 0; i < files.length; i++) {
@@ -189,18 +188,19 @@ public class Downloader {
             else {
                 try {
                     newFile.createNewFile();
-                    InputStream is = new FileInputStream(file);
-                    FileOutputStream os = new FileOutputStream(newFile);
-                    byte[] bytes = new byte[is.available()];
-                    byteLength += bytes.length;
-                    //Debug.write(this, file.getName() + ", byteLength = " + byteLength + " > " + bytes.length + " = " + (byteLength > bytes.length));
-                    if (byteLength > maxByteSize) {
-                        throw new AppSizeExceededException("Application's size is too big![> " + maxByteSize + " bytes]");
+                    try (InputStream is = new FileInputStream(file);
+                         FileOutputStream os = new FileOutputStream(newFile)) {
+                        byte[] bytes = new byte[is.available()];
+                        byteLength += bytes.length;
+                        //Debug.write(this, file.getName() + ", byteLength = " + byteLength + " > " + bytes.length + " = " + (byteLength > bytes.length));
+                        if (byteLength > maxByteSize) {
+                            throw new AppSizeExceededException("Application's size is too big![> " + maxByteSize + " bytes]");
+                        }
+                        is.read(bytes);
+                        os.write(bytes);
+                        is.close();
+                        os.close();
                     }
-                    is.read(bytes);
-                    os.write(bytes);
-                    is.close();
-                    os.close();
                     notiyListeners(new DownloadEvent(this, getProcent(i), file.getName()));
                 }
                 catch (IOException e) {
@@ -217,7 +217,7 @@ public class Downloader {
      * @param v An empty vector
      * @return All the files that was in the directory
      */
-    private File[] getDirContent(File dir, Vector v) {
+    private File[] getDirContent(File dir, List<File> v) {
         File[] files = dir.listFiles();
         for (int i = 0; i < files.length; i++) {
             v.add(files[i]);
@@ -250,7 +250,7 @@ public class Downloader {
             else {
                 //could not delete
                 success = false;
-                log.debug(files[i].getAbsolutePath() + " could not be removed");
+                log.fine(files[i].getAbsolutePath() + " could not be removed");
             }
         }
         if(!success){
@@ -263,13 +263,13 @@ public class Downloader {
 
     private int getProcent(double index){
         double tot = relFiles.size();
-        
+
         // we add 1 to the index and use the relFiles.size()
         // so there will not be a division by zero if there is
         // only one file
-        
+
         double procent = (index+1) / tot * 100;
-        //Debug.write(this, index + "/" + tot + " * 100 = " + procent);    
+        //Debug.write(this, index + "/" + tot + " * 100 = " + procent);
         return (int) procent;
     }
 

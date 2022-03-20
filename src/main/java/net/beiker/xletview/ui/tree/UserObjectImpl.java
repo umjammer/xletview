@@ -7,13 +7,14 @@
 package net.beiker.xletview.ui.tree;
 
 import java.io.File;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * @author beiker 
- * 
+ * @author beiker
+ *
  * Beiker
- * 
+ *
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
@@ -32,7 +33,7 @@ public class UserObjectImpl implements UserObject{
         this.object = object;
         if(object instanceof File){
             File file = (File)object;
-            
+
             isRoot = (file.getName().length() != 0)? false: true;
             name = (file.getName().length() != 0)? file.getName(): file.getPath();
             name = name.replaceAll("\\\\", "");
@@ -40,9 +41,9 @@ public class UserObjectImpl implements UserObject{
             //Debug.write(this, name);
         }
     }
-        
-    public boolean hasChildren(){   
-        boolean result = false; 
+
+    public boolean hasChildren(){
+        boolean result = false;
         if(object instanceof File){
             File file = (File)object;
             if(isRoot){
@@ -55,13 +56,13 @@ public class UserObjectImpl implements UserObject{
                     if(children != null && children.length > 0){
                         result = true;
                     }
-                }            
-            }            
+                }
+            }
         }
 
-        return result; 
+        return result;
     }
-    
+
     public Object[] getChildren(){
         if(object instanceof File){
             File file = (File)object;
@@ -69,15 +70,15 @@ public class UserObjectImpl implements UserObject{
                 File[] files = file.listFiles();
                 if(files != null){
                     children = getDirs(files);
-                }            
-            }            
-        }        
-        
+                }
+            }
+        }
+
         return children;
     }
 
     public File[] getDirs(File[] files){
-        Vector v = new Vector();
+        List<File> v = new ArrayList<>();
         for(int i = 0; i < files.length; i++){
             if(files[i].isDirectory()){
                 v.add(files[i]);
@@ -90,12 +91,12 @@ public class UserObjectImpl implements UserObject{
         return dirs;
     }
 
-    public Object getObject() {    
+    public Object getObject() {
         return object;
     }
-    
+
     public String toString(){
-        return name;            
+        return name;
     }
 
     /* (non-Javadoc)

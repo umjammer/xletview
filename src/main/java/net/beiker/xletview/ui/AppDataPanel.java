@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.util.logging.Logger;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -31,8 +32,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
 import net.beiker.xletview.app.App;
 import net.beiker.xletview.app.AppManager;
 import net.beiker.xletview.remotecontrol.RemoteControl;
@@ -46,8 +45,8 @@ import net.beiker.xletview.window.DirectoryExplorer;
  */
 public class AppDataPanel extends JPanel implements ActionListener, KeyListener {
 
-	private static final Logger log = Log.getLogger(RemoteControl.class);
-	
+    private static final Logger log = Logger.getLogger(RemoteControl.class.getName());
+
     private AppTreeWindow appWin;
     private App app;
 
@@ -153,7 +152,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         fields[XLETNAME].setText(app.getXletName());
         this.app = app;
     }
-    
+
     /**
      * Saves the data to the active App
      *
@@ -163,7 +162,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
             this.app.setName(fields[NAME].getText());
             this.app.setPath(fields[CLASSPATH].getText());
             this.app.setXletName(fields[XLETNAME].getText());
-        }        
+        }
     }
 
     //    public void setValues(String appName, String path, String xlet){
@@ -181,7 +180,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         String command = e.getActionCommand();
 
         if (command.equals("classpath")) {
-            
+
             String fieldText = fields[CLASSPATH].getText();
             //String[] treeData = fieldText.split(File.separator + File.separator);
             String[] treeData;
@@ -191,14 +190,14 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
             else{
                 treeData = fieldText.split("/");
             }
-            log.debug("### " + treeData.length);
-            
+            log.fine("### " + treeData.length);
+
             DirectoryExplorer dirWin = dirWin = new DirectoryExplorer(Util.getParentFrame(this), treeData);
-            
-            
+
+
             if ( dirWin != null && dirWin.getPath().length() > 0) {
                 fields[CLASSPATH].setText(dirWin.getPath());
-                log.debug(fields[CLASSPATH].getText());
+                log.fine(fields[CLASSPATH].getText());
             }
         }
         else if (command.equals("xletname")) {
@@ -207,7 +206,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
             }
             else {
                 ClassWindow classWindow = new ClassWindow(Util.getParentFrame(this), new File(fields[CLASSPATH].getText().trim()));
-                log.debug("value=" + classWindow.getValue());
+                log.fine("value=" + classWindow.getValue());
                 fields[XLETNAME].setText(classWindow.getValue());
             }
 
@@ -217,19 +216,19 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
             //            File dir = new File(fields[CLASSPATH].getText());
             //            Debug.write(this, "** " + dir.isDirectory());
             //            fc.setCurrentDirectory( dir );
-            //            fc.setDialogType(JFileChooser.OPEN_DIALOG);            
+            //            fc.setDialogType(JFileChooser.OPEN_DIALOG);
             //            fc.showOpenDialog(this);
             //            String selectedPath = fc.getSelectedFile().getAbsolutePath();
             //            Debug.write(this, "1 " + fc.getSelectedFile().getPath());
             //            Debug.write(this, "2 " + fc.getSelectedFile().getAbsolutePath());
             //
-            //            String className = ""; 
+            //            String className = "";
             //            className = selectedPath.substring(fields[CLASSPATH].getText().length());
             //            className = className.replace(File.separatorChar, '.');
             //            className = className.replaceAll(".class", "");
             //            className = className.replaceAll(".CLASS", "");
-            //            if(className.length() > 0){                
-            //                fields[XLETNAME].setText(className);                
+            //            if(className.length() > 0){
+            //                fields[XLETNAME].setText(className);
             //            }
         }
         else if (command.equals("ok")) {
@@ -241,7 +240,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
                 AppManager.getInstance().getDefaultGroup().addApp(app);
                 AppManager.getInstance().update();
                 AppMenu.getInstance().update();
-                log.debug("name=" + name + ", path=" + path + ", xlet=" + xlet);
+                log.fine("name=" + name + ", path=" + path + ", xlet=" + xlet);
 
             }
         }
@@ -279,9 +278,9 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         }
         return true;
     }
-    
-    public void keyTyped(KeyEvent arg0) {        
-        
+
+    public void keyTyped(KeyEvent arg0) {
+
     }
 
     public void keyPressed(KeyEvent arg0) {

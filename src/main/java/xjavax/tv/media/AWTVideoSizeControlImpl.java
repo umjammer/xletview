@@ -30,7 +30,7 @@ import net.beiker.xletview.media.ScreenContainer;
  */
 public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(AWTVideoSizeControlImpl.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AWTVideoSizeControlImpl.class.getName());
 
     private static AWTVideoSizeControlImpl THE_INSTANCE;
 
@@ -46,7 +46,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
     }
 
     private AWTVideoSizeControlImpl(){
-        log.debug("---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
+        log.fine("---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
         defaultSize = new AWTVideoSize(new Rectangle(0, 0 , ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT), new Rectangle(0, 0 , ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT));
         currentSize = defaultSize;
     }
@@ -73,7 +73,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
     public boolean setSize(AWTVideoSize awtvideosize){
         currentSize = awtvideosize;
 
-        log.debug("setSize");
+        log.fine("setSize");
         MediaPlayer.getInstance().setSize(awtvideosize);
         return true;
     }

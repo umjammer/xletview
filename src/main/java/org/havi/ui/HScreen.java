@@ -14,7 +14,8 @@
 
 package org.havi.ui;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -25,7 +26,7 @@ import java.util.Vector;
 public class HScreen{
     private static final HScreen DEFAULT_HSCREEN = new HScreen();
 
-    private static Vector hScreens;
+    private static List<HScreen> hScreens;
     private HVideoDevice hVideoDevice;
     private HVideoDevice[] hVideoDevices;
     private HGraphicsDevice hGraphicsDevice;
@@ -48,7 +49,7 @@ public class HScreen{
         hBackgroundDevice = new HBackgroundDevice();
         hBackgroundDevices = new HBackgroundDevice[1];
         hBackgroundDevices[0] = hBackgroundDevice;
-        hScreens = new Vector();
+        hScreens = new ArrayList<>();
         hScreens.add(this);
     }
 

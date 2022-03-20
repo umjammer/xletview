@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -19,7 +19,9 @@ import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragSource;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.swing.Action;
 import javax.swing.JPanel;
@@ -37,8 +39,6 @@ import javax.swing.tree.TreeCellRenderer;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
 import net.beiker.xletview.app.App;
 import net.beiker.xletview.app.AppGroup;
 import net.beiker.xletview.app.AppManager;
@@ -51,8 +51,8 @@ import net.beiker.xletview.ui.tree.UserObject;
 
 public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeExpansionListener/*, DragGestureListener, DropTargetListener, DragSourceListener */{
 
-	private static final Logger log = Log.getLogger(AppTreePanel.class);
-	
+    private static final Logger log = Logger.getLogger(AppTreePanel.class.getName());
+
     protected JTree tree;
     protected DefaultTreeModel model;
     protected JTextField display;
@@ -61,13 +61,13 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 
     protected JPopupMenu popup;
     protected Action action;
-    private Vector listeners;
+    private List<TreeListener> listeners;
 
 //    private DragSource dragSource = null;
 //    private DragSourceContext dragSourceContext = null;
 
     private AppTreePanel() {
-        listeners = new Vector();
+        listeners = new ArrayList<>();
         setLayout(new BorderLayout());
     }
 
@@ -102,9 +102,9 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
         s.getViewport().add(tree);
         add(s, BorderLayout.CENTER);
 
-        /* 
+        /*
         // drag n drop stuff not yet implemented
-         
+
         dragSource = DragSource.getDefaultDragSource();
         DragGestureRecognizer dgr = dragSource.createDefaultDragGestureRecognizer(tree, //DragSource
         DnDConstants.ACTION_COPY_OR_MOVE, this);
@@ -143,21 +143,21 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     }
 
     /**
-     * Adds an AppGroup in the tree as a child to the 
+     * Adds an AppGroup in the tree as a child to the
      * selected group.
      * @param group the AppGroup to be added
      */
     public void insertGroup(AppGroup group) {
-        log.debug("insert group");
+        log.fine("insert group");
         if (selectedPath != null) {
             BeikerTreeNode node = (BeikerTreeNode) selectedPath.getLastPathComponent();
             TreePath selectedPath = new TreePath(node.getPath());
             Object userObject = node.getUserObject();
             Object object = ((UserObject) userObject).getObject();
-            log.debug("userObject is " + userObject.getClass().getName());
+            log.fine("userObject is " + userObject.getClass().getName());
 
             if (object instanceof AppGroup) {
-            	log.debug("userObject is AppGroup");
+                log.fine("userObject is AppGroup");
                 AppGroup parentGroup = (AppGroup) object;
                 parentGroup.addChild(group);
                 BeikerTreeNode childNode = new BeikerTreeNode(group);
@@ -168,21 +168,21 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     }
 
     /**
-     * Adds an App in the tree as a child to the 
+     * Adds an App in the tree as a child to the
      * selected group.
      * @param group the App to be added
      */
     public void insertApp(App app) {
-    	log.debug("insert app");
+        log.fine("insert app");
         if (selectedPath != null) {
             BeikerTreeNode node = (BeikerTreeNode) selectedPath.getLastPathComponent();
 
             Object userObject = node.getUserObject();
             Object object = ((UserObject) userObject).getObject();
-            log.debug("userObject is " + userObject.getClass().getName());
+            log.fine("userObject is " + userObject.getClass().getName());
 
             if (object instanceof AppGroup) {
-            	log.debug("userObject is AppGroup");
+                log.fine("userObject is AppGroup");
                 AppGroup parentGroup = (AppGroup) object;
                 parentGroup.addApp(app);
 
@@ -200,7 +200,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 
             Object userObject = node.getUserObject();
 
-            log.debug("userObject is " + userObject.getClass().getName());
+            log.fine("userObject is " + userObject.getClass().getName());
             if (userObject instanceof UserObject) {
                 Object object = ((UserObject) userObject).getObject();
                 if (object != AppManager.getInstance().getDefaultGroup()) {
@@ -210,7 +210,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
                     // scroll to parent
                     tree.scrollPathToVisible(new TreePath(parent.getPath()));
 
-                    // select parent 
+                    // select parent
                     tree.setSelectionPath(new TreePath(parent.getPath()));
 
                     // remove from tree
@@ -229,7 +229,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
                     }
                 }
                 else {
-                	log.debug("it's not possible to delete default group");
+                    log.fine("it's not possible to delete default group");
                 }
             }
         }
@@ -260,8 +260,8 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
      */
     public void dragGestureRecognized(DragGestureEvent e) {
         Object obj = e.getSource();
-        log.debug("dragGestureRecognized, " + obj.getClass().getName());
-        
+        log.fine("dragGestureRecognized, " + obj.getClass().getName());
+
         DefaultMutableTreeNode dragNode = getSelectedNode();
         if(dragNode != null){
             Transferable transferable = (Transferable) dragNode.getUserObject();
@@ -269,7 +269,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
             //Select the appropriate cursor;
             Cursor cursor = DragSource.DefaultCopyNoDrop;
             int action = e.getDragAction();
-            if (action == DnDConstants.ACTION_MOVE){ 
+            if (action == DnDConstants.ACTION_MOVE){
                 cursor = DragSource.DefaultMoveNoDrop;
             }
             //begin the drag

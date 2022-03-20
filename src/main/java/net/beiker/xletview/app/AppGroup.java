@@ -1,10 +1,10 @@
 /*
 
- This file is part of XleTView 
+ This file is part of XleTView
  Copyright (C) 2003 Martin Sveden
- 
- This is free software, and you are 
- welcome to redistribute it under 
+
+ This is free software, and you are
+ welcome to redistribute it under
  certain conditions;
 
  See LICENSE document for details.
@@ -13,7 +13,8 @@
 
 package net.beiker.xletview.app;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.beiker.xletview.ui.tree.UserObject;
 
@@ -27,14 +28,14 @@ public class AppGroup implements UserObject /*, Transferable*/ {
     //    final public static DataFlavor DATAFLAVOR = new DataFlavor(AppGroup.class, "Application Group");
     //    static DataFlavor flavors[] = { DATAFLAVOR };
 
-    private Vector subGroups;
-    private Vector apps;
+    private List<AppGroup> subGroups;
+    private List<App> apps;
     private String name;
     private static int count;
 
     private AppGroup() {
-        subGroups = new Vector();
-        apps = new Vector();
+        subGroups = new ArrayList<>();
+        apps = new ArrayList<>();
     }
 
     public AppGroup(String name) {
@@ -44,7 +45,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
         }
         else {
             this.name = "new group " + (count++);
-        }       
+        }
     }
 
     public void addChild(AppGroup subGroup) {
@@ -57,7 +58,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
         sortGroups();
     }
 
-    public Vector getSubGroups() {
+    public List<AppGroup> getSubGroups() {
         return subGroups;
     }
 
@@ -83,7 +84,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
         sortApps();
     }
 
-    public Vector getApps() {
+    public List<App> getApps() {
         return apps;
     }
 
@@ -102,7 +103,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
                 AppGroup p2 = (AppGroup) subGroups.get(k);
                 String s1 = p1.getName().toLowerCase();
                 String s2 = p2.getName().toLowerCase();
-                int compare = s1.compareTo(s2); 
+                int compare = s1.compareTo(s2);
 
                 if (compare > 0) {
                     subGroups.set(i, p2);
@@ -124,7 +125,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
                 App p2 = (App) apps.get(k);
                 String s1 = p1.getName().toLowerCase();
                 String s2 = p2.getName().toLowerCase();
-                int compare = s1.compareTo(s2); 
+                int compare = s1.compareTo(s2);
 
                 if (compare > 0) {
                     apps.set(i, p2);
@@ -139,7 +140,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
     }
 
     public Object[] getChildren() {
-        Vector v = new Vector();
+        List<UserObject> v = new ArrayList<>();
         for (int i = 0; i < subGroups.size(); i++) {
             v.add(subGroups.get(i));
         }
@@ -168,14 +169,14 @@ public class AppGroup implements UserObject /*, Transferable*/ {
     //    /* (non-Javadoc)
     //     * @see java.awt.datatransfer.Transferable#getTransferDataFlavors()
     //     */
-    //    public DataFlavor[] getTransferDataFlavors() {        
+    //    public DataFlavor[] getTransferDataFlavors() {
     //        return flavors;
     //    }
     //
     //    /* (non-Javadoc)
     //     * @see java.awt.datatransfer.Transferable#isDataFlavorSupported(java.awt.datatransfer.DataFlavor)
     //     */
-    //    public boolean isDataFlavorSupported(DataFlavor df) {        
+    //    public boolean isDataFlavorSupported(DataFlavor df) {
     //        return df.equals(DATAFLAVOR);
     //    }
     //
@@ -187,7 +188,7 @@ public class AppGroup implements UserObject /*, Transferable*/ {
     //          return this;
     //        }
     //        else{
-    //            throw new UnsupportedFlavorException(df);   
+    //            throw new UnsupportedFlavorException(df);
     //        }
     //    }
 

@@ -6,29 +6,29 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
-import net.beiker.cake.Log;
-import net.beiker.cake.Logger;
 import net.beiker.xletview.io.OutputPrinter;
 
 /**
- * 
- * @author Unknown 
+ *
+ * @author Unknown
  */
 public class OutputServer implements OutputPrinter{
 
-	/** Debugging facility. */
-	private final static Logger logger = Log.getLogger(OutputServer.class);
-	
+    /** Debugging facility. */
+    private final static Logger logger = Logger.getLogger(OutputServer.class.getName());
+
     private PrintStream original;
 
     // a ServerSocket for accepting new connections
     private ServerSocket ss;
 
     // for mapping sockets to DataOutputStreams
-    private Hashtable outputStreams = new Hashtable();
+    private Map<Socket, DataOutputStream> outputStreams = new HashMap<>();
 
     // Constructor and while-accept loop all in one.
     public OutputServer(int port, PrintStream original) throws IOException {
@@ -40,18 +40,18 @@ public class OutputServer implements OutputPrinter{
     private void listen(int port) throws IOException {
 
         this.ss = new ServerSocket(port);
-        logger.debug("Listening on " + this.ss);
+        logger.fine("Listening on " + this.ss);
 
         // accepting forever
         while (true) {
 
             // accept incoming
             Socket s = this.ss.accept();
-            logger.debug("Connection from " + s);
+            logger.fine("Connection from " + s);
 
             DataOutputStream dout = new DataOutputStream(s.getOutputStream());
 
-            // Save stream 
+            // Save stream
             this.outputStreams.put(s, dout);
 
             // a new thread for this connection
@@ -61,8 +61,8 @@ public class OutputServer implements OutputPrinter{
 
     // Get an enumeration of all the OutputStreams, one for each client
     // connected to us
-    private Enumeration getOutputStreams() {
-        return this.outputStreams.elements();
+    private Collection<DataOutputStream> getOutputStreams() {
+        return this.outputStreams.values();
     }
 
     // Send a message to all clients (utility routine)
@@ -74,10 +74,7 @@ public class OutputServer implements OutputPrinter{
         synchronized (this.outputStreams) {
 
             // For each client ...
-            for (Enumeration e = getOutputStreams(); e.hasMoreElements();) {
-
-                // ... get the output stream ...
-                DataOutputStream dout = (DataOutputStream) e.nextElement();
+            for (DataOutputStream dout : getOutputStreams()) {
 
                 // ... and send the message
                 try {
@@ -85,7 +82,7 @@ public class OutputServer implements OutputPrinter{
                     dout.writeUTF(message);
                 }
                 catch (IOException ie) {
-                    logger.warn(ie);
+                    logger.warning(ie.toString());
                 }
             }
         }
@@ -97,7 +94,7 @@ public class OutputServer implements OutputPrinter{
         // down the list of all output streamsa
         synchronized (this.outputStreams) {
 
-            logger.debug("Removing connection to " + s);
+            logger.fine("Removing connection to " + s);
 
             // Remove it from our hashtable/list
             this.outputStreams.remove(s);
@@ -107,7 +104,7 @@ public class OutputServer implements OutputPrinter{
                 s.close();
             }
             catch (IOException ie) {
-                logger.error("Error closing " + s);
+                logger.severe("Error closing " + s);
                 ie.printStackTrace();
             }
         }
@@ -120,11 +117,11 @@ public class OutputServer implements OutputPrinter{
     public void print(String s) {
         // TODO Auto-generated method stub
         if(i < 4){
-            logger.debug("echo");
+            logger.fine("echo");
             i++;
         }
         sendToAll(s);
-        
+
     }
 
 }

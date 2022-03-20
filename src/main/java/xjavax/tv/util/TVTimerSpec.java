@@ -13,7 +13,8 @@
 
 package xjavax.tv.util;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A class representing a timer specification.
@@ -63,7 +64,7 @@ public class TVTimerSpec extends java.lang.Object {
     private boolean repeat;
     private boolean regular;
     private long time;
-	private Vector listeners;
+    private List<TVTimerWentOffListener> listeners;
 
 
     /**
@@ -76,7 +77,7 @@ public class TVTimerSpec extends java.lang.Object {
         regular = true;
         time = 0;
 
-		listeners = new Vector();
+        listeners = new ArrayList<>();
     }
 
     /**

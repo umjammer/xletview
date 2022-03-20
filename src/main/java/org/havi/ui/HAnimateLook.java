@@ -29,7 +29,7 @@ import java.awt.Insets;
  */
 public class HAnimateLook implements HLook {
 
-	private static final net.beiker.cake.Logger log = net.beiker.cake.Log.getLogger(HAnimateLook.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HAnimateLook.class.getName());
 
     /* PLATFORM SPECIFIC */
     private static Insets insets = new Insets(2, 2, 2, 2);
@@ -38,7 +38,7 @@ public class HAnimateLook implements HLook {
     }
 
     public void showLook(java.awt.Graphics g, HVisible hVisible, int state) {
-//		logger.debug("Repaiting animation");
+//        logger.fine("Repaiting animation");
 
 
         HStaticAnimation animation = (HStaticAnimation)hVisible;

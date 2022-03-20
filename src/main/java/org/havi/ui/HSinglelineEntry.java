@@ -38,7 +38,7 @@ import net.beiker.xletview.helper.HNavigableHelper;
  */
 public class HSinglelineEntry extends HVisible implements HTextValue{
 
-	private static final Logger log = Log.getLogger(HSinglelineEntry.class);
+    private static final Logger log = Logger.getLogger(HSinglelineEntry.class.getName());
 
     private int caretPosition;
     private int maxChars = 16;
