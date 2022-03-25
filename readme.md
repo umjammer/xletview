@@ -1,5 +1,7 @@
 # XleTView
 
+<img width="320" alt="2022-03-25 21 04 57" src="https://user-images.githubusercontent.com/493908/160117781-eb885602-c32d-4146-ba81-bddb678a99fd.png">
+
 XleTView is distributed under the The GNU General Public License (GPL) wich can be found in a separate document.
 
 This is a software for viewing MHP Xlets on a PC. It is NOT a complete MHP implementation and shall not be treated as such.
