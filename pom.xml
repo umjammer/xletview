@@ -67,15 +67,16 @@
               <mainClass>net.beiker.xletview.Main</mainClass>
             </manifest>
           </archive>
-<!--
           <excludes>
+<!--
+            <exclude>%ant[xjava/io/**.*]</exclude>
             <exclude>%ant[org/davic/**/*]</exclude>
             <exclude>%ant[org/dvb/**/*]</exclude>
             <exclude>%ant[org/havi/**/*]</exclude>
             <exclude>%ant[xjava/**/*]</exclude>
             <exclude>%ant[xjavax/**/*]</exclude>
-          </excludes>
 -->
+          </excludes>
         </configuration>
       </plugin>
 

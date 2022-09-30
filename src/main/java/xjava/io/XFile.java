@@ -58,14 +58,6 @@ public class XFile extends java.io.File{
     }
 
     /**
-     * TODO ad-hoc
-     */
-    public XFile(XFile parent, String child){
-        super(parent, child);
-        init(parent, child);
-    }
-
-    /**
      * Overrides constructor in java.io.File
      */
     public XFile(String parent, String child){

@@ -92,11 +92,11 @@ public final class XletClassLoader extends MainClassLoader {
             }
         });
 
-        try {
-            loadClass("xjava.io.XFile");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            loadClass("xjava.io.XFile");
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
     /*
@@ -175,8 +175,9 @@ logger.finer("try to load: " + name);
             CtClass cc = this.pool.get(name);
 
             logger.fine("CHANGING BYTECODE IN " + name);
+if (!this.xletClassMap.containsKey(name)) {
             cc.replaceClassName(this.xletClassMap);
-
+}
             // convert code
             CodeConverter conv = new XletCodeConverter();
             cc.instrument(conv);
