@@ -15,12 +15,12 @@
 package org.havi.ui;
 
 
-public abstract class HEmulatedGraphicsDevice extends HGraphicsDevice{
+public abstract class HEmulatedGraphicsDevice extends HGraphicsDevice {
 
-    protected HEmulatedGraphicsDevice(){
+    protected HEmulatedGraphicsDevice() {
     }
 
-    public boolean setGraphicsConfiguration(HEmulatedGraphicsConfiguration hegc) throws SecurityException, org.havi.ui.HPermissionDeniedException, org.havi.ui.HConfigurationException{
+    public boolean setGraphicsConfiguration(HEmulatedGraphicsConfiguration hegc) throws SecurityException, org.havi.ui.HPermissionDeniedException, org.havi.ui.HConfigurationException {
         return (false);
     }
 }

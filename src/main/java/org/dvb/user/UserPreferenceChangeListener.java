@@ -12,7 +12,7 @@
 */
 
 
-package org.dvb.user ;
+package org.dvb.user;
 
 public interface UserPreferenceChangeListener {
 

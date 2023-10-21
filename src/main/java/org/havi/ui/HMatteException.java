@@ -15,18 +15,16 @@
 package org.havi.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HMatteException extends HUIException{
+public class HMatteException extends HUIException {
 
-    public HMatteException(){
+    public HMatteException() {
         super();
     }
 
-    public HMatteException(String message){
+    public HMatteException(String message) {
         super(message);
     }
 }

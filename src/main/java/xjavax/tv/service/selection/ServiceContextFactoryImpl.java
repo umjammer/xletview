@@ -17,15 +17,14 @@ package xjavax.tv.service.selection;
 import net.beiker.xletview.xlet.XletContextImpl;
 import xjavax.tv.xlet.XletContext;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ServiceContextFactoryImpl extends ServiceContextFactory {
 
-    ServiceContext[] serviceContexts = { ServiceContextImpl.getInstance()};
+    ServiceContext[] serviceContexts = {ServiceContextImpl.getInstance()};
 
     public ServiceContextFactoryImpl() {
     }
@@ -33,7 +32,7 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
     @Override
     public ServiceContext getServiceContext(XletContext xletcontext) throws SecurityException, ServiceContextException {
 
-        if (xletcontext == null){
+        if (xletcontext == null) {
 
             throw new NullPointerException("XletContext null");
 
@@ -41,7 +40,7 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
 
         ServiceContext servicecontext = (ServiceContext) xletcontext.getXletProperty(XletContextImpl.SERVICE_CONTEXT);
 
-        if (servicecontext == null){
+        if (servicecontext == null) {
 
             throw new ServiceContextException("xlet not running in a ServiceContext");
 
@@ -49,7 +48,7 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
 
         if (servicecontext instanceof ServiceContextImpl servicecontextimpl) {
 
-            if (servicecontextimpl.isDestroyed()){
+            if (servicecontextimpl.isDestroyed()) {
 
                 throw new ServiceContextException("ServiceContext is destroyed");
 

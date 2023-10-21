@@ -15,12 +15,12 @@
 package org.dvb.net.rc;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ConnectionRCEvent extends java.util.EventObject {
-    public ConnectionRCEvent(Object source){
+
+    public ConnectionRCEvent(Object source) {
         super(source);
     }
 }

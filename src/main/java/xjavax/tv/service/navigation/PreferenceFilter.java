@@ -10,9 +10,11 @@
  See LICENSE document for details.
 
 */
+
 package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.Service;
+
 
 /**
  * <code>PreferenceFilter</code> represents a
@@ -22,11 +24,9 @@ import xjavax.tv.service.Service;
  * preference.
  * <A HREF="../../../../javax/tv/service/navigation/ServiceList.html"><CODE>ServiceList</CODE></A></DL>
  * <HR>
- *
- *
  */
-public final class PreferenceFilter extends ServiceFilter
-{
+public final class PreferenceFilter extends ServiceFilter {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private FavoriteServicesName filterValue;
 
@@ -34,12 +34,11 @@ public final class PreferenceFilter extends ServiceFilter
      * Constructs the filter based on a particular user preference
      * for favorite services.
      *
-     * @param preference - A named user preference, obtained from the listPreferences() method, representing favorite Services to be included in a resulting service list.
+     * @param preference A named user preference, obtained from the listPreferences() method, representing favorite Services to be included in a resulting service list.
      * @throws java.lang.IllegalArgumentException - If the specified preference is not obtainable from the listPreferences() method.
      * @see #listPreferences()
      */
-    public PreferenceFilter( FavoriteServicesName preference)
-    {
+    public PreferenceFilter(FavoriteServicesName preference) {
         //TODO implement PreferenceFilter
     }
 
@@ -49,8 +48,7 @@ public final class PreferenceFilter extends ServiceFilter
      *
      * @return An array of preferences for favorite services.  If none exist or are supported, an empty array is returned.
      */
-    public static FavoriteServicesName[] listPreferences()
-    {
+    public static FavoriteServicesName[] listPreferences() {
         return null;
         //TODO implement listPreferences
     }
@@ -60,21 +58,19 @@ public final class PreferenceFilter extends ServiceFilter
      *
      * @return The user preference representing the favorite services by which the filter was constructed.
      */
-    public FavoriteServicesName getFilterValue()
-    {
+    public FavoriteServicesName getFilterValue() {
         return this.filterValue;
     }
 
     /**
      * Tests if the given service passes the filter.
      *
-     * @param service - An individual Service to be evaluated against the filtering algorithm.
+     * @param service An individual Service to be evaluated against the filtering algorithm.
      * @return true if service is part of the favorite services indicated by the filter value; false otherwise.
      * @see #accept in class ServiceFilter
      */
     @Override
-    public boolean accept(Service service)
-    {
+    public boolean accept(Service service) {
         return false;
         //TODO implement accept
     }

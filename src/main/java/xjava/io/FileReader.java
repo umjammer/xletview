@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package xjava.io;
 
@@ -17,11 +15,12 @@ import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
+
 /**
- *
  * @author Martin Sveden
  */
 public class FileReader extends java.io.FileReader {
+
     /** Debugging facility */
     private static final Logger logger = Logger.getLogger(FileReader.class.getName());
 
@@ -60,15 +59,15 @@ public class FileReader extends java.io.FileReader {
         return result;
     }
 
-    public FileReader(XFile f) throws FileNotFoundException{
+    public FileReader(XFile f) throws FileNotFoundException {
         super(FileSystem.getFile(f));
     }
 
-    public FileReader(String fileName) throws FileNotFoundException{
+    public FileReader(String fileName) throws FileNotFoundException {
         super(FileSystem.getFile(fileName));
     }
 
-    public FileReader(FileDescriptor fd){
+    public FileReader(FileDescriptor fd) {
         super(fd);
     }
 }

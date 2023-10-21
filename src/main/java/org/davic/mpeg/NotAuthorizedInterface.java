@@ -14,7 +14,8 @@
 
 package org.davic.mpeg;
 
-public interface NotAuthorizedInterface{
+public interface NotAuthorizedInterface {
+
     int POSSIBLE_UNDER_CONDITIONS = 0;
 
     int NOT_POSSIBLE = 1;

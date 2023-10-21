@@ -19,9 +19,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  * @comment The preferences are hardcoded - fix, write not implemented
@@ -44,11 +43,11 @@ public class UserPreferenceManager {
 
     private List<UserPreferenceChangeListener> listeners;
 
-    static{
+    static {
         prefs = new HashMap<>();
     }
 
-    static boolean isValidPrefName(String name){
+    static boolean isValidPrefName(String name) {
         return prefs.containsKey(name);
     }
 
@@ -86,7 +85,7 @@ public class UserPreferenceManager {
         prefs.put(FONTSIZE, getPrefArr(string));
     }
 
-    private static String[] getPrefArr(String s){
+    private static String[] getPrefArr(String s) {
         String[] arr = s.split(",");
         String[] result = new String[arr.length];
         for (int i = 0; i < result.length; i++) {
@@ -96,7 +95,7 @@ public class UserPreferenceManager {
     }
 
     public static UserPreferenceManager getInstance() {
-        if(THE_INSTANCE == null){
+        if (THE_INSTANCE == null) {
             THE_INSTANCE = new UserPreferenceManager();
         }
         return THE_INSTANCE;
@@ -117,7 +116,7 @@ public class UserPreferenceManager {
         String fName = facility.getPreference();
 
 
-        if(name != null && name.equals(fName)) {
+        if (name != null && name.equals(fName)) {
             String[] s = prefs.get(name);
             String[] wanted = facility.getValues();
 
@@ -135,22 +134,22 @@ public class UserPreferenceManager {
     }
 
     public void write(Preference p)
-        throws UnsupportedPreferenceException, IOException {
+            throws UnsupportedPreferenceException, IOException {
     }
 
     public void addUserPreferenceChangeListener(UserPreferenceChangeListener listener) {
-        if(listener != null){
+        if (listener != null) {
             listeners.add(listener);
         }
     }
 
     public void removeUserPreferenceChangeListener(UserPreferenceChangeListener listener) {
-        if(listener != null){
+        if (listener != null) {
             listeners.remove(listener);
         }
     }
 
-    private void notifyListeners(UserPreferenceChangeEvent event){
+    private void notifyListeners(UserPreferenceChangeEvent event) {
         for (UserPreferenceChangeListener listener : listeners) {
             listener.receiveUserPreferenceChangeEvent(event);
         }

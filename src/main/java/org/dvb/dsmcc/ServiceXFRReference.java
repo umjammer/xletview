@@ -18,12 +18,10 @@ import org.davic.net.Locator;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ServiceXFRReference  {
+public class ServiceXFRReference {
 
     private byte[] nsapAddress;
     private String pathName;
@@ -37,24 +35,24 @@ public class ServiceXFRReference  {
         this.pathName = pathName;
     }
 
-    public ServiceXFRReference(byte[] nsapAddress, String pathName){
+    public ServiceXFRReference(byte[] nsapAddress, String pathName) {
         this.nsapAddress = nsapAddress;
         this.pathName = pathName;
     }
 
-    public Locator getLocator(){
+    public Locator getLocator() {
         return locator;
     }
 
-    public int getCarouselId(){
+    public int getCarouselId() {
         return carouselId;
     }
 
-    public String getPathName(){
+    public String getPathName() {
         return pathName;
     }
 
-    public byte[] getNSAPAddress(){
+    public byte[] getNSAPAddress() {
         return nsapAddress;
     }
 

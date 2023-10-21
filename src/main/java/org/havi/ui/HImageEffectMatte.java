@@ -18,75 +18,75 @@ import java.awt.Image;
 import java.awt.Point;
 
 
-public class HImageEffectMatte implements HMatte, HAnimateEffect{
+public class HImageEffectMatte implements HMatte, HAnimateEffect {
 
-    public HImageEffectMatte(){
+    public HImageEffectMatte() {
     }
 
-    public HImageEffectMatte(Image[] data){
+    public HImageEffectMatte(Image[] data) {
     }
 
-    public void setMatteData(Image[] data){
+    public void setMatteData(Image[] data) {
     }
 
-    public Image[] getMatteData(){
+    public Image[] getMatteData() {
         return (null);
     }
 
-    public void setOffset(Point p, int index){
+    public void setOffset(Point p, int index) {
     }
 
-    public Point getOffset(int index){
+    public Point getOffset(int index) {
         return (null);
     }
 
     @Override
-    public void start(){
+    public void start() {
     }
 
     @Override
-    public void stop(){
+    public void stop() {
     }
 
     @Override
-    public boolean isAnimated(){
-        return(false);
+    public boolean isAnimated() {
+        return (false);
     }
 
     @Override
-    public void setPosition(int position){
+    public void setPosition(int position) {
     }
 
     @Override
-    public int getPosition(){
-        return(0);
+    public int getPosition() {
+        return (0);
     }
 
     @Override
-    public void setRepeatCount(int count){
+    public void setRepeatCount(int count) {
     }
 
     @Override
-    public int getRepeatCount(){
-        return(0);
+    public int getRepeatCount() {
+        return (0);
     }
 
     @Override
-    public void setDelay(int count){
+    public void setDelay(int count) {
     }
 
     @Override
-    public int getDelay(){
-        return(0);
+    public int getDelay() {
+        return (0);
     }
 
     @Override
-    public void setPlayMode(int mode){
+    public void setPlayMode(int mode) {
     }
 
     @Override
-    public int getPlayMode(){
-        return(0);
+    public int getPlayMode() {
+        return (0);
     }
 
 }

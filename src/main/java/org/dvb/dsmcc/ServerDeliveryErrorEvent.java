@@ -12,17 +12,15 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ServerDeliveryErrorEvent extends AsynchronousLoadingEvent {
 
-    public ServerDeliveryErrorEvent (DSMCCObject o) {
+    public ServerDeliveryErrorEvent(DSMCCObject o) {
         super(o);
     }
 

@@ -15,17 +15,16 @@ package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.SIRetrievable;
 
+
 /**
  * This interface provides a textual description of a
  * <code>Service</code>.
  * (In ATSC PSIP, this information is obtained from the ETT
  * associated with this service.)
  * <HR>
- *
- *
  */
-public interface ServiceDescription extends SIRetrievable
-{
+public interface ServiceDescription extends SIRetrievable {
+
     /**
      * Provides a textual description of the <code>Service</code>.
      *

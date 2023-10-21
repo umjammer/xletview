@@ -18,9 +18,8 @@ import javax.media.Controller;
 import javax.media.MediaLocator;
 import javax.media.StopEvent;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -28,12 +27,12 @@ public class StopByResourceLossEvent extends StopEvent {
 
     private MediaLocator stream;
 
-    public StopByResourceLossEvent(Controller source, int previous, int current, int target, MediaLocator stream){
-        super(source,0,0,0,null);
+    public StopByResourceLossEvent(Controller source, int previous, int current, int target, MediaLocator stream) {
+        super(source, 0, 0, 0, null);
         this.stream = stream;
     }
 
-    public MediaLocator getStream(){
+    public MediaLocator getStream() {
         return stream;
     }
 }

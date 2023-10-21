@@ -15,28 +15,28 @@ package xjavax.tv.service.selection;
 
 /**
  * The base class for exceptions related to service contexts.
- *
+ * <p>
  * The base class for exceptions related to service contexts.
  * <HR>
  *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ServiceContextException extends java.lang.Exception{
+public class ServiceContextException extends java.lang.Exception {
+
     /**
      * Constructs a <code>ServiceContextException</code> with no detail message.</DL>
-     *
      */
-    public ServiceContextException(){
+    public ServiceContextException() {
         super();
     }
 
     /**
      * Constructs a <code>ServiceContextException</code> with a detail message.
      *
-     * @param reason - The reason this exception was thrown.
+     * @param reason The reason this exception was thrown.
      */
-    public ServiceContextException(String reason)    {
+    public ServiceContextException(String reason) {
         super(reason);
     }
 

@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.media;
 
@@ -21,22 +19,20 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.util.logging.Logger;
 
-import org.dvb.ui.DVBGraphics;
-import org.havi.ui.HScene;
-
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.ui.ProgressBar;
 import net.beiker.xletview.ui.SafeArea;
 import net.beiker.xletview.ui.XContainer;
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
+import org.dvb.ui.DVBGraphics;
+import org.havi.ui.HScene;
 
 
 /**
- *  Has control over the background, video and graphics layer. There is also a
- *  fourth layer on top of the others for displaying additional stuff like safe
- *  area etc.
- *
+ * Has control over the background, video and graphics layer. There is also a
+ * fourth layer on top of the others for displaying additional stuff like safe
+ * area etc.
  */
 public class ScreenContainer extends Container {
 
@@ -70,9 +66,9 @@ public class ScreenContainer extends Container {
 
 
     /**
-     *  Gets the instance attribute of the TV class
+     * Gets the instance attribute of the TV class
      *
-     *@return    The instance value
+     * @return The instance value
      */
     public static ScreenContainer getInstance() {
         if (THE_INSTANCE == null) {
@@ -87,7 +83,7 @@ public class ScreenContainer extends Container {
     }
 
     /**
-     *  Constructor for the TV object
+     * Constructor for the TV object
      */
     private ScreenContainer() {
         Toolkit.getDefaultToolkit().addAWTEventListener(EventManager.getInstance(), AWTEvent.KEY_EVENT_MASK);
@@ -128,13 +124,11 @@ public class ScreenContainer extends Container {
                 if (Settings.getProperty("safearea.show").equals("true")) {
                     layers[ScreenContainer.EMULATOR_LAYER].add(new SafeArea(x, y, width, height, 3, Color.decode(hexColor)));
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -163,20 +157,20 @@ public class ScreenContainer extends Container {
         return layers[ScreenContainer.BACKGROUND_LAYER];
     }
 
-    public static void showProgressBar(){
+    public static void showProgressBar() {
         progressBar.setVisible(true);
     }
 
-    public static void hideProgressBar(){
+    public static void hideProgressBar() {
         progressBar.setVisible(false);
     }
 
-    public static void updateProgressBar(int procent){
+    public static void updateProgressBar(int procent) {
         progressBar.update(procent);
     }
 
     @Override
-    public void update(Graphics g){
+    public void update(Graphics g) {
         paint(g);
     }
 

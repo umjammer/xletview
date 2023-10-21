@@ -20,9 +20,7 @@ package xjavax.tv.service;
  * <code>SIElement</code> data must implement the appropriate
  * <code>SIChangeListener</code> sub-interface.
  * <HR>
- *
- *
  */
-public interface SIChangeListener extends java.util.EventListener
-{
+public interface SIChangeListener extends java.util.EventListener {
+
 }

@@ -15,43 +15,37 @@ package xjavax.tv.service;
 
 /**
  * This class represents types of changes to SI elements.
- *
+ * <p>
  * This class represents types of changes to SI elements.
  * <A HREF="../../../javax/tv/service/SIElement.html"><CODE>SIElement</CODE></A></DL>
  * <HR>
- *
- *
  */
 public class SIChangeType {
+
     /**
      * <code>SIChangeType</code> indicating that an <code>SIElement</code>
      * has been added.</DL>
-     *
      */
     public static final SIChangeType ADD = null;
 
     /**
      * <code>SIChangeType</code> indicating that an <code>SIElement</code>
      * has been removed.</DL>
-     *
      */
     public static final SIChangeType REMOVE = null;
 
     /**
      * <code>SIChangeType</code> indicating that an <code>SIElement</code>
      * has been modified.</DL>
-     *
-     *
      */
     public static final SIChangeType MODIFY = null;
 
     /**
      * Creates an <code>SIChangeType</code> object.
      *
-     * @param name - The string name of this type (e.g. "ADD").
+     * @param name The string name of this type (e.g. "ADD").
      */
-    protected SIChangeType(java.lang.String name)
-    {
+    protected SIChangeType(java.lang.String name) {
         //TODO implement SIChangeType
     }
 
@@ -63,8 +57,7 @@ public class SIChangeType {
      * @return The string name of the type.
      * @see #toString in class java.lang.Object
      */
-    public java.lang.String toString()
-    {
+    public java.lang.String toString() {
         return null;
         //TODO implement toString
     }

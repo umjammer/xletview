@@ -16,8 +16,8 @@ import org.havi.ui.HVisible;
 import org.havi.ui.event.HFocusEvent;
 import org.havi.ui.event.HFocusListener;
 
+
 /**
- *
  * @author Martin Sveden
  */
 //public final class HNavigableHelper implements HNavigable{
@@ -33,7 +33,7 @@ public final class HNavigableHelper {
 
     private HVisible hVisible;
 
-    public HNavigableHelper(HVisible hVisible){
+    public HNavigableHelper(HVisible hVisible) {
         this.hVisible = hVisible;
 
         /*
@@ -52,8 +52,8 @@ public final class HNavigableHelper {
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#setMove(int, org.havi.ui.HNavigable)
      */
-    public void setMove(int keyCode, HNavigable target){
-        if(navTargets == null){
+    public void setMove(int keyCode, HNavigable target) {
+        if (navTargets == null) {
             // create it
             navTargets = new HashMap<>();
         }
@@ -61,7 +61,7 @@ public final class HNavigableHelper {
         // check if key already exist, if so, remove it
         navTargets.remove(code);
         // put the target, but only if target != null
-        if(target != null){
+        if (target != null) {
             navTargets.put(code, target);
         }
     }
@@ -69,11 +69,10 @@ public final class HNavigableHelper {
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#getMove(int)
      */
-    public HNavigable getMove(int keyCode){
-        if(navTargets == null){
+    public HNavigable getMove(int keyCode) {
+        if (navTargets == null) {
             return null;
-        }
-        else{
+        } else {
             HNavigable nav = navTargets.get(keyCode);
             return nav;
         }
@@ -82,10 +81,10 @@ public final class HNavigableHelper {
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#setFocusTraversal(org.havi.ui.HNavigable, org.havi.ui.HNavigable, org.havi.ui.HNavigable, org.havi.ui.HNavigable)
      */
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
-        setMove(KeyEvent.VK_UP   , up);
-        setMove(KeyEvent.VK_DOWN , down);
-        setMove(KeyEvent.VK_LEFT , left);
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
+        setMove(KeyEvent.VK_UP, up);
+        setMove(KeyEvent.VK_DOWN, down);
+        setMove(KeyEvent.VK_LEFT, left);
         setMove(KeyEvent.VK_RIGHT, right);
     }
 
@@ -99,35 +98,35 @@ public final class HNavigableHelper {
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#setGainFocusSound(org.havi.ui.HSound)
      */
-    public void setGainFocusSound(HSound sound){
+    public void setGainFocusSound(HSound sound) {
         gainFocusSound = sound;
     }
 
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#setLoseFocusSound(org.havi.ui.HSound)
      */
-    public void setLoseFocusSound(HSound sound){
+    public void setLoseFocusSound(HSound sound) {
         loseFocusSound = sound;
     }
 
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#getGainFocusSound()
      */
-    public HSound getGainFocusSound(){
+    public HSound getGainFocusSound() {
         return gainFocusSound;
     }
 
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#getLoseFocusSound()
      */
-    public HSound getLoseFocusSound(){
+    public HSound getLoseFocusSound() {
         return loseFocusSound;
     }
 
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#addHFocusListener(org.havi.ui.event.HFocusListener)
      */
-    public synchronized void addHFocusListener(HFocusListener listener){
+    public synchronized void addHFocusListener(HFocusListener listener) {
         if (listener == null) {
             return;
         }
@@ -164,17 +163,15 @@ public final class HNavigableHelper {
     /* (non-Javadoc)
      * @see org.havi.ui.HNavigationInputPreferred#getNavigationKeys()
      */
-    public int[] getNavigationKeys(){
-        if(navTargets == null){
+    public int[] getNavigationKeys() {
+        if (navTargets == null) {
             return null;
-        }
-        else if(navTargets.isEmpty()){
+        } else if (navTargets.isEmpty()) {
             return null;
-        }
-        else{
+        } else {
             int[] keyCodes = new int[navTargets.size()];
             int i = 0;
-            for (Integer integer : navTargets.keySet()){
+            for (Integer integer : navTargets.keySet()) {
                 keyCodes[i] = integer;
                 i++;
             }
@@ -183,7 +180,6 @@ public final class HNavigableHelper {
     }
 
     /**
-     *
      * @param evt
      * @return The new state
      */
@@ -192,30 +188,28 @@ public final class HNavigableHelper {
         // get state
         int state = hVisible.getInteractionState();
 
-        if(evt.getID() == FocusEvent.FOCUS_GAINED){
+        if (evt.getID() == FocusEvent.FOCUS_GAINED) {
 
             // bitwise OR
             state = state | HState.FOCUSED_STATE_BIT;
 
-            if(hFocusListener != null){
+            if (hFocusListener != null) {
                 hFocusListener.focusGained(evt);
             }
-        }
-        else if(evt.getID() == FocusEvent.FOCUS_LOST){
+        } else if (evt.getID() == FocusEvent.FOCUS_LOST) {
 
             // bitwise XOR
             state = state ^ HState.FOCUSED_STATE_BIT;
 
-            if(hFocusListener != null){
+            if (hFocusListener != null) {
                 hFocusListener.focusLost(evt);
             }
-        }
-        else if(evt.getID() == HFocusEvent.FOCUS_TRANSFER && evt.getTransferId() != HFocusEvent.NO_TRANSFER_ID){
+        } else if (evt.getID() == HFocusEvent.FOCUS_TRANSFER && evt.getTransferId() != HFocusEvent.NO_TRANSFER_ID) {
             int navTarget = evt.getTransferId();
             HNavigable newNav = navTargets.get(navTarget);
 
-            if(newNav instanceof Component){
-                ((Component)newNav).requestFocus();
+            if (newNav instanceof Component) {
+                ((Component) newNav).requestFocus();
                 log.fine("requested focus on newNav");
             }
         }
@@ -230,7 +224,7 @@ public final class HNavigableHelper {
      * use our special getFocusListeners, that returns
      * all FocusListener objects except this one.
      */
-    public synchronized FocusListener[] getFocusListeners(){
+    public synchronized FocusListener[] getFocusListeners() {
         hVisible.removeFocusListener(net.beiker.xletview.event.FocusListenerDummy.getInstance());
         FocusListener[] listeners = hVisible.getListeners(FocusListener.class);
         hVisible.addFocusListener(net.beiker.xletview.event.FocusListenerDummy.getInstance());

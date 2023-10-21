@@ -17,45 +17,45 @@ package net.beiker.xletview.ui;
 import java.awt.Container;
 import java.awt.Dimension;
 
+
 /**
  * A Container to be used as is or extended, just for the possibility to change behaviour of the instances.
  */
-public class XContainer extends Container{
+public class XContainer extends Container {
 
     private Dimension prefSize;
 
-    public XContainer(){
+    public XContainer() {
     }
 
-    public XContainer(int x, int y, int width, int height){
+    public XContainer(int x, int y, int width, int height) {
         setBounds(x, y, width, height);
     }
 
-    public void setPrefSize(int width, int height){
+    public void setPrefSize(int width, int height) {
         prefSize = new Dimension(width, height);
     }
 
-    public void setPrefSize(Dimension dimension){
+    public void setPrefSize(Dimension dimension) {
         prefSize = dimension;
     }
 
     @Override
-    public Dimension getPreferredSize(){
+    public Dimension getPreferredSize() {
         Dimension d = null;
-        if(prefSize == null){
+        if (prefSize == null) {
             d = getSize();
-        }
-        else{
+        } else {
             d = prefSize;
         }
         return d;
     }
 
-    public Dimension getMinimumsize(){
+    public Dimension getMinimumsize() {
         return getPreferredSize();
     }
 
-    public Dimension getMaximumsize(){
+    public Dimension getMaximumsize() {
         return getPreferredSize();
     }
 
@@ -68,7 +68,6 @@ public class XContainer extends Container{
 //            getComponent(i).paint(g);
 //        }
 //    }
-
 
 
 }

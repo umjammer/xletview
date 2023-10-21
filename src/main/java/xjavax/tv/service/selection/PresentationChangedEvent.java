@@ -21,7 +21,7 @@ package xjavax.tv.service.selection;
  * interaction with the CA system.  It is generated when neither
  * <code>AlternativeContentEvent</code> nor
  * <code>NormalContentEvent</code> are applicable.<p>
- *
+ * <p>
  * Applications may determine the nature of the new content by
  * querying the current <code>ServiceContentHandler</code> instances
  * of the <code>ServiceContext</code>.
@@ -32,13 +32,14 @@ package xjavax.tv.service.selection;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class PresentationChangedEvent extends ServiceContextEvent{
+public class PresentationChangedEvent extends ServiceContextEvent {
+
     /**
      * Constructs the event.
      *
-     * @param source - The ServiceContext that generated the event.
+     * @param source The ServiceContext that generated the event.
      */
-    public PresentationChangedEvent( ServiceContext source)    {
+    public PresentationChangedEvent(ServiceContext source) {
         super(source);
     }
 

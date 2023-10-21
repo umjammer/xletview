@@ -15,7 +15,7 @@
 package org.havi.ui;
 
 
-public interface HItemValue extends HNavigable,  HSelectionInputPreferred{
+public interface HItemValue extends HNavigable, HSelectionInputPreferred {
 
     void addItemListener(org.havi.ui.event.HItemListener l);
 

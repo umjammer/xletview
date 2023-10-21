@@ -14,20 +14,20 @@
 
 package org.havi.ui.event;
 
-public class HRcCapabilities extends HKeyCapabilities{
+public class HRcCapabilities extends HKeyCapabilities {
 
-    protected HRcCapabilities(){
+    protected HRcCapabilities() {
     }
 
-    public static HEventRepresentation getRepresentation(int aCode){
+    public static HEventRepresentation getRepresentation(int aCode) {
         return (null);
     }
 
-    public static boolean getInputDeviceSupported(){
+    public static boolean getInputDeviceSupported() {
         return (true);
     }
 
-    public static boolean isSupported(int keycode){
+    public static boolean isSupported(int keycode) {
         return (false);
     }
 }

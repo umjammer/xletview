@@ -15,6 +15,7 @@ package net.beiker.xletview.service;
 
 import xjavax.tv.service.Service;
 
+
 /**
  * Manages the SI. Early in the implementation it will not do much but the idea is that
  * this manager will work as support for other classes working with SI.
@@ -25,24 +26,26 @@ public class ServiceManager {
 
     private static final ServiceManager THE_INSTANCE = new ServiceManager();
 
-    private ServiceManager(){
+    private ServiceManager() {
 
     }
 
 
     /**
      * Returns the singelton system-wide ServiceManager object.
+     *
      * @return the singelton ServiceManager object
      */
-    public static ServiceManager getInstance(){
+    public static ServiceManager getInstance() {
         return THE_INSTANCE;
     }
 
     /**
      * Return the current Service
+     *
      * @return the current Service
      */
-    public Service getCurrentService(){
+    public Service getCurrentService() {
         return null;
     }
 

@@ -16,18 +16,16 @@ package org.davic.mpeg.sections;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class FilteringInterruptedException extends SectionFilterException{
+public class FilteringInterruptedException extends SectionFilterException {
 
-    public FilteringInterruptedException(){
+    public FilteringInterruptedException() {
         super();
     }
 
-    public FilteringInterruptedException(String s)  {
+    public FilteringInterruptedException(String s) {
         super(s);
     }
 

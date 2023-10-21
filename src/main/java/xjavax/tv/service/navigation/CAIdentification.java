@@ -19,11 +19,9 @@ package xjavax.tv.service.navigation;
  * <A HREF="../../../../javax/tv/service/guide/ProgramEvent.html"><CODE>ProgramEvent</CODE></A>,
  * <A HREF="../../../../javax/tv/service/transport/Bouquet.html"><CODE>Bouquet</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface CAIdentification
-{
+public interface CAIdentification {
+
     /**
      * Returns an array of CA System IDs associated with this object. This
      * information may be obtained from the CAT MPEG message or a system

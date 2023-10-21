@@ -19,128 +19,126 @@ import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HFocusEvent;
 import org.havi.ui.event.HFocusListener;
 
-import net.beiker.xletview.helper.HNavigableHelper;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HText extends HStaticText implements HNavigable{
+public class HText extends HStaticText implements HNavigable {
 
     private HNavigableHelper helper;
 
     private static HTextLook defaultHLook = new HTextLook();
 
 
-    public HText(){
+    public HText() {
         super();
         init();
     }
 
-    public HText(String textNormal){
+    public HText(String textNormal) {
         super(textNormal);
         init();
     }
 
-    public HText(String textNormal, String textFocus){
+    public HText(String textNormal, String textFocus) {
         this(textNormal);
         this.setTextContent(textFocus, HVisible.FOCUSED_STATE);
         init();
     }
 
-    public HText(String textNormal, int x, int y, int width, int height){
+    public HText(String textNormal, int x, int y, int width, int height) {
         super(textNormal, x, y, width, height);
         init();
     }
 
-    public HText(String textNormal, String textFocus, int x, int y, int width, int height){
+    public HText(String textNormal, String textFocus, int x, int y, int width, int height) {
         super(textNormal, x, y, width, height);
         this.setTextContent(textFocus, HVisible.FOCUSED_STATE);
         init();
     }
 
-    public HText(String textNormal, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HText(String textNormal, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         super(textNormal, font, foreground, background, tlm);
         init();
     }
 
-    public HText(String textNormal, String textFocus, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HText(String textNormal, String textFocus, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         super(textNormal, font, foreground, background, tlm);
         this.setTextContent(textFocus, HVisible.FOCUSED_STATE);
         init();
     }
 
-    public HText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         super(textNormal, x, y, width, height, font, foreground, background, tlm);
         init();
     }
 
-    public HText(String textNormal, String textFocus, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HText(String textNormal, String textFocus, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         super(textNormal, x, y, width, height, font, foreground, background, tlm);
         this.setTextContent(textFocus, HVisible.FOCUSED_STATE);
         init();
     }
     // constructors end //
 
-    private void init(){
+    private void init() {
         helper = new HNavigableHelper(this);
     }
 
-    public static void setDefaultLook(HTextLook defaultHLook){
+    public static void setDefaultLook(HTextLook defaultHLook) {
         HText.defaultHLook = defaultHLook;
     }
 
-    public static HTextLook getDefaultLook(){
+    public static HTextLook getDefaultLook() {
         return HText.defaultHLook;
     }
 
     @Override
-    public void setMove(int keyCode, HNavigable target){
+    public void setMove(int keyCode, HNavigable target) {
         helper.setMove(keyCode, target);
     }
 
     @Override
-    public HNavigable getMove(int keyCode){
+    public HNavigable getMove(int keyCode) {
         return helper.getMove(keyCode);
     }
 
     @Override
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
         helper.setFocusTraversal(up, down, left, right);
     }
 
     @Override
-    public boolean isSelected(){
+    public boolean isSelected() {
         return helper.isSelected();
     }
 
     @Override
-    public void setGainFocusSound(HSound sound){
+    public void setGainFocusSound(HSound sound) {
         helper.setGainFocusSound(sound);
     }
 
     @Override
-    public void setLoseFocusSound(HSound sound){
+    public void setLoseFocusSound(HSound sound) {
         helper.setLoseFocusSound(sound);
     }
 
     @Override
-    public HSound getGainFocusSound(){
+    public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
-    public HSound getLoseFocusSound(){
+    public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
     }
 
     @Override
-    public synchronized void addHFocusListener(HFocusListener listener){
+    public synchronized void addHFocusListener(HFocusListener listener) {
         helper.addHFocusListener(listener);
     }
 
@@ -150,7 +148,7 @@ public class HText extends HStaticText implements HNavigable{
     }
 
     @Override
-    public int[] getNavigationKeys(){
+    public int[] getNavigationKeys() {
         return helper.getNavigationKeys();
     }
 
@@ -172,13 +170,13 @@ public class HText extends HStaticText implements HNavigable{
      * and takes care of that.
      */
     @Override
-    public synchronized FocusListener[] getFocusListeners(){
+    public synchronized FocusListener[] getFocusListeners() {
         return helper.getFocusListeners();
     }
 
 
     @Override
-    public void processFocusEvent(FocusEvent e){
+    public void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
         processHFocusEvent(event);
@@ -191,7 +189,7 @@ public class HText extends HStaticText implements HNavigable{
         int state = getInteractionState();
         int newState = helper.getHFocusEventResult(evt);
 
-        if(state != newState){
+        if (state != newState) {
             setInteractionState(newState);
         }
     }

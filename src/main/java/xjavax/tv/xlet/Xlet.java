@@ -28,7 +28,7 @@ package xjavax.tv.xlet;
  * The Xlet can initiate some state changes itself and informs
  * the application manager of those state changes
  * by invoking methods on <code>XletContext</code>.<p>
- *
+ * <p>
  * In order to support interoperability between Xlets and application
  * managers, all Xlet classes must provide a public no-argument
  * constructor.<p>
@@ -38,11 +38,9 @@ package xjavax.tv.xlet;
  * change method has returned. It is intended that these methods return
  * quickly.<p>
  * <HR>
- *
- *
  */
-public interface Xlet
-{
+public interface Xlet {
+
     /**
      * Signals the Xlet to initialize itself and enter the
      * <i>Paused</i> state.
@@ -55,7 +53,7 @@ public interface Xlet
      * is in the <i>Paused</i> state and should be quiescent. <p>
      * <b>Note:</b> This method shall only be called once.<p>
      *
-     * @param ctx - The XletContext of this Xlet.
+     * @param ctx The XletContext of this Xlet.
      * @throws XletStateChangeException - If the Xlet cannot be initialized.
      * @see XletContext
      */
@@ -105,7 +103,7 @@ public interface Xlet
      * This request may be honored and the <code>destroyXlet()</code>
      * method called again at a later time.
      *
-     * @param unconditional - If unconditional is true when this method is called, requests by the Xlet to not enter the destroyed state will be ignored.
+     * @param unconditional If unconditional is true when this method is called, requests by the Xlet to not enter the destroyed state will be ignored.
      * @throws XletStateChangeException - is thrown if the Xlet wishes to continue to execute (Not enter the Destroyed state). This exception is ignored if unconditional is equal to true.
      */
     void destroyXlet(boolean unconditional) throws XletStateChangeException;

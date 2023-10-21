@@ -19,16 +19,17 @@ import org.davic.mpeg.Service;
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
 
+
 public class DescramblerProxy implements ResourceProxy {
 
-  public DescramblerProxy(ResourceClient c){
-  }
-
-
-    public void startDescramblingDialog(Service s) throws CAException,  org.davic.mpeg.NotAuthorizedException {
+    public DescramblerProxy(ResourceClient c) {
     }
 
-    public void startDescramblingDialog(ElementaryStream[] streams) throws CAException, org.davic.mpeg.NotAuthorizedException  {
+
+    public void startDescramblingDialog(Service s) throws CAException, org.davic.mpeg.NotAuthorizedException {
+    }
+
+    public void startDescramblingDialog(ElementaryStream[] streams) throws CAException, org.davic.mpeg.NotAuthorizedException {
     }
 
 
@@ -46,9 +47,11 @@ public class DescramblerProxy implements ResourceProxy {
     public synchronized void startDescrambling(ElementaryStream[] streams, CAModule module, Object requestData) throws CAException, org.davic.mpeg.NotAuthorizedException {
     }
 
-    public void stopDescrambling() throws CAException {}
+    public void stopDescrambling() throws CAException {
+    }
 
-    public void stopDescrambling(ElementaryStream[] streams) throws CAException {}
+    public void stopDescrambling(ElementaryStream[] streams) throws CAException {
+    }
 
     public void addDescramblerListener(DescramblerListener l) {
     }

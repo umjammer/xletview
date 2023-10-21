@@ -19,9 +19,8 @@ import java.util.logging.Logger;
 
 import org.davic.net.InvalidLocatorException;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  * @comment fix the constructor that takes a string so it handles arrays of component tags
@@ -64,7 +63,7 @@ public class DvbLocator extends org.davic.net.Locator {
 
     public DvbLocator(String url) throws InvalidLocatorException {
         super(url);
-        if(!url.startsWith("dvb://")){
+        if (!url.startsWith("dvb://")) {
             throw new InvalidLocatorException("The string does not start with 'dvb://'");
         }
 
@@ -75,7 +74,7 @@ public class DvbLocator extends org.davic.net.Locator {
 
         // extract filepath
         int indexOfSlash = s.indexOf('/');
-        if(indexOfSlash > -1){
+        if (indexOfSlash > -1) {
             filePath = s.substring(indexOfSlash);
             s = s.substring(0, indexOfSlash);
             log.fine("filePath=" + filePath);
@@ -89,7 +88,7 @@ public class DvbLocator extends org.davic.net.Locator {
          * check that the locator contains
          * Original Network ID, Transport Stream ID and Service ID
          */
-        if(ids.length < 2){
+        if (ids.length < 2) {
             throw new InvalidLocatorException("Original Network ID and/or Transport Stream ID");
         }
 
@@ -97,7 +96,7 @@ public class DvbLocator extends org.davic.net.Locator {
          * check for event id
          */
         String[] tmp = ids[ids.length - 1].split("\\;");
-        if(tmp.length > 1){
+        if (tmp.length > 1) {
             ids[ids.length - 1] = tmp[0];
 
             eventId = getIntFromParameter(tmp[1]);//Integer.parseInt(tmp[1]);
@@ -109,7 +108,7 @@ public class DvbLocator extends org.davic.net.Locator {
         /*
          * check for component tag id
          */
-        if(ids.length == 4){
+        if (ids.length == 4) {
             componentTags = new int[1];
             int componentTag = getIntFromParameter(ids[3]);//Integer.parseInt(ids[3]);
             log.fine("componentTag=" + componentTag);
@@ -121,11 +120,9 @@ public class DvbLocator extends org.davic.net.Locator {
          * set Original Network ID, Transport Stream ID and Service ID
          */
 
-            orgNetworkId = getIntFromParameter(ids[0]);//Integer.parseInt(ids[0]);
-            trasportStreamId = getIntFromParameter(ids[1]);//Integer.parseInt(ids[1]);
-            serviceId = getIntFromParameter(ids[2]);//Integer.parseInt(ids[2]);
-
-
+        orgNetworkId = getIntFromParameter(ids[0]);//Integer.parseInt(ids[0]);
+        trasportStreamId = getIntFromParameter(ids[1]);//Integer.parseInt(ids[1]);
+        serviceId = getIntFromParameter(ids[2]);//Integer.parseInt(ids[2]);
 
 
     }
@@ -192,12 +189,12 @@ public class DvbLocator extends org.davic.net.Locator {
         return textualServiceIdentifier;
     }
 
-    private int getIntFromParameter(String strInt) throws InvalidLocatorException{
+    private int getIntFromParameter(String strInt) throws InvalidLocatorException {
         int result = -1;
         log.fine("strInt=" + strInt);
         try {
             //result = Integer.parseInt("0x" + strInt);
-            result= Integer.valueOf(strInt, 16);
+            result = Integer.valueOf(strInt, 16);
             //result = Integer.valueOf(strInt, 16);
             log.fine("result=" + result);
 
@@ -208,19 +205,19 @@ public class DvbLocator extends org.davic.net.Locator {
     }
 
     @Override
-    public String toExternalForm(){
+    public String toExternalForm() {
         StringBuilder result = new StringBuilder("dvb://" + orgNetworkId + "." + trasportStreamId + "." + serviceId);
-        if(componentTags != null && componentTags.length > 0){
+        if (componentTags != null && componentTags.length > 0) {
             for (int componentTag : componentTags) {
                 result.append(".").append(componentTag);
             }
         }
 
-        if(eventId > -1){
+        if (eventId > -1) {
             result.append(";").append(eventId);
         }
 
-        if(filePath != null){
+        if (filePath != null) {
             result.append(filePath);
         }
         return result.toString();

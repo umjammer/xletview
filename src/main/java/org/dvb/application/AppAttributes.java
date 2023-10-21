@@ -15,7 +15,7 @@
 package org.dvb.application;
 
 
-public interface AppAttributes{
+public interface AppAttributes {
 
     int DVB_J_application = 1;
 
@@ -27,23 +27,23 @@ public interface AppAttributes{
 
     String getName(String iso639code) throws LanguageNotAvailableException;
 
-    String[][] getNames() ;
+    String[][] getNames();
 
     String[] getProfiles();
 
-    int[] getVersions(String profile) throws IllegalProfileParameterException ;
+    int[] getVersions(String profile) throws IllegalProfileParameterException;
 
-    boolean getIsServiceBound() ;
+    boolean getIsServiceBound();
 
-    boolean isStartable() ;
+    boolean isStartable();
 
-    AppID getIdentifier() ;
+    AppID getIdentifier();
 
-    AppIcon getAppIcon() ;
+    AppIcon getAppIcon();
 
     int getPriority();
 
     org.davic.net.Locator getServiceLocator();
 
-    Object getProperty(String index) ;
+    Object getProperty(String index);
 }

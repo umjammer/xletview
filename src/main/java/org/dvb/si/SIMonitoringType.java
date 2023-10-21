@@ -14,18 +14,18 @@
 
 package org.dvb.si;
 
-public interface SIMonitoringType{
+public interface SIMonitoringType {
 
-  byte NETWORK = 1;
+    byte NETWORK = 1;
 
-  byte BOUQUET = 2;
+    byte BOUQUET = 2;
 
-  byte SERVICE = 3;
+    byte SERVICE = 3;
 
-  byte PMT_SERVICE = 4;
+    byte PMT_SERVICE = 4;
 
-  byte PRESENT_FOLLOWING_EVENT = 5;
+    byte PRESENT_FOLLOWING_EVENT = 5;
 
-  byte SCHEDULED_EVENT = 6;
+    byte SCHEDULED_EVENT = 6;
 
 }

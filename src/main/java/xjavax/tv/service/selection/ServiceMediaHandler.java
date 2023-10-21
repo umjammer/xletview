@@ -21,9 +21,7 @@ package xjavax.tv.service.selection;
  * <code>ServiceContext</code> from which it was obtained.
  * <A HREF="../../../../javax/tv/media/MediaSelectControl.html"><CODE>MediaSelectControl</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface ServiceMediaHandler extends javax.media.Player, ServiceContentHandler
-{
+public interface ServiceMediaHandler extends javax.media.Player, ServiceContentHandler {
+
 }

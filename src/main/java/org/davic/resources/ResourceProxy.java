@@ -14,7 +14,8 @@
 
 package org.davic.resources;
 
-public interface ResourceProxy{
+public interface ResourceProxy {
+
     ResourceClient getClient();
 }
 

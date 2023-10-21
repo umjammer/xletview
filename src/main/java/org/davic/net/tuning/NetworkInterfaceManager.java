@@ -18,9 +18,8 @@ import org.davic.mpeg.TransportStream;
 import org.davic.resources.ResourceServer;
 import org.davic.resources.ResourceStatusListener;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  * @comment very partially implemented, not possible to use yet
@@ -33,7 +32,7 @@ public class NetworkInterfaceManager implements ResourceServer {
     }
 
     public static NetworkInterfaceManager getInstance() {
-        if(THE_INSTANCE == null){
+        if (THE_INSTANCE == null) {
             THE_INSTANCE = new NetworkInterfaceManager();
         }
         return THE_INSTANCE;
@@ -55,8 +54,6 @@ public class NetworkInterfaceManager implements ResourceServer {
     @Override
     public void removeResourceStatusEventListener(ResourceStatusListener listener) {
     }
-
-
 
 
 }

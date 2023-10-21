@@ -17,11 +17,9 @@ package xjavax.tv.service;
  * This interface is implemented by objects that are retrieved from SI
  * data in the broadcast.
  * <HR>
- *
- *
  */
-public interface SIRetrievable
-{
+public interface SIRetrievable {
+
     /**
      * Returns the time when this object was last updated from data in
      * the broadcast.

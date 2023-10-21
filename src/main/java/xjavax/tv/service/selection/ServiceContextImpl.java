@@ -21,79 +21,91 @@ import xjavax.tv.service.SIRequestor;
 import xjavax.tv.service.Service;
 import xjavax.tv.service.ServiceType;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  */
-public class ServiceContextImpl implements ServiceContext, Service, Locator, SIRequest{
+public class ServiceContextImpl implements ServiceContext, Service, Locator, SIRequest {
 
     private final static ServiceContextImpl THEINSTANCE = new ServiceContextImpl();
 
-    private ServiceContextImpl(){
+    private ServiceContextImpl() {
     }
 
     @Override
-    public ServiceContentHandler[] getServiceContentHandlers() throws SecurityException{
+    public ServiceContentHandler[] getServiceContentHandlers() throws SecurityException {
         ServiceContentHandler[] aservicecontenthandler = new ServiceContentHandler[1];
         aservicecontenthandler[0] = VideoLayer.getInstance();
         return aservicecontenthandler;
     }
 
-    public boolean isDestroyed(){
+    public boolean isDestroyed() {
         return false;
     }
+
     // implementing ServiceContext
     @Override
-    public void addListener(xjavax.tv.service.selection.ServiceContextListener scl){
+    public void addListener(xjavax.tv.service.selection.ServiceContextListener scl) {
     }
+
     @Override
-    public void removeListener(xjavax.tv.service.selection.ServiceContextListener scl){
+    public void removeListener(xjavax.tv.service.selection.ServiceContextListener scl) {
     }
+
     @Override
-    public void select(xjavax.tv.service.Service s){
+    public void select(xjavax.tv.service.Service s) {
     }
+
     @Override
-    public void select(xjavax.tv.locator.Locator[] l){
+    public void select(xjavax.tv.locator.Locator[] l) {
     }
+
     @Override
-    public void stop(){
+    public void stop() {
     }
+
     @Override
-    public void destroy(){
+    public void destroy() {
     }
+
     @Override
-    public Service getService(){
+    public Service getService() {
         return THEINSTANCE;
     }
     // implementing ServiceContext ends
 
     // implementing Service
-    public boolean equals(java.lang.Object obj){
+    public boolean equals(java.lang.Object obj) {
         return false;
     }
+
     @Override
-    public  Locator getLocator(){
+    public Locator getLocator() {
         return THEINSTANCE;
     }
+
     @Override
-    public String getName(){
+    public String getName() {
         return "";
     }
+
     @Override
-    public ServiceType getServiceType(){
+    public ServiceType getServiceType() {
         return null;//new ServiceType("DIGITAL_TV");
     }
-    public int hashCode(){
+
+    public int hashCode() {
         return 0;
     }
+
     @Override
-    public boolean hasMultipleInstances(){
+    public boolean hasMultipleInstances() {
         return false;
     }
+
     @Override
-    public SIRequest retrieveDetails(SIRequestor requestor){
+    public SIRequest retrieveDetails(SIRequestor requestor) {
         return THEINSTANCE;
     }
     // implementing Service ends
@@ -109,30 +121,30 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     }
     */
     @Override
-    public boolean hasMultipleTransformations(){
+    public boolean hasMultipleTransformations() {
         return false;
     }
+
     @Override
-    public java.lang.String toExternalForm(){
+    public java.lang.String toExternalForm() {
         return "";
     }
-    public java.lang.String toString(){
+
+    public java.lang.String toString() {
         return "ServiceContextImpl";
     }
     // implementing Locator end
 
     // implementing SIRequestor
     @Override
-    public boolean cancel(){
+    public boolean cancel() {
         return false;
     }
 
 
-    public static ServiceContext getInstance()
-    {
+    public static ServiceContext getInstance() {
         return THEINSTANCE;
     }
-
 
 
 }

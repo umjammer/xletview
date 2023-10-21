@@ -4,17 +4,17 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.logging.Logger;
 
+
 /**
- *
  * @author Martin Sveden
  */
-public class FocusListenerDummy implements FocusListener{
+public class FocusListenerDummy implements FocusListener {
 
     private static final Logger log = Logger.getLogger(FocusListenerDummy.class.getName());
 
     private static final FocusListenerDummy THE_INSTANCE = new FocusListenerDummy();
 
-    public static FocusListenerDummy getInstance(){
+    public static FocusListenerDummy getInstance() {
         return THE_INSTANCE;
     }
 

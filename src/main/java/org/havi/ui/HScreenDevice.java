@@ -17,82 +17,80 @@ package org.havi.ui;
 
 import java.awt.Dimension;
 
+import net.beiker.xletview.media.ScreenContainer;
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceStatusListener;
 import org.havi.ui.event.HScreenConfigurationListener;
 import org.havi.ui.event.HScreenDeviceReleasedEvent;
 import org.havi.ui.event.HScreenDeviceReservedEvent;
 
-import net.beiker.xletview.media.ScreenContainer;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HScreenDevice implements org.davic.resources.ResourceProxy, org.davic.resources.ResourceServer{
+public class HScreenDevice implements org.davic.resources.ResourceProxy, org.davic.resources.ResourceServer {
 
     private HScreenConfigurationListener hScreenConfigurationListener;
     private HScreenConfigTemplate hScreenConfigTemplate;
     private ResourceStatusListener resourceStatusListener;
     private ResourceClient currentResourceClient;
 
-    public HScreenDevice(){
+    public HScreenDevice() {
     }
 
-    public String getIDstring(){
+    public String getIDstring() {
         return "HScreenDeviceID";
     }
 
-    public void addScreenConfigurationListener(HScreenConfigurationListener hscl){
+    public void addScreenConfigurationListener(HScreenConfigurationListener hscl) {
         hScreenConfigurationListener = HEventMulticaster.add(hScreenConfigurationListener, hscl);
     }
 
-    public void addScreenConfigurationListener(HScreenConfigurationListener hscl, HScreenConfigTemplate hsct){
+    public void addScreenConfigurationListener(HScreenConfigurationListener hscl, HScreenConfigTemplate hsct) {
         addScreenConfigurationListener(hscl);
         hScreenConfigTemplate = hsct;
     }
 
-    public void removeScreenConfigurationListener(HScreenConfigurationListener hscl){
+    public void removeScreenConfigurationListener(HScreenConfigurationListener hscl) {
         hScreenConfigurationListener = HEventMulticaster.remove(hScreenConfigurationListener, hscl);
     }
 
-    public Dimension getScreenAspectRatio(){
+    public Dimension getScreenAspectRatio() {
         return new Dimension(ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT);
     }
 
-    public boolean reserveDevice(ResourceClient client){
+    public boolean reserveDevice(ResourceClient client) {
         /* "Requests the right to call any method which may otherwise throw an HPermissionDeniedException."
          * */
         // at the moment anyone gets the right to call any method, why not?
         currentResourceClient = client;
-        if(resourceStatusListener != null){
-            resourceStatusListener.statusChanged(new HScreenDeviceReservedEvent(currentResourceClient) );
+        if (resourceStatusListener != null) {
+            resourceStatusListener.statusChanged(new HScreenDeviceReservedEvent(currentResourceClient));
         }
         boolean reserved = true;
         return reserved;
     }
 
-    public void releaseDevice(){
-        if(resourceStatusListener != null){
-            resourceStatusListener.statusChanged(new HScreenDeviceReleasedEvent(currentResourceClient) );
+    public void releaseDevice() {
+        if (resourceStatusListener != null) {
+            resourceStatusListener.statusChanged(new HScreenDeviceReleasedEvent(currentResourceClient));
         }
         currentResourceClient = null;
     }
 
     @Override
-    public ResourceClient getClient(){
+    public ResourceClient getClient() {
         return currentResourceClient;
     }
 
     @Override
-    public void addResourceStatusEventListener(ResourceStatusListener listener){
+    public void addResourceStatusEventListener(ResourceStatusListener listener) {
         resourceStatusListener = HEventMulticaster.add(resourceStatusListener, listener);
     }
 
     @Override
-    public void removeResourceStatusEventListener(ResourceStatusListener listener){
+    public void removeResourceStatusEventListener(ResourceStatusListener listener) {
         resourceStatusListener = HEventMulticaster.remove(resourceStatusListener, listener);
     }
 }

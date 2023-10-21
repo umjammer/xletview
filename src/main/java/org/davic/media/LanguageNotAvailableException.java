@@ -15,8 +15,6 @@
 package org.davic.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

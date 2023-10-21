@@ -18,7 +18,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
 import java.io.PrintStream;
-
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
@@ -26,7 +25,7 @@ import net.beiker.xletview.io.OutputPrinter;
 import net.beiker.xletview.io.OutputRedirector;
 
 
-public class Console extends Container implements OutputPrinter{
+public class Console extends Container implements OutputPrinter {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Console.class.getName());
 
@@ -38,41 +37,39 @@ public class Console extends Container implements OutputPrinter{
     private static int size = 10;
 
 
-    public Console(){
-        setSize(500,300);
+    public Console() {
+        setSize(500, 300);
         setLayout(new BorderLayout());
 
         ta = new JTextArea(10, 80);
         ta.setEditable(false);
 
-        try{
+        try {
             String font = Settings.getProperty("console.font");
             String strFontSize = Settings.getProperty("console.fontsize");
             int fontSize = Integer.parseInt(strFontSize);
             ta.setFont(new Font(font, Font.PLAIN, fontSize));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             log.severe("The font properties for the console is not working");
         }
-
 
 
         scroll = new JScrollPane(ta);
         add(scroll, BorderLayout.CENTER);
 
         isPrinting = true;
-        setVisible( true );
+        setVisible(true);
 
         string = new String[size];
 
         hookStandards();
     }
 
-    public static void setPrinting(boolean b){
+    public static void setPrinting(boolean b) {
         isPrinting = b;
     }
 
-    public static void clear(){
+    public static void clear() {
         ta.setText(null);
     }
 
@@ -96,9 +93,9 @@ public class Console extends Container implements OutputPrinter{
     private void hookStandards() {
 //        ConsoleOutputStream os = new ConsoleOutputStream();
         OutputRedirector or = new OutputRedirector(this);
-        PrintStream out = new PrintStream( or );
-        System.setOut( out );
-        System.setErr( out );
+        PrintStream out = new PrintStream(or);
+        System.setOut(out);
+        System.setErr(out);
     }
 
     /* (non-Javadoc)
@@ -106,10 +103,10 @@ public class Console extends Container implements OutputPrinter{
      */
     @Override
     public void print(String s) {
-        if(isPrinting){
-             ta.append(s);
-             ta.setCaretPosition(ta.getDocument().getLength());
-         }
+        if (isPrinting) {
+            ta.append(s);
+            ta.setCaretPosition(ta.getDocument().getLength());
+        }
 
     }
 }

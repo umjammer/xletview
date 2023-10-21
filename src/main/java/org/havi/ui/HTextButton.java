@@ -21,95 +21,93 @@ import net.beiker.xletview.helper.HActionableHelper;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HTextButton extends HText implements HActionable{
+public class HTextButton extends HText implements HActionable {
 
     private HActionableHelper helper;
 
     private static HTextLook defaultHLook = new HTextLook();
 
-    public HTextButton(){
+    public HTextButton() {
         super();
         init();
     }
 
-    public HTextButton(String textNormal, int x, int y, int width, int height){
+    public HTextButton(String textNormal, int x, int y, int width, int height) {
         super(textNormal, x, y, width, height);
         init();
     }
 
-    public HTextButton(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HTextButton(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         super(textNormal, x, y, width, height, font, foreground, background, tlm);
         init();
     }
 
-    public HTextButton(String textNormal){
+    public HTextButton(String textNormal) {
         super(textNormal);
         init();
     }
 
-    public HTextButton(String textNormal, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HTextButton(String textNormal, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         super(textNormal, font, foreground, background, tlm);
         init();
     }
     // constructors end //
 
-    private void init(){
+    private void init() {
         helper = new HActionableHelper(this);
     }
 
 
-    public static void setDefaultLook(HTextLook hLook){
+    public static void setDefaultLook(HTextLook hLook) {
         HTextButton.defaultHLook = hLook;
     }
 
-    public static HTextLook getDefaultLook(){
+    public static HTextLook getDefaultLook() {
         return HTextButton.defaultHLook;
     }
 
 
     @Override
-    public void addHActionListener(org.havi.ui.event.HActionListener listener){
+    public void addHActionListener(org.havi.ui.event.HActionListener listener) {
         helper.addHActionListener(listener);
     }
 
     @Override
-    public void removeHActionListener(org.havi.ui.event.HActionListener listener){
+    public void removeHActionListener(org.havi.ui.event.HActionListener listener) {
         helper.removeHActionListener(listener);
     }
 
     @Override
-    public void setActionCommand(String command){
+    public void setActionCommand(String command) {
         helper.setActionCommand(command);
     }
 
     @Override
-    public void setActionSound(HSound sound){
+    public void setActionSound(HSound sound) {
         helper.setActionSound(sound);
     }
 
     @Override
-    public HSound getActionSound(){
+    public HSound getActionSound() {
         return helper.getActionSound();
     }
 
     @Override
-    public void processHActionEvent(org.havi.ui.event.HActionEvent evt){
+    public void processHActionEvent(org.havi.ui.event.HActionEvent evt) {
         //Debug.write(this, "processHActionEvent");
         int state = getInteractionState();
         int newState = helper.getHActionEventResult(evt);
 
-        if(state != newState){
+        if (state != newState) {
             setInteractionState(newState);
         }
     }
 
     @Override
-    public java.lang.String getActionCommand(){
+    public java.lang.String getActionCommand() {
         return helper.getActionCommand();
     }
 

@@ -16,14 +16,12 @@ package org.davic.mpeg.sections;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class NoDataAvailableException extends SectionFilterException{
+public class NoDataAvailableException extends SectionFilterException {
 
-    public NoDataAvailableException(){
+    public NoDataAvailableException() {
         super();
     }
 

@@ -18,6 +18,7 @@ import org.davic.mpeg.TransportStream;
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
 
+
 public class NetworkInterfaceController implements ResourceProxy {
 
     public NetworkInterfaceController(ResourceClient rc) {
@@ -29,7 +30,7 @@ public class NetworkInterfaceController implements ResourceProxy {
     public synchronized void tune(TransportStream ts) throws NetworkInterfaceException {
     }
 
-    public synchronized void reserve(NetworkInterface ni,  Object requestData) throws NetworkInterfaceException {
+    public synchronized void reserve(NetworkInterface ni, Object requestData) throws NetworkInterfaceException {
     }
 
     public synchronized void reserveFor(org.davic.net.Locator locator, Object requestData) throws NetworkInterfaceException {
@@ -38,7 +39,7 @@ public class NetworkInterfaceController implements ResourceProxy {
     public synchronized void release() throws NetworkInterfaceException {
     }
 
-    public NetworkInterface getNetworkInterface(){
+    public NetworkInterface getNetworkInterface() {
         return null;
     }
 

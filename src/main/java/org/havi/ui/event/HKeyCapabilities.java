@@ -14,16 +14,16 @@
 
 package org.havi.ui.event;
 
-public class HKeyCapabilities{
+public class HKeyCapabilities {
 
-    protected HKeyCapabilities(){
+    protected HKeyCapabilities() {
     }
 
-    public static boolean getInputDeviceSupported(){
+    public static boolean getInputDeviceSupported() {
         return (true);
     }
 
-    public static boolean isSupported(int keycode){
+    public static boolean isSupported(int keycode) {
         return (false);
     }
 }

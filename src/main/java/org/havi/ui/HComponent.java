@@ -20,9 +20,8 @@ import java.awt.Graphics;
 import org.dvb.ui.DVBGraphics;
 import org.dvb.ui.TestOpacity;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -90,8 +89,7 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
      * @see java.awt.Component#getGraphics()
      */
     @Override
-    public Graphics getGraphics()
-    {
+    public Graphics getGraphics() {
         return DVBGraphics.getDVBGraphics(super.getGraphics());
     }
 

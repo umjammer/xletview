@@ -15,18 +15,16 @@
 package org.davic.mpeg.sections;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class SectionFilterException extends java.lang.Exception{
+public class SectionFilterException extends java.lang.Exception {
 
     public SectionFilterException() {
         super();
     }
 
-    public SectionFilterException(String s){
+    public SectionFilterException(String s) {
         super(s);
     }
 }

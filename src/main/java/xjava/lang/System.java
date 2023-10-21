@@ -1,23 +1,24 @@
 /*
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
 package xjava.lang;
 
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Properties;
 
+
 /**
  * Replaces java.lang.System for the Xlet
+ *
  * @author Martin Sveden
  */
 public class System {
@@ -32,18 +33,21 @@ public class System {
     public static Properties props;
 
     /**
+     *
      */
     public static InputStream in = null;
 
     /**
+     *
      */
     public static PrintStream out = null;
 
     /**
+     *
      */
     public static PrintStream err = null;
 
-    static{
+    static {
         initSystem();
     }
 
@@ -86,7 +90,6 @@ public class System {
             e.printStackTrace();
         }
         */
-
 
 
     }

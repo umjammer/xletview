@@ -16,7 +16,8 @@ package org.dvb.application;
 
 import java.util.EventListener;
 
-public interface AppStateChangeEventListener extends EventListener{
+
+public interface AppStateChangeEventListener extends EventListener {
 
     void stateChange(AppStateChangeEvent evt);
 

@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.window;
 
@@ -23,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -39,10 +36,11 @@ import net.beiker.xletview.ui.Img;
 import net.beiker.xletview.util.Constants;
 import net.sourceforge.mlf.metouia.MetouiaLookAndFeel;
 
+
 /**
  * @author Martin Sveden
  */
-public class AppWizardWindow  extends JFrame implements ActionListener{
+public class AppWizardWindow extends JFrame implements ActionListener {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AppWizardWindow.class.getName());
 
@@ -63,14 +61,14 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
     private JTextField pathField;
     private JTextField xletField;
 
-    public AppWizardWindow(){
+    public AppWizardWindow() {
         content = getContentPane();
         content.setLayout(new BorderLayout());
         content.setBackground(null);
 
         JPanel top = new JPanel();
         top.setBackground(null);
-        top.setLayout(new GridLayout(1,1));
+        top.setLayout(new GridLayout(1, 1));
         Img topImg = new Img(Constants.URL_LOGO_WIZARD_TOP);
         top.add(topImg);
         content.add(top, BorderLayout.NORTH);
@@ -120,9 +118,9 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
 
     }
 
-    private void setInit(){
+    private void setInit() {
         mainPanel.removeAll();
-        if(mainPanels[STATE_INIT] == null){
+        if (mainPanels[STATE_INIT] == null) {
             mainPanels[STATE_INIT] = new JPanel();
             JPanel cont = new JPanel(new BorderLayout());
 
@@ -148,9 +146,9 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
         mainPanel.repaint();
     }
 
-    private void setChoosePath(){
+    private void setChoosePath() {
         mainPanel.removeAll();
-        if(mainPanels[STATE_CHOOSE_PATH] == null){
+        if (mainPanels[STATE_CHOOSE_PATH] == null) {
             mainPanels[STATE_CHOOSE_PATH] = new JPanel();
 
             JPanel cont = new JPanel(new BorderLayout());
@@ -213,9 +211,9 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
         mainPanel.repaint();
     }
 
-    private void setChooseXlet(){
+    private void setChooseXlet() {
         mainPanel.removeAll();
-        if(mainPanels[STATE_CHOOSE_XLET] == null){
+        if (mainPanels[STATE_CHOOSE_XLET] == null) {
             mainPanels[STATE_CHOOSE_XLET] = new JPanel();
 
             JPanel cont = new JPanel(new BorderLayout());
@@ -254,9 +252,9 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
         mainPanel.repaint();
     }
 
-    private void setFinnished(){
+    private void setFinnished() {
         mainPanel.removeAll();
-        if(mainPanels[STATE_FINNISHED] == null){
+        if (mainPanels[STATE_FINNISHED] == null) {
             mainPanels[STATE_FINNISHED] = new JPanel();
             JPanel cont = new JPanel(new BorderLayout());
 
@@ -281,48 +279,48 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
         mainPanel.repaint();
     }
 
-    private void next(){
-        switch(state){
-            case STATE_INIT:
-                log.fine("time to choose path");
-                backLabel.setEnabled(true);
-                setChoosePath();
-                state = STATE_CHOOSE_PATH;
+    private void next() {
+        switch (state) {
+        case STATE_INIT:
+            log.fine("time to choose path");
+            backLabel.setEnabled(true);
+            setChoosePath();
+            state = STATE_CHOOSE_PATH;
             break;
-            case STATE_CHOOSE_PATH:
-                log.fine("time to choose xlet");
-                setChooseXlet();
-                state = STATE_CHOOSE_XLET;
+        case STATE_CHOOSE_PATH:
+            log.fine("time to choose xlet");
+            setChooseXlet();
+            state = STATE_CHOOSE_XLET;
             break;
-            case STATE_CHOOSE_XLET:
-                log.fine("finnished");
-                setFinnished();
-                continueLabel.setText("CLOSE");
-                cancelLabel.setEnabled(false);
-                state = STATE_FINNISHED;
+        case STATE_CHOOSE_XLET:
+            log.fine("finnished");
+            setFinnished();
+            continueLabel.setText("CLOSE");
+            cancelLabel.setEnabled(false);
+            state = STATE_FINNISHED;
             break;
         }
     }
 
-    private void back(){
-        switch(state){
-            case STATE_CHOOSE_PATH:
-                log.fine("init");
-                backLabel.setEnabled(false);
-                setInit();
-                state = STATE_INIT;
+    private void back() {
+        switch (state) {
+        case STATE_CHOOSE_PATH:
+            log.fine("init");
+            backLabel.setEnabled(false);
+            setInit();
+            state = STATE_INIT;
             break;
-            case STATE_CHOOSE_XLET:
-                log.fine("choose path");
-                setChoosePath();
-                state = STATE_CHOOSE_PATH;
+        case STATE_CHOOSE_XLET:
+            log.fine("choose path");
+            setChoosePath();
+            state = STATE_CHOOSE_PATH;
             break;
-            case STATE_FINNISHED:
-                log.fine("choose xlet");
-                setChooseXlet();
-                cancelLabel.setEnabled(true);
-                continueLabel.setText("NEXT >>");
-                state = STATE_CHOOSE_XLET;
+        case STATE_FINNISHED:
+            log.fine("choose xlet");
+            setChooseXlet();
+            cancelLabel.setEnabled(true);
+            continueLabel.setText("NEXT >>");
+            state = STATE_CHOOSE_XLET;
             break;
         }
     }
@@ -383,16 +381,16 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
         }
     }
 
-    private String resolveXletName(String dir, String fullPath){
+    private String resolveXletName(String dir, String fullPath) {
         String name = "";
         name = fullPath.replaceAll(dir, "");
-        if(name.lastIndexOf("\\") == name.length() - 1 || name.lastIndexOf("/") == name.length() - 1){
+        if (name.lastIndexOf("\\") == name.length() - 1 || name.lastIndexOf("/") == name.length() - 1) {
             name = name.substring(0, name.length() - 2);
         }
         return name;
     }
 
-    private void doClose(){
+    private void doClose() {
         System.exit(0);
     }
 
@@ -400,8 +398,7 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new MetouiaLookAndFeel());
-        }
-        catch (UnsupportedLookAndFeelException exception) {
+        } catch (UnsupportedLookAndFeelException exception) {
             exception.printStackTrace();
         }
         new AppWizardWindow();

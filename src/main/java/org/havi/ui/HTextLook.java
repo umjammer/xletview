@@ -19,13 +19,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Insets;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HTextLook implements HLook{
+public class HTextLook implements HLook {
 
 
     // platform specific
@@ -33,31 +32,30 @@ public class HTextLook implements HLook{
 
     private static Insets insets = new Insets(2, 2, 2, 2);
 
-    public HTextLook(){
+    public HTextLook() {
     }
 
 
     @Override
-    public void showLook(Graphics g, HVisible hVisible, int state){
+    public void showLook(Graphics g, HVisible hVisible, int state) {
 
         Dimension dimension = hVisible.getSize();
 
         // fix: check clip issues
 
 
-
-        if(hVisible.getBackgroundMode() == HVisible.BACKGROUND_FILL){
+        if (hVisible.getBackgroundMode() == HVisible.BACKGROUND_FILL) {
             Color bg = hVisible.getBackground();
-            if(bg != null){
+            if (bg != null) {
                 g.setColor(bg);
                 g.fillRect(0, 0, dimension.width, dimension.height);
             }
         }
 
         // border
-        if(hVisible.getInteractionState() == HState.FOCUSED_STATE){
+        if (hVisible.getInteractionState() == HState.FOCUSED_STATE) {
             Color fg = hVisible.getForeground();
-            if(fg != null){
+            if (fg != null) {
                 g.setColor(fg);
 
                 // top
@@ -78,13 +76,13 @@ public class HTextLook implements HLook{
 
         // the text in this state
         String string = hVisible.getTextContent(state);
-        if(string != null){
+        if (string != null) {
             hVisible.getTextLayoutManager().render(string, g, hVisible, insets);
         }
     }
 
     @Override
-    public void widgetChanged(HVisible hVisible, HChangeData[] changes){
+    public void widgetChanged(HVisible hVisible, HChangeData[] changes) {
         /*
             " Note that implementations of HLook may not actually implement more efficient
             drawing code for a given hint. In particular, simply repainting the entire
@@ -105,27 +103,27 @@ public class HTextLook implements HLook{
     }
 
     @Override
-    public Dimension getMinimumSize(HVisible hVisible){
+    public Dimension getMinimumSize(HVisible hVisible) {
         return hVisible.getSize();
     }
 
     @Override
-    public Dimension getPreferredSize(HVisible hVisible){
+    public Dimension getPreferredSize(HVisible hVisible) {
         return hVisible.getSize();
     }
 
     @Override
-    public Dimension getMaximumSize(HVisible hVisible){
+    public Dimension getMaximumSize(HVisible hVisible) {
         return hVisible.getSize();
     }
 
     @Override
-    public boolean isOpaque(HVisible hVisible){
+    public boolean isOpaque(HVisible hVisible) {
         return hVisible.isOpaque();
     }
 
     @Override
-    public Insets getInsets(HVisible hVisible){
+    public Insets getInsets(HVisible hVisible) {
         return insets;
     }
 }

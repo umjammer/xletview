@@ -15,6 +15,7 @@ package xjavax.tv.service.selection;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * <code>SelectPermission</code> represents permission to perform a
  * <code>select()</code> operation on a <code>ServiceContext</code>.
@@ -30,28 +31,25 @@ import xjavax.tv.locator.Locator;
  * <code>ServiceContextFactory.getServiceContext(javax.tv.xlet.XletContext)</code>.
  * The string "*" implies permission to these, plus permission for service
  * contexts obtained from all other sources.<p>
- *
+ * <p>
  * Note that undefined actions strings may be provided to the
  * constructors of this class, but subsequent calls to
  * <code>SecurityManager.checkPermission()</code> with the resulting
  * <code>SelectPermission</code> object will fail.
  * <HR>
- *
- *
  */
-public final class SelectPermission extends java.security.Permission implements java.io.Serializable
-{
+public final class SelectPermission extends java.security.Permission implements java.io.Serializable {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private java.lang.String actions;
 
     /**
      * Creates a new SelectPermission object for the specified locator.
      *
-     * @param locator - The locator.  A value of null indicates permission for all locators.
-     * @param actions - The actions string, as detailed in the class description.
+     * @param locator The locator.  A value of null indicates permission for all locators.
+     * @param actions The actions string, as detailed in the class description.
      */
-    public SelectPermission( Locator locator, java.lang.String actions)
-    {
+    public SelectPermission(Locator locator, java.lang.String actions) {
         //TODO implement SelectPermission
         super(null);
     }
@@ -61,11 +59,10 @@ public final class SelectPermission extends java.security.Permission implements 
      * given external form.  This constructor exists for use by the
      * <code>Policy</code> object to instantiate new Permission objects.
      *
-     * @param locator - The external form of the locator.  The string "*" indicates all locators.
-     * @param actions - The actions string, as detailed in the class description.
+     * @param locator The external form of the locator.  The string "*" indicates all locators.
+     * @param actions The actions string, as detailed in the class description.
      */
-    public SelectPermission(java.lang.String locator, java.lang.String actions)
-    {
+    public SelectPermission(java.lang.String locator, java.lang.String actions) {
         //TODO implement SelectPermission
         super(null);
     }
@@ -81,13 +78,12 @@ public final class SelectPermission extends java.security.Permission implements 
      * string, or this object's locator string is "*".
      * </ul>
      *
-     * @param p - The permission against which to check.
+     * @param p The permission against which to check.
      * @return true if the specified permission is implied by this object, false if not.
      * @see #implies in class java.security.Permission
      */
     @Override
-    public boolean implies(java.security.Permission p)
-    {
+    public boolean implies(java.security.Permission p) {
         return false;
         //TODO implement implies
     }
@@ -98,12 +94,11 @@ public final class SelectPermission extends java.security.Permission implements 
      * same <code>Locator</code> and actions string as this
      * object.
      *
-     * @param other - The object to test for equality.
+     * @param other The object to test for equality.
      * @return true if other is a SelectPermission and has the same locator and actions string as this SelectPermission object; false otherwise.
      * @see #equals in class java.security.Permission
      */
-    public boolean equals(java.lang.Object other)
-    {
+    public boolean equals(java.lang.Object other) {
         return false;
         //TODO implement equals
     }
@@ -114,8 +109,7 @@ public final class SelectPermission extends java.security.Permission implements 
      * @return A hash code value for this object.
      * @see #hashCode in class java.security.Permission
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return 0;
         //TODO implement hashCode
     }
@@ -127,8 +121,7 @@ public final class SelectPermission extends java.security.Permission implements 
      * @see #getActions in class java.security.Permission
      */
     @Override
-    public java.lang.String getActions()
-    {
+    public java.lang.String getActions() {
         return this.actions;
     }
 

@@ -18,34 +18,32 @@ import java.util.Arrays;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  */
-public class HBackgroundConfigTemplate extends HScreenConfigTemplate{
+public class HBackgroundConfigTemplate extends HScreenConfigTemplate {
 
     public static final int CHANGEABLE_SINGLE_COLOR = 10;
-    public static final int STILL_IMAGE             = 11;
+    public static final int STILL_IMAGE = 11;
     private int[] preferences;
 
-    public HBackgroundConfigTemplate(){
+    public HBackgroundConfigTemplate() {
         preferences = new int[12];
         // don't care about anything
         Arrays.fill(preferences, HScreenConfigTemplate.DONT_CARE);
     }
 
-    public boolean isConfigSupported(HBackgroundConfiguration hbc){
+    public boolean isConfigSupported(HBackgroundConfiguration hbc) {
         return true;
     }
 
     @Override
-    public void setPreference(int preference, int priority){
+    public void setPreference(int preference, int priority) {
         preferences[preference] = priority;
     }
 
     @Override
-    public int getPreferencePriority(int preference){
+    public int getPreferencePriority(int preference) {
         return preferences[preference];
     }
 }

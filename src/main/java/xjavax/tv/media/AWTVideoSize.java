@@ -32,6 +32,7 @@ package xjavax.tv.media;
  * @statuscode 4
  */
 public class AWTVideoSize {
+
     private java.awt.Rectangle source;
     private java.awt.Rectangle destination;
     private float xScale;
@@ -46,21 +47,18 @@ public class AWTVideoSize {
      * The instance of AWTVideoSize created with this constructor will not
      * maintain a reference to either of the constructor's parameters.
      *
-     * @param source -
-     *            The rectangle representing the portion of the source video to
-     *            display, in the coordinate system of the screen.
-     * @param dest -
-     *            The rectangle representing where the video is to be
-     *            displayed, in the coordinate system of the screen.
+     * @param source *               The rectangle representing the portion of the source video to
+     *               display, in the coordinate system of the screen.
+     * @param dest *               The rectangle representing where the video is to be
+     *               displayed, in the coordinate system of the screen.
      */
     public AWTVideoSize(java.awt.Rectangle source, java.awt.Rectangle dest) {
         this.source = source;
         this.destination = dest;
-        try{
+        try {
             xScale = (float) destination.width / source.width;
             yScale = (float) destination.height / source.height;
-        }
-        catch(ArithmeticException e){
+        } catch (ArithmeticException e) {
             e.printStackTrace();
         }
 
@@ -124,17 +122,16 @@ public class AWTVideoSize {
      * also of type <code>AWTVideoSize</code> and contains data members equal
      * to those of this <code>AWTVideoSize</code>.
      *
-     * @param other -
-     *            The object with which to test for equality.
+     * @param other *              The object with which to test for equality.
      * @return true if the two AWTVideoSize instances are equal; false
-     *         otherwise.
+     * otherwise.
      * @see #equals in class java.lang.Object
      */
     public boolean equals(java.lang.Object other) {
         boolean result = false;
 
-        if(other instanceof AWTVideoSize){
-            if(this.hashCode() == other.hashCode()){
+        if (other instanceof AWTVideoSize) {
+            if (this.hashCode() == other.hashCode()) {
                 result = true;
             }
         }

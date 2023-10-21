@@ -20,17 +20,18 @@ import xjavax.tv.service.Service;
 import xjavax.tv.service.ServiceType;
 import xjavax.tv.service.guide.ProgramSchedule;
 
+
 /**
  * This interface provides access to service meta-data.
- *
+ * <p>
  * This interface provides access to service meta-data. It provides more
  * information about a <code>Service</code> object and represents a
  * specific instance of a service bound to a transport stream. <p>
- *
+ * <p>
  * A <code>ServiceDetails</code> object may optionally implement the
  * <code>ServiceNumber</code> interface to report service numbers as
  * assigned by the broadcaster of the service.<p>
- *
+ * <p>
  * A <code>ServiceDetails</code> object may optionally implement the
  * <code>ServiceProviderInformation</code> interface to report information
  * concerning the service provider.
@@ -38,16 +39,14 @@ import xjavax.tv.service.guide.ProgramSchedule;
  * <A HREF="../../../../javax/tv/service/navigation/ServiceProviderInformation.html"><CODE>ServiceProviderInformation</CODE></A>,
  * <a href="../../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface ServiceDetails extends SIElement, CAIdentification
-{
+public interface ServiceDetails extends SIElement, CAIdentification {
+
     /**
      * Retrieves a textual description of this service if available.
      * This method delivers its results asynchronously.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ServiceDescription
      */
@@ -72,10 +71,10 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * no <code>ServiceComponent</code> instances meet these criteria,
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
-     *
+     * <p>
      * This method delivers its results asynchronously.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ServiceComponent, ReadPermission
      */
@@ -118,16 +117,16 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * the caller has
      * <code>javax.tv.service.ReadPermission(c.getLocator())</code> will
      * be reported.<p>
-     *
+     * <p>
      * This method is only a request for notification.  No guarantee is
      * provided that the SI database will detect all, or even any, SI
      * changes or whether such changes will be detected in a timely
      * fashion.<p>
-     *
+     * <p>
      * If the specified <code>ServiceComponentChangeListener</code> is
      * already registered, no action is performed.
      *
-     * @param listener - A ServiceComponentChangeListener to be notified about changes related to a ServiceComponent in this ServiceDetails.
+     * @param listener A ServiceComponentChangeListener to be notified about changes related to a ServiceComponent in this ServiceDetails.
      * @see ServiceComponentChangeEvent, ReadPermission
      */
     void addServiceComponentChangeListener(ServiceComponentChangeListener listener);
@@ -138,7 +137,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * <code>ServiceComponentChangeListener</code> is not registered, no
      * action is performed.
      *
-     * @param listener - A previously registered listener.
+     * @param listener A previously registered listener.
      */
     void removeServiceComponentChangeListener(ServiceComponentChangeListener listener);
 

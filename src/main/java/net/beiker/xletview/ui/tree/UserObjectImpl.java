@@ -4,21 +4,23 @@
  * To change the template for this generated file go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
+
 package net.beiker.xletview.ui.tree;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * @author beiker
- *
+ * <p>
  * Beiker
- *
+ * <p>
  * To change the template for this generated type comment go to
  * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
  */
-public class UserObjectImpl implements UserObject{
+public class UserObjectImpl implements UserObject {
 
     private Object object;
     private String name;
@@ -29,12 +31,12 @@ public class UserObjectImpl implements UserObject{
 //        name = object;
 //    }
 
-    public UserObjectImpl(Object object){
+    public UserObjectImpl(Object object) {
         this.object = object;
-        if(object instanceof File file){
+        if (object instanceof File file) {
 
-            isRoot = (!file.getName().isEmpty())? false: true;
-            name = (!file.getName().isEmpty())? file.getName(): file.getPath();
+            isRoot = (!file.getName().isEmpty()) ? false : true;
+            name = (!file.getName().isEmpty()) ? file.getName() : file.getPath();
             name = name.replaceAll("\\\\", "");
             name = name.replaceAll("/", "");
             //Debug.write(this, name);
@@ -42,17 +44,16 @@ public class UserObjectImpl implements UserObject{
     }
 
     @Override
-    public boolean hasChildren(){
+    public boolean hasChildren() {
         boolean result = false;
-        if(object instanceof File file){
-            if(isRoot){
+        if (object instanceof File file) {
+            if (isRoot) {
                 result = true;
-            }
-            else if(file.isDirectory()){
+            } else if (file.isDirectory()) {
                 File[] files = file.listFiles();
-                if(files != null){
+                if (files != null) {
                     children = getDirs(files);
-                    if(children != null && children.length > 0){
+                    if (children != null && children.length > 0) {
                         result = true;
                     }
                 }
@@ -63,11 +64,11 @@ public class UserObjectImpl implements UserObject{
     }
 
     @Override
-    public Object[] getChildren(){
-        if(object instanceof File file){
-            if(file.isDirectory()){
+    public Object[] getChildren() {
+        if (object instanceof File file) {
+            if (file.isDirectory()) {
                 File[] files = file.listFiles();
-                if(files != null){
+                if (files != null) {
                     children = getDirs(files);
                 }
             }
@@ -76,7 +77,7 @@ public class UserObjectImpl implements UserObject{
         return children;
     }
 
-    public File[] getDirs(File[] files){
+    public File[] getDirs(File[] files) {
         List<File> v = new ArrayList<>();
         for (File file : files) {
             if (file.isDirectory()) {
@@ -84,7 +85,7 @@ public class UserObjectImpl implements UserObject{
             }
         }
         File[] dirs = new File[v.size()];
-        for(int i = 0; i < v.size(); i++){
+        for (int i = 0; i < v.size(); i++) {
             dirs[i] = v.get(i);
         }
         return dirs;
@@ -95,7 +96,7 @@ public class UserObjectImpl implements UserObject{
         return object;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 

@@ -16,9 +16,10 @@ package org.davic.net.ca;
 
 public class Menu extends List {
 
-  Menu() {}
+    Menu() {
+    }
 
-  final public void setChoice(short choice) throws CAException {
-  }
+    final public void setChoice(short choice) throws CAException {
+    }
 
 }

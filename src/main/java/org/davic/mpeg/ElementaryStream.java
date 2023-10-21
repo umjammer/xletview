@@ -14,20 +14,20 @@
 
 package org.davic.mpeg;
 
-public abstract class ElementaryStream{
+public abstract class ElementaryStream {
 
-    protected ElementaryStream()    {
+    protected ElementaryStream() {
     }
 
-    public Service getService()    {
+    public Service getService() {
         return null;
     }
 
-    public int getPID()    {
+    public int getPID() {
         return 0;
     }
 
-    public Integer getAssociationTag(){
+    public Integer getAssociationTag() {
         return null;
     }
 

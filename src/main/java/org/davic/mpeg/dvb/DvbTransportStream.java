@@ -16,14 +16,14 @@ package org.davic.mpeg.dvb;
 
 public class DvbTransportStream extends org.davic.mpeg.TransportStream {
 
-    protected DvbTransportStream(){
+    protected DvbTransportStream() {
     }
 
-    public int getOriginalNetworkId(){
+    public int getOriginalNetworkId() {
         return 0;
     }
 
-    public int getNetworkId(){
+    public int getNetworkId() {
         return 0;
     }
 }

@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui;
 
@@ -18,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -34,29 +31,29 @@ import net.beiker.xletview.xlet.XletManager;
 /**
  * @author Martin Sveden
  */
-public class AppMenu extends JMenu implements ActionListener{
+public class AppMenu extends JMenu implements ActionListener {
 
     private static final Logger log = Logger.getLogger(AppMenu.class.getName());
 
     private static AppMenu THE_INSTANCE;
 
-    private AppMenu(){
+    private AppMenu() {
         super("Applications");
         update();
     }
 
-    public static AppMenu getInstance(){
-        if(THE_INSTANCE == null){
+    public static AppMenu getInstance() {
+        if (THE_INSTANCE == null) {
             THE_INSTANCE = new AppMenu();
         }
         return THE_INSTANCE;
     }
 
-    public void update(){
+    public void update() {
         buildAppMenu();
     }
 
-    private void buildAppMenu(){
+    private void buildAppMenu() {
         JMenuItem menuItem;
 
         removeAll();
@@ -80,7 +77,7 @@ public class AppMenu extends JMenu implements ActionListener{
         addSeparator();
 
         menuItem = new JMenuItem("Reload Current");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R,KeyEvent.CTRL_DOWN_MASK));
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_DOWN_MASK));
         menuItem.setActionCommand("reload");
         menuItem.addActionListener(this);
         add(menuItem);
@@ -92,36 +89,36 @@ public class AppMenu extends JMenu implements ActionListener{
 
     }
 
-  private JMenu buildAppMenu(JMenu menu, AppGroup group){
-      AppMenuItem item;
-      JMenu submenu;
-      List<?> subGroups = group.getSubGroups();
-      for (Object object : subGroups) {
-          AppGroup subGroup = (AppGroup) object;
-          submenu = new JMenu(subGroup.getName());
-          submenu.setIcon(Constants.ICON_FOLDER);
-          menu.add(submenu);
-          buildAppMenu(submenu, subGroup);
-          //menu.addSeparator();
-      }
-      List<?> apps = group.getApps();
+    private JMenu buildAppMenu(JMenu menu, AppGroup group) {
+        AppMenuItem item;
+        JMenu submenu;
+        List<?> subGroups = group.getSubGroups();
+        for (Object object : subGroups) {
+            AppGroup subGroup = (AppGroup) object;
+            submenu = new JMenu(subGroup.getName());
+            submenu.setIcon(Constants.ICON_FOLDER);
+            menu.add(submenu);
+            buildAppMenu(submenu, subGroup);
+            //menu.addSeparator();
+        }
+        List<?> apps = group.getApps();
 //      if(apps.size() > 0){
 //        menu.addSeparator();
 //      }
 
-      for (Object o : apps) {
-          App app = (App) o;
-          item = new AppMenuItem(app);
-          item.setIcon(Constants.ICON_XLET);
-          item.addActionListener(this);
-          menu.add(item);
-      }
-      if(apps.isEmpty() && subGroups.isEmpty() && group != AppManager.getInstance().getDefaultGroup()){
-          JMenuItem emptyItem = new JMenuItem("(empty)");
-          menu.add(emptyItem);
-      }
-      return menu;
-  }
+        for (Object o : apps) {
+            App app = (App) o;
+            item = new AppMenuItem(app);
+            item.setIcon(Constants.ICON_XLET);
+            item.addActionListener(this);
+            menu.add(item);
+        }
+        if (apps.isEmpty() && subGroups.isEmpty() && group != AppManager.getInstance().getDefaultGroup()) {
+            JMenuItem emptyItem = new JMenuItem("(empty)");
+            menu.add(emptyItem);
+        }
+        return menu;
+    }
 //    private void buildAppMenu(AppGroup group){
 //        Debug.write(this, group.getName());
 //        AppMenuItem item;
@@ -150,11 +147,9 @@ public class AppMenu extends JMenu implements ActionListener{
             App app = item.getApp();
             log.fine(app.getPath());
             XletManager.getInstance().setXlet(app.getPath(), app.getXletName());
-        }
-        else if (command.equals("reload")) {
+        } else if (command.equals("reload")) {
             XletManager.getInstance().reloadActiveXlet();
-        }
-        else if (command.equals("config")) {
+        } else if (command.equals("config")) {
             //new AppWizardWindow();
             new AppTreeWindow();
         }

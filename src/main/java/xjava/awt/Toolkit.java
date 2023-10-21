@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package xjava.awt;
 
@@ -30,7 +28,6 @@ import java.net.URL;
 import java.util.Properties;
 
 import xjava.io.FileSystem;
-
 
 
 /**
@@ -102,7 +99,6 @@ public class Toolkit {
     }
 
     /**
-     *
      * @see java.awt.Toolkit#getImage(String filename)
      */
     public Image getImage(String filename) {
@@ -113,7 +109,7 @@ public class Toolkit {
         } catch (FileNotFoundException e) {
             // don't show stack trace
         }
-        if(f != null){
+        if (f != null) {
             filename = f.getPath();
         }
 
@@ -167,7 +163,7 @@ public class Toolkit {
         } catch (FileNotFoundException e) {
             // don't show stack trace
         }
-        if(f != null){
+        if (f != null) {
             filename = f.getPath();
         }
         return realToolkit.createImage(filename);

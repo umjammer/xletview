@@ -15,14 +15,12 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NPTRemovedEvent extends NPTStatusEvent {
 
-    public NPTRemovedEvent( DSMCCStream source ){
+    public NPTRemovedEvent(DSMCCStream source) {
         super(source);
     }
 }

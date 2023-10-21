@@ -15,7 +15,7 @@
 package org.havi.ui;
 
 
-public interface HActionable extends HNavigable, HActionInputPreferred{
+public interface HActionable extends HNavigable, HActionInputPreferred {
 
     void addHActionListener(org.havi.ui.event.HActionListener l);
 

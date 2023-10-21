@@ -26,11 +26,9 @@ import xjavax.tv.service.guide.ContentRatingAdvisory;
  * dimension may be an age-based DVB rating.
  * <A HREF="../../../javax/tv/service/guide/ContentRatingAdvisory.html"><CODE>ContentRatingAdvisory</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface RatingDimension
-{
+public interface RatingDimension {
+
     /**
      * Returns a string which represents the dimension name being described by
      * this object. One dimension in the U.S. rating region, for example, is
@@ -52,11 +50,10 @@ public interface RatingDimension
      * Returns a pair of strings describing the specified rating level for
      * this dimension.
      *
-     * @param ratingLevel - The rating level for which to retrieve the textual description.
+     * @param ratingLevel The rating level for which to retrieve the textual description.
      * @return A pair of strings representing the names for the specified rating level. The first string represents the abbreviated name for the rating level. The second string represents the full name for the rating level.
-     * @throws SIException - If ratingLevel is not valid for this RatingDimension.
+     * @throws SIException If ratingLevel is not valid for this RatingDimension.
      * @see ContentRatingAdvisory#getRatingLevel(java.lang.String)
      */
     java.lang.String[] getRatingLevelDescription(short ratingLevel) throws SIException;
-
 }

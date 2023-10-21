@@ -14,7 +14,7 @@
 
 package org.dvb.si;
 
-public interface SIServiceType{
+public interface SIServiceType {
 
     short UNKNOWN = -1;
 

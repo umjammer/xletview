@@ -15,17 +15,15 @@
 package org.havi.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HChangeData{
+public class HChangeData {
 
     public int hint;
     public Object data;
 
-    public HChangeData(int hint, Object data){
+    public HChangeData(int hint, Object data) {
         this.hint = hint;
         this.data = data;
     }

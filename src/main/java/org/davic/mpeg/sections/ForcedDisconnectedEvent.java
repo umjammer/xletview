@@ -18,19 +18,17 @@ import org.davic.resources.ResourceStatusEvent;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ForcedDisconnectedEvent extends ResourceStatusEvent{
+public class ForcedDisconnectedEvent extends ResourceStatusEvent {
 
-    public ForcedDisconnectedEvent(SectionFilterGroup sectionFilterGroup){
+    public ForcedDisconnectedEvent(SectionFilterGroup sectionFilterGroup) {
         super(sectionFilterGroup);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 }

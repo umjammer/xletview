@@ -23,12 +23,10 @@ import net.beiker.xletview.media.ScreenContainer;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  */
-public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
+public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AWTVideoSizeControlImpl.class.getName());
 
@@ -38,44 +36,44 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
     private AWTVideoSize currentSize;
     private ScreenContainer tv;
 
-    public static AWTVideoSizeControlImpl getInstance(){
-        if(THE_INSTANCE == null){
-               THE_INSTANCE = new AWTVideoSizeControlImpl();
+    public static AWTVideoSizeControlImpl getInstance() {
+        if (THE_INSTANCE == null) {
+            THE_INSTANCE = new AWTVideoSizeControlImpl();
         }
         return THE_INSTANCE;
     }
 
-    private AWTVideoSizeControlImpl(){
+    private AWTVideoSizeControlImpl() {
         log.fine("---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
-        defaultSize = new AWTVideoSize(new Rectangle(0, 0 , ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT), new Rectangle(0, 0 , ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT));
+        defaultSize = new AWTVideoSize(new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT), new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT));
         currentSize = defaultSize;
     }
 
 
     @Override
-    public AWTVideoSize checkSize(AWTVideoSize awtvideosize){
+    public AWTVideoSize checkSize(AWTVideoSize awtvideosize) {
         return currentSize;
     }
 
     @Override
-    public AWTVideoSize getDefaultSize(){
+    public AWTVideoSize getDefaultSize() {
         return defaultSize;
     }
 
     @Override
-    public AWTVideoSize getSize(){
+    public AWTVideoSize getSize() {
         return currentSize;
     }
 
     @Override
-    public Dimension getSourceVideoSize(){
+    public Dimension getSourceVideoSize() {
         Rectangle rect = currentSize.getSource();
         Dimension dim = new Dimension(rect.width, rect.height);
         return dim;
     }
 
     @Override
-    public boolean setSize(AWTVideoSize awtvideosize){
+    public boolean setSize(AWTVideoSize awtvideosize) {
         currentSize = awtvideosize;
 
         log.fine("setSize");
@@ -84,7 +82,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
     }
 
     @Override
-    public Component getControlComponent(){
+    public Component getControlComponent() {
         return null;
     }
 

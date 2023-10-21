@@ -18,15 +18,14 @@ package xjavax.tv.media;
  * applications in order to receive notification of selection
  * operations on a <code>MediaSelectControl</code>.
  * <HR>
- *
- *
  */
-public interface MediaSelectListener extends java.util.EventListener{
+public interface MediaSelectListener extends java.util.EventListener {
+
     /**
      * Notifies the <code>MediaSelectListener</code> that a selection
      * has completed.
      *
-     * @param event - MediaSelectEvent describing the completion of a selection operation.
+     * @param event MediaSelectEvent describing the completion of a selection operation.
      */
     void selectionComplete(MediaSelectEvent event);
 

@@ -15,8 +15,6 @@
 package org.davic.net.ca;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

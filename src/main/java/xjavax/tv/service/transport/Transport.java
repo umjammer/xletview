@@ -15,13 +15,14 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.navigation.DeliverySystemType;
 
+
 /**
  * This interface represents an individual content delivery mechanism.
- *
+ * <p>
  * This interface represents an individual content delivery mechanism.
  * A <code>Transport</code> serves as an access point for acquiring
  * information about services and their groupings.<p>
- *
+ * <p>
  * A <code>Transport</code> may expose various types of
  * entities (e.g. bouquets, networks and/or transport streams) by
  * optionally implementing additional interfaces
@@ -34,11 +35,9 @@ import xjavax.tv.service.navigation.DeliverySystemType;
  * <A HREF="../../../../javax/tv/service/transport/TransportStreamCollection.html"><CODE>TransportStreamCollection</CODE></A>,
  * <a href="../../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface Transport
-{
+public interface Transport {
+
     /**
      * Registers a <code>ServiceDetailsChangeListener</code> to be
      * notified of changes to <code>ServiceDetails</code> that are
@@ -50,17 +49,17 @@ public interface Transport
      * <code>ServiceDetails</code> <code>sd</code> for which the caller
      * has <code>javax.tv.service.ReadPermission(sd.getLocator())</code>
      * will be reported.<p>
-     *
+     * <p>
      * This method is only a request for notification.  No guarantee is
      * provided that the SI database will detect all, or even any, SI
      * changes or whether such changes will be detected in a timely
      * fashion.  Applications may indicate <code>ServiceDetails</code>
      * of particular interest via the method <A HREF="../../../../javax/tv/service/SIManager.html#registerInterest(javax.tv.locator.Locator, boolean)"><CODE>SIManager.registerInterest(javax.tv.locator.Locator, boolean)</CODE></A>. <p>
-     *
+     * <p>
      * If the specified <code>ServiceDetailsChangeListener</code> is
      * already registered, no action is performed.
      *
-     * @param listener - An ServiceDetailsChangeListener to be notified about changes related to ServiceDetails carried on this Transport.
+     * @param listener An ServiceDetailsChangeListener to be notified about changes related to ServiceDetails carried on this Transport.
      * @see ServiceDetailsChangeEvent, SIManager.registerInterest(javax.tv.locator.Locator, boolean), ReadPermission
      */
     void addServiceDetailsChangeListener(ServiceDetailsChangeListener listener);
@@ -71,7 +70,7 @@ public interface Transport
      * <code>ServiceDetailsChangeListener</code> is not registered, no
      * action is performed.
      *
-     * @param listener - A previously registered listener.
+     * @param listener A previously registered listener.
      */
     void removeServiceDetailsChangeListener(ServiceDetailsChangeListener listener);
 

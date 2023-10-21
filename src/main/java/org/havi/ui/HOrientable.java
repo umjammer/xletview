@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HOrientable{
+public interface HOrientable {
 
     int ORIENT_LEFT_TO_RIGHT = 0;
 

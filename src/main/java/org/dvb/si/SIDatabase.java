@@ -14,7 +14,7 @@
 
 package org.dvb.si;
 
-public class SIDatabase{
+public class SIDatabase {
 
     protected SIDatabase() {
     }
@@ -97,7 +97,7 @@ public class SIDatabase{
     public void removeServiceMonitoringListener(SIMonitoringListener listener, int originalNetworkId, int transportStreamId) throws SIIllegalArgumentException {
     }
 
-    public void addPMTServiceMonitoringListener(SIMonitoringListener listener, int originalNetworkId, int transportStreamId, int serviceId)  throws SIIllegalArgumentException {
+    public void addPMTServiceMonitoringListener(SIMonitoringListener listener, int originalNetworkId, int transportStreamId, int serviceId) throws SIIllegalArgumentException {
     }
 
     public void removePMTServiceMonitoringListener(SIMonitoringListener listener, int originalNetworkId, int transportStreamId, int serviceId) throws SIIllegalArgumentException {

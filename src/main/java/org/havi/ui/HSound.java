@@ -12,11 +12,9 @@
 */
 
 
-
 package org.havi.ui;
 
 import java.net.URL;
-
 import javax.media.Controller;
 import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
@@ -29,11 +27,9 @@ import javax.media.Time;
 
 
 /**
- *
  * @author Cristian Suazo
  * @statuscode 4
  * @comment bugfixed
- *
  */
 public class HSound {
 
@@ -44,22 +40,21 @@ public class HSound {
     private MediaControllerListner playerListner;
 
     // Handles events that are created by the mediaplayer
-    private class MediaControllerListner implements ControllerListener{
+    private class MediaControllerListner implements ControllerListener {
+
         @Override
-        public void controllerUpdate(ControllerEvent event){
+        public void controllerUpdate(ControllerEvent event) {
             logger.fine(event.toString());
-            if (event instanceof EndOfMediaEvent){
+            if (event instanceof EndOfMediaEvent) {
                 // check if the sound clip should be looped
-                if (isLooping){
+                if (isLooping) {
                     player.setMediaTime(new Time(0));
                     player.start();
-                }
-                else{
+                } else {
                     stop();
                 }
-            }
-            else if (event instanceof StartEvent){
-                if(player.getState() == Controller.Started){
+            } else if (event instanceof StartEvent) {
+                if (player.getState() == Controller.Started) {
                     player.setMediaTime(new Time(0));
                 }
             }
@@ -67,7 +62,7 @@ public class HSound {
         }
     }
 
-    public HSound(){
+    public HSound() {
         logger.fine("Constructor");
         isLooping = false; // used for when the method loop() is called.
 
@@ -75,52 +70,51 @@ public class HSound {
         playerListner = new MediaControllerListner();
     }
 
-    public void load(String location) throws java.io.IOException, java.lang.SecurityException{
+    public void load(String location) throws java.io.IOException, java.lang.SecurityException {
         load(new URL(location));
     }
 
     // SecurityException has not been implemented.
-    public void load(java.net.URL contents) throws java.io.IOException, java.lang.SecurityException{
+    public void load(java.net.URL contents) throws java.io.IOException, java.lang.SecurityException {
         dispose();
         // create the new player
-        try{
+        try {
             player = Manager.createPlayer(contents);
-        }
-        catch(NoPlayerException e){
+        } catch (NoPlayerException e) {
             logger.fine(e.getMessage());
             e.printStackTrace();
         }
         player.addControllerListener(playerListner);
     }
 
-    public void set(byte[] data){
-        logger.info("Has no implementation, so calling this will not do anything." );
+    public void set(byte[] data) {
+        logger.info("Has no implementation, so calling this will not do anything.");
     }
 
-    public void play(){
+    public void play() {
         this.isLooping = false;
-        if (player != null){
+        if (player != null) {
             player.start();
         }
     }
 
-    public void stop(){
-        if (player != null){
+    public void stop() {
+        if (player != null) {
             player.stop();
             player.deallocate();
         }
     }
 
-    public void loop(){
+    public void loop() {
         this.isLooping = true;
-        if (player != null){
+        if (player != null) {
             player.start();
         }
     }
 
-    public void dispose(){
+    public void dispose() {
         logger.fine("dispose");
-        if (player != null){
+        if (player != null) {
             player.removeControllerListener(playerListner);
             player.stop();
             player.close();

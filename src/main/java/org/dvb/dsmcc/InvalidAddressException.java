@@ -15,8 +15,6 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -26,7 +24,7 @@ public class InvalidAddressException extends DSMCCException {
         super();
     }
 
-    public InvalidAddressException(String s){
+    public InvalidAddressException(String s) {
         super(s);
     }
 }

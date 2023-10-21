@@ -20,10 +20,9 @@ import xjavax.tv.xlet.XletContext;
  * This class serves as a factory for the creation of <code>ServiceContext</code>
  * objects.
  * <HR>
- *
- *
  */
 public abstract class ServiceContextFactory {
+
     //following variables are implicitely defined by getter- or
     // setter-methods:
     private static ServiceContextFactory instance;
@@ -31,8 +30,6 @@ public abstract class ServiceContextFactory {
     /**
      * Creates a <code>ServiceContextFactory</code>.
      * </DL>
-     *
-     *
      */
     protected ServiceContextFactory() {
     }
@@ -43,7 +40,7 @@ public abstract class ServiceContextFactory {
      * @return An instance of ServiceContextFactory.
      */
     public static ServiceContextFactory getInstance() {
-        if(instance == null){
+        if (instance == null) {
             instance = new ServiceContextFactoryImpl();
         }
         return instance;
@@ -61,11 +58,11 @@ public abstract class ServiceContextFactory {
      *
      * @return A new ServiceContext object.
      * @throws InsufficientResourcesException -
-     *             If the receiver lacks the resources to create this
-     *             ServiceContext.
-     * @throws java.lang.SecurityException -
-     *             if the caller doesn't have
-     *             ServiceContextPermission("create", "own").
+     *                                        If the receiver lacks the resources to create this
+     *                                        ServiceContext.
+     * @throws java.lang.SecurityException    -
+     *                                        if the caller doesn't have
+     *                                        ServiceContextPermission("create", "own").
      */
     public abstract ServiceContext createServiceContext() throws InsufficientResourcesException, java.lang.SecurityException;
 
@@ -91,16 +88,15 @@ public abstract class ServiceContextFactory {
      * The returned <code>ServiceContext</code> is the one from which the
      * <code>Service</code> carrying the <code>Xlet</code> was selected.
      *
-     * @param ctx -
-     *            The XletContext of the Xlet of interest.
+     * @param ctx *            The XletContext of the Xlet of interest.
      * @return The ServiceContext in which the Xlet corresponding to ctx is
-     *         running.
+     * running.
      * @throws java.lang.SecurityException -
-     *             If the Xlet corresponding to ctx does not have
-     *             ServiceContextPermission("access", "own").
-     * @throws ServiceContextException -
-     *             If the Xlet corresponding to ctx is not running within a
-     *             ServiceContext.
+     *                                     If the Xlet corresponding to ctx does not have
+     *                                     ServiceContextPermission("access", "own").
+     * @throws ServiceContextException     -
+     *                                     If the Xlet corresponding to ctx is not running within a
+     *                                     ServiceContext.
      */
     public abstract ServiceContext getServiceContext(XletContext ctx) throws java.lang.SecurityException, ServiceContextException;
 

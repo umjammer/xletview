@@ -18,21 +18,20 @@ import org.davic.mpeg.ElementaryStream;
 import org.davic.mpeg.NotAuthorizedInterface;
 import org.davic.mpeg.Service;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  * @comment not tested
  */
-public class NotAuthorizedMediaException extends NotAuthorizedException    implements org.davic.mpeg.NotAuthorizedInterface{
+public class NotAuthorizedMediaException extends NotAuthorizedException implements org.davic.mpeg.NotAuthorizedInterface {
 
     private Service service;
     private int[] reasons;
     private ElementaryStream[] streams;
     private int type;
 
-    public NotAuthorizedMediaException(Service service, int reason){
+    public NotAuthorizedMediaException(Service service, int reason) {
         super();
         this.service = service;
 
@@ -43,13 +42,13 @@ public class NotAuthorizedMediaException extends NotAuthorizedException    imple
         this.type = NotAuthorizedInterface.SERVICE;
     }
 
-    public NotAuthorizedMediaException(ElementaryStream[] eStreams, int[] reasons){
+    public NotAuthorizedMediaException(ElementaryStream[] eStreams, int[] reasons) {
         this.streams = eStreams;
         this.reasons = reasons;
         type = NotAuthorizedInterface.ELEMENTARY_STREAM;
     }
 
-    public NotAuthorizedMediaException(Service s, int major_reason,int minor_reason) {
+    public NotAuthorizedMediaException(Service s, int major_reason, int minor_reason) {
         type = NotAuthorizedInterface.SERVICE;
         reasons = new int[2];
         reasons[0] = major_reason;
@@ -57,22 +56,22 @@ public class NotAuthorizedMediaException extends NotAuthorizedException    imple
     }
 
     @Override
-    public int getType(){
+    public int getType() {
         return type;
     }
 
     @Override
-    public Service getService(){
+    public Service getService() {
         return service;
     }
 
     @Override
-    public ElementaryStream[] getElementaryStreams()    {
+    public ElementaryStream[] getElementaryStreams() {
         return streams;
     }
 
     @Override
-    public int[] getReason(int index) throws java.lang.IndexOutOfBoundsException{
+    public int[] getReason(int index) throws java.lang.IndexOutOfBoundsException {
         return reasons;
     }
 }

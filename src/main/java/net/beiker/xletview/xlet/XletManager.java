@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.xlet;
 
@@ -22,8 +20,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
-import org.havi.ui.HScene;
-
 import net.beiker.xletview.Startup;
 import net.beiker.xletview.classloader.XletClassLoader;
 import net.beiker.xletview.download.DownloadEvent;
@@ -35,13 +31,15 @@ import net.beiker.xletview.util.Constants;
 import net.beiker.xletview.util.MemoryPrinter;
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
+import org.havi.ui.HScene;
 import xjava.io.EmulatorFile;
 import xjavax.tv.graphics.TVContainer;
 import xjavax.tv.util.TVTimerImpl;
 import xjavax.tv.xlet.Xlet;
 import xjavax.tv.xlet.XletStateChangeException;
 
-public class XletManager implements Runnable, DownloadEventListener{
+
+public class XletManager implements Runnable, DownloadEventListener {
 
     /** Debugging facility. */
     private static final Logger logger = Logger.getLogger(XletManager.class.getName());
@@ -76,14 +74,14 @@ public class XletManager implements Runnable, DownloadEventListener{
         this.xletThreadGroup = getThreadGroup();//new ThreadGroup(Thread.currentThread().getThreadGroup(), "xletThreadGroup");
 
         String extra = Settings.getProperty("extra.classpath");
-        if (extra != null){
+        if (extra != null) {
             // TODO: test
             logger.fine("Adding extra class paths from extra.classpath property.");
             StringTokenizer st = new StringTokenizer(extra, File.pathSeparator, false);
             int numTokens = st.countTokens();
-            for (int i=0; i<numTokens; i++){
+            for (int i = 0; i < numTokens; i++) {
                 String token = st.nextToken();
-                logger.fine("Adding '"+token+"' class path.");
+                logger.fine("Adding '" + token + "' class path.");
                 URL path = Startup.pathString2URL(token);
                 this.xletExtraPaths.add(path);
             }
@@ -91,13 +89,12 @@ public class XletManager implements Runnable, DownloadEventListener{
     }
 
     /**
-     *
      * @deprecated
      */
-    public void setXlet(String xletHome, String xletClassName){
+    public void setXlet(String xletHome, String xletClassName) {
         URL url = null;
         try {
-            url = new URL("file:"+xletHome);
+            url = new URL("file:" + xletHome);
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -105,7 +102,7 @@ public class XletManager implements Runnable, DownloadEventListener{
         this.setXlet(url, xletClassName);
     }
 
-    public void setXlet(URL xletHome, URL[] xletExPaths, String xletClassName){
+    public void setXlet(URL xletHome, URL[] xletExPaths, String xletClassName) {
         logger.fine("Adding Xlet's extra paths...");
         for (URL xletExPath : xletExPaths) {
             logger.fine(xletExPath.toString());
@@ -168,16 +165,15 @@ public class XletManager implements Runnable, DownloadEventListener{
         // create the new xlet
         XletClassLoader xletLoader = null;
 
-        URL[] xletURLs = new URL[1+this.xletExtraPaths.size()];
+        URL[] xletURLs = new URL[1 + this.xletExtraPaths.size()];
         xletURLs[0] = this.xletHome; // Should be used FIRST
-        for (int i=0; i<this.xletExtraPaths.size(); i++){
-            xletURLs[i+1] = this.xletExtraPaths.get(i);
+        for (int i = 0; i < this.xletExtraPaths.size(); i++) {
+            xletURLs[i + 1] = this.xletExtraPaths.get(i);
         }
 
         try {
             xletLoader = new XletClassLoader(xletURLs);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -189,13 +185,11 @@ public class XletManager implements Runnable, DownloadEventListener{
             this.xletThread = new Thread(this.xletThreadGroup, this, "xletThread-" + this.xletContexts.size());
             this.xletThread.start();
             logger.info("XLET started... [" + this.xletClassName + "]");
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             cleanup();
             logger.info("Application not loaded!");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             cleanup();
         }
@@ -221,17 +215,15 @@ public class XletManager implements Runnable, DownloadEventListener{
 
     @Override
     public void run() {
-        if(this.downloadThread != null){
+        if (this.downloadThread != null) {
             try {
                 Downloader dwnLoader = new Downloader(Constants.PATH_APPDIR);
                 dwnLoader.addDownloadEventListener(this);
                 dwnLoader.download(this.xletHome);
-            }
-            catch (IOException e1) {
+            } catch (IOException e1) {
                 e1.printStackTrace();
             }
-        }
-        else if(this.xletThread != null){
+        } else if (this.xletThread != null) {
             initXlet();
             if (this.activeContext != null) {
 
@@ -240,8 +232,7 @@ public class XletManager implements Runnable, DownloadEventListener{
                 synchronized (this) {
                     try {
                         wait();
-                    }
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                         logger.severe("error: " + ex);
                     }
                 }
@@ -260,8 +251,7 @@ public class XletManager implements Runnable, DownloadEventListener{
             synchronized (this) {
                 try {
                     notifyAll();
-                }
-                catch (Exception ex) {
+                } catch (Exception ex) {
                     logger.severe("error: " + ex);
                 }
             }
@@ -313,14 +303,12 @@ public class XletManager implements Runnable, DownloadEventListener{
         EmulatorFile mountPoint = xjava.io.FileSystem.mountCarousel("apploc" + (appCount++), new File(this.xletHome.getFile()));
 
 
-
         try {
             newObj = this.xletClass.newInstance();
             Xlet xlet = null;
             try {
                 xlet = (Xlet) newObj;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -330,13 +318,11 @@ public class XletManager implements Runnable, DownloadEventListener{
             xlet.initXlet(xci);
             this.activeContext = xci;
             xci.setState(XletContextImpl.INITIALIZED);
-        }
-        catch (NoClassDefFoundError e) {
+        } catch (NoClassDefFoundError e) {
             e.printStackTrace();
             cleanup();
             logger.info("Application not loaded!");
-        }
-        catch (Exception | Error e) {
+        } catch (Exception | Error e) {
             e.printStackTrace();
             cleanup();
         }
@@ -352,16 +338,14 @@ public class XletManager implements Runnable, DownloadEventListener{
             Xlet xlet = this.activeContext.getXlet();
             try {
                 xlet.destroyXlet(true);
-            }
-            catch (XletStateChangeException e) {
+            } catch (XletStateChangeException e) {
                 //                logger.fine("###############\n###############\n###############\n###############\n");
                 cleanup();
                 /* XletStateChangeException - is thrown if the Xlet wishes to continue to execute
                  * (Not enter the Destroyed  state). This exception is ignored if unconditional is equal to true.
                  * So, we ignore it.
                  * */
-            }
-            catch (NoClassDefFoundError | Exception e) {
+            } catch (NoClassDefFoundError | Exception e) {
                 e.printStackTrace();
                 cleanup();
             }
@@ -438,13 +422,11 @@ public class XletManager implements Runnable, DownloadEventListener{
                 this.activeContext.getXlet().startXlet();
                 this.activeContext.setState(XletContextImpl.ACTIVE);
 
-            }
-            catch (XletStateChangeException e) {
+            } catch (XletStateChangeException e) {
                 e.printStackTrace();
                 cleanup();
             }
-        }
-        else if (xc.getState() == XletContextImpl.ACTIVE) {
+        } else if (xc.getState() == XletContextImpl.ACTIVE) {
             logger.fine("Xlet was already active");
         }
     }
@@ -465,7 +447,7 @@ public class XletManager implements Runnable, DownloadEventListener{
                 @Override
                 public void uncaughtException(Thread t, Throwable e) {
                     if (!(e instanceof ThreadDeath)) {
-                        logger.severe(Util.getStackTrace(e)+"\n>>>>> error <<<<<");
+                        logger.severe(Util.getStackTrace(e) + "\n>>>>> error <<<<<");
                         cleanup();
                     }
                 }
@@ -481,7 +463,7 @@ public class XletManager implements Runnable, DownloadEventListener{
         //logger.info(e.getFileName() + ", " + e.getProcent() + "% finished");
         ScreenContainer.showProgressBar();
         ScreenContainer.updateProgressBar(e.getProcent());
-        if(e.getProcent() == 100){
+        if (e.getProcent() == 100) {
             e.getDownloader().removeDownloadEventListener(this);
 
             // make sure the downloadThread is null so it's not downloaded twice

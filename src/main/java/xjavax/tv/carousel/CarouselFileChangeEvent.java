@@ -21,17 +21,17 @@ package xjavax.tv.carousel;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class CarouselFileChangeEvent extends java.util.EventObject
-{
+public class CarouselFileChangeEvent extends java.util.EventObject {
+
     private CarouselFile carouselFile;
 
     /**
      * Creates a <code>CarouselFileChangeEvent</code> indicating that
      * the specified <code>CarouselFile</code> has changed.
      *
-     * @param source - The CarouselFile whose contents have changed.
+     * @param source The CarouselFile whose contents have changed.
      */
-    public CarouselFileChangeEvent( CarouselFile source){
+    public CarouselFileChangeEvent(CarouselFile source) {
         super(source);
     }
 
@@ -40,7 +40,7 @@ public class CarouselFileChangeEvent extends java.util.EventObject
      *
      * @return The CarouselFile whose contents have changed.
      */
-    public CarouselFile getCarouselFile(){
+    public CarouselFile getCarouselFile() {
         return this.carouselFile;
     }
 

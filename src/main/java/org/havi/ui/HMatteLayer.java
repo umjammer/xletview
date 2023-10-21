@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HMatteLayer{
+public interface HMatteLayer {
 
     void setMatte(HMatte m) throws HMatteException;
 

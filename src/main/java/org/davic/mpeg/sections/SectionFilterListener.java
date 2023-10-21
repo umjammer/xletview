@@ -14,8 +14,8 @@
 
 package org.davic.mpeg.sections;
 
-public interface SectionFilterListener extends java.util.EventListener{
+public interface SectionFilterListener extends java.util.EventListener {
 
- void sectionFilterUpdate(SectionFilterEvent event);
+    void sectionFilterUpdate(SectionFilterEvent event);
 
 }

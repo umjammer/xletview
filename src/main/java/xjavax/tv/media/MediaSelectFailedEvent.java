@@ -15,6 +15,7 @@ package xjavax.tv.media;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * <code>MediaSelectFailedEvent</code> notifies a
  * <code>MediaSelectListener</code> that a selection operation failed.
@@ -23,15 +24,15 @@ import xjavax.tv.locator.Locator;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class MediaSelectFailedEvent extends MediaSelectEvent
-{
+public class MediaSelectFailedEvent extends MediaSelectEvent {
+
     /**
      * Creates a new <code>MediaSelectFailedEvent</code>.
      *
-     * @param source - The Controller that generated this event.
-     * @param selection - The Locator instances on which selection was attempted.
+     * @param source The Controller that generated this event.
+     * @param selection The Locator instances on which selection was attempted.
      */
-    public MediaSelectFailedEvent(javax.media.Controller source, Locator[] selection){
+    public MediaSelectFailedEvent(javax.media.Controller source, Locator[] selection) {
         super(source, selection);
     }
 

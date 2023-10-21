@@ -17,6 +17,8 @@ package org.havi.ui;
 import java.awt.Graphics;
 import java.awt.Insets;
 
-public interface HTextLayoutManager{
+
+public interface HTextLayoutManager {
+
     void render(String s, Graphics g, HVisible hvisible, Insets insets);
 }

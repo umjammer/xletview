@@ -19,11 +19,12 @@ import xjavax.tv.locator.Locator;
 import xjavax.tv.service.selection.InsufficientResourcesException;
 import xjavax.tv.service.selection.InvalidServiceComponentException;
 
-public interface DVBMediaSelectControl extends xjavax.tv.media.MediaSelectControl{
 
-        void selectServiceMediaComponents(Locator l) throws
-                        InvalidLocatorException,InvalidServiceComponentException,
-                        InsufficientResourcesException;
+public interface DVBMediaSelectControl extends xjavax.tv.media.MediaSelectControl {
+
+    void selectServiceMediaComponents(Locator l) throws
+            InvalidLocatorException, InvalidServiceComponentException,
+            InsufficientResourcesException;
 
 }
 

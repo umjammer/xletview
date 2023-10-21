@@ -15,19 +15,17 @@
 package org.davic.mpeg.sections;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class TimeOutEvent extends EndOfFilteringEvent{
+public class TimeOutEvent extends EndOfFilteringEvent {
 
-    public TimeOutEvent(SectionFilter sectionFilter, Object appData){
+    public TimeOutEvent(SectionFilter sectionFilter, Object appData) {
         super(sectionFilter, appData);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 

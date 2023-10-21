@@ -18,6 +18,7 @@ import java.util.EventObject;
 import xjavax.tv.service.SIChangeEvent;
 import xjavax.tv.service.SIChangeType;
 
+
 /**
  * A <code>ProgramScheduleEvent</code> notifies an
  * <code>ProgramScheduleListener</code> of changes to program events
@@ -25,7 +26,7 @@ import xjavax.tv.service.SIChangeType;
  * event signals the addition, removal, or modification of a
  * <code>ProgramEvent</code> in a <code>ProgramSchedule</code>, or a
  * change to the <code>ProgramEvent</code> that is current.<p>
- *
+ * <p>
  * The class <code>ProgramScheduleChangeType</code> defines the kinds
  * of changes reported by <code>ProgramScheduleEvent</code>.  A
  * <code>ProgramScheduleChangeType</code> of
@@ -38,17 +39,17 @@ import xjavax.tv.service.SIChangeType;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ProgramScheduleEvent extends SIChangeEvent{
+public class ProgramScheduleEvent extends SIChangeEvent {
 
 
     /**
      * Constructs a <code>ProgramScheduleEvent</code>.
      *
-     * @param schedule - The schedule in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param e - The ProgramEvent that changed.
+     * @param schedule The schedule in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param e The ProgramEvent that changed.
      */
-    public ProgramScheduleEvent( ProgramSchedule schedule, SIChangeType type, ProgramEvent e){
+    public ProgramScheduleEvent(ProgramSchedule schedule, SIChangeType type, ProgramEvent e) {
         super(schedule, type, e);
     }
 
@@ -61,7 +62,7 @@ public class ProgramScheduleEvent extends SIChangeEvent{
      * @return The ProgramSchedule that generated the event.
      * @see EventObject#getSource()
      */
-    public ProgramSchedule getProgramSchedule()    {
+    public ProgramSchedule getProgramSchedule() {
         return (ProgramSchedule) super.getSource();
     }
 
@@ -76,7 +77,7 @@ public class ProgramScheduleEvent extends SIChangeEvent{
      * @return The ProgramEvent that changed.
      * @see SIChangeEvent#getSIElement()
      */
-    public ProgramEvent getProgramEvent()    {
+    public ProgramEvent getProgramEvent() {
         return (ProgramEvent) super.getSIElement();
     }
 

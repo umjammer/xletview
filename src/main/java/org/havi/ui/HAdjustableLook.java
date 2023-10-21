@@ -15,7 +15,7 @@
 package org.havi.ui;
 
 
-public interface HAdjustableLook extends HLook{
+public interface HAdjustableLook extends HLook {
 
     int ADJUST_NONE = -1;
 

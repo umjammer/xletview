@@ -15,8 +15,6 @@
 package org.davic.net.tuning;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

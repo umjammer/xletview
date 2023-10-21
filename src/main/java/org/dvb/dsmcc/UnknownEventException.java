@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class UnknownEventException extends DSMCCException {
 
-    public UnknownEventException(){
+    public UnknownEventException() {
         super();
     }
 
-    public UnknownEventException(String s){
+    public UnknownEventException(String s) {
         super(s);
     }
 

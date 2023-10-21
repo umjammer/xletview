@@ -16,6 +16,7 @@ package xjavax.tv.service.navigation;
 import xjavax.tv.service.SIElement;
 import xjavax.tv.service.Service;
 
+
 /**
  * This interface represents an abstraction of an elementary
  * stream. It provides information about individual components of a
@@ -24,11 +25,9 @@ import xjavax.tv.service.Service;
  * <code>ServiceComponent</code> may include <code>Xlet</code>s.
  * <A HREF="../../../../javax/tv/service/guide/ProgramEvent.html#retrieveComponents(javax.tv.service.SIRequestor)"><CODE>ProgramEvent.retrieveComponents(javax.tv.service.SIRequestor)</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface ServiceComponent extends SIElement
-{
+public interface ServiceComponent extends SIElement {
+
     /**
      * Returns a name associated with this component. The Component Descriptor
      * (DVB) or Component Name Descriptor (ATSC) may be used if present. A

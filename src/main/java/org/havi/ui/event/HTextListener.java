@@ -15,7 +15,7 @@
 package org.havi.ui.event;
 
 
-public interface HTextListener extends java.util.EventListener{
+public interface HTextListener extends java.util.EventListener {
 
     void textChanged(org.havi.ui.event.HTextEvent e);
 

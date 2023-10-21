@@ -16,10 +16,11 @@ package org.davic.net.tuning;
 
 import org.davic.mpeg.TransportStream;
 
+
 public class StreamTable {
 
-  StreamTable() {
-  }
+    StreamTable() {
+    }
 
     public static TransportStream[] getTransportStreams(org.davic.net.Locator locator) throws NetworkInterfaceException {
         return null;

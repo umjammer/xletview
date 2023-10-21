@@ -15,16 +15,15 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIElement;
 
+
 /**
  * This interface provides information about a transport stream.
- *
+ * <p>
  * This interface provides information about a transport stream.
  * <HR>
- *
- *
  */
-public interface TransportStream extends SIElement
-{
+public interface TransportStream extends SIElement {
+
     /**
      * Reports the ID of this transport stream.
      *

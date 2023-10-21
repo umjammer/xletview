@@ -15,7 +15,7 @@ package xjavax.tv.util;
 
 /**
  * An event indicating that a timer specification has gone off.
- *
+ * <p>
  * An event indicating that a timer specification has gone off.
  * <HR>
  *
@@ -23,7 +23,8 @@ package xjavax.tv.util;
  * @statuscode 4
  */
 public class TVTimerWentOffEvent extends java.util.EventObject {
-    //following variables are implicitly defined by getter- or
+
+    // following variables are implicitly defined by getter- or
     // setter-methods:
     private TVTimerSpec timerSpec;
 
@@ -31,10 +32,8 @@ public class TVTimerWentOffEvent extends java.util.EventObject {
      * Creates a new TVTimerWentOffEvent with the specified timer and timer
      * specification.
      *
-     * @param source -
-     *            the timer that sent this event
-     * @param spec -
-     *            the timer specification that went off
+     * @param source the timer that sent this event
+     * @param spec   the timer specification that went off
      */
     public TVTimerWentOffEvent(TVTimer source, TVTimerSpec spec) {
         super(source);

@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.window;
 
@@ -23,10 +21,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-//import java.io.File;
-//import java.io.FileInputStream;
 import java.io.InputStream;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -53,10 +48,11 @@ import net.n3.nanoxml.IXMLReader;
 import net.n3.nanoxml.StdXMLReader;
 import net.n3.nanoxml.XMLParserFactory;
 
+
 /**
  * This is the main window of the emulator
- * @author Martin Sveden
  *
+ * @author Martin Sveden
  */
 public class TvWindow extends JFrame implements ActionListener {
 
@@ -87,8 +83,7 @@ public class TvWindow extends JFrame implements ActionListener {
             doCenter = (Settings.getProperty("tv.center").equals("true")) ? true : false;
             x = Integer.parseInt(strX);
             y = Integer.parseInt(strY);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.severe(e.toString());
             screenWidth = Util.parseInt(Settings.getProperty("tv.screenwidth"));
             screenHeight = Util.parseInt(Settings.getProperty("tv.screenheight"));
@@ -106,7 +101,7 @@ public class TvWindow extends JFrame implements ActionListener {
 
         //container.add(tv, BorderLayout.CENTER);
 
-        if(Settings.getProperty("remote.show").equalsIgnoreCase("true")){
+        if (Settings.getProperty("remote.show").equalsIgnoreCase("true")) {
 
 
             try {
@@ -138,9 +133,9 @@ public class TvWindow extends JFrame implements ActionListener {
 
         });
 
-        this.addComponentListener(new ComponentAdapter(){
+        this.addComponentListener(new ComponentAdapter() {
             @Override
-            public void componentResized(ComponentEvent e){
+            public void componentResized(ComponentEvent e) {
                 ScreenContainer.getInstance().repaint();
             }
         });
@@ -150,6 +145,7 @@ public class TvWindow extends JFrame implements ActionListener {
             public void windowLostFocus(WindowEvent we) {
                 EventManager.getInstance().setEventEnabled(false);
             }
+
             @Override
             public void windowGainedFocus(WindowEvent e) {
                 EventManager.getInstance().setEventEnabled(true);
@@ -170,8 +166,7 @@ public class TvWindow extends JFrame implements ActionListener {
 
         if (doCenter) {
             Util.center(this);
-        }
-        else{
+        } else {
             setLocation(x, y);
         }
 
@@ -208,7 +203,7 @@ public class TvWindow extends JFrame implements ActionListener {
 
         menuItem = new JMenuItem("Exit");
         menuItem.setActionCommand("exit");
-        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4,KeyEvent.ALT_DOWN_MASK));
+        menuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, KeyEvent.ALT_DOWN_MASK));
         menuItem.addActionListener(this);
         menu.add(menuItem);
         menuBar.add(menu);
@@ -234,18 +229,14 @@ public class TvWindow extends JFrame implements ActionListener {
         if (e.getSource() instanceof AppMenuItem item) {
             App app = item.getApp();
             XletManager.getInstance().setXlet(app.getPath(), app.getXletName());
-        }
-        else if (command.equals("about")) {
+        } else if (command.equals("about")) {
             new AboutWindow(this);
-        }
-        else if (command.equals("exit")) {
+        } else if (command.equals("exit")) {
             doClose();
-        }
-        else if (command.equals("console")) {
+        } else if (command.equals("console")) {
             ConsoleWindow.getInstance().setVisible(true);
         }
     }
-
 
 
 }

@@ -14,9 +14,10 @@
 
 package org.dvb.si;
 
-public class Descriptor{
+public class Descriptor {
 
-      Descriptor() {}
+    Descriptor() {
+    }
 
     public short getTag() {
         return ((short) 0);

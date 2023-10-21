@@ -15,22 +15,20 @@
 package org.davic.mpeg;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  */
-public class TuningException extends org.davic.mpeg.ResourceException{
+public class TuningException extends org.davic.mpeg.ResourceException {
 
     public TuningException() {
         super();
     }
 
-    public TuningException(String s){
+    public TuningException(String s) {
         super(s);
     }
 
-    public TransportStream getTransportStream(){
+    public TransportStream getTransportStream() {
         return null;
     }
 }

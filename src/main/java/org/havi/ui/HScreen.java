@@ -17,13 +17,13 @@ package org.havi.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HScreen{
+public class HScreen {
+
     private static final HScreen DEFAULT_HSCREEN = new HScreen();
 
     private static List<HScreen> hScreens;
@@ -34,7 +34,7 @@ public class HScreen{
     private HBackgroundDevice hBackgroundDevice;
     private HBackgroundDevice[] hBackgroundDevices;
 
-    private HScreen(){
+    private HScreen() {
         //hScreens = new HScreen[1];
         //hScreens[0] = this;
 
@@ -53,61 +53,61 @@ public class HScreen{
         hScreens.add(this);
     }
 
-    public static HScreen[] getHScreens(){
+    public static HScreen[] getHScreens() {
         HScreen[] screens = new HScreen[hScreens.size()];
-        for(int i = 0; i < screens.length; i++){
+        for (int i = 0; i < screens.length; i++) {
             screens[i] = hScreens.get(i);
         }
         return screens;
     }
 
-    public static HScreen getDefaultHScreen(){
+    public static HScreen getDefaultHScreen() {
         return DEFAULT_HSCREEN;
     }
 
-    public HVideoDevice[] getHVideoDevices(){
+    public HVideoDevice[] getHVideoDevices() {
         return hVideoDevices;
     }
 
-    public HVideoDevice getDefaultHVideoDevice(){
+    public HVideoDevice getDefaultHVideoDevice() {
         return hVideoDevice;
     }
 
-    public HVideoConfiguration getBestConfiguration(HVideoConfigTemplate[] hvcta){
+    public HVideoConfiguration getBestConfiguration(HVideoConfigTemplate[] hvcta) {
         return hVideoDevice.getBestConfiguration(hvcta);
     }
 
-    public HGraphicsDevice[] getHGraphicsDevices(){
+    public HGraphicsDevice[] getHGraphicsDevices() {
         return hGraphicsDevices;
     }
 
-    public HGraphicsDevice getDefaultHGraphicsDevice(){
+    public HGraphicsDevice getDefaultHGraphicsDevice() {
         return hGraphicsDevice;
     }
 
-    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate[] hgcta){
+    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate[] hgcta) {
         return hGraphicsDevice.getBestConfiguration(hgcta);
     }
 
-    public HBackgroundDevice[] getHBackgroundDevices(){
+    public HBackgroundDevice[] getHBackgroundDevices() {
         return hBackgroundDevices;
     }
 
-    public HBackgroundDevice getDefaultHBackgroundDevice(){
+    public HBackgroundDevice getDefaultHBackgroundDevice() {
         return hBackgroundDevice;
     }
 
-    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate[] hbcta){
+    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate[] hbcta) {
         return hBackgroundDevice.getBestConfiguration(hbcta);
     }
 
-    public HScreenConfiguration[] getCoherentScreenConfigurations(HScreenConfigTemplate[] hscta){
+    public HScreenConfiguration[] getCoherentScreenConfigurations(HScreenConfigTemplate[] hscta) {
         return (null);
     }
 
     public boolean setCoherentScreenConfigurations(HScreenConfiguration[] hsca) throws java.lang.SecurityException,
-           org.havi.ui.HPermissionDeniedException,
-           org.havi.ui.HConfigurationException{
+            org.havi.ui.HPermissionDeniedException,
+            org.havi.ui.HConfigurationException {
         return (false);
     }
 }

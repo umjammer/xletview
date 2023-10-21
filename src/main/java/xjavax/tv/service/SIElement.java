@@ -15,9 +15,10 @@ package xjavax.tv.service;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * The base interface of elements provided by the SI database.
- *
+ * <p>
  * The base interface of elements provided by the SI database.
  * <code>SIElement</code> objects represent immutable <em>copies</em>
  * of the service information data contained in the SI database.  If
@@ -35,11 +36,9 @@ import xjavax.tv.locator.Locator;
  * database between the times of their respective retrievals.
  * <A HREF="../../../javax/tv/service/SIManager.html#retrieveSIElement(javax.tv.locator.Locator, javax.tv.service.SIRequestor)"><CODE>SIManager.retrieveSIElement(javax.tv.locator.Locator, javax.tv.service.SIRequestor)</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface SIElement extends SIRetrievable
-{
+public interface SIElement extends SIRetrievable {
+
     /**
      * Reports the <code>Locator</code> of this <code>SIElement</code>.
      *
@@ -59,7 +58,7 @@ public interface SIElement extends SIRetrievable
      * <li><code>obj</code> and this object encapsulate identical data.
      * </ul>
      *
-     * @param obj - The object against which to test for equality.
+     * @param obj The object against which to test for equality.
      * @return true if the two SIElement objects are equal; false otherwise.
      * @see #equals in class java.lang.Object
      */

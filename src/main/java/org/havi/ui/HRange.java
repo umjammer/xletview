@@ -15,75 +15,75 @@
 package org.havi.ui;
 
 
-public class HRange extends HStaticRange implements HNavigable{
+public class HRange extends HStaticRange implements HNavigable {
 
-    public HRange(){
+    public HRange() {
     }
 
-    public HRange(int orientation, int minimum, int maximum, int value, int x, int y, int width, int height){
+    public HRange(int orientation, int minimum, int maximum, int value, int x, int y, int width, int height) {
     }
 
-    public HRange(int orientation, int minimum, int maximum, int value){
+    public HRange(int orientation, int minimum, int maximum, int value) {
     }
 
-    public static void setDefaultLook(HRangeLook look){
+    public static void setDefaultLook(HRangeLook look) {
     }
 
-    public static HRangeLook getDefaultLook(){
+    public static HRangeLook getDefaultLook() {
         return (null);
     }
 
     @Override
-    public void setMove(int keyCode, HNavigable target){
+    public void setMove(int keyCode, HNavigable target) {
     }
 
     @Override
-    public HNavigable getMove(int keyCode){
-        return(null);
+    public HNavigable getMove(int keyCode) {
+        return (null);
     }
 
     @Override
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
     }
 
     @Override
-    public boolean isSelected(){
-        return(false);
+    public boolean isSelected() {
+        return (false);
     }
 
     @Override
-    public void setGainFocusSound(HSound sound){
+    public void setGainFocusSound(HSound sound) {
     }
 
     @Override
-    public void setLoseFocusSound(HSound sound){
+    public void setLoseFocusSound(HSound sound) {
     }
 
     @Override
-    public HSound getGainFocusSound(){
-        return(null);
+    public HSound getGainFocusSound() {
+        return (null);
     }
 
     @Override
-    public HSound getLoseFocusSound(){
-        return(null);
+    public HSound getLoseFocusSound() {
+        return (null);
     }
 
     @Override
-    public void addHFocusListener(org.havi.ui.event.HFocusListener l){
+    public void addHFocusListener(org.havi.ui.event.HFocusListener l) {
     }
 
 
     @Override
-    public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
+    public void removeHFocusListener(org.havi.ui.event.HFocusListener l) {
     }
 
     @Override
-    public int[] getNavigationKeys(){
-        return(null);
+    public int[] getNavigationKeys() {
+        return (null);
     }
 
     @Override
-    public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt){
+    public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt) {
     }
 }

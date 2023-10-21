@@ -16,19 +16,17 @@ package org.davic.mpeg.sections;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class SectionAvailableEvent    extends SectionFilterEvent{
+public class SectionAvailableEvent extends SectionFilterEvent {
 
-    public SectionAvailableEvent(SectionFilter sectionFilter, Object appData){
-        super(sectionFilter,appData);
+    public SectionAvailableEvent(SectionFilter sectionFilter, Object appData) {
+        super(sectionFilter, appData);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 }

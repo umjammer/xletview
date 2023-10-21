@@ -15,18 +15,16 @@
 package org.dvb.user;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class UnsupportedPreferenceException extends java.lang.Exception {
 
-    public UnsupportedPreferenceException()    {
+    public UnsupportedPreferenceException() {
         super();
     }
 
-    public UnsupportedPreferenceException(String s)    {
+    public UnsupportedPreferenceException(String s) {
         super(s);
     }
 }

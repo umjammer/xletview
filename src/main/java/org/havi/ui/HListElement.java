@@ -16,39 +16,38 @@ package org.havi.ui;
 
 import java.awt.Image;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HListElement{
+public class HListElement {
 
     private String label;
     private Image icon;
 
-    public HListElement(String label){
+    public HListElement(String label) {
         this.label = label;
     }
 
-    public HListElement(Image icon, String label){
+    public HListElement(Image icon, String label) {
         this.icon = icon;
         this.label = label;
     }
 
-    public String getLabel(){
+    public String getLabel() {
         return label;
     }
 
-    public Image getIcon(){
+    public Image getIcon() {
         return icon;
     }
 
-    public void setLabel(String label){
+    public void setLabel(String label) {
         this.label = label;
     }
 
-    public void setIcon(Image icon){
+    public void setIcon(Image icon) {
         this.icon = icon;
     }
 }

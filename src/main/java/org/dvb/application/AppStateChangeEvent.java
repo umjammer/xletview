@@ -16,13 +16,12 @@ package org.dvb.application;
 
 import java.util.EventObject;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class AppStateChangeEvent  extends EventObject {
+public class AppStateChangeEvent extends EventObject {
 
     private AppID appId;
     private int fromState;
@@ -30,26 +29,26 @@ public class AppStateChangeEvent  extends EventObject {
     private boolean hasFailed;
 
     public AppStateChangeEvent(AppID appId, int fromState, int toState, Object source, boolean hasFailed) {
-        super(source) ;
+        super(source);
         this.appId = appId;
         this.fromState = fromState;
         this.toState = toState;
         this.hasFailed = hasFailed;
     }
 
-    public AppID getAppID () {
+    public AppID getAppID() {
         return appId;
     }
 
-    public int getFromState () {
+    public int getFromState() {
         return fromState;
     }
 
-    public int getToState () {
+    public int getToState() {
         return toState;
     }
 
-    public boolean hasFailed () {
+    public boolean hasFailed() {
         return hasFailed;
     }
 }

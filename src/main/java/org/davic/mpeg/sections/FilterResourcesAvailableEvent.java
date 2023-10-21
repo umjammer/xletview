@@ -16,20 +16,19 @@ package org.davic.mpeg.sections;
 
 import org.davic.resources.ResourceStatusEvent;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class FilterResourcesAvailableEvent extends ResourceStatusEvent{
+public class FilterResourcesAvailableEvent extends ResourceStatusEvent {
 
-    public FilterResourcesAvailableEvent (SectionFilterGroup sectionFilterGroup){
+    public FilterResourcesAvailableEvent(SectionFilterGroup sectionFilterGroup) {
         super(sectionFilterGroup);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 }

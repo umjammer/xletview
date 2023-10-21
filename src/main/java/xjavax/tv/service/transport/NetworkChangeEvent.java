@@ -15,6 +15,7 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIChangeType;
 
+
 /**
  * A <code>NetworkChangeEvent</code> notifies an
  * <code>NetworkChangeListener</code> of changes detected in a
@@ -27,17 +28,17 @@ import xjavax.tv.service.SIChangeType;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class NetworkChangeEvent extends TransportSIChangeEvent{
+public class NetworkChangeEvent extends TransportSIChangeEvent {
 
 
     /**
      * Constructs a <code>NetworkChangeEvent</code>.
      *
-     * @param collection - The network collection in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param n - The Network that changed.
+     * @param collection The network collection in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param n The Network that changed.
      */
-    public NetworkChangeEvent( NetworkCollection collection, SIChangeType type, Network n)    {
+    public NetworkChangeEvent(NetworkCollection collection, SIChangeType type, Network n) {
         super(collection, type, n);
     }
 
@@ -48,7 +49,7 @@ public class NetworkChangeEvent extends TransportSIChangeEvent{
      *
      * @return The NetworkCollection that generated the event.
      */
-    public NetworkCollection getNetworkCollection()    {
+    public NetworkCollection getNetworkCollection() {
         return (NetworkCollection) super.getSource();
     }
 
@@ -59,7 +60,7 @@ public class NetworkChangeEvent extends TransportSIChangeEvent{
      *
      * @return The Network that changed.
      */
-    public Network getNetwork()    {
+    public Network getNetwork() {
         return (Network) super.getSIElement();
     }
 

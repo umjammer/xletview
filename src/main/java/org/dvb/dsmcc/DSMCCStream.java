@@ -16,10 +16,11 @@ package org.dvb.dsmcc;
 
 import java.io.IOException;
 
+
 public class DSMCCStream {
 
 
-    public DSMCCStream(DSMCCObject aDSMCCObject) throws NotLoadedException, IllegalObjectTypeException{
+    public DSMCCStream(DSMCCObject aDSMCCObject) throws NotLoadedException, IllegalObjectTypeException {
     }
 
     public DSMCCStream(String path) throws IOException {
@@ -34,32 +35,37 @@ public class DSMCCStream {
     }
 
 
-
-    public long getNPT() throws MPEGDeliveryException{
+    public long getNPT() throws MPEGDeliveryException {
         return 0;
     }
 
-    public org.davic.net.Locator getStreamLocator()    {
+    public org.davic.net.Locator getStreamLocator() {
         return null;
     }
 
-    public boolean isMPEGProgram(){
+    public boolean isMPEGProgram() {
         return true;
     }
 
-    public boolean isAudio(){
-        return false ;
-    }
-
-    public boolean isVideo(){
+    public boolean isAudio() {
         return false;
     }
 
-    public boolean isData() {return true; }
+    public boolean isVideo() {
+        return false;
+    }
 
-    public NPTRate getNPTRate() throws MPEGDeliveryException { return null; }
+    public boolean isData() {
+        return true;
+    }
 
-    public void addNPTListener(NPTListener l){}
+    public NPTRate getNPTRate() throws MPEGDeliveryException {
+        return null;
+    }
 
-    public void removeNPTListener(NPTListener l) {}
+    public void addNPTListener(NPTListener l) {
+    }
+
+    public void removeNPTListener(NPTListener l) {
+    }
 }

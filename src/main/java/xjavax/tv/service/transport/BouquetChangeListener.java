@@ -15,20 +15,19 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIChangeListener;
 
+
 /**
  * This interface is implemented by applications wishing to receive
  * notification of changes to <code>Bouquet</code> data.
  * <HR>
- *
- *
  */
-public interface BouquetChangeListener extends SIChangeListener
-{
+public interface BouquetChangeListener extends SIChangeListener {
+
     /**
      * Notifies the <code>BouquetChangeListener</code> of a
      * change to a <code>Bouquet</code>.
      *
-     * @param event - A BouquetChangeEvent describing what changed and how.
+     * @param event A BouquetChangeEvent describing what changed and how.
      */
     void notifyChange(BouquetChangeEvent event);
 

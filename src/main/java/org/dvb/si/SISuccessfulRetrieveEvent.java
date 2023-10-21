@@ -15,8 +15,6 @@
 package org.dvb.si;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

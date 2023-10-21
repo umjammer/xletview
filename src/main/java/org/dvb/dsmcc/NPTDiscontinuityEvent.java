@@ -15,8 +15,6 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -25,13 +23,13 @@ public class NPTDiscontinuityEvent extends NPTStatusEvent {
     private long before;
     private long after;
 
-    public NPTDiscontinuityEvent( DSMCCStream source, long before, long after )    {
+    public NPTDiscontinuityEvent(DSMCCStream source, long before, long after) {
         super(source);
         this.before = before;
         this.after = after;
     }
 
-    public long getLastNPT(){
+    public long getLastNPT() {
         return after;
     }
 

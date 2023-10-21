@@ -14,7 +14,8 @@
 
 package org.havi.ui;
 
-public interface HNoInputPreferred{
+public interface HNoInputPreferred {
+
 }
 
 

@@ -15,27 +15,25 @@ package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.Service;
 
+
 /**
  * <code>ServiceIterator</code> permits iteration over an ordered
  * list of <code>Service</code> objects.  Applications may use the
  * <code>ServiceIterator</code> interface to browse a
  * <code>ServiceList</code> forward or backward.<p>
- *
+ * <p>
  * Upon initial usage, <code>hasPrevious()</code> will return
  * <code>false</code> and <code>nextService()</code> will return the
  * first <code>Service</code> in the list, if present.
  * <HR>
- *
- *
  */
-public interface ServiceIterator
-{
+public interface ServiceIterator {
+
     /**
      * Resets the iterator to the beginning of the list, such that
      * <code>hasPrevious()</code> returns <code>false</code> and
      * <code>nextService()</code> returns the first <code>Service</code>
      * in the list (if the list is not empty).</DL>
-     *
      */
     void toBeginning();
 
@@ -44,7 +42,6 @@ public interface ServiceIterator
      * <code>hasNext()</code> returns <code>false</code> and
      * <code>previousService()</code> returns the last <code>Service</code>
      * in the list (if the list is not empty).</DL>
-     *
      */
     void toEnd();
 

@@ -18,15 +18,13 @@ package xjavax.tv.carousel;
  * application classes which require notification of changes to
  * <code>CarouselFile</code> data.
  * <HR>
- *
- *
  */
-public interface CarouselFileListener extends java.util.EventListener
-{
+public interface CarouselFileListener extends java.util.EventListener {
+
     /**
      * Notifies the <code>CarouselFileListener</code> that the
      * <code>CarouselFile</code> has changed in the broadcast.
-     *
+     * <p>
      * If the contents of a <code>CarouselFile</code> change while an
      * application is reading its data from the local cache, the
      * cached data shall either (a) remain entirely unchanged or (b)
@@ -46,7 +44,7 @@ public interface CarouselFileListener extends java.util.EventListener
      * <code>CarouselFile</code> or the latency of event notification
      * if a change is detected.
      *
-     * @param event - Event indicating CarouselFile that has changed.
+     * @param event Event indicating CarouselFile that has changed.
      * @see CarouselFile#refreshCache()
      */
     void carouselFileChanged(CarouselFileChangeEvent event);

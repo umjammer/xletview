@@ -24,6 +24,7 @@ import org.dvb.user.Preference;
 import org.dvb.user.UserPreferenceManager;
 import org.havi.ui.HVisible;
 
+
 /**
  * @author Martin Sveden
  * @statuscode 2
@@ -250,7 +251,6 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
             g.drawString(rows[i], x, y);
 
 
-
             if (textWidth > width) {
                 overflowH = true;
             }
@@ -266,8 +266,7 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
     /**
      * @param string
      * @param font
-     * @param width
-     *            width after the insets have been subtracted
+     * @param width  width after the insets have been subtracted
      */
     private void createRows(String string, Font font, int width) {
         rows = new String[0];
@@ -277,10 +276,9 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         FontMetrics fm = toolkit.getFontMetrics(font);
 
         String[] words;
-        if(textWrap){
+        if (textWrap) {
             words = string.split(" ");
-        }
-        else{
+        } else {
             words = new String[1];
             words[0] = string;
         }
@@ -302,10 +300,9 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
 
         ascent = fm.getAscent();
 
-        if(lineSpace == -1){
+        if (lineSpace == -1) {
             rowHeight = fm.getHeight();
-        }
-        else{
+        } else {
             rowHeight = lineSpace;
         }
 

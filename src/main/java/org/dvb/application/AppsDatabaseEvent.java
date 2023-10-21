@@ -14,8 +14,6 @@
 package org.dvb.application;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

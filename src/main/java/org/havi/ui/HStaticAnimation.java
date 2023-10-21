@@ -19,15 +19,15 @@ import xjavax.tv.util.TVTimerSpec;
 import xjavax.tv.util.TVTimerWentOffEvent;
 import xjavax.tv.util.TVTimerWentOffListener;
 
+
 /**
  * @author Cristian Suazo
  * @author Martin Sveden
  * @statuscode 4
- *
  */
 public class HStaticAnimation
-    extends HVisible
-    implements HNoInputPreferred, HAnimateEffect {
+        extends HVisible
+        implements HNoInputPreferred, HAnimateEffect {
 
     private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(HStaticAnimation.class.getName());
 
@@ -52,37 +52,36 @@ public class HStaticAnimation
      * is a XleTView specific implementation. The TVTimer is used to create
      * the animation.
      */
-    private class AnimationTimerListner implements TVTimerWentOffListener{
+    private class AnimationTimerListner implements TVTimerWentOffListener {
+
         @Override
-        public void timerWentOff(TVTimerWentOffEvent e){
+        public void timerWentOff(TVTimerWentOffEvent e) {
             boolean hasNewRepeat = false; // used to indicate if the animation has reached the end/start of loop
             //logger.fine("animate event");
             Image[] images = getAnimateContent(getInteractionState());
 
             // check what next position is and if the loop is "repeated"
             if (position + playDirection >= images.length || position + playDirection < 0) {
-                if ( playMode == HAnimateEffect.PLAY_ALTERNATING ){
+                if (playMode == HAnimateEffect.PLAY_ALTERNATING) {
                     // change play direction
                     playDirection = -playDirection;
                     position += playDirection;
                     hasNewRepeat = true;
-                }
-                else if ( playMode == HAnimateEffect.PLAY_REPEATING ){
+                } else if (playMode == HAnimateEffect.PLAY_REPEATING) {
                     hasNewRepeat = true;
                     position = 0;
                 }
-            }
-            else position += playDirection;
+            } else position += playDirection;
 
             // check if the animation has a limited amount of repeats, if so stop it if
             // the repeat count has reached the end.
-            if (hasNewRepeat && repeatCount != HAnimateEffect.REPEAT_INFINITE ){
+            if (hasNewRepeat && repeatCount != HAnimateEffect.REPEAT_INFINITE) {
                 currentRepeatCount++;
-                if (currentRepeatCount > repeatCount){
+                if (currentRepeatCount > repeatCount) {
                     stop();
                 }
             }
-            if (isRunning){
+            if (isRunning) {
                 //logger.fine( "new position=" + position );
                 repaint();
             }
@@ -90,10 +89,10 @@ public class HStaticAnimation
     }
 
     public HStaticAnimation() {
-        this(null,1,HAnimateEffect.PLAY_REPEATING,HAnimateEffect.REPEAT_INFINITE);
+        this(null, 1, HAnimateEffect.PLAY_REPEATING, HAnimateEffect.REPEAT_INFINITE);
     }
 
-    public HStaticAnimation(Image[] imagesNormal,int delay,int playMode,int repeatCount,int x,int y,int width,int height) {
+    public HStaticAnimation(Image[] imagesNormal, int delay, int playMode, int repeatCount, int x, int y, int width, int height) {
         super(HStaticAnimation.getDefaultLook(), x, y, width, height);
         super.setAnimateContent(imagesNormal, HState.NORMAL_STATE);
 
@@ -112,13 +111,13 @@ public class HStaticAnimation
         paintTask.addTVTimerWentOffListener(animationListner);
     }
 
-    public HStaticAnimation(Image[] imagesNormal,int delay,int playMode,int repeatCount) {
+    public HStaticAnimation(Image[] imagesNormal, int delay, int playMode, int repeatCount) {
         this(imagesNormal, delay, playMode, repeatCount, 0, 0, 0, 0);
     }
 
     @Override
     public void setLook(HLook hlook) throws HInvalidLookException {
-        if(!(hlook instanceof HAnimateLook)){
+        if (!(hlook instanceof HAnimateLook)) {
             throw new HInvalidLookException("Invalid HLook datatype. Must be of type HAnimateLook.");
         }
         this.hlook = hlook;
@@ -147,19 +146,18 @@ public class HStaticAnimation
         paintTask.setRepeat(true);
 
         // add a timer to trigger paint event
-        try{
+        try {
             TVTimer.getTimer().scheduleTimerSpec(paintTask);
             log.fine("Animation starting. delay = " + delay);
-        }
-        catch(TVTimerScheduleFailedException e){
-            log.severe("Start animation failed. error: " + e.getMessage() );
+        } catch (TVTimerScheduleFailedException e) {
+            log.severe("Start animation failed. error: " + e.getMessage());
             isRunning = false;
         }
     }
 
     @Override
     public void stop() {
-        if (isRunning){
+        if (isRunning) {
             log.fine("Animation stopped");
             isRunning = false;
             // deschedule animation event
@@ -175,10 +173,9 @@ public class HStaticAnimation
     @Override
     public void setPosition(int position) {
         // make check so that position is not set outside the bounds of the image array
-        if(getAnimateContent(getInteractionState()) != null && position > -1 && position < getAnimateContent(getInteractionState()).length ){
+        if (getAnimateContent(getInteractionState()) != null && position > -1 && position < getAnimateContent(getInteractionState()).length) {
             this.position = position;
-        }
-        else{
+        } else {
             this.position = 0;
         }
     }

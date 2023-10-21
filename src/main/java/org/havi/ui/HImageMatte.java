@@ -18,25 +18,25 @@ import java.awt.Image;
 import java.awt.Point;
 
 
-public class HImageMatte implements HMatte{
+public class HImageMatte implements HMatte {
 
-    public HImageMatte(){
+    public HImageMatte() {
     }
 
-    public HImageMatte(Image data){
+    public HImageMatte(Image data) {
     }
 
-    public void setMatteData(Image data){
+    public void setMatteData(Image data) {
     }
 
-    public Image getMatteData(){
+    public Image getMatteData() {
         return (null);
     }
 
-    public void setOffset(Point p){
+    public void setOffset(Point p) {
     }
 
-    public Point getOffset(){
+    public Point getOffset() {
         return (null);
     }
 }

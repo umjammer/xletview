@@ -16,8 +16,6 @@ package org.havi.ui;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -26,12 +24,12 @@ public class HScreenDimension {
     public float width;
     public float height;
 
-    public HScreenDimension(float width, float height){
+    public HScreenDimension(float width, float height) {
         this.width = width;
         this.height = height;
     }
 
-    public void setSize(float width, float height){
+    public void setSize(float width, float height) {
         this.width = width;
         this.height = height;
     }

@@ -25,10 +25,11 @@ import net.beiker.xletview.util.Util;
 import net.n3.nanoxml.XMLElement;
 import net.n3.nanoxml.XMLWriter;
 
+
 /**
  * Parses the project xml file
  */
-public class AppWriter{
+public class AppWriter {
 
     /** Debugging facility. */
     private static final Logger logger = Logger.getLogger(AppWriter.class.getName());
@@ -62,7 +63,7 @@ public class AppWriter{
 //         }
 //    }
 
-    public static void write(URL url, AppGroup group){
+    public static void write(URL url, AppGroup group) {
         XMLElement root = new XMLElement("APPLICATIONS");
 
         build(group, root);
@@ -70,16 +71,14 @@ public class AppWriter{
         OutputStream out = null;
         try {
             out = new FileOutputStream(url.getFile());
-        }
-        catch (Exception e1){
-            try{
+        } catch (Exception e1) {
+            try {
                 out = url.openConnection().getOutputStream();
+            } catch (Exception e2) {
+                logger.warning(url.toExternalForm() + Util.getStackTrace(e1) + "*** AND ***" + Util.getStackTrace(e2));
+                return;
             }
-            catch (Exception e2) {
-                 logger.warning(url.toExternalForm() + Util.getStackTrace(e1) + "*** AND ***" + Util.getStackTrace(e2));
-                 return;
-            }
-         }
+        }
 
         XMLWriter writer = new XMLWriter(out);
         try {
@@ -92,7 +91,7 @@ public class AppWriter{
 
     }
 
-    private static void build(AppGroup group, XMLElement parent){
+    private static void build(AppGroup group, XMLElement parent) {
 
 //        String name = group.getName();
 //        XMLElement element = new XMLElement("GROUP");
@@ -101,7 +100,7 @@ public class AppWriter{
 
         // get the subgroups of this group
         List<?> subGroups = group.getSubGroups();
-        logger.fine(group.getName() + ", children = " +subGroups.size());
+        logger.fine(group.getName() + ", children = " + subGroups.size());
         for (Object object : subGroups) {
             AppGroup subGroup = (AppGroup) object;
             String name = subGroup.getName();

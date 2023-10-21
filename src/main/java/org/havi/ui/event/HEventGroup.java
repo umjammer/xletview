@@ -16,22 +16,31 @@ package org.havi.ui.event;
 
 public class HEventGroup {
 
-    public HEventGroup(){}
+    public HEventGroup() {
+    }
 
-    public void addKey (int keycode) {}
+    public void addKey(int keycode) {
+    }
 
-    public void removeKey (int keycode) {}
+    public void removeKey(int keycode) {
+    }
 
-    public void addAllNumericKeys() {}
+    public void addAllNumericKeys() {
+    }
 
-    public void addAllColourKeys(){}
+    public void addAllColourKeys() {
+    }
 
-    public void addAllArrowKeys(){}
+    public void addAllArrowKeys() {
+    }
 
-    public void removeAllNumericKeys(){}
+    public void removeAllNumericKeys() {
+    }
 
-    public void removeAllColourKeys(){}
+    public void removeAllColourKeys() {
+    }
 
-    public void removeAllArrowKeys(){}
+    public void removeAllArrowKeys() {
+    }
 
 }

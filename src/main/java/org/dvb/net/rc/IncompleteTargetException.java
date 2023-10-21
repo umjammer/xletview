@@ -17,13 +17,12 @@
 package org.dvb.net.rc;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class IncompleteTargetException extends java.lang.Exception{
+public class IncompleteTargetException extends java.lang.Exception {
 
-    public IncompleteTargetException(){
+    public IncompleteTargetException() {
         super();
     }
 

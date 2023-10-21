@@ -12,18 +12,16 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class InvalidPathnameEvent extends AsynchronousLoadingEvent {
 
-    public InvalidPathnameEvent (DSMCCObject o) {
+    public InvalidPathnameEvent(DSMCCObject o) {
         super(o);
     }
 

@@ -17,9 +17,8 @@ package org.davic.net.dvb;
 import org.davic.net.InvalidLocatorException;
 import org.davic.net.TransportDependentLocator;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

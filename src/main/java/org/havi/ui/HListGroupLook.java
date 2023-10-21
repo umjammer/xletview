@@ -17,109 +17,103 @@ package org.havi.ui;
 import java.awt.Dimension;
 import java.awt.Insets;
 
+
 /**
-*
-* @author Cristian Suazo, Martin Sveden
-* @statuscode 1
-*
-*/
-public class HListGroupLook implements HAdjustableLook{
+ * @author Cristian Suazo, Martin Sveden
+ * @statuscode 1
+ */
+public class HListGroupLook implements HAdjustableLook {
 
     private Insets insets;
 
     private Insets elementInsets;
 
 
-    public HListGroupLook(){
+    public HListGroupLook() {
 
         insets = new Insets(2, 2, 2, 2);
 
         elementInsets = new Insets(2, 2, 2, 2);
 
-   }
+    }
 
-   @Override
-   public void showLook(java.awt.Graphics g, HVisible visible, int state){
-   }
+    @Override
+    public void showLook(java.awt.Graphics g, HVisible visible, int state) {
+    }
 
-   @Override
-   public void widgetChanged (HVisible visible, HChangeData[] changes){
-   }
+    @Override
+    public void widgetChanged(HVisible visible, HChangeData[] changes) {
+    }
 
-   @Override
-   public Dimension getMinimumSize(HVisible visible){
+    @Override
+    public Dimension getMinimumSize(HVisible visible) {
 
-       int width = insets.left + insets.top;
-       int height = insets.bottom + insets.top;
+        int width = insets.left + insets.top;
+        int height = insets.bottom + insets.top;
 
-       Dimension itemDim = getItemDimension((HListGroup) visible);
+        Dimension itemDim = getItemDimension((HListGroup) visible);
 
-       return new Dimension(width + itemDim.width, height + itemDim.height);
-   }
+        return new Dimension(width + itemDim.width, height + itemDim.height);
+    }
 
-   @Override
-   public Dimension getPreferredSize(HVisible visible){
-
-
-       //         doing some work here, check
+    @Override
+    public Dimension getPreferredSize(HVisible visible) {
 
 
-       // get all sizes that are needed
-       HListGroup hGroup = (HListGroup) visible;
-       Dimension min = getMinimumSize(visible);
-       Dimension defaultSize = hGroup.getDefaultSize();
-       Dimension preferredSize = new Dimension();
+        //         doing some work here, check
 
 
-       if (defaultSize == HVisible.NO_DEFAULT_SIZE ){
-           preferredSize = min;
-       }
-       else{
+        // get all sizes that are needed
+        HListGroup hGroup = (HListGroup) visible;
+        Dimension min = getMinimumSize(visible);
+        Dimension defaultSize = hGroup.getDefaultSize();
+        Dimension preferredSize = new Dimension();
 
 
-           int orientation = hGroup.getOrientation();
-           int sizeToNextElement;
-           int sizeToPrevElement;
-
-           preferredSize = defaultSize;
-
-           // adjust size in the case that the width or the height hasn't been set
-           // minimun size should be 5 elemeents in the orientation that is set if there is no default value
-           // set for the hlist group
+        if (defaultSize == HVisible.NO_DEFAULT_SIZE) {
+            preferredSize = min;
+        } else {
 
 
-           //
+            int orientation = hGroup.getOrientation();
+            int sizeToNextElement;
+            int sizeToPrevElement;
+
+            preferredSize = defaultSize;
+
+            // adjust size in the case that the width or the height hasn't been set
+            // minimun size should be 5 elemeents in the orientation that is set if there is no default value
+            // set for the hlist group
+
+
+            //
             // width
-           //
-            if (defaultSize.width == HVisible.NO_DEFAULT_WIDTH ){
+            //
+            if (defaultSize.width == HVisible.NO_DEFAULT_WIDTH) {
 
-                if (orientation == HOrientable.ORIENT_LEFT_TO_RIGHT || orientation == HOrientable.ORIENT_RIGHT_TO_LEFT ){
+                if (orientation == HOrientable.ORIENT_LEFT_TO_RIGHT || orientation == HOrientable.ORIENT_RIGHT_TO_LEFT) {
                     // horisontal orientation
                     preferredSize.width = min.width * 5;
-                }
-                else{
+                } else {
                     preferredSize.width = min.width;
                 }
 
-            }
-            else{
+            } else {
 
 
                 // check so that atleast 1 element is with the size
-                if (preferredSize.width < min.width ){
+                if (preferredSize.width < min.width) {
                     preferredSize.width = min.width;
-                }
-                else{
+                } else {
 
 
                     // round to the nearest element
                     sizeToPrevElement = preferredSize.width % min.width;
-                    if (sizeToPrevElement != 0){
+                    if (sizeToPrevElement != 0) {
                         sizeToNextElement = min.width - sizeToPrevElement;
-                        if (sizeToPrevElement < sizeToNextElement ){
+                        if (sizeToPrevElement < sizeToNextElement) {
                             preferredSize.width = preferredSize.width - sizeToPrevElement;
-                        }
-                        else{
+                        } else {
                             preferredSize.width = preferredSize.width + sizeToNextElement;
                         }
                     }
@@ -133,33 +127,29 @@ public class HListGroupLook implements HAdjustableLook{
             //
             // height
             //
-            if (defaultSize.height == HVisible.NO_DEFAULT_HEIGHT ){
+            if (defaultSize.height == HVisible.NO_DEFAULT_HEIGHT) {
 
-                if (orientation == HOrientable.ORIENT_TOP_TO_BOTTOM || orientation == HOrientable.ORIENT_BOTTOM_TO_TOP ){
+                if (orientation == HOrientable.ORIENT_TOP_TO_BOTTOM || orientation == HOrientable.ORIENT_BOTTOM_TO_TOP) {
                     // vertical orientation
-                   preferredSize.height = min.height * 5;
-               }
-                else{
+                    preferredSize.height = min.height * 5;
+                } else {
                     preferredSize.height = min.height;
                 }
 
-            }
-            else{
+            } else {
 
 
                 // check so that atleast 1 element is with the size
-                if (preferredSize.height < min.height ){
+                if (preferredSize.height < min.height) {
                     preferredSize.height = min.height;
-                }
-                else{
+                } else {
                     // round to the nearest element
                     sizeToPrevElement = preferredSize.height % min.height;
-                    if (sizeToPrevElement != 0){
+                    if (sizeToPrevElement != 0) {
                         sizeToNextElement = min.height - sizeToPrevElement;
-                        if (sizeToPrevElement < sizeToNextElement ){
+                        if (sizeToPrevElement < sizeToNextElement) {
                             preferredSize.height = preferredSize.height - sizeToPrevElement;
-                        }
-                        else{
+                        } else {
                             preferredSize.height = preferredSize.height + sizeToNextElement;
                         }
                     }
@@ -170,85 +160,83 @@ public class HListGroupLook implements HAdjustableLook{
             }
 
 
-
-       }
-
+        }
 
 
-       return(null);
-   }
+        return (null);
+    }
 
-   @Override
-   public Dimension getMaximumSize(HVisible visible){
+    @Override
+    public Dimension getMaximumSize(HVisible visible) {
 
-       HListGroup hGroup = (HListGroup) visible;
-       HListElement[] elements = hGroup.getListContent();
+        HListGroup hGroup = (HListGroup) visible;
+        HListElement[] elements = hGroup.getListContent();
 
-       int width = insets.left + insets.top;
-       int height = insets.bottom + insets.top;
+        int width = insets.left + insets.top;
+        int height = insets.bottom + insets.top;
 
-       Dimension itemDim = getItemDimension(hGroup);
+        Dimension itemDim = getItemDimension(hGroup);
 
-       if(hGroup.getOrientation() == HOrientable.ORIENT_TOP_TO_BOTTOM || hGroup.getOrientation() == HOrientable.ORIENT_BOTTOM_TO_TOP  ){
-           // this handles vertical orientation
+        if (hGroup.getOrientation() == HOrientable.ORIENT_TOP_TO_BOTTOM || hGroup.getOrientation() == HOrientable.ORIENT_BOTTOM_TO_TOP) {
+            // this handles vertical orientation
 
-           height += itemDim.height * elements.length;
-           width  += itemDim.width;
-       }
-       else{
-           // this handles horizontal orientation
-           height += itemDim.height;
-           width  += itemDim.width * elements.length;
-       }
+            height += itemDim.height * elements.length;
+            width += itemDim.width;
+        } else {
+            // this handles horizontal orientation
+            height += itemDim.height;
+            width += itemDim.width * elements.length;
+        }
 
 
-       return new Dimension(width, height);
-   }
+        return new Dimension(width, height);
+    }
 
-   /**
-    * Calculates the Dimension of one element.
-    * @param hGroup The HListGroup
-    * @return the Dimension of one element
-    */
-   private Dimension getItemDimension(HListGroup hGroup){
+    /**
+     * Calculates the Dimension of one element.
+     *
+     * @param hGroup The HListGroup
+     * @return the Dimension of one element
+     */
+    private Dimension getItemDimension(HListGroup hGroup) {
 
-       Dimension iconDim = hGroup.getIconSize();
-       Dimension labelDim = hGroup.getLabelSize();
+        Dimension iconDim = hGroup.getIconSize();
+        Dimension labelDim = hGroup.getLabelSize();
 
-       int itemWidth = elementInsets.left + elementInsets.right + iconDim.width + labelDim.width;
-       int itemHeight = elementInsets.top + elementInsets.bottom;
+        int itemWidth = elementInsets.left + elementInsets.right + iconDim.width + labelDim.width;
+        int itemHeight = elementInsets.top + elementInsets.bottom;
 
-       itemHeight += Math.max(hGroup.getIconSize().height, hGroup.getLabelSize().height);
+        itemHeight += Math.max(hGroup.getIconSize().height, hGroup.getLabelSize().height);
 
         return new Dimension(itemWidth, itemHeight);
-   }
+    }
 
 
-   @Override
-   public boolean isOpaque(HVisible visible){
-       return(false);
-   }
+    @Override
+    public boolean isOpaque(HVisible visible) {
+        return (false);
+    }
 
-   @Override
-   public java.awt.Insets getInsets(HVisible visible){
-       return insets;
-   }
+    @Override
+    public java.awt.Insets getInsets(HVisible visible) {
+        return insets;
+    }
 
-   @Override
-   public int hitTest(HOrientable component, java.awt.Point pt){
-       return(0);
-   }
-
-   @Override
-   public java.lang.Integer getValue(HOrientable component, java.awt.Point pt){
-       return(null);
-   }
-
-   public java.awt.Insets getElementInsets(){
-        return elementInsets;
-   }
-
-   public int getNumVisible(HVisible visible){
+    @Override
+    public int hitTest(HOrientable component, java.awt.Point pt) {
         return (0);
-   }
+    }
+
+    @Override
+    public java.lang.Integer getValue(HOrientable component, java.awt.Point pt) {
+        return (null);
+    }
+
+    public java.awt.Insets getElementInsets() {
+        return elementInsets;
+    }
+
+    public int getNumVisible(HVisible visible) {
+        return (0);
+    }
 }

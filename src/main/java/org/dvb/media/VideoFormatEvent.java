@@ -15,14 +15,12 @@
 package org.dvb.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class VideoFormatEvent extends java.util.EventObject{
+public abstract class VideoFormatEvent extends java.util.EventObject {
 
-    public VideoFormatEvent(Object source){
+    public VideoFormatEvent(Object source) {
         super(source);
     }
 }

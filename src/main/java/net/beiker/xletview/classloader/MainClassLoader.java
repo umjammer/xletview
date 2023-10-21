@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.classloader;
 
@@ -19,9 +17,10 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+
 
 /**
  * This ClassLoader loads the emulator classes. This means that it's also the
@@ -43,8 +42,7 @@ public class MainClassLoader extends URLClassLoader {
         this.loadedClasses = new HashMap<>();
     }
 
-
-    public void addClassPath(String classpath){
+    public void addClassPath(String classpath) {
         String[] s = classpath.split(File.pathSeparator);
 
         for (String string : s) {
@@ -86,10 +84,6 @@ public class MainClassLoader extends URLClassLoader {
         return urls;
     }
 
-    /*
-     *  (non-Javadoc)
-     * @see java.lang.ClassLoader#loadClass(java.lang.String)
-     */
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
 
@@ -101,32 +95,32 @@ public class MainClassLoader extends URLClassLoader {
         theClass = getLoadedClass(name);
 
         //don't let an instance of this classloader load the class of itself
-        if(theClass == null && !name.equals(getClass().getName())){
+        if (theClass == null && !name.equals(getClass().getName())) {
             newClass = true;
             theClass = findClass(name);
         }
 
-        if(theClass == null){
+        if (theClass == null) {
             theClass = this.findSystemClass(name);
         }
 
 
-        if(theClass == null){
+        if (theClass == null) {
             throw new ClassNotFoundException();
         }
 
-        if(newClass && theClass != null){
+        if (newClass && theClass != null) {
             this.loadedClasses.put(name, theClass);
         }
-        return theClass;
 
+        return theClass;
     }
 
     /**
      * Returns a class if previously loaded by
      * this classloader.
      */
-    private Class<?> getLoadedClass(String name){
+    private Class<?> getLoadedClass(String name) {
         return this.loadedClasses.get(name);
     }
 
@@ -138,10 +132,8 @@ public class MainClassLoader extends URLClassLoader {
         Class<?> theClass = null;
         try {
             theClass = super.findClass(name);
-        }
-        catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException e) {
         }
         return theClass;
     }
-
 }

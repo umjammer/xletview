@@ -36,10 +36,9 @@ public class OutputRedirector extends OutputStream {
 
 
     /**
-     *
      * @param printer The OutputPrinter to redirect to
      */
-    public OutputRedirector(OutputPrinter printer){
+    public OutputRedirector(OutputPrinter printer) {
         outputPrinter = printer;
     }
 

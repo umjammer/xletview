@@ -14,12 +14,12 @@
 
 package org.havi.ui;
 
-public class HPermissionDeniedException extends java.lang.Exception{
+public class HPermissionDeniedException extends java.lang.Exception {
 
-    public HPermissionDeniedException(){
+    public HPermissionDeniedException() {
     }
 
-    public HPermissionDeniedException(String message){
+    public HPermissionDeniedException(String message) {
     }
 }
 

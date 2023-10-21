@@ -14,12 +14,12 @@
 
 package org.davic.mpeg.sections;
 
-public class TableSectionFilter    extends org.davic.mpeg.sections.SectionFilter{
+public class TableSectionFilter extends org.davic.mpeg.sections.SectionFilter {
 
-    TableSectionFilter(){
+    TableSectionFilter() {
     }
 
-    public Section[] getSections()    throws FilteringInterruptedException{
+    public Section[] getSections() throws FilteringInterruptedException {
         return null;
     }
 }

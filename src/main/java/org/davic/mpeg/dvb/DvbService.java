@@ -14,12 +14,12 @@
 
 package org.davic.mpeg.dvb;
 
-public class DvbService extends org.davic.mpeg.Service{
+public class DvbService extends org.davic.mpeg.Service {
 
-    protected DvbService(){
+    protected DvbService() {
     }
 
-    public DvbElementaryStream retrieveDvbElementaryStream(int componentTag){
+    public DvbElementaryStream retrieveDvbElementaryStream(int componentTag) {
         return null;
     }
 

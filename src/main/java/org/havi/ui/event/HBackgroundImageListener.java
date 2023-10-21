@@ -16,7 +16,8 @@ package org.havi.ui.event;
 
 import java.util.EventListener;
 
-public interface HBackgroundImageListener extends EventListener{
+
+public interface HBackgroundImageListener extends EventListener {
 
     void imageLoaded(HBackgroundImageEvent e);
 

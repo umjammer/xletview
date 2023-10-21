@@ -21,13 +21,13 @@ package xjavax.tv.service.selection;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class InsufficientResourcesException extends ServiceContextException{
+public class InsufficientResourcesException extends ServiceContextException {
+
     /**
      * Constructs an <code>InsufficientResourcesException</code> with no
      * detail message.</DL>
-     *
      */
-    public InsufficientResourcesException()    {
+    public InsufficientResourcesException() {
         super();
     }
 
@@ -35,9 +35,9 @@ public class InsufficientResourcesException extends ServiceContextException{
      * Constructs an <code>InsufficientResourcesException</code> with a
      * detail message.
      *
-     * @param s - The detail message.
+     * @param s The detail message.
      */
-    public InsufficientResourcesException(String s){
+    public InsufficientResourcesException(String s) {
         super(s);
     }
 

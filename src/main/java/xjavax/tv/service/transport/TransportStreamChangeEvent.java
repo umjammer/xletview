@@ -15,6 +15,7 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIChangeType;
 
+
 /**
  * A <code>TransportStreamChangeEvent</code> notifies an
  * <code>TransportStreamChangeListener</code> of changes detected in a
@@ -27,16 +28,16 @@ import xjavax.tv.service.SIChangeType;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class TransportStreamChangeEvent extends TransportSIChangeEvent{
+public class TransportStreamChangeEvent extends TransportSIChangeEvent {
 
     /**
      * Constructs a <code>TransportStreamChangeEvent</code>.
      *
-     * @param collection - The transport stream collection in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param ts - The TransportStream that changed.
+     * @param collection The transport stream collection in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param ts The TransportStream that changed.
      */
-    public TransportStreamChangeEvent( TransportStreamCollection collection, SIChangeType type, TransportStream ts)    {
+    public TransportStreamChangeEvent(TransportStreamCollection collection, SIChangeType type, TransportStream ts) {
         super(collection, type, ts);
     }
 
@@ -47,7 +48,7 @@ public class TransportStreamChangeEvent extends TransportSIChangeEvent{
      *
      * @return The TransportStreamCollection that generated the event.
      */
-    public TransportStreamCollection getTransportStreamCollection()    {
+    public TransportStreamCollection getTransportStreamCollection() {
         return (TransportStreamCollection) super.getTransport();
     }
 
@@ -58,7 +59,7 @@ public class TransportStreamChangeEvent extends TransportSIChangeEvent{
      *
      * @return The TransportStream that changed.
      */
-    public TransportStream getTransportStream()    {
+    public TransportStream getTransportStream() {
         return (TransportStream) super.getSIElement();
     }
 

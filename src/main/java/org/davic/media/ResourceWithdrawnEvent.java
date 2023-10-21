@@ -15,14 +15,12 @@
 package org.davic.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ResourceWithdrawnEvent extends javax.media.ControllerEvent{
+public class ResourceWithdrawnEvent extends javax.media.ControllerEvent {
 
-    public ResourceWithdrawnEvent(javax.media.Controller controller){
+    public ResourceWithdrawnEvent(javax.media.Controller controller) {
         super(controller);
     }
 }

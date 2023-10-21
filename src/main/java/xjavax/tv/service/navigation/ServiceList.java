@@ -18,13 +18,14 @@ import xjavax.tv.locator.Locator;
 import xjavax.tv.service.Service;
 import xjavax.tv.service.ServiceNumber;
 
+
 /**
  * <code>ServiceList</code> represents an ordered list of
  * <code>Service</code> objects based on a specific grouping rule
  * defined by a <code>ServiceFilter</code>.  The objects in a
  * <code>ServiceList</code> are numbered from 0 to <code>size()
  * -1</code>.
- *
+ * <p>
  * A <code>ServiceList</code> is <i>immutable</i>.  In other words,
  * once a <code>ServiceList</code> instance is created, the elements
  * in the list and their order will never change.  All classes that
@@ -33,11 +34,9 @@ import xjavax.tv.service.ServiceNumber;
  * <A HREF="../../../../javax/tv/service/navigation/ServiceFilter.html"><CODE>ServiceFilter</CODE></A>,
  * <A HREF="../../../../javax/tv/service/navigation/ServiceList.html#size()"><CODE>size()</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface ServiceList
-{
+public interface ServiceList {
+
     /**
      * Generates a new <code>ServiceList</code> containing the
      * same elements as the current list, sorted in ascending
@@ -63,7 +62,7 @@ public interface ServiceList
      * Reports the <code>Service</code> corresponding to the specified
      * locator if it is a member of this list.
      *
-     * @param locator - Specifies the Service to be searched for.
+     * @param locator Specifies the Service to be searched for.
      * @return The Service corresponding to locator, or null if the Service is not a member of this list.
      * @throws InvalidLocatorException - If locator does not reference a valid Service.
      */
@@ -77,13 +76,13 @@ public interface ServiceList
      * objects based on multiple filtering criteria.  If the filter is
      * <code>null</code>, the resulting <code>ServiceList</code> will be
      * a duplicate of this list.  <p>
-     *
+     * <p>
      * Note that the <code>accept</code> method of the given
      * <code>ServiceFilter</code> will be invoked for each
      * <code>Service</code> to be filtered using the same application
      * thread that invokes this method.
      *
-     * @param filter - A filter constraining the requested service list, or null.
+     * @param filter A filter constraining the requested service list, or null.
      * @return A ServiceList object created based on the specified filtering rules.
      * @see ServiceFilter#accept(xjavax.tv.service.Service)
      */
@@ -101,7 +100,7 @@ public interface ServiceList
      * Tests if the indicated <code>Service</code> object is contained
      * in the list.
      *
-     * @param service - The Service object for which to search.
+     * @param service The Service object for which to search.
      * @return true if the specified Service is member of the list; false otherwise.
      */
     boolean contains(Service service);
@@ -110,7 +109,7 @@ public interface ServiceList
      * Reports the position of the first occurrence of the
      * indicated <code>Service</code> object in the list.
      *
-     * @param service - The Service object for which to search.
+     * @param service The Service object for which to search.
      * @return The index of the first occurrence of the service, or -1 if service is not contained in the list.
      */
     int indexOf(Service service);
@@ -125,7 +124,7 @@ public interface ServiceList
     /**
      * Reports the <code>Service</code> at the specified index position.
      *
-     * @param index - A position in the ServiceList.
+     * @param index A position in the ServiceList.
      * @return The Service at the specified index.
      * @throws java.lang.IndexOutOfBoundsException - If index index > size()-1.
      */
@@ -141,7 +140,7 @@ public interface ServiceList
      * are defined to be equal if they contain the same elements in the
      * same order.
      *
-     * @param o - The object to be compared for equality with this list.
+     * @param o The object to be compared for equality with this list.
      * @return true if the specified object is equal to this list; false otherwise.
      * @see #equals in class java.lang.Object
      */

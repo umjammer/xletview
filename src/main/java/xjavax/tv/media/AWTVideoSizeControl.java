@@ -31,7 +31,7 @@ package xjavax.tv.media;
  * java.awt.Toolkit.getScreenSize(), and locations reported by
  * Component.getLocationOnScreen() are given in the screen's
  * coordinate system.<p>
- *
+ * <p>
  * Instances of <code>AWTVideoSizeControl</code> may be obtained from
  * a JMF <code>Player</code> via the methods
  * <code>getControl(String)</code> and <code>getControls()</code>.
@@ -42,11 +42,9 @@ package xjavax.tv.media;
  * <CODE>java.awt.Component.getLocationOnScreen()</CODE>,
  * <CODE>Player</CODE></DL>
  * <HR>
- *
- *
  */
-public interface AWTVideoSizeControl extends javax.media.Control
-{
+public interface AWTVideoSizeControl extends javax.media.Control {
+
     /**
      * Reports the <code>AWTVideoSize</code> at which the Player is
      * currently operating.
@@ -78,7 +76,7 @@ public interface AWTVideoSizeControl extends javax.media.Control
      * by the underlying platform, this method does nothing and
      * returns <code>false</code>.
      *
-     * @param sz - The desired video size, in the AWT coordinate space.
+     * @param sz The desired video size, in the AWT coordinate space.
      * @return true if the size was successfully changed; false if the platform is incapable of supporting the given size.
      * @see #checkSize(AWTVideoSize)
      */
@@ -90,7 +88,7 @@ public interface AWTVideoSizeControl extends javax.media.Control
      * the given size, this method gives the closest approximation
      * that the platform is capable of.
      *
-     * @param sz - The desired video size.
+     * @param sz The desired video size.
      * @return The actual size that the platform would be able to set.
      */
     AWTVideoSize checkSize(AWTVideoSize sz);

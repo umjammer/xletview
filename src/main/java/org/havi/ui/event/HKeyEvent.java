@@ -17,20 +17,19 @@ package org.havi.ui.event;
 
 import java.awt.Component;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HKeyEvent extends HRcEvent{
+public class HKeyEvent extends HRcEvent {
 
-  public HKeyEvent(Component source, int id, long when, int modifiers,int keyCode, char keyChar) {
-    super(source, id, when, modifiers, keyCode, keyChar);
-  }
+    public HKeyEvent(Component source, int id, long when, int modifiers, int keyCode, char keyChar) {
+        super(source, id, when, modifiers, keyCode, keyChar);
+    }
 
-  public HKeyEvent(Component source, int id, long when, int modifiers, int keyCode) {
-    super(source, id, when, modifiers, keyCode);
-  }
+    public HKeyEvent(Component source, int id, long when, int modifiers, int keyCode) {
+        super(source, id, when, modifiers, keyCode);
+    }
 }
 

@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NothingToAbortException extends DSMCCException {
 
-    public NothingToAbortException(){
+    public NothingToAbortException() {
         super();
     }
 
-    public NothingToAbortException(String s){
+    public NothingToAbortException(String s) {
         super(s);
     }
 }

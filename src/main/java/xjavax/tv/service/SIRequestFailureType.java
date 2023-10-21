@@ -19,14 +19,12 @@ package xjavax.tv.service;
  * reason codes.
  * <A HREF="../../../javax/tv/service/SIRequest.html"><CODE>SIRequest</CODE></A></DL>
  * <HR>
- *
- *
  */
 public class SIRequestFailureType {
+
     /**
      * The reason generated when the <code>SIRequest</code> is canceled.
      * <DT><B>See Also: </B>
-     *
      */
     public static final SIRequestFailureType CANCELED = null;
 
@@ -35,7 +33,6 @@ public class SIRequestFailureType {
      * asynchronous SI retrieval (such as a tuner, section filter, etc.)
      * are unavailable. The application may attempt to release some
      * resources and attempt the request again.</DL>
-     *
      */
     public static final SIRequestFailureType INSUFFICIENT_RESOURCES = null;
 
@@ -46,24 +43,20 @@ public class SIRequestFailureType {
      * data is present on some transport/network but the SI database
      * does not know about it, or when the type of requested data is
      * not supported by the broadcast environment.</DL>
-     *
      */
     public static final SIRequestFailureType DATA_UNAVAILABLE = null;
 
     /**
      * The reason for the failure is unknown.</DL>
-     *
-     *
      */
     public static final SIRequestFailureType UNKNOWN = null;
 
     /**
      * Creates an <code>SIRequestFailureType</code> object.
      *
-     * @param name - The string name of this type (e.g., "CANCELED").
+     * @param name The string name of this type (e.g., "CANCELED").
      */
-    protected SIRequestFailureType(java.lang.String name)
-    {
+    protected SIRequestFailureType(java.lang.String name) {
         //TODO implement SIRequestFailureType
     }
 
@@ -75,8 +68,7 @@ public class SIRequestFailureType {
      * @return The string name of the type.
      * @see #toString in class java.lang.Object
      */
-    public java.lang.String toString()
-    {
+    public java.lang.String toString() {
         return null;
         //TODO implement toString
     }

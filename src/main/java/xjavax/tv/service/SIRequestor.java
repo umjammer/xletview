@@ -21,21 +21,19 @@ package xjavax.tv.service;
  * unregistered when the request is completed.  Applications can
  * disambiguate retrieval operations by registering a unique
  * <code>SIRequestor</code> for each retrieval request.<p>
- *
+ * <p>
  * The asynchronous SI retrieval mechanisms invoke the methods of this
  * interface using system threads that are guaranteed to not hold
  * locks on application objects.
  * <HR>
- *
- *
  */
-public interface SIRequestor
-{
+public interface SIRequestor {
+
     /**
      * Notifies the <code>SIRequestor</code> of successful asynchronous
      * SI retrieval.
      *
-     * @param result - The previously requested data.
+     * @param result The previously requested data.
      */
     void notifySuccess(SIRetrievable[] result);
 
@@ -43,7 +41,7 @@ public interface SIRequestor
      * Notifies the <code>SIRequestor</code> of unsuccessful asynchronous
      * SI retrieval.
      *
-     * @param reason - The reason why the asynchronous request failed.
+     * @param reason The reason why the asynchronous request failed.
      */
     void notifyFailure(SIRequestFailureType reason);
 

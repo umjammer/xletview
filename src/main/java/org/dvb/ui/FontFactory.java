@@ -16,6 +16,7 @@ package org.dvb.ui;
 
 import java.io.IOException;
 
+
 public class FontFactory {
 
     public FontFactory() throws FontFormatException, IOException {
@@ -24,7 +25,7 @@ public class FontFactory {
     public FontFactory(java.net.URL u) throws IOException, FontFormatException {
     }
 
-    public java.awt.Font createFont(String name, int style, int size) throws FontNotAvailableException,FontFormatException, IOException {
+    public java.awt.Font createFont(String name, int style, int size) throws FontNotAvailableException, FontFormatException, IOException {
         return null;
     }
 

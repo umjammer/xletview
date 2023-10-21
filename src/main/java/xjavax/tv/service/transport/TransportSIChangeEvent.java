@@ -17,11 +17,12 @@ import xjavax.tv.service.SIChangeEvent;
 import xjavax.tv.service.SIChangeType;
 import xjavax.tv.service.SIElement;
 
+
 /**
  * An <code>TransportSIChangeEvent</code> notifies an
  * <code>SIChangeListener</code> of changes detected to the SI on a
  * <code>Transport</code>.<p>
- *
+ * <p>
  * Subtypes <code>ServiceDetailsChangeEvent</code>,
  * <code>TransportStreamChangeEvent</code>,
  * <code>NetworkChangeEvent</code> and <code>BouquetChangeEvent</code>
@@ -33,16 +34,16 @@ import xjavax.tv.service.SIElement;
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class TransportSIChangeEvent extends SIChangeEvent{
+public abstract class TransportSIChangeEvent extends SIChangeEvent {
 
     /**
      * Constructs an <code>TransportSIChangeEvent</code>.
      *
-     * @param transport - The Transport on which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param e - The SIElement that changed.
+     * @param transport The Transport on which the change occurred.
+     * @param type The type of change that occurred.
+     * @param e The SIElement that changed.
      */
-    public TransportSIChangeEvent( Transport transport, SIChangeType type, SIElement e)    {
+    public TransportSIChangeEvent(Transport transport, SIChangeType type, SIElement e) {
         super(transport, type, e);
     }
 
@@ -53,7 +54,7 @@ public abstract class TransportSIChangeEvent extends SIChangeEvent{
      *
      * @return The Transport that generated the event.
      */
-    public Transport getTransport()    {
+    public Transport getTransport() {
         return (Transport) super.getSource();
     }
 

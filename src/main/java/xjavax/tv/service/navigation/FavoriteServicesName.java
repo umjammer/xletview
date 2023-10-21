@@ -10,6 +10,7 @@
  See LICENSE document for details.
 
 */
+
 package xjavax.tv.service.navigation;
 
 /**
@@ -18,11 +19,9 @@ package xjavax.tv.service.navigation;
  * <code>Service</code> objects based on a user preference for
  * favorite services.
  * <HR>
- *
- *
  */
-public interface FavoriteServicesName
-{
+public interface FavoriteServicesName {
+
     /**
      * Provides a human-readable name for this favorite services preference.
      *

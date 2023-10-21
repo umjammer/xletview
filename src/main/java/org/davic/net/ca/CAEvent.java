@@ -15,12 +15,10 @@
 package org.davic.net.ca;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class CAEvent extends java.util.EventObject{
+public abstract class CAEvent extends java.util.EventObject {
 
     CAEvent(Object o) {
         super(o);

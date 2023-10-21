@@ -16,31 +16,33 @@ package org.dvb.dsmcc;
 
 import java.io.IOException;
 
+
 public class DSMCCStreamEvent extends DSMCCStream {
 
-    public DSMCCStreamEvent(DSMCCObject aDSMCCObject) throws NotLoadedException, IllegalObjectTypeException    {
-        super (aDSMCCObject);
+    public DSMCCStreamEvent(DSMCCObject aDSMCCObject) throws NotLoadedException, IllegalObjectTypeException {
+        super(aDSMCCObject);
     }
 
     public DSMCCStreamEvent(String path) throws IOException {
         super(path);
     }
 
-    public DSMCCStreamEvent(String path, String name) throws IOException {super(path, name);
+    public DSMCCStreamEvent(String path, String name) throws IOException {
+        super(path, name);
     }
 
-    public synchronized int subscribe(String eventName, StreamEventListener l) throws UnknownEventException, InsufficientResourcesException    {
+    public synchronized int subscribe(String eventName, StreamEventListener l) throws UnknownEventException, InsufficientResourcesException {
         return 0;
     }
 
-    public synchronized void unsubscribe(int eventId, StreamEventListener l) throws UnknownEventException{
+    public synchronized void unsubscribe(int eventId, StreamEventListener l) throws UnknownEventException {
     }
 
-    public synchronized void unsubscribe(String eventName, StreamEventListener l) throws UnknownEventException{
+    public synchronized void unsubscribe(String eventName, StreamEventListener l) throws UnknownEventException {
     }
 
 
-    public String [] getEventList()    {
+    public String[] getEventList() {
         return null;
     }
 

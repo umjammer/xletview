@@ -15,25 +15,23 @@
 package org.havi.ui.event;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HActionEvent extends java.awt.event.ActionEvent{
+public class HActionEvent extends java.awt.event.ActionEvent {
 
 
-    public HActionEvent(org.havi.ui.HActionInputPreferred source, int id, String command){
+    public HActionEvent(org.havi.ui.HActionInputPreferred source, int id, String command) {
         super(source, id, command);
     }
 
     @Override
-    public String getActionCommand(){
+    public String getActionCommand() {
         return super.getActionCommand();
     }
 
     @Override
-    public int getModifiers(){
+    public int getModifiers() {
         return super.getModifiers();
     }
 }

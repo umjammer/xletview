@@ -15,13 +15,12 @@
 package org.davic.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ResourceReturnedEvent extends javax.media.ControllerEvent{
-    public ResourceReturnedEvent(javax.media.Controller controller)    {
+public class ResourceReturnedEvent extends javax.media.ControllerEvent {
+
+    public ResourceReturnedEvent(javax.media.Controller controller) {
         super(controller);
     }
 }

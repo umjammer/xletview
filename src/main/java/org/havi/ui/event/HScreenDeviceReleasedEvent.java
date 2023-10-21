@@ -16,20 +16,19 @@ package org.havi.ui.event;
 
 import org.davic.resources.ResourceStatusEvent;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HScreenDeviceReleasedEvent extends ResourceStatusEvent{
+public class HScreenDeviceReleasedEvent extends ResourceStatusEvent {
 
-    public HScreenDeviceReleasedEvent(Object source){
+    public HScreenDeviceReleasedEvent(Object source) {
         super(source);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 

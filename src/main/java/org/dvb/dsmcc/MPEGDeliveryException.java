@@ -15,8 +15,6 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -26,7 +24,7 @@ public class MPEGDeliveryException extends DSMCCException {
         super();
     }
 
-    public MPEGDeliveryException(String s){
+    public MPEGDeliveryException(String s) {
         super(s);
     }
 

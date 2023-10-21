@@ -18,25 +18,26 @@ package net.beiker.xletview.io;
 import java.io.File;
 import java.util.logging.Logger;
 
-public class FileInfo{
+
+public class FileInfo {
 
     /** Debugging facility */
     private final static Logger logger = Logger.getLogger(FileInfo.class.getName());
 
     private File file;
 
-    public FileInfo(File file){
+    public FileInfo(File file) {
         this.file = file;
     }
 
-    public String getPath(){
+    public String getPath() {
         logger.fine("-->" + this.file.getPath());
         return this.file.getPath();
     }
 
-    public String toString(){
+    public String toString() {
         String name = this.file.getName();
-        if(name.isEmpty()) name = this.file.getPath();
+        if (name.isEmpty()) name = this.file.getPath();
         return name;
     }
 

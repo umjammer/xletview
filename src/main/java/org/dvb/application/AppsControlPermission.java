@@ -17,6 +17,7 @@ package org.dvb.application;
 /**
  * AppsControlPermission, can be used as the base class for permissions that
  * want to follow the same naming convention as BasicPermission.
+ *
  * @author Martin Sveden
  * @statuscode 4
  * @comment Even though it doesn't look fully implemented, there shouldn't be anything more to it than this, check the API.
@@ -29,7 +30,7 @@ public final class AppsControlPermission extends java.security.BasicPermission {
         super("");
     }
 
-    public AppsControlPermission(String name, String actions){
+    public AppsControlPermission(String name, String actions) {
         super(name);
     }
 
@@ -40,11 +41,11 @@ public final class AppsControlPermission extends java.security.BasicPermission {
 
     @Override
     public boolean implies(java.security.Permission permission) {
-       return permission instanceof AppsControlPermission;
+        return permission instanceof AppsControlPermission;
     }
 
     public boolean equals(Object obj) {
-       return obj instanceof AppsControlPermission;
+        return obj instanceof AppsControlPermission;
     }
 
     public int hashCode() {

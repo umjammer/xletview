@@ -14,40 +14,40 @@
 
 package org.havi.ui;
 
-public class HGraphicsDevice extends HScreenDevice{
+public class HGraphicsDevice extends HScreenDevice {
 
     private HGraphicsConfiguration hGraphicsConfiguration;
     private HGraphicsConfiguration[] hGraphicsConfigurations;
 
-    protected HGraphicsDevice(){
+    protected HGraphicsDevice() {
         hGraphicsConfiguration = new HGraphicsConfiguration();
         hGraphicsConfigurations = new HGraphicsConfiguration[1];
         hGraphicsConfigurations[0] = hGraphicsConfiguration;
     }
 
-    public HGraphicsConfiguration[] getConfigurations(){
+    public HGraphicsConfiguration[] getConfigurations() {
         return hGraphicsConfigurations;
     }
 
-    public HGraphicsConfiguration getDefaultConfiguration(){
+    public HGraphicsConfiguration getDefaultConfiguration() {
         return hGraphicsConfiguration;
     }
 
-    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate hgct){
+    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate hgct) {
         return hGraphicsConfiguration;
     }
 
-    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate[] hgcta){
+    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate[] hgcta) {
         return hGraphicsConfiguration;
     }
 
-    public HGraphicsConfiguration getCurrentConfiguration(){
+    public HGraphicsConfiguration getCurrentConfiguration() {
         return hGraphicsConfiguration;
     }
 
     public boolean setGraphicsConfiguration(HGraphicsConfiguration hgc) throws SecurityException,
-           org.havi.ui.HPermissionDeniedException,
-           org.havi.ui.HConfigurationException{
+            org.havi.ui.HPermissionDeniedException,
+            org.havi.ui.HConfigurationException {
         return (false);
     }
 }

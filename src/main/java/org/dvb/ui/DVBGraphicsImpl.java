@@ -26,39 +26,38 @@ import java.awt.Shape;
 import java.awt.image.ImageObserver;
 import java.text.AttributedCharacterIterator;
 
+
 /**
  * An implementation of the abstract <code>DVBGraphics</code> class using
  * delegates to <code>Graphics2D</code>.
- * @see java.awt.Graphics2D
  *
  * @author Christian K&ouml;berl
  * @version $Revision: 1.6 $
  * @statuscode 4
+ * @see java.awt.Graphics2D
  */
-class DVBGraphicsImpl extends DVBGraphics
-{
+class DVBGraphicsImpl extends DVBGraphics {
+
     private Graphics2D graphics2d;
     private DVBAlphaComposite dvbAlphaComposite;
     private static int[] availableCompositeRules = new int[] {
-        DVBAlphaComposite.CLEAR,
-        DVBAlphaComposite.DST_IN,
-        DVBAlphaComposite.DST_OUT,
-        DVBAlphaComposite.DST_OVER,
-        DVBAlphaComposite.SRC,
-        DVBAlphaComposite.SRC_IN,
-        DVBAlphaComposite.SRC_OUT,
-        DVBAlphaComposite.SRC_OVER
+            DVBAlphaComposite.CLEAR,
+            DVBAlphaComposite.DST_IN,
+            DVBAlphaComposite.DST_OUT,
+            DVBAlphaComposite.DST_OVER,
+            DVBAlphaComposite.SRC,
+            DVBAlphaComposite.SRC_IN,
+            DVBAlphaComposite.SRC_OUT,
+            DVBAlphaComposite.SRC_OVER
     };
 
-    public DVBGraphicsImpl(Graphics2D graphics2d)
-    {
+    public DVBGraphicsImpl(Graphics2D graphics2d) {
         this.graphics2d = graphics2d;
         this.graphics2d.setComposite(AlphaComposite.SrcOver);
         dvbAlphaComposite = DVBAlphaComposite.getInstance(DVBAlphaComposite.SRC_OVER);
     }
 
-    public DVBGraphicsImpl(Graphics graphics)
-    {
+    public DVBGraphicsImpl(Graphics graphics) {
         ClassLoader c1 = graphics.getClass().getClassLoader();
         ClassLoader c2 = Graphics2D.class.getClassLoader();
         this.graphics2d = (Graphics2D) graphics;
@@ -68,8 +67,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see org.dvb.ui.DVBGraphics#getAvailableCompositeRules()
      */
     @Override
-    public int[] getAvailableCompositeRules()
-    {
+    public int[] getAvailableCompositeRules() {
         return availableCompositeRules;
     }
 
@@ -77,8 +75,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see org.dvb.ui.DVBGraphics#getDVBComposite()
      */
     @Override
-    public DVBAlphaComposite getDVBComposite()
-    {
+    public DVBAlphaComposite getDVBComposite() {
         return dvbAlphaComposite;
     }
 
@@ -86,20 +83,35 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see org.dvb.ui.DVBGraphics#setDVBComposite(org.dvb.ui.DVBAlphaComposite)
      */
     @Override
-    public void setDVBComposite(DVBAlphaComposite comp) throws UnsupportedDrawingOperationException
-    {
+    public void setDVBComposite(DVBAlphaComposite comp) throws UnsupportedDrawingOperationException {
         this.dvbAlphaComposite = comp;
-        switch(comp.getRule())
-        {
-            case DVBAlphaComposite.CLEAR: graphics2d.setComposite(AlphaComposite.Clear); break;
-            case DVBAlphaComposite.DST_IN: graphics2d.setComposite(AlphaComposite.DstIn); break;
-            case DVBAlphaComposite.DST_OUT: graphics2d.setComposite(AlphaComposite.DstOut); break;
-            case DVBAlphaComposite.DST_OVER: graphics2d.setComposite(AlphaComposite.DstOver); break;
-            case DVBAlphaComposite.SRC: graphics2d.setComposite(AlphaComposite.Src); break;
-            case DVBAlphaComposite.SRC_IN: graphics2d.setComposite(AlphaComposite.SrcIn); break;
-            case DVBAlphaComposite.SRC_OUT: graphics2d.setComposite(AlphaComposite.SrcOut); break;
-            case DVBAlphaComposite.SRC_OVER: graphics2d.setComposite(AlphaComposite.SrcOver); break;
-            default: throw new UnsupportedDrawingOperationException(comp.toString());
+        switch (comp.getRule()) {
+        case DVBAlphaComposite.CLEAR:
+            graphics2d.setComposite(AlphaComposite.Clear);
+            break;
+        case DVBAlphaComposite.DST_IN:
+            graphics2d.setComposite(AlphaComposite.DstIn);
+            break;
+        case DVBAlphaComposite.DST_OUT:
+            graphics2d.setComposite(AlphaComposite.DstOut);
+            break;
+        case DVBAlphaComposite.DST_OVER:
+            graphics2d.setComposite(AlphaComposite.DstOver);
+            break;
+        case DVBAlphaComposite.SRC:
+            graphics2d.setComposite(AlphaComposite.Src);
+            break;
+        case DVBAlphaComposite.SRC_IN:
+            graphics2d.setComposite(AlphaComposite.SrcIn);
+            break;
+        case DVBAlphaComposite.SRC_OUT:
+            graphics2d.setComposite(AlphaComposite.SrcOut);
+            break;
+        case DVBAlphaComposite.SRC_OVER:
+            graphics2d.setComposite(AlphaComposite.SrcOver);
+            break;
+        default:
+            throw new UnsupportedDrawingOperationException(comp.toString());
         }
     }
 
@@ -107,8 +119,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#getColor()
      */
     @Override
-    public Color getColor()
-    {
+    public Color getColor() {
         return graphics2d.getColor();
     }
 
@@ -116,8 +127,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#setColor(java.awt.Color)
      */
     @Override
-    public void setColor(Color c)
-    {
+    public void setColor(Color c) {
         graphics2d.setColor(c);
     }
 
@@ -125,8 +135,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#dispose()
      */
     @Override
-    public void dispose()
-    {
+    public void dispose() {
         graphics2d.dispose();
     }
 
@@ -134,14 +143,10 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#setPaintMode()
      */
     @Override
-    public void setPaintMode()
-    {
-        try
-        {
+    public void setPaintMode() {
+        try {
             this.setDVBComposite(DVBAlphaComposite.SrcOver);
-        }
-        catch (UnsupportedDrawingOperationException e)
-        {
+        } catch (UnsupportedDrawingOperationException e) {
         }
     }
 
@@ -149,8 +154,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#translate(int, int)
      */
     @Override
-    public void translate(int x, int y)
-    {
+    public void translate(int x, int y) {
         graphics2d.translate(x, y);
     }
 
@@ -158,8 +162,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#clearRect(int, int, int, int)
      */
     @Override
-    public void clearRect(int x, int y, int width, int height)
-    {
+    public void clearRect(int x, int y, int width, int height) {
         graphics2d.clearRect(x, y, width, height);
 
     }
@@ -168,8 +171,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#clipRect(int, int, int, int)
      */
     @Override
-    public void clipRect(int x, int y, int width, int height)
-    {
+    public void clipRect(int x, int y, int width, int height) {
         graphics2d.clipRect(x, y, width, height);
     }
 
@@ -177,8 +179,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawLine(int, int, int, int)
      */
     @Override
-    public void drawLine(int x1, int y1, int x2, int y2)
-    {
+    public void drawLine(int x1, int y1, int x2, int y2) {
         graphics2d.drawLine(x1, y1, x2, y2);
     }
 
@@ -186,8 +187,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawOval(int, int, int, int)
      */
     @Override
-    public void drawOval(int x, int y, int width, int height)
-    {
+    public void drawOval(int x, int y, int width, int height) {
         graphics2d.drawOval(x, y, width, height);
     }
 
@@ -195,8 +195,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#fillOval(int, int, int, int)
      */
     @Override
-    public void fillOval(int x, int y, int width, int height)
-    {
+    public void fillOval(int x, int y, int width, int height) {
         graphics2d.fillOval(x, y, width, height);
     }
 
@@ -204,8 +203,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#fillRect(int, int, int, int)
      */
     @Override
-    public void fillRect(int x, int y, int width, int height)
-    {
+    public void fillRect(int x, int y, int width, int height) {
         graphics2d.fillRect(x, y, width, height);
     }
 
@@ -213,8 +211,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#setClip(int, int, int, int)
      */
     @Override
-    public void setClip(int x, int y, int width, int height)
-    {
+    public void setClip(int x, int y, int width, int height) {
         graphics2d.setClip(x, y, width, height);
     }
 
@@ -222,8 +219,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#copyArea(int, int, int, int, int, int)
      */
     @Override
-    public void copyArea(int x, int y, int width, int height, int dx, int dy)
-    {
+    public void copyArea(int x, int y, int width, int height, int dx, int dy) {
         graphics2d.copyArea(x, y, width, height, dx, dy);
     }
 
@@ -231,8 +227,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawArc(int, int, int, int, int, int)
      */
     @Override
-    public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle)
-    {
+    public void drawArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
         graphics2d.drawArc(x, y, width, height, startAngle, arcAngle);
     }
 
@@ -240,8 +235,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawRoundRect(int, int, int, int, int, int)
      */
     @Override
-    public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight)
-    {
+    public void drawRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
         graphics2d.drawRoundRect(x, y, width, height, arcWidth, arcHeight);
     }
 
@@ -249,8 +243,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#fillArc(int, int, int, int, int, int)
      */
     @Override
-    public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle)
-    {
+    public void fillArc(int x, int y, int width, int height, int startAngle, int arcAngle) {
         graphics2d.fillArc(x, y, width, height, startAngle, arcAngle);
     }
 
@@ -258,8 +251,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#fillRoundRect(int, int, int, int, int, int)
      */
     @Override
-    public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight)
-    {
+    public void fillRoundRect(int x, int y, int width, int height, int arcWidth, int arcHeight) {
         graphics2d.fillRoundRect(x, y, width, height, arcWidth, arcHeight);
 
     }
@@ -268,8 +260,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawPolygon(int[], int[], int)
      */
     @Override
-    public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints)
-    {
+    public void drawPolygon(int[] xPoints, int[] yPoints, int nPoints) {
         graphics2d.drawPolygon(xPoints, yPoints, nPoints);
     }
 
@@ -277,8 +268,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawPolyline(int[], int[], int)
      */
     @Override
-    public void drawPolyline(int[] xPoints, int[] yPoints, int nPoints)
-    {
+    public void drawPolyline(int[] xPoints, int[] yPoints, int nPoints) {
         graphics2d.drawPolyline(xPoints, yPoints, nPoints);
 
     }
@@ -287,8 +277,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#fillPolygon(int[], int[], int)
      */
     @Override
-    public void fillPolygon(int[] xPoints, int[] yPoints, int nPoints)
-    {
+    public void fillPolygon(int[] xPoints, int[] yPoints, int nPoints) {
         graphics2d.fillPolygon(xPoints, yPoints, nPoints);
     }
 
@@ -296,8 +285,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#setXORMode(java.awt.Color)
      */
     @Override
-    public void setXORMode(Color c1)
-    {
+    public void setXORMode(Color c1) {
         graphics2d.setXORMode(c1);
     }
 
@@ -305,8 +293,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#getFont()
      */
     @Override
-    public Font getFont()
-    {
+    public Font getFont() {
         return graphics2d.getFont();
     }
 
@@ -314,8 +301,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#setFont(java.awt.Font)
      */
     @Override
-    public void setFont(Font font)
-    {
+    public void setFont(Font font) {
         graphics2d.setFont(font);
     }
 
@@ -323,8 +309,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#create()
      */
     @Override
-    public Graphics create()
-    {
+    public Graphics create() {
         return DVBGraphics.getDVBGraphics(graphics2d.create());
     }
 
@@ -332,8 +317,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#getClipBounds()
      */
     @Override
-    public Rectangle getClipBounds()
-    {
+    public Rectangle getClipBounds() {
         return graphics2d.getClipBounds();
     }
 
@@ -341,8 +325,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#getClip()
      */
     @Override
-    public Shape getClip()
-    {
+    public Shape getClip() {
         return graphics2d.getClip();
     }
 
@@ -350,8 +333,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#setClip(java.awt.Shape)
      */
     @Override
-    public void setClip(Shape clip)
-    {
+    public void setClip(Shape clip) {
         graphics2d.setClip(clip);
     }
 
@@ -359,8 +341,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawString(java.lang.String, int, int)
      */
     @Override
-    public void drawString(String str, int x, int y)
-    {
+    public void drawString(String str, int x, int y) {
         graphics2d.drawString(str, x, y);
     }
 
@@ -368,8 +349,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawString(java.text.AttributedCharacterIterator, int, int)
      */
     @Override
-    public void drawString(AttributedCharacterIterator iterator, int x, int y)
-    {
+    public void drawString(AttributedCharacterIterator iterator, int x, int y) {
         graphics2d.drawString(iterator, x, y);
     }
 
@@ -377,8 +357,7 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#getFontMetrics(java.awt.Font)
      */
     @Override
-    public FontMetrics getFontMetrics(Font f)
-    {
+    public FontMetrics getFontMetrics(Font f) {
         return graphics2d.getFontMetrics(f);
     }
 
@@ -387,18 +366,17 @@ class DVBGraphicsImpl extends DVBGraphics
      */
     @Override
     public boolean drawImage(
-        Image img,
-        int dx1,
-        int dy1,
-        int dx2,
-        int dy2,
-        int sx1,
-        int sy1,
-        int sx2,
-        int sy2,
-        ImageObserver observer)
-    {
-        if(img instanceof DVBBufferedImage)
+            Image img,
+            int dx1,
+            int dy1,
+            int dx2,
+            int dy2,
+            int sx1,
+            int sy1,
+            int sx2,
+            int sy2,
+            ImageObserver observer) {
+        if (img instanceof DVBBufferedImage)
             img = ((DVBBufferedImage) img).getImage();
 
         return graphics2d.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, observer);
@@ -408,9 +386,8 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawImage(java.awt.Image, int, int, int, int, java.awt.image.ImageObserver)
      */
     @Override
-    public boolean drawImage(Image img, int x, int y, int width, int height, ImageObserver observer)
-    {
-        if(img instanceof DVBBufferedImage)
+    public boolean drawImage(Image img, int x, int y, int width, int height, ImageObserver observer) {
+        if (img instanceof DVBBufferedImage)
             img = ((DVBBufferedImage) img).getImage();
 
         return graphics2d.drawImage(img, x, y, width, height, observer);
@@ -420,9 +397,8 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawImage(java.awt.Image, int, int, java.awt.image.ImageObserver)
      */
     @Override
-    public boolean drawImage(Image img, int x, int y, ImageObserver observer)
-    {
-        if(img instanceof DVBBufferedImage)
+    public boolean drawImage(Image img, int x, int y, ImageObserver observer) {
+        if (img instanceof DVBBufferedImage)
             img = ((DVBBufferedImage) img).getImage();
 
         return graphics2d.drawImage(img, x, y, observer);
@@ -433,19 +409,18 @@ class DVBGraphicsImpl extends DVBGraphics
      */
     @Override
     public boolean drawImage(
-        Image img,
-        int dx1,
-        int dy1,
-        int dx2,
-        int dy2,
-        int sx1,
-        int sy1,
-        int sx2,
-        int sy2,
-        Color bgcolor,
-        ImageObserver observer)
-    {
-        if(img instanceof DVBBufferedImage)
+            Image img,
+            int dx1,
+            int dy1,
+            int dx2,
+            int dy2,
+            int sx1,
+            int sy1,
+            int sx2,
+            int sy2,
+            Color bgcolor,
+            ImageObserver observer) {
+        if (img instanceof DVBBufferedImage)
             img = ((DVBBufferedImage) img).getImage();
 
         return graphics2d.drawImage(img, dx1, dy1, dx2, dy2, sx1, sy1, sx2, sy2, bgcolor, observer);
@@ -455,9 +430,8 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawImage(java.awt.Image, int, int, int, int, java.awt.Color, java.awt.image.ImageObserver)
      */
     @Override
-    public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor, ImageObserver observer)
-    {
-        if(img instanceof DVBBufferedImage)
+    public boolean drawImage(Image img, int x, int y, int width, int height, Color bgcolor, ImageObserver observer) {
+        if (img instanceof DVBBufferedImage)
             img = ((DVBBufferedImage) img).getImage();
 
         return graphics2d.drawImage(img, x, y, width, height, bgcolor, observer);
@@ -467,9 +441,8 @@ class DVBGraphicsImpl extends DVBGraphics
      * @see java.awt.Graphics#drawImage(java.awt.Image, int, int, java.awt.Color, java.awt.image.ImageObserver)
      */
     @Override
-    public boolean drawImage(Image img, int x, int y, Color bgcolor, ImageObserver observer)
-    {
-        if(img instanceof DVBBufferedImage)
+    public boolean drawImage(Image img, int x, int y, Color bgcolor, ImageObserver observer) {
+        if (img instanceof DVBBufferedImage)
             img = ((DVBBufferedImage) img).getImage();
         return graphics2d.drawImage(img, x, y, bgcolor, observer);
     }

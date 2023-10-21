@@ -15,67 +15,67 @@
 package org.havi.ui;
 
 
-public class HFlatEffectMatte implements HMatte, HAnimateEffect{
+public class HFlatEffectMatte implements HMatte, HAnimateEffect {
 
-    public HFlatEffectMatte(){
+    public HFlatEffectMatte() {
     }
 
-    public HFlatEffectMatte(float[] data){
+    public HFlatEffectMatte(float[] data) {
     }
 
-    public void setMatteData(float[] data){
+    public void setMatteData(float[] data) {
     }
 
-    public float[] getMatteData(){
+    public float[] getMatteData() {
         return (null);
     }
 
     @Override
-    public void start(){
+    public void start() {
     }
 
     @Override
-    public void stop(){
+    public void stop() {
     }
 
     @Override
-    public boolean isAnimated(){
-        return(false);
+    public boolean isAnimated() {
+        return (false);
     }
 
     @Override
-    public void setPosition(int position){
+    public void setPosition(int position) {
     }
 
     @Override
-    public int getPosition(){
-        return(0);
+    public int getPosition() {
+        return (0);
     }
 
     @Override
-    public void setRepeatCount(int count){
+    public void setRepeatCount(int count) {
     }
 
     @Override
-    public int getRepeatCount(){
-        return(0);
+    public int getRepeatCount() {
+        return (0);
     }
 
     @Override
-    public void setDelay(int count){
+    public void setDelay(int count) {
     }
 
     @Override
-    public int getDelay(){
-        return(0);
+    public int getDelay() {
+        return (0);
     }
 
     @Override
-    public void setPlayMode(int mode){
+    public void setPlayMode(int mode) {
     }
 
     @Override
-    public int getPlayMode(){
-        return(0);
+    public int getPlayMode() {
+        return (0);
     }
 }

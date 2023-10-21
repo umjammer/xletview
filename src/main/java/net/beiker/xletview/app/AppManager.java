@@ -41,22 +41,22 @@ public class AppManager {
 
     private final static String FILE_APPLICATIONS = "file.applications";
 
-    private AppManager(){
+    private AppManager() {
         this.appURL = Util.getURL(AppManager.class, Settings.getProperty(FILE_APPLICATIONS));
         this.defaultGroup = new AppGroup("Default group");
         parse();
     }
 
-    public static AppManager getInstance(){
-        if(THE_INSTANCE == null){
+    public static AppManager getInstance() {
+        if (THE_INSTANCE == null) {
             THE_INSTANCE = new AppManager();
         }
         return THE_INSTANCE;
     }
 
-    private void parse(){
+    private void parse() {
         IXMLElement xml;
-        try{
+        try {
             IXMLParser parser = XMLParserFactory.createDefaultXMLParser();
             //FileInputStream in = new FileInputStream(new File("config/applications.xml"));
 
@@ -65,17 +65,17 @@ public class AppManager {
             IXMLReader reader = new StdXMLReader(in);
             parser.setReader(reader);
             xml = (IXMLElement) parser.parse();
-            if(xml != null){
+            if (xml != null) {
                 resolve(xml, this.defaultGroup);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             log.log(Level.FINE, e.toString(), e);
 //Debug.println("####");
 //Debug.println("Error reading " + appFile.getPath());
         }
     }
 
-    private void resolve(IXMLElement element, AppGroup group){
+    private void resolve(IXMLElement element, AppGroup group) {
 
         // get the subgroups of this group
         List<?> subGroups = element.getChildrenNamed("GROUP");
@@ -109,23 +109,22 @@ public class AppManager {
         }
     }
 
-    public AppGroup getDefaultGroup(){
+    public AppGroup getDefaultGroup() {
         return this.defaultGroup;
     }
 
-    public void update(){
+    public void update() {
         AppWriter.write(this.appURL, this.defaultGroup);
-
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         AppManager.getInstance().parse();
         AppGroup defaultGroup = AppManager.getInstance().getDefaultGroup();
 
-        for(int i = 0; i < defaultGroup.getApps().size(); i++){
+        for (int i = 0; i < defaultGroup.getApps().size(); i++) {
             App app = defaultGroup.getApps().get(i);
         }
-        for(int i = 0; i < defaultGroup.getSubGroups().size(); i++){
+        for (int i = 0; i < defaultGroup.getSubGroups().size(); i++) {
             AppGroup app = defaultGroup.getSubGroups().get(i);
         }
 //Debug.println(defaultGroup.getName());

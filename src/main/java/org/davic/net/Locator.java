@@ -16,8 +16,6 @@ package org.davic.net;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  * @comment check hasMultipleTransformations()

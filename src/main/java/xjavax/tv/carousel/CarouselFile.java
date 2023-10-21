@@ -16,13 +16,14 @@ package xjavax.tv.carousel;
 import xjavax.tv.locator.InvalidLocatorException;
 import xjavax.tv.locator.Locator;
 
+
 /**
  * The <code>CarouselFile</code> class represents
  * file or directory data obtained from broadcast file systems.  An
  * instance of <code>CarouselFile</code> may be constructed from a
  * <code>Locator</code> instance or via constructors similar to those
  * of <code>java.io.File</code>.<p>
- *
+ * <p>
  * Application classes implementing the
  * <code>CarouselFileListener</code> interface may subscribe with the
  * <code>CarouselFile</code> to receive notification of changes to the
@@ -30,35 +31,33 @@ import xjavax.tv.locator.Locator;
  * <code>CarouselFile</code> notifies subscribed
  * <code>CarouselFileListener</code> instances via
  * <code>CarouselFileChangeEvent</code> objects.<p>
- *
+ * <p>
  * Successful instantiation of a <code>CarouselFile</code> object
  * causes its broadcast filesystem to be dynamically "mounted" in the
  * local filesystem.  The precise mount point can be determined by
  * calling <code>getCanonicalPath()</code> on the
  * <code>CarouselFile</code> instance representing the top-level
  * directory of the carousel.<p>
- *
+ * <p>
  * Construction of a <code>CarouselFile</code> object causes its
  * contents to be loaded asynchronously from the broadcast stream.
  * Subsequent attempts to read the data of a <code>CarouselFile</code>
  * object will block until its contents are loaded.<p>
- *
+ * <p>
  * Broadcast file data for which there are no remaining
  * <code>CarouselFile</code> instances or open file descriptors are
  * eligible for unloading from the cache.  Broadcast carousels for
  * which there are no remaining <code>CarouselFile</code> instances or
  * open file descriptors are eligible for unmounting from the local
  * filesystem.<p>
- *
+ * <p>
  * Java TV API implementations that do not support broadcast
  * filesystem access will throw <code>IOException</code> upon any attempt
  * to construct a <code>CarouselFile</code> object.
  * <HR>
- *
- *
  */
-public class CarouselFile extends java.io.File
-{
+public class CarouselFile extends java.io.File {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private Locator locator;
 
@@ -68,19 +67,18 @@ public class CarouselFile extends java.io.File
      * construction of the <code>CarouselFile</code> instance causes the
      * referenced broadcast filesystem to be dynamically mounted in the
      * local filesystem.<p>
-     *
+     * <p>
      * This constructor throws <code>java.io.IOException</code> if it
      * determines immediately that the requested carousel file cannot
      * be accessed.  Since this constructor may complete its work
      * asynchronously, absence of an <code>IOException</code> is not a
      * guarantee that the requested carousel file is accessible.
      *
-     * @param locator - A Locator referencing the source of the CarouselFile.
+     * @param locator A Locator referencing the source of the CarouselFile.
      * @throws InvalidLocatorException - If locator does not refer to a carousel file.
-     * @throws java.io.IOException - If the requested carousel file cannot be accessed.
+     * @throws java.io.IOException     - If the requested carousel file cannot be accessed.
      */
-    public CarouselFile( Locator locator) throws InvalidLocatorException, java.io.IOException
-    {
+    public CarouselFile(Locator locator) throws InvalidLocatorException, java.io.IOException {
         //TODO implement CarouselFile
         super("");
     }
@@ -89,18 +87,17 @@ public class CarouselFile extends java.io.File
      * Creates a <code>CarouselFile</code> instance that represents the
      * file whose absolute path name is the given path argument.
      * <p>
-     *
+     * <p>
      * This constructor throws <code>java.io.IOException</code> if it
      * determines immediately that the requested carousel file cannot
      * be accessed.  Since this constructor may complete its work
      * asynchronously, absence of an <code>IOException</code> is not a
      * guarantee that the requested carousel file is accessible.
      *
-     * @param path - The absolute path name of the file.
+     * @param path The absolute path name of the file.
      * @throws java.io.IOException - If the requested carousel file cannot be accessed.
      */
-    public CarouselFile(java.lang.String path) throws java.io.IOException
-    {
+    public CarouselFile(java.lang.String path) throws java.io.IOException {
         //TODO implement CarouselFile
         super(path);
     }
@@ -109,19 +106,18 @@ public class CarouselFile extends java.io.File
      * Creates a <code>CarouselFile</code> instance that represents the
      * file with the specified name relative to the specified carousel
      * directory.  <p>
-     *
+     * <p>
      * This constructor throws <code>java.io.IOException</code> if it
      * determines immediately that the requested carousel file cannot
      * be accessed.  Since this constructor may complete its work
      * asynchronously, absence of an <code>IOException</code> is not a
      * guarantee that the requested carousel file is accessible.
      *
-     * @param dir - The directory.
-     * @param name - The name of the file, relative to dir.
+     * @param dir The directory.
+     * @param name The name of the file, relative to dir.
      * @throws java.io.IOException - If the requested carousel file cannot be accessed.
      */
-    public CarouselFile( CarouselFile dir, java.lang.String name) throws java.io.IOException
-    {
+    public CarouselFile(CarouselFile dir, java.lang.String name) throws java.io.IOException {
         //TODO implement CarouselFile
         super(dir, name);
     }
@@ -130,19 +126,18 @@ public class CarouselFile extends java.io.File
      * Creates a <code>CarouselFile</code> instance that represents the
      * file with the specified name relative to the specified carousel
      * directory.  <p>
-     *
+     * <p>
      * This constructor throws <code>java.io.IOException</code> if it
      * determines immediately that the requested carousel file cannot
      * be accessed.  Since this constructor may complete its work
      * asynchronously, absence of an <code>IOException</code> is not a
      * guarantee that the requested carousel file is accessible.
      *
-     * @param path - The absolute directory path name.
-     * @param name - The name of the file, relative to path.
+     * @param path The absolute directory path name.
+     * @param name The name of the file, relative to path.
      * @throws java.io.IOException - If the requested carousel file cannot be accessed.
      */
-    public CarouselFile(java.lang.String path, java.lang.String name) throws java.io.IOException
-    {
+    public CarouselFile(java.lang.String path, java.lang.String name) throws java.io.IOException {
         //TODO implement CarouselFile
         super("");
     }
@@ -152,11 +147,10 @@ public class CarouselFile extends java.io.File
      * This list does not include the current or parent directories.
      *
      * @return An array of file names contained in the directory specified by this CarouselFile object.  If this CarouselFile object does not refer to a directory, this method returns null.
-     * @throws java.io.IOException - If the directory cannot be accessed.
+     * @throws java.io.IOException         - If the directory cannot be accessed.
      * @throws java.lang.SecurityException - If a security manager exists and its java.lang.SecurityManager.checkRead(String) method denies read access to the file.
      */
-    public java.lang.String[] listDirectoryContents() throws java.io.IOException, java.lang.SecurityException
-    {
+    public java.lang.String[] listDirectoryContents() throws java.io.IOException, java.lang.SecurityException {
         return null;
         //TODO implement listDirectoryContents
     }
@@ -167,12 +161,11 @@ public class CarouselFile extends java.io.File
      * the specified listener is currently subscribed then no action is
      * performed.
      *
-     * @param listener - The CarouselFileListener to be notified.
-     * @throws java.io.IOException - If there are insufficient resources to support this listener.
+     * @param listener The CarouselFileListener to be notified.
+     * @throws java.io.IOException         - If there are insufficient resources to support this listener.
      * @throws java.lang.SecurityException - If a security manager exists and its java.lang.SecurityManager.checkRead(String) method denies read access to the file.
      */
-    public void addListener( CarouselFileListener listener) throws java.io.IOException, java.lang.SecurityException
-    {
+    public void addListener(CarouselFileListener listener) throws java.io.IOException, java.lang.SecurityException {
         //TODO implement addListener
     }
 
@@ -182,10 +175,9 @@ public class CarouselFile extends java.io.File
      * the given <code>CarouselFileListener</code> is not currently
      * subscribed for notification then no action is performed.
      *
-     * @param listener - A currently registered CarouselFileListener.
+     * @param listener A currently registered CarouselFileListener.
      */
-    public void removeListener( CarouselFileListener listener)
-    {
+    public void removeListener(CarouselFileListener listener) {
         //TODO implement removeListener
     }
 
@@ -195,8 +187,7 @@ public class CarouselFile extends java.io.File
      *
      * @return A Locator identifying this CarouselFile.
      */
-    public Locator getLocator()
-    {
+    public Locator getLocator() {
         return this.locator;
     }
 
@@ -208,8 +199,7 @@ public class CarouselFile extends java.io.File
      *
      * @throws java.lang.SecurityException - If a security manager exists and its java.lang.SecurityManager.checkRead(java.lang.String) method denies read access to the file.
      */
-    public void refreshCache() throws java.lang.SecurityException
-    {
+    public void refreshCache() throws java.lang.SecurityException {
         //TODO implement refreshCache
     }
 

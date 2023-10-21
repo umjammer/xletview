@@ -15,12 +15,10 @@
 package org.davic.net.ca;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ModuleStateChangedEvent extends MessageEvent{
+public class ModuleStateChangedEvent extends MessageEvent {
 
     public ModuleStateChangedEvent(int sessionId, Object caModule) {
         super(caModule, sessionId);

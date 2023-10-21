@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.window;
 
@@ -23,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -46,6 +43,7 @@ import net.beiker.xletview.ui.tree.BeikerTreeNode;
 import net.beiker.xletview.ui.tree.CellRenderer;
 import net.beiker.xletview.ui.tree.UserObjectImpl;
 import net.beiker.xletview.util.Util;
+
 
 public class DirectoryExplorer extends JDialog implements TreeSelectionListener, TreeExpansionListener, ActionListener {
 
@@ -158,13 +156,11 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
             tree.setSelectionPath(tp);
             tree.scrollPathToVisible(tp);
             result = true;
-        }
-        else if (tmp != null) {
+        } else if (tmp != null) {
             tree.setSelectionPath(tmp);
             tree.scrollPathToVisible(tmp);
             result = false;
-        }
-        else {
+        } else {
             result = false;
         }
         return result;
@@ -222,8 +218,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         if (command.equals("cancel")) {
             chosenPath = "";
             doClose();
-        }
-        else if (command.equals("ok")) {
+        } else if (command.equals("ok")) {
             doClose();
         }
     }

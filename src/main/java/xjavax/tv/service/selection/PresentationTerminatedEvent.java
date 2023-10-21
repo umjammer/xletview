@@ -35,7 +35,7 @@ package xjavax.tv.service.selection;
  * recovery of what was being presented previously is not possible.
  * <code>PresentationTerminatedEvent</code> is only generated when no
  * components of the requested service can be presented.  <p>
- *
+ * <p>
  * Once this event has been generated, a <code>ServiceContext</code>
  * will be in the <em>not presenting</em> state until a call to a
  * <code>select()</code> method succeeds.  When this event is
@@ -48,22 +48,20 @@ package xjavax.tv.service.selection;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class PresentationTerminatedEvent extends ServiceContextEvent{
+public class PresentationTerminatedEvent extends ServiceContextEvent {
+
     /**
      * Reason code : The service vanished from the network.</DL>
-     *
      */
     public static final int SERVICE_VANISHED = 1;
 
     /**
      * Reason code : Tuning made the service unavailable.</DL>
-     *
      */
     public static final int TUNED_AWAY = 2;
 
     /**
      * Reason code : Resources needed to present the service have been removed.</DL>
-     *
      */
     public static final int RESOURCES_REMOVED = 3;
 
@@ -71,14 +69,11 @@ public class PresentationTerminatedEvent extends ServiceContextEvent{
      * Reason code : Access to the service or some component of it has been
      * withdrawn by the system. An example of this is the end of a free
      * preview period for IPPV content.</DL>
-     *
      */
     public static final int ACCESS_WITHDRAWN = 4;
 
     /**
      * Reason code : The user requested that the presentation be stopped.</DL>
-     *
-     *
      */
     public static final int USER_STOP = 5;
 
@@ -87,10 +82,10 @@ public class PresentationTerminatedEvent extends ServiceContextEvent{
     /**
      * Constructs the event with a reason code.
      *
-     * @param source - The ServiceContext that generated the event.
-     * @param reason - The reason for which the presentation was terminated.
+     * @param source The ServiceContext that generated the event.
+     * @param reason The reason for which the presentation was terminated.
      */
-    public PresentationTerminatedEvent( ServiceContext source, int reason)    {
+    public PresentationTerminatedEvent(ServiceContext source, int reason) {
         super(source);
         this.reason = reason;
     }
@@ -100,7 +95,7 @@ public class PresentationTerminatedEvent extends ServiceContextEvent{
      *
      * @return A reason code for why the presentation was terminated.
      */
-    public int getReason()    {
+    public int getReason() {
         return this.reason;
     }
 

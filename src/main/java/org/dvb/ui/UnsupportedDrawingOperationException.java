@@ -15,15 +15,13 @@
 package org.dvb.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class UnsupportedDrawingOperationException extends java.lang.Exception {
 
     public UnsupportedDrawingOperationException(String s) {
-        super (s);
+        super(s);
     }
 
 }

@@ -1,6 +1,7 @@
 /*
  *
  */
+
 package net.beiker.xletview.net;
 
 import java.io.DataInputStream;
@@ -9,11 +10,12 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Logger;
 
+
 /**
- *
  * @author Martin Sveden
  */
-public class OutputServerThread extends Thread{
+public class OutputServerThread extends Thread {
+
     /** Debugging facility. */
     private final static Logger logger = Logger.getLogger(OutputServerThread.class.getName());
 
@@ -24,7 +26,7 @@ public class OutputServerThread extends Thread{
     private Socket socket;
 
     // Constructor.
-    public OutputServerThread( OutputServer server, Socket socket ) {
+    public OutputServerThread(OutputServer server, Socket socket) {
 
         // Save the parameters
         this.server = server;
@@ -43,7 +45,7 @@ public class OutputServerThread extends Thread{
 
             // Create a DataInputStream for communication; the client
             // is using a DataOutputStream to write to us
-            DataInputStream din = new DataInputStream( this.socket.getInputStream() );
+            DataInputStream din = new DataInputStream(this.socket.getInputStream());
 
             // Over and over, forever ...
             while (true) {
@@ -52,15 +54,15 @@ public class OutputServerThread extends Thread{
                 String message = din.readUTF();
 
                 // ... tell the world ...
-                logger.fine( "Sending "+message );
+                logger.fine("Sending " + message);
 
                 // ... and have the server send it to all clients
-                this.server.sendToAll( message );
+                this.server.sendToAll(message);
             }
-        } catch( EOFException ie ) {
+        } catch (EOFException ie) {
 
             // This doesn't need an error message
-        } catch( IOException ie ) {
+        } catch (IOException ie) {
 
             // This does; tell the world!
             ie.printStackTrace();
@@ -68,7 +70,7 @@ public class OutputServerThread extends Thread{
 
             // The connection is closed for one reason or another,
             // so have the server dealing with it
-            this.server.removeConnection( this.socket );
+            this.server.removeConnection(this.socket);
         }
     }
 }

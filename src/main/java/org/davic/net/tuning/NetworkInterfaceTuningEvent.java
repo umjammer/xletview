@@ -15,14 +15,12 @@
 package org.davic.net.tuning;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NetworkInterfaceTuningEvent extends NetworkInterfaceEvent {
 
-    public NetworkInterfaceTuningEvent(Object networkInterface)    {
+    public NetworkInterfaceTuningEvent(Object networkInterface) {
         super(networkInterface);
     }
 }

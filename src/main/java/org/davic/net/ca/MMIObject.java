@@ -16,7 +16,8 @@ package org.davic.net.ca;
 
 public class MMIObject {
 
-    MMIObject() {}
+    MMIObject() {
+    }
 
     public void close() {
     }

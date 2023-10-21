@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui;
 
@@ -22,7 +20,6 @@ import java.awt.dnd.DragSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
-
 import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -48,8 +45,7 @@ import net.beiker.xletview.ui.tree.TreeListener;
 import net.beiker.xletview.ui.tree.UserObject;
 
 
-
-public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeExpansionListener/*, DragGestureListener, DropTargetListener, DragSourceListener */{
+public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeExpansionListener/*, DragGestureListener, DropTargetListener, DragSourceListener */ {
 
     private static final Logger log = Logger.getLogger(AppTreePanel.class.getName());
 
@@ -147,6 +143,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     /**
      * Adds an AppGroup in the tree as a child to the
      * selected group.
+     *
      * @param group the AppGroup to be added
      */
     public void insertGroup(AppGroup group) {
@@ -171,6 +168,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     /**
      * Adds an App in the tree as a child to the
      * selected group.
+     *
      * @param app the App to be added
      */
     public void insertApp(App app) {
@@ -227,8 +225,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
                     else if (childObject instanceof App) {
                         ((AppGroup) parentObject).removeApp((App) childObject);
                     }
-                }
-                else {
+                } else {
                     log.fine("it's not possible to delete default group");
                 }
             }
@@ -263,17 +260,17 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
         log.fine("dragGestureRecognized, " + obj.getClass().getName());
 
         DefaultMutableTreeNode dragNode = getSelectedNode();
-        if(dragNode != null){
+        if (dragNode != null) {
             Transferable transferable = (Transferable) dragNode.getUserObject();
 
             //Select the appropriate cursor;
             Cursor cursor = DragSource.DefaultCopyNoDrop;
             int action = e.getDragAction();
-            if (action == DnDConstants.ACTION_MOVE){
+            if (action == DnDConstants.ACTION_MOVE) {
                 cursor = DragSource.DefaultMoveNoDrop;
             }
             //begin the drag
-           // dragSource.startDrag(e, cursor, transferable, this);
+            // dragSource.startDrag(e, cursor, transferable, this);
         }
     }
 

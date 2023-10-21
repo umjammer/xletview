@@ -16,50 +16,48 @@ package org.havi.ui;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  * @comment not quite finished
  */
-public class HBackgroundDevice extends HScreenDevice{
+public class HBackgroundDevice extends HScreenDevice {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HBackgroundDevice.class.getName());
 
     private HBackgroundConfiguration hBackgroundConfiguration;
     private HBackgroundConfiguration[] hBackgroundConfigurations;
 
-    protected HBackgroundDevice(){
+    protected HBackgroundDevice() {
         hBackgroundConfiguration = new HBackgroundConfiguration(this);
         hBackgroundConfigurations = new HBackgroundConfiguration[1];
         hBackgroundConfigurations[0] = hBackgroundConfiguration;
     }
 
-    public HBackgroundConfiguration[] getConfigurations(){
+    public HBackgroundConfiguration[] getConfigurations() {
         return hBackgroundConfigurations;
     }
 
-    public HBackgroundConfiguration getDefaultConfiguration(){
+    public HBackgroundConfiguration getDefaultConfiguration() {
         return hBackgroundConfiguration;
     }
 
-    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate hbc){
+    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate hbc) {
         /* At the moment we always return a HStillImageBackgroundConfiguration */
         log.info("\n---\nAt the moment XleTView always return a HStillImageBackgroundConfiguration here\n---");
         return new HStillImageBackgroundConfiguration();
     }
 
-    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate[] hbcta){
+    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate[] hbcta) {
         return hBackgroundConfiguration;
     }
 
-    public HBackgroundConfiguration getCurrentConfiguration(){
+    public HBackgroundConfiguration getCurrentConfiguration() {
         return hBackgroundConfiguration;
     }
 
     public boolean setBackgroundConfiguration(HBackgroundConfiguration hbc) throws SecurityException,
-           org.havi.ui.HPermissionDeniedException,
-           org.havi.ui.HConfigurationException{
+            org.havi.ui.HPermissionDeniedException,
+            org.havi.ui.HConfigurationException {
         return (false);
     }
 }

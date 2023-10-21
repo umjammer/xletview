@@ -16,20 +16,19 @@ package org.dvb.media;
 
 import org.davic.media.SubtitlingLanguageControl;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class SubtitleSelectedEvent extends java.util.EventObject {
 
-    public SubtitleSelectedEvent(SubtitlingLanguageControl source){
+    public SubtitleSelectedEvent(SubtitlingLanguageControl source) {
         super(source);
     }
 
     @Override
-    public java.lang.Object getSource()    {
+    public java.lang.Object getSource() {
         return super.getSource();
     }
 }

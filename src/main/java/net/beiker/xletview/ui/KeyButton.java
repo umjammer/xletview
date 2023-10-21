@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 
 package net.beiker.xletview.ui;
@@ -26,9 +24,9 @@ import java.net.URL;
 
 
 /**
-* A Button that fires key events.
-*/
-public class KeyButton extends Container implements MouseListener{
+ * A Button that fires key events.
+ */
+public class KeyButton extends Container implements MouseListener {
 
     private Img image;
     private KeyListener keyListener;
@@ -37,7 +35,7 @@ public class KeyButton extends Container implements MouseListener{
     private int keyCode;
     private char theChar;
 
-    public KeyButton(URL imgUrl, int width, int height, int keyCode, char ch){
+    public KeyButton(URL imgUrl, int width, int height, int keyCode, char ch) {
         image = new Img(imgUrl, width, height);
         //setSize(getPrefferedSize());
         setSize(image.getSize());
@@ -49,51 +47,51 @@ public class KeyButton extends Container implements MouseListener{
         addMouseListener(this);
     }
 
-    public void setNormal(){
-        image.setLocation(0,0);
+    public void setNormal() {
+        image.setLocation(0, 0);
     }
 
-    public void setOn(){
-        image.setLocation(1,1);
+    public void setOn() {
+        image.setLocation(1, 1);
     }
 
-    public Dimension getPrefferedSize(){
+    public Dimension getPrefferedSize() {
         //return new Dimension(image.getWidth(), image.getHeight());
         return new Dimension(getWidth(), getHeight());
     }
 
     @Override
-    public Dimension getMinimumSize(){
+    public Dimension getMinimumSize() {
         return getPrefferedSize();
     }
 
     @Override
-    public Dimension getMaximumSize(){
+    public Dimension getMaximumSize() {
         return getPrefferedSize();
     }
 
     @Override
-    public void addKeyListener(KeyListener keyListener){
+    public void addKeyListener(KeyListener keyListener) {
         this.keyListener = AWTEventMulticaster.add(this.keyListener, keyListener);
     }
 
-    public void setListenerComponent(Component c){
+    public void setListenerComponent(Component c) {
         listenerComponent = c;
     }
 
-    private void fireKeyEvent(int eventType){
-        if(keyListener != null){
+    private void fireKeyEvent(int eventType) {
+        if (keyListener != null) {
 
             //KeyEvent keyEvent = new KeyEvent(this, keyCode, 0L, 0, keyCode);
             KeyEvent keyEvent = null;
-            switch(eventType){
-                case KeyEvent.KEY_PRESSED:
-                    keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char)keyCode);
-                    keyListener.keyPressed(keyEvent);
+            switch (eventType) {
+            case KeyEvent.KEY_PRESSED:
+                keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char) keyCode);
+                keyListener.keyPressed(keyEvent);
                 break;
-                case KeyEvent.KEY_RELEASED:
-                    keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char)keyCode);
-                    keyListener.keyReleased(keyEvent);
+            case KeyEvent.KEY_RELEASED:
+                keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char) keyCode);
+                keyListener.keyReleased(keyEvent);
                 break;
                 /*
                 case KeyEvent.KEY_TYPED:
@@ -107,27 +105,29 @@ public class KeyButton extends Container implements MouseListener{
 
     // implementing MouseListener -->
     @Override
-    public void mouseClicked(MouseEvent e){
+    public void mouseClicked(MouseEvent e) {
         fireKeyEvent(KeyEvent.KEY_TYPED);
     }
 
     @Override
-    public void mousePressed(MouseEvent e){
+    public void mousePressed(MouseEvent e) {
         setOn();
         fireKeyEvent(KeyEvent.KEY_PRESSED);
     }
 
     @Override
-    public void mouseReleased(MouseEvent e){
+    public void mouseReleased(MouseEvent e) {
         setNormal();
         fireKeyEvent(KeyEvent.KEY_RELEASED);
     }
 
     @Override
-    public void mouseEntered(MouseEvent e){}
+    public void mouseEntered(MouseEvent e) {
+    }
 
     @Override
-    public void mouseExited(MouseEvent e){}
+    public void mouseExited(MouseEvent e) {
+    }
 
 
     // implementing MouseListener //

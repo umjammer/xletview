@@ -14,24 +14,24 @@
 
 package org.davic.mpeg;
 
-public class Service{
+public class Service {
 
-    protected Service()    {
+    protected Service() {
     }
 
-    public TransportStream getTransportStream()    {
+    public TransportStream getTransportStream() {
         return null;
     }
 
-    public int getServiceId(){
+    public int getServiceId() {
         return 0;
     }
 
-    public ElementaryStream retrieveElementaryStream(int pid){
+    public ElementaryStream retrieveElementaryStream(int pid) {
         return null;
     }
 
-    public ElementaryStream[] retrieveElementaryStreams(){
+    public ElementaryStream[] retrieveElementaryStreams() {
         return null;
     }
 

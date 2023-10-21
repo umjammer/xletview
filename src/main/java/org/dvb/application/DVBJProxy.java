@@ -14,12 +14,12 @@
 
 package org.dvb.application;
 
-public interface DVBJProxy extends AppProxy{
+public interface DVBJProxy extends AppProxy {
 
     int LOADED = 5;
 
     void load();
 
-    void init() ;
+    void init();
 }
 

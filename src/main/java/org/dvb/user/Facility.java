@@ -12,11 +12,9 @@
 */
 
 
-package org.dvb.user ;
+package org.dvb.user;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -25,22 +23,22 @@ public class Facility {
     private String preference;
     private String[] values;
 
-    public Facility (String preference, String value) {
+    public Facility(String preference, String value) {
         this.preference = preference;
         values = new String[1];
         values[0] = value;
     }
 
-    public Facility (String preference, String[] values) {
+    public Facility(String preference, String[] values) {
         this.preference = preference;
         this.values = values;
     }
 
-    protected String getPreference(){
+    protected String getPreference() {
         return preference;
     }
 
-    protected String[] getValues(){
+    protected String[] getValues() {
         return values;
     }
 }

@@ -13,18 +13,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.havi.ui.event.HRcEvent;
-
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.ui.Img;
 import net.beiker.xletview.util.Util;
 import net.n3.nanoxml.IXMLElement;
+import org.havi.ui.event.HRcEvent;
+
 
 /**
- *
  * @author Martin Sveden
  */
-public class RemoteControl extends Container implements KeyListener{
+public class RemoteControl extends Container implements KeyListener {
 
     private static final Logger logger = Logger.getLogger(RemoteControl.class.getName());
 
@@ -36,18 +35,18 @@ public class RemoteControl extends Container implements KeyListener{
 
     private Map<String, RemoteButton> buttons;
 
-    private RemoteControl(){
+    private RemoteControl() {
         this.buttons = new HashMap<>();
     }
 
-    public static RemoteControl getInstance(){
-        if(THE_INSTANCE == null){
+    public static RemoteControl getInstance() {
+        if (THE_INSTANCE == null) {
             THE_INSTANCE = new RemoteControl();
         }
         return THE_INSTANCE;
     }
 
-    public void make(IXMLElement root){
+    public void make(IXMLElement root) {
 
         String width = root.getAttribute("width", "");
         String height = root.getAttribute("height", "");
@@ -62,7 +61,7 @@ public class RemoteControl extends Container implements KeyListener{
         // bg color
         try {
             String strBg = root.getAttribute("backgroundcolor", "#000000");
-            if(strBg != null){
+            if (strBg != null) {
                 Color bg = Color.decode(strBg);
                 setBackground(bg);
             }
@@ -76,7 +75,7 @@ public class RemoteControl extends Container implements KeyListener{
     }
 
 
-    private void resolveGroup(IXMLElement group, Container cont){
+    private void resolveGroup(IXMLElement group, Container cont) {
         IXMLElement element = null;
         List<?> v = group.getChildrenNamed("buttons");
 
@@ -142,7 +141,7 @@ public class RemoteControl extends Container implements KeyListener{
     }
 
 
-    private int parseInt(String s){
+    private int parseInt(String s) {
         int result = 0;
         try {
             result = Integer.parseInt(s);
@@ -153,16 +152,15 @@ public class RemoteControl extends Container implements KeyListener{
     }
 
     @Override
-    public Dimension getPreferredSize(){
+    public Dimension getPreferredSize() {
         return new Dimension(getWidth(), getHeight());
     }
 
 
-
     @Override
-    public void paint(Graphics g){
+    public void paint(Graphics g) {
         Color bg = getBackground();
-        if(bg != null){
+        if (bg != null) {
             g.setColor(bg);
             g.fillRect(0, 0, getWidth(), getHeight());
         }
@@ -219,27 +217,26 @@ public class RemoteControl extends Container implements KeyListener{
         fireEvent(e);
     }
 
-    public void setPressed(int keyCode){
+    public void setPressed(int keyCode) {
         logger.fine("RemoteControl, keyCode=" + keyCode);
         RemoteButton obj = this.buttons.get(keyCode + "");
         logger.fine("RemoteControl, obj=" + obj);
-        if(obj instanceof RemoteButton){
+        if (obj instanceof RemoteButton) {
             obj.setOn();
         }
     }
 
-    public void setReleased(int keyCode){
+    public void setReleased(int keyCode) {
         RemoteButton obj = this.buttons.get(keyCode + "");
-        if(obj instanceof RemoteButton){
+        if (obj instanceof RemoteButton) {
             obj.setNormal();
         }
     }
 
     /**
-     *
      * @param keyEvent
      */
-    public void fireEvent(KeyEvent keyEvent){
+    public void fireEvent(KeyEvent keyEvent) {
         EventManager.getInstance().fireRemoteEvent(keyEvent);
     }
 }

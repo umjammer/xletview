@@ -17,9 +17,14 @@ package org.dvb.dsmcc;
 
 public class NPTRate {
 
-    NPTRate(){}
+    NPTRate() {
+    }
 
-    public int getNumerator(){return 0;}
+    public int getNumerator() {
+        return 0;
+    }
 
-    public int getDenominator() {return 0;}
+    public int getDenominator() {
+        return 0;
+    }
 }

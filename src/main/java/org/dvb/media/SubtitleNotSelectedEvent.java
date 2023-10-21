@@ -26,12 +26,12 @@ import org.davic.media.SubtitlingLanguageControl;
  */
 public class SubtitleNotSelectedEvent extends EventObject {
 
-    public SubtitleNotSelectedEvent(SubtitlingLanguageControl source){
+    public SubtitleNotSelectedEvent(SubtitlingLanguageControl source) {
         super(source);
     }
 
     @Override
-    public Object getSource()    {
+    public Object getSource() {
         return super.getSource();
     }
 }

@@ -15,23 +15,20 @@ package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.SIException;
 
+
 /**
  * This exception indicates that the requested sorting method is not
  * available for the particular <code>ServiceList</code>, for example,
  * sorting by service numbers.
  * <HR>
- *
- *
  */
-public class SortNotAvailableException extends SIException
-{
+public class SortNotAvailableException extends SIException {
+
     /**
      * Constructs a <code>SortNotAvailableException</code> with no
      * detail message.</DL>
-     *
      */
-    public SortNotAvailableException()
-    {
+    public SortNotAvailableException() {
         //TODO implement SortNotAvailableException
     }
 
@@ -39,10 +36,9 @@ public class SortNotAvailableException extends SIException
      * Constructs a <code>SortNotAvailableException</code> with a
      * detail message.
      *
-     * @param reason - The reason this exception was thrown.
+     * @param reason The reason this exception was thrown.
      */
-    public SortNotAvailableException(java.lang.String reason)
-    {
+    public SortNotAvailableException(java.lang.String reason) {
         //TODO implement SortNotAvailableException
     }
 

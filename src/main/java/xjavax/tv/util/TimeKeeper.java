@@ -14,9 +14,7 @@
 package xjavax.tv.util;
 
 
-
 /**
- *
  * @author Martin Sveden
  */
 class TimeKeeper {
@@ -31,41 +29,39 @@ class TimeKeeper {
 
     private boolean scheduled;
 
-    TimeKeeper(TVTimerSpec spec){
+    TimeKeeper(TVTimerSpec spec) {
         this.spec = spec;
-        if(!spec.isAbsolute()){
+        if (!spec.isAbsolute()) {
             timerTime = spec.getTime() + System.currentTimeMillis();
-        }
-        else{
+        } else {
             timerTime = spec.getTime();
         }
         scheduled = true;
     }
 
-    TVTimerSpec getSpec(){
+    TVTimerSpec getSpec() {
         return spec;
     }
 
     /**
      * Convenience method used by the TVTimerImpl
+     *
      * @return The time in ms when it should go off.
      */
-    long getTimerTime(){
+    long getTimerTime() {
         return timerTime;
     }
 
-    void reschedule(){
+    void reschedule() {
         timerTime = spec.getTime() + System.currentTimeMillis();
         scheduled = true;
     }
 
-    void setScheduled(boolean b){
+    void setScheduled(boolean b) {
         scheduled = b;
     }
 
-    boolean isScheduled(){
+    boolean isScheduled() {
         return scheduled;
     }
-
-
 }

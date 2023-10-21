@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.util;
 
@@ -36,7 +34,7 @@ public class Util {
     /** Debugging facility. */
     private static final Logger logger = Logger.getLogger(Util.class.getName());
 
-    public static String normalizePath(String path){
+    public static String normalizePath(String path) {
         String s;
         s = path.replace('\\', File.separatorChar);
         s = s.replace('/', File.separatorChar);
@@ -44,30 +42,28 @@ public class Util {
     }
 
 
-
-    public static Frame getParentFrame(Component component){
+    public static Frame getParentFrame(Component component) {
         Frame frame;
         Component parent = component.getParent();
-        if(!(parent instanceof Frame)){
+        if (!(parent instanceof Frame)) {
             frame = getParentFrame(parent);
-        }
-        else{
-            return (Frame)parent;
+        } else {
+            return (Frame) parent;
         }
         return frame;
     }
 
     /**
      * Provides a safe and fast way of Integer.parseInt(String s);
+     *
      * @param s
      * @return An int that is at lease 0;
      */
-    public static int parseInt(String s){
+    public static int parseInt(String s) {
         int i = 0;
-        try{
+        try {
             i = Integer.parseInt(s.trim());
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             logger.severe(e.toString());
         }
         return i;
@@ -76,9 +72,10 @@ public class Util {
 
     /**
      * Centers the component
+     *
      * @param comp the Component to be centered
      */
-    public static void center(Component comp){
+    public static void center(Component comp) {
         GraphicsConfiguration gc = comp.getGraphicsConfiguration();
         Rectangle bounds = gc.getBounds();
         int x = (int) (bounds.getWidth() - comp.getWidth()) / 2;
@@ -88,33 +85,32 @@ public class Util {
 
     /**
      * Finds the absolute path to a file from the classpath
+     *
      * @param theClass The class object whose classloader is used to retrieve the resource
-     * @param path The relative path of the file
+     * @param path     The relative path of the file
      * @return A String with the absolute path.
      * @throws RuntimeException If the file is not in the classpath
      */
-    public static URLConnection getURLConnection(Class<?> theClass, String path) throws NullPointerException{
+    public static URLConnection getURLConnection(Class<?> theClass, String path) throws NullPointerException {
         URLConnection result;
         try {
             result = getURL(theClass, path).openConnection();
             return result;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException("Could not open URL connection of '"+getURL(theClass, path)+"'.");
+            throw new RuntimeException("Could not open URL connection of '" + getURL(theClass, path) + "'.");
         }
 
     }
 
-    public static boolean isChildOf(Container possibleParent, Component comp){
+    public static boolean isChildOf(Container possibleParent, Component comp) {
 
         boolean result = false;
-        if(possibleParent != null && comp != null){
+        if (possibleParent != null && comp != null) {
             Component parent = comp.getParent();
-            if(parent == possibleParent){
+            if (parent == possibleParent) {
                 result = true;
-            }
-            else if(parent != null){
+            } else if (parent != null) {
                 result = isChildOf(possibleParent, parent);
             }
         }
@@ -123,8 +119,9 @@ public class Util {
 
     /**
      * Adds a string to a String[]
+     *
      * @param strings the old String[]
-     * @param string the String to add
+     * @param string  the String to add
      * @return the new String[]
      */
     public static String[] addToStringArr(String[] strings, String string) {
@@ -134,7 +131,7 @@ public class Util {
         return newArr;
     }
 
-    public static Image loadImage(String name, Component component){
+    public static Image loadImage(String name, Component component) {
         Image image = null;
 
 
@@ -154,34 +151,30 @@ public class Util {
 
 
         //log.print(url.toString());
-        if(url == null){
+        if (url == null) {
             image = toolkit.getImage(name);
             logger.fine("loading image by string - " + name);
 
-                        java.io.File f = new java.io.File(name);
-                        if(!f.exists()){
-                            logger.warning(name + " was not found + " + f.getAbsolutePath());
-                        }
-        }
-        else{
+            java.io.File f = new java.io.File(name);
+            if (!f.exists()) {
+                logger.warning(name + " was not found + " + f.getAbsolutePath());
+            }
+        } else {
             image = toolkit.getImage(url);
             logger.fine("loading image by URL - " + url);
         }
 
 
-
         mediatracker.addImage(image, 0);
-        try{
+        try {
             mediatracker.waitForID(0);
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
 
 
         return image;
     }
-
 
 
     /**
@@ -194,33 +187,30 @@ public class Util {
 
         URL url = theClass.getClassLoader().getResource(path);
 
-        logger.fine(url != null? "URL found for '"+path+"': it's '"+ url +"'." : "Could not find URL for '"+path+"'.");
+        logger.fine(url != null ? "URL found for '" + path + "': it's '" + url + "'." : "Could not find URL for '" + path + "'.");
 
-        if(url == null){
+        if (url == null) {
 
             throw new RuntimeException("the file " + path + " does not exist in the classpath");
-        }
-        else{
+        } else {
             return url;
         }
 
     }
 
     /**
-     *
      * @return
      */
-    public static String getStackTrace(){
+    public static String getStackTrace() {
         Exception exc = new RuntimeException("Fake exception to extract a stack trace");
         return getStackTrace(exc);
     }
 
     /**
-     *
      * @param t
      * @return
      */
-    public static String getStackTrace(Throwable t){
+    public static String getStackTrace(Throwable t) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         t.printStackTrace(pw);

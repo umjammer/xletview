@@ -15,8 +15,6 @@
 package org.davic.net.tuning;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -27,7 +25,7 @@ public class NetworkInterfaceTuningOverEvent extends NetworkInterfaceEvent {
 
     private int status;
 
-    public NetworkInterfaceTuningOverEvent(Object networkInterface, int status){
+    public NetworkInterfaceTuningOverEvent(Object networkInterface, int status) {
         super(networkInterface);
         this.status = status;
     }

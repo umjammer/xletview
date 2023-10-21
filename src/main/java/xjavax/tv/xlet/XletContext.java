@@ -21,11 +21,9 @@ package xjavax.tv.xlet;
  * internal state changes.
  * <A HREF="../../../javax/tv/graphics/TVContainer.html"><CODE>TVContainer</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface XletContext
-{
+public interface XletContext {
+
     /**
      * The property key used to obtain initialization arguments for the
      * Xlet.  The call
@@ -33,11 +31,8 @@ public interface XletContext
      * return the arguments as an array of Strings.  If there are
      * no arguments, then an array of length 0 will be returned.
      * <DT><B>See Also: </B>
-     *
-     *
      */
     java.lang.String ARGS = "javax.tv.xlet.args";
-
 
 
     /**
@@ -50,7 +45,6 @@ public interface XletContext
      * the Xlet must have performed the same operations
      * (clean up, releasing of resources etc.) it would have if the
      * <code>Xlet.destroyXlet()</code> had been called.</DL>
-     *
      */
     void notifyDestroyed();
 
@@ -59,12 +53,11 @@ public interface XletContext
      * entered the <i>Paused</i> state.  Invoking this method will
      * have no effect if the Xlet is destroyed, or if it has not
      * yet been started. <p>
-     *
+     * <p>
      * If a Xlet calls <code>notifyPaused()</code>, in the
      * future it may receive an <i>Xlet.startXlet()</i> call to request
      * it to become active, or an <i>Xlet.destroyXlet()</i> call to request
      * it to destroy itself.</DL>
-     *
      */
     void notifyPaused();
 
@@ -72,7 +65,7 @@ public interface XletContext
      * Provides an Xlet with a mechanism to retrieve named
      * properties from the XletContext.
      *
-     * @param key - The name of the property.
+     * @param key The name of the property.
      * @return A reference to an object representing the property. null is returned if no value is available for key.
      */
     java.lang.Object getXletProperty(java.lang.String key);

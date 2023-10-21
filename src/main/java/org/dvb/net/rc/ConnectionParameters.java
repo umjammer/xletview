@@ -16,36 +16,36 @@ package org.dvb.net.rc;
 
 import java.net.InetAddress;
 
+
 /**
- *
- *
- * @version  14.9.03
- * @author      Bengt Skogvall
+ * @author Bengt Skogvall
+ * @version 14.9.03
  * @statuscode 4
  */
 public class ConnectionParameters {
-  private String target;
-  private String userName;
-  private String passWord;
 
-    public ConnectionParameters(String number, String username, String password){
-          target=number;
-          userName=username;
-          passWord=password;
+    private String target;
+    private String userName;
+    private String passWord;
+
+    public ConnectionParameters(String number, String username, String password) {
+        target = number;
+        userName = username;
+        passWord = password;
     }
 
-    public ConnectionParameters(String number, String username, String password, InetAddress[] dns)    {
-          target=number;
-          userName=username;
-          passWord=password;
-          //ignore dns
+    public ConnectionParameters(String number, String username, String password, InetAddress[] dns) {
+        target = number;
+        userName = username;
+        passWord = password;
+        //ignore dns
     }
 
-    public String getTarget(){
+    public String getTarget() {
         return target;
     }
 
-    public String getUsername()    {
+    public String getUsername() {
         return userName;
     }
 

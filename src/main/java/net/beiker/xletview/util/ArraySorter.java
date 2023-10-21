@@ -1,15 +1,16 @@
 package net.beiker.xletview.util;
 
 public class ArraySorter {
-    /*
-     * * Sort in the same array
+
+    /**
+     * Sort in the same array
      */
     public static void sort(Object[] a, Comparer comparer) {
         sort(a, null, 0, a.length - 1, true, comparer);
     }
 
-    /*
-     * * Sort a and b, using a as the reference
+    /**
+     * Sort a and b, using a as the reference
      */
     public static void sort(Object[] a, Object[] b, int from, int to, boolean ascending, Comparer comparer) {
         // No sort

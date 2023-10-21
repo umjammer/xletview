@@ -44,13 +44,14 @@ package xjavax.tv.service.selection;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class NormalContentEvent extends PresentationChangedEvent{
+public class NormalContentEvent extends PresentationChangedEvent {
+
     /**
      * Constructs the event.
      *
-     * @param source - The ServiceContext that generated the event.
+     * @param source The ServiceContext that generated the event.
      */
-    public NormalContentEvent( ServiceContext source){
+    public NormalContentEvent(ServiceContext source) {
         super(source);
     }
 

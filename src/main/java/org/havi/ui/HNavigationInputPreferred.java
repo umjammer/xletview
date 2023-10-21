@@ -15,7 +15,7 @@
 package org.havi.ui;
 
 
-public interface HNavigationInputPreferred{
+public interface HNavigationInputPreferred {
 
     int[] getNavigationKeys();
 

@@ -1,15 +1,14 @@
 /*
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
 package net.beiker.xletview.media;
 
 import java.io.InputStream;
@@ -25,6 +24,7 @@ import net.n3.nanoxml.IXMLReader;
 import net.n3.nanoxml.StdXMLReader;
 import net.n3.nanoxml.XMLParserFactory;
 
+
 /**
  * @author Martin Sveden
  */
@@ -37,13 +37,13 @@ public class ChannelManager {
     private int currentChannelNumber;
     private List<Channel> channels;
 
-    private ChannelManager(){
+    private ChannelManager() {
         this.channels = new ArrayList<>();
 
         parse();
 
         // if there is no channels, add the default one
-        if(this.channels.isEmpty()){
+        if (this.channels.isEmpty()) {
             //Media media = new Media(Util.getURLConnection(ChannelManager.class, Settings.getProperty("file.defaultbg")) );
 
             Media media;
@@ -51,8 +51,7 @@ public class ChannelManager {
                 media = new Media(Util.getURL(ChannelManager.class, Settings.getProperty("file.defaultbg")));
                 Channel channel = new Channel("XleTView Channel", media);
                 this.channels.add(channel);
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
@@ -61,37 +60,36 @@ public class ChannelManager {
         this.currentChannelNumber = 0;
     }
 
-    public static ChannelManager getInstance(){
-        if(THE_INSTANCE == null){
+    public static ChannelManager getInstance() {
+        if (THE_INSTANCE == null) {
             THE_INSTANCE = new ChannelManager();
         }
         return THE_INSTANCE;
     }
 
-    public void setChannel(int channel){
+    public void setChannel(int channel) {
         // check if it is a valid channel number
-        if(isValidNumber(channel)){
+        if (isValidNumber(channel)) {
             log.fine("current channel is now " + this.channels.get(channel).getName());
             this.currentChannelNumber = channel;
             Media media = this.channels.get(channel).getMedia();
             MediaPlayer.getInstance().setMedia(media);
-        }
-        else{
+        } else {
             log.fine("not a valid channel number");
         }
     }
 
-    public void nextChannel(){
+    public void nextChannel() {
         this.currentChannelNumber++;
-        if(this.currentChannelNumber == this.channels.size()){
+        if (this.currentChannelNumber == this.channels.size()) {
             this.currentChannelNumber = 0;
         }
         setChannel(this.currentChannelNumber);
     }
 
-    public void previousChannel(){
+    public void previousChannel() {
         this.currentChannelNumber--;
-        if(this.currentChannelNumber < 0){
+        if (this.currentChannelNumber < 0) {
             this.currentChannelNumber = this.channels.size() - 1;
         }
         setChannel(this.currentChannelNumber);
@@ -100,33 +98,33 @@ public class ChannelManager {
     /*
      * / checks if it is a valid channel number
      */
-    private boolean isValidNumber(int i){
+    private boolean isValidNumber(int i) {
         boolean result = i > -1 && i < this.channels.size();
         return result;
     }
 
-    public int getCurrentChannel(){
+    public int getCurrentChannel() {
         return this.currentChannelNumber;
     }
 
     /**
      * @return a list of avaliable channels, convenient for debugging
      */
-    public String getChannelList(){
+    public String getChannelList() {
         StringBuilder s = new StringBuilder();
         for (Channel channel : this.channels) {
             Channel ch = channel;
             s.append("name=").append(ch.getName()).append(", media=").append(ch.getMedia());
         }
-        if(s.isEmpty()){
+        if (s.isEmpty()) {
             s = new StringBuilder("no channels avaliable");
         }
         return s.toString();
     }
 
-    public void parse(){
+    public void parse() {
         IXMLElement xml = null;
-        try{
+        try {
             IXMLParser parser = XMLParserFactory.createDefaultXMLParser();
             InputStream in = Util.getURLConnection(ChannelManager.class, "config/channels.xml").getInputStream();
             IXMLReader reader = new StdXMLReader(in);
@@ -154,8 +152,7 @@ public class ChannelManager {
                 log.fine(element.getName());
             }
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

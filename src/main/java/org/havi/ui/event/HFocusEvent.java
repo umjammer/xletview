@@ -15,35 +15,33 @@
 package org.havi.ui.event;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HFocusEvent extends java.awt.event.FocusEvent{
+public class HFocusEvent extends java.awt.event.FocusEvent {
 
-    public static final int HFOCUS_FIRST   = HTextEvent.TEXT_LAST + 1;
+    public static final int HFOCUS_FIRST = HTextEvent.TEXT_LAST + 1;
     public static final int FOCUS_TRANSFER = HFOCUS_FIRST;
-    public static final int HFOCUS_LAST    = FOCUS_TRANSFER;
+    public static final int HFOCUS_LAST = FOCUS_TRANSFER;
     public static final int NO_TRANSFER_ID = -1;
 
     private int transferId = NO_TRANSFER_ID;
 
-    public HFocusEvent(java.awt.Component source, int id){
+    public HFocusEvent(java.awt.Component source, int id) {
         super(source, id, false);
     }
 
-    public HFocusEvent(java.awt.Component source, int id, int transferId){
+    public HFocusEvent(java.awt.Component source, int id, int transferId) {
         super(source, id, false);
         this.transferId = transferId;
     }
 
     @Override
-    public boolean isTemporary(){
+    public boolean isTemporary() {
         return false;
     }
 
-    public int getTransferId(){
+    public int getTransferId() {
         return transferId;
     }
 
@@ -56,7 +54,7 @@ public class HFocusEvent extends java.awt.event.FocusEvent{
     @Override
     public String paramString() {
         String result = null;
-        if(id == FOCUS_TRANSFER) {
+        if (id == FOCUS_TRANSFER) {
             result = "FOCUS_TRANSFER";
             if (transferId == NO_TRANSFER_ID) {
                 result += ",NO_TRANSFER_ID";
@@ -64,10 +62,9 @@ public class HFocusEvent extends java.awt.event.FocusEvent{
                 result += ", transferId=" + transferId;
             }
         }
-        if(result == null){
+        if (result == null) {
             return super.paramString();
-        }
-        else{
+        } else {
             return result;
         }
 

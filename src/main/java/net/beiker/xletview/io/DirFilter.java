@@ -17,10 +17,12 @@ package net.beiker.xletview.io;
 import java.io.File;
 import java.io.FileFilter;
 
+
 /**
- *@author Martin Sveden
+ * @author Martin Sveden
  */
-public class DirFilter implements FileFilter{
+public class DirFilter implements FileFilter {
+
     String filter;
     String[] filters;
 
@@ -37,7 +39,7 @@ public class DirFilter implements FileFilter{
 
     @Override
     public boolean accept(File file) {
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             return true;
         }
         String s = file.getName();

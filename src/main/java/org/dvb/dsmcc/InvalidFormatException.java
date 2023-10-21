@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class InvalidFormatException extends DSMCCException {
 
-    public InvalidFormatException(){
+    public InvalidFormatException() {
         super();
     }
 
-    public InvalidFormatException(String s){
+    public InvalidFormatException(String s) {
         super(s);
     }
 }

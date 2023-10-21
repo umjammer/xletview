@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
+
 /**
- *
  * @author Martin Sveden
  */
 public class CommandLine {
@@ -19,7 +19,7 @@ public class CommandLine {
     private static final List<String> xExtraPaths = new ArrayList<>();
     private static String xName;
 
-    public static int check(String[] args){
+    public static int check(String[] args) {
         int result = 0;
         for (int i = 0; i < args.length; i++) {
             String arg = args[i];
@@ -30,57 +30,52 @@ public class CommandLine {
                  System.out.println("Error on command line!");
                  break;
                  }*/
-                if(arg.contains("-h") || arg.contains("-help") || arg.contains("-?")){
+                if (arg.contains("-h") || arg.contains("-help") || arg.contains("-?")) {
                     String help = "Command line options:" + System.getProperty("line.separator") +
-                    "-h, -?, -help" + System.getProperty("line.separator") +
-                    "Shows this message" + System.getProperty("line.separator") +
-                    System.getProperty("line.separator") +
-                    "-xletPath <PATH> [-xletExtraPath <PATH>] -xletClass <XLET>" + System.getProperty("line.separator") +
-                    "Starts XleTView with an Xlet with the specified path and name." + System.getProperty("line.separator") +
-                    "PATH can also be an URL. PATH does not end in a trailing slash or backslash." + System.getProperty("line.separator") +
-                    "Multiple -xletExtraPath options can be given.";
+                            "-h, -?, -help" + System.getProperty("line.separator") +
+                            "Shows this message" + System.getProperty("line.separator") +
+                            System.getProperty("line.separator") +
+                            "-xletPath <PATH> [-xletExtraPath <PATH>] -xletClass <XLET>" + System.getProperty("line.separator") +
+                            "Starts XleTView with an Xlet with the specified path and name." + System.getProperty("line.separator") +
+                            "PATH can also be an URL. PATH does not end in a trailing slash or backslash." + System.getProperty("line.separator") +
+                            "Multiple -xletExtraPath options can be given.";
 
                     System.out.println(help);
                     result = EXIT;
-                }
-                else if(arg.contains("-version")){
+                } else if (arg.contains("-version")) {
                     String version = "XleTView, version" + Constants.VERSION;
                     System.out.println(version);
                     System.exit(0);
-                }
-                else if (arg.contains("xletPath")) {
+                } else if (arg.contains("xletPath")) {
                     xPath = args[++i].trim();
-                }
-                else if (arg.contains("xletExtraPath")) {
+                } else if (arg.contains("xletExtraPath")) {
                     String xExPath = args[++i].trim();
                     CommandLine.xExtraPaths.add(xExPath);
-                    logger.fine("Added extra path '"+xExPath+"'.");
-                }
-                else if (arg.contains("xletClass")) {
+                    logger.fine("Added extra path '" + xExPath + "'.");
+                } else if (arg.contains("xletClass")) {
                     xName = args[++i].trim();
                 }
 
             }
         }
-        if(xPath != null && xName != null){
+        if (xPath != null && xName != null) {
             result = XLET_IS_SET;
         }
         return result;
     }
 
 
-
-    public static String getXletPath(){
+    public static String getXletPath() {
         return xPath;
     }
 
-    public static String[] getXletExtraPaths(){
+    public static String[] getXletExtraPaths() {
         String[] paths = new String[CommandLine.xExtraPaths.size()];
         xExtraPaths.toArray(paths);
         return paths;
     }
 
-    public static String getXletName(){
+    public static String getXletName() {
         return xName;
     }
 

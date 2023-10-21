@@ -14,7 +14,7 @@
 
 package org.dvb.si;
 
-public interface SIBouquet extends SIInformation{
+public interface SIBouquet extends SIInformation {
 
     @Override
     SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;

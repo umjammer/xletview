@@ -1,26 +1,24 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package xjava.io;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
 
+
 /**
- *
  * @author Martin Sveden
  */
-public class FileWriter extends java.io.FileWriter{
+public class FileWriter extends java.io.FileWriter {
 
 
     public FileWriter(String fileName) throws IOException {

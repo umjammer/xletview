@@ -15,18 +15,16 @@
 package org.dvb.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class CAException extends java.io.IOException {
 
-    public CAException(){
+    public CAException() {
         super();
     }
 
-    public CAException (String reason){
+    public CAException(String reason) {
         super(reason);
     }
 }

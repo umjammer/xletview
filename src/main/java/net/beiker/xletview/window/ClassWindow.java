@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.window;
 
@@ -24,7 +22,6 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -38,10 +35,8 @@ import net.beiker.xletview.io.FileFilterImpl;
 import net.beiker.xletview.util.Util;
 
 
-
 /**
  * @author Martin Sveden
- *
  */
 public class ClassWindow extends JDialog implements ActionListener {
 
@@ -56,7 +51,7 @@ public class ClassWindow extends JDialog implements ActionListener {
     public ClassWindow(Frame owner, File dir) {
         super(owner, true);
         homeDir = dir;
-        if(!dir.isDirectory()){
+        if (!dir.isDirectory()) {
             JOptionPane.showMessageDialog(null, dir.getPath() + "\nDoes not exist!", "Alert", JOptionPane.ERROR_MESSAGE);
         }
         classes = new ArrayList<>();
@@ -91,7 +86,6 @@ public class ClassWindow extends JDialog implements ActionListener {
         content.add(BorderLayout.SOUTH, buttonCont);
 
 
-
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
@@ -107,32 +101,33 @@ public class ClassWindow extends JDialog implements ActionListener {
 
     /**
      * Works through a directory recursivly to find all class files
+     *
      * @param dir
      */
-    private void resolve(File dir){
-            File[] files = dir.listFiles(new FileFilterImpl(".class"));
-            if(files != null){
-                for (File file : files) {
-                    if (file.isDirectory()) {
-                        dirCount++;
-                        if (dirCount > 50) {
-                            JOptionPane.showMessageDialog(null, "\nUnable to resolve the application in this directory:\n" + homeDir.getPath(), "Alert", JOptionPane.ERROR_MESSAGE);
-                            break;
-                        } else {
-                            resolve(file);
-                        }
+    private void resolve(File dir) {
+        File[] files = dir.listFiles(new FileFilterImpl(".class"));
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    dirCount++;
+                    if (dirCount > 50) {
+                        JOptionPane.showMessageDialog(null, "\nUnable to resolve the application in this directory:\n" + homeDir.getPath(), "Alert", JOptionPane.ERROR_MESSAGE);
+                        break;
                     } else {
-                        String unformattedClassName = file.getPath().substring(homeDir.getPath().length() + 1);
-                        String formattedClassName = getClassName(unformattedClassName);
-                        classes.add(formattedClassName);
-                        log.fine(formattedClassName);
+                        resolve(file);
                     }
+                } else {
+                    String unformattedClassName = file.getPath().substring(homeDir.getPath().length() + 1);
+                    String formattedClassName = getClassName(unformattedClassName);
+                    classes.add(formattedClassName);
+                    log.fine(formattedClassName);
                 }
             }
+        }
 
     }
 
-    private String getClassName(String path){
+    private String getClassName(String path) {
         String className;
         className = path.replace(File.separatorChar, '.');
         className = className.replaceAll(".class", "");
@@ -145,18 +140,16 @@ public class ClassWindow extends JDialog implements ActionListener {
         String command = event.getActionCommand();
         if (command.equals("cancel")) {
             doClose();
-        }
-        else if (command.equals("ok")) {
-            if(list.getSelectedValue() != null){
+        } else if (command.equals("ok")) {
+            if (list.getSelectedValue() != null) {
                 doClose();
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(null, "You have not selected any class yet", "Alert", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
-    public String getValue(){
+    public String getValue() {
         return list.getSelectedValue();
     }
 

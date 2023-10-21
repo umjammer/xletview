@@ -16,9 +16,8 @@ package org.dvb.dsmcc;
 
 import org.davic.net.Locator;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -30,11 +29,11 @@ public class ServiceXFRException extends DSMCCException {
         ref = new ServiceXFRReference(service, carouselId, pathName);
     }
 
-    public ServiceXFRException(byte[] NSAPAddress, String pathName){
+    public ServiceXFRException(byte[] NSAPAddress, String pathName) {
         ref = new ServiceXFRReference(NSAPAddress, pathName);
     }
 
-    public ServiceXFRReference getServiceXFR(){
+    public ServiceXFRReference getServiceXFR() {
         return ref;
     }
 }

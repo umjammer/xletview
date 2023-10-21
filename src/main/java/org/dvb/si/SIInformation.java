@@ -14,7 +14,7 @@
 
 package org.dvb.si;
 
-public interface SIInformation{
+public interface SIInformation {
 
 
     short FROM_CACHE_ONLY = 0;

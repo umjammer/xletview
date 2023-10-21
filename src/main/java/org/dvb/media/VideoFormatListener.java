@@ -14,7 +14,8 @@
 
 package org.dvb.media;
 
-public interface VideoFormatListener{
+public interface VideoFormatListener {
+
     void receiveVideoFormatEvent(VideoFormatEvent anEvent);
 }
 

@@ -16,9 +16,8 @@ package org.dvb.si;
 
 import java.util.Date;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

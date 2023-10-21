@@ -21,51 +21,51 @@ import java.awt.Font;
 import java.awt.Rectangle;
 
 
-public class HGraphicsConfiguration extends HScreenConfiguration{
+public class HGraphicsConfiguration extends HScreenConfiguration {
 
-    protected HGraphicsConfiguration(){
+    protected HGraphicsConfiguration() {
     }
 
-    public HGraphicsDevice getDevice(){
+    public HGraphicsDevice getDevice() {
         return (null);
     }
 
-    public HGraphicsConfigTemplate getConfigTemplate(){
+    public HGraphicsConfigTemplate getConfigTemplate() {
         return (null);
     }
 
-    public HScreenRectangle getComponentHScreenRectangle(Component component){
+    public HScreenRectangle getComponentHScreenRectangle(Component component) {
         return (null);
     }
 
-    public Rectangle getPixelCoordinatesHScreenRectangle(HScreenRectangle sr, Container cont){
+    public Rectangle getPixelCoordinatesHScreenRectangle(HScreenRectangle sr, Container cont) {
         return (null);
     }
 
-    public java.awt.Image getCompatibleImage(java.awt.Image input, HImageHints ih){
+    public java.awt.Image getCompatibleImage(java.awt.Image input, HImageHints ih) {
         return (null);
     }
 
-    public Font[] getAllFonts(){
+    public Font[] getAllFonts() {
         return (null);
     }
 
-    public Color getPunchThroughToBackgroundColor(int percentage){
+    public Color getPunchThroughToBackgroundColor(int percentage) {
         return (null);
     }
 
-    public Color getPunchThroughToBackgroundColor(int percentage, HVideoDevice hvd){
+    public Color getPunchThroughToBackgroundColor(int percentage, HVideoDevice hvd) {
         return (null);
     }
 
-    public Color getPunchThroughToBackgroundColor(Color color, int percentage){
+    public Color getPunchThroughToBackgroundColor(Color color, int percentage) {
         return (null);
     }
 
-    public Color getPunchThroughToBackgroundColor(Color color, int percentage, HVideoDevice v){
+    public Color getPunchThroughToBackgroundColor(Color color, int percentage, HVideoDevice v) {
         return (null);
     }
 
-    public void dispose(Color c){
+    public void dispose(Color c) {
     }
 }

@@ -25,6 +25,7 @@ import javassist.LoaderClassPath;
 import javassist.NotFoundException;
 import net.beiker.xletview.classloader.XletCodeConverter;
 
+
 /**
  * @author Martin Sveden
  * @statuscode 3
@@ -57,7 +58,7 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         this.parent = parent;
     }
 
-    private void addUrls(URL[] urls){
+    private void addUrls(URL[] urls) {
         for (URL url : urls) {
             try {
                 String path = url.getPath();
@@ -105,24 +106,22 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         }
 
         if (theClass == null) {
-             try{
+            try {
                 theClass = findClass(name);
                 newClass = true;
-            }
-            catch(ClassNotFoundException e){
+            } catch (ClassNotFoundException e) {
                 // do nothing
             }
         }
 
 
-        if(theClass == null){
+        if (theClass == null) {
             /*
              * The class is still not found.
              * Throw an Exception
              */
             throw new ClassNotFoundException("not found -> " + name);
-        }
-        else if(newClass){
+        } else if (newClass) {
             // it wasn't previously loaded
             loaded.put(name, theClass);
             //Debug.write(this, "name=" + name);
@@ -149,13 +148,10 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
             byte[] b = cc.toBytecode();
 
             return super.defineClass(name, b, 0, b.length);
-        }
-        catch (NotFoundException | CannotCompileException | IOException e) {
+        } catch (NotFoundException | CannotCompileException | IOException e) {
             throw new ClassNotFoundException();
         }
     }
-
-
 
 
 }

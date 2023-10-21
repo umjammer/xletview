@@ -12,19 +12,19 @@
 */
 
 
-package org.dvb.application ;
+package org.dvb.application;
 
 public interface AppProxy {
 
-    int STARTED    = 0;
+    int STARTED = 0;
 
-    int DESTROYED  = 1;
+    int DESTROYED = 1;
 
     int NOT_LOADED = 2;
 
-    int PAUSED     = 3;
+    int PAUSED = 3;
 
-    int getState() ;
+    int getState();
 
     void start();
 
@@ -34,10 +34,10 @@ public interface AppProxy {
 
     void pause();
 
-    void resume() ;
+    void resume();
 
-    void addAppStateChangeEventListener(AppStateChangeEventListener listener) ;
+    void addAppStateChangeEventListener(AppStateChangeEventListener listener);
 
-    void removeAppStateChangeEventListener(AppStateChangeEventListener listener) ;
+    void removeAppStateChangeEventListener(AppStateChangeEventListener listener);
 
 }

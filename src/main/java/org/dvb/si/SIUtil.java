@@ -14,11 +14,12 @@
 
 package org.dvb.si;
 
-public class SIUtil{
+public class SIUtil {
 
-    SIUtil() {}
+    SIUtil() {
+    }
 
-    public static String convertSIStringToJavaString(byte[] dvbSIText, int offset, int length, boolean emphasizedPartOnly) throws SIIllegalArgumentException{
+    public static String convertSIStringToJavaString(byte[] dvbSIText, int offset, int length, boolean emphasizedPartOnly) throws SIIllegalArgumentException {
         return null;
     }
 

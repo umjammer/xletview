@@ -16,6 +16,7 @@ package org.dvb.application;
 
 import java.util.Enumeration;
 
+
 public class AppsDatabase {
 
     AppsDatabase() {
@@ -23,34 +24,34 @@ public class AppsDatabase {
 
 
     static public AppsDatabase getAppsDatabase() {
-        return null ;
+        return null;
     }
 
 
     public int size() {
-        return 0 ;
+        return 0;
     }
 
     public Enumeration<?> getAppIDs(AppsDatabaseFilter filter) {
-        return null ;
+        return null;
     }
 
     public Enumeration<?> getAppAttributes(AppsDatabaseFilter filter) {
-        return null ;
+        return null;
     }
 
-    public AppAttributes getAppAttributes (AppID key) {
-        return  null;
+    public AppAttributes getAppAttributes(AppID key) {
+        return null;
     }
 
     public AppProxy getAppProxy(AppID key) {
-        return  null;
+        return null;
     }
 
-    public void addListener(AppsDatabaseEventListener listener){
+    public void addListener(AppsDatabaseEventListener listener) {
     }
 
-    public void removeListener(AppsDatabaseEventListener listener){
+    public void removeListener(AppsDatabaseEventListener listener) {
     }
 
 }

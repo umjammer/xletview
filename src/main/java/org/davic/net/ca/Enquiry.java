@@ -16,7 +16,8 @@ package org.davic.net.ca;
 
 public class Enquiry extends Text {
 
-    Enquiry() {}
+    Enquiry() {
+    }
 
     public boolean getBlindAnswer() {
         return false;

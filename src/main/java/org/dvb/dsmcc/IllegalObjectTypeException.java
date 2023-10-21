@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class IllegalObjectTypeException extends DSMCCException {
 
-    public IllegalObjectTypeException () {
+    public IllegalObjectTypeException() {
         super();
     }
 
-    public IllegalObjectTypeException (String s) {
+    public IllegalObjectTypeException(String s) {
         super(s);
     }
 

@@ -15,18 +15,16 @@ package xjavax.tv.util;
 
 /**
  * A listener interested in timer specifications going off.
- *
+ * <p>
  * A listener interested in timer specifications going off.
  * <HR>
- *
- *
  */
-public interface TVTimerWentOffListener
-{
+public interface TVTimerWentOffListener {
+
     /**
      * Notifies the listener that a timer specification went off.
      *
-     * @param e - The event specifying which timer and which timer specification went off.
+     * @param e The event specifying which timer and which timer specification went off.
      */
     void timerWentOff(TVTimerWentOffEvent e);
 

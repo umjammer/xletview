@@ -15,13 +15,12 @@
 package org.dvb.net.rc;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ConnectionTerminatedEvent extends ConnectionRCEvent{
+public class ConnectionTerminatedEvent extends ConnectionRCEvent {
 
-    public ConnectionTerminatedEvent(Object source){
+    public ConnectionTerminatedEvent(Object source) {
         super(source);
     }
 

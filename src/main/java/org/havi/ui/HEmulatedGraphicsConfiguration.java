@@ -14,21 +14,21 @@
 
 package org.havi.ui;
 
-public class HEmulatedGraphicsConfiguration extends HGraphicsConfiguration{
+public class HEmulatedGraphicsConfiguration extends HGraphicsConfiguration {
 
-    protected HEmulatedGraphicsConfiguration(){
+    protected HEmulatedGraphicsConfiguration() {
     }
 
     @Override
-    public HGraphicsConfigTemplate getConfigTemplate(){
+    public HGraphicsConfigTemplate getConfigTemplate() {
         return (null);
     }
 
-    public HGraphicsConfigTemplate getEmulation(){
+    public HGraphicsConfigTemplate getEmulation() {
         return (null);
     }
 
-    public HGraphicsConfigTemplate getImplementation(){
+    public HGraphicsConfigTemplate getImplementation() {
         return (null);
     }
 }

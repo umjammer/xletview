@@ -21,7 +21,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.util.logging.Logger;
-
 import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
 import javax.media.EndOfMediaEvent;
@@ -34,7 +33,8 @@ import javax.swing.JFrame;
 
 import net.beiker.xletview.ui.XContainer;
 
-public class VideoPlayer extends JFrame implements ControllerListener{
+
+public class VideoPlayer extends JFrame implements ControllerListener {
 
     /** Debugging facility. */
     private static final Logger logger = Logger.getLogger(VideoPlayer.class.getName());
@@ -49,23 +49,22 @@ public class VideoPlayer extends JFrame implements ControllerListener{
     private XContainer cont2;
     private XContainer xcont;
 
-    public VideoPlayer(){
+    public VideoPlayer() {
         this.setTitle("VideoPlayer");
         this.cont = getContentPane();
         logger.fine(this + this.cont.getClass().getName());
         this.xcont = new XContainer();
         this.cont2 = new XContainer();
         this.cont2.setLayout(new BorderLayout());
-        this.cont2.setBounds(0,0,400,400);
+        this.cont2.setBounds(0, 0, 400, 400);
         this.setContentPane(this.cont2);
 
         createPlayer();
-        if(this.player != null){
+        if (this.player != null) {
             this.player.realize();
             this.player.start();
-        }
-        else{
-            logger.warning(this+toString() + "player is null");
+        } else {
+            logger.warning(this + toString() + "player is null");
         }
 
         addWindowListener(new WindowAdapter() {
@@ -73,14 +72,16 @@ public class VideoPlayer extends JFrame implements ControllerListener{
             public void windowClosing(WindowEvent we) {
                 System.exit(0);
             }
+
             @Override
             public void windowDeactivated(WindowEvent we) {
             }
+
             @Override
             public void windowGainedFocus(WindowEvent e) {
             }
         });
-        setSize(400,400);
+        setSize(400, 400);
         show();
     }
 
@@ -93,19 +94,18 @@ public class VideoPlayer extends JFrame implements ControllerListener{
             Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, Boolean.TRUE);
             this.player = Manager.createPlayer(mediaLocator);
             this.player.addControllerListener(this);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-   @Override
-   public synchronized void controllerUpdate(ControllerEvent event) {
-      logger.fine(this+toString() + "event = " + event);
-      if (event instanceof RealizeCompleteEvent) {
-         Component comp;
-         if ((comp = this.player.getVisualComponent()) != null){
+    @Override
+    public synchronized void controllerUpdate(ControllerEvent event) {
+        logger.fine(this + toString() + "event = " + event);
+        if (event instanceof RealizeCompleteEvent) {
+            Component comp;
+            if ((comp = this.player.getVisualComponent()) != null) {
 
 //             JPanel jp = new JPanel();
 //             jp.setBounds(20, 40, 10, 10);
@@ -113,24 +113,23 @@ public class VideoPlayer extends JFrame implements ControllerListener{
 //             this.add(jp);
 //             this.repaint();
 
-            //Debug.write(this, "**** " + comp.getClass().getName());
-            comp.setBounds(0,0,this.getSize().width, this.getSize().height);
-            this.cont2.add(comp);
-            logger.fine(this + "RealizeCompleteEvent");
+                //Debug.write(this, "**** " + comp.getClass().getName());
+                comp.setBounds(0, 0, this.getSize().width, this.getSize().height);
+                this.cont2.add(comp);
+                logger.fine(this + "RealizeCompleteEvent");
 
-         }
-         validate();
-      }
-      else if (event instanceof EndOfMediaEvent){
-        // We've reached the end of the media; rewind and
-        // start over
-        this.player.setMediaTime(new Time(0));
-        this.player.start();
-        logger.fine(this + "count = " + (count++));
-      }
-   }
+            }
+            validate();
+        } else if (event instanceof EndOfMediaEvent) {
+            // We've reached the end of the media; rewind and
+            // start over
+            this.player.setMediaTime(new Time(0));
+            this.player.start();
+            logger.fine(this + "count = " + (count++));
+        }
+    }
 
-   public static void main(String[] args){
-       new VideoPlayer();
-   }
+    public static void main(String[] args) {
+        new VideoPlayer();
+    }
 }

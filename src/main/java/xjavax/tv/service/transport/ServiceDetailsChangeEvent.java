@@ -16,6 +16,7 @@ package xjavax.tv.service.transport;
 import xjavax.tv.service.SIChangeType;
 import xjavax.tv.service.navigation.ServiceDetails;
 
+
 /**
  * A <code>ServiceDetailsChangeEvent</code> notifies an
  * <code>ServiceDetailsChangeListener</code> of changes detected to a
@@ -28,16 +29,16 @@ import xjavax.tv.service.navigation.ServiceDetails;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ServiceDetailsChangeEvent extends TransportSIChangeEvent{
+public class ServiceDetailsChangeEvent extends TransportSIChangeEvent {
 
     /**
      * Constructs a <code>ServiceDetailsChangeEvent</code>.
      *
-     * @param transport - The Transport on which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param s - The ServiceDetails that changed.
+     * @param transport The Transport on which the change occurred.
+     * @param type The type of change that occurred.
+     * @param s The ServiceDetails that changed.
      */
-    public ServiceDetailsChangeEvent( Transport transport, SIChangeType type, ServiceDetails s)    {
+    public ServiceDetailsChangeEvent(Transport transport, SIChangeType type, ServiceDetails s) {
         super(transport, type, s);
     }
 
@@ -48,7 +49,7 @@ public class ServiceDetailsChangeEvent extends TransportSIChangeEvent{
      *
      * @return The ServiceDetails that changed.
      */
-    public ServiceDetails getServiceDetails()    {
+    public ServiceDetails getServiceDetails() {
         return (ServiceDetails) super.getSIElement();
     }
 

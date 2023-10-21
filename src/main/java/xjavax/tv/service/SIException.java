@@ -15,28 +15,28 @@ package xjavax.tv.service;
 
 /**
  * The base class for exceptions related to service information.
- *
+ * <p>
  * The base class for exceptions related to service information.
  * <HR>
  *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class SIException extends java.lang.Exception{
+public class SIException extends java.lang.Exception {
+
     /**
      * Constructs an <code>SIException</code> with no detail message.</DL>
-     *
      */
-    public SIException(){
+    public SIException() {
         super();
     }
 
     /**
      * Constructs an <code>SIException</code> with a detail message.
      *
-     * @param reason - The reason why this exception was thrown.
+     * @param reason The reason why this exception was thrown.
      */
-    public SIException(String reason)    {
+    public SIException(String reason) {
         super(reason);
     }
 

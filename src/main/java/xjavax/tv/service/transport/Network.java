@@ -17,16 +17,15 @@ import xjavax.tv.service.SIElement;
 import xjavax.tv.service.SIRequest;
 import xjavax.tv.service.SIRequestor;
 
+
 /**
  * This interface provides descriptive information concerning a network.
- *
+ * <p>
  * This interface provides descriptive information concerning a network.
  * <HR>
- *
- *
  */
-public interface Network extends SIElement
-{
+public interface Network extends SIElement {
+
     /**
      * Reports the ID of this network.
      *
@@ -52,10 +51,10 @@ public interface Network extends SIElement
      * not aggregate transport streams, the result is an
      * <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.<p>
-     *
+     * <p>
      * This method delivers its results asynchronously.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see TransportStream, ReadPermission
      */

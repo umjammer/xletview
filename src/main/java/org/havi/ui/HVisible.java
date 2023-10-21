@@ -22,63 +22,62 @@ import java.util.logging.Logger;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HVisible extends HComponent implements HState{
+public class HVisible extends HComponent implements HState {
+
     /** Debugging facility. */
     private static final Logger logger = Logger.getLogger(HVisible.class.getName());
 
-    public static final int HALIGN_LEFT                         = 0;
-    public static final int HALIGN_CENTER                       = 1;
-    public static final int HALIGN_RIGHT                        = 2;
-    public static final int HALIGN_JUSTIFY                      = 3;
+    public static final int HALIGN_LEFT = 0;
+    public static final int HALIGN_CENTER = 1;
+    public static final int HALIGN_RIGHT = 2;
+    public static final int HALIGN_JUSTIFY = 3;
 
-    public static final int VALIGN_TOP                          = 0;
-    public static final int VALIGN_CENTER                       = 4;
-    public static final int VALIGN_BOTTOM                       = 8;
-    public static final int VALIGN_JUSTIFY                      = 12;
+    public static final int VALIGN_TOP = 0;
+    public static final int VALIGN_CENTER = 4;
+    public static final int VALIGN_BOTTOM = 8;
+    public static final int VALIGN_JUSTIFY = 12;
 
-    public final static int RESIZE_NONE                         = 0;
-    public static final int RESIZE_PRESERVE_ASPECT              = 1;
-    public static final int RESIZE_ARBITRARY                    = 2;
+    public final static int RESIZE_NONE = 0;
+    public static final int RESIZE_PRESERVE_ASPECT = 1;
+    public static final int RESIZE_ARBITRARY = 2;
 
-    public static final int NO_BACKGROUND_FILL                  = 0;
-    public static final int BACKGROUND_FILL                     = 1;
+    public static final int NO_BACKGROUND_FILL = 0;
+    public static final int BACKGROUND_FILL = 1;
 
-    public static final int FIRST_CHANGE                        = 0;
+    public static final int FIRST_CHANGE = 0;
 
-    public static final int TEXT_CONTENT_CHANGE                 = 0;
-    public static final int GRAPHIC_CONTENT_CHANGE              = 1;
-    public static final int ANIMATE_CONTENT_CHANGE              = 2;
-    public static final int CONTENT_CHANGE                      = 3;
-    public static final int STATE_CHANGE                        = 4;
-    public static final int CARET_POSITION_CHANGE               = 5;
-    public static final int ECHO_CHAR_CHANGE                    = 6;
-    public static final int EDIT_MODE_CHANGE                    = 7;
-    public static final int MIN_MAX_CHANGE                      = 8;
-    public static final int THUMB_OFFSETS_CHANGE                = 9;
-    public static final int ADJUSTMENT_VALUE_CHANGE             = 13;
-    public static final int ORIENTATION_CHANGE                  = 10;
-    public static final int TEXT_VALUE_CHANGE                   = 11;
-    public static final int ITEM_VALUE_CHANGE                   = 12;
-    public static final int LIST_CONTENT_CHANGE                 = 14;
-    public static final int LIST_ICONSIZE_CHANGE                = 15;
-    public static final int LIST_LABELSIZE_CHANGE               = 16;
-    public static final int LIST_MULTISELECTION_CHANGE          = 17;
-    public static final int LIST_SCROLLPOSITION_CHANGE          = 18;
-    public static final int SIZE_CHANGE                         = 19;
-    public static final int BORDER_CHANGE                       = 20;
-    public static final int REPEAT_COUNT_CHANGE                 = 21;
-    public static final int ANIMATION_POSITION_CHANGE           = 22;
-    public static final int LIST_SELECTION_CHANGE               = 23;
-    public static final int UNKNOWN_CHANGE                      = 24;
-    public static final int LAST_CHANGE                         = UNKNOWN_CHANGE;
+    public static final int TEXT_CONTENT_CHANGE = 0;
+    public static final int GRAPHIC_CONTENT_CHANGE = 1;
+    public static final int ANIMATE_CONTENT_CHANGE = 2;
+    public static final int CONTENT_CHANGE = 3;
+    public static final int STATE_CHANGE = 4;
+    public static final int CARET_POSITION_CHANGE = 5;
+    public static final int ECHO_CHAR_CHANGE = 6;
+    public static final int EDIT_MODE_CHANGE = 7;
+    public static final int MIN_MAX_CHANGE = 8;
+    public static final int THUMB_OFFSETS_CHANGE = 9;
+    public static final int ADJUSTMENT_VALUE_CHANGE = 13;
+    public static final int ORIENTATION_CHANGE = 10;
+    public static final int TEXT_VALUE_CHANGE = 11;
+    public static final int ITEM_VALUE_CHANGE = 12;
+    public static final int LIST_CONTENT_CHANGE = 14;
+    public static final int LIST_ICONSIZE_CHANGE = 15;
+    public static final int LIST_LABELSIZE_CHANGE = 16;
+    public static final int LIST_MULTISELECTION_CHANGE = 17;
+    public static final int LIST_SCROLLPOSITION_CHANGE = 18;
+    public static final int SIZE_CHANGE = 19;
+    public static final int BORDER_CHANGE = 20;
+    public static final int REPEAT_COUNT_CHANGE = 21;
+    public static final int ANIMATION_POSITION_CHANGE = 22;
+    public static final int LIST_SELECTION_CHANGE = 23;
+    public static final int UNKNOWN_CHANGE = 24;
+    public static final int LAST_CHANGE = UNKNOWN_CHANGE;
 
-    public static final int NO_DEFAULT_WIDTH                    = -1;
-    public static final int NO_DEFAULT_HEIGHT                   = -1;
+    public static final int NO_DEFAULT_WIDTH = -1;
+    public static final int NO_DEFAULT_HEIGHT = -1;
 
     private HLook hLook;
     private Dimension defaultSize;
@@ -98,26 +97,26 @@ public class HVisible extends HComponent implements HState{
 
 
     public static final java.awt.Dimension NO_DEFAULT_SIZE =
-                                        new java.awt.Dimension(NO_DEFAULT_WIDTH, NO_DEFAULT_HEIGHT);
+            new java.awt.Dimension(NO_DEFAULT_WIDTH, NO_DEFAULT_HEIGHT);
 
-    public HVisible(){
+    public HVisible() {
         this(null, 0, 0, 0, 0);
     }
 
-    public HVisible(HLook hLook){
+    public HVisible(HLook hLook) {
         this(hLook, 0, 0, 0, 0);
     }
 
-    public HVisible(HLook hLook, int x, int y, int width, int height){
+    public HVisible(HLook hLook, int x, int y, int width, int height) {
         setDefaultSize(new Dimension(width, height));
         this.hLook = hLook;
 
         // set init values
-        this.resizeMode             = HVisible.RESIZE_NONE;
-        this.hTextLayoutManager     = new HDefaultTextLayoutManager();
-        this.backgroundMode         = HVisible.NO_BACKGROUND_FILL;
-        this.horizontalAlignment    = HVisible.HALIGN_CENTER;
-        this.verticalAlignment      = HVisible.VALIGN_CENTER;
+        this.resizeMode = HVisible.RESIZE_NONE;
+        this.hTextLayoutManager = new HDefaultTextLayoutManager();
+        this.backgroundMode = HVisible.NO_BACKGROUND_FILL;
+        this.horizontalAlignment = HVisible.HALIGN_CENTER;
+        this.verticalAlignment = HVisible.VALIGN_CENTER;
         this.bordersEnabled = true;
 
         this.contents = new Object[8];
@@ -135,10 +134,10 @@ public class HVisible extends HComponent implements HState{
     }
 
     /**
-     *    Checks that the hLook is not null and if not it calls widgetChanged
+     * Checks that the hLook is not null and if not it calls widgetChanged
      */
-    private void callWidgetChanged(){
-        if(this.hLook != null){
+    private void callWidgetChanged() {
+        if (this.hLook != null) {
             /*
              * Since we pass null as the second argument
              * instead of a HChangeData[] a full repaint
@@ -152,78 +151,75 @@ public class HVisible extends HComponent implements HState{
         By default an HVisible component is not focus-traversable.
     */
     @Override
-    public boolean isFocusTraversable(){
+    public boolean isFocusTraversable() {
         return false;
     }
 
     /**
      * Check the state argument
+     *
      * @param state
      */
-    private void checkStateArgument(int state){
+    private void checkStateArgument(int state) {
         boolean result = switch (state) {
             case HState.FOCUSED_STATE_BIT, HState.ACTIONED_STATE_BIT, HState.DISABLED_STATE_BIT -> false;
             default -> true;
         };
-        if(!result){
+        if (!result) {
             throw new java.lang.IllegalArgumentException("argument is STATE_BIT rather than a STATE");
         }
     }
 
-    public void setTextContent(String string, int state){
+    public void setTextContent(String string, int state) {
 
         checkStateArgument(state);
-        if(state == HState.ALL_STATES){
-            for(int i = this.textContents.length - 1; i > -1 ; i--){
+        if (state == HState.ALL_STATES) {
+            for (int i = this.textContents.length - 1; i > -1; i--) {
                 this.textContents[i] = string;
             }
-        }
-        else{
+        } else {
             this.textContents[state - HState.NORMAL_STATE] = string;
         }
         callWidgetChanged();
     }
 
-    public void setGraphicContent(Image image, int state){
-        if(state == HState.ALL_STATES){
-            for(int i = this.graphicContents.length - 1; i > -1 ; i--){
+    public void setGraphicContent(Image image, int state) {
+        if (state == HState.ALL_STATES) {
+            for (int i = this.graphicContents.length - 1; i > -1; i--) {
                 this.graphicContents[i] = image;
             }
-        }
-        else{
+        } else {
             this.graphicContents[state - HState.NORMAL_STATE] = image;
         }
         callWidgetChanged();
     }
 
-    public void setAnimateContent(Image[] imageArray, int state){
-        if(state == HState.ALL_STATES){
-            for(int i = this.animateContents.length - 1; i > -1 ; i--){
+    public void setAnimateContent(Image[] imageArray, int state) {
+        if (state == HState.ALL_STATES) {
+            for (int i = this.animateContents.length - 1; i > -1; i--) {
                 this.animateContents[i] = imageArray;
             }
-        }
-        else{
+        } else {
             this.animateContents[state - HState.NORMAL_STATE] = imageArray;
         }
         callWidgetChanged();
     }
 
-    public void setContent(Object object, int state){
-        if(state == HState.ALL_STATES){
-            for(int i = this.contents.length - 1; i > -1 ; i--){
+    public void setContent(Object object, int state) {
+        if (state == HState.ALL_STATES) {
+            for (int i = this.contents.length - 1; i > -1; i--) {
                 this.contents[i] = object;
             }
-        }
-        else{
+        } else {
             this.contents[state - HState.NORMAL_STATE] = object;
         }
         callWidgetChanged();
     }
 
-    private Object getForNearestMatchingState(int state, Object[] contents){
+    private Object getForNearestMatchingState(int state, Object[] contents) {
         Object result = contents[state - HState.NORMAL_STATE];
 
-        if(result == null){
+        if (result == null) {
             result = switch (state) {
                 case HState.FOCUSED_STATE -> getForNearestMatchingState(HState.NORMAL_STATE, contents);
                 case HState.ACTIONED_STATE -> getForNearestMatchingState(HState.FOCUSED_STATE, contents);
@@ -240,103 +236,100 @@ public class HVisible extends HComponent implements HState{
         return result;
     }
 
-    public String getTextContent(int state){
+    public String getTextContent(int state) {
         checkStateArgument(state);
-        String str = (String)getForNearestMatchingState(state, this.textContents);
+        String str = (String) getForNearestMatchingState(state, this.textContents);
         return str;
     }
 
-    public Image getGraphicContent(int state){
+    public Image getGraphicContent(int state) {
         checkStateArgument(state);
         Image img = (Image) getForNearestMatchingState(state, this.graphicContents);
         return img;
     }
 
-    public Image[] getAnimateContent(int state){
+    public Image[] getAnimateContent(int state) {
         checkStateArgument(state);
-        Image[] imgs = (Image[])getForNearestMatchingState(state, this.animateContents);
+        Image[] imgs = (Image[]) getForNearestMatchingState(state, this.animateContents);
 
         return imgs;
     }
 
-    public Object getContent(int state){
+    public Object getContent(int state) {
         checkStateArgument(state);
         Object obj = getForNearestMatchingState(state, this.contents);
         return obj;
     }
 
-    public void setLook(HLook hLook) throws HInvalidLookException{
+    public void setLook(HLook hLook) throws HInvalidLookException {
         this.hLook = hLook;
     }
 
-    public HLook getLook(){
+    public HLook getLook() {
         return this.hLook;
     }
 
     @Override
-    public Dimension getPreferredSize(){
+    public Dimension getPreferredSize() {
         Dimension dimension = null;
-        if(this.hLook != null){
+        if (this.hLook != null) {
             dimension = this.hLook.getPreferredSize(this);
-        }
-        else{
+        } else {
             dimension = this.getSize();
         }
         return dimension;
     }
 
     @Override
-    public Dimension getMaximumSize(){
+    public Dimension getMaximumSize() {
         Dimension dimension = null;
-        if(this.hLook != null){
+        if (this.hLook != null) {
             dimension = this.hLook.getMaximumSize(this);
-        }
-        else{
+        } else {
             dimension = this.getSize();
         }
         return dimension;
     }
 
     @Override
-    public Dimension getMinimumSize(){
+    public Dimension getMinimumSize() {
         Dimension dimension = null;
-        if(this.hLook != null){
+        if (this.hLook != null) {
             dimension = this.hLook.getMinimumSize(this);
-        }
-        else{
+        } else {
             dimension = this.getSize();
         }
         return dimension;
     }
 
-    protected void setInteractionState(int state) throws java.lang.IllegalArgumentException{
+    protected void setInteractionState(int state) throws java.lang.IllegalArgumentException {
         checkStateArgument(state);
         this.state = state;
         callWidgetChanged();
     }
 
-    public int getInteractionState(){
+    public int getInteractionState() {
         return this.state;
     }
 
-    public void setTextLayoutManager(HTextLayoutManager manager){
+    public void setTextLayoutManager(HTextLayoutManager manager) {
         this.hTextLayoutManager = manager;
     }
 
-    public HTextLayoutManager getTextLayoutManager(){
+    public HTextLayoutManager getTextLayoutManager() {
         return this.hTextLayoutManager;
     }
 
-    public int getBackgroundMode(){
+    public int getBackgroundMode() {
         return this.backgroundMode;
     }
 
-    public void setBackgroundMode(int mode){
+    public void setBackgroundMode(int mode) {
         this.backgroundMode = mode;
     }
 
     @Override
-    public boolean isOpaque(){
+    public boolean isOpaque() {
         /*
             Normally the associated HLook does not paint the background of the HVisible,
             allowing for non-rectangular components and text overlaying bitmaps.
@@ -350,16 +343,16 @@ public class HVisible extends HComponent implements HState{
         return this.backgroundMode != HVisible.NO_BACKGROUND_FILL;
     }
 
-    public void setDefaultSize(Dimension defaultSize){
+    public void setDefaultSize(Dimension defaultSize) {
         this.defaultSize = defaultSize;
     }
 
-    public java.awt.Dimension getDefaultSize(){
+    public java.awt.Dimension getDefaultSize() {
         return this.defaultSize;
     }
 
 
-    public java.lang.Object getLookData(java.lang.Object key){
+    public java.lang.Object getLookData(java.lang.Object key) {
         /*
             " Use of this mechanism is an implementation option. If this mechanism is not used
             by an implementation, getLookData shall always return null and setLookData shall
@@ -368,7 +361,7 @@ public class HVisible extends HComponent implements HState{
         return null;
     }
 
-    public void setLookData(java.lang.Object key, java.lang.Object data){
+    public void setLookData(java.lang.Object key, java.lang.Object data) {
         /*
             " Use of this mechanism is an implementation option. If this mechanism is not used
             by an implementation, getLookData shall always return null and setLookData shall
@@ -376,7 +369,7 @@ public class HVisible extends HComponent implements HState{
         */
     }
 
-    public void setHorizontalAlignment(int hAlign){
+    public void setHorizontalAlignment(int hAlign) {
         /*
             " Set the horizontal alignment of any state-based content rendered by an associated HLook.
             If content is not used in the rendering of this HVisible calls to this method shall
@@ -385,7 +378,7 @@ public class HVisible extends HComponent implements HState{
         this.horizontalAlignment = hAlign;
     }
 
-    public void setVerticalAlignment(int vAlign){
+    public void setVerticalAlignment(int vAlign) {
         /*
             " Set the vertical alignment of any state-based content rendered by an associated HLook.
             If content is not used in the rendering of this HVisible calls to this method shall
@@ -395,14 +388,14 @@ public class HVisible extends HComponent implements HState{
         callWidgetChanged();
     }
 
-    public int getHorizontalAlignment(){
+    public int getHorizontalAlignment() {
         /*
             " Get the horizontal alignment of any state-based content rendered by an associated HLook. If content is not used in the rendering of this HVisible the value returned shall be valid, but has no effect on the rendered representation. "
         */
         return this.horizontalAlignment;
     }
 
-    public int getVerticalAlignment(){
+    public int getVerticalAlignment() {
         /*
             " Get the vertical alignment of any state-based content rendered by an associated HLook.
             If content is not used in the rendering of this HVisible the value returned shall be valid,
@@ -411,46 +404,45 @@ public class HVisible extends HComponent implements HState{
         return this.verticalAlignment;
     }
 
-    public void setResizeMode(int resize){
+    public void setResizeMode(int resize) {
         /*
             " Scaling support is optional, however all implementations must support the
             RESIZE_NONE scaling mode. Platforms are not required to support scaling of
             textual content by default. "
         */
-        if(resize != HVisible.RESIZE_NONE){
-            String msg  = "\nScaling support is optional, however all implementations must support the RESIZE_NONE scaling mode. Platforms are not required to support scaling of textual content by default.";
+        if (resize != HVisible.RESIZE_NONE) {
+            String msg = "\nScaling support is optional, however all implementations must support the RESIZE_NONE scaling mode. Platforms are not required to support scaling of textual content by default.";
             logger.warning("setResizeMode(" + resize + ") is not supported, only HVisible.RESIZE_NONE is." + msg);
         }
     }
 
-    public int getResizeMode(){
+    public int getResizeMode() {
         return this.resizeMode;
     }
 
     @Override
-    public void setEnabled(boolean b){
+    public void setEnabled(boolean b) {
         super.setEnabled(b);
-        if(!b){
-            if(getInteractionState() >= HState.NORMAL_STATE || getInteractionState() <= HState.ACTIONED_FOCUSED_STATE){
+        if (!b) {
+            if (getInteractionState() >= HState.NORMAL_STATE || getInteractionState() <= HState.ACTIONED_FOCUSED_STATE) {
                 this.setInteractionState(getInteractionState() - 4);
             }
-        }
-        else{
-            if(getInteractionState() >= HState.DISABLED_STATE || getInteractionState() <= HState.DISABLED_ACTIONED_FOCUSED_STATE){
+        } else {
+            if (getInteractionState() >= HState.DISABLED_STATE || getInteractionState() <= HState.DISABLED_ACTIONED_FOCUSED_STATE) {
                 this.setInteractionState(getInteractionState() + 4);
             }
         }
         callWidgetChanged();
     }
 
-    public void setBordersEnabled(boolean enable){
+    public void setBordersEnabled(boolean enable) {
         this.bordersEnabled = enable;
         callWidgetChanged();
     }
 
 
     public boolean getBordersEnabled() {
-          return this.bordersEnabled;
+        return this.bordersEnabled;
     }
 
     /*
@@ -463,8 +455,8 @@ public class HVisible extends HComponent implements HState{
 
     */
     @Override
-    public void paint(Graphics g){
-        if(this.hLook != null){
+    public void paint(Graphics g) {
+        if (this.hLook != null) {
             this.hLook.showLook(g, this, this.getInteractionState());
         }
     }
@@ -476,7 +468,7 @@ public class HVisible extends HComponent implements HState{
         Color, and calls the paint() method.
     */
     @Override
-    public void update(java.awt.Graphics g){
+    public void update(java.awt.Graphics g) {
         g.setColor(this.getBackground());
         paint(g);
     }

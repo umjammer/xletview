@@ -15,12 +15,10 @@
 package org.dvb.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ActiveFormatDescriptionChangedEvent extends VideoFormatEvent{
+public class ActiveFormatDescriptionChangedEvent extends VideoFormatEvent {
 
     private int newFormat;
 

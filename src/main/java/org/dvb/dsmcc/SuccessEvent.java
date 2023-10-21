@@ -12,23 +12,21 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class SuccessEvent extends AsynchronousLoadingEvent {
 
-    public SuccessEvent (DSMCCObject o) {
+    public SuccessEvent(DSMCCObject o) {
         super(o);
     }
 
     @Override
-    public Object getSource () {
+    public Object getSource() {
         return super.getSource();
     }
 }

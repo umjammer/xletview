@@ -20,56 +20,54 @@ import org.havi.ui.HScreenPoint;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class VideoTransformation{
+public class VideoTransformation {
 
     private Rectangle clipRegion;
     private float horizontalScalingFactor;
     private float verticalScalingFactor;
     private HScreenPoint location;
 
-    public VideoTransformation(){
-        this(new Rectangle(720,576), 1.0f, 1.0f, new HScreenPoint(0,0));
+    public VideoTransformation() {
+        this(new Rectangle(720, 576), 1.0f, 1.0f, new HScreenPoint(0, 0));
     }
 
-    public VideoTransformation(Rectangle clipRect, float horizontalScalingFactor, float verticalScalingFactor, HScreenPoint location){
+    public VideoTransformation(Rectangle clipRect, float horizontalScalingFactor, float verticalScalingFactor, HScreenPoint location) {
         this.clipRegion = clipRect;
         this.horizontalScalingFactor = horizontalScalingFactor;
         this.verticalScalingFactor = verticalScalingFactor;
         this.location = location;
     }
 
-    public void setClipRegion(Rectangle clipRect){
+    public void setClipRegion(Rectangle clipRect) {
         this.clipRegion = clipRect;
     }
 
-    public Rectangle getClipRegion(){
+    public Rectangle getClipRegion() {
         return clipRegion;
     }
 
-    public void setScalingFactors(float horizontalScalingFactor, float verticalScalingFactor){
+    public void setScalingFactors(float horizontalScalingFactor, float verticalScalingFactor) {
         this.horizontalScalingFactor = horizontalScalingFactor;
         this.verticalScalingFactor = verticalScalingFactor;
     }
 
-    public float[] getScalingFactors(){
-        float[] scalingFactors = { horizontalScalingFactor, verticalScalingFactor };
+    public float[] getScalingFactors() {
+        float[] scalingFactors = {horizontalScalingFactor, verticalScalingFactor};
         return scalingFactors;
     }
 
-    public void setVideoPosition(HScreenPoint location)    {
+    public void setVideoPosition(HScreenPoint location) {
         this.location = location;
     }
 
-    public HScreenPoint getVideoPosition(){
+    public HScreenPoint getVideoPosition() {
         return location;
     }
 
-    public boolean isPanAndScan(){
+    public boolean isPanAndScan() {
         return false;
     }
 }

@@ -12,17 +12,14 @@
 */
 
 package org.havi.ui;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Insets;
 
 
-
-
 /**
- *
- *
  * @author Cristian Suazo
  * @author Martin Sveden
  * @statuscode 4
@@ -42,8 +39,7 @@ public class HAnimateLook implements HLook {
 //        logger.fine("Repaiting animation");
 
 
-        HStaticAnimation animation = (HStaticAnimation)hVisible;
-
+        HStaticAnimation animation = (HStaticAnimation) hVisible;
 
 
         Dimension dimension = animation.getSize();
@@ -70,16 +66,15 @@ public class HAnimateLook implements HLook {
              * the loop if all images are null.
              */
             int count = 0;
-            while(count < images.length){
+            while (count < images.length) {
                 position = animation.getPosition();
                 currentImage = images[position];
 
                 boolean ok = HGraphicLook.drawImage(g, currentImage, hVisible);
 
-                if(ok){
+                if (ok) {
                     break;
-                }
-                else{
+                } else {
                     log.info("image for position " + position + " is not drawable");
                     count++;
                     animation.setPosition(++position);
@@ -88,9 +83,9 @@ public class HAnimateLook implements HLook {
         }
 
         // border
-        if(hVisible.getInteractionState() == HState.FOCUSED_STATE){
+        if (hVisible.getInteractionState() == HState.FOCUSED_STATE) {
             Color fg = hVisible.getForeground();
-            if(fg != null){
+            if (fg != null) {
                 g.setColor(fg);
 
                 // top

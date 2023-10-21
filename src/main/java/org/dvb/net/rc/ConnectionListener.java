@@ -15,6 +15,7 @@
 package org.dvb.net.rc;
 
 public interface ConnectionListener {
+
     void connectionChanged(ConnectionRCEvent e);
 }
 

@@ -15,14 +15,12 @@
 package org.davic.resources;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ResourceStatusEvent extends java.util.EventObject{
+public class ResourceStatusEvent extends java.util.EventObject {
 
-    public ResourceStatusEvent(Object source){
+    public ResourceStatusEvent(Object source) {
         super(source);
     }
 

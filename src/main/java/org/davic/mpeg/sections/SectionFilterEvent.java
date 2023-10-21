@@ -15,26 +15,24 @@
 package org.davic.mpeg.sections;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class SectionFilterEvent extends java.util.EventObject{
+public class SectionFilterEvent extends java.util.EventObject {
 
     private Object appData;
 
-    public SectionFilterEvent(SectionFilter sectionFilter, Object appData){
-        super(sectionFilter) ;
+    public SectionFilterEvent(SectionFilter sectionFilter, Object appData) {
+        super(sectionFilter);
         this.appData = appData;
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 
-    public Object getAppData(){
+    public Object getAppData() {
         return appData;
     }
 

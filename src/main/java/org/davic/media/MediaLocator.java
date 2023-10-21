@@ -15,14 +15,12 @@
 package org.davic.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class MediaLocator extends javax.media.MediaLocator{
+public class MediaLocator extends javax.media.MediaLocator {
 
-    public MediaLocator(org.davic.net.Locator locator){
+    public MediaLocator(org.davic.net.Locator locator) {
         super(locator.toString());
     }
 }

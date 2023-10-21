@@ -16,27 +16,24 @@ package org.dvb.net.rc;
 
 import org.davic.resources.ResourceStatusEvent;
 
+
 /**
- *
- *
- * @version  14.9.03
- * @author      Bengt Skogvall
+ * @author Bengt Skogvall
+ * @version 14.9.03
  * @statuscode 4
  */
 public class RCInterfaceReleasedEvent
-    extends ResourceStatusEvent
-{
-  private Object connection;
+        extends ResourceStatusEvent {
 
-  public RCInterfaceReleasedEvent(Object bg)
-  {
-    super(bg);
-    connection = bg;
-  }
+    private Object connection;
 
-  @Override
-  public Object getSource()
-  {
-    return connection;
-  }
+    public RCInterfaceReleasedEvent(Object bg) {
+        super(bg);
+        connection = bg;
+    }
+
+    @Override
+    public Object getSource() {
+        return connection;
+    }
 }

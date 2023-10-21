@@ -12,7 +12,7 @@
 */
 
 
-package org.dvb.application ;
+package org.dvb.application;
 
 public class RunningApplicationsFilter extends AppsDatabaseFilter {
 
@@ -21,6 +21,8 @@ public class RunningApplicationsFilter extends AppsDatabaseFilter {
     }
 
     @Override
-    public boolean accept(AppID appid) { return false;}
+    public boolean accept(AppID appid) {
+        return false;
+    }
 
 }

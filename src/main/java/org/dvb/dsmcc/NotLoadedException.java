@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NotLoadedException extends DSMCCException {
 
-    public NotLoadedException(){
+    public NotLoadedException() {
         super();
     }
 
-    public NotLoadedException(String s){
+    public NotLoadedException(String s) {
         super(s);
     }
 }

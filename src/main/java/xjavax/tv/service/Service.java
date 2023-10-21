@@ -16,6 +16,7 @@ package xjavax.tv.service;
 import xjavax.tv.locator.Locator;
 import xjavax.tv.service.navigation.ServiceDetails;
 
+
 /**
  * The <code>Service</code> interface represents an abstract view on
  * what is generally referred to as a television "service" or
@@ -23,26 +24,26 @@ import xjavax.tv.service.navigation.ServiceDetails;
  * virtual channel, SCTE virtual channel, etc. It represents the basic
  * information associated with a service, such as its name or number,
  * which is guaranteed to be available on the receiver. <P>
- *
+ * <p>
  * Internal to the receiver, each service is uniquely identified by
  * information that may include system type, network ID, transport stream
  * ID, service number, service number, or other information. This
  * identification is encapsulated by the Locator object. <P>
- *
+ * <p>
  * Note that a <code>Service</code> object may represent multiple
  * instances of the same content delivered over different media
  * (e.g., the same service may be delivered over a terrestrial and
  * cable network). A <code>ServiceDetails</code> object represents a
  * specific instance of such content which is bound to a specific
  * delivery mechanism. <P>
- *
+ * <p>
  * The information available through this object, i.e., the service name,
  * service number, etc., represents information that is stored in
  * the receiver and is not necessarily the same as what is broadcast in any
  * broadcast service information protocol. For example, a receiver
  * implementation may let the end user edit this information according to
  * the user's preferences. <P>
- *
+ * <p>
  * A <code>Service</code> object may optionally implement an interface
  * that supports service numbers.  Each <code>Service</code> object
  * must provide either a service name (via the <code>getName</code> method)
@@ -51,16 +52,14 @@ import xjavax.tv.service.navigation.ServiceDetails;
  * <A HREF="../../../javax/tv/service/navigation/ServiceDetails.html"><CODE>ServiceDetails</CODE></A>,
  * <a href="../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface Service
-{
+public interface Service {
+
     /**
      * This method retrieves additional information about the
      * <code>Service</code>. This information is retrieved from the
      * broadcast service information. <P>
-     *
+     * <p>
      * Note that if the content represented by this <code>Service</code>
      * is delivered on multiple transport-dependent streams there may be
      * multiple <code>ServiceDetails</code> for it. This method
@@ -70,10 +69,10 @@ public interface Service
      * <code>Locator</code> can be transformed to transport-dependent
      * <code>Locator</code> instances and <code>ServiceDetails</code>
      * can be retrieved for each. <P>
-     *
+     * <p>
      * This method returns data asynchronously.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see Locator, ServiceDetails
      */
@@ -133,7 +132,7 @@ public interface Service
      * <li><code>obj</code> and this object encapsulate identical data.
      * </ul>
      *
-     * @param obj - The object against which to test for equality.
+     * @param obj The object against which to test for equality.
      * @return true if the two Service objects are equal; false otherwise.
      * @see #equals in class java.lang.Object
      */

@@ -18,9 +18,11 @@ import org.davic.mpeg.ElementaryStream;
 import org.davic.mpeg.Service;
 import org.davic.mpeg.TransportStream;
 
+
 public abstract class CAModule {
 
-    public CAModule() {}
+    public CAModule() {
+    }
 
     public final static int CA0 = 0x00;
 
@@ -36,7 +38,7 @@ public abstract class CAModule {
 
     public final static int MMI_DIALOGUE_REQUIRED = 0x03;
 
-    public int queryEntitlement(org.davic.net.Locator locator) throws CAException,    org.davic.net.InvalidLocatorException {
+    public int queryEntitlement(org.davic.net.Locator locator) throws CAException, org.davic.net.InvalidLocatorException {
         return 0;
     }
 
@@ -83,11 +85,15 @@ public abstract class CAModule {
     public void sendToModule(int session_id, CAMessage msg) throws CAException {
     }
 
-    public String getApplicationTitle() throws ModuleUnavailableException{return null;}
+    public String getApplicationTitle() throws ModuleUnavailableException {
+        return null;
+    }
 
-    public void enterApplication() throws ModuleUnavailableException{}
+    public void enterApplication() throws ModuleUnavailableException {
+    }
 
-    public void closeMMI() throws ModuleUnavailableException{}
+    public void closeMMI() throws ModuleUnavailableException {
+    }
 }
 
 

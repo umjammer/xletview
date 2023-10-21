@@ -14,59 +14,59 @@
 
 package org.davic.mpeg.sections;
 
-public class SectionFilterGroup implements     org.davic.resources.ResourceProxy, org.davic.resources.ResourceServer{
+public class SectionFilterGroup implements org.davic.resources.ResourceProxy, org.davic.resources.ResourceServer {
 
-    public SectionFilterGroup(int numberOfFilters){
+    public SectionFilterGroup(int numberOfFilters) {
     }
 
-    public SectionFilterGroup(int numberOfFilters, boolean resourcePriority){
+    public SectionFilterGroup(int numberOfFilters, boolean resourcePriority) {
     }
 
-    public SimpleSectionFilter newSimpleSectionFilter(){
+    public SimpleSectionFilter newSimpleSectionFilter() {
         return null;
     }
 
-    public SimpleSectionFilter newSimpleSectionFilter(int sectionSize){
+    public SimpleSectionFilter newSimpleSectionFilter(int sectionSize) {
         return null;
     }
 
-    public RingSectionFilter newRingSectionFilter(int ringSize){
+    public RingSectionFilter newRingSectionFilter(int ringSize) {
         return null;
     }
 
-    public RingSectionFilter newRingSectionFilter(int ringSize, int  sectionSize){
+    public RingSectionFilter newRingSectionFilter(int ringSize, int sectionSize) {
         return null;
     }
 
-    public TableSectionFilter newTableSectionFilter(){
+    public TableSectionFilter newTableSectionFilter() {
         return null;
     }
 
-    public TableSectionFilter newTableSectionFilter(int sectionSize){
+    public TableSectionFilter newTableSectionFilter(int sectionSize) {
         return null;
     }
 
-    public void attach(org.davic.mpeg.TransportStream stream, org.davic.resources.ResourceClient client, Object requestData) throws FilterResourceException, InvalidSourceException, org.davic.mpeg.TuningException,org.davic.mpeg.NotAuthorizedException {
+    public void attach(org.davic.mpeg.TransportStream stream, org.davic.resources.ResourceClient client, Object requestData) throws FilterResourceException, InvalidSourceException, org.davic.mpeg.TuningException, org.davic.mpeg.NotAuthorizedException {
     }
 
-    public void detach(){
+    public void detach() {
     }
 
-    public org.davic.mpeg.TransportStream getSource(){
-        return null;
-    }
-
-    @Override
-    public org.davic.resources.ResourceClient getClient(){
+    public org.davic.mpeg.TransportStream getSource() {
         return null;
     }
 
     @Override
-    public void addResourceStatusEventListener (org.davic.resources.ResourceStatusListener listener){
+    public org.davic.resources.ResourceClient getClient() {
+        return null;
     }
 
     @Override
-    public void removeResourceStatusEventListener (org.davic.resources.ResourceStatusListener listener){
+    public void addResourceStatusEventListener(org.davic.resources.ResourceStatusListener listener) {
+    }
+
+    @Override
+    public void removeResourceStatusEventListener(org.davic.resources.ResourceStatusListener listener) {
     }
 
 }

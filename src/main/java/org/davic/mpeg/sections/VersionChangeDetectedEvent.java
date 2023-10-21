@@ -14,22 +14,22 @@
 
 package org.davic.mpeg.sections;
 
-public class VersionChangeDetectedEvent extends SectionFilterEvent{
+public class VersionChangeDetectedEvent extends SectionFilterEvent {
 
-    public VersionChangeDetectedEvent(SectionFilter sectionFilter, Object appData)    {
+    public VersionChangeDetectedEvent(SectionFilter sectionFilter, Object appData) {
         super(sectionFilter, appData);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 
-    public int getOriginalVersion()    {
+    public int getOriginalVersion() {
         return 0;
     }
 
-    public int getNewVersion(){
+    public int getNewVersion() {
         return 0;
     }
 

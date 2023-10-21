@@ -17,17 +17,16 @@
 package org.dvb.net.rc;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class PermissionDeniedException extends java.lang.Exception{
+public class PermissionDeniedException extends java.lang.Exception {
 
     public PermissionDeniedException() {
         super();
     }
 
-    public PermissionDeniedException(String reason){
+    public PermissionDeniedException(String reason) {
         super(reason);
     }
 }

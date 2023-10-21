@@ -14,15 +14,15 @@
 
 package org.dvb.si;
 
-public interface SIRunningStatus{
+public interface SIRunningStatus {
 
-    byte UNDEFINED               = 0;
+    byte UNDEFINED = 0;
 
-    byte NOT_RUNNING             = 1;
+    byte NOT_RUNNING = 1;
 
     byte STARTS_IN_A_FEW_SECONDS = 2;
 
-    byte PAUSING                 = 3;
+    byte PAUSING = 3;
 
-    byte RUNNING                 = 4;
+    byte RUNNING = 4;
 }

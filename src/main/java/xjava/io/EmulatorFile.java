@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- *
  * @author Martin Sveden
  */
 public class EmulatorFile {
@@ -34,12 +34,12 @@ public class EmulatorFile {
     private java.io.File realFile;
 
 
-    private EmulatorFile(){
+    private EmulatorFile() {
         children = new ArrayList<>();
     }
 
-    static EmulatorFile getRoot(){
-        if(ROOT == null){
+    static EmulatorFile getRoot() {
+        if (ROOT == null) {
             ROOT = new EmulatorFile();
             ROOT.name = "";
             ROOT.absolutePath = "/";
@@ -47,7 +47,7 @@ public class EmulatorFile {
         return ROOT;
     }
 
-    EmulatorFile(String name, java.io.File realFile){
+    EmulatorFile(String name, java.io.File realFile) {
         this();
         this.parent = ROOT;
         this.name = name;
@@ -56,7 +56,7 @@ public class EmulatorFile {
         this.absolutePath = FileSystem.separatorChar + name;
 
         java.io.File[] files = realFile.listFiles();
-        if(files != null){
+        if (files != null) {
             for (java.io.File file : files) {
 //                addChild(new EmulatorFile(this, files[i]));
                 new EmulatorFile(this, file);
@@ -67,7 +67,7 @@ public class EmulatorFile {
 
     EmulatorFile(EmulatorFile parent, java.io.File realFile) throws IllegalArgumentException {
         this();
-        if(parent == null || realFile == null || !realFile.exists()){
+        if (parent == null || realFile == null || !realFile.exists()) {
             throw new IllegalArgumentException("the file did not exist");
         }
 
@@ -78,7 +78,7 @@ public class EmulatorFile {
         this.absolutePath = parent.getAbsolutePath() + FileSystem.separatorChar + realFile.getName();
 
         java.io.File[] files = realFile.listFiles();
-        if(files != null){
+        if (files != null) {
             for (java.io.File file : files) {
 //                addChild(new EmulatorFile(this, files[i]));
                 new EmulatorFile(this, file);
@@ -90,11 +90,12 @@ public class EmulatorFile {
 
     /**
      * One file can only be added one time.
+     *
      * @param file
      */
-    void addChild(EmulatorFile file){
+    void addChild(EmulatorFile file) {
         log.fine("addChild(" + file.getAbsolutePath() + ")");
-        if(children.contains(file)){
+        if (children.contains(file)) {
             //log.fine("child already exist");
             try {
                 throw new IOException("child already exist");
@@ -107,11 +108,11 @@ public class EmulatorFile {
 
     }
 
-    void removeChild(EmulatorFile file){
+    void removeChild(EmulatorFile file) {
         children.remove(file);
     }
 
-    void removeAllChildren(){
+    void removeAllChildren() {
         children.clear();
     }
 
@@ -119,15 +120,15 @@ public class EmulatorFile {
 //        this.parent = parent;
 //    }
 
-    EmulatorFile getParent(){
+    EmulatorFile getParent() {
         return parent;
     }
 
-    List<EmulatorFile> getChildren(){
+    List<EmulatorFile> getChildren() {
         return children;
     }
 
-    EmulatorFile getChild(String name){
+    EmulatorFile getChild(String name) {
         EmulatorFile result = null;
         log.fine(this.name + ", children.size() = " + children.size());
         for (EmulatorFile child : children) {
@@ -143,11 +144,11 @@ public class EmulatorFile {
         return result;
     }
 
-    public String getAbsolutePath(){
+    public String getAbsolutePath() {
         return absolutePath;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -155,10 +156,9 @@ public class EmulatorFile {
 //        realFile = file;
 //    }
 
-    java.io.File getRealFile(){
+    java.io.File getRealFile() {
         return realFile;
     }
-
 
 
 }

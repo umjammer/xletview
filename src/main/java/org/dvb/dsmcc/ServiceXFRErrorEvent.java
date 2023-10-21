@@ -12,12 +12,10 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -25,7 +23,7 @@ public class ServiceXFRErrorEvent extends AsynchronousLoadingEvent {
 
     private ServiceXFRReference reference;
 
-    public ServiceXFRErrorEvent (DSMCCObject o, ServiceXFRReference ref) {
+    public ServiceXFRErrorEvent(DSMCCObject o, ServiceXFRReference ref) {
         super(o);
         this.reference = ref;
     }
@@ -35,7 +33,7 @@ public class ServiceXFRErrorEvent extends AsynchronousLoadingEvent {
         return super.getSource();
     }
 
-    public ServiceXFRReference getServiceXFR () {
+    public ServiceXFRReference getServiceXFR() {
         return reference;
     }
 }

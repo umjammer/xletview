@@ -15,6 +15,7 @@ package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.Service;
 
+
 /**
  * This class represents a set filtering criteria used to generate a
  * <code>ServiceList</code>.  <code>ServiceFilter</code> is extended
@@ -28,12 +29,11 @@ import xjavax.tv.service.Service;
  * @statuscode 4
  */
 public abstract class ServiceFilter {
+
     /**
      * Constructs the filter.</DL>
-     *
-     *
      */
-    protected ServiceFilter(){
+    protected ServiceFilter() {
         //TODO implement ServiceFilter
     }
 
@@ -43,9 +43,9 @@ public abstract class ServiceFilter {
      * provide the logic for a filtering operation on individual
      * <code>Service</code> objects.
      *
-     * @param service - A Service to be evaluated against the filtering algorithm.
+     * @param service A Service to be evaluated against the filtering algorithm.
      * @return true if service satisfies the filtering algorithm; false otherwise.
      */
-    public abstract boolean accept( Service service);
+    public abstract boolean accept(Service service);
 
 }

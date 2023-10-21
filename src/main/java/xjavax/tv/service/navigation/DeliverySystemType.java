@@ -10,48 +10,42 @@
  See LICENSE document for details.
 
 */
+
 package xjavax.tv.service.navigation;
 
 /**
  * This class represents values of various types of delivery systems,
  * for example, satellite, cable, etc.
  * <HR>
- *
- *
  */
 public class DeliverySystemType {
+
     /**
      * Satellite delivery system type.</DL>
-     *
      */
     public static final DeliverySystemType SATELLITE = null;
 
     /**
      * Cable delivery system type.</DL>
-     *
      */
     public static final DeliverySystemType CABLE = null;
 
     /**
      * Terrestrial delivery system type.</DL>
-     *
      */
     public static final DeliverySystemType TERRESTRIAL = null;
 
     /**
      * Unknown delivery system type.</DL>
-     *
-     *
      */
     public static final DeliverySystemType UNKNOWN = null;
 
     /**
      * Creates a delivery system type object.
      *
-     * @param name - The string name of this type (e.g., "SATELLITE").
+     * @param name The string name of this type (e.g., "SATELLITE").
      */
-    protected DeliverySystemType(java.lang.String name)
-    {
+    protected DeliverySystemType(java.lang.String name) {
         //TODO implement DeliverySystemType
     }
 
@@ -63,8 +57,7 @@ public class DeliverySystemType {
      * @return The string name of the delivery system type.
      * @see #toString in class java.lang.Object
      */
-    public java.lang.String toString()
-    {
+    public java.lang.String toString() {
         return null;
         //TODO implement toString
     }

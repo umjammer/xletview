@@ -15,7 +15,7 @@
 package org.havi.ui.event;
 
 
-public interface HScreenConfigurationListener extends java.util.EventListener{
+public interface HScreenConfigurationListener extends java.util.EventListener {
 
     void report(HScreenConfigurationEvent gce);
 

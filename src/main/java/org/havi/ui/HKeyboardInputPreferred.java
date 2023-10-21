@@ -14,11 +14,11 @@
 
 package org.havi.ui;
 
-public interface HKeyboardInputPreferred{
+public interface HKeyboardInputPreferred {
 
-    int INPUT_NUMERIC    = 1;
-    int INPUT_ALPHA      = 2;
-    int INPUT_ANY        = 4;
+    int INPUT_NUMERIC = 1;
+    int INPUT_ALPHA = 2;
+    int INPUT_ANY = 4;
     int INPUT_CUSTOMIZED = 8;
 
     boolean getEditMode();
@@ -32,7 +32,6 @@ public interface HKeyboardInputPreferred{
     void processHTextEvent(org.havi.ui.event.HTextEvent evt);
 
     void processHKeyEvent(org.havi.ui.event.HKeyEvent evt);
-
 
 
 }

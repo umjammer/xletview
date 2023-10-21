@@ -21,7 +21,8 @@ import xjavax.tv.service.selection.ServiceContextImpl;
 import xjavax.tv.xlet.Xlet;
 import xjavax.tv.xlet.XletContext;
 
-public class XletContextImpl implements XletContext{
+
+public class XletContextImpl implements XletContext {
 
     /**
      * Debugging
@@ -34,8 +35,8 @@ public class XletContextImpl implements XletContext{
 
     // xletview specific
 
-//    public static final String ROOT_CONTAINER = "javax.tv.xlet.root_container";
-    public static final String APP_DIR         = "app.dir";
+    //    public static final String ROOT_CONTAINER = "javax.tv.xlet.root_container";
+    public static final String APP_DIR = "app.dir";
 
     // spec 11.7
     private static final String PROPERTY_ORG_ID = "dvb.org.id";
@@ -43,9 +44,9 @@ public class XletContextImpl implements XletContext{
     private static final String PROPERTY_CALLER_PARAMS = "dvb.caller.parameters";
 
     public static final int INITIALIZED = 0;
-    public static final int ACTIVE     = 2;
-    public static final int PAUSED      = 3;
-    public static final int DESTROYED   = -1;
+    public static final int ACTIVE = 2;
+    public static final int PAUSED = 3;
+    public static final int DESTROYED = -1;
     private int state;
 
     private XletManager manager;
@@ -71,19 +72,18 @@ public class XletContextImpl implements XletContext{
      */
     private String[] callerArgs = new String[0];
 
-    public XletContextImpl(XletManager manager, Xlet xlet, EmulatorFile appDir){
+    public XletContextImpl(XletManager manager, Xlet xlet, EmulatorFile appDir) {
         this.manager = manager;
-        this.xlet    = xlet;
+        this.xlet = xlet;
         this.applicationDirectory = appDir;
     }
-
 
 
     /* (non-Javadoc)
      * @see xjavax.tv.xlet.XletContext#getXletProperty(java.lang.String)
      */
     @Override
-    public Object getXletProperty(String key){
+    public Object getXletProperty(String key) {
         log.fine("getXletProperty(" + key + ")");
         switch (key) {
         case XletContext.ARGS -> {
@@ -120,7 +120,7 @@ public class XletContextImpl implements XletContext{
      * @see xjavax.tv.xlet.XletContext#notifyDestroyed()
      */
     @Override
-    public void notifyDestroyed(){
+    public void notifyDestroyed() {
         setState(DESTROYED);
         manager.notifyDestroyed(this);
     }
@@ -129,7 +129,7 @@ public class XletContextImpl implements XletContext{
      * @see xjavax.tv.xlet.XletContext#notifyPaused()
      */
     @Override
-    public void notifyPaused(){
+    public void notifyPaused() {
         setState(PAUSED);
         manager.notifyPaused(this);
     }
@@ -138,7 +138,7 @@ public class XletContextImpl implements XletContext{
      * @see xjavax.tv.xlet.XletContext#resumeRequest()
      */
     @Override
-    public void resumeRequest(){
+    public void resumeRequest() {
         manager.resumeRequest(this);
     }
 
@@ -150,7 +150,7 @@ public class XletContextImpl implements XletContext{
         this.state = state;
     }
 
-    Xlet getXlet(){
+    Xlet getXlet() {
         log.fine("xlet=" + xlet);
         return xlet;
     }

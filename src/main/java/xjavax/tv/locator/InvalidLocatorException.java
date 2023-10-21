@@ -35,8 +35,7 @@ package xjavax.tv.locator;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class InvalidLocatorException extends java.lang.Exception
-{
+public class InvalidLocatorException extends java.lang.Exception {
 
     private Locator invalidLocator;
 
@@ -44,9 +43,9 @@ public class InvalidLocatorException extends java.lang.Exception
      * Constructs an <code>InvalidLocatorException</code> with no
      * detail message.
      *
-     * @param locator - The offending Locator.
+     * @param locator The offending Locator.
      */
-    public InvalidLocatorException( Locator locator){
+    public InvalidLocatorException(Locator locator) {
         super();
         invalidLocator = locator;
     }
@@ -55,10 +54,10 @@ public class InvalidLocatorException extends java.lang.Exception
      * Constructs an <code>InvalidLocatorException</code> with the
      * specified detail message.
      *
-     * @param locator - The offending Locator.
-     * @param reason - The reason this Locator is invalid.
+     * @param locator The offending Locator.
+     * @param reason The reason this Locator is invalid.
      */
-    public InvalidLocatorException( Locator locator, java.lang.String reason){
+    public InvalidLocatorException(Locator locator, java.lang.String reason) {
         super(reason);
         invalidLocator = locator;
     }
@@ -68,7 +67,7 @@ public class InvalidLocatorException extends java.lang.Exception
      *
      * @return The locator that caused the exception.
      */
-    public Locator getInvalidLocator(){
+    public Locator getInvalidLocator() {
         return invalidLocator;
     }
 

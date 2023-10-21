@@ -17,7 +17,8 @@ package org.davic.net.ca;
 public class List extends MMIObject {
 
 
-    List() {}
+    List() {
+    }
 
     public String getTitleText() {
         return null;
@@ -27,7 +28,7 @@ public class List extends MMIObject {
         return null;
     }
 
-    public String getBottomText(){
+    public String getBottomText() {
         return null;
     }
 

@@ -19,7 +19,7 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 
-public interface HLook    extends Cloneable{
+public interface HLook extends Cloneable {
 
     void showLook(Graphics g, HVisible hvisible, int i);
 

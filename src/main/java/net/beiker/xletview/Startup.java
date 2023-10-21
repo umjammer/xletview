@@ -16,7 +16,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Logger;
-
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -47,8 +46,7 @@ public class Startup {
         try {
             UIManager.setLookAndFeel(new MetouiaLookAndFeel());
             UIManager.getLookAndFeelDefaults().put("ClassLoader", this.getClass().getClassLoader());
-        }
-        catch (UnsupportedLookAndFeelException exception) {
+        } catch (UnsupportedLookAndFeelException exception) {
             exception.printStackTrace();
         }
 
@@ -87,24 +85,23 @@ public class Startup {
 
             URL url = pathString2URL(xPath);
 
-            if (url != null){
-                Startup.logger.fine("Xlet URL is '"+url.toExternalForm()+"'");
+            if (url != null) {
+                Startup.logger.fine("Xlet URL is '" + url.toExternalForm() + "'");
             }
 
-            if (xExtraPaths != null){
+            if (xExtraPaths != null) {
 
                 int numExtraPaths = xExtraPaths.length;
-                Startup.logger.fine("Xlet has '"+numExtraPaths+"' extra paths...");
+                Startup.logger.fine("Xlet has '" + numExtraPaths + "' extra paths...");
 
                 URL[] xExtraPathURLs = new URL[numExtraPaths];
-                for (int i=0; i<numExtraPaths; i++){
-                    Startup.logger.fine("Processing extra path '"+xExtraPaths[i]+"'.");
+                for (int i = 0; i < numExtraPaths; i++) {
+                    Startup.logger.fine("Processing extra path '" + xExtraPaths[i] + "'.");
                     xExtraPathURLs[i] = pathString2URL(xExtraPaths[i]);
                 }
                 Startup.logger.fine("Processed all extra paths.");
                 XletManager.getInstance().setXlet(url, xExtraPathURLs, xName);
-            }
-            else { // no Extra paths
+            } else { // no Extra paths
                 Startup.logger.fine("Xlet has NO extra paths.");
                 XletManager.getInstance().setXlet(url, xName);
             }
@@ -124,8 +121,8 @@ public class Startup {
                 }
             }
 
-				mainFrame.show();
-				mainFrame.toFront();
+            mainFrame.show();
+            mainFrame.toFront();
 
             hideSplash();
         });
@@ -138,13 +135,12 @@ public class Startup {
     // TODO: Move somewhere appropriate
     public static URL pathString2URL(String path) {
         URL url = null;
-        try{
+        try {
             url = new URL(path);
-        }
-        catch (MalformedURLException mue){
+        } catch (MalformedURLException mue) {
             Startup.logger.fine("Xlet Path is not an URL, trying to prefix with 'file:'.");
             try {
-                url = new URL("file:"+path);
+                url = new URL("file:" + path);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -197,8 +193,8 @@ public class Startup {
 
             ClassLoader classLoader = getClass().getClassLoader();
 
-            if(classLoader instanceof MainClassLoader && extraClassPath != null){
-                ((MainClassLoader) classLoader ).addClassPath(extraClassPath);
+            if (classLoader instanceof MainClassLoader && extraClassPath != null) {
+                ((MainClassLoader) classLoader).addClassPath(extraClassPath);
             }
 
         } catch (Exception e) {

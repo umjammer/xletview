@@ -15,19 +15,17 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public abstract class NPTStatusEvent extends java.util.EventObject {
 
-    public NPTStatusEvent( DSMCCStream source ){
+    public NPTStatusEvent(DSMCCStream source) {
         super(source);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 }

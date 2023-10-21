@@ -15,6 +15,7 @@ package xjavax.tv.media;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * <code>MediaSelectEvent</code> is the base class of events sent to
  * <code>MediaSelectListener</code> instances.
@@ -23,17 +24,18 @@ import xjavax.tv.locator.Locator;
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class MediaSelectEvent extends java.util.EventObject{
+public abstract class MediaSelectEvent extends java.util.EventObject {
+
     private javax.media.Controller controller;
     private Locator[] selection;
 
     /**
      * Creates a new <code>MediaSelectEvent</code>.
      *
-     * @param controller - The Controller that generated this event.
-     * @param selection - The Locator instances on which selection was attempted.
+     * @param controller The Controller that generated this event.
+     * @param selection The Locator instances on which selection was attempted.
      */
-    public MediaSelectEvent(javax.media.Controller controller, Locator[] selection)    {
+    public MediaSelectEvent(javax.media.Controller controller, Locator[] selection) {
         super(controller);
     }
 
@@ -42,7 +44,7 @@ public abstract class MediaSelectEvent extends java.util.EventObject{
      *
      * @return The Controller that generated this event.
      */
-    public javax.media.Controller getController(){
+    public javax.media.Controller getController() {
         return this.controller;
     }
 
@@ -51,7 +53,7 @@ public abstract class MediaSelectEvent extends java.util.EventObject{
      *
      * @return The selection that caused this event.
      */
-    public Locator[] getSelection()    {
+    public Locator[] getSelection() {
         return this.selection;
     }
 

@@ -15,7 +15,7 @@
 package org.havi.ui;
 
 
-    public interface HNavigable extends HNavigationInputPreferred{
+public interface HNavigable extends HNavigationInputPreferred {
 
     void setMove(int keyCode, HNavigable target);
 

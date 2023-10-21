@@ -10,32 +10,33 @@
  See LICENSE document for details.
 
 */
+
 package xjavax.tv.media.protocol;
 
 /**
  * Signals that streaming data has been lost.
- *
+ * <p>
  * Signals that streaming data has been lost.
  * <HR>
  *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class DataLostException extends java.io.IOException{
+public class DataLostException extends java.io.IOException {
+
     /**
      * Constructs the exception with no detail message.</DL>
-     *
      */
-    public DataLostException(){
+    public DataLostException() {
         super();
     }
 
     /**
      * Constructs the exception with the given detail message.
      *
-     * @param reason - The reason for the exception.
+     * @param reason The reason for the exception.
      */
-    public DataLostException(String reason){
+    public DataLostException(String reason) {
         super(reason);
     }
 

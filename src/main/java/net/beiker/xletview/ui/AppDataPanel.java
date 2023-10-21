@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui;
 
@@ -23,7 +21,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.util.logging.Logger;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -39,6 +36,7 @@ import net.beiker.xletview.util.Util;
 import net.beiker.xletview.window.AppTreeWindow;
 import net.beiker.xletview.window.ClassWindow;
 import net.beiker.xletview.window.DirectoryExplorer;
+
 
 /**
  * @author Martin Sveden
@@ -143,6 +141,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
 
     /**
      * Saves the data for previous App and displays the data for the new one.
+     *
      * @param app the new App
      */
     public void setApp(App app) {
@@ -155,9 +154,8 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
 
     /**
      * Saves the data to the active App
-     *
      */
-    public void save(){
+    public void save() {
         if (this.app != null) {
             this.app.setName(fields[NAME].getText());
             this.app.setPath(fields[CLASSPATH].getText());

@@ -15,8 +15,6 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -24,12 +22,12 @@ public class ObjectChangeEvent extends java.util.EventObject {
 
     private int versionNumber;
 
-    public ObjectChangeEvent(DSMCCObject source, int versionNumber){
+    public ObjectChangeEvent(DSMCCObject source, int versionNumber) {
         super(source);
         this.versionNumber = versionNumber;
     }
 
-    public int getNewVersionNumber(){
+    public int getNewVersionNumber() {
         return versionNumber;
     }
 
@@ -37,4 +35,4 @@ public class ObjectChangeEvent extends java.util.EventObject {
     public Object getSource() {
         return super.getSource();
     }
- }
+}

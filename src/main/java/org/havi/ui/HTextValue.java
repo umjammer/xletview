@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HTextValue extends HNavigable, HKeyboardInputPreferred{
+public interface HTextValue extends HNavigable, HKeyboardInputPreferred {
 
     void addHKeyListener(org.havi.ui.event.HKeyListener l);
 

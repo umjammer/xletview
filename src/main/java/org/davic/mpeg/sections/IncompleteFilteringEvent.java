@@ -15,19 +15,17 @@
 package org.davic.mpeg.sections;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class IncompleteFilteringEvent extends EndOfFilteringEvent{
+public class IncompleteFilteringEvent extends EndOfFilteringEvent {
 
-    public IncompleteFilteringEvent(SectionFilter sectionFilter, Object appData ){
+    public IncompleteFilteringEvent(SectionFilter sectionFilter, Object appData) {
         super(sectionFilter, appData);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 }

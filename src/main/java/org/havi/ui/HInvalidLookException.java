@@ -15,18 +15,16 @@
 package org.havi.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HInvalidLookException extends HUIException{
+public class HInvalidLookException extends HUIException {
 
-    public HInvalidLookException(){
+    public HInvalidLookException() {
         super();
     }
 
-    public HInvalidLookException(String message){
+    public HInvalidLookException(String message) {
         super(message);
     }
 }

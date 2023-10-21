@@ -14,16 +14,16 @@
 
 package org.havi.ui;
 
-public class HVideoConfiguration extends HScreenConfiguration{
+public class HVideoConfiguration extends HScreenConfiguration {
 
-    protected HVideoConfiguration(){
+    protected HVideoConfiguration() {
     }
 
-    public HVideoDevice getDevice(){
+    public HVideoDevice getDevice() {
         return (null);
     }
 
-    public HVideoConfigTemplate getConfigTemplate(){
+    public HVideoConfigTemplate getConfigTemplate() {
         return (null);
     }
 }

@@ -14,9 +14,9 @@
 
 package org.davic.resources;
 
-public interface ResourceStatusListener  extends java.util.EventListener{
+public interface ResourceStatusListener extends java.util.EventListener {
 
-  void statusChanged(ResourceStatusEvent event);
+    void statusChanged(ResourceStatusEvent event);
 
 }
 

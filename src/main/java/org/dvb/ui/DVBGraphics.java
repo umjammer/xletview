@@ -16,9 +16,8 @@ package org.dvb.ui;
 
 import java.awt.Graphics;
 
+
 /**
- *
- *
  * @author Christian K&ouml;berl
  * @statuscode 4
  */
@@ -29,7 +28,7 @@ public abstract class DVBGraphics extends Graphics {
 
     public abstract int[] getAvailableCompositeRules();
 
-    public DVBColor getBestColorMatch(java.awt.Color c)    {
+    public DVBColor getBestColorMatch(java.awt.Color c) {
         return new DVBColor(c);
     }
 
@@ -51,8 +50,7 @@ public abstract class DVBGraphics extends Graphics {
         return getClass().getName() + "[font=" + getFont() + ",color=" + getColor() + "]";
     }
 
-    public static DVBGraphics getDVBGraphics(Graphics graphics)
-    {
+    public static DVBGraphics getDVBGraphics(Graphics graphics) {
         return new DVBGraphicsImpl(graphics);
     }
 }

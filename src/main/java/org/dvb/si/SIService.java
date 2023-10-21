@@ -14,7 +14,7 @@
 
 package org.dvb.si;
 
-public interface SIService extends SIInformation, TextualServiceIdentifierQuery{
+public interface SIService extends SIInformation, TextualServiceIdentifierQuery {
 
     org.davic.net.dvb.DvbLocator getDvbLocator();
 

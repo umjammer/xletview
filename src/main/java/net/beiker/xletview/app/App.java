@@ -18,7 +18,8 @@ import java.io.File;
 
 import net.beiker.xletview.ui.tree.UserObject;
 
-public class App implements UserObject{
+
+public class App implements UserObject {
 
     private String name;
     private String path;
@@ -27,57 +28,57 @@ public class App implements UserObject{
     private String backgroundPath;
     private static int count;
 
-    public App(String projectName, String path, String xletName){
-        this.name = (projectName != null)? projectName: "new app " + (count++);
-        this.xletName = (xletName != null)? xletName: "undefined";
-        this.backgroundPath = (defaultBackgroundPath != null)? defaultBackgroundPath: "undefined";
-        this.path = (path != null)? path: "";
-        if(this.path.lastIndexOf(File.separator) > -1 && this.path.lastIndexOf(File.separator) == this.path.length()-1){
-            this.path = this.path.substring(0, this.path.length()-1);
+    public App(String projectName, String path, String xletName) {
+        this.name = (projectName != null) ? projectName : "new app " + (count++);
+        this.xletName = (xletName != null) ? xletName : "undefined";
+        this.backgroundPath = (defaultBackgroundPath != null) ? defaultBackgroundPath : "undefined";
+        this.path = (path != null) ? path : "";
+        if (this.path.lastIndexOf(File.separator) > -1 && this.path.lastIndexOf(File.separator) == this.path.length() - 1) {
+            this.path = this.path.substring(0, this.path.length() - 1);
         }
     }
 
-    public void setBackgroundPath(String path){
+    public void setBackgroundPath(String path) {
         backgroundPath = path;
     }
 
-    public static void setDefaultBackgroundPath(String path){
+    public static void setDefaultBackgroundPath(String path) {
         defaultBackgroundPath = path;
     }
 
-    public String getBackgroundPath(){
+    public String getBackgroundPath() {
         return backgroundPath;
     }
 
-    public static String getDefaultBackgroundPath(){
+    public static String getDefaultBackgroundPath() {
         return defaultBackgroundPath;
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public void setPath(String path){
+    public void setPath(String path) {
         this.path = path;
     }
 
-    public String getPath(){
+    public String getPath() {
         return path;
     }
 
-    public void setXletName(String xletName){
+    public void setXletName(String xletName) {
         this.xletName = xletName;
     }
 
-    public String getXletName(){
+    public String getXletName() {
         return xletName;
     }
 
-    public String toString(){
+    public String toString() {
         return name;
     }
 

@@ -16,18 +16,16 @@ package org.davic.mpeg.sections;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class InvalidSourceException    extends SectionFilterException{
+public class InvalidSourceException extends SectionFilterException {
 
-    public InvalidSourceException()    {
+    public InvalidSourceException() {
         super();
     }
 
-    public InvalidSourceException(String detail){
+    public InvalidSourceException(String detail) {
         super(detail);
     }
 }

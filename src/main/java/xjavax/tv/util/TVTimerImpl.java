@@ -37,7 +37,6 @@ public class TVTimerImpl extends TVTimer {
 
         // start the "perpetual" TimerThread
         new TimerThread(this, theQ);
-
     }
 
     public static TVTimerImpl getInstance() {
@@ -47,42 +46,22 @@ public class TVTimerImpl extends TVTimer {
         return THE_INSTANCE;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see xjavax.tv.util.TVTimer#scheduleTimerSpec(xjavax.tv.util.TVTimerSpec)
-     */
     @Override
     public TVTimerSpec scheduleTimerSpec(TVTimerSpec spec) throws TVTimerScheduleFailedException {
         theQ.addSpec(spec);
         return spec;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see xjavax.tv.util.TVTimer#deschedule(xjavax.tv.util.TVTimerSpec)
-     */
     @Override
     public void deschedule(TVTimerSpec spec) {
         theQ.deSchedule(spec);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see xjavax.tv.util.TVTimer#getMinRepeatInterval()
-     */
     @Override
     public long getMinRepeatInterval() {
         return -1;
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see xjavax.tv.util.TVTimer#getGranularity()
-     */
     @Override
     public long getGranularity() {
         return -1;
@@ -108,7 +87,6 @@ public class TVTimerImpl extends TVTimer {
          * Adds a new TVTimerSpec to the queue
          *
          * @param spec
-         *
          */
         synchronized void addSpec(TVTimerSpec spec) {
             TimeKeeper[] newArr = new TimeKeeper[timeKeepers.length + 1];
@@ -123,17 +101,15 @@ public class TVTimerImpl extends TVTimer {
         }
 
         boolean isEmpty() {
-            return (timeKeepers.length == 0) ? true : false;
+            return timeKeepers.length == 0;
         }
 
         /**
          * Removes the first TVTimeSpec in the queue
          */
         void removeFirst() {
-            /*
-             * we have to check if it's empty because someone could have
-             * descheduled all
-             */
+            // we have to check if it's empty because someone could have
+            // descheduled all
             if (!isEmpty()) {
                 TimeKeeper[] newArr = new TimeKeeper[timeKeepers.length - 1];
                 System.arraycopy(timeKeepers, 1, newArr, 0, timeKeepers.length - 1);
@@ -161,8 +137,7 @@ public class TVTimerImpl extends TVTimer {
         /**
          * Removes a time from the queue
          *
-         * @param spec
-         *            An absolute time
+         * @param spec An absolute time
          */
         synchronized void removeAll(TVTimerSpec spec) {
             List<TimeKeeper> v = new ArrayList<>();
@@ -234,9 +209,7 @@ public class TVTimerImpl extends TVTimer {
                                     // the spec is not scheduled anymore
                                     q.removeFirst();
                                 } else if (timeToGoOff <= 0) {
-                                    /*
-                                     * All the events goes off here
-                                     */
+                                    // All the events goes off here
 
                                     // go off!
                                     nextTime.getSpec().notifyListeners(tvTimer);
@@ -244,9 +217,7 @@ public class TVTimerImpl extends TVTimer {
                                     // remove it from the queue
                                     q.removeFirst();
 
-                                    /*
-                                     * After the event went off, check what to                                     *  with that spec
-                                     */
+                                    // After the event went off, check what to                                     *  with that spec
                                     if (nextTime.getSpec().isRepeat() && !nextTime.getSpec().isAbsolute() && nextTime.isScheduled()) {
                                         // reschedule the spec
                                         nextTime.reschedule();
@@ -254,18 +225,14 @@ public class TVTimerImpl extends TVTimer {
                                     }
 
                                 } else {
-                                    /*
-                                     * Always waiting here as long as there is
-                                     * a next scheduled time
-                                     */
+                                    // Always waiting here as long as there is
+                                    // a next scheduled time
                                     q.wait(timeToGoOff);
                                 }
                             } else {
-                                /*
-                                 * Next time was null i.e. no time in queue,
-                                 * break the loop and wait for a spec to be
-                                 * scheduled
-                                 */
+                                // Next time was null i.e. no time in queue,
+                                // break the loop and wait for a spec to be
+                                // scheduled
                                 break;
                             }
                         }
@@ -279,7 +246,5 @@ public class TVTimerImpl extends TVTimer {
 
     public static void main(String[] args) {
         TVTimerImpl timer = new TVTimerImpl();
-
     }
-
 }

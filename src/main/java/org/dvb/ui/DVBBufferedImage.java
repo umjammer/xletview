@@ -19,14 +19,15 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 
+
 /**
  * Implementation of the <code>DVBBufferedImage</code> using delegates to
  * <code>java.awt.image.BufferedImage</code>
- * @see java.awt.image.BufferedImage
  *
  * @author Christian K&ouml;berl
  * @version $Revision: 1.6 $
  * @statuscode 4
+ * @see java.awt.image.BufferedImage
  */
 public class DVBBufferedImage extends java.awt.Image {
 
@@ -40,13 +41,11 @@ public class DVBBufferedImage extends java.awt.Image {
         bimg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
 
-    public DVBBufferedImage(int width, int height, int type)
-    {
+    public DVBBufferedImage(int width, int height, int type) {
         bimg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
     }
 
-    private DVBBufferedImage(BufferedImage bimg)
-    {
+    private DVBBufferedImage(BufferedImage bimg) {
         this.bimg = bimg;
     }
 
@@ -61,7 +60,7 @@ public class DVBBufferedImage extends java.awt.Image {
 
     @Override
     public void flush() {
-        if(bimg != null)
+        if (bimg != null)
             bimg.flush();
     }
 
@@ -74,7 +73,7 @@ public class DVBBufferedImage extends java.awt.Image {
         return bimg == null ? -1 : bimg.getHeight(observer);
     }
 
-    public Image getImage()    {
+    public Image getImage() {
         return bimg;
     }
 
@@ -100,7 +99,7 @@ public class DVBBufferedImage extends java.awt.Image {
         return bimg == null ? null : bimg.getSource();
     }
 
-    public DVBBufferedImage getSubimage (int x, int y, int w, int h) throws DVBRasterFormatException {
+    public DVBBufferedImage getSubimage(int x, int y, int w, int h) throws DVBRasterFormatException {
         return bimg == null ? null : new DVBBufferedImage(bimg.getSubimage(x, y, w, h));
     }
 
@@ -114,20 +113,19 @@ public class DVBBufferedImage extends java.awt.Image {
     }
 
     public synchronized void setRGB(int x, int y, int rgb) {
-        if(bimg != null)
+        if (bimg != null)
             bimg.setRGB(x, y, rgb);
     }
 
     public void setRGB(int startX, int startY, int w, int h, int[] rgbArray, int offset, int scansize) {
-        if(bimg != null)
+        if (bimg != null)
             bimg.setRGB(startX, startY, w, h, rgbArray, offset, scansize);
     }
 
     public String toString() {
         StringBuilder buf = new StringBuilder("DVBBufferedImage@");
         buf.append(Integer.toHexString(hashCode()));
-        if(bimg != null)
-        {
+        if (bimg != null) {
             buf.append(": type = ").append(bimg.getType()).append(" ");
             buf.append(bimg.getColorModel()).append(" ").append(bimg.getRaster());
         }

@@ -18,114 +18,112 @@ import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HFocusEvent;
 
-import net.beiker.xletview.helper.HNavigableHelper;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HAnimation extends HStaticAnimation implements HNavigable{
+public class HAnimation extends HStaticAnimation implements HNavigable {
 
     private HNavigableHelper helper;
 
     private static HAnimateLook defaultHLook = new HAnimateLook();
 
-    public HAnimation(){
+    public HAnimation() {
         super();
         init();
     }
 
-    public HAnimation(Image[] images, int delay, int playMode, int repeatCount){
+    public HAnimation(Image[] images, int delay, int playMode, int repeatCount) {
         super(images, delay, playMode, repeatCount);
         init();
     }
 
-    public HAnimation(Image[] images, int delay, int playMode, int repeatCount, int x, int y, int width, int height){
+    public HAnimation(Image[] images, int delay, int playMode, int repeatCount, int x, int y, int width, int height) {
         super(images, delay, playMode, repeatCount, x, y, width, height);
         init();
     }
 
-    public HAnimation(Image[] imagesNormal, Image[] imagesFocused, int delay, int playMode, int repeatCount, int x, int y, int width, int height){
+    public HAnimation(Image[] imagesNormal, Image[] imagesFocused, int delay, int playMode, int repeatCount, int x, int y, int width, int height) {
         super(imagesNormal, delay, playMode, repeatCount, x, y, width, height);
         this.setAnimateContent(imagesFocused, HVisible.FOCUSED_STATE);
         init();
     }
 
-    public HAnimation(Image[] imagesNormal, Image[] imagesFocused, int delay, int playMode, int repeatCount){
+    public HAnimation(Image[] imagesNormal, Image[] imagesFocused, int delay, int playMode, int repeatCount) {
         super(imagesNormal, delay, playMode, repeatCount);
         this.setAnimateContent(imagesFocused, HVisible.FOCUSED_STATE);
         init();
     }
     // constructors end //
 
-    private void init(){
+    private void init() {
         helper = new HNavigableHelper(this);
     }
 
-    public static void setDefaultLook(HAnimateLook defaultHLook){
+    public static void setDefaultLook(HAnimateLook defaultHLook) {
         HAnimation.defaultHLook = defaultHLook;
     }
 
-    public static HAnimateLook getDefaultLook(){
+    public static HAnimateLook getDefaultLook() {
         return HAnimation.defaultHLook;
     }
 
     @Override
-    public void setMove(int keyCode, HNavigable target){
+    public void setMove(int keyCode, HNavigable target) {
         helper.setMove(keyCode, target);
     }
 
     @Override
-    public HNavigable getMove(int keyCode){
+    public HNavigable getMove(int keyCode) {
         return helper.getMove(keyCode);
     }
 
     @Override
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
         helper.setFocusTraversal(up, down, left, right);
     }
 
     @Override
-    public boolean isSelected(){
+    public boolean isSelected() {
         return helper.isSelected();
     }
 
     @Override
-    public void setGainFocusSound(HSound sound){
+    public void setGainFocusSound(HSound sound) {
         helper.setGainFocusSound(sound);
     }
 
     @Override
-    public void setLoseFocusSound(HSound sound){
+    public void setLoseFocusSound(HSound sound) {
         helper.setLoseFocusSound(sound);
     }
 
     @Override
-    public HSound getGainFocusSound(){
+    public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
-    public HSound getLoseFocusSound(){
+    public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
     }
 
     @Override
-    public synchronized void addHFocusListener(org.havi.ui.event.HFocusListener listener){
+    public synchronized void addHFocusListener(org.havi.ui.event.HFocusListener listener) {
         helper.addHFocusListener(listener);
     }
 
     @Override
-    public synchronized void removeHFocusListener(org.havi.ui.event.HFocusListener listener){
+    public synchronized void removeHFocusListener(org.havi.ui.event.HFocusListener listener) {
         helper.removeHFocusListener(listener);
     }
 
     @Override
-    public int[] getNavigationKeys(){
+    public int[] getNavigationKeys() {
         return helper.getNavigationKeys();
     }
 
@@ -147,13 +145,13 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
      * and takes care of that.
      */
     @Override
-    public synchronized FocusListener[] getFocusListeners(){
+    public synchronized FocusListener[] getFocusListeners() {
         return helper.getFocusListeners();
     }
 
 
     @Override
-    public void processFocusEvent(FocusEvent e){
+    public void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
         processHFocusEvent(event);
@@ -166,17 +164,17 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
         int state = getInteractionState();
         int newState = helper.getHFocusEventResult(evt);
 
-        if(state != newState){
+        if (state != newState) {
             setInteractionState(newState);
         }
     }
 
 
     @Override
-    protected void setInteractionState(int state){
+    protected void setInteractionState(int state) {
         super.setInteractionState(state);
         super.setPosition(0);
-        if(isAnimated()){
+        if (isAnimated()) {
             stop();
             start();
         }

@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class DSMCCException  extends java.io.IOException {
+public class DSMCCException extends java.io.IOException {
 
-    public DSMCCException(){
+    public DSMCCException() {
         super();
     }
 
-    public DSMCCException(String s){
+    public DSMCCException(String s) {
         super(s);
     }
 }

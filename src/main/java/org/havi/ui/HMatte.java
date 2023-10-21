@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HMatte{
+public interface HMatte {
 
 
 }

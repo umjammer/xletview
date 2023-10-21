@@ -15,6 +15,7 @@ package xjavax.tv.service.selection;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * This exception is thrown when one or more service components are
  * not valid for usage in a particular context.  If multiple service
@@ -25,7 +26,7 @@ import xjavax.tv.locator.Locator;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class InvalidServiceComponentException extends ServiceContextException{
+public class InvalidServiceComponentException extends ServiceContextException {
 
     private Locator invalidServiceComponent;
 
@@ -33,9 +34,9 @@ public class InvalidServiceComponentException extends ServiceContextException{
      * Constructs an <code>InvalidServiceComponentException</code>
      * with no detail message.
      *
-     * @param component - A locator indicating the offending service component.
+     * @param component A locator indicating the offending service component.
      */
-    public InvalidServiceComponentException( Locator component)    {
+    public InvalidServiceComponentException(Locator component) {
         invalidServiceComponent = component;
     }
 
@@ -43,10 +44,10 @@ public class InvalidServiceComponentException extends ServiceContextException{
      * Constructs an <code>InvalidServiceComponentException</code> with
      * the specified detail message.
      *
-     * @param component - A locator indicating the offending service component.
-     * @param reason - The reason why this component is invalid.
+     * @param component A locator indicating the offending service component.
+     * @param reason The reason why this component is invalid.
      */
-    public InvalidServiceComponentException( Locator component, String reason){
+    public InvalidServiceComponentException(Locator component, String reason) {
         super(reason);
         invalidServiceComponent = component;
     }
@@ -56,7 +57,7 @@ public class InvalidServiceComponentException extends ServiceContextException{
      *
      * @return A locator indicating the service component that caused the exception.
      */
-    public Locator getInvalidServiceComponent()    {
+    public Locator getInvalidServiceComponent() {
         return invalidServiceComponent;
     }
 

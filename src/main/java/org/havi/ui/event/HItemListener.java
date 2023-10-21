@@ -15,7 +15,7 @@
 package org.havi.ui.event;
 
 
-public interface HItemListener extends java.util.EventListener{
+public interface HItemListener extends java.util.EventListener {
 
     void selectionChanged(org.havi.ui.event.HItemEvent e);
 

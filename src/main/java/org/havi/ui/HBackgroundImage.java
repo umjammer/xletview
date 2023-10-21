@@ -21,18 +21,16 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URL;
 
+import net.beiker.xletview.media.IframeDecoder;
 import org.havi.ui.event.HBackgroundImageListener;
 
-import net.beiker.xletview.media.IframeDecoder;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  * @comment not quite finished
  */
-public class HBackgroundImage extends Component{
+public class HBackgroundImage extends Component {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HBackgroundImage.class.getName());
 
@@ -42,7 +40,7 @@ public class HBackgroundImage extends Component{
 
     private static final IframeDecoder decoder = new IframeDecoder();
 
-    public HBackgroundImage(String filename){
+    public HBackgroundImage(String filename) {
 
 //        if(filename.indexOf(".mpg") > -1){
 //            log.info("Display of .mpg is not yet supported.\n" +
@@ -74,59 +72,56 @@ public class HBackgroundImage extends Component{
 
     }
 
-    public HBackgroundImage(byte[] pixels){
+    public HBackgroundImage(byte[] pixels) {
     }
 
-    public HBackgroundImage(URL contents){
+    public HBackgroundImage(URL contents) {
     }
 
-    public void load(HBackgroundImageListener hbackgroundimagelistener){
+    public void load(HBackgroundImageListener hbackgroundimagelistener) {
     }
 
     @Override
-    public int getHeight(){
+    public int getHeight() {
         return super.getHeight();
     }
 
     @Override
-    public int getWidth(){
+    public int getWidth() {
         return super.getWidth();
     }
 
-    public void flush(){
+    public void flush() {
     }
 
-    private Image loadImage(String name, URL url, Component component){
+    private Image loadImage(String name, URL url, Component component) {
         MediaTracker mediatracker = new MediaTracker(component);
         xjava.awt.Toolkit toolkit = xjava.awt.Toolkit.getDefaultToolkit();
         Image image = null;
-        if(name != null){
+        if (name != null) {
 
             // to see if the path is correct
-            try{
+            try {
                 xjava.io.XFile f = new xjava.io.XFile(name);
                 xjava.io.FileReader fr = new xjava.io.FileReader(f);
                 image = toolkit.getImage(name);
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else if(url != null){
+        } else if (url != null) {
             image = toolkit.getImage(url);
         }
 
         mediatracker.addImage(image, 0);
-        try{
+        try {
             mediatracker.waitForID(0);
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return image;
     }
 
-    public void setBounds(HScreenRectangle r){
+    public void setBounds(HScreenRectangle r) {
         int x = (int) r.x;
         int y = (int) r.y;
         int width = (int) r.width;

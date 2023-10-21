@@ -15,17 +15,16 @@ package xjavax.tv.media;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * This class represents permission to select, via a
  * <code>MediaSelectControl</code>, the content that a JMF Player
  * presents.  A caller might have permission to select content
  * referenced by some locators, but not others.
  * <HR>
- *
- *
  */
-public final class MediaSelectPermission extends java.security.Permission implements java.io.Serializable
-{
+public final class MediaSelectPermission extends java.security.Permission implements java.io.Serializable {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private java.lang.String actions;
 
@@ -33,10 +32,9 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * Creates a new <code>MediaSelectPermission</code> object for the
      * specified <code>Locator</code>.
      *
-     * @param locator - The locator for which to create the permission. A value of null indicates permission for all locators.
+     * @param locator The locator for which to create the permission. A value of null indicates permission for all locators.
      */
-    public MediaSelectPermission( Locator locator)
-    {
+    public MediaSelectPermission(Locator locator) {
         //TODO implement MediaSelectPermission
         super(null);
     }
@@ -48,11 +46,10 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * This constructor is used by the <code>Policy</code> class to
      * instantiate new <code>Permission</code> objects.
      *
-     * @param locator - The external form of the locator.  The string "*" indicates all locators.
-     * @param actions - Should be null.
+     * @param locator The external form of the locator.  The string "*" indicates all locators.
+     * @param actions Should be null.
      */
-    public MediaSelectPermission(java.lang.String locator, java.lang.String actions)
-    {
+    public MediaSelectPermission(java.lang.String locator, java.lang.String actions) {
         //TODO implement MediaSelectPermission
         super(null);
     }
@@ -60,7 +57,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
     /**
      * Checks if this <code>MediaSelectPermission</code> "implies" the
      * specified <code>Permission</code>. <p>
-     *
+     * <p>
      * More specifically, this method returns true if: <p>
      * <ul>
      * <li><i>p</i> is an instance of MediaSelectPermission, and
@@ -68,13 +65,12 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * string, or this object's locator string is "*".
      * </ul>
      *
-     * @param p - The Permission to check against.
+     * @param p The Permission to check against.
      * @return true if the specified Permission is implied by this object; false otherwise.
      * @see #implies in class java.security.Permission
      */
     @Override
-    public boolean implies(java.security.Permission p)
-    {
+    public boolean implies(java.security.Permission p) {
         return false;
         //TODO implement implies
     }
@@ -85,12 +81,11 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * <code>MediaSelectPermission</code>, and has the same
      * <code>Locator</code> as this object.
      *
-     * @param other - The object to test for equality.
+     * @param other The object to test for equality.
      * @return true if other is a MediaSelectPermission, and has the same Locator as this MediaSelectPermission.
      * @see #equals in class java.security.Permission
      */
-    public boolean equals(java.lang.Object other)
-    {
+    public boolean equals(java.lang.Object other) {
         return false;
         //TODO implement equals
     }
@@ -101,8 +96,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * @return The hash code value for this object.
      * @see #hashCode in class java.security.Permission
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return 0;
         //TODO implement hashCode
     }
@@ -116,8 +110,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * @see #getActions in class java.security.Permission
      */
     @Override
-    public java.lang.String getActions()
-    {
+    public java.lang.String getActions() {
         return this.actions;
     }
 

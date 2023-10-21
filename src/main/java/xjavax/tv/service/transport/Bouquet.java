@@ -15,21 +15,20 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIElement;
 
+
 /**
  * This interface represents information about a bouquet.
- *
+ * <p>
  * This interface represents information about a bouquet.<p>
- *
+ * <p>
  * A <code>Bouquet</code> object may optionally implement the
  * <code>CAIdentification</code> interface. Note that bouquets are not
  * supported in ATSC.
  * <a href="../../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface Bouquet extends SIElement
-{
+public interface Bouquet extends SIElement {
+
     /**
      * Reports the ID of this bouquet definition.
      *

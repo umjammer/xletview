@@ -15,6 +15,7 @@ package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.SIChangeType;
 
+
 /**
  * A <code>ServiceComponentChangeEvent</code> notifies an
  * <code>ServiceComponentChangeListener</code> of changes to a
@@ -24,23 +25,20 @@ import xjavax.tv.service.SIChangeType;
  * <code>ServiceComponent</code>.
  * <A HREF="../../../../javax/tv/service/navigation/ServiceComponent.html"><CODE>ServiceComponent</CODE></A>, <A HREF="../../../../serialized-form.html#javax.tv.service.navigation.ServiceComponentChangeEvent">Serialized Form</A></DL>
  * <HR>
- *
- *
  */
-public class ServiceComponentChangeEvent extends ServiceDetailsSIChangeEvent
-{
+public class ServiceComponentChangeEvent extends ServiceDetailsSIChangeEvent {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private ServiceComponent serviceComponent;
 
     /**
      * Constructs a <code>ServiceComponentChangeEvent</code>.
      *
-     * @param service - The ServiceDetails in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param c - The ServiceComponent that changed.
+     * @param service The ServiceDetails in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param c The ServiceComponent that changed.
      */
-    public ServiceComponentChangeEvent( ServiceDetails service, SIChangeType type, ServiceComponent c)
-    {
+    public ServiceComponentChangeEvent(ServiceDetails service, SIChangeType type, ServiceComponent c) {
         //TODO implement ServiceComponentChangeEvent
         super(null, null, null);
 
@@ -53,8 +51,7 @@ public class ServiceComponentChangeEvent extends ServiceDetailsSIChangeEvent
      *
      * @return The ServiceComponent that changed.
      */
-    public ServiceComponent getServiceComponent()
-    {
+    public ServiceComponent getServiceComponent() {
         return this.serviceComponent;
     }
 

@@ -18,34 +18,35 @@ import java.awt.Dimension;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HSceneTemplate{
 
-    public static final int REQUIRED                = 0x01;
-    public static final int PREFERRED               = 0x02;
-    public static final int UNNECESSARY             = 0x03;
+public class HSceneTemplate {
+
+    public static final int REQUIRED = 0x01;
+    public static final int PREFERRED = 0x02;
+    public static final int UNNECESSARY = 0x03;
     public static final Dimension LARGEST_PIXEL_DIMENSION = new Dimension(-1, -1);
 
-    public static final int GRAPHICS_CONFIGURATION  = 0x00;
-    public static final int SCENE_PIXEL_DIMENSION   = 0x01;
-    public static final int SCENE_PIXEL_LOCATION    = 0x02;
-    public static final int SCENE_SCREEN_DIMENSION  = 0x04;
-    public static final int SCENE_SCREEN_LOCATION   = 0x08;
+    public static final int GRAPHICS_CONFIGURATION = 0x00;
+    public static final int SCENE_PIXEL_DIMENSION = 0x01;
+    public static final int SCENE_PIXEL_LOCATION = 0x02;
+    public static final int SCENE_SCREEN_DIMENSION = 0x04;
+    public static final int SCENE_SCREEN_LOCATION = 0x08;
 
     private Map<?, ?> prefs;
 
-    public HSceneTemplate(){
+    public HSceneTemplate() {
         prefs = new HashMap<>();
     }
 
-    public void setPreference(int preference, Object object, int priority){
+    public void setPreference(int preference, Object object, int priority) {
 
     }
 
-    public Object getPreferenceObject(int preference){
+    public Object getPreferenceObject(int preference) {
         return null;
     }
 
-    public int getPreferencePriority(int preference){
+    public int getPreferencePriority(int preference) {
         return (UNNECESSARY);
     }
 }

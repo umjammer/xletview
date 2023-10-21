@@ -14,12 +14,12 @@
 
 package org.davic.mpeg;
 
-public class ApplicationOrigin{
+public class ApplicationOrigin {
 
     private ApplicationOrigin() {
     }
 
-    public static Service getService(){
+    public static Service getService() {
         return null;
     }
 

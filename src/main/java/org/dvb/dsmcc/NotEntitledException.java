@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NotEntitledException extends DSMCCException {
 
-    public NotEntitledException(){
+    public NotEntitledException() {
         super();
     }
 
-    public NotEntitledException(String s){
+    public NotEntitledException(String s) {
         super(s);
     }
 

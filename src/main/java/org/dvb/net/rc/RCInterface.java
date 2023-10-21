@@ -16,29 +16,26 @@
 package org.dvb.net.rc;
 
 /**
- *
- *
- * @version  7.11.03
- * @author      Bengt Skogvall
- * @author      Martin Sveden
+ * @author Bengt Skogvall
+ * @author Martin Sveden
+ * @version 7.11.03
  * @statuscode 4
  */
-public class RCInterface
-{
+public class RCInterface {
 
-    public static final int TYPE_PSTN=1;
+    public static final int TYPE_PSTN = 1;
 
-    public static final int TYPE_ISDN=2;
+    public static final int TYPE_ISDN = 2;
 
-    public static final int TYPE_DECT=3;
+    public static final int TYPE_DECT = 3;
 
-    public static final int TYPE_CATV=4;
+    public static final int TYPE_CATV = 4;
 
-    public static final int TYPE_LMDS=5;
+    public static final int TYPE_LMDS = 5;
 
-    public static final int TYPE_MATV=6;
+    public static final int TYPE_MATV = 6;
 
-    public static final int TYPE_RCS=7;
+    public static final int TYPE_RCS = 7;
 
     private int type;
 
@@ -50,11 +47,11 @@ public class RCInterface
         this.type = type;
     }
 
-    public int getType(){
+    public int getType() {
         return type;
     }
 
-    protected RCInterface()    {
+    protected RCInterface() {
     }
 
     public int getDataRate() {

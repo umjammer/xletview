@@ -15,14 +15,12 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class LoadingAbortedEvent extends AsynchronousLoadingEvent {
 
-    public LoadingAbortedEvent(DSMCCObject aDSMCCObject){
+    public LoadingAbortedEvent(DSMCCObject aDSMCCObject) {
         super(aDSMCCObject);
     }
 

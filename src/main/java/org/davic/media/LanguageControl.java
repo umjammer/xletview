@@ -14,7 +14,7 @@
 
 package org.davic.media;
 
-public interface LanguageControl extends javax.media.Control{
+public interface LanguageControl extends javax.media.Control {
 
     String[] listAvailableLanguages();
 

@@ -15,14 +15,12 @@
 package org.dvb.net.rc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ConnectionEstablishedEvent extends ConnectionRCEvent {
 
-    public ConnectionEstablishedEvent(Object source){
+    public ConnectionEstablishedEvent(Object source) {
         super(source);
     }
 

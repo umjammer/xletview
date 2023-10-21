@@ -21,11 +21,9 @@ package xjavax.tv.service.navigation;
  * DVB Service descriptor.
  * <a href="../../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface ServiceProviderInformation
-{
+public interface ServiceProviderInformation {
+
     /**
      * Returns the name of the service provider. It can be retrieved from the
      * DVB Service Descriptor or the Multilingual Service Name Descriptor.

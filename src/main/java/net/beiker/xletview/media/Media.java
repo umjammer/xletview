@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.media;
 
@@ -18,8 +16,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Logger;
 
+
 /**
  * Media that can be "played" as video, like a video file or an image
+ *
  * @author Martin Sveden
  */
 public class Media {
@@ -38,10 +38,10 @@ public class Media {
     private String[] validImageTypes = {".jpg"};
     private String[] validVideoTypes = {".avi", ".mov"};
 
-    public Media(String path){
+    public Media(String path) {
         try {
             //this.path = path;
-            this.media = new URL("file:"+path);
+            this.media = new URL("file:" + path);
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -64,21 +64,18 @@ public class Media {
      */
     private int resolveType(URL url) {
         String type = "application/octet-stream";
-        try{
+        try {
             type = url.openConnection().getContentType();
-        }
-        catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        if (type.startsWith("image")){
+        if (type.startsWith("image")) {
             return TYPE_IMAGE;
-        }
-        else if (type.startsWith("video")){
+        } else if (type.startsWith("video")) {
             return TYPE_VIDEO;
-        }
-        else {
-            logger.warning("Could not understand content type '"+type+"'.\nWARNING: 'invalid' CONTENT TYPE RETURNED.");
+        } else {
+            logger.warning("Could not understand content type '" + type + "'.\nWARNING: 'invalid' CONTENT TYPE RETURNED.");
             // TODO: This is fake.
             return TYPE_INVALID;
         }
@@ -87,7 +84,7 @@ public class Media {
     /**
      * Resolves if the media type is video or image
      */
-    private int resolveType(String path){
+    private int resolveType(String path) {
         String s = path.toLowerCase();
 //        if (s.indexOf(filters[i]) == s.length() - filters[i].length()) {
         for (String validImageType : this.validImageTypes) {
@@ -107,11 +104,11 @@ public class Media {
     //    return this.path;
     //}
 
-    public int getType(){
+    public int getType() {
         return this.type;
     }
 
-    public String toString(){
+    public String toString() {
         return "[Media] type=" + this.type + ", media InputStream=" + this.media;
     }
 

@@ -15,38 +15,38 @@
 package org.havi.ui;
 
 
-public class HGraphicsConfigTemplate extends HScreenConfigTemplate{
+public class HGraphicsConfigTemplate extends HScreenConfigTemplate {
 
 
-    public static final int VIDEO_MIXING          = 0x0C;
+    public static final int VIDEO_MIXING = 0x0C;
 
-    public static final int MATTE_SUPPORT         = 0x0D;
+    public static final int MATTE_SUPPORT = 0x0D;
 
     public static final int IMAGE_SCALING_SUPPORT = 0x0E;
 
 
-    public HGraphicsConfigTemplate(){
+    public HGraphicsConfigTemplate() {
     }
 
-    public boolean isConfigSupported(HGraphicsConfiguration hgc){
+    public boolean isConfigSupported(HGraphicsConfiguration hgc) {
         return (true);
     }
 
     @Override
-    public void setPreference(int preference, int priority){
+    public void setPreference(int preference, int priority) {
     }
 
     @Override
-    public int getPreferencePriority(int preference){
+    public int getPreferencePriority(int preference) {
         return (REQUIRED);
     }
 
     @Override
-    public void setPreference(int preference, Object object, int priority){
+    public void setPreference(int preference, Object object, int priority) {
     }
 
     @Override
-    public Object getPreferenceObject(int preference){
+    public Object getPreferenceObject(int preference) {
         return (null);
     }
 }

@@ -15,6 +15,7 @@ package xjavax.tv.graphics;
 
 import xjavax.tv.xlet.XletContext;
 
+
 /**
  * A class that allows a Xlet to get the root container for its AWT
  * components.
@@ -23,8 +24,8 @@ import xjavax.tv.xlet.XletContext;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class TVContainer
-{
+public class TVContainer {
+
     /**
      * Get the parent container for a Xlet to put its AWT components
      * in, if the Xlet has a graphical representation.  Xlets without a
@@ -48,12 +49,11 @@ public class TVContainer
      * that needs to discover if a request to change the size or position
      * has succeeded should query the component for the result.
      *
-     * @param ctx - The XletContext for the Xlet requesting the container.  See the package documentation for javax.tv.xlet for a description of the relationship between Xlet and XletContext.
+     * @param ctx The XletContext for the Xlet requesting the container.  See the package documentation for javax.tv.xlet for a description of the relationship between Xlet and XletContext.
      * @return An invisible container with an undefined size and position, or null if a container is unavailable.
      */
-    public static java.awt.Container getRootContainer( XletContext ctx)
-    {
-        if(ctx == null){
+    public static java.awt.Container getRootContainer(XletContext ctx) {
+        if (ctx == null) {
             throw new NullPointerException();
         }
         return (java.awt.Container) ctx.getXletProperty("javax.tv.xlet.container");

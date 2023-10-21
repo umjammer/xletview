@@ -19,21 +19,19 @@ import java.awt.Font;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HStaticText extends HVisible implements HNoInputPreferred{
+public class HStaticText extends HVisible implements HNoInputPreferred {
 
     private static HTextLook defaultHLook = new HTextLook();
 
-    public HStaticText(){
+    public HStaticText() {
         this("", 0, 0, 0, 0);
     }
 
-    public HStaticText(String textNormal, int x, int y, int width, int height){
-        super(defaultHLook , x, y, width, height);
+    public HStaticText(String textNormal, int x, int y, int width, int height) {
+        super(defaultHLook, x, y, width, height);
         this.setTextContent(textNormal, HVisible.NORMAL_STATE);
         this.setTextLayoutManager(new HDefaultTextLayoutManager());
         this.setBackgroundMode(HVisible.BACKGROUND_FILL);
@@ -41,41 +39,40 @@ public class HStaticText extends HVisible implements HNoInputPreferred{
         //logger.fine("constructor");
     }
 
-    public HStaticText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm){
-            this(textNormal, x, y, width, height);
-            this.setTextLayoutManager(tlm);
-            this.setFont(font);
-            this.setBackground(background);
-            this.setForeground(foreground);
+    public HStaticText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
+        this(textNormal, x, y, width, height);
+        this.setTextLayoutManager(tlm);
+        this.setFont(font);
+        this.setBackground(background);
+        this.setForeground(foreground);
     }
 
-    public HStaticText(String textNormal){
+    public HStaticText(String textNormal) {
         this(textNormal, 0, 0, 0, 0);
     }
 
-    public HStaticText(String textNormal, Font font, Color foreground, Color background, HTextLayoutManager tlm){
+    public HStaticText(String textNormal, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
         this(textNormal, 0, 0, 0, 0, font, foreground, background, tlm);
     }
 
     @Override
-    public void setLook(HLook hLook) throws HInvalidLookException{
-        if(hLook instanceof HTextLook || hLook == null){
+    public void setLook(HLook hLook) throws HInvalidLookException {
+        if (hLook instanceof HTextLook || hLook == null) {
             super.setLook(hLook);
-        }
-        else{
+        } else {
             throw new HInvalidLookException("HLook was not a org.havi.ui.HTextLook");
         }
     }
 
-    public static void setDefaultLook(HTextLook defaultHLook){
+    public static void setDefaultLook(HTextLook defaultHLook) {
         HStaticText.defaultHLook = defaultHLook;
     }
 
-    public static HTextLook getDefaultLook(){
+    public static HTextLook getDefaultLook() {
         return HStaticText.defaultHLook;
     }
 
-    public String toString(){
+    public String toString() {
         return super.toString() + " text:" + getTextContent(getInteractionState());
     }
 }

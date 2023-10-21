@@ -14,9 +14,9 @@
 
 package org.davic.mpeg.sections;
 
-public class ConnectionLostException extends org.davic.mpeg.sections.SectionFilterException{
+public class ConnectionLostException extends org.davic.mpeg.sections.SectionFilterException {
 
-    public ConnectionLostException(){
+    public ConnectionLostException() {
     }
 
     public ConnectionLostException(String s) {

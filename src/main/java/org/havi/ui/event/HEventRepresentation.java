@@ -31,38 +31,38 @@ public class HEventRepresentation {
     private Image symbol;
 
 
-    protected HEventRepresentation(){
+    protected HEventRepresentation() {
     }
 
-    public boolean isSupported(){
+    public boolean isSupported() {
         return (false);
     }
 
-    protected void setType(int aType){
+    protected void setType(int aType) {
     }
 
-    public int getType(){
+    public int getType() {
         return (0);
     }
 
-    protected void setColor(java.awt.Color aColor){
+    protected void setColor(java.awt.Color aColor) {
     }
 
-    public Color getColor(){
-        return(null);
-    }
-
-    protected void setString(String aText){
-    }
-
-    public String getString(){
+    public Color getColor() {
         return (null);
     }
 
-    protected void setSymbol(java.awt.Image aSymbol){
+    protected void setString(String aText) {
     }
 
-    public Image getSymbol(){
+    public String getString() {
+        return (null);
+    }
+
+    protected void setSymbol(java.awt.Image aSymbol) {
+    }
+
+    public Image getSymbol() {
         return (null);
     }
 }

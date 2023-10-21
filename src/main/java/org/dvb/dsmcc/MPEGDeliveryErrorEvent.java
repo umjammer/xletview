@@ -12,17 +12,15 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class MPEGDeliveryErrorEvent extends AsynchronousLoadingEvent {
 
-    public MPEGDeliveryErrorEvent(DSMCCObject o){
+    public MPEGDeliveryErrorEvent(DSMCCObject o) {
         super(o);
     }
 

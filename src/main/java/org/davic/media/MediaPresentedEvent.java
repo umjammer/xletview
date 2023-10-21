@@ -15,13 +15,12 @@
 package org.davic.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class MediaPresentedEvent extends javax.media.ControllerEvent {
-    public MediaPresentedEvent(javax.media.Controller source){
+
+    public MediaPresentedEvent(javax.media.Controller source) {
         super(source);
     }
 }

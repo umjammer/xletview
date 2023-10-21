@@ -15,18 +15,16 @@
 package org.davic.mpeg.sections;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class FilterResourceException extends org.davic.mpeg.sections.SectionFilterException{
+public class FilterResourceException extends org.davic.mpeg.sections.SectionFilterException {
 
-    public FilterResourceException(){
+    public FilterResourceException() {
         super();
     }
 
-    public FilterResourceException(String s)  {
+    public FilterResourceException(String s) {
         super(s);
     }
 }

@@ -15,23 +15,21 @@
 package org.dvb.net.ca;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  */
-public class CAPermission extends java.security.BasicPermission{
+public class CAPermission extends java.security.BasicPermission {
 
-    public CAPermission(String name){
+    public CAPermission(String name) {
         super(name);
     }
 
-    public CAPermission(String name, String actions){
-        super(name,actions);
+    public CAPermission(String name, String actions) {
+        super(name, actions);
     }
 
     @Override
-    public boolean implies (java.security.Permission p) {
+    public boolean implies(java.security.Permission p) {
         return false;
     }
 

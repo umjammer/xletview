@@ -15,18 +15,18 @@
 package org.havi.ui;
 
 
-public class HFlatMatte implements HMatte{
+public class HFlatMatte implements HMatte {
 
-    public HFlatMatte(){
+    public HFlatMatte() {
     }
 
-    public HFlatMatte(float data){
+    public HFlatMatte(float data) {
     }
 
-    public void setMatteData(float data){
+    public void setMatteData(float data) {
     }
 
-    public float getMatteData(){
+    public float getMatteData() {
         return (1.0f);
     }
 }

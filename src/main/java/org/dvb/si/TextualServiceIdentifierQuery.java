@@ -14,7 +14,7 @@
 
 package org.dvb.si;
 
-public interface TextualServiceIdentifierQuery{
+public interface TextualServiceIdentifierQuery {
 
     String[] getTextualServiceIdentifiers();
 

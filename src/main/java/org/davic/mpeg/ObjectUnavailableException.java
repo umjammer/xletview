@@ -15,14 +15,12 @@
 package org.davic.mpeg;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ObjectUnavailableException extends java.lang.Exception{
+public class ObjectUnavailableException extends java.lang.Exception {
 
-    public ObjectUnavailableException(){
+    public ObjectUnavailableException() {
         super();
     }
 

@@ -18,98 +18,97 @@ import java.awt.Image;
 
 import net.beiker.xletview.helper.HActionableHelper;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HGraphicButton extends HIcon implements HActionable{
+public class HGraphicButton extends HIcon implements HActionable {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HGraphicButton.class.getName());
 
     private HActionableHelper helper;
 
-    private static HGraphicLook defaultHLook    = new HGraphicLook();
+    private static HGraphicLook defaultHLook = new HGraphicLook();
 
-    public HGraphicButton(){
+    public HGraphicButton() {
         super();
         init();
     }
 
-    public HGraphicButton(Image image){
+    public HGraphicButton(Image image) {
         super(image);
         init();
     }
 
-    public HGraphicButton(Image image, int x, int y, int width, int height){
+    public HGraphicButton(Image image, int x, int y, int width, int height) {
         super(image, x, y, width, height);
         init();
     }
 
-    public HGraphicButton(Image imageNormal, Image imageFocused, Image imageActioned, int x, int y, int width, int height){
+    public HGraphicButton(Image imageNormal, Image imageFocused, Image imageActioned, int x, int y, int width, int height) {
         super(imageNormal, x, y, width, height);
         setGraphicContent(imageFocused, HVisible.FOCUSED_STATE);
         setGraphicContent(imageActioned, HVisible.ACTIONED_STATE);
         init();
     }
 
-    public HGraphicButton(Image imageNormal, Image imageFocused,Image imageActioned){
+    public HGraphicButton(Image imageNormal, Image imageFocused, Image imageActioned) {
         this(imageNormal, imageFocused, imageActioned, 0, 0, 0, 0);
     }
     // constructors end //
 
-    private void init(){
+    private void init() {
         helper = new HActionableHelper(this);
         log.fine("HGraphicButton - init");
     }
 
-    public static void setDefaultLook(HGraphicLook hlook){
+    public static void setDefaultLook(HGraphicLook hlook) {
         HGraphicButton.defaultHLook = hlook;
     }
 
-    public static HGraphicLook getDefaultLook(){
+    public static HGraphicLook getDefaultLook() {
         return HGraphicButton.defaultHLook;
     }
 
     @Override
-    public void addHActionListener(org.havi.ui.event.HActionListener listener){
+    public void addHActionListener(org.havi.ui.event.HActionListener listener) {
         helper.addHActionListener(listener);
     }
 
     @Override
-    public void removeHActionListener(org.havi.ui.event.HActionListener listener){
+    public void removeHActionListener(org.havi.ui.event.HActionListener listener) {
         helper.removeHActionListener(listener);
     }
 
     @Override
-    public void setActionCommand(String command){
+    public void setActionCommand(String command) {
         helper.setActionCommand(command);
     }
 
     @Override
-    public void setActionSound(HSound sound){
+    public void setActionSound(HSound sound) {
         helper.setActionSound(sound);
     }
 
     @Override
-    public HSound getActionSound(){
+    public HSound getActionSound() {
         return helper.getActionSound();
     }
 
     @Override
-    public void processHActionEvent(org.havi.ui.event.HActionEvent evt){
+    public void processHActionEvent(org.havi.ui.event.HActionEvent evt) {
         //Debug.write(this, "processHActionEvent");
         int state = getInteractionState();
         int newState = helper.getHActionEventResult(evt);
 
-        if(state != newState){
+        if (state != newState) {
             setInteractionState(newState);
         }
     }
 
     @Override
-    public java.lang.String getActionCommand(){
+    public java.lang.String getActionCommand() {
         return helper.getActionCommand();
     }
 }

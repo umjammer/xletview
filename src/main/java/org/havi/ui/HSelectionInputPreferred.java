@@ -15,7 +15,8 @@
 package org.havi.ui;
 
 
-public interface HSelectionInputPreferred extends HOrientable{
+public interface HSelectionInputPreferred extends HOrientable {
+
     boolean getSelectionMode();
 
     void setSelectionMode(boolean edit);

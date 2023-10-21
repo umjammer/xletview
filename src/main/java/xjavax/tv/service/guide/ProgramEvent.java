@@ -18,29 +18,28 @@ import xjavax.tv.service.SIRequest;
 import xjavax.tv.service.SIRequestor;
 import xjavax.tv.service.Service;
 
+
 /**
  * <code>ProgramEvent</code> represents collection of elementary
  * streams with a common time base, an associated start time, and an
  * associated end time. An event is equivalent to the common industry
  * usage of "TV program." <p>
- *
- *
+ * <p>
+ * <p>
  * The Event Information Table (EIT) contains information (titles, start
  * times, etc.) for events on defined services. An event is, in most cases,
  * a typical TV program, however its definition may be extended to include
  * particular data broadcasting sessions and other information segments.<p>
- *
+ * <p>
  * A <code>ProgramEvent</code> object may optionally implement the
  * <code>CAIdentification</code> interface. Note that all time values
  * are in UTC time. <P>
  * <A HREF="../../../../javax/tv/service/navigation/CAIdentification.html"><CODE>CAIdentification</CODE></A>,
  * <a href="../../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface ProgramEvent extends SIElement
-{
+public interface ProgramEvent extends SIElement {
+
     /**
      * Returns the start time of this program event. The start time is in UTC
      * time.
@@ -75,7 +74,7 @@ public interface ProgramEvent extends SIElement
      * Retrieves a textual description of the event. This method
      * delivers its results asynchronously.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ProgramEventDescription
      */
@@ -105,7 +104,7 @@ public interface ProgramEvent extends SIElement
      * belongs.  If the <code>ProgramEvent</code> is not current, no
      * guarantee is provided that all or even any of its service
      * components will be available.<p>
-     *
+     * <p>
      * This method delivers its results asynchronously.  The retrieved
      * array will only contain <code>ServiceComponent</code> instances
      * <code>c</code> for which the caller has
@@ -114,7 +113,7 @@ public interface ProgramEvent extends SIElement
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see xjavax.tv.service.navigation.ServiceComponent, ReadPermission
      */

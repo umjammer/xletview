@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HAdjustmentValue extends HNavigable, HAdjustmentInputPreferred{
+public interface HAdjustmentValue extends HNavigable, HAdjustmentInputPreferred {
 
     void setUnitIncrement(int increment);
 

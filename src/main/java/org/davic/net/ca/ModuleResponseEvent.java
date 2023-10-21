@@ -15,12 +15,10 @@
 package org.davic.net.ca;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class ModuleResponseEvent extends MessageEvent{
+public abstract class ModuleResponseEvent extends MessageEvent {
 
     private byte[] data;
 

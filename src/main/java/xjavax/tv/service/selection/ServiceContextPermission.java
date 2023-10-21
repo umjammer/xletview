@@ -72,7 +72,7 @@ package xjavax.tv.service.selection;
  * The permission ServiceContextPermission("access", "*") is intended
  * to be granted only to special monitoring applications and not to
  * general broadcast applications.<p>
- *
+ * <p>
  * Note that undefined target and actions strings may be provided to
  * the constructors of this class, but subsequent calls to
  * <code>SecurityManager.checkPermission()</code> with the resulting
@@ -81,11 +81,9 @@ package xjavax.tv.service.selection;
  * <A HREF="../../../../javax/tv/service/selection/ServiceContext.html"><CODE>ServiceContext</CODE></A>,
  * <A HREF="../../../../javax/tv/service/selection/ServiceContextFactory.html"><CODE>ServiceContextFactory</CODE></A>, <A HREF="../../../../serialized-form.html#javax.tv.service.selection.ServiceContextPermission">Serialized Form</A></DL>
  * <HR>
- *
- *
  */
-public final class ServiceContextPermission extends java.security.BasicPermission
-{
+public final class ServiceContextPermission extends java.security.BasicPermission {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private java.lang.String actions;
 
@@ -94,18 +92,17 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * name.  The name is the symbolic name of the permission, such as
      * "create".  An asterisk may be used to signify a wildcard match.
      *
-     * @param name - The name of the ServiceContextPermission
-     * @param actions - The actions string, as detailed in the class description.
+     * @param name The name of the ServiceContextPermission
+     * @param actions The actions string, as detailed in the class description.
      */
-    public ServiceContextPermission(java.lang.String name, java.lang.String actions)
-    {
+    public ServiceContextPermission(java.lang.String name, java.lang.String actions) {
         //TODO implement ServiceContextPermission
         super(name, actions);
     }
 
     /**
      * Checks if the specified permission is "implied" by this object. <p>
-     *
+     * <p>
      * More specifically, this method returns true if: <p>
      * <ul>
      * <li><i>p</i> is an instance of ServiceContextPermission, and
@@ -115,13 +112,12 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * string, or this object's locator string is "*".
      * </ul>
      *
-     * @param p - The permission against which to test.
+     * @param p The permission against which to test.
      * @return true if the specified permission is equal to or implied by this permission; false otherwise.
      * @see #implies in class java.security.BasicPermission
      */
     @Override
-    public boolean implies(java.security.Permission p)
-    {
+    public boolean implies(java.security.Permission p) {
         return false;
         //TODO implement implies
     }
@@ -133,12 +129,11 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * object, and <code>obj</code> has the same name and actions
      * string as this object.
      *
-     * @param obj - The object to test for equality.
+     * @param obj The object to test for equality.
      * @return true if the two permissions are equal; false otherwise.
      * @see #equals in class java.security.BasicPermission
      */
-    public boolean equals(java.lang.Object obj)
-    {
+    public boolean equals(java.lang.Object obj) {
         return false;
         //TODO implement equals
     }
@@ -151,8 +146,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * @return The hash code value of this object.
      * @see #hashCode in class java.security.BasicPermission
      */
-    public int hashCode()
-    {
+    public int hashCode() {
         return 0;
         //TODO implement hashCode
     }
@@ -164,8 +158,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * @see #getActions in class java.security.BasicPermission
      */
     @Override
-    public java.lang.String getActions()
-    {
+    public java.lang.String getActions() {
         return this.actions;
     }
 

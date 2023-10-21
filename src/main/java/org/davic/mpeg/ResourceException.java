@@ -15,18 +15,16 @@
 package org.davic.mpeg;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ResourceException extends java.lang.Exception{
+public class ResourceException extends java.lang.Exception {
 
-    public ResourceException(){
+    public ResourceException() {
         super();
     }
 
-    public ResourceException(String s){
+    public ResourceException(String s) {
         super(s);
     }
 

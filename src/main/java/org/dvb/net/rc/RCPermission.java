@@ -15,21 +15,21 @@
 package org.dvb.net.rc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  */
-public class RCPermission extends java.security.BasicPermission{
+public class RCPermission extends java.security.BasicPermission {
 
-    public RCPermission(String name){
+    public RCPermission(String name) {
         super(name);
     }
 
-    public RCPermission(String name, String actions){
-        super(name,actions);
+    public RCPermission(String name, String actions) {
+        super(name, actions);
     }
 
     @Override
-    public boolean implies(java.security.Permission p) {  return false; }
+    public boolean implies(java.security.Permission p) {
+        return false;
+    }
 }

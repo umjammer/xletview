@@ -16,7 +16,8 @@ package org.dvb.application;
 
 import java.util.EventListener;
 
-public interface AppsDatabaseEventListener extends EventListener{
+
+public interface AppsDatabaseEventListener extends EventListener {
 
     void newDatabase(AppsDatabaseEvent evt);
 

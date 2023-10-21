@@ -15,7 +15,7 @@ package xjavax.tv.xlet;
 
 /**
  * Signals that a requested Xlet state change failed.
- *
+ * <p>
  * Signals that a requested Xlet state change failed. This exception is thrown
  * in response to state change calls in the <code>Xlet</code> interface.
  * <HR>
@@ -24,10 +24,10 @@ package xjavax.tv.xlet;
  * @statuscode 4
  */
 public class XletStateChangeException extends java.lang.Exception {
+
     /**
      * Constructs an exception with no specified detail message.
      * </DL>
-     *
      */
     public XletStateChangeException() {
         super();
@@ -36,8 +36,7 @@ public class XletStateChangeException extends java.lang.Exception {
     /**
      * Constructs an exception with the specified detail message.
      *
-     * @param s -
-     *            the detail message
+     * @param s *          the detail message
      */
     public XletStateChangeException(java.lang.String s) {
         super(s);

@@ -16,8 +16,6 @@ package org.dvb.io.persistent;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -31,8 +29,8 @@ public class FileAccessPermissions {
     private boolean writeApplicationAccessRight;
 
     public FileAccessPermissions(boolean readWorldAccessRight, boolean writeWorldAccessRight,
-        boolean readOrganisationAccessRight, boolean writeOrganisationAccessRight,
-        boolean readApplicationAccessRight, boolean writeApplicationAccessRight){
+                                 boolean readOrganisationAccessRight, boolean writeOrganisationAccessRight,
+                                 boolean readApplicationAccessRight, boolean writeApplicationAccessRight) {
 
         this.readWorldAccessRight = readWorldAccessRight;
         this.writeWorldAccessRight = writeWorldAccessRight;
@@ -68,9 +66,9 @@ public class FileAccessPermissions {
     }
 
     public void setPermissions(boolean readWorldAccessRight,
-        boolean writeWorldAccessRight, boolean readOrganisationAccessRight,
-        boolean writeOrganisationAccessRight, boolean readApplicationAccessRight,
-        boolean writeApplicationAccessRight) {
+                               boolean writeWorldAccessRight, boolean readOrganisationAccessRight,
+                               boolean writeOrganisationAccessRight, boolean readApplicationAccessRight,
+                               boolean writeApplicationAccessRight) {
 
         this.readWorldAccessRight = readWorldAccessRight;
         this.writeWorldAccessRight = writeWorldAccessRight;

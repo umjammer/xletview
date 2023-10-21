@@ -12,21 +12,19 @@
 */
 
 
-package org.dvb.user ;
+package org.dvb.user;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class UserPreferenceChangeEvent extends java.util.EventObject{
+public class UserPreferenceChangeEvent extends java.util.EventObject {
 
-    public UserPreferenceChangeEvent (String preferenceName) {
+    public UserPreferenceChangeEvent(String preferenceName) {
         super(preferenceName);
     }
 
-    public String getName () {
+    public String getName() {
         return "" + getSource();
     }
 }

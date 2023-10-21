@@ -15,36 +15,36 @@
 package org.havi.ui;
 
 
-public class HToggleGroup{
+public class HToggleGroup {
 
-    public HToggleGroup(){
+    public HToggleGroup() {
     }
 
-    public HToggleButton getCurrent(){
+    public HToggleButton getCurrent() {
         return (null);
     }
 
-    public void setCurrent(HToggleButton selection){
+    public void setCurrent(HToggleButton selection) {
     }
 
-    public void setForcedSelection(boolean forceSelection){
+    public void setForcedSelection(boolean forceSelection) {
     }
 
-    public boolean getForcedSelection(){
+    public boolean getForcedSelection() {
         return (false);
     }
 
-    public void setEnabled(boolean enable){
+    public void setEnabled(boolean enable) {
     }
 
-    public boolean isEnabled(){
+    public boolean isEnabled() {
         return (true);
     }
 
-    protected void add(HToggleButton button){
+    protected void add(HToggleButton button) {
     }
 
-    protected void remove(HToggleButton button){
+    protected void remove(HToggleButton button) {
     }
 
 }

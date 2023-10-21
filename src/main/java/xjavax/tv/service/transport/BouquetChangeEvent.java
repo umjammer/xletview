@@ -15,6 +15,7 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIChangeType;
 
+
 /**
  * A <code>BouquetChangeEvent</code> notifies an
  * <code>BouquetChangeListener</code> of changes detected in a
@@ -27,7 +28,7 @@ import xjavax.tv.service.SIChangeType;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class BouquetChangeEvent extends TransportSIChangeEvent{
+public class BouquetChangeEvent extends TransportSIChangeEvent {
 
 //    private BouquetCollection bouquetCollection;
 //    private Bouquet bouquet;
@@ -35,11 +36,11 @@ public class BouquetChangeEvent extends TransportSIChangeEvent{
     /**
      * Constructs a <code>BouquetChangeEvent</code>.
      *
-     * @param collection - The BouquetCollection in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param b - The Bouquet that changed.
+     * @param collection The BouquetCollection in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param b The Bouquet that changed.
      */
-    public BouquetChangeEvent( BouquetCollection collection, SIChangeType type, Bouquet b)    {
+    public BouquetChangeEvent(BouquetCollection collection, SIChangeType type, Bouquet b) {
         super(collection, type, b);
 
     }
@@ -51,7 +52,7 @@ public class BouquetChangeEvent extends TransportSIChangeEvent{
      *
      * @return The BouquetCollection that generated the event.
      */
-    public BouquetCollection getBouquetCollection()    {
+    public BouquetCollection getBouquetCollection() {
         return (BouquetCollection) super.getSource();
     }
 
@@ -62,7 +63,7 @@ public class BouquetChangeEvent extends TransportSIChangeEvent{
      *
      * @return The Bouquet that changed.
      */
-    public Bouquet getBouquet()    {
+    public Bouquet getBouquet() {
         return (Bouquet) super.getSIElement();
     }
 

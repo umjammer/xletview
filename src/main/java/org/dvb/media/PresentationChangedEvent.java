@@ -18,9 +18,8 @@ import javax.media.Controller;
 import javax.media.ControllerEvent;
 import javax.media.MediaLocator;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -33,17 +32,17 @@ public class PresentationChangedEvent extends ControllerEvent {
     private MediaLocator stream;
     private int reason;
 
-    public PresentationChangedEvent (Controller source, MediaLocator stream, int reason) {
+    public PresentationChangedEvent(Controller source, MediaLocator stream, int reason) {
         super(source);
         this.stream = stream;
         this.reason = reason;
     }
 
-    public MediaLocator getStream()    {
+    public MediaLocator getStream() {
         return stream;
     }
 
-    public int getReason(){
+    public int getReason() {
         return reason;
     }
 }

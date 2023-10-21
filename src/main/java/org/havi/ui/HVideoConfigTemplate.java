@@ -14,28 +14,28 @@
 
 package org.havi.ui;
 
-public class HVideoConfigTemplate extends HScreenConfigTemplate{
+public class HVideoConfigTemplate extends HScreenConfigTemplate {
 
     public static final int GRAPHICS_MIXING = 0x0F;
 
-    public HVideoConfigTemplate(){
+    public HVideoConfigTemplate() {
     }
 
-    public boolean isConfigSupported(HVideoConfiguration hvc){
+    public boolean isConfigSupported(HVideoConfiguration hvc) {
         return (true);
     }
 
     @Override
-    public int getPreferencePriority(int preference){
+    public int getPreferencePriority(int preference) {
         return (REQUIRED);
     }
 
     @Override
-    public void setPreference(int preference, Object object, int priority){
+    public void setPreference(int preference, Object object, int priority) {
     }
 
     @Override
-    public Object getPreferenceObject(int preference){
+    public Object getPreferenceObject(int preference) {
         return (null);
     }
 

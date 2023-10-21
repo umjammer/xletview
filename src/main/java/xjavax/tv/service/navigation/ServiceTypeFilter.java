@@ -16,6 +16,7 @@ package xjavax.tv.service.navigation;
 import xjavax.tv.service.Service;
 import xjavax.tv.service.ServiceType;
 
+
 /**
  * <code>ServiceTypeFilter</code> represents a
  * <code>ServiceFilter</code> based on a particular
@@ -24,21 +25,18 @@ import xjavax.tv.service.ServiceType;
  * the specified service type.
  * <A HREF="../../../../javax/tv/service/navigation/ServiceList.html"><CODE>ServiceList</CODE></A></DL>
  * <HR>
- *
- *
  */
-public final class ServiceTypeFilter extends ServiceFilter
-{
+public final class ServiceTypeFilter extends ServiceFilter {
+
     //following variables are implicitely defined by getter- or setter-methods:
     private ServiceType filterValue;
 
     /**
      * Constructs the filter based on a particular <code>ServiceType</code>.
      *
-     * @param type - A ServiceType object indicating the type of services to be included in a resulting service list.
+     * @param type A ServiceType object indicating the type of services to be included in a resulting service list.
      */
-    public ServiceTypeFilter( ServiceType type)
-    {
+    public ServiceTypeFilter(ServiceType type) {
         //TODO implement ServiceTypeFilter
     }
 
@@ -47,21 +45,19 @@ public final class ServiceTypeFilter extends ServiceFilter
      *
      * @return The ServiceType used to create this filter.
      */
-    public ServiceType getFilterValue()
-    {
+    public ServiceType getFilterValue() {
         return this.filterValue;
     }
 
     /**
      * Tests if the given service passes the filter.
      *
-     * @param service - An individual Service to be evaluated against the filtering algorithm.
+     * @param service An individual Service to be evaluated against the filtering algorithm.
      * @return true if service is of the type indicated by the filter value; false otherwise.
      * @see #accept in class ServiceFilter
      */
     @Override
-    public boolean accept(Service service)
-    {
+    public boolean accept(Service service) {
         return false;
         //TODO implement accept
     }

@@ -19,10 +19,14 @@ import java.net.DatagramSocket;
 
 public class DatagramSocketBufferControl {
 
-    DatagramSocketBufferControl(){}
+    DatagramSocketBufferControl() {
+    }
 
-    public static void setReceiveBufferSize(DatagramSocket d, int size) throws java.net.SocketException {}
+    public static void setReceiveBufferSize(DatagramSocket d, int size) throws java.net.SocketException {
+    }
 
-    public static int getReceiveBufferSize(DatagramSocket d) throws java.net.SocketException {return 0;}
+    public static int getReceiveBufferSize(DatagramSocket d) throws java.net.SocketException {
+        return 0;
+    }
 }
 

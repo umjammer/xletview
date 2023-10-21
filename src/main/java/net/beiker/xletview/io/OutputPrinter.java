@@ -10,10 +10,10 @@
  See LICENSE document for details.
 
 */
+
 package net.beiker.xletview.io;
 
 /**
- *
  * @author Martin Sveden
  */
 public interface OutputPrinter {

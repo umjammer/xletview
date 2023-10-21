@@ -21,23 +21,20 @@ package org.havi.ui;
 
 import org.havi.ui.event.HScreenLocationModifiedListener;
 
+
 public class HVideoComponent
-    extends HComponent
-{
-    protected HVideoComponent()
-    {
+        extends HComponent {
+
+    protected HVideoComponent() {
     }
 
-    public HVideoDevice getVideoDevice()
-    {
+    public HVideoDevice getVideoDevice() {
         return (null);
     }
 
-    public void addOnScreenLocationModifiedListener(HScreenLocationModifiedListener slml)
-    {
+    public void addOnScreenLocationModifiedListener(HScreenLocationModifiedListener slml) {
     }
 
-    public void removeOnScreenLocationModifiedListener(HScreenLocationModifiedListener slml)
-    {
+    public void removeOnScreenLocationModifiedListener(HScreenLocationModifiedListener slml) {
     }
 }

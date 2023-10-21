@@ -15,21 +15,20 @@
 package org.havi.ui.event;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HMouseCapabilities{
+public class HMouseCapabilities {
 
-    protected HMouseCapabilities(){
+    protected HMouseCapabilities() {
     }
 
     /**
      * Mouse is not supported
+     *
      * @return false
      */
-    public static boolean getInputDeviceSupported(){
+    public static boolean getInputDeviceSupported() {
         return false;
     }
 

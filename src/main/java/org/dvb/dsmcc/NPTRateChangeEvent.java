@@ -15,8 +15,6 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -24,7 +22,7 @@ public class NPTRateChangeEvent extends java.util.EventObject {
 
     private NPTRate rate;
 
-    public NPTRateChangeEvent(DSMCCStream source, NPTRate rate){
+    public NPTRateChangeEvent(DSMCCStream source, NPTRate rate) {
         super(source);
         this.rate = rate;
     }

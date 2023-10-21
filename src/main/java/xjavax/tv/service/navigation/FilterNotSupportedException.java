@@ -10,9 +10,11 @@
  See LICENSE document for details.
 
 */
+
 package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.SIException;
+
 
 /**
  * This exception indicates that the specified <code>ServiceFilter</code> is
@@ -22,13 +24,13 @@ import xjavax.tv.service.SIException;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class FilterNotSupportedException extends SIException{
+public class FilterNotSupportedException extends SIException {
+
     /**
      * Constructs a <code>FilterNotSupportedException</code> with no
      * detail message.</DL>
-     *
      */
-    public FilterNotSupportedException(){
+    public FilterNotSupportedException() {
         super();
     }
 
@@ -36,9 +38,9 @@ public class FilterNotSupportedException extends SIException{
      * Constructs a <code>FilterNotSupportedException</code> with a
      * detail message.
      *
-     * @param reason - The reason why this exception was thrown.
+     * @param reason The reason why this exception was thrown.
      */
-    public FilterNotSupportedException(String reason)    {
+    public FilterNotSupportedException(String reason) {
         super(reason);
     }
 

@@ -20,6 +20,7 @@ import java.io.InterruptedIOException;
 import org.davic.net.InvalidLocatorException;
 import org.davic.net.Locator;
 
+
 public class ServiceDomain {
 
     public ServiceDomain() {
@@ -28,25 +29,36 @@ public class ServiceDomain {
     public void attach(org.davic.net.Locator aDVBService, int aCarouselId) throws ServiceXFRException, InterruptedIOException, MPEGDeliveryException {
     }
 
-    public void attach (org.davic.net.Locator l) throws DSMCCException, InterruptedIOException {
+    public void attach(org.davic.net.Locator l) throws DSMCCException, InterruptedIOException {
     }
 
     public void attach(byte[] NSAPAddress) throws DSMCCException, InterruptedIOException {
     }
 
-    public void detach() throws NotLoadedException {}
+    public void detach() throws NotLoadedException {
+    }
 
     public byte[] getNSAPAddress() throws NotLoadedException {
         return null;
     }
 
-    public static java.net.URL getURL( org.davic.net.Locator l) throws NotLoadedException, InvalidLocatorException, FileNotFoundException{ return null; }
+    public static java.net.URL getURL(org.davic.net.Locator l) throws NotLoadedException, InvalidLocatorException, FileNotFoundException {
+        return null;
+    }
 
-    public DSMCCObject getMountPoint() { return null;}
+    public DSMCCObject getMountPoint() {
+        return null;
+    }
 
-    public boolean isNetworkConnectionAvailable() { return false; }
+    public boolean isNetworkConnectionAvailable() {
+        return false;
+    }
 
-    public boolean isAttached() { return false ;}
+    public boolean isAttached() {
+        return false;
+    }
 
-    public Locator getLocator() { return null; }
+    public Locator getLocator() {
+        return null;
+    }
 }

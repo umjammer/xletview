@@ -16,9 +16,10 @@ package xjavax.tv.util;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * A class representing a timer specification.
- *
+ * <p>
  * A class representing a timer specification. A timer specification declares
  * when a <code>TVTimerWentOffEvent</code> should be sent. These events are
  * sent to the listeners registered on the specification.
@@ -58,14 +59,14 @@ import java.util.List;
  * @statuscode 4
  */
 public class TVTimerSpec {
-    //following variables are implicitly defined by getter- or
+
+    // following variables are implicitly defined by getter- or
     // setter-methods:
     private boolean absolute;
     private boolean repeat;
     private boolean regular;
     private long time;
     private List<TVTimerWentOffListener> listeners;
-
 
     /**
      * Creates a timer specification. It initially is absolute, non-repeating,
@@ -83,10 +84,9 @@ public class TVTimerSpec {
     /**
      * Sets this specification to be absolute or delayed.
      *
-     * @param absolute -
-     *            Flag to indicate that this specification is either absolute
-     *            or delayed. If true, the specification is absolute;
-     *            otherwise, it is delayed.
+     * @param absolute Flag to indicate that this specification is either absolute
+     *                 or delayed. If true, the specification is absolute;
+     *                 otherwise, it is delayed.
      */
     public void setAbsolute(boolean absolute) {
         this.absolute = absolute;
@@ -104,10 +104,9 @@ public class TVTimerSpec {
     /**
      * Sets this specification to be repeating or non-repeating.
      *
-     * @param repeat -
-     *            Flag to indicate that this specification is either repeating
-     *            or non-repeating. If true, the specification is repeating;
-     *            otherwise, it is non-repeating.
+     * @param repeat Flag to indicate that this specification is either repeating
+     *               or non-repeating. If true, the specification is repeating;
+     *               otherwise, it is non-repeating.
      */
     public void setRepeat(boolean repeat) {
         this.repeat = repeat;
@@ -117,7 +116,7 @@ public class TVTimerSpec {
      * Checks if this specification is repeating.
      *
      * @return true if this specification is repeating; false if it is
-     *         non-repeating.
+     * non-repeating.
      */
     public boolean isRepeat() {
         return repeat;
@@ -126,10 +125,9 @@ public class TVTimerSpec {
     /**
      * Sets this specification to be regular or non-regular.
      *
-     * @param regular -
-     *            Flag to indicate that this specification is either regular or
-     *            non-regular. If true, the specification is regular;
-     *            otherwise, it is non-regular.
+     * @param regular Flag to indicate that this specification is either regular or
+     *                non-regular. If true, the specification is regular;
+     *                otherwise, it is non-regular.
      */
     public void setRegular(boolean regular) {
         this.regular = regular;
@@ -139,7 +137,7 @@ public class TVTimerSpec {
      * Checks if this specification is regular.
      *
      * @return true if this specification is regular; false if it is
-     *         non-regular.
+     * non-regular.
      */
     public boolean isRegular() {
         return regular;
@@ -150,8 +148,7 @@ public class TVTimerSpec {
      * this is a time in milliseconds since midnight, January 1, 1970 UTC. For
      * delayed specifications, this is a delay time in milliseconds.
      *
-     * @param time -
-     *            The time when this specification should go off.
+     * @param time The time when this specification should go off.
      */
     public void setTime(long time) {
         this.time = time;
@@ -169,8 +166,7 @@ public class TVTimerSpec {
     /**
      * Registers a listener with this timer specification.
      *
-     * @param l -
-     *            The listener to add.
+     * @param l The listener to add.
      */
     public void addTVTimerWentOffListener(TVTimerWentOffListener l) {
         listeners.add(l);
@@ -180,8 +176,7 @@ public class TVTimerSpec {
      * Removes a listener to this timer specification. Silently does nothing if
      * the listener was not listening on this specification.
      *
-     * @param l -
-     *            The listener to remove.
+     * @param l The listener to remove.
      */
     public void removeTVTimerWentOffListener(TVTimerWentOffListener l) {
         listeners.remove(l);
@@ -192,8 +187,7 @@ public class TVTimerSpec {
      * convenience function equivalent to <code>setAbsolute(true)</code>,
      * <code>setTime(when)</code>,<code>setRepeat(false)</code>.
      *
-     * @param when -
-     *            The absolute time for the specification to go off.
+     * @param when The absolute time for the specification to go off.
      */
     public void setAbsoluteTime(long when) {
         setAbsolute(true);
@@ -206,8 +200,7 @@ public class TVTimerSpec {
      * convenience function equivalent to <code>setAbsolute(false)</code>,
      * <code>setTime(delay)</code>,<code>setRepeat(false)</code>.
      *
-     * @param delay -
-     *            The relative time for the specification to go off.
+     * @param delay The relative time for the specification to go off.
      */
     public void setDelayTime(long delay) {
         setAbsolute(false);
@@ -220,9 +213,8 @@ public class TVTimerSpec {
      * function is primarily for the benefit of those writing implementations
      * of TVTimers.
      *
-     * @param source -
-     *            The TVTimer that decided that this specification should go
-     *            off.
+     * @param source The TVTimer that decided that this specification should go
+     *               off.
      */
     public void notifyListeners(TVTimer source) {
         TVTimerWentOffEvent event = new TVTimerWentOffEvent(source, this);
@@ -230,5 +222,4 @@ public class TVTimerSpec {
             listener.timerWentOff(event);
         }
     }
-
 }

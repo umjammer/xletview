@@ -15,8 +15,6 @@
 package org.davic.net.ca;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -28,7 +26,7 @@ public class Text extends MMIObject {
         super();
     }
 
-    Text(String text){
+    Text(String text) {
         this();
         this.text = text;
     }

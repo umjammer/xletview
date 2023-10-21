@@ -18,7 +18,7 @@ package xjavax.tv.service;
  * numbers. The service number may represent a receiver-specific service
  * designation or a broadcaster-specific service designation delivered as a
  * private descriptor. <p>
- *
+ * <p>
  * Service and ServiceDetails objects may optionally implement this
  * interface. <code>ServiceNumber</code> is extended by
  * <code>ServiceMinorNumber</code> to report two-part ATSC channel numbers.
@@ -26,11 +26,9 @@ package xjavax.tv.service;
  * <A HREF="../../../javax/tv/service/ServiceMinorNumber.html"><CODE>ServiceMinorNumber</CODE></A>,
  * <a href="../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface ServiceNumber
-{
+public interface ServiceNumber {
+
     /**
      * Reports the service number of a service.
      *

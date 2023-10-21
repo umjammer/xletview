@@ -16,9 +16,10 @@ package org.dvb.test;
 
 import java.io.IOException;
 
+
 public class DVBTest {
 
-    private DVBTest(){
+    private DVBTest() {
     }
 
     public final static int PASS = 0x00;
@@ -33,28 +34,28 @@ public class DVBTest {
 
     public final static int UNTESTED = -0x05;
 
-    public static void log(String id, String message) throws IOException{
+    public static void log(String id, String message) throws IOException {
     }
 
-    public static void log(String id, int no) throws IOException{
+    public static void log(String id, int no) throws IOException {
     }
 
-    public static void terminate(String id, int terminationCondition) throws java.io.IOException{
+    public static void terminate(String id, int terminationCondition) throws java.io.IOException {
         System.out.println(id);
-        switch(terminationCondition){
-            case PASS:
+        switch (terminationCondition) {
+        case PASS:
             System.out.println("PASSED");
             break;
-            case FAIL:
+        case FAIL:
             System.out.println("FAILED");
             break;
-            default:
+        default:
             System.out.println("UNKNOWN EXIT CONDITION(" + terminationCondition + ")");
             break;
         }
     }
 
-    public static void prompt(String id, int controlCode, String message) throws IOException{
+    public static void prompt(String id, int controlCode, String message) throws IOException {
     }
 
 }

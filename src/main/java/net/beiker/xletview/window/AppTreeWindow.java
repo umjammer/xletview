@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.window;
 
@@ -22,7 +20,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -47,6 +44,7 @@ import net.beiker.xletview.ui.tree.UserObject;
 import net.beiker.xletview.util.Constants;
 import net.beiker.xletview.util.Util;
 import net.sourceforge.mlf.metouia.MetouiaLookAndFeel;
+
 
 /**
  *
@@ -202,8 +200,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
                 tree.getSelectedNode().setUserObject(group);
                 tree.getModel().nodeStructureChanged(tree.getSelectedNode());
                 //tree.getModel().reload();
-            }
-            else if (object instanceof App app) {
+            } else if (object instanceof App app) {
                 tree.getSelectedNode().setUserObject(app);
                 tree.getModel().nodeStructureChanged(tree.getSelectedNode());
                 //tree.getModel().reload();
@@ -226,8 +223,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
                 appPanel.setVisible(false);
                 groupPanel.setVisible(true);
                 groupPanel.setAppGroup(group);
-            }
-            else if (object instanceof App app) {
+            } else if (object instanceof App app) {
                 deleteButton.setEnabled(true);
                 newAppButton.setEnabled(false);
                 newGroupButton.setEnabled(false);
@@ -246,8 +242,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new MetouiaLookAndFeel());
-        }
-        catch (UnsupportedLookAndFeelException exception) {
+        } catch (UnsupportedLookAndFeelException exception) {
             exception.printStackTrace();
         }
         new AppTreeWindow();

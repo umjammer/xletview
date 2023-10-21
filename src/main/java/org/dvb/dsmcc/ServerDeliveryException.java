@@ -15,18 +15,16 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ServerDeliveryException extends DSMCCException {
 
-    public ServerDeliveryException(){
+    public ServerDeliveryException() {
         super();
     }
 
-    public ServerDeliveryException(String s){
+    public ServerDeliveryException(String s) {
         super(s);
     }
 

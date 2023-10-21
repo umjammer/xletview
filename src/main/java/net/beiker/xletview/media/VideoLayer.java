@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.media;
 
@@ -17,7 +15,6 @@ import java.awt.Component;
 import java.awt.Graphics;
 import java.io.IOException;
 import java.util.logging.Logger;
-
 import javax.media.ClockStoppedException;
 import javax.media.Control;
 import javax.media.Controller;
@@ -41,6 +38,7 @@ import xjavax.tv.service.selection.ServiceContentHandler;
  * Displays the video, or an image symbolizing video
  */
 public class VideoLayer extends XContainer implements ServiceContentHandler, Player {
+
     /** Debugging facility */
     private final static Logger logger = Logger.getLogger(VideoLayer.class.getName());
 
@@ -62,19 +60,16 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /**
      * Overrides the super implementation so
      * it's only possible to add one Component
-     *
      */
     @Override
-    public Component add(Component comp){
+    public Component add(Component comp) {
         Component added = null;
-        if(getComponentCount() < 1){
+        if (getComponentCount() < 1) {
             added = super.add(comp);
-        }
-        else{
+        } else {
             try {
                 throw new Exception("Component already added, can only contain one component");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 logger.warning(Util.getStackTrace(e));
             }
         }
@@ -82,12 +77,12 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     }
 
     @Override
-    public Component add(Component comp, int index){
+    public Component add(Component comp, int index) {
         return add(comp);
     }
 
     @Override
-    public Component add(String name, Component comp){
+    public Component add(String name, Component comp) {
         return add(comp);
     }
 
@@ -280,9 +275,9 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     public Control getControl(String s) {
         Control result = null;
 
-            if(s.equals("javax.tv.media.AWTVideoSizeControl")){
-                result = AWTVideoSizeControlImpl.getInstance();
-            }
+        if (s.equals("javax.tv.media.AWTVideoSizeControl")) {
+            result = AWTVideoSizeControlImpl.getInstance();
+        }
 
         return result;
     }

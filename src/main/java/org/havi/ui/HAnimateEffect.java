@@ -14,11 +14,11 @@
 
 package org.havi.ui;
 
-public interface HAnimateEffect{
+public interface HAnimateEffect {
 
-    int PLAY_REPEATING   = 1;
+    int PLAY_REPEATING = 1;
     int PLAY_ALTERNATING = 2;
-    int REPEAT_INFINITE  = -1;
+    int REPEAT_INFINITE = -1;
 
     void start();
 

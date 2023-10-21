@@ -15,43 +15,42 @@
 package org.dvb.ui;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public final class DVBAlphaComposite {
 
-    public static final int    CLEAR        = 1;
+    public static final int CLEAR = 1;
 
-    public static final int    SRC            = 2;
+    public static final int SRC = 2;
 
-    public static final int    SRC_OVER    = 3;
+    public static final int SRC_OVER = 3;
 
-    public static final int    DST_OVER    = 4;
+    public static final int DST_OVER = 4;
 
-    public static final int    SRC_IN        = 5;
+    public static final int SRC_IN = 5;
 
-    public static final int    DST_IN        = 6;
+    public static final int DST_IN = 6;
 
-    public static final int    SRC_OUT        = 7;
+    public static final int SRC_OUT = 7;
 
-    public static final int    DST_OUT        = 8;
+    public static final int DST_OUT = 8;
 
-    public static final DVBAlphaComposite Clear    = new DVBAlphaComposite(CLEAR);
+    public static final DVBAlphaComposite Clear = new DVBAlphaComposite(CLEAR);
 
-    public static final DVBAlphaComposite Src    = new DVBAlphaComposite(SRC);
+    public static final DVBAlphaComposite Src = new DVBAlphaComposite(SRC);
 
-    public static final DVBAlphaComposite SrcOver    = new DVBAlphaComposite(SRC_OVER);
+    public static final DVBAlphaComposite SrcOver = new DVBAlphaComposite(SRC_OVER);
 
-    public static final DVBAlphaComposite DstOver    = new DVBAlphaComposite(DST_OVER);
+    public static final DVBAlphaComposite DstOver = new DVBAlphaComposite(DST_OVER);
 
-    public static final DVBAlphaComposite SrcIn    = new DVBAlphaComposite(SRC_IN);
+    public static final DVBAlphaComposite SrcIn = new DVBAlphaComposite(SRC_IN);
 
-    public static final DVBAlphaComposite DstIn    = new DVBAlphaComposite(DST_IN);
+    public static final DVBAlphaComposite DstIn = new DVBAlphaComposite(DST_IN);
 
-    public static final DVBAlphaComposite SrcOut    = new DVBAlphaComposite(SRC_OUT);
+    public static final DVBAlphaComposite SrcOut = new DVBAlphaComposite(SRC_OUT);
 
-    public static final DVBAlphaComposite DstOut    = new DVBAlphaComposite(DST_OUT);
+    public static final DVBAlphaComposite DstOut = new DVBAlphaComposite(DST_OUT);
 
     private static final int MIN_RULE = CLEAR;
     private static final int MAX_RULE = DST_OUT;

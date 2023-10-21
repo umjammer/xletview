@@ -15,20 +15,19 @@ package xjavax.tv.service.guide;
 
 import xjavax.tv.service.SIChangeListener;
 
+
 /**
  * This interface is implemented by applications wishing to receive
  * notification of changes to <code>ProgramSchedule</code> data.
  * <HR>
- *
- *
  */
-public interface ProgramScheduleListener extends SIChangeListener
-{
+public interface ProgramScheduleListener extends SIChangeListener {
+
     /**
      * Notifies the <code>ProgramScheduleListener</code> of a
      * change to a <code>ProgramSchedule</code>.
      *
-     * @param event - A ProgramScheduleEvent describing what changed and how.
+     * @param event A ProgramScheduleEvent describing what changed and how.
      */
     void notifyChange(ProgramScheduleEvent event);
 

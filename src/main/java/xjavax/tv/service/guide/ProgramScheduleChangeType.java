@@ -15,32 +15,28 @@ package xjavax.tv.service.guide;
 
 import xjavax.tv.service.SIChangeType;
 
+
 /**
  * This class represents types of changes to program schedules.
- *
+ * <p>
  * This class represents types of changes to program schedules.
  * <A HREF="../../../../javax/tv/service/guide/ProgramSchedule.html"><CODE>ProgramSchedule</CODE></A></DL>
  * <HR>
- *
- *
  */
-public class ProgramScheduleChangeType extends SIChangeType
-{
+public class ProgramScheduleChangeType extends SIChangeType {
+
     /**
      * <code>ProgramScheduleChangeType</code> indicating that the
      * current program event has changed.</DL>
-     *
-     *
      */
     public static final ProgramScheduleChangeType CURRENT_PROGRAM_EVENT = null;
 
     /**
      * Creates an <code>ProgramScheduleChangeType</code> object.
      *
-     * @param name - The string name of this type (e.g. "CURRENT_PROGRAM_EVENT").
+     * @param name The string name of this type (e.g. "CURRENT_PROGRAM_EVENT").
      */
-    protected ProgramScheduleChangeType(java.lang.String name)
-    {
+    protected ProgramScheduleChangeType(java.lang.String name) {
         //TODO implement ProgramScheduleChangeType
         super(name);
     }
@@ -53,8 +49,7 @@ public class ProgramScheduleChangeType extends SIChangeType
      * @return The string name of the type.
      * @see #toString in class SIChangeType
      */
-    public java.lang.String toString()
-    {
+    public java.lang.String toString() {
         return null;
         //TODO implement toString
     }

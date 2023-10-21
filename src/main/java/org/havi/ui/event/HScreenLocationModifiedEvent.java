@@ -15,19 +15,17 @@
 package org.havi.ui.event;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HScreenLocationModifiedEvent extends java.util.EventObject{
+public class HScreenLocationModifiedEvent extends java.util.EventObject {
 
-    public HScreenLocationModifiedEvent(Object source){
+    public HScreenLocationModifiedEvent(Object source) {
         super(source);
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 

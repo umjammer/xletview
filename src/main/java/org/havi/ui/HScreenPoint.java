@@ -16,8 +16,6 @@ package org.havi.ui;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -26,12 +24,12 @@ public class HScreenPoint {
     public float x;
     public float y;
 
-    public HScreenPoint(float x, float y){
+    public HScreenPoint(float x, float y) {
         this.x = x;
         this.y = y;
     }
 
-    public void setLocation(float x, float y){
+    public void setLocation(float x, float y) {
         this.x = x;
         this.y = y;
     }

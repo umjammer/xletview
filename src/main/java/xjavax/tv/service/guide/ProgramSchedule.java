@@ -19,24 +19,23 @@ import xjavax.tv.service.SIException;
 import xjavax.tv.service.SIRequest;
 import xjavax.tv.service.SIRequestor;
 
+
 /**
  * This interface represents a collection of program events for a given
  * service ordered by time. It provides the current, next and future
  * program events.<p>
- *
+ * <p>
  * Note that all time values are in UTC time.
  * <A HREF="../../../../javax/tv/service/guide/ProgramEvent.html"><CODE>ProgramEvent</CODE></A>,
  * <A HREF="../../../../javax/tv/service/ReadPermission.html"><CODE>ReadPermission</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface ProgramSchedule
-{
+public interface ProgramSchedule {
+
     /**
      * Retrieves the current <code>ProgramEvent</code>.  The resulting
      * <code>ProgramEvent</code> is available for immediate viewing.<p>
-     *
+     * <p>
      * This method delivers its results asynchronously.  If the caller
      * does not have
      * <code>javax.tv.service.ReadPermission(pe.getLocator())</code>
@@ -44,7 +43,7 @@ public interface ProgramSchedule
      * method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ProgramEvent, ReadPermission
      */
@@ -54,7 +53,7 @@ public interface ProgramSchedule
      * Retrieves the program event for the specified time.  The
      * specified time will fall between the resulting program event's
      * start time (inclusive) and end time (exclusive).<p>
-     *
+     * <p>
      * This method delivers its results asynchronously.  If the caller
      * does not have
      * <code>javax.tv.service.ReadPermission(pe.getLocator())</code>
@@ -63,8 +62,8 @@ public interface ProgramSchedule
      * <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param time - The time of the program event to be retrieved.
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param time The time of the program event to be retrieved.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @throws SIException - If time does not represent a future time value.
      * @see ProgramEvent, ReadPermission
@@ -79,7 +78,7 @@ public interface ProgramSchedule
      * <code>pe.getEndTime()</code> (exclusive) intersects the time
      * interval from <code>begin</code> (inclusive) to <code>end</code>
      * (exclusive) specified by the input parameters.<p>
-     *
+     * <p>
      * This method returns data asynchronously.  Only program events
      * <code>pe</code> for which the caller has
      * <code>javax.tv.service.ReadPermission(pe.getLocator())</code>
@@ -87,9 +86,9 @@ public interface ProgramSchedule
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param begin - Time identifying the beginning of the interval.
-     * @param end - Time identifying the end of the interval.
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param begin Time identifying the beginning of the interval.
+     * @param end Time identifying the end of the interval.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @throws SIException - If end represents a time value before begin, or if end does not represent a future time value.
      * @see ProgramEvent, ReadPermission
@@ -98,7 +97,7 @@ public interface ProgramSchedule
 
     /**
      * Retrieves an event which follows the specified event.<p>
-     *
+     * <p>
      * This method delivers its results asynchronously.  If the caller
      * does not have
      * <code>javax.tv.service.ReadPermission(pe.getLocator())</code>
@@ -106,8 +105,8 @@ public interface ProgramSchedule
      * method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param event - A reference event.
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param event A reference event.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @throws SIException - If event does not belong to this ProgramSchedule.
      * @see ProgramEvent, ReadPermission
@@ -117,13 +116,13 @@ public interface ProgramSchedule
     /**
      * Retrieves a program event matching the locator. Note that
      * the event must be part of this schedule.<p>
-     *
+     * <p>
      * This method returns data asynchronously.
      *
-     * @param locator - Locator referencing the ProgramEvent of interest.
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param locator Locator referencing the ProgramEvent of interest.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException - If locator does not reference a valid ProgramEvent in this ProgramSchedule.
+     * @throws InvalidLocatorException     - If locator does not reference a valid ProgramEvent in this ProgramSchedule.
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see ProgramEvent, ReadPermission
      */
@@ -142,16 +141,16 @@ public interface ProgramSchedule
      * caller has
      * <code>javax.tv.service.ReadPermission(p.getLocator())</code> will
      * be reported.<p>
-     *
+     * <p>
      * This method is only a request for notification.  No guarantee is
      * provided that the SI database will detect all, or even any,
      * changes to the <code>ProgramSchedule</code>, or whether such changes
      * will be detected in a timely fashion.<p>
-     *
+     * <p>
      * If the specified <code>ProgramScheduleListener</code> is already
      * registered, no action is performed.
      *
-     * @param listener - A ProgramScheduleListener to be notified of changes to program events on this ProgramSchedule.
+     * @param listener A ProgramScheduleListener to be notified of changes to program events on this ProgramSchedule.
      * @see ProgramEvent, ProgramScheduleEvent, ProgramScheduleChangeType, ReadPermission
      */
     void addListener(ProgramScheduleListener listener);
@@ -161,7 +160,7 @@ public interface ProgramSchedule
      * specified <code>ProgramScheduleListener</code> is not registered, no
      * action is performed.
      *
-     * @param listener - A previously registered listener.
+     * @param listener A previously registered listener.
      */
     void removeListener(ProgramScheduleListener listener);
 

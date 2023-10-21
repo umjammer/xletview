@@ -1,22 +1,19 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui.tree;
 
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
-
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
@@ -28,11 +25,13 @@ import net.beiker.xletview.app.App;
 import net.beiker.xletview.app.AppGroup;
 import net.beiker.xletview.util.Constants;
 
+
 /*
  * From an example that you can find at:
  * http://manning.com/sbe/files/uts2/Chapter17html/Chapter17.htm
  */
 public class CellRenderer extends JLabel implements TreeCellRenderer {
+
     protected Color m_textSelectionColor;
     protected Color m_textNonSelectionColor;
     protected Color m_bkSelectionColor;
@@ -62,25 +61,20 @@ public class CellRenderer extends JLabel implements TreeCellRenderer {
             setText("Retrieving data...");
 
         if (obj instanceof AppGroup) {
-            if (expanded){
+            if (expanded) {
                 setIcon(Constants.ICON_EXPANDEDFOLDER);
-            }
-            else{
+            } else {
                 setIcon(Constants.ICON_FOLDER);
             }
-        }
-        else if (obj instanceof App) {
-                setIcon(Constants.ICON_XLET);
-        }
-        else if (obj instanceof UserObjectImpl) {
-            if (expanded){
+        } else if (obj instanceof App) {
+            setIcon(Constants.ICON_XLET);
+        } else if (obj instanceof UserObjectImpl) {
+            if (expanded) {
                 setIcon(Constants.ICON_EXPANDEDFOLDER);
-            }
-            else{
+            } else {
                 setIcon(Constants.ICON_FOLDER);
             }
-        }
-        else {
+        } else {
             setIcon(null);
         }
 

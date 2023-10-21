@@ -1,31 +1,28 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 
-package org.dvb.event ;
+package org.dvb.event;
 
 import java.awt.event.KeyEvent;
 import java.util.EventObject;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class UserEvent extends EventObject {
 
-    public static final int UEF_KEY_EVENT = 1 ;
+    public static final int UEF_KEY_EVENT = 1;
     private int family;
     private int type;
     private int code;
@@ -49,47 +46,47 @@ public class UserEvent extends EventObject {
         this.when = when;
     }
 
-    public int getFamily(){
+    public int getFamily() {
         return family;
     }
 
-    public int getType(){
+    public int getType() {
         return type;
     }
 
-    public int getCode(){
+    public int getCode() {
         return code;
     }
 
-    public char getKeyChar(){
+    public char getKeyChar() {
         return keyChar;
     }
 
-    public int getModifiers(){
+    public int getModifiers() {
         return modifiers;
     }
 
     public boolean isShiftDown() {
-        boolean is = (KeyEvent.SHIFT_DOWN_MASK == modifiers)? true:false;
+        boolean is = (KeyEvent.SHIFT_DOWN_MASK == modifiers) ? true : false;
         return is;
     }
 
-    public boolean isControlDown(){
-        boolean is = (KeyEvent.CTRL_DOWN_MASK == modifiers)? true:false;
+    public boolean isControlDown() {
+        boolean is = (KeyEvent.CTRL_DOWN_MASK == modifiers) ? true : false;
         return is;
     }
 
-    public boolean isMetaDown(){
-        boolean is = (KeyEvent.META_DOWN_MASK == modifiers)? true:false;
+    public boolean isMetaDown() {
+        boolean is = (KeyEvent.META_DOWN_MASK == modifiers) ? true : false;
         return is;
     }
 
-    public boolean isAltDown(){
-        boolean is = (KeyEvent.ALT_DOWN_MASK == modifiers)? true:false;
+    public boolean isAltDown() {
+        boolean is = (KeyEvent.ALT_DOWN_MASK == modifiers) ? true : false;
         return is;
     }
 
-    public long getWhen(){
+    public long getWhen() {
         return when;
     }
 

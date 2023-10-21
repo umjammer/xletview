@@ -1,23 +1,21 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 
 package net.beiker.xletview.ui;
 
 import java.awt.event.KeyEvent;
-
 import javax.swing.JButton;
 import javax.swing.KeyStroke;
+
 
 public class RemoteButton extends JButton {
 
@@ -27,6 +25,7 @@ public class RemoteButton extends JButton {
         getInputMap().put(KeyStroke.getKeyStroke(enterCode, 0, false), "pressed");
         getInputMap().put(KeyStroke.getKeyStroke(enterCode, 0, true), "released");
     }
+
     @Override
     public boolean isDefaultCapable() {
         return false;

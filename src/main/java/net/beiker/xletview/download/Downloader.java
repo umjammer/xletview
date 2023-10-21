@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.download;
 
@@ -71,7 +69,7 @@ public class Downloader {
      * Deletes all the content in the folder to download to.
      */
     public Downloader(String destinationPath) throws IOException {
-        synchronized (this){
+        synchronized (this) {
 //            this.destinationPath = destinationPath;
             listeners = new ArrayList<>();
             relFiles = new ArrayList<>();
@@ -89,11 +87,11 @@ public class Downloader {
         }
     }
 
-    public void addDownloadEventListener(DownloadEventListener listener){
+    public void addDownloadEventListener(DownloadEventListener listener) {
         listeners.add(listener);
     }
 
-    public void removeDownloadEventListener(DownloadEventListener listener){
+    public void removeDownloadEventListener(DownloadEventListener listener) {
         listeners.remove(listener);
     }
 
@@ -103,14 +101,13 @@ public class Downloader {
      * @param rootPath The directory which content we want.
      * @throws IOException If the directory doesn't exist.
      */
-    public void download(URL rootPath) throws IOException{
-        synchronized (this){
+    public void download(URL rootPath) throws IOException {
+        synchronized (this) {
             flush();
             File f = new File(rootPath.getFile());
             if (!f.exists() || !f.isDirectory()) {
                 throw new IOException("File " + f.toURI().toURL() + " does not exist or is not a valid resource directory");
-            }
-            else {
+            } else {
                 source = f;
                 log.info("checking resources...");
                 resolveSource(source);
@@ -132,7 +129,6 @@ public class Downloader {
 //    }
 
     /**
-     *
      * @return The folder which is the destination where the
      * applications are downloaded to.
      */
@@ -144,7 +140,7 @@ public class Downloader {
      * Deletes all content from the destination directory
      */
     public void flush() {
-        synchronized (this){
+        synchronized (this) {
             // delete all previous content
             File[] files = getDirContent(destination, new ArrayList<>());
             deleteFiles(files);
@@ -153,6 +149,7 @@ public class Downloader {
 
     /**
      * Resolves a directory
+     *
      * @param dir The directory to resolve
      */
     private void resolveSource(File dir) {
@@ -181,8 +178,7 @@ public class Downloader {
             File newFile = new File(destination.getAbsolutePath() + path);
             if (file.isDirectory()) {
                 newFile.mkdirs();
-            }
-            else {
+            } else {
                 try {
                     newFile.createNewFile();
                     try (InputStream is = new FileInputStream(file);
@@ -197,8 +193,7 @@ public class Downloader {
                         os.write(bytes);
                     }
                     notifyListeners(new DownloadEvent(this, getProcent(i), file.getName()));
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     log.log(Level.FINER, e.getMessage(), e);
                 }
             }
@@ -208,8 +203,9 @@ public class Downloader {
 
     /**
      * Gets the content of a direcory
+     *
      * @param dir The directory to get the content for
-     * @param v An empty vector
+     * @param v   An empty vector
      * @return All the files that was in the directory
      */
     private File[] getDirContent(File dir, List<File> v) {
@@ -230,6 +226,7 @@ public class Downloader {
 
     /**
      * Deletes files
+     *
      * @param files The files to delete
      */
     private void deleteFiles(File[] files) {
@@ -247,15 +244,14 @@ public class Downloader {
                 log.fine(files[i].getAbsolutePath() + " could not be removed");
             }
         }
-        if (!success){
+        if (!success) {
             log.info("some resources of the previous application could not be unloaded");
-        }
-        else{
+        } else {
             log.info("unloading successful");
         }
     }
 
-    private int getProcent(double index){
+    private int getProcent(double index) {
         double tot = relFiles.size();
 
         // we add 1 to the index and use the relFiles.size()
@@ -267,7 +263,7 @@ public class Downloader {
         return (int) procent;
     }
 
-    private void notifyListeners(DownloadEvent e){
+    private void notifyListeners(DownloadEvent e) {
         for (DownloadEventListener listener : listeners) {
             listener.downloadUpdate(e);
         }

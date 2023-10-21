@@ -16,9 +16,8 @@ package org.dvb.event;
 
 import org.davic.resources.ResourceStatusEvent;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -29,7 +28,7 @@ public class UserEventUnavailableEvent extends ResourceStatusEvent {
     }
 
     @Override
-    public Object getSource(){
+    public Object getSource() {
         return super.getSource();
     }
 }

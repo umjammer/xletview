@@ -16,9 +16,8 @@ package org.davic.net.ca;
 
 import org.davic.net.Locator;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

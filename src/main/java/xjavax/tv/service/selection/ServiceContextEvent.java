@@ -15,22 +15,22 @@ package xjavax.tv.service.selection;
 
 /**
  * The parent class for service context events.
- *
+ * <p>
  * The parent class for service context events.
  * <HR>
  *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ServiceContextEvent extends java.util.EventObject{
+public class ServiceContextEvent extends java.util.EventObject {
 
 
     /**
      * Constructs the event.
      *
-     * @param source - The ServiceContext that generated the event.
+     * @param source The ServiceContext that generated the event.
      */
-    public ServiceContextEvent( ServiceContext source)    {
+    public ServiceContextEvent(ServiceContext source) {
         super(source);
     }
 
@@ -39,7 +39,7 @@ public class ServiceContextEvent extends java.util.EventObject{
      *
      * @return The ServiceContext that generated the event.
      */
-    public ServiceContext getServiceContext()    {
+    public ServiceContext getServiceContext() {
         return (ServiceContext) super.getSource();
     }
 

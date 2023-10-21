@@ -18,25 +18,24 @@ import xjavax.tv.locator.Locator;
 import xjavax.tv.service.SIRequest;
 import xjavax.tv.service.SIRequestor;
 
+
 /**
  * This interface represents a collection of transport streams on a
  * <code>Transport</code>.  <code>TransportStreamCollection</code> may
  * be optionally implemented by <code>Transport</code> objects,
  * depending on the SI data carried on that transport.
  * <HR>
- *
- *
  */
-public interface TransportStreamCollection extends Transport
-{
+public interface TransportStreamCollection extends Transport {
+
     /**
      * Retrieves the specified <code>TransportStream</code> from the
      * collection.
      *
-     * @param locator - Locator referencing the TransportStream of interest.
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param locator Locator referencing the TransportStream of interest.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException - If locator does not reference a valid transport stream.
+     * @throws InvalidLocatorException     - If locator does not reference a valid transport stream.
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see TransportStream, ReadPermission
      */
@@ -51,10 +50,10 @@ public interface TransportStreamCollection extends Transport
      * no <code>TransportStream</code> instances meet these criteria,
      * this method will result in an <code>SIRequestFailureType</code>
      * of <code>DATA_UNAVAILABLE</code>.<p>
-     *
+     * <p>
      * This method delivers its results asynchronously.
      *
-     * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
+     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see TransportStream, ReadPermission
      */
@@ -72,16 +71,16 @@ public interface TransportStreamCollection extends Transport
      * the caller has
      * <code>javax.tv.service.ReadPermission(ts.getLocator())</code>
      * will be reported.<p>
-     *
+     * <p>
      * This method is only a request for notification.  No guarantee is
      * provided that the SI database will detect all, or even any, SI
      * changes or whether such changes will be detected in a timely
      * fashion.<p>
-     *
+     * <p>
      * If the specified <code>TransportStreamChangeListener</code> is
      * already registered, no action is performed.
      *
-     * @param listener - A TransportStreamChangeListener to be notified about changes related to TransportStream carried on this Transport.
+     * @param listener A TransportStreamChangeListener to be notified about changes related to TransportStream carried on this Transport.
      * @see TransportStreamChangeEvent, ReadPermission
      */
     void addTransportStreamChangeListener(TransportStreamChangeListener listener);
@@ -92,7 +91,7 @@ public interface TransportStreamCollection extends Transport
      * <code>TransportStreamChangeListener</code> is not registered, no
      * action is performed.
      *
-     * @param listener - A previously registered listener.
+     * @param listener A previously registered listener.
      */
     void removeTransportStreamChangeListener(TransportStreamChangeListener listener);
 

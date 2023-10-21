@@ -5,8 +5,8 @@ import org.havi.ui.HSound;
 import org.havi.ui.HVisible;
 import org.havi.ui.event.HActionListener;
 
+
 /**
- *
  * @author Martin Sveden
  */
 public class HActionableHelper {
@@ -74,7 +74,7 @@ public class HActionableHelper {
     public int getHActionEventResult(org.havi.ui.event.HActionEvent evt) {
         // get state
         int state = hVisible.getInteractionState();
-        if(hActionListener != null){
+        if (hActionListener != null) {
             hActionListener.actionPerformed(evt);
         }
 
@@ -87,7 +87,6 @@ public class HActionableHelper {
     public String getActionCommand() {
         return actionCommand;
     }
-
 
 
 //    // stuff for HNavigable --------------->

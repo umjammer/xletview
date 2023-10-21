@@ -10,17 +10,18 @@
  See LICENSE document for details.
 
 */
+
 package net.beiker.xletview.io;
 
 import java.io.File;
 import java.io.FilenameFilter;
-
 import javax.swing.filechooser.FileFilter;
+
 
 /**
  * @author Martin Sveden
  */
-public class FileFilterImpl extends FileFilter implements FilenameFilter{
+public class FileFilterImpl extends FileFilter implements FilenameFilter {
 
     String filter;
     String[] filters;
@@ -38,7 +39,7 @@ public class FileFilterImpl extends FileFilter implements FilenameFilter{
 
     @Override
     public boolean accept(File file) {
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             return true;
         }
         String s = file.getName();

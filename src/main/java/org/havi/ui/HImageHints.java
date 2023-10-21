@@ -15,8 +15,6 @@
 package org.havi.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -29,14 +27,14 @@ public class HImageHints {
 
     private int type;
 
-    public HImageHints(){
+    public HImageHints() {
     }
 
-    public void setType(int type){
+    public void setType(int type) {
         this.type = type;
     }
 
-    public int getType(){
+    public int getType() {
         return type;
     }
 }

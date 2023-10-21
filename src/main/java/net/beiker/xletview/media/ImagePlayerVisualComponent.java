@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.media;
 
@@ -17,10 +15,10 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.net.URL;
 import java.util.logging.Logger;
-
 import javax.swing.ImageIcon;
 
 import net.beiker.xletview.ui.XContainer;
+
 
 public class ImagePlayerVisualComponent extends XContainer {
 
@@ -45,14 +43,14 @@ public class ImagePlayerVisualComponent extends XContainer {
     /**
      * Flushes the image data
      */
-    public void destroy(){
+    public void destroy() {
         icon.getImage().flush();
         icon = null;
         log.fine("destroy");
     }
 
     @Override
-    public void update(Graphics g){
+    public void update(Graphics g) {
         paint(g);
     }
 

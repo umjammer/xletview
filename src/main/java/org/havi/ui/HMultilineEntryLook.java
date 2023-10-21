@@ -17,63 +17,63 @@ package org.havi.ui;
 import java.awt.Dimension;
 
 
-public class HMultilineEntryLook extends HSinglelineEntryLook{
+public class HMultilineEntryLook extends HSinglelineEntryLook {
 
-    public HMultilineEntryLook(){
+    public HMultilineEntryLook() {
     }
 
     @Override
-    public void showLook(java.awt.Graphics g, HVisible visible, int state){
+    public void showLook(java.awt.Graphics g, HVisible visible, int state) {
     }
 
     @Override
-    public void widgetChanged (HVisible visible, HChangeData[] changes){
+    public void widgetChanged(HVisible visible, HChangeData[] changes) {
     }
 
     @Override
-    public Dimension getMinimumSize(HVisible hvisible){
-        return(null);
+    public Dimension getMinimumSize(HVisible hvisible) {
+        return (null);
     }
 
     @Override
-    public Dimension getPreferredSize(HVisible hvisible){
-        return(null);
+    public Dimension getPreferredSize(HVisible hvisible) {
+        return (null);
     }
 
     @Override
-    public Dimension getMaximumSize(HVisible hvisible){
-        return(null);
+    public Dimension getMaximumSize(HVisible hvisible) {
+        return (null);
     }
 
     @Override
-    public boolean isOpaque(HVisible visible){
-        return(false);
+    public boolean isOpaque(HVisible visible) {
+        return (false);
     }
 
     @Override
-    public java.awt.Insets getInsets(HVisible visible){
-        return(null);
+    public java.awt.Insets getInsets(HVisible visible) {
+        return (null);
     }
 
-    public int getCaretPositionNextLine(HVisible visible){
+    public int getCaretPositionNextLine(HVisible visible) {
         return (0);
     }
 
-    public int getCaretPositionPreviousLine(HVisible visible){
+    public int getCaretPositionPreviousLine(HVisible visible) {
         return (0);
     }
 
-    public int getCaretCharPositionForLine(HVisible visible, int line){
+    public int getCaretCharPositionForLine(HVisible visible, int line) {
         return 0;
     }
 
-   public int[] getVisibleSoftLineBreakPositions(HVisible visible){
-       return null;
-   }
+    public int[] getVisibleSoftLineBreakPositions(HVisible visible) {
+        return null;
+    }
 
-   public int[] getSoftLineBreakPositions(HVisible visible){
-       return null;
-   }
+    public int[] getSoftLineBreakPositions(HVisible visible) {
+        return null;
+    }
 
 }
 

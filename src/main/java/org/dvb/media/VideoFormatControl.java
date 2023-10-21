@@ -14,7 +14,7 @@
 
 package org.dvb.media;
 
-public interface VideoFormatControl extends javax.media.Control{
+public interface VideoFormatControl extends javax.media.Control {
 
     int ASPECT_RATIO_UNKNOWN = -1;
 

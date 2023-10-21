@@ -1,4 +1,3 @@
-
 package net.beiker.xletview.net;
 
 import java.io.DataOutputStream;
@@ -13,11 +12,11 @@ import java.util.logging.Logger;
 
 import net.beiker.xletview.io.OutputPrinter;
 
+
 /**
- *
  * @author Unknown
  */
-public class OutputServer implements OutputPrinter{
+public class OutputServer implements OutputPrinter {
 
     /** Debugging facility. */
     private final static Logger logger = Logger.getLogger(OutputServer.class.getName());
@@ -32,7 +31,7 @@ public class OutputServer implements OutputPrinter{
 
     // Constructor and while-accept loop all in one.
     public OutputServer(int port, PrintStream original) throws IOException {
-        this. original = original;
+        this.original = original;
         // All we have to do is listen
         listen(port);
     }
@@ -80,8 +79,7 @@ public class OutputServer implements OutputPrinter{
                 try {
                     this.original.print(message);
                     dout.writeUTF(message);
-                }
-                catch (IOException ie) {
+                } catch (IOException ie) {
                     logger.warning(ie.toString());
                 }
             }
@@ -102,8 +100,7 @@ public class OutputServer implements OutputPrinter{
             // Make sure it's closed
             try {
                 s.close();
-            }
-            catch (IOException ie) {
+            } catch (IOException ie) {
                 logger.severe("Error closing " + s);
                 ie.printStackTrace();
             }
@@ -113,11 +110,12 @@ public class OutputServer implements OutputPrinter{
     /* (non-Javadoc)
      * @see net.beiker.xletview.io.OutputPrinter#print(java.lang.String)
      */
-     static int i = 0;
+    static int i = 0;
+
     @Override
     public void print(String s) {
         // TODO Auto-generated method stub
-        if(i < 4){
+        if (i < 4) {
             logger.fine("echo");
             i++;
         }

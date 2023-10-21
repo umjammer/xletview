@@ -12,21 +12,19 @@
 */
 
 
-package org.dvb.application ;
+package org.dvb.application;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class LanguageNotAvailableException extends Exception {
 
-    public LanguageNotAvailableException(){
+    public LanguageNotAvailableException() {
         super();
     }
 
-    public LanguageNotAvailableException(String s){
+    public LanguageNotAvailableException(String s) {
         super(s);
     }
 }

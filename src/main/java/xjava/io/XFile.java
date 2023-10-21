@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package xjava.io;
 
@@ -22,11 +20,13 @@ import java.net.URI;
 import java.net.URL;
 import java.util.logging.Logger;
 
+
 /**
  * Represents a file or directory in the filesystem.
+ *
  * @author Martin Sveden
  */
-public class XFile extends java.io.File{
+public class XFile extends java.io.File {
     /*
      * The reason why this class is not called File is because there are some classes that
      * uses both java.io.File and this one and if both were called File it might create
@@ -52,7 +52,7 @@ public class XFile extends java.io.File{
     /**
      * Overrides constructor in java.io.File
      */
-    public XFile(java.io.File parent, String child){
+    public XFile(java.io.File parent, String child) {
         super(parent, child);
         init(parent, child);
     }
@@ -60,7 +60,7 @@ public class XFile extends java.io.File{
     /**
      * Overrides constructor in java.io.File
      */
-    public XFile(String parent, String child){
+    public XFile(String parent, String child) {
         super("", "");
         init(parent, child);
     }
@@ -68,7 +68,7 @@ public class XFile extends java.io.File{
     /**
      * Overrides constructor in java.io.File
      */
-    public XFile(String path){
+    public XFile(String path) {
         super(path);
         init(NULL_STRING, path);
     }
@@ -76,28 +76,26 @@ public class XFile extends java.io.File{
     /**
      * Overrides constructor in java.io.File
      */
-    public XFile(URI uri){
+    public XFile(URI uri) {
         super("");
         // TODO fix
     }
 
     // constructors end //
 
-    private void init(java.io.File parent, String path){
-        if(parent != null){
+    private void init(java.io.File parent, String path) {
+        if (parent != null) {
             init(parent.getPath(), path);
-        }
-        else{
+        } else {
             init(NULL_STRING, path);
         }
     }
 
-    private void init(String parent, String path){
+    private void init(String parent, String path) {
         logger.fine("parent=" + parent + " path=" + path);
-        if(parent != null){
+        if (parent != null) {
             this.path = FileSystem.fixPath(parent + separatorChar + path);
-        }
-        else{
+        } else {
             this.path = FileSystem.fixPath(path);
         }
     }
@@ -109,12 +107,12 @@ public class XFile extends java.io.File{
      * with the slashes fixed in a platform dependent way.
      */
     @Override
-    public String getPath(){
+    public String getPath() {
         return this.path;
     }
 
     @Override
-    public String getAbsolutePath(){
+    public String getAbsolutePath() {
 //        logger.fine("getAbsolutePath");
         return FileSystem.resolveAbsolutePath(getParent(), getName());
     }
@@ -131,9 +129,9 @@ public class XFile extends java.io.File{
      * sequence.  If the pathname's name sequence is empty, then the empty
      * string is returned.
      *
-     * @return  The name of the file or directory denoted by this abstract
-     *          pathname, or the empty string if this pathname's name sequence
-     *          is empty
+     * @return The name of the file or directory denoted by this abstract
+     * pathname, or the empty string if this pathname's name sequence
+     * is empty
      */
     @Override
     public String getName() {
@@ -348,7 +346,6 @@ public class XFile extends java.io.File{
         logger.fine("toString");
         return null;
     }
-
 
 
 }

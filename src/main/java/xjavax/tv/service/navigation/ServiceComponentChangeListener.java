@@ -15,20 +15,19 @@ package xjavax.tv.service.navigation;
 
 import xjavax.tv.service.SIChangeListener;
 
+
 /**
  * This interface is implemented by applications wishing to receive
  * notification of changes to <code>ServiceComponent</code> data.
  * <HR>
- *
- *
  */
-public interface ServiceComponentChangeListener extends SIChangeListener
-{
+public interface ServiceComponentChangeListener extends SIChangeListener {
+
     /**
      * Notifies the <code>ServiceComponentChangeListener</code> of a
      * change to a <code>ServiceComponent</code>.
      *
-     * @param event - A ServiceComponentChangeEvent describing what changed and how.
+     * @param event A ServiceComponentChangeEvent describing what changed and how.
      */
     void notifyChange(ServiceComponentChangeEvent event);
 

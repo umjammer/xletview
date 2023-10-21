@@ -22,7 +22,7 @@ package xjavax.tv.service.selection;
  * which the user is not yet authorized). The presentation of
  * alternative content is always initiated by the system and never by
  * applications.<p>
- *
+ * <p>
  * This event will be generated in two situations:
  *
  * <ul> <li> At the end of a successful service selection operation,
@@ -41,7 +41,7 @@ package xjavax.tv.service.selection;
  * impact the service context state model.
  * </li>
  * </ul>
- *
+ * <p>
  * Presentation failures enforced via a conditional access system may
  * be reported by this event or by a <code>SelectionFailedEvent</code>
  * with the <code>CA_REFUSAL</code> reason code. Which of these is
@@ -53,13 +53,14 @@ package xjavax.tv.service.selection;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class AlternativeContentEvent extends PresentationChangedEvent{
+public class AlternativeContentEvent extends PresentationChangedEvent {
+
     /**
      * Constructs the event.
      *
-     * @param source - The ServiceContext that generated the event.
+     * @param source The ServiceContext that generated the event.
      */
-    public AlternativeContentEvent( ServiceContext source){
+    public AlternativeContentEvent(ServiceContext source) {
         super(source);
     }
 

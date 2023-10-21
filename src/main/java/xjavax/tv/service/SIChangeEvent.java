@@ -17,7 +17,7 @@ package xjavax.tv.service;
  * <code>SIChangeEvent</code> objects are sent to
  * <code>SIChangeListener</code> instances to signal detected changes
  * in the SI database.<p>
- *
+ * <p>
  * Note that while the SI database may detect changes, notification of
  * which specific <code>SIElement</code> has changed is not guaranteed.
  * The entity reported by the method <code>getSIElement()</code> will
@@ -28,7 +28,7 @@ package xjavax.tv.service;
  * element that changed, or<p>
  * <li><code>null</code>, if the specific changed element is unknown.
  * </ul>
- *
+ * <p>
  * The level of specificity provided by the change mechanism is
  * entirely dependent on the capabilities and current resources of the
  * implementation.
@@ -50,7 +50,7 @@ package xjavax.tv.service;
  * that the data encapsulated by the reported SI element has changed.
  *
  * </ul>
- *
+ * <p>
  * In the event that the SIElement reported by this event is not
  * the actual element that changed in the broadcast (i.e. it is
  * instead a containing element or <code>null</code>), the
@@ -64,7 +64,7 @@ package xjavax.tv.service;
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class SIChangeEvent extends java.util.EventObject{
+public abstract class SIChangeEvent extends java.util.EventObject {
 
     private SIElement sIElement;
     private SIChangeType changeType;
@@ -72,11 +72,11 @@ public abstract class SIChangeEvent extends java.util.EventObject{
     /**
      * Constructs an <code>SIChangeEvent</code> object.
      *
-     * @param source - The entity in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param e - The SIElement that changed, or null if this is unknown.
+     * @param source The entity in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param e The SIElement that changed, or null if this is unknown.
      */
-    public SIChangeEvent(java.lang.Object source, SIChangeType type, SIElement e){
+    public SIChangeEvent(java.lang.Object source, SIChangeType type, SIElement e) {
         super(source);
         changeType = type;
         sIElement = e;
@@ -85,14 +85,14 @@ public abstract class SIChangeEvent extends java.util.EventObject{
 
     /**
      * Reports the <code>SIElement</code> that changed.<p>
-     *
+     * <p>
      * This method may return <code>null</code>, since it is not
      * guaranteed that the SI database can or will determine which
      * element in a particular table changed.
      *
      * @return The SIElement that changed, or null if this is unknown.
      */
-    public SIElement getSIElement()    {
+    public SIElement getSIElement() {
         return sIElement;
     }
 
@@ -101,7 +101,7 @@ public abstract class SIChangeEvent extends java.util.EventObject{
      *
      * @return The type of change that occurred.
      */
-    public SIChangeType getChangeType()    {
+    public SIChangeType getChangeType() {
         return this.changeType;
     }
 

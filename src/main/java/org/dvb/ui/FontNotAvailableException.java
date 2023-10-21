@@ -15,8 +15,6 @@
 package org.dvb.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

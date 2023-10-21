@@ -17,37 +17,38 @@ package org.havi.ui;
 import java.awt.Dimension;
 import java.awt.Point;
 
+
 public abstract class HScreenConfiguration {
 
     //package scope constructor to stop javadoc generating one
-    HScreenConfiguration(){
+    HScreenConfiguration() {
     }
 
-    public Point convertTo(HScreenConfiguration destination, Point source){
+    public Point convertTo(HScreenConfiguration destination, Point source) {
         return (null);
     }
 
-    public boolean getFlickerFilter(){
+    public boolean getFlickerFilter() {
         return (false);
     }
 
-    public boolean getInterlaced(){
+    public boolean getInterlaced() {
         return (false);
     }
 
-    public Dimension getPixelAspectRatio(){
+    public Dimension getPixelAspectRatio() {
         return (null);
     }
 
-    public Dimension getPixelResolution(){
+    public Dimension getPixelResolution() {
         return null;
     }
 
-    public HScreenRectangle getScreenArea(){
+    public HScreenRectangle getScreenArea() {
         return (null);
     }
 
-    public java.awt.Dimension getOffset(HScreenConfiguration hsc){
+    public java.awt.Dimension getOffset(HScreenConfiguration hsc) {
         return (null);
     }
 }

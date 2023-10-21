@@ -17,21 +17,19 @@ package xjavax.tv.service;
  * This interface extends the basic <code>ServiceNumber</code> interface to
  * provide the minor number of two-part service numbers described in
  * <em>major.minor</em> format. <p>
- *
+ * <p>
  * Service and ServiceDetails objects may optionally implement this
  * interface. <p>
- *
+ * <p>
  * The major number of a service is obtained from the
  * <code>ServiceNumber.getServiceNumber</code> method.
  * <A HREF="../../../javax/tv/service/navigation/ServiceDetails.html"><CODE>ServiceDetails</CODE></A>,
  * <A HREF="../../../javax/tv/service/ServiceNumber.html#getServiceNumber()"><CODE>ServiceNumber.getServiceNumber()</CODE></A>,
  * <a href="../../../overview-summary.html#guidelines-opinterfaces">Optionally implemented interfaces</a></DL>
  * <HR>
- *
- *
  */
-public interface ServiceMinorNumber extends ServiceNumber
-{
+public interface ServiceMinorNumber extends ServiceNumber {
+
     /**
      * Reports the minor number of the service.
      *

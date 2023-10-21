@@ -12,12 +12,13 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 import java.io.InterruptedIOException;
 import java.security.cert.X509Certificate;
 
 //public class DSMCCObject extends java.io.File {
+
 /**
  * Due to the byte manipulation this has to extend
  * our xjava.io.XFile object, otherwise there will
@@ -32,15 +33,15 @@ public class DSMCCObject extends xjava.io.XFile {
     public static final int FROM_CACHE_OR_STREAM = 2;
     public static final int FROM_STREAM_ONLY = 3;
 
-    public DSMCCObject (String path) {
+    public DSMCCObject(String path) {
         super(path);
     }
 
-    public DSMCCObject (String path, String name) {
+    public DSMCCObject(String path, String name) {
         super(path, name);
     }
 
-    public DSMCCObject (DSMCCObject dir, String name) {
+    public DSMCCObject(DSMCCObject dir, String name) {
         super(dir, name);
     }
 
@@ -48,18 +49,24 @@ public class DSMCCObject extends xjava.io.XFile {
         return true;
     }
 
-    public boolean  isStream() {return true;}
-
-    public boolean  isStreamEvent() {return true;}
-
-    public boolean isObjectKindKnown() {return true;}
-
-    public void synchronousLoad()
-      throws InvalidFormatException, InterruptedIOException, MPEGDeliveryException, ServerDeliveryException,
-        InvalidPathNameException, NotEntitledException, ServiceXFRException {
+    public boolean isStream() {
+        return true;
     }
 
-    public void asynchronousLoad (AsynchronousLoadingEventListener l) throws InvalidPathNameException {
+    public boolean isStreamEvent() {
+        return true;
+    }
+
+    public boolean isObjectKindKnown() {
+        return true;
+    }
+
+    public void synchronousLoad()
+            throws InvalidFormatException, InterruptedIOException, MPEGDeliveryException, ServerDeliveryException,
+            InvalidPathNameException, NotEntitledException, ServiceXFRException {
+    }
+
+    public void asynchronousLoad(AsynchronousLoadingEventListener l) throws InvalidPathNameException {
     }
 
     public void abort() throws NothingToAbortException {
@@ -76,7 +83,8 @@ public class DSMCCObject extends xjava.io.XFile {
     public void unload() throws NotLoadedException {
     }
 
-    public java.net.URL  getURL() {return null;
+    public java.net.URL getURL() {
+        return null;
     }
 
     public void addObjectChangeEventListener(ObjectChangeEventListener listener) throws InsufficientResourcesException {
@@ -85,10 +93,11 @@ public class DSMCCObject extends xjava.io.XFile {
     public void removeObjectChangeEventListener(ObjectChangeEventListener listener) {
     }
 
-    public void loadDirectoryEntry (AsynchronousLoadingEventListener l) throws InvalidPathNameException {
+    public void loadDirectoryEntry(AsynchronousLoadingEventListener l) throws InvalidPathNameException {
     }
 
-    public void setRetrievalMode( int retrieval_mode ) {}
+    public void setRetrievalMode(int retrieval_mode) {
+    }
 
 
     public X509Certificate[][] getSigners() {

@@ -12,17 +12,17 @@
 */
 
 
-package org.dvb.application ;
+package org.dvb.application;
 
 public interface DVBHTMLProxy extends AppProxy {
 
     int LOADING = 6;
     int KILLED = 7;
 
-    void prefetch() ;
+    void prefetch();
 
-    void startTrigger(java.util.Date starttime) ;
+    void startTrigger(java.util.Date starttime);
 
-    void trigger(java.util.Date time, Object triggerPayload) ;
+    void trigger(java.util.Date time, Object triggerPayload);
 }
 

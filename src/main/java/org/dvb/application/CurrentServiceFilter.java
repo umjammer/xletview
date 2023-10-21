@@ -12,15 +12,15 @@
 */
 
 
-package org.dvb.application ;
+package org.dvb.application;
 
 import net.beiker.xletview.service.ServiceManager;
 import xjavax.tv.locator.Locator;
 
 
-
 /**
  * A filter that only accepts applications that are signalled in the current service.
+ *
  * @author Martin Sveden
  * @statuscode 2
  * @comment cannot be completed yet(dependencies)
@@ -46,11 +46,10 @@ public class CurrentServiceFilter extends AppsDatabaseFilter {
         Locator currentServiceLocator = ServiceManager.getInstance().getCurrentService().getLocator();
 
         // check if the app is in the current service
-        try{
+        try {
             //TODO this will throw a nullpointer, implement the rest to make it work
             currentServiceLocator.equals(appServiceLocator);
-        }
-        catch(NullPointerException e){
+        } catch (NullPointerException e) {
             log.fine("accept(AppID) not implemented");
         }
 

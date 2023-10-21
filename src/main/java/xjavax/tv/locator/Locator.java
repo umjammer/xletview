@@ -22,11 +22,9 @@ package xjavax.tv.locator;
  * transformation to transport dependent locators.
  * <A HREF="../../../javax/tv/locator/LocatorFactory.html#transformLocator(javax.tv.locator.Locator)"><CODE>LocatorFactory.transformLocator(javax.tv.locator.Locator)</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface Locator
-{
+public interface Locator {
+
     /**
      * Generates a canonical, string-based representation of this
      * <code>Locator</code>. The string returned may be entirely
@@ -34,14 +32,14 @@ public interface Locator
      * forms, they refer to the same resource.  However, two locators
      * that refer to the same resource may have different external
      * forms.<p>
-     *
+     * <p>
      * This method returns the canonical
      * form of the string that was used to create the Locator (via
      * <code>LocatorFactory.createLocator()</code>).  In generating
      * canonical external forms, the implementation will make its best
      * effort at resolving locators to one-to-one relationships
      * with the resources that they reference.<p>
-     *
+     * <p>
      * The result of this method can be used to create new
      * <code>Locator</code> instances as well as other types of
      * locators, such as JMF <code>MediaLocator</code>s and
@@ -67,7 +65,7 @@ public interface Locator
      * external form identical to the external form of this
      * <code>Locator</code>.
      *
-     * @param o - The object against which to compare this Locator.
+     * @param o The object against which to compare this Locator.
      * @return true if the specified object is equal to this Locator.
      * @see #equals in class java.lang.Object
      * @see String#equals(Object)

@@ -22,13 +22,14 @@ package xjavax.tv.service.selection;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class ServiceContextDestroyedEvent extends ServiceContextEvent{
+public class ServiceContextDestroyedEvent extends ServiceContextEvent {
+
     /**
      * Constructs the event.
      *
-     * @param source - The ServiceContext that was destroyed.
+     * @param source The ServiceContext that was destroyed.
      */
-    public ServiceContextDestroyedEvent( ServiceContext source)    {
+    public ServiceContextDestroyedEvent(ServiceContext source) {
         super(source);
     }
 

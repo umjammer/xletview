@@ -14,7 +14,7 @@
 
 package org.davic.resources;
 
-public interface ResourceClient{
+public interface ResourceClient {
 
     boolean requestRelease(ResourceProxy proxy, Object requestData);
 

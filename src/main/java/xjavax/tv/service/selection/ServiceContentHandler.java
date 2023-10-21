@@ -15,6 +15,7 @@ package xjavax.tv.service.selection;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * A <code>ServiceContentHandler</code> represents a mechanism for
  * presenting, processing or playing portions of a service.  A single
@@ -25,11 +26,9 @@ import xjavax.tv.locator.Locator;
  * service component or to content within a service component (such as
  * a Xlet).
  * <HR>
- *
- *
  */
-public interface ServiceContentHandler
-{
+public interface ServiceContentHandler {
+
     /**
      * Reports the portions of the service on which this handler operates.
      *

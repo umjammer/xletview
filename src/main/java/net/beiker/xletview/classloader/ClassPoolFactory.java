@@ -6,8 +6,10 @@ import java.util.logging.Logger;
 import javassist.ClassPool;
 import javassist.NotFoundException;
 
+
 /**
  * Have methods for creating instances of javassist.ClassPool
+ *
  * @author Martin Sveden
  */
 class ClassPoolFactory {
@@ -17,20 +19,22 @@ class ClassPoolFactory {
 
     /**
      * Creates and returns a javassist.ClassPool
+     *
      * @param classpath The classpaths to add to the ClassPool
      * @return A new ClassPool
      */
-    public static ClassPool getPool(String classpath){
+    public static ClassPool getPool(String classpath) {
         String[] s = classpath.split(File.pathSeparator);
         return getPool(s);
     }
 
     /**
      * Creates and returns a javassist.ClassPool
+     *
      * @param paths The classpaths to add to the ClassPool
      * @return A new ClassPool
      */
-    public static ClassPool getPool(String[] paths){
+    public static ClassPool getPool(String[] paths) {
         ClassPool pool = new ClassPool(null);
 
         for (String path : paths) {
@@ -44,5 +48,4 @@ class ClassPoolFactory {
 
         return pool;
     }
-
 }

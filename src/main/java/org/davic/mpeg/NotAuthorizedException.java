@@ -14,7 +14,7 @@
 
 package org.davic.mpeg;
 
-public class NotAuthorizedException extends java.lang.Exception implements NotAuthorizedInterface{
+public class NotAuthorizedException extends java.lang.Exception implements NotAuthorizedInterface {
 
     public NotAuthorizedException() {
     }
@@ -23,17 +23,17 @@ public class NotAuthorizedException extends java.lang.Exception implements NotAu
     }
 
     @Override
-    public int getType(){
-       return 0;
+    public int getType() {
+        return 0;
     }
 
     @Override
-    public Service getService(){
+    public Service getService() {
         return null;
     }
 
     @Override
-    public ElementaryStream[] getElementaryStreams(){
+    public ElementaryStream[] getElementaryStreams() {
         return null;
     }
 

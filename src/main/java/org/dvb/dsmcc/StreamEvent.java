@@ -15,8 +15,6 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -27,7 +25,7 @@ public class StreamEvent extends java.util.EventObject {
     private int eventId;
     private byte[] eventData;
 
-    public StreamEvent(DSMCCStreamEvent source, long npt, String name, int eventId, byte[] eventData){
+    public StreamEvent(DSMCCStreamEvent source, long npt, String name, int eventId, byte[] eventData) {
         super(source);
         this.normalPlayTime = npt;
         this.eventName = name;
@@ -40,19 +38,19 @@ public class StreamEvent extends java.util.EventObject {
         return super.getSource();
     }
 
-    public String getEventName(){
+    public String getEventName() {
         return eventName;
     }
 
-    public int getEventId(){
+    public int getEventId() {
         return eventId;
     }
 
-    public long getEventNPT(){
+    public long getEventNPT() {
         return normalPlayTime;
     }
 
-    public byte[] getEventData(){
+    public byte[] getEventData() {
         return eventData;
     }
 

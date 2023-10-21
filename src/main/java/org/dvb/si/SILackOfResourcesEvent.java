@@ -15,15 +15,13 @@
 package org.dvb.si;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class SILackOfResourcesEvent extends SIRetrievalEvent {
 
-  public SILackOfResourcesEvent(Object appData, SIRequest request) {
-    super(appData, request);
-  }
+    public SILackOfResourcesEvent(Object appData, SIRequest request) {
+        super(appData, request);
+    }
 
 }

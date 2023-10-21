@@ -13,7 +13,6 @@ import java.util.Map;
 
 
 /**
- *
  * @author Martin Sveden
  */
 public class FileSystem {
@@ -37,7 +36,7 @@ public class FileSystem {
 
     private static final Map<?, ?> files = new HashMap<>();
 
-    static{
+    static {
         roots = new EmulatorFile[1];
         //roots[0] = new MountPoint("", new java.io.File("filesystem"));
         roots[0] = EmulatorFile.getRoot();
@@ -47,11 +46,11 @@ public class FileSystem {
     }
 
 
-    private FileSystem(){
+    private FileSystem() {
     }
 
 
-//    /**
+    //    /**
 //     * Mounts a MountPoint to the carousel mount point.
 //     * @param mp The MountPoint to be mounted
 //     */
@@ -62,7 +61,7 @@ public class FileSystem {
 //        // mount the mount point
 //        mpDsmcc.mount(mp);
 //    }
-    public synchronized static EmulatorFile mountCarousel(String name, java.io.File dir){
+    public synchronized static EmulatorFile mountCarousel(String name, java.io.File dir) {
         roots[0].removeAllChildren();
         currentMountPoint = new EmulatorFile(name, dir);
 //
@@ -83,7 +82,7 @@ public class FileSystem {
         String result = "";
 
         // remove initial "./"
-        if(path.startsWith("./")){
+        if (path.startsWith("./")) {
             path = path.substring(2);
         }
 
@@ -108,6 +107,7 @@ public class FileSystem {
 
     /**
      * Returns the path which is the added path from mount point + parent + child
+     *
      * @param parent
      * @param child
      * @return
@@ -123,28 +123,25 @@ public class FileSystem {
     /**
      * Resolves the absolute path, returns null if it turns
      * out that the path is above root level
+     *
      * @return
      */
     static String resolveAbsolutePath(String parent, String child) {
         log.fine("resolveAbsolutePath(" + parent + ", " + child + ")");
         String fullPath = "";
 
-        if(parent == null){
-            if(child.startsWith("" + separatorChar)){
+        if (parent == null) {
+            if (child.startsWith("" + separatorChar)) {
                 fullPath = child;
-            }
-            else if(currentMountPoint != null){
+            } else if (currentMountPoint != null) {
                 fullPath = currentMountPoint.getAbsolutePath() + separatorChar + child;
-            }
-            else{
+            } else {
                 fullPath = separatorChar + child;
             }
-        }
-        else{
-            if(parent.startsWith("" + separatorChar)){
+        } else {
+            if (parent.startsWith("" + separatorChar)) {
                 fullPath = parent + separatorChar + child;
-            }
-            else{
+            } else {
                 fullPath = currentMountPoint.getAbsolutePath() + separatorChar + parent + separatorChar + child;
             }
 
@@ -187,7 +184,7 @@ public class FileSystem {
         return (f.getPath().startsWith(separatorChar + ""));
     }
 
-    static boolean isDirectory(java.io.File file){
+    static boolean isDirectory(java.io.File file) {
         java.io.File f = null;
         try {
             f = getFile(file);
@@ -196,7 +193,7 @@ public class FileSystem {
         return f != null && f.isDirectory();
     }
 
-    static boolean isFile(java.io.File file){
+    static boolean isFile(java.io.File file) {
         java.io.File f = null;
         try {
             f = getFile(file);
@@ -205,7 +202,7 @@ public class FileSystem {
         return f != null && f.isFile();
     }
 
-    static boolean isHidden(java.io.File file){
+    static boolean isHidden(java.io.File file) {
         java.io.File f = null;
         try {
             f = getFile(file);
@@ -214,27 +211,27 @@ public class FileSystem {
         return f != null && f.isHidden();
     }
 
-    static long lastModified(java.io.File file){
+    static long lastModified(java.io.File file) {
         long result = 0;
         java.io.File f = null;
         try {
             f = getFile(file);
         } catch (FileNotFoundException e) {
         }
-        if(f != null){
+        if (f != null) {
             result = f.lastModified();
         }
         return result;
     }
 
-    static String getCanonicalPath(java.io.File file) throws IOException{
+    static String getCanonicalPath(java.io.File file) throws IOException {
         String result = "";
         java.io.File f = getFile(file);
         result = f.getCanonicalPath();
         return result;
     }
 
-    static java.io.File getCanonicalFile(java.io.File file) throws IOException{
+    static java.io.File getCanonicalFile(java.io.File file) throws IOException {
         java.io.File result = null;
         java.io.File f = getFile(file);
         result = f.getCanonicalFile();
@@ -248,7 +245,7 @@ public class FileSystem {
             f = getFile(file);
         } catch (FileNotFoundException e) {
         }
-        if(f != null){
+        if (f != null) {
             result = f.toURL();
         }
 
@@ -264,13 +261,13 @@ public class FileSystem {
             f = getFile(file);
         } catch (FileNotFoundException e) {
         }
-        if(f != null){
+        if (f != null) {
             result = f.toURI();
         }
         return result;
     }
 
-    static boolean canRead(java.io.File file){
+    static boolean canRead(java.io.File file) {
         java.io.File f = null;
         try {
             f = getFile(file);
@@ -279,7 +276,7 @@ public class FileSystem {
         return f != null && f.canRead();
     }
 
-    static boolean canWrite(java.io.File file){
+    static boolean canWrite(java.io.File file) {
         java.io.File f = null;
         try {
             f = getFile(file);
@@ -317,7 +314,7 @@ public class FileSystem {
             f = getFile(file);
         } catch (FileNotFoundException e) {
         }
-        if(f != null){
+        if (f != null) {
             result = f.length();
         }
         return result;
@@ -351,17 +348,16 @@ public class FileSystem {
 
         EmulatorFile fp = getEmulatorFile(f);
 
-        if(fp != null && fp.getRealFile().isDirectory()){
+        if (fp != null && fp.getRealFile().isDirectory()) {
 
             List<?> v = fp.getChildren();
-            result   = new String[v.size()];
+            result = new String[v.size()];
             for (int i = 0; i < result.length; i++) {
                 EmulatorFile p = (EmulatorFile) v.get(i);
-                result[i]   = p.getName();
+                result[i] = p.getName();
             }
 
-        }
-        else{
+        } else {
             result = null;
         }
 
@@ -397,7 +393,7 @@ public class FileSystem {
     }
 
 
-    static  java.io.File[] listRoots() {
+    static java.io.File[] listRoots() {
         java.io.File[] result = new java.io.File[roots.length];
         for (int i = 0; i < result.length; i++) {
             result[i] = new File(roots[i].getAbsolutePath());
@@ -419,7 +415,7 @@ public class FileSystem {
         return 0;
     }
 
-    static boolean exists(java.io.File file){
+    static boolean exists(java.io.File file) {
         java.io.File f = null;
         try {
             f = getFile(file);
@@ -428,7 +424,7 @@ public class FileSystem {
         return f != null;
     }
 
-    static EmulatorFile getEmulatorFile(java.io.File file){
+    static EmulatorFile getEmulatorFile(java.io.File file) {
 
         // start from the root
         EmulatorFile currentFile = roots[0];
@@ -437,17 +433,16 @@ public class FileSystem {
         log.fine("checking if the file " + absolutePath + " exists...");
         String[] names = absolutePath.split("\\" + separatorChar);
 
-        if(currentMountPoint != null){
+        if (currentMountPoint != null) {
             log.fine("currentMountPoint.getName()=" + currentMountPoint.getName());
         }
-
 
 
         // do the loop starting from index 1 because the first
         // position should always be empty when splitting like that
 
         for (int i = 0; i < names.length; i++) {
-            if(i < 1){
+            if (i < 1) {
                 log.fine("skipping names[" + i + "] = _" + names[i] + "_");
                 continue;
             }
@@ -455,10 +450,9 @@ public class FileSystem {
             currentFile = currentFile.getChild(names[i]);
 
 
-            if(currentFile != null){
+            if (currentFile != null) {
                 log.fine(names[i] + " did exist");
-            }
-            else{
+            } else {
                 log.fine(names[i] + " did NOT exist");
                 break;
             }
@@ -480,11 +474,11 @@ public class FileSystem {
 
         log.fine("fp=" + fp);
 
-        if(fp != null){
+        if (fp != null) {
             result = fp.getRealFile();
         }
 
-        if(result == null){
+        if (result == null) {
             throw new FileNotFoundException(file.getPath() + " (The system cannot find the file specified)");
         }
 
@@ -492,7 +486,7 @@ public class FileSystem {
 
     }
 
-    public static java.io.File getFile(FileDescriptor fd){
+    public static java.io.File getFile(FileDescriptor fd) {
         log.info("not implemented");
         return null;
     }
@@ -501,7 +495,6 @@ public class FileSystem {
     public static void main(String[] args) {
         new FileSystem();
     }
-
 
 
 }

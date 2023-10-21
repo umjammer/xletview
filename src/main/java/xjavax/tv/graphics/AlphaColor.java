@@ -23,7 +23,7 @@ import java.awt.Color;
  * greater transparency. The alpha value will be respected by all instances of
  * java.awt.Graphics given to applications.
  * <p>
- *
+ * <p>
  * In the final composition between the graphics and video, the underlying
  * video stream will be alpha-blended with the AWT graphics plane using that
  * pixel's alpha value by default, i.e. <em>source
@@ -32,22 +32,22 @@ import java.awt.Color;
  * behavior can be changed using other APIs, possibly APIs defined outside of
  * Java TV.
  * <p>
- *
+ * <p>
  * This API supports up to 256 levels of alpha blending. However, an individual
  * graphics system may support fewer levels. Such systems will round the alpha
  * value specified in an <code>AlphaColor</code> constructor to some nearest
  * value when the <code>AlphaColor</code> instance is used, e.g. rounding to
  * the nearest implemented alpha value.
  * <p>
- *
+ * <p>
  * Systems on which alpha blending is not supported will interpret alpha values
  * other than 255 as if they were 255 (opaque) instead.
  * <p>
- *
+ * <p>
  * The actual color used in rendering will depend on finding the best match
  * given the color space available for a given output device.
  * <p>
- *
+ * <p>
  * Within the AWT graphics plane, the actual compositing done will be
  * platform-dependent.
  * <HR>
@@ -62,19 +62,15 @@ public class AlphaColor extends java.awt.Color {
      * Creates an sRGB color with the specified red, green, blue, and alpha
      * values in the range [0.0 - 1.0].
      *
-     * @param r -
-     *            The red component.
-     * @param g -
-     *            The green component.
-     * @param b -
-     *            The blue component.
-     * @param a -
-     *            The alpha component.
+     * @param r *          The red component.
+     * @param g *          The green component.
+     * @param b *          The blue component.
+     * @param a *          The alpha component.
      * @throws java.lang.IllegalArgumentException -
-     *             If any of the input parameters are outside the range [0.0 -
-     *             1.0].
+     *                                            If any of the input parameters are outside the range [0.0 -
+     *                                            1.0].
      * @see Color#getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
-     *      getRGB()
+     * getRGB()
      */
     public AlphaColor(float r, float g, float b, float a) {
         super(r, g, b, a);
@@ -84,19 +80,15 @@ public class AlphaColor extends java.awt.Color {
      * Creates an sRGB color with the specified red, green, blue, and alpha
      * values in the range 0-255, inclusive.
      *
-     * @param r -
-     *            The red component.
-     * @param g -
-     *            The green component.
-     * @param b -
-     *            The blue component.
-     * @param a -
-     *            The alpha component.
+     * @param r *          The red component.
+     * @param g *          The green component.
+     * @param b *          The blue component.
+     * @param a *          The alpha component.
      * @throws java.lang.IllegalArgumentException -
-     *             If any of the input parameters are outside the range [0 -
-     *             255].
+     *                                            If any of the input parameters are outside the range [0 -
+     *                                            255].
      * @see Color#getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
-     *      getRGB()
+     * getRGB()
      */
     public AlphaColor(int r, int g, int b, int a) {
         super(r, g, b, a);
@@ -109,12 +101,10 @@ public class AlphaColor extends java.awt.Color {
      * the <code>hasAlpha</code> argument is <code>false</code>, alpha is
      * set to 255.
      *
-     * @param argb -
-     *            The combined ARGB components
-     * @param hasAlpha -
-     *            true if the alpha bits are to be used, false otherwise.
+     * @param argb *                 The combined ARGB components
+     * @param hasAlpha *                 true if the alpha bits are to be used, false otherwise.
      * @see Color#getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
-     *      getRGB()
+     * getRGB()
      */
     public AlphaColor(int argb, boolean hasAlpha) {
         super(argb, hasAlpha);
@@ -125,8 +115,7 @@ public class AlphaColor extends java.awt.Color {
      * java.awt.Color. If this color has no alpha value, alpha will be set to
      * 255 (opaque).
      *
-     * @param c -
-     *            the color
+     * @param c *          the color
      */
     public AlphaColor(java.awt.Color c) {
         super(c.getRGB());
@@ -135,7 +124,7 @@ public class AlphaColor extends java.awt.Color {
     /**
      * Creates a brighter version of this color.
      * <p>
-     *
+     * <p>
      * Although brighter and darker are inverse operations, the results of a
      * series of invocations of these two methods may be inconsistent because
      * of rounding errors.
@@ -152,7 +141,7 @@ public class AlphaColor extends java.awt.Color {
     /**
      * Creates a darker version of this color.
      * <p>
-     *
+     * <p>
      * Although brighter and darker are inverse operations, the results of a
      * series of invocations of these two methods may be inconsistent because
      * of rounding errors.
@@ -169,13 +158,12 @@ public class AlphaColor extends java.awt.Color {
     /**
      * Determines whether another object is equal to this <code>AlphaColor</code>.
      * <p>
-     *
+     * <p>
      * The result is <code>true</code> if and only if the argument is not
      * <code>null</code> and is a <code>AlphaColor</code> object that has
      * the same red, green, blue and alpha values as this object.
      *
-     * @param obj -
-     *            The object to test for equality with this AlphaColor
+     * @param obj *            The object to test for equality with this AlphaColor
      * @return true if the objects are the same; false otherwise.
      * @see #equals in class java.awt.Color
      */
@@ -225,7 +213,7 @@ public class AlphaColor extends java.awt.Color {
      * @return The RGB value as an int.
      * @see #getRGB in class java.awt.Color
      * @see java.awt.image.ColorModel#getRGBdefault(), Color.getRed(), Color.getGreen(),
-     *      Color.getBlue()
+     * Color.getBlue()
      */
     @Override
     public int getRGB() {

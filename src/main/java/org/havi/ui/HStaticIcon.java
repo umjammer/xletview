@@ -18,48 +18,45 @@ import java.awt.Image;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HStaticIcon extends HVisible implements HNoInputPreferred{
+public class HStaticIcon extends HVisible implements HNoInputPreferred {
 
     private static HGraphicLook defaultHLook = new HGraphicLook();
 
-    public HStaticIcon(){
+    public HStaticIcon() {
         this(null, 0, 0, 0, 0);
     }
 
-    public HStaticIcon(Image imageNormal, int x, int y, int width, int height){
+    public HStaticIcon(Image imageNormal, int x, int y, int width, int height) {
         super(defaultHLook, x, y, width, height);
         this.setGraphicContent(imageNormal, HVisible.NORMAL_STATE);
     }
 
-    public HStaticIcon(Image imageNormal){
+    public HStaticIcon(Image imageNormal) {
         this(null, 0, 0, 0, 0);
         this.setGraphicContent(imageNormal, HVisible.NORMAL_STATE);
     }
 
     @Override
-    public void setLook(HLook hLook) throws HInvalidLookException{
-        if(hLook instanceof HGraphicLook || hLook == null ){
+    public void setLook(HLook hLook) throws HInvalidLookException {
+        if (hLook instanceof HGraphicLook || hLook == null) {
             super.setLook(hLook);
-        }
-        else{
+        } else {
             throw new HInvalidLookException("HLook was not a org.havi.ui.HGraphicLook");
         }
     }
 
-    public static void setDefaultLook(HGraphicLook hGraphicLook){
+    public static void setDefaultLook(HGraphicLook hGraphicLook) {
         HStaticIcon.defaultHLook = hGraphicLook;
     }
 
-    public static HGraphicLook getDefaultLook(){
+    public static HGraphicLook getDefaultLook() {
         return HStaticIcon.defaultHLook;
     }
 
-    public String toString(){
+    public String toString() {
         return super.toString() + " img:" + getGraphicContent(getInteractionState());
     }
 }

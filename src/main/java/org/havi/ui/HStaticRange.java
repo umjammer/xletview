@@ -15,77 +15,76 @@
 package org.havi.ui;
 
 
-
-public class HStaticRange extends HVisible implements HNoInputPreferred, HOrientable{
+public class HStaticRange extends HVisible implements HNoInputPreferred, HOrientable {
 
     public final static int SLIDER_BEHAVIOR = 0;
 
     public final static int SCROLLBAR_BEHAVIOR = 1;
 
-    public HStaticRange(){
+    public HStaticRange() {
     }
 
-    public HStaticRange(int orientation, int minimum, int maximum, int value, int x, int y, int width, int height){
+    public HStaticRange(int orientation, int minimum, int maximum, int value, int x, int y, int width, int height) {
     }
 
-    public HStaticRange(int orientation, int minimum, int maximum, int value){
+    public HStaticRange(int orientation, int minimum, int maximum, int value) {
     }
 
     @Override
-    public void setLook(HLook hlook) throws HInvalidLookException{
+    public void setLook(HLook hlook) throws HInvalidLookException {
     }
 
-    public static void setDefaultLook(HRangeLook look){
+    public static void setDefaultLook(HRangeLook look) {
     }
 
-    public static HRangeLook getDefaultLook(){
+    public static HRangeLook getDefaultLook() {
         return (null);
     }
 
     @Override
-    public int getOrientation(){
-        return(0);
+    public int getOrientation() {
+        return (0);
     }
 
     @Override
-    public void setOrientation(int orient){
+    public void setOrientation(int orient) {
     }
 
-    public boolean setRange(int minimum, int maximum){
+    public boolean setRange(int minimum, int maximum) {
         return (true);
     }
 
-    public int getMinValue(){
+    public int getMinValue() {
         return (0);
     }
 
-    public int getMaxValue(){
+    public int getMaxValue() {
         return (0);
     }
 
-    public void setValue(int value){
+    public void setValue(int value) {
     }
 
-    public int getValue(){
+    public int getValue() {
         return (0);
     }
 
-    public void setThumbOffsets(int minOffset, int maxOffset){
+    public void setThumbOffsets(int minOffset, int maxOffset) {
     }
 
-    public int getThumbMinOffset(){
-        return(0);
+    public int getThumbMinOffset() {
+        return (0);
     }
 
-    public int getThumbMaxOffset(){
-        return(0);
+    public int getThumbMaxOffset() {
+        return (0);
     }
 
-    public void setBehavior(int behavior){
+    public void setBehavior(int behavior) {
     }
 
-    public int getBehavior(){
-        return(0);
+    public int getBehavior() {
+        return (0);
     }
 
 }

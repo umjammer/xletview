@@ -13,9 +13,8 @@ package org.dvb.user;
 
 import java.util.Map;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -27,7 +26,7 @@ public final class GeneralPreference extends Preference {
         super(name, "");
         if (!UserPreferenceManager.isValidPrefName(name)) {
             throw new IllegalArgumentException(
-                name + " the preference's name is not supported");
+                    name + " the preference's name is not supported");
         }
 
     }

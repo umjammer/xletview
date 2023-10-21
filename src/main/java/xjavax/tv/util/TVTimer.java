@@ -15,9 +15,9 @@ package xjavax.tv.util;
 
 /**
  * A class representing a timer.
- *
+ * <p>
  * A class representing a timer.
- *
+ * <p>
  * A timer is responsible for managing a set of timer events specified by timer
  * specifications. When the timer event should be sent, the timer calls the
  * timer specification's <code>notifyListeners()</code> method.
@@ -27,15 +27,14 @@ package xjavax.tv.util;
  * @statuscode 4
  */
 public abstract class TVTimer {
-    //following variables are implicitly defined by getter- or
+
+    // following variables are implicitly defined by getter- or
     // setter-methods:
     private static TVTimer timer;
 
     /**
      * Constructs a TVTimer object.
      * </DL>
-     *
-     *
      */
     public TVTimer() {
     }
@@ -48,7 +47,7 @@ public abstract class TVTimer {
      * @return A non-null TVTimer object.
      */
     public static TVTimer getTimer() {
-        if(timer == null){
+        if (timer == null) {
             timer = TVTimerImpl.getInstance();
         }
         return timer;
@@ -89,12 +88,11 @@ public abstract class TVTimer {
      * are unspecified.
      * </p>
      *
-     * @param t -
-     *            The timer specification to begin monitoring.
+     * @param t *          The timer specification to begin monitoring.
      * @return The real TVTimerSpec that was scheduled.
      * @throws TVTimerScheduleFailedException -
-     *             is thrown when the scheduled specification cannot be
-     *             satisfied.
+     *                                        is thrown when the scheduled specification cannot be
+     *                                        satisfied.
      */
     public abstract TVTimerSpec scheduleTimerSpec(TVTimerSpec t) throws TVTimerScheduleFailedException;
 
@@ -104,8 +102,7 @@ public abstract class TVTimer {
      * immediately. If the timer specification has been scheduled multiple
      * times with this timer, all the schedulings are canceled.
      *
-     * @param t -
-     *            The timer specification to end monitoring.
+     * @param t *          The timer specification to end monitoring.
      */
     public abstract void deschedule(TVTimerSpec t);
 
@@ -116,8 +113,8 @@ public abstract class TVTimer {
      * between every run. This is to avoid possible system overloading.
      *
      * @return The timer's best knowledge of minimum repeat interval in
-     *         milliseconds. Return -1 if this timer doesn't know its repeating
-     *         interval limitation.
+     * milliseconds. Return -1 if this timer doesn't know its repeating
+     * interval limitation.
      */
     public abstract long getMinRepeatInterval();
 
@@ -126,8 +123,7 @@ public abstract class TVTimer {
      * "ticks" of this timer.
      *
      * @return The timer's best knowledge of the granularity in milliseconds.
-     *         Return -1 if this timer doesn't know its granularity.
+     * Return -1 if this timer doesn't know its granularity.
      */
     public abstract long getGranularity();
-
 }

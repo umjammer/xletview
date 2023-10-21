@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui;
 
@@ -19,7 +17,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -31,6 +28,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import net.beiker.xletview.app.AppGroup;
 import net.beiker.xletview.app.AppManager;
 import net.beiker.xletview.window.AppTreeWindow;
+
 
 /**
  * @author Martin Sveden
@@ -75,7 +73,6 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         container.add(rows[0]);
 
 
-
         //content.add(BorderLayout.NORTH, container);
         inputs.add(container);
         content.add(BorderLayout.CENTER, inputs);
@@ -104,6 +101,7 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 
     /**
      * Saves the data for previous App and displays the data for the new one.
+     *
      * @param group the new App
      */
     public void setAppGroup(AppGroup group) {
@@ -115,9 +113,8 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 
     /**
      * Saves the data to the active App
-     *
      */
-    public void save(){
+    public void save() {
         if (this.group != null) {
             //node.setUserObject(new IconData(null, null, group, group.getName()));
             this.group.setName(fields[NAME].getText());

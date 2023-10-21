@@ -14,7 +14,7 @@
 
 package org.dvb.media;
 
-public interface SubtitlingEventControl extends org.davic.media.SubtitlingLanguageControl  {
+public interface SubtitlingEventControl extends org.davic.media.SubtitlingLanguageControl {
 
     void addSubtitleListener(SubtitleListener l);
 

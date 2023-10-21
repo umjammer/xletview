@@ -18,17 +18,15 @@ import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
+import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HFocusEvent;
 
-import net.beiker.xletview.helper.HNavigableHelper;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HIcon extends HStaticIcon implements HNavigable{
+public class HIcon extends HStaticIcon implements HNavigable {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HIcon.class.getName());
 
@@ -36,25 +34,25 @@ public class HIcon extends HStaticIcon implements HNavigable{
     private HNavigableHelper helper;
 
 
-    private static HGraphicLook defaultHLook    = new HGraphicLook();
+    private static HGraphicLook defaultHLook = new HGraphicLook();
 
 
-    public HIcon(){
+    public HIcon() {
         super();
         init();
     }
 
-    public HIcon(Image image){
+    public HIcon(Image image) {
         super(image);
         init();
     }
 
-    public HIcon(Image image, int x, int y, int width, int height){
+    public HIcon(Image image, int x, int y, int width, int height) {
         super(image, x, y, width, height);
         init();
     }
 
-    public HIcon(Image imageNormal, Image imageFocus, int x, int y, int width, int height){
+    public HIcon(Image imageNormal, Image imageFocus, int x, int y, int width, int height) {
         super(imageNormal, x, y, width, height);
         setGraphicContent(imageFocus, HVisible.FOCUSED_STATE);
         init();
@@ -62,71 +60,71 @@ public class HIcon extends HStaticIcon implements HNavigable{
     }
     // constructors end //
 
-    private void init(){
+    private void init() {
         helper = new HNavigableHelper(this);
         log.fine("HIcon - init");
     }
 
-    public static void setDefaultLook(HGraphicLook hGraphicLook){
+    public static void setDefaultLook(HGraphicLook hGraphicLook) {
         HIcon.defaultHLook = hGraphicLook;
     }
 
-    public static HGraphicLook getDefaultLook(){
+    public static HGraphicLook getDefaultLook() {
         return HIcon.defaultHLook;
     }
 
     @Override
-    public void setMove(int keyCode, HNavigable target){
+    public void setMove(int keyCode, HNavigable target) {
         helper.setMove(keyCode, target);
     }
 
     @Override
-    public HNavigable getMove(int keyCode){
+    public HNavigable getMove(int keyCode) {
         return helper.getMove(keyCode);
     }
 
     @Override
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
         helper.setFocusTraversal(up, down, left, right);
     }
 
     @Override
-    public boolean isSelected(){
+    public boolean isSelected() {
         return helper.isSelected();
     }
 
     @Override
-    public void setGainFocusSound(HSound sound){
+    public void setGainFocusSound(HSound sound) {
         helper.setGainFocusSound(sound);
     }
 
     @Override
-    public void setLoseFocusSound(HSound sound){
+    public void setLoseFocusSound(HSound sound) {
         helper.setLoseFocusSound(sound);
     }
 
     @Override
-    public HSound getGainFocusSound(){
+    public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
-    public HSound getLoseFocusSound(){
+    public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
     }
 
     @Override
-    public synchronized void addHFocusListener(org.havi.ui.event.HFocusListener listener){
+    public synchronized void addHFocusListener(org.havi.ui.event.HFocusListener listener) {
         helper.addHFocusListener(listener);
     }
 
     @Override
-    public synchronized void removeHFocusListener(org.havi.ui.event.HFocusListener listener){
+    public synchronized void removeHFocusListener(org.havi.ui.event.HFocusListener listener) {
         helper.removeHFocusListener(listener);
     }
 
     @Override
-    public int[] getNavigationKeys(){
+    public int[] getNavigationKeys() {
         return helper.getNavigationKeys();
     }
 
@@ -148,13 +146,13 @@ public class HIcon extends HStaticIcon implements HNavigable{
      * and takes care of that.
      */
     @Override
-    public synchronized FocusListener[] getFocusListeners(){
+    public synchronized FocusListener[] getFocusListeners() {
         return helper.getFocusListeners();
     }
 
 
     @Override
-    public void processFocusEvent(FocusEvent e){
+    public void processFocusEvent(FocusEvent e) {
         //super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
         processHFocusEvent(event);
@@ -167,7 +165,7 @@ public class HIcon extends HStaticIcon implements HNavigable{
         int state = getInteractionState();
         int newState = helper.getHFocusEventResult(evt);
 
-        if(state != newState){
+        if (state != newState) {
             setInteractionState(newState);
         }
     }

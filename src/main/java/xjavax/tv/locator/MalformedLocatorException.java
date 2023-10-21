@@ -22,14 +22,13 @@ package xjavax.tv.locator;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class MalformedLocatorException extends java.lang.Exception
-{
+public class MalformedLocatorException extends java.lang.Exception {
+
     /**
      * Constructs a <code>MalformedLocatorException</code> with no
      * detail message.</DL>
-     *
      */
-    public MalformedLocatorException(){
+    public MalformedLocatorException() {
         super();
     }
 
@@ -37,9 +36,9 @@ public class MalformedLocatorException extends java.lang.Exception
      * Constructs a <code>MalformedLocatorException</code> with the
      * specified detail message.
      *
-     * @param reason - The reason the exception was raised.
+     * @param reason The reason the exception was raised.
      */
-    public MalformedLocatorException(String reason){
+    public MalformedLocatorException(String reason) {
         super(reason);
     }
 

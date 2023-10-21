@@ -1,15 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui;
 
@@ -22,12 +20,13 @@ import java.awt.Rectangle;
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
 
+
 /**
  * This layout puts the children in the center.
- * @author Martin Sveden
  *
+ * @author Martin Sveden
  */
-public class CenterLayout implements LayoutManager{
+public class CenterLayout implements LayoutManager {
 
     @Override
     public void addLayoutComponent(String s, Component c) {
@@ -52,7 +51,7 @@ public class CenterLayout implements LayoutManager{
     @Override
     public void layoutContainer(Container parent) {
         Rectangle bounds = parent.getBounds();
-        for(int i = 0; i < parent.getComponentCount(); i++){
+        for (int i = 0; i < parent.getComponentCount(); i++) {
             Component comp = parent.getComponent(i);
             int x = (int) (bounds.getWidth() - comp.getWidth()) / 2;
             int y = (int) (bounds.getHeight() - comp.getHeight()) / 2;

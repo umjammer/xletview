@@ -15,15 +15,13 @@
 package org.dvb.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class DVBRasterFormatException extends java.lang.Exception {
 
     public DVBRasterFormatException(String s) {
-        super (s);
+        super(s);
     }
 
 }

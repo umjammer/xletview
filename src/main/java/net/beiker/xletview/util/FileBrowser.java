@@ -26,21 +26,18 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
 
-
-
-public class FileBrowser extends GenDialogComponent implements MouseListener, ActionListener{
+public class FileBrowser extends GenDialogComponent implements MouseListener, ActionListener {
 
     private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(FileBrowser.class.getName());
 
     private static final int FOLDER = 0;
-    private static final int FILE   = 1;
+    private static final int FILE = 1;
     private int width;
     private int height;
     private JComboBox<String> combo;
@@ -54,12 +51,12 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
     private FileFilter filter;
 
 
-    public FileBrowser(int width, int height, FileFilter filter){
+    public FileBrowser(int width, int height, FileFilter filter) {
         this(width, height);
         this.filter = filter;
     }
 
-    public FileBrowser(int width, int height){
+    public FileBrowser(int width, int height) {
         this.width = width;
         this.height = height;
 
@@ -88,45 +85,45 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         fileList = new JList<>();
         scroll = new JScrollPane(fileList);
         setPreferredSize(new Dimension(width, height));
-        scroll.setPreferredSize(new Dimension(width,height));
+        scroll.setPreferredSize(new Dimension(width, height));
 
         setLayout(new BorderLayout());
         add(top, BorderLayout.NORTH);
         add(scroll, BorderLayout.CENTER);
     }
 
-    public void openFolder(String path){
+    public void openFolder(String path) {
         currentFolder = new File(path);
 
         //if(!currentFolder.isDirectory()){
-            //currentFolder = roots[0];
+        //currentFolder = roots[0];
         //}
 
-            try {
-                files = getFiles(currentFolder);
-            } catch (Exception e) {
-                for (File root : roots) {
-                    try {
-                        files = getFiles(root);
-                        currentFolder = root;
-                        break;
-                    } catch (Exception e2) {
-                        //Debug.severe(e2);
-                    }
-
+        try {
+            files = getFiles(currentFolder);
+        } catch (Exception e) {
+            for (File root : roots) {
+                try {
+                    files = getFiles(root);
+                    currentFolder = root;
+                    break;
+                } catch (Exception e2) {
+                    //Debug.severe(e2);
                 }
-                //Debug.severe(e);
-            }
 
-            log.fine("opened folder: " + currentFolder.getPath());
+            }
+            //Debug.severe(e);
+        }
+
+        log.fine("opened folder: " + currentFolder.getPath());
 
         int totFiles = files.length;
         String[] names = new String[totFiles];
 
-        for(int i = 0; i < names.length; i++){
+        for (int i = 0; i < names.length; i++) {
             names[i] = files[i].getName();
             //Debug.write(this, names[i]);
-            if(i == 0 && currentFolder.getParentFile() != null){
+            if (i == 0 && currentFolder.getParentFile() != null) {
                 // it's the parent folder
                 names[i] = "..";
             }
@@ -144,20 +141,19 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
      * Returns an Array with the directories and files of a directory, with the
      * parent if there is one and directories first.
      */
-    private File[] getFiles(File folder) throws NullPointerException{
+    private File[] getFiles(File folder) throws NullPointerException {
         File[] filesInFolder;
 
-        if(filter != null){
+        if (filter != null) {
             filesInFolder = folder.listFiles(filter);
-        }
-        else{
+        } else {
             filesInFolder = folder.listFiles();
         }
 
-        List<File> dir   = new ArrayList<>();
-        List<File> file  = new ArrayList<>();
+        List<File> dir = new ArrayList<>();
+        List<File> file = new ArrayList<>();
         File parentFolder = folder.getParentFile();
-        if(parentFolder != null){
+        if (parentFolder != null) {
             dir.add(parentFolder);
         }
         for (File file1 : filesInFolder) {
@@ -168,7 +164,7 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
             }
         }
         File[] totFiles = new File[dir.size() + file.size()];
-        int i=0;
+        int i = 0;
         for (File element : dir) {
             totFiles[i++] = element;
         }
@@ -179,54 +175,62 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
     }
 
     @Override
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if(command.equals("changeDrive")){
-            JComboBox<?> cb = (JComboBox<?>)e.getSource();
-            String path = (String)cb.getSelectedItem();
+        if (command.equals("changeDrive")) {
+            JComboBox<?> cb = (JComboBox<?>) e.getSource();
+            String path = (String) cb.getSelectedItem();
             openFolder(path);
         }
 
     }
 
     @Override
-    public void mousePressed(MouseEvent e){}
+    public void mousePressed(MouseEvent e) {
+    }
+
     @Override
-    public void mouseReleased(MouseEvent e){}
+    public void mouseReleased(MouseEvent e) {
+    }
+
     @Override
-    public void mouseClicked(MouseEvent e){
+    public void mouseClicked(MouseEvent e) {
         int selIndex = fileList.getSelectedIndex();
-        if(selIndex != -1){
+        if (selIndex != -1) {
             File selectedFile = files[selIndex];
             value = selectedFile.getPath();
             //Debug.write(this, "" + selectedFile.getPath());
-            if(e.getClickCount() == 2){
-                if(selectedFile.isDirectory()){
+            if (e.getClickCount() == 2) {
+                if (selectedFile.isDirectory()) {
                     openFolder(value);
                 }
             }
         }
 
     }
-    @Override
-    public void mouseEntered(MouseEvent e){}
-    @Override
-    public void mouseExited(MouseEvent e){}
 
-    public String getValue(){
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
+
+    public String getValue() {
         return value;
     }
 
-    public void setFilter(FileFilter filter){
+    public void setFilter(FileFilter filter) {
         this.filter = filter;
     }
 
     @Override
-    public boolean isOk(){
+    public boolean isOk() {
         return true;
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         FileBrowser b = new FileBrowser(300, 250);
         b.openFolder("C:\\");
         new GenDialog(b, null, "File Browser");

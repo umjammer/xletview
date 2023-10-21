@@ -50,7 +50,6 @@ public final class XletClassLoader extends MainClassLoader {
 
 
     public static void main(String[] args) {
-
         try {
             URL url = new URL(args[0]);
 
@@ -63,6 +62,7 @@ public final class XletClassLoader extends MainClassLoader {
 
     /**
      * Creates a classloader for an Xlet
+     *
      * @param virtualRoot A URL[] containing one URL with the location of the Xlet
      *                    at position 0, and possibly other URLs to retrieve class
      *                    files or resources from (extra class path).
@@ -72,7 +72,7 @@ public final class XletClassLoader extends MainClassLoader {
         super(virtualRoot);
 
         // deprecated warning: we should consider extra class paths
-        //logger.fine("XletClassLoader's URL ("+(virtualRoot.length==1?"OK: it's exactly one URL":"WARNING: should only be one URL")+"):");
+//logger.fine("XletClassLoader's URL ("+(virtualRoot.length==1?"OK: it's exactly one URL":"WARNING: should only be one URL")+"):");
         for (URL url : virtualRoot) {
             logger.fine(url.getPath());
         }
@@ -99,16 +99,11 @@ public final class XletClassLoader extends MainClassLoader {
 //        }
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see java.lang.ClassLoader#loadClass(java.lang.String)
-     */
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
 
         name = name.replaceAll("/", ".");
-logger.finer("try to load: " + name);
+        logger.finer("try to load: " + name);
         Class<?> theClass = null;
         boolean newClass = false;
 
@@ -118,7 +113,7 @@ logger.finer("try to load: " + name);
         if (theClass == null) {
             try {
 
-                 // try to load the class with the parent classloader
+                // try to load the class with the parent classloader
                 if (this.parent != null) {
                     theClass = this.parent.loadClass(name);
                 }
@@ -130,9 +125,7 @@ logger.finer("try to load: " + name);
         }
 
         if (theClass == null) {
-            /*
-             * It's one of the Xlet's classes
-             */
+            // It's one of the Xlet's classes
             try {
                 theClass = findClass(name);
                 newClass = true;
@@ -144,9 +137,7 @@ logger.finer("try to load: " + name);
 
 
         if (theClass == null) {
-            /*
-             * The class is still not found. Throw an Exception
-             */
+            // The class is still not found. Throw an Exception
             throw new ClassNotFoundException(name);
         } else if (newClass) {
             // it wasn't previously loaded
@@ -172,18 +163,17 @@ logger.finer("try to load: " + name);
 
         try {
 
-            logger.fine("Loading Xlet class '"+name+"'.");
+            logger.fine("Loading Xlet class '" + name + "'.");
 
             CtClass cc = this.pool.get(name);
 
             logger.fine("CHANGING BYTECODE IN " + name);
-if (!this.xletClassMap.containsKey(name)) {
-            cc.replaceClassName(this.xletClassMap);
-}
+            if (!this.xletClassMap.containsKey(name)) {
+                cc.replaceClassName(this.xletClassMap);
+            }
             // convert code
             CodeConverter conv = new XletCodeConverter();
             cc.instrument(conv);
-
 
 
             // uncomment to see what the manipulation did
@@ -217,17 +207,13 @@ if (!this.xletClassMap.containsKey(name)) {
         }
     }
 
-     /**
-     *
-     * @return
-     */
     @Override
-    public URL getResource(String resource){
+    public URL getResource(String resource) {
         URL ret = null;
-        logger.fine("Locating RESOURCE '"+resource+"'.");
+        logger.fine("Locating RESOURCE '" + resource + "'.");
         for (URL url : getURLs()) {
             Path path = Paths.get(url.getPath(), resource);
-logger.fine("path: " + path);
+            logger.fine("path: " + path);
             if (Files.exists(path)) {
                 try {
                     ret = path.toUri().toURL();
@@ -242,23 +228,21 @@ logger.fine("path: " + path);
     }
 
     /**
-     *
-     * @author intuidev
-     *
+     * This method is called by "jassist"'s LoaderClassPath; i.e. jassist as
+     * we use it calls this method.
+     * <p>
      * To change the template for this generated type comment go to
      * Window&gt;Preferences&gt;Java&gt;Code Generation&gt;Code and Comments
-     */
-
-    /* This method is called by "jassist"'s LoaderClassPath; i.e. jassist as
-     * we use it calls this method.
+     *
+     * @author intuidev
      */
     @Override
     public InputStream getResourceAsStream(String name) {
         InputStream ret = null;
-        logger.fine("Locating RESOURCE '"+name+"'.");
+        logger.fine("Locating RESOURCE '" + name + "'.");
         for (URL url : getURLs()) {
             Path path = Paths.get(url.getPath(), name);
-logger.fine("path: " + path);
+            logger.fine("path: " + path);
             if (Files.exists(path)) {
                 try {
                     ret = Files.newInputStream(path);

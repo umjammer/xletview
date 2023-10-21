@@ -21,8 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.dvb.application.AppID;
-
 import xjavax.tv.xlet.XletContext;
+
 
 /**
  * This is the bootstrap mechanism for obtaining references to remote objects
@@ -94,12 +94,12 @@ public class IxcRegistry {
     }
 
     public static void bind(xjavax.tv.xlet.XletContext xc, String name,
-            Remote obj) throws AlreadyBoundException {
+                            Remote obj) throws AlreadyBoundException {
         bind(xc, name, obj, true);
     }
 
     public static void bind(xjavax.tv.xlet.XletContext xc, String name,
-            Remote obj, boolean external) throws AlreadyBoundException {
+                            Remote obj, boolean external) throws AlreadyBoundException {
         AppID thisAppId = getAppID(xc);
         name = "/" + Integer.toHexString(thisAppId.getOID()) + "/"
                 + Integer.toHexString(thisAppId.getAID()) + "/" + name;
@@ -112,7 +112,7 @@ public class IxcRegistry {
     }
 
     public static void rebind(xjavax.tv.xlet.XletContext xc, String name,
-            Remote obj) {
+                              Remote obj) {
         rebind(xc, name, obj, true);
     }
 
@@ -128,7 +128,7 @@ public class IxcRegistry {
     }
 
     public static void rebind(xjavax.tv.xlet.XletContext xc, String name,
-            Remote obj, boolean external) {
+                              Remote obj, boolean external) {
         AppID thisAppId = getAppID(xc);
         name = "/" + Integer.toHexString(thisAppId.getOID()) + "/"
                 + Integer.toHexString(thisAppId.getAID()) + "/" + name;

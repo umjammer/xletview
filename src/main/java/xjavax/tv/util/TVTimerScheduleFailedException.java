@@ -13,9 +13,10 @@
 
 package xjavax.tv.util;
 
+
 /**
  * An exception thrown by the TVTimer.
- *
+ * <p>
  * An exception thrown by the <code>TVTimer.schedule()</code> method when a
  * timer specification cannot be met.
  * <HR>
@@ -24,11 +25,11 @@ package xjavax.tv.util;
  * @statuscode 4
  */
 public class TVTimerScheduleFailedException extends java.lang.Exception {
+
     /**
      * Constructs a TVTimerScheduleFailedException with null as its error
      * detail message.
      * </DL>
-     *
      */
     public TVTimerScheduleFailedException() {
         super();
@@ -39,11 +40,9 @@ public class TVTimerScheduleFailedException extends java.lang.Exception {
      * message. The error message string <code>s</code> can later be
      * retrieved by <code>java.lang.Throwable.getMessage()</code> method.
      *
-     * @param s -
-     *            The detail message.
+     * @param s The detail message.
      */
     public TVTimerScheduleFailedException(java.lang.String s) {
         super(s);
     }
-
 }

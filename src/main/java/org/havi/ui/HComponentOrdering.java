@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HComponentOrdering{
+public interface HComponentOrdering {
 
     java.awt.Component addBefore(java.awt.Component component, java.awt.Component behind);
 

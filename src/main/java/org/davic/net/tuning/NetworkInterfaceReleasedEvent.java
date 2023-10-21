@@ -16,9 +16,8 @@ package org.davic.net.tuning;
 
 import org.davic.resources.ResourceStatusEvent;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */

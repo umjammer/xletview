@@ -21,11 +21,10 @@ import java.util.logging.Logger;
 import org.davic.resources.ResourceStatusEvent;
 import org.davic.resources.ResourceStatusListener;
 
+
 /**
- *
- *
- * @version  7.11.03
- * @author      Bengt Skogvall
+ * @author Bengt Skogvall
+ * @version 7.11.03
  * @statuscode 4
  */
 public class RCInterfaceManager implements org.davic.resources.ResourceServer {

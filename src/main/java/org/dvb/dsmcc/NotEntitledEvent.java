@@ -15,14 +15,12 @@
 package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NotEntitledEvent extends AsynchronousLoadingEvent {
 
-    public NotEntitledEvent(DSMCCObject o){
+    public NotEntitledEvent(DSMCCObject o) {
         super(o);
     }
 
@@ -30,7 +28,6 @@ public class NotEntitledEvent extends AsynchronousLoadingEvent {
     public java.lang.Object getSource() {
         return super.getSource();
     }
-
 
 
 }

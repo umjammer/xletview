@@ -17,6 +17,7 @@ import xjavax.tv.service.SIChangeEvent;
 import xjavax.tv.service.SIChangeType;
 import xjavax.tv.service.SIElement;
 
+
 /**
  * A <code>ServiceDetailsSIChangeEvent</code> notifies an
  * <code>SIChangeListener</code> of changes to a
@@ -27,16 +28,16 @@ import xjavax.tv.service.SIElement;
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class ServiceDetailsSIChangeEvent extends SIChangeEvent{
+public abstract class ServiceDetailsSIChangeEvent extends SIChangeEvent {
 
     /**
      * Constructs a <code>ServiceDetailsSIChangeEvent</code>.
      *
-     * @param service - The ServiceDetails in which the change occurred.
-     * @param type - The type of change that occurred.
-     * @param e - The SIElement that changed.
+     * @param service The ServiceDetails in which the change occurred.
+     * @param type The type of change that occurred.
+     * @param e The SIElement that changed.
      */
-    public ServiceDetailsSIChangeEvent( ServiceDetails service, SIChangeType type, SIElement e)    {
+    public ServiceDetailsSIChangeEvent(ServiceDetails service, SIChangeType type, SIElement e) {
         super(service, type, e);
     }
 
@@ -47,7 +48,7 @@ public abstract class ServiceDetailsSIChangeEvent extends SIChangeEvent{
      *
      * @return The ServiceDetails that generated the event.
      */
-    public ServiceDetails getServiceDetails(){
+    public ServiceDetails getServiceDetails() {
         return (ServiceDetails) super.getSource();
     }
 

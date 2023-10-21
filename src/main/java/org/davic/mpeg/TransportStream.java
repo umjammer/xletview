@@ -16,18 +16,18 @@ package org.davic.mpeg;
 
 public abstract class TransportStream {
 
-    protected TransportStream(){
+    protected TransportStream() {
     }
 
-    public int getTransportStreamId(){
+    public int getTransportStreamId() {
         return 0;
     }
 
-    public Service retrieveService(int serviceId){
+    public Service retrieveService(int serviceId) {
         return null;
     }
 
-    public Service[] retrieveServices()    {
+    public Service[] retrieveServices() {
         return new Service[1];
     }
 }

@@ -18,13 +18,14 @@ import xjavax.tv.locator.Locator;
 import xjavax.tv.service.selection.InsufficientResourcesException;
 import xjavax.tv.service.selection.InvalidServiceComponentException;
 
+
 /**
  * <code>MediaSelectControl</code> allows the selection of different
  * kinds of content in a running <code>Player</code>.  It serves as
  * a high level demultiplex control, where the selection is specified
  * by locators indicating one or more service components to
  * present. <p>
- *
+ * <p>
  * If the <code>Player</code> on which a
  * <code>MediaSelectControl</code> operates is an instance of
  * <code>ServiceMediaHandler</code>, then
@@ -32,7 +33,7 @@ import xjavax.tv.service.selection.InvalidServiceComponentException;
  * service components belonging to the service with which the
  * <code>ServiceMediaHandler</code> is associated (that is, the
  * <code>ServiceContext</code>'s currently selected service).<p>
- *
+ * <p>
  * Instances of <code>MediaSelectControl</code> may be obtained from a
  * JMF <code>Player</code> via the methods
  * <code>getControl(String)</code> and <code>getControls()</code>.
@@ -44,11 +45,9 @@ import xjavax.tv.service.selection.InvalidServiceComponentException;
  * <A HREF="../../../javax/tv/service/selection/ServiceMediaHandler.html"><CODE>ServiceMediaHandler</CODE></A>,
  * <A HREF="../../../javax/tv/service/selection/ServiceContext.html"><CODE>ServiceContext</CODE></A></DL>
  * <HR>
- *
- *
  */
-public interface MediaSelectControl extends javax.media.Control
-{
+public interface MediaSelectControl extends javax.media.Control {
+
     /**
      * Selects a new service component for presentation.  If some
      * content is currently playing, it is replaced in its entirety by
@@ -59,11 +58,11 @@ public interface MediaSelectControl extends javax.media.Control
      * synchronization relationships, a <code>RestartingEvent</code>
      * will be posted by the <code>Player</code>.
      *
-     * @param component - A locator representing an individual service component to present.
-     * @throws InvalidLocatorException - If the locator does not reference a selectable service component.
+     * @param component A locator representing an individual service component to present.
+     * @throws InvalidLocatorException          - If the locator does not reference a selectable service component.
      * @throws InvalidServiceComponentException - If the specified service component is not part of the Service to which the MediaSelectControl is restricted, or if it cannot be presented alone.
-     * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
-     * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(component) permission.
+     * @throws InsufficientResourcesException   - If the operation cannot be completed due to a lack of system resources.
+     * @throws java.lang.SecurityException      - If the caller does not have MediaSelectPermission(component) permission.
      */
     void select(Locator component) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
@@ -77,11 +76,11 @@ public interface MediaSelectControl extends javax.media.Control
      * synchronization relationships, a <code>RestartingEvent</code>
      * will be posted by the <code>Player</code>.
      *
-     * @param components - An array of locators representing a set of individual service components to present together.
-     * @throws InvalidLocatorException - If a locator provided does not reference a selectable service component.
+     * @param components An array of locators representing a set of individual service components to present together.
+     * @throws InvalidLocatorException          - If a locator provided does not reference a selectable service component.
      * @throws InvalidServiceComponentException - If a specified service component is not part of the Service to which the MediaSelectControl is restricted, if a specified service component must be presented in conjunction with another service component not contained in components, if the specified set of service components cannot be presented as a coherent whole, or if the service components are not all available simultaneously.
-     * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
-     * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(components[i]) permission for any valid i.
+     * @throws InsufficientResourcesException   - If the operation cannot be completed due to a lack of system resources.
+     * @throws java.lang.SecurityException      - If the caller does not have MediaSelectPermission(components[i]) permission for any valid i.
      */
     void select(Locator[] components) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
@@ -94,11 +93,11 @@ public interface MediaSelectControl extends javax.media.Control
      * component is already part of the presentation, this method does
      * nothing.
      *
-     * @param component - The locator representing an individual service component to add to the presentation.
-     * @throws InvalidLocatorException - If the specified locator does not reference a selectable service component.
+     * @param component The locator representing an individual service component to add to the presentation.
+     * @throws InvalidLocatorException          - If the specified locator does not reference a selectable service component.
      * @throws InvalidServiceComponentException - If the addition of the service component would require resynchronization of the Player, if the service component is not part of the Service to which the MediaSelectControl is restricted, or if the service component must be presented in conjunction with another service component that is not part of the current presentation.
-     * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
-     * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(component) permission.
+     * @throws InsufficientResourcesException   - If the operation cannot be completed due to a lack of system resources.
+     * @throws java.lang.SecurityException      - If the caller does not have MediaSelectPermission(component) permission.
      */
     void add(Locator component) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
@@ -108,10 +107,10 @@ public interface MediaSelectControl extends javax.media.Control
      * <code>MediaSelectEvent</code>. Components whose removal would
      * require Player resynchronization are not permitted.
      *
-     * @param component - The locator representing an individual service component to remove from the presentation.
-     * @throws InvalidLocatorException - If the specified locator does not reference a service component in the current selection.
+     * @param component The locator representing an individual service component to remove from the presentation.
+     * @throws InvalidLocatorException          - If the specified locator does not reference a service component in the current selection.
      * @throws InvalidServiceComponentException - If removal of the specified service component would require resynchronization of the Player, or if another service component in the current presentation must be presented in conjunction with component.
-     * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(component) permission.
+     * @throws java.lang.SecurityException      - If the caller does not have MediaSelectPermission(component) permission.
      */
     void remove(Locator component) throws InvalidLocatorException, InvalidServiceComponentException, java.lang.SecurityException;
 
@@ -121,12 +120,12 @@ public interface MediaSelectControl extends javax.media.Control
      * <code>MediaSelectEvent</code>. Components whose replacement
      * would require Player resynchronization are not permitted.
      *
-     * @param fromComponent - The locator that represents the service component to remove from the presentation.
-     * @param toComponent - The locator that represents the service component to add to the presentation.
-     * @throws InvalidLocatorException - If fromComponent does not reference a service component in the current selection, or if toComponent does not reference a selectable service component.
+     * @param fromComponent The locator that represents the service component to remove from the presentation.
+     * @param toComponent The locator that represents the service component to add to the presentation.
+     * @throws InvalidLocatorException          - If fromComponent does not reference a service component in the current selection, or if toComponent does not reference a selectable service component.
      * @throws InvalidServiceComponentException - If toComponent references a service component that is not part of the Service to which the MediaSelectControl is restricted, if fromComponent or toComponent reference service components for which this operation would require resynchronization of the Player, if another service component in the current presentation must be presented in conjunction with fromComponent, or if toComponent must be presented in conjunction with a service component not in the resulting presentation.
-     * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
-     * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(fromComponent) and MediaSelectPermission(toComponent) permission.
+     * @throws InsufficientResourcesException   - If the operation cannot be completed due to a lack of system resources.
+     * @throws java.lang.SecurityException      - If the caller does not have MediaSelectPermission(fromComponent) and MediaSelectPermission(toComponent) permission.
      */
     void replace(Locator fromComponent, Locator toComponent) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
@@ -134,7 +133,7 @@ public interface MediaSelectControl extends javax.media.Control
      * Subscribes the specified <code>MediaSelectListener</code> to
      * receive events related to media selection on this Player.
      *
-     * @param listener - The MediaSelectListener to which to send events.
+     * @param listener The MediaSelectListener to which to send events.
      */
     void addMediaSelectListener(MediaSelectListener listener);
 
@@ -142,7 +141,7 @@ public interface MediaSelectControl extends javax.media.Control
      * Unsubscribes the specified <code>MediaSelectListener</code> from
      * receiving events related to media selection on this Player.
      *
-     * @param listener - The MediaSelectListener to unsubscribe.
+     * @param listener The MediaSelectListener to unsubscribe.
      */
     void removeMediaSelectListener(MediaSelectListener listener);
 

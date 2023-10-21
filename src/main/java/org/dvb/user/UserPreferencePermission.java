@@ -15,19 +15,17 @@
 package org.dvb.user;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class UserPreferencePermission extends java.security.BasicPermission{
+public class UserPreferencePermission extends java.security.BasicPermission {
 
-    public UserPreferencePermission(String name){
+    public UserPreferencePermission(String name) {
         super(name);
     }
 
-    public UserPreferencePermission(String name, String actions){
-        super(name,actions);
+    public UserPreferencePermission(String name, String actions) {
+        super(name, actions);
     }
 
 }

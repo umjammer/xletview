@@ -18,54 +18,45 @@ package xjavax.tv.service.navigation;
  * stream types (e.g., "video", "audio", "subtitles", "data",
  * "sections", etc.).
  * <HR>
- *
- *
  */
 public class StreamType {
+
     /**
      * Video component.</DL>
-     *
      */
     public static final StreamType VIDEO = null;
 
     /**
      * Audio component.</DL>
-     *
      */
     public static final StreamType AUDIO = null;
 
     /**
      * Subtitles component.</DL>
-     *
      */
     public static final StreamType SUBTITLES = null;
 
     /**
      * Data component.</DL>
-     *
      */
     public static final StreamType DATA = null;
 
     /**
      * MPEG sections component.</DL>
-     *
      */
     public static final StreamType SECTIONS = null;
 
     /**
      * Unknown component.</DL>
-     *
-     *
      */
     public static final StreamType UNKNOWN = null;
 
     /**
      * Creates a stream type object.
      *
-     * @param name - The string name of this type (e.g., "VIDEO").
+     * @param name The string name of this type (e.g., "VIDEO").
      */
-    protected StreamType(java.lang.String name)
-    {
+    protected StreamType(java.lang.String name) {
         //TODO implement StreamType
     }
 
@@ -77,8 +68,7 @@ public class StreamType {
      * @return The string name of the type.
      * @see #toString in class java.lang.Object
      */
-    public java.lang.String toString()
-    {
+    public java.lang.String toString() {
         return null;
         //TODO implement toString
     }

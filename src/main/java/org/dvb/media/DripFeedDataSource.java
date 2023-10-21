@@ -15,38 +15,52 @@
 package org.dvb.media;
 
 import java.io.IOException;
-
 import javax.media.Time;
 
-public class DripFeedDataSource extends javax.media.protocol.DataSource{
 
-    public DripFeedDataSource() {}
+public class DripFeedDataSource extends javax.media.protocol.DataSource {
 
-    public void feed(byte[] clip_part) {}
+    public DripFeedDataSource() {
+    }
 
-    @Override
-    public java.lang.String getContentType() {return null;}
-
-    @Override
-    public void connect() throws IOException {}
+    public void feed(byte[] clip_part) {
+    }
 
     @Override
-    public void disconnect() {}
+    public java.lang.String getContentType() {
+        return null;
+    }
 
     @Override
-    public void start() throws IOException {}
+    public void connect() throws IOException {
+    }
 
     @Override
-    public void stop() throws IOException {}
+    public void disconnect() {
+    }
 
     @Override
-    public  Time getDuration() {return DURATION_UNKNOWN;}
+    public void start() throws IOException {
+    }
 
     @Override
-    public Object[] getControls() {return null;}
+    public void stop() throws IOException {
+    }
 
     @Override
-    public Object getControl(String controlType) { return null;}
+    public Time getDuration() {
+        return DURATION_UNKNOWN;
+    }
+
+    @Override
+    public Object[] getControls() {
+        return null;
+    }
+
+    @Override
+    public Object getControl(String controlType) {
+        return null;
+    }
 
 }
 

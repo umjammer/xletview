@@ -15,123 +15,123 @@
 package org.havi.ui;
 
 
-public class HRangeValue extends HRange implements HAdjustmentValue{
+public class HRangeValue extends HRange implements HAdjustmentValue {
 
-    public HRangeValue(){
+    public HRangeValue() {
     }
 
-    public HRangeValue(int orientation, int minimum, int maximum, int value,int x, int y, int width, int height){
+    public HRangeValue(int orientation, int minimum, int maximum, int value, int x, int y, int width, int height) {
     }
 
-    public HRangeValue(int orientation, int minimum, int maximum, int value){
+    public HRangeValue(int orientation, int minimum, int maximum, int value) {
     }
 
-    public static void setDefaultLook(HRangeLook look){
+    public static void setDefaultLook(HRangeLook look) {
     }
 
-    public static HRangeLook getDefaultLook(){
+    public static HRangeLook getDefaultLook() {
         return (null);
     }
 
     @Override
-    public void setMove(int keyCode, HNavigable target){
+    public void setMove(int keyCode, HNavigable target) {
     }
 
     @Override
-    public HNavigable getMove(int keyCode){
-        return(null);
+    public HNavigable getMove(int keyCode) {
+        return (null);
     }
 
     @Override
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
     }
 
     @Override
-    public boolean isSelected(){
-        return(false);
+    public boolean isSelected() {
+        return (false);
     }
 
     @Override
-    public void setGainFocusSound(HSound sound){
+    public void setGainFocusSound(HSound sound) {
     }
 
     @Override
-    public void setLoseFocusSound(HSound sound){
+    public void setLoseFocusSound(HSound sound) {
     }
 
     @Override
-    public HSound getGainFocusSound(){
-        return(null);
+    public HSound getGainFocusSound() {
+        return (null);
     }
 
     @Override
-    public HSound getLoseFocusSound(){
-        return(null);
+    public HSound getLoseFocusSound() {
+        return (null);
     }
 
     @Override
-    public void addHFocusListener(org.havi.ui.event.HFocusListener l){
+    public void addHFocusListener(org.havi.ui.event.HFocusListener l) {
     }
 
 
     @Override
-    public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
+    public void removeHFocusListener(org.havi.ui.event.HFocusListener l) {
     }
 
     @Override
-    public int[] getNavigationKeys(){
-        return(null);
+    public int[] getNavigationKeys() {
+        return (null);
     }
 
     @Override
-    public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt){
+    public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt) {
     }
 
     @Override
-    public void setUnitIncrement(int increment){
+    public void setUnitIncrement(int increment) {
     }
 
     @Override
-    public int getUnitIncrement(){
-        return(1);
+    public int getUnitIncrement() {
+        return (1);
     }
 
     @Override
-    public void setBlockIncrement(int increment){
+    public void setBlockIncrement(int increment) {
     }
 
     @Override
-    public int getBlockIncrement(){
-        return(1);
+    public int getBlockIncrement() {
+        return (1);
     }
 
     @Override
-    public void addAdjustmentListener(org.havi.ui.event.HAdjustmentListener l){
+    public void addAdjustmentListener(org.havi.ui.event.HAdjustmentListener l) {
     }
 
     @Override
-    public void removeAdjustmentListener(org.havi.ui.event.HAdjustmentListener l){
+    public void removeAdjustmentListener(org.havi.ui.event.HAdjustmentListener l) {
     }
 
     @Override
-    public void setAdjustmentSound(HSound sound){
+    public void setAdjustmentSound(HSound sound) {
     }
 
     @Override
-    public HSound getAdjustmentSound(){
-        return(null);
+    public HSound getAdjustmentSound() {
+        return (null);
     }
 
     @Override
-    public boolean getAdjustMode(){
-        return(true);
+    public boolean getAdjustMode() {
+        return (true);
     }
 
     @Override
-    public void setAdjustMode(boolean adjust){
+    public void setAdjustMode(boolean adjust) {
     }
 
     @Override
-    public void processHAdjustmentEvent(org.havi.ui.event.HAdjustmentEvent evt){
+    public void processHAdjustmentEvent(org.havi.ui.event.HAdjustmentEvent evt) {
     }
 }

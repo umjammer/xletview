@@ -14,12 +14,12 @@
 
 package org.davic.mpeg.sections;
 
-public class RingSectionFilter extends org.davic.mpeg.sections.SectionFilter{
+public class RingSectionFilter extends org.davic.mpeg.sections.SectionFilter {
 
-    RingSectionFilter()    {
+    RingSectionFilter() {
     }
 
-    public Section[] getSections(){
+    public Section[] getSections() {
         return null;
     }
 

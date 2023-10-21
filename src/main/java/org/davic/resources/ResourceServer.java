@@ -14,7 +14,7 @@
 
 package org.davic.resources;
 
-public interface ResourceServer{
+public interface ResourceServer {
 
     void addResourceStatusEventListener(ResourceStatusListener listener);
 

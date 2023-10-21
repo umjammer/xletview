@@ -15,18 +15,16 @@
 package org.davic.media;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class NotAuthorizedException extends java.io.IOException {
 
-    public NotAuthorizedException()    {
+    public NotAuthorizedException() {
         super();
     }
 
-    public NotAuthorizedException(String reason){
+    public NotAuthorizedException(String reason) {
         super(reason);
     }
 }

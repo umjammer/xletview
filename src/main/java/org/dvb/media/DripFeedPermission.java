@@ -14,16 +14,20 @@
 
 package org.dvb.media;
 
-public class DripFeedPermission extends java.security.BasicPermission{
+public class DripFeedPermission extends java.security.BasicPermission {
 
-  public DripFeedPermission(String name) {super(name);}
+    public DripFeedPermission(String name) {
+        super(name);
+    }
 
-  public DripFeedPermission(String name, String actions) {super(name,actions);}
+    public DripFeedPermission(String name, String actions) {
+        super(name, actions);
+    }
 
-  @Override
-  public boolean implies (java.security.Permission p) {
-     return false;
-  }
+    @Override
+    public boolean implies(java.security.Permission p) {
+        return false;
+    }
 
 }
 

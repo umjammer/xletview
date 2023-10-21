@@ -15,20 +15,19 @@ package xjavax.tv.service.transport;
 
 import xjavax.tv.service.SIChangeListener;
 
+
 /**
  * This interface is implemented by applications wishing to receive
  * notification of changes to <code>TransportStream</code> data.
  * <HR>
- *
- *
  */
-public interface TransportStreamChangeListener extends SIChangeListener
-{
+public interface TransportStreamChangeListener extends SIChangeListener {
+
     /**
      * Notifies the <code>TransportStreamChangeListener</code> of a
      * change to a <code>TransportStream</code>.
      *
-     * @param event - A TransportStreamChangeEvent describing what changed and how.
+     * @param event A TransportStreamChangeEvent describing what changed and how.
      */
     void notifyChange(TransportStreamChangeEvent event);
 

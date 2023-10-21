@@ -18,6 +18,7 @@ import javax.media.Control;
 
 import org.havi.ui.HScreenRectangle;
 
+
 public interface VideoPresentationControl extends Control {
 
     java.awt.Dimension getInputVideoSize();

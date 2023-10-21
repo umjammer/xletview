@@ -14,7 +14,7 @@
 
 package org.havi.ui;
 
-public interface HAdjustmentInputPreferred extends HOrientable{
+public interface HAdjustmentInputPreferred extends HOrientable {
 
     boolean getAdjustMode();
 

@@ -1,18 +1,16 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 
-package org.dvb.event ;
+package org.dvb.event;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -20,9 +18,8 @@ import java.util.List;
 
 import org.havi.ui.event.HRcEvent;
 
+
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
@@ -31,7 +28,7 @@ public class UserEventRepository extends RepositoryDescriptor {
 
     private List<UserEvent> userEvents;
 
-    public UserEventRepository (String name) {
+    public UserEventRepository(String name) {
         super(name, null);
         userEvents = new ArrayList<>();
     }
@@ -58,25 +55,25 @@ public class UserEventRepository extends RepositoryDescriptor {
     public UserEvent[] getUserEvent() {
 
         UserEvent[] events = new UserEvent[userEvents.size()];
-        for(int i = 0; i < userEvents.size(); i++){
+        for (int i = 0; i < userEvents.size(); i++) {
             UserEvent o = userEvents.get(i);
             events[i] = o;
         }
         return events;
     }
 
-    public void removeUserEvent (UserEvent event) {
+    public void removeUserEvent(UserEvent event) {
         userEvents.remove(event);
     }
 
-    public void addKey (int keyCode){
+    public void addKey(int keyCode) {
         addKeyCode(keyCode);
     }
 
-    public void removeKey (int keyCode) {
-        for(int i = 0; i < userEvents.size(); i++){
+    public void removeKey(int keyCode) {
+        for (int i = 0; i < userEvents.size(); i++) {
             UserEvent ue = userEvents.get(i);
-            if(ue.getCode() == keyCode){
+            if (ue.getCode() == keyCode) {
                 // it already exists so we remove it
                 userEvents.remove(ue);
             }
@@ -96,21 +93,21 @@ public class UserEventRepository extends RepositoryDescriptor {
         addKeyCode(KeyEvent.VK_9);
     }
 
-    public void addAllColourKeys(){
+    public void addAllColourKeys() {
         addKeyCode(HRcEvent.VK_COLORED_KEY_0);
         addKeyCode(HRcEvent.VK_COLORED_KEY_1);
         addKeyCode(HRcEvent.VK_COLORED_KEY_2);
         addKeyCode(HRcEvent.VK_COLORED_KEY_3);
     }
 
-    public void addAllArrowKeys(){
+    public void addAllArrowKeys() {
         addKeyCode(KeyEvent.VK_UP);
         addKeyCode(KeyEvent.VK_DOWN);
         addKeyCode(KeyEvent.VK_LEFT);
         addKeyCode(KeyEvent.VK_RIGHT);
     }
 
-    public void removeAllNumericKeys(){
+    public void removeAllNumericKeys() {
         removeKey(KeyEvent.VK_0);
         removeKey(KeyEvent.VK_1);
         removeKey(KeyEvent.VK_2);
@@ -123,14 +120,14 @@ public class UserEventRepository extends RepositoryDescriptor {
         removeKey(KeyEvent.VK_9);
     }
 
-    public void removeAllColourKeys(){
+    public void removeAllColourKeys() {
         removeKey(HRcEvent.VK_COLORED_KEY_0);
         removeKey(HRcEvent.VK_COLORED_KEY_1);
         removeKey(HRcEvent.VK_COLORED_KEY_2);
         removeKey(HRcEvent.VK_COLORED_KEY_3);
     }
 
-    public void removeAllArrowKeys(){
+    public void removeAllArrowKeys() {
         removeKey(KeyEvent.VK_UP);
         removeKey(KeyEvent.VK_DOWN);
         removeKey(KeyEvent.VK_LEFT);
@@ -138,7 +135,7 @@ public class UserEventRepository extends RepositoryDescriptor {
     }
 
     /* for making it simpler*/
-    private void addKeyCode(int keyCode){
+    private void addKeyCode(int keyCode) {
         //Debug.write(this, "addKeyCode = " + keyCode);
         UserEvent ue = new UserEvent(this, UserEvent.UEF_KEY_EVENT, KeyEvent.KEY_PRESSED, keyCode, KeyEvent.CHAR_UNDEFINED, -1);
         userEvents.add(ue);

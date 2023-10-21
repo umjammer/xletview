@@ -18,609 +18,604 @@ import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HItemEvent;
 import org.havi.ui.event.HItemListener;
 
-import net.beiker.xletview.helper.HNavigableHelper;
 
 /**
-*
-* @author Cristian Suazo, Martin Sveden
-* @statuscode 1
-*
-*/
-public class HListGroup extends HVisible implements HItemValue{
+ * @author Cristian Suazo, Martin Sveden
+ * @statuscode 1
+ */
+public class HListGroup extends HVisible implements HItemValue {
 
-   public static final int ITEM_NOT_FOUND       = -1;
-   public static final int ADD_INDEX_END        = -1;
-   public static final int DEFAULT_LABEL_WIDTH  = -1;
-   public static final int DEFAULT_LABEL_HEIGHT = -2;
-   public static final int DEFAULT_ICON_WIDTH   = -3;
-   public static final int DEFAULT_ICON_HEIGHT  = -4;
+    public static final int ITEM_NOT_FOUND = -1;
+    public static final int ADD_INDEX_END = -1;
+    public static final int DEFAULT_LABEL_WIDTH = -1;
+    public static final int DEFAULT_LABEL_HEIGHT = -2;
+    public static final int DEFAULT_ICON_WIDTH = -3;
+    public static final int DEFAULT_ICON_HEIGHT = -4;
 
-   private HNavigableHelper helper;
-   private HSound sound;
-   private static HListGroupLook defaultLook = new HListGroupLook();
-   private boolean multiSelection;
-   private boolean selectionMode;
+    private HNavigableHelper helper;
+    private HSound sound;
+    private static HListGroupLook defaultLook = new HListGroupLook();
+    private boolean multiSelection;
+    private boolean selectionMode;
 
-   // holds all HListElements
-   private List<HListElement> items;
+    // holds all HListElements
+    private List<HListElement> items;
 
-   private Dimension iconSize;
-   private Dimension labelSize;
-   private int orientation;
+    private Dimension iconSize;
+    private Dimension labelSize;
+    private int orientation;
 
-   // holds the HListElements that are selected
-   private List<HListElement> selectedIndexes;
+    // holds the HListElements that are selected
+    private List<HListElement> selectedIndexes;
 
-   // holds the index of the current item
-   private int currentItemIndex;
+    // holds the index of the current item
+    private int currentItemIndex;
 
-   private List<HItemListener> itemListeners;
+    private List<HItemListener> itemListeners;
 
-   /**
-    * The scroll position determines the first HListElement to be drawn when the HListGroupLook lays out the list.
-    */
-   private int scrollPosition;
+    /**
+     * The scroll position determines the first HListElement to be drawn when the HListGroupLook lays out the list.
+     */
+    private int scrollPosition;
 
-   public HListGroup(){
-       this(null);
-   }
+    public HListGroup() {
+        this(null);
+    }
 
-   public HListGroup(HListElement[] items){
-       this(items,0,0,0,0);
-   }
+    public HListGroup(HListElement[] items) {
+        this(items, 0, 0, 0, 0);
+    }
 
-   public HListGroup(HListElement[] items, int x, int y, int width, int height){
-       super(new  HListGroupLook(),x,y,width,height);
+    public HListGroup(HListElement[] items, int x, int y, int width, int height) {
+        super(new HListGroupLook(), x, y, width, height);
 
-       this.items = new ArrayList<>();
+        this.items = new ArrayList<>();
 
-       this.selectedIndexes = new ArrayList<>();
+        this.selectedIndexes = new ArrayList<>();
 
-       this.setListContent(items);
-       if (items != null){
-           currentItemIndex = 0;
-       }
-       else{
-           currentItemIndex = HListGroup.ITEM_NOT_FOUND;
-       }
-       multiSelection = false;
-       selectionMode = false;
+        this.setListContent(items);
+        if (items != null) {
+            currentItemIndex = 0;
+        } else {
+            currentItemIndex = HListGroup.ITEM_NOT_FOUND;
+        }
+        multiSelection = false;
+        selectionMode = false;
 
-       itemListeners = new ArrayList<>();
+        itemListeners = new ArrayList<>();
 
-       helper = new HNavigableHelper(this);
-       helper.setGainFocusSound(null);
-       helper.setLoseFocusSound(null);
+        helper = new HNavigableHelper(this);
+        helper.setGainFocusSound(null);
+        helper.setLoseFocusSound(null);
 
-       iconSize = new Dimension(DEFAULT_ICON_WIDTH, DEFAULT_ICON_HEIGHT);
-       labelSize = new Dimension(DEFAULT_LABEL_WIDTH, DEFAULT_LABEL_HEIGHT);
+        iconSize = new Dimension(DEFAULT_ICON_WIDTH, DEFAULT_ICON_HEIGHT);
+        labelSize = new Dimension(DEFAULT_LABEL_WIDTH, DEFAULT_LABEL_HEIGHT);
 
-       orientation = ORIENT_TOP_TO_BOTTOM;
+        orientation = ORIENT_TOP_TO_BOTTOM;
 
-       // selectionSound = null
-   }
+        // selectionSound = null
+    }
 
-   @Override
-   public void setLook(HLook hlook) throws HInvalidLookException{
-       if(hlook instanceof HListGroupLook){
-           super.setLook(hlook);
-       }
-       else{
-           throw new HInvalidLookException("HLook was not a org.havi.ui.HListGroupLook");
-       }
-   }
+    @Override
+    public void setLook(HLook hlook) throws HInvalidLookException {
+        if (hlook instanceof HListGroupLook) {
+            super.setLook(hlook);
+        } else {
+            throw new HInvalidLookException("HLook was not a org.havi.ui.HListGroupLook");
+        }
+    }
 
-   public static void setDefaultLook(HListGroupLook look){
-       HListGroup.defaultLook = look;
-   }
+    public static void setDefaultLook(HListGroupLook look) {
+        HListGroup.defaultLook = look;
+    }
 
-   public static HListGroupLook getDefaultLook(){
-       return HListGroup.defaultLook;
-   }
+    public static HListGroupLook getDefaultLook() {
+        return HListGroup.defaultLook;
+    }
 
-   public HListElement[] getListContent(){
-       return (HListElement[]) this.items.toArray();
-   }
+    public HListElement[] getListContent() {
+        return (HListElement[]) this.items.toArray();
+    }
 
-   public void setListContent(HListElement[] elements){
+    public void setListContent(HListElement[] elements) {
 
-       // check if any elements are selected
-       HListElement[] elms = getListContent();
-       for (HListElement elm : elms) {
+        // check if any elements are selected
+        HListElement[] elms = getListContent();
+        for (HListElement elm : elms) {
 
-           // check if item is selected
-           if (selectedIndexes.contains(elm)) {
+            // check if item is selected
+            if (selectedIndexes.contains(elm)) {
 
-               // create event
-               HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SELECTION_CLEARED, null);
+                // create event
+                HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SELECTION_CLEARED, null);
 
-               // notify listeners
-               notifySelectionChanged(evt);
+                // notify listeners
+                notifySelectionChanged(evt);
 
-               break;
-           }
-       }
-
-       // remove previous
-       this.items.clear();
-
-       // set the new elements
-       if(elements != null){
-           for (HListElement element : elements) {
-
-               // make sure it's previously not selected
-               selectedIndexes.remove(element);
-
-               // add it
-               items.add(element);
-
-           }
-       }
-   }
-
-   public void addItem(HListElement item, int index){
-       HListElement[] arr = {item};
-       addItems(arr, index);
-   }
-
-   public void addItems(HListElement[] elements, int index){
-
-       // check if the given index is within the bounds
-       if(index < 0 || index >= items.size()){
-           throw new IndexOutOfBoundsException();
-       }
-
-       for (int i = elements.length - 1; i >= 0  ; i--) {
-           items.add(index, elements[i]);
+                break;
+            }
         }
 
-       // check if current item has changed position.
-       if(currentItemIndex >= index){
-           currentItemIndex++;
+        // remove previous
+        this.items.clear();
 
-           // create event and notify listeners about the change of current item.
-           HItemEvent evt = new HItemEvent(this,HItemEvent.ITEM_SET_CURRENT, items.get(currentItemIndex));
-           notifyItemChangedEvent(evt);
-       }
+        // set the new elements
+        if (elements != null) {
+            for (HListElement element : elements) {
 
-   }
+                // make sure it's previously not selected
+                selectedIndexes.remove(element);
 
+                // add it
+                items.add(element);
 
-   public HListElement getItem(int index){
+            }
+        }
+    }
 
-       if(index < 0){
-           throw new IllegalArgumentException("index less than zero");
-       }
+    public void addItem(HListElement item, int index) {
+        HListElement[] arr = {item};
+        addItems(arr, index);
+    }
 
-       return this.items.get(index);
-   }
+    public void addItems(HListElement[] elements, int index) {
 
-   public int getIndex (HListElement item){
-       int index;
-       index = this.items.indexOf(item);
-       if (index < 0){
-           return HListGroup.ITEM_NOT_FOUND;
-       }
-       return index;
-   }
+        // check if the given index is within the bounds
+        if (index < 0 || index >= items.size()) {
+            throw new IndexOutOfBoundsException();
+        }
 
-   public int getNumItems(){
-       return this.items.size();
-   }
+        for (int i = elements.length - 1; i >= 0; i--) {
+            items.add(index, elements[i]);
+        }
 
-   public HListElement removeItem(int index){
-       HListElement element = this.items.get(index);
+        // check if current item has changed position.
+        if (currentItemIndex >= index) {
+            currentItemIndex++;
 
-       // check if element was in the list
-       if(element != null){
+            // create event and notify listeners about the change of current item.
+            HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, items.get(currentItemIndex));
+            notifyItemChangedEvent(evt);
+        }
 
-           // remove the element
-           boolean selectionChanged = selectedIndexes.remove(element);
-
-           // notify if selection changed
-           if(selectionChanged){
-               HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_CLEARED, element);
-               notifySelectionChanged(evt);
-           }
-
-           items.remove(index);
+    }
 
 
-           // check if current index changed
-           if(index <= currentItemIndex){
+    public HListElement getItem(int index) {
 
-               // check if the item removed was the
-               // current item
-               if(index == currentItemIndex){
-                   currentItemIndex = -1;
-               }
-               // the current index decrease
-               else{
-                   currentItemIndex--;
-               }
+        if (index < 0) {
+            throw new IllegalArgumentException("index less than zero");
+        }
 
-               // tell the listeners that the current item is reset
-               HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, getCurrentItem());
-               notifyItemChangedEvent(evt);
-           }
+        return this.items.get(index);
+    }
 
-       }
+    public int getIndex(HListElement item) {
+        int index;
+        index = this.items.indexOf(item);
+        if (index < 0) {
+            return HListGroup.ITEM_NOT_FOUND;
+        }
+        return index;
+    }
 
-       return element;
-   }
+    public int getNumItems() {
+        return this.items.size();
+    }
 
-   public void removeAllItems(){
-       this.items.clear();
-       this.selectedIndexes.clear();
-       currentItemIndex = -1;
-   }
+    public HListElement removeItem(int index) {
+        HListElement element = this.items.get(index);
 
-   public int getCurrentIndex(){
-       if(currentItemIndex > -1){
-           return currentItemIndex;
-       }
-       else{
-           return ITEM_NOT_FOUND;
-       }
-   }
+        // check if element was in the list
+        if (element != null) {
 
+            // remove the element
+            boolean selectionChanged = selectedIndexes.remove(element);
 
-   public HListElement getCurrentItem(){
+            // notify if selection changed
+            if (selectionChanged) {
+                HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_CLEARED, element);
+                notifySelectionChanged(evt);
+            }
 
-       return items.get(currentItemIndex);
-
-   }
-
-   public boolean setCurrentItem(int index){
-
-       boolean result = true;
-
-       if(index == currentItemIndex || (index < 0 || index >= items.size()  )  ){
-           result = false;
-       }
-       else{
-           currentItemIndex = index;
-       }
-
-       return result;
-   }
-
-   public int[] getSelectionIndices(){
-
-       // TODO: fix sorting
-
-       int[] result = new int[0];
-       for (HListElement selectedIndex : selectedIndexes) {
-
-           int index = items.indexOf(selectedIndex);
-
-           if (index > -1) {
-               int[] tmp = new int[result.length + 1];
-               System.arraycopy(result, 0, tmp, 0, result.length);
-               tmp[result.length] = index;
-               result = tmp;
-           }
-
-       }
+            items.remove(index);
 
 
-       return result;
-   }
+            // check if current index changed
+            if (index <= currentItemIndex) {
 
-   public HListElement[] getSelection(){
-       return (HListElement[]) selectedIndexes.toArray() ;
-   }
+                // check if the item removed was the
+                // current item
+                if (index == currentItemIndex) {
+                    currentItemIndex = -1;
+                }
+                // the current index decrease
+                else {
+                    currentItemIndex--;
+                }
 
-   public void clearSelection(){
-       selectedIndexes.clear();
-   }
+                // tell the listeners that the current item is reset
+                HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, getCurrentItem());
+                notifyItemChangedEvent(evt);
+            }
 
-   public int getNumSelected(){
-       return selectedIndexes.size();
-   }
+        }
 
-   public boolean getMultiSelection(){
-       return multiSelection;
-   }
+        return element;
+    }
 
-   public void setMultiSelection(boolean multi){
-       multiSelection = multi;
-   }
+    public void removeAllItems() {
+        this.items.clear();
+        this.selectedIndexes.clear();
+        currentItemIndex = -1;
+    }
 
-   public void setItemSelected(int index, boolean sel){
+    public int getCurrentIndex() {
+        if (currentItemIndex > -1) {
+            return currentItemIndex;
+        } else {
+            return ITEM_NOT_FOUND;
+        }
+    }
 
-       if(index < 0 || index >= items.size()){
-           throw new IllegalArgumentException("index " + index + " not valid");
-       }
 
-        if (selectionMode){
+    public HListElement getCurrentItem() {
+
+        return items.get(currentItemIndex);
+
+    }
+
+    public boolean setCurrentItem(int index) {
+
+        boolean result = true;
+
+        if (index == currentItemIndex || (index < 0 || index >= items.size())) {
+            result = false;
+        } else {
+            currentItemIndex = index;
+        }
+
+        return result;
+    }
+
+    public int[] getSelectionIndices() {
+
+        // TODO: fix sorting
+
+        int[] result = new int[0];
+        for (HListElement selectedIndex : selectedIndexes) {
+
+            int index = items.indexOf(selectedIndex);
+
+            if (index > -1) {
+                int[] tmp = new int[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0, result.length);
+                tmp[result.length] = index;
+                result = tmp;
+            }
+
+        }
+
+
+        return result;
+    }
+
+    public HListElement[] getSelection() {
+        return (HListElement[]) selectedIndexes.toArray();
+    }
+
+    public void clearSelection() {
+        selectedIndexes.clear();
+    }
+
+    public int getNumSelected() {
+        return selectedIndexes.size();
+    }
+
+    public boolean getMultiSelection() {
+        return multiSelection;
+    }
+
+    public void setMultiSelection(boolean multi) {
+        multiSelection = multi;
+    }
+
+    public void setItemSelected(int index, boolean sel) {
+
+        if (index < 0 || index >= items.size()) {
+            throw new IllegalArgumentException("index " + index + " not valid");
+        }
+
+        if (selectionMode) {
 
             HListElement element = items.get(index);
 
             boolean alreadySelected = selectedIndexes.contains(element);
 
-            if(sel && !alreadySelected){
+            if (sel && !alreadySelected) {
                 // only 1 element can be selected multiselection is false.
-                if(!multiSelection){
+                if (!multiSelection) {
                     selectedIndexes.clear();
                 }
                 selectedIndexes.add(element);
                 notifySelectionChanged(new HItemEvent(this, HItemEvent.ITEM_SELECTED, element));
 
-            }
-            else if(!sel && alreadySelected){
+            } else if (!sel && alreadySelected) {
 
                 selectedIndexes.remove(element);
                 notifySelectionChanged(new HItemEvent(this, HItemEvent.ITEM_CLEARED, element));
 
             }
-       }
+        }
 
-   }
+    }
 
-   public boolean isItemSelected(int index){
+    public boolean isItemSelected(int index) {
 
-       HListElement element = items.get(index);
+        HListElement element = items.get(index);
 
-       return selectedIndexes.contains(element);
-   }
+        return selectedIndexes.contains(element);
+    }
 
-   public int getScrollPosition(){
+    public int getScrollPosition() {
 
-       if(items.size() <= 0 || scrollPosition >= items.size()){
-           return ITEM_NOT_FOUND;
-       }
-       else{
-           return scrollPosition;
-       }
+        if (items.size() <= 0 || scrollPosition >= items.size()) {
+            return ITEM_NOT_FOUND;
+        } else {
+            return scrollPosition;
+        }
 
-   }
+    }
 
-   public void setScrollPosition(int index){
+    public void setScrollPosition(int index) {
 
-       if(index < 0 || index >= items.size()){
-           throw new IllegalArgumentException("index " + index + " not valid");
-       }
+        if (index < 0 || index >= items.size()) {
+            throw new IllegalArgumentException("index " + index + " not valid");
+        }
 
-       scrollPosition = index;
+        scrollPosition = index;
 
-   }
-   public Dimension getIconSize(){
-       return iconSize;
-   }
+    }
 
-   public void setIconSize(Dimension size){
-       iconSize = size;
-   }
+    public Dimension getIconSize() {
+        return iconSize;
+    }
 
-   public Dimension getLabelSize(){
-       return labelSize;
-   }
+    public void setIconSize(Dimension size) {
+        iconSize = size;
+    }
 
-   public void setLabelSize(Dimension size){
-       labelSize = size;
-   }
+    public Dimension getLabelSize() {
+        return labelSize;
+    }
 
-   @Override
-   public void setMove(int keyCode, HNavigable target){
-       helper.setMove(keyCode, target);
-   }
+    public void setLabelSize(Dimension size) {
+        labelSize = size;
+    }
 
-   @Override
-   public HNavigable getMove(int keyCode){
-       return helper.getMove(keyCode);
-   }
+    @Override
+    public void setMove(int keyCode, HNavigable target) {
+        helper.setMove(keyCode, target);
+    }
 
-   @Override
-   public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
-       helper.setFocusTraversal(up, down, left, right);
-   }
+    @Override
+    public HNavigable getMove(int keyCode) {
+        return helper.getMove(keyCode);
+    }
 
-   @Override
-   public boolean isSelected(){
-       return helper.isSelected();
-   }
+    @Override
+    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right) {
+        helper.setFocusTraversal(up, down, left, right);
+    }
 
-   @Override
-   public void setGainFocusSound(HSound sound){
-       helper.setGainFocusSound(sound);
-   }
+    @Override
+    public boolean isSelected() {
+        return helper.isSelected();
+    }
 
-   @Override
-   public void setLoseFocusSound(HSound sound){
-       helper.setLoseFocusSound(sound);
-   }
+    @Override
+    public void setGainFocusSound(HSound sound) {
+        helper.setGainFocusSound(sound);
+    }
 
-   @Override
-   public HSound getGainFocusSound(){
-       return helper.getGainFocusSound();
-   }
+    @Override
+    public void setLoseFocusSound(HSound sound) {
+        helper.setLoseFocusSound(sound);
+    }
 
-   @Override
-   public HSound getLoseFocusSound(){
-       return helper.getLoseFocusSound();
-   }
+    @Override
+    public HSound getGainFocusSound() {
+        return helper.getGainFocusSound();
+    }
 
-   @Override
-   public void addHFocusListener(org.havi.ui.event.HFocusListener l){
-       helper.addHFocusListener(l);
-   }
+    @Override
+    public HSound getLoseFocusSound() {
+        return helper.getLoseFocusSound();
+    }
 
-   @Override
-   public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
-       helper.removeHFocusListener(l);
-   }
+    @Override
+    public void addHFocusListener(org.havi.ui.event.HFocusListener l) {
+        helper.addHFocusListener(l);
+    }
 
-   @Override
-   public int[] getNavigationKeys(){
-       return helper.getNavigationKeys();
-   }
+    @Override
+    public void removeHFocusListener(org.havi.ui.event.HFocusListener l) {
+        helper.removeHFocusListener(l);
+    }
 
-   @Override
-   public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt){
-       int state = getInteractionState();
-       int newState = helper.getHFocusEventResult(evt);
+    @Override
+    public int[] getNavigationKeys() {
+        return helper.getNavigationKeys();
+    }
 
-       if(state != newState){
-           setInteractionState(newState);
-       }
-   }
+    @Override
+    public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt) {
+        int state = getInteractionState();
+        int newState = helper.getHFocusEventResult(evt);
 
-   @Override
-   public int getOrientation(){
-       return orientation;
-   }
+        if (state != newState) {
+            setInteractionState(newState);
+        }
+    }
 
-   @Override
-   public void setOrientation(int orient){
-       orientation = orient;
-   }
+    @Override
+    public int getOrientation() {
+        return orientation;
+    }
 
-   @Override
-   public void addItemListener(org.havi.ui.event.HItemListener listener){
-       itemListeners.add(listener);
-   }
+    @Override
+    public void setOrientation(int orient) {
+        orientation = orient;
+    }
 
-   @Override
-   public void removeItemListener(org.havi.ui.event.HItemListener listener){
-       itemListeners.remove(listener);
-   }
+    @Override
+    public void addItemListener(org.havi.ui.event.HItemListener listener) {
+        itemListeners.add(listener);
+    }
 
-   @Override
-   public void setSelectionSound(HSound sound){
-       this.sound = sound;
-   }
+    @Override
+    public void removeItemListener(org.havi.ui.event.HItemListener listener) {
+        itemListeners.remove(listener);
+    }
 
-   @Override
-   public HSound getSelectionSound(){
-       return sound;
-   }
+    @Override
+    public void setSelectionSound(HSound sound) {
+        this.sound = sound;
+    }
 
-   @Override
-   public boolean getSelectionMode(){
-       return selectionMode;
-   }
+    @Override
+    public HSound getSelectionSound() {
+        return sound;
+    }
 
-   @Override
-   public void setSelectionMode(boolean edit){
-       if(isEnabled()){
-           selectionMode = edit;
-       }
-   }
+    @Override
+    public boolean getSelectionMode() {
+        return selectionMode;
+    }
 
-   @Override
-   public void processHItemEvent(org.havi.ui.event.HItemEvent evt){
+    @Override
+    public void setSelectionMode(boolean edit) {
+        if (isEnabled()) {
+            selectionMode = edit;
+        }
+    }
 
-       if(hasFocus()){
+    @Override
+    public void processHItemEvent(org.havi.ui.event.HItemEvent evt) {
 
-           boolean oldMode = selectionMode;
+        if (hasFocus()) {
 
-           switch (evt.getID()) {
-                case HItemEvent.ITEM_START_CHANGE :
+            boolean oldMode = selectionMode;
 
-                        setSelectionMode(true);
+            switch (evt.getID()) {
+            case HItemEvent.ITEM_START_CHANGE:
 
-                    break;
-                case HItemEvent.ITEM_END_CHANGE :
+                setSelectionMode(true);
 
-                        setSelectionMode(false);
+                break;
+            case HItemEvent.ITEM_END_CHANGE:
 
-                    break;
-                default :
-                    break;
+                setSelectionMode(false);
+
+                break;
+            default:
+                break;
             }
 
-           if(oldMode != getSelectionMode()){
+            if (oldMode != getSelectionMode()) {
 
-               // send event if the selectionMode has changed
-               HItemEvent selectionChangedEvent = new HItemEvent(this, evt.getID(), evt.getSource());
-               notifySelectionChanged(selectionChangedEvent);
-           }
+                // send event if the selectionMode has changed
+                HItemEvent selectionChangedEvent = new HItemEvent(this, evt.getID(), evt.getSource());
+                notifySelectionChanged(selectionChangedEvent);
+            }
 
-           if(selectionMode){
+            if (selectionMode) {
 
-               // the item that might be changed
-               HListElement oldItem = getCurrentItem();
+                // the item that might be changed
+                HListElement oldItem = getCurrentItem();
 
-               switch (evt.getID()) {
+                switch (evt.getID()) {
                     /*case HItemEvent.ITEM_SET_CURRENT :
 
                         break;*/
-                    case HItemEvent.ITEM_SET_PREVIOUS :
+                case HItemEvent.ITEM_SET_PREVIOUS:
 
-                        // 1. set the previous
+                    // 1. set the previous
 
-                        setCurrentItem(getCurrentIndex() - 1);
+                    setCurrentItem(getCurrentIndex() - 1);
 
 
-                        break;
-                    case HItemEvent.ITEM_SET_NEXT :
+                    break;
+                case HItemEvent.ITEM_SET_NEXT:
 
-                        setCurrentItem(getCurrentIndex() + 1);
+                    setCurrentItem(getCurrentIndex() + 1);
 
-                        break;
+                    break;
                 }
 
-               // check if the current item is changed
-               if(oldItem != getCurrentItem()){
-                   // event?
+                // check if the current item is changed
+                if (oldItem != getCurrentItem()) {
+                    // event?
 
-                   HItemEvent previousOrNextEvent = new HItemEvent(this, evt.getID(), oldItem);
+                    HItemEvent previousOrNextEvent = new HItemEvent(this, evt.getID(), oldItem);
 
-                   notifyItemChangedEvent(previousOrNextEvent);
+                    notifyItemChangedEvent(previousOrNextEvent);
 
-                   HItemEvent changedEvent = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, evt.getSource());
+                    HItemEvent changedEvent = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, evt.getSource());
 
-                   notifyItemChangedEvent(changedEvent);
-               }
+                    notifyItemChangedEvent(changedEvent);
+                }
 
-           }
+            }
 
-       }
+        }
 
 
-   }
+    }
 
-   /**
-    * Notifies the HItemListeners that the selection has changed.
-    * @param event The event to send to the listeners.
-    */
-   private void notifySelectionChanged(HItemEvent event){
+    /**
+     * Notifies the HItemListeners that the selection has changed.
+     *
+     * @param event The event to send to the listeners.
+     */
+    private void notifySelectionChanged(HItemEvent event) {
 
-       for(HItemListener arrListener : itemListeners){
+        for (HItemListener arrListener : itemListeners) {
 
-           arrListener.selectionChanged(event);
+            arrListener.selectionChanged(event);
 
-       }
+        }
 
-   }
+    }
 
-   /**
-    * Notifies the HItemListeners that the current item has changed.
-    * @param event The event to send to the listeners.
-    */
-   private void notifyItemChangedEvent(HItemEvent event){
+    /**
+     * Notifies the HItemListeners that the current item has changed.
+     *
+     * @param event The event to send to the listeners.
+     */
+    private void notifyItemChangedEvent(HItemEvent event) {
 
-       for(HItemListener arrListener : itemListeners){
+        for (HItemListener arrListener : itemListeners) {
 
             arrListener.currentItemChanged(event);
 
         }
 
-   }
+    }
 
 
-   @Override
-   public boolean isFocusTraversable(){
-       /*
-        * "Note that the java.awt.Component method isFocusTraversable
-        * shall always return true for a java.awt.Component implementing
-        * this interface."
-        */
-       return true;
-   }
+    @Override
+    public boolean isFocusTraversable() {
+        /*
+         * "Note that the java.awt.Component method isFocusTraversable
+         * shall always return true for a java.awt.Component implementing
+         * this interface."
+         */
+        return true;
+    }
 
 }

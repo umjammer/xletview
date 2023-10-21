@@ -15,14 +15,12 @@
 package org.havi.ui.event;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HScreenConfigurationEvent extends java.util.EventObject{
+public class HScreenConfigurationEvent extends java.util.EventObject {
 
-    public HScreenConfigurationEvent(Object source){
+    public HScreenConfigurationEvent(Object source) {
         super(source);
     }
 

@@ -15,7 +15,7 @@
 package org.havi.ui;
 
 
-public interface HSwitchable extends HActionable{
+public interface HSwitchable extends HActionable {
 
     boolean getSwitchableState();
 

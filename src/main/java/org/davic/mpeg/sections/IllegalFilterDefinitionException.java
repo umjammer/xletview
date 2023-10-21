@@ -16,14 +16,12 @@ package org.davic.mpeg.sections;
 
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class IllegalFilterDefinitionException extends SectionFilterException{
+public class IllegalFilterDefinitionException extends SectionFilterException {
 
-    public IllegalFilterDefinitionException(){
+    public IllegalFilterDefinitionException() {
         super();
     }
 

@@ -15,18 +15,16 @@
 package org.havi.ui;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HConfigurationException extends java.lang.Exception{
+public class HConfigurationException extends java.lang.Exception {
 
-    public HConfigurationException(){
+    public HConfigurationException() {
         super();
     }
 
-    public HConfigurationException(String message){
+    public HConfigurationException(String message) {
         super(message);
     }
 }

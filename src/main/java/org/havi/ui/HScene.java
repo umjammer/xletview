@@ -23,15 +23,13 @@ import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
 import java.io.Serializable;
 
-import org.havi.ui.event.HEventGroup;
-
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.util.Util;
 import net.beiker.xletview.xlet.XletManager;
+import org.havi.ui.event.HEventGroup;
+
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 2
  * @comment not complete
@@ -97,8 +95,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
             remove(i);
             add(component, 0);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -110,11 +107,9 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     public boolean popInFrontOf(Component move, Component behind) {
         if (move == behind) {
             return true;
-        }
-        else if (getComponentIndex(move) == -1 || getComponentIndex(behind) == -1) {
+        } else if (getComponentIndex(move) == -1 || getComponentIndex(behind) == -1) {
             return false;
-        }
-        else {
+        } else {
             add(move, getComponentIndex(behind));
             return true;
         }
@@ -131,8 +126,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
             remove(i + 1);
             add(component, i);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -147,8 +141,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
             remove(i - 1);
             add(component, i);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -163,8 +156,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
             remove(i);
             add(component);
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -176,11 +168,9 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     public Component addBefore(Component component, Component behind) {
         if (component == behind) {
             return component;
-        }
-        else if (getComponentIndex(behind) == -1) {
+        } else if (getComponentIndex(behind) == -1) {
             return null;
-        }
-        else {
+        } else {
             return add(component, getComponentIndex(behind));
 
         }
@@ -193,18 +183,15 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     public Component addAfter(Component component, Component front) {
         if (component == front) {
             return component;
-        }
-        else if (getComponentIndex(component) != -1) {
+        } else if (getComponentIndex(component) != -1) {
             // it was already added
             popInFrontOf(front, component);
             return component;
-        }
-        else if (getComponentIndex(component) == -1) {
+        } else if (getComponentIndex(component) == -1) {
             add(component);
             popInFrontOf(front, component);
             return component;
-        }
-        else {
+        } else {
             return null;
         }
 
@@ -237,9 +224,9 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
          * 1. If the current background mode is BACKGROUND_FILL, the entire HScene is
          * first filled using the current background color
          */
-        if(this.backgroundMode == BACKGROUND_FILL){
-             g.setColor(this.getBackground());
-             g.fillRect(0,0, this.getWidth(), this.getHeight());
+        if (this.backgroundMode == BACKGROUND_FILL) {
+            g.setColor(this.getBackground());
+            g.fillRect(0, 0, this.getWidth(), this.getHeight());
         }
 
         /*
@@ -283,8 +270,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
         if (mode == IMAGE_NONE) {
             this.renderMode = mode;
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
@@ -313,15 +299,15 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
 
     protected void processWindowEvent(WindowEvent we) {
         int id = we.getID();
-        switch(id) {
-          case WindowEvent.WINDOW_ACTIVATED:
+        switch (id) {
+        case WindowEvent.WINDOW_ACTIVATED:
             this.windowListener.windowActivated(we);
             log.fine("processWindowEvent, activated");
-          break;
-          case WindowEvent.WINDOW_DEACTIVATED:
+            break;
+        case WindowEvent.WINDOW_DEACTIVATED:
             this.windowListener.windowDeactivated(we);
             log.fine("processWindowEvent, deactivated");
-          break;
+            break;
         }
     }
 
@@ -334,10 +320,9 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     public Component getFocusOwner() {
         Component c = EventManager.getInstance().getFocusOwner();
         boolean b = Util.isChildOf(this, c);
-        if(b || c == this){
+        if (b || c == this) {
             return c;
-        }
-        else{
+        } else {
             return null;
         }
     }

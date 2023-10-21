@@ -15,6 +15,7 @@ package xjavax.tv.media;
 
 import xjavax.tv.locator.Locator;
 
+
 /**
  * <code>MediaSelectCARefusedEvent</code> is generated when a
  * media select operation fails due to lack of CA authorization.
@@ -23,15 +24,15 @@ import xjavax.tv.locator.Locator;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class MediaSelectCARefusedEvent extends MediaSelectFailedEvent
-{
+public class MediaSelectCARefusedEvent extends MediaSelectFailedEvent {
+
     /**
      * Constructs the <code>MediaSelectCARefusedEvent</code>.
      *
-     * @param source - The Controller that generated this event.
-     * @param selection - The Locator instances on which selection failed.
+     * @param source The Controller that generated this event.
+     * @param selection The Locator instances on which selection failed.
      */
-    public MediaSelectCARefusedEvent(javax.media.Controller source, Locator[] selection){
+    public MediaSelectCARefusedEvent(javax.media.Controller source, Locator[] selection) {
         super(source, selection);
     }
 

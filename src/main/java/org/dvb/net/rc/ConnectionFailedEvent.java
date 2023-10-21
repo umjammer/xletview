@@ -15,13 +15,12 @@
 package org.dvb.net.rc;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class ConnectionFailedEvent extends ConnectionRCEvent {
 
-    public ConnectionFailedEvent(Object source){
+    public ConnectionFailedEvent(Object source) {
         super(source);
     }
 

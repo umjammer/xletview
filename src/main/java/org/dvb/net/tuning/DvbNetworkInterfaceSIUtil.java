@@ -16,14 +16,14 @@ package org.dvb.net.tuning;
 
 public class DvbNetworkInterfaceSIUtil {
 
-    private DvbNetworkInterfaceSIUtil()    {
+    private DvbNetworkInterfaceSIUtil() {
     }
 
     public static org.dvb.si.SIDatabase getSIDatabase(org.davic.net.tuning.NetworkInterface ni) {
         return null;
     }
 
-    public static org.davic.net.tuning.NetworkInterface   getNetworkInterface(org.dvb.si.SIDatabase sd) {
+    public static org.davic.net.tuning.NetworkInterface getNetworkInterface(org.dvb.si.SIDatabase sd) {
         return null;
     }
 }

@@ -12,20 +12,19 @@
 */
 
 
-package org.dvb.application ;
+package org.dvb.application;
 
 /**
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class IllegalProfileParameterException extends Exception {
 
-    public IllegalProfileParameterException(){
+    public IllegalProfileParameterException() {
         super();
     }
 
-    public IllegalProfileParameterException(String s){
+    public IllegalProfileParameterException(String s) {
         super(s);
     }
 }

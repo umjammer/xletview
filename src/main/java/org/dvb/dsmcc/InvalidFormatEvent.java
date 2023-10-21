@@ -12,17 +12,15 @@
 */
 
 
-package org.dvb.dsmcc ;
+package org.dvb.dsmcc;
 
 /**
- *
- *
  * @author Martin Sveden
  * @statuscode 4
  */
 public class InvalidFormatEvent extends AsynchronousLoadingEvent {
 
-    public InvalidFormatEvent (DSMCCObject o) {
+    public InvalidFormatEvent(DSMCCObject o) {
         super(o);
     }
 
