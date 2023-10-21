@@ -108,15 +108,18 @@ public class XFile extends java.io.File{
      * The path is the same path that was used creating the file but
      * with the slashes fixed in a platform dependent way.
      */
+    @Override
     public String getPath(){
         return this.path;
     }
 
+    @Override
     public String getAbsolutePath(){
 //        logger.fine("getAbsolutePath");
         return FileSystem.resolveAbsolutePath(getParent(), getName());
     }
 
+    @Override
     public boolean exists() {
         return FileSystem.exists(this);
 
@@ -132,12 +135,14 @@ public class XFile extends java.io.File{
      *          pathname, or the empty string if this pathname's name sequence
      *          is empty
      */
+    @Override
     public String getName() {
         int index = this.path.lastIndexOf(FileSystem.separatorChar);
         if (index < 0) return this.path;
         return this.path.substring(index + 1);
     }
 
+    @Override
     public String getParent() {
         String result = null;
         logger.fine("getParent(), start");
@@ -162,121 +167,148 @@ public class XFile extends java.io.File{
         return result;
     }
 
+    @Override
     public java.io.File getParentFile() {
         return null;
     }
 
+    @Override
     public boolean isAbsolute() {
         logger.fine("isAbsolute");
         return false;
     }
 
+    @Override
     public java.io.File getAbsoluteFile() {
         return new XFile(getAbsolutePath());
     }
 
+    @Override
     public String getCanonicalPath() throws IOException {
         return FileSystem.getCanonicalPath(this);
     }
 
+    @Override
     public java.io.File getCanonicalFile() throws IOException {
         return FileSystem.getCanonicalFile(this);
     }
 
+    @Override
     public URL toURL() throws MalformedURLException {
         return FileSystem.toURL(this);
     }
 
+    @Override
     public URI toURI() {
         return FileSystem.toURI(this);
     }
 
+    @Override
     public boolean canRead() {
         return FileSystem.canRead(this);
     }
 
+    @Override
     public boolean canWrite() {
         return FileSystem.canWrite(this);
     }
 
+    @Override
     public boolean isDirectory() {
         return FileSystem.isDirectory(this);
     }
 
+    @Override
     public boolean isFile() {
         return FileSystem.isFile(this);
     }
 
+    @Override
     public boolean isHidden() {
         return FileSystem.isHidden(this);
     }
 
+    @Override
     public long lastModified() {
         return FileSystem.lastModified(this);
     }
 
+    @Override
     public long length() {
         return FileSystem.getLength(this);
     }
 
+    @Override
     public boolean createNewFile() throws IOException {
         logger.fine("createNewFile");
         return false;
     }
 
+    @Override
     public boolean delete() {
         logger.fine("delete");
         return false;
     }
 
+    @Override
     public void deleteOnExit() {
         logger.fine("deleteOnExit");
     }
 
+    @Override
     public String[] list() {
         return FileSystem.list(this);
     }
 
+    @Override
     public String[] list(FilenameFilter filter) {
         logger.fine("list");
         return null;
     }
 
+    @Override
     public java.io.File[] listFiles() {
         logger.fine("listFiles");
         return null;
     }
 
+    @Override
     public java.io.File[] listFiles(FilenameFilter filter) {
         logger.fine("listFiles");
         return null;
     }
 
+    @Override
     public java.io.File[] listFiles(FileFilter filter) {
         logger.fine("listFiles");
         return null;
     }
 
+    @Override
     public boolean mkdir() {
         logger.fine("mkdir");
         return false;
     }
 
+    @Override
     public boolean mkdirs() {
         logger.fine("mkdirs");
         return false;
     }
 
+    @Override
     public boolean renameTo(java.io.File dest) {
         logger.fine("renameTo");
         return false;
     }
 
+    @Override
     public boolean setLastModified(long time) {
         logger.fine("setLastModified");
         return false;
     }
 
+    @Override
     public boolean setReadOnly() {
         logger.fine("setReadOnly");
         return false;
@@ -296,6 +328,7 @@ public class XFile extends java.io.File{
         return null;
     }
 
+    @Override
     public int compareTo(File o) {
         logger.fine("compareTo");
         return 0;

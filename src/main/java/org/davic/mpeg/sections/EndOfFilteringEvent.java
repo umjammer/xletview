@@ -27,6 +27,7 @@ public class EndOfFilteringEvent extends SectionFilterEvent{
         super(sectionFilter, appData);
     }
 
+    @Override
     public Object getSource()    {
         return super.getSource();
     }

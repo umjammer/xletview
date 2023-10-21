@@ -16,7 +16,7 @@ package org.davic.net.ca;
 
 public interface MessageListener extends java.util.EventListener {
 
-    public void receiveMessage(CAModule module, MessageEvent event);
+    void receiveMessage(CAModule module, MessageEvent event);
 
 }
 

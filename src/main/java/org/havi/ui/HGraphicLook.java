@@ -34,6 +34,7 @@ public class HGraphicLook implements HLook{
     }
 
 
+    @Override
     public void showLook(java.awt.Graphics g, HVisible hVisible, int state){
         Dimension dimension = hVisible.getSize();
 
@@ -134,6 +135,7 @@ public class HGraphicLook implements HLook{
         return g.drawImage(imageToDraw, drawX, drawY, hVisible);
     }
 
+    @Override
     public void widgetChanged (HVisible hVisible, HChangeData[] changes){
         /*
             " Note that implementations of HLook may not actually implement more efficient
@@ -154,22 +156,27 @@ public class HGraphicLook implements HLook{
         hVisible.repaint();
     }
 
+    @Override
     public Dimension getMinimumSize(HVisible hVisible){
         return hVisible.getSize();
     }
 
+    @Override
     public Dimension getPreferredSize(HVisible hVisible){
         return hVisible.getSize();
     }
 
+    @Override
     public Dimension getMaximumSize(HVisible hVisible){
         return hVisible.getSize();
     }
 
+    @Override
     public boolean isOpaque(HVisible hVisible){
         return hVisible.isOpaque();
     }
 
+    @Override
     public Insets getInsets(HVisible hVisible){
         return insets;
     }

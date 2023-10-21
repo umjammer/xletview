@@ -104,8 +104,9 @@ public class Console extends Container implements OutputPrinter{
     /* (non-Javadoc)
      * @see net.beiker.xletview.io.OutputPrinter#print(java.lang.String)
      */
+    @Override
     public void print(String s) {
-        if(isPrinting == true){
+        if(isPrinting){
              ta.append(s);
              ta.setCaretPosition(ta.getDocument().getLength());
          }

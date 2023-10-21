@@ -112,15 +112,6 @@ public class System {
         System.err = err;
     }
 
-    public static void setSecurityManager(final SecurityManager s) {
-        // fix
-    }
-
-    public static SecurityManager getSecurityManager() {
-        // fix
-        return null;
-    }
-
     public static long currentTimeMillis() {
         return java.lang.System.currentTimeMillis();
     }
@@ -165,7 +156,7 @@ public class System {
 
         /*
          * this one is not guaranteed to exist but I put it
-         * here because there was applications at a broadcaster that use
+         * here because there were applications at a broadcaster that use
          * it.
          */
         props.setProperty("java.vm.vendor", real.getProperty("java.vm.vendor"));
@@ -203,7 +194,7 @@ public class System {
         if (key == null) {
             throw new NullPointerException("key can't be null");
         }
-        if (key.equals("")) {
+        if (key.isEmpty()) {
             throw new IllegalArgumentException("key can't be empty");
         }
         return props.getProperty(key);
@@ -213,7 +204,7 @@ public class System {
         if (key == null) {
             throw new NullPointerException("key can't be null");
         }
-        if (key.equals("")) {
+        if (key.isEmpty()) {
             throw new IllegalArgumentException("key can't be empty");
         }
         return props.getProperty(key, def);
@@ -223,7 +214,7 @@ public class System {
         if (key == null) {
             throw new NullPointerException("key can't be null");
         }
-        if (key.equals("")) {
+        if (key.isEmpty()) {
             throw new IllegalArgumentException("key can't be empty");
         }
         return (String) props.setProperty(key, value);

@@ -27,6 +27,7 @@ public class RemoteButton extends JButton {
         getInputMap().put(KeyStroke.getKeyStroke(enterCode, 0, false), "pressed");
         getInputMap().put(KeyStroke.getKeyStroke(enterCode, 0, true), "released");
     }
+    @Override
     public boolean isDefaultCapable() {
         return false;
     }

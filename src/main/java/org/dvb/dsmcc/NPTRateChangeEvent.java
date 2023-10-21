@@ -29,6 +29,7 @@ public class NPTRateChangeEvent extends java.util.EventObject {
         this.rate = rate;
     }
 
+    @Override
     public java.lang.Object getSource() {
         return super.getSource();
     }

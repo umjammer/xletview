@@ -21,38 +21,45 @@ public class HRangeLook implements HAdjustableLook{
     public HRangeLook(){
     }
 
+    @Override
     public void showLook(java.awt.Graphics g, HVisible visible, int state){
-        return;
     }
 
+    @Override
     public void widgetChanged (HVisible visible, HChangeData[] changes){
-        return;
     }
 
+    @Override
     public Dimension getMinimumSize(HVisible hvisible){
         return(null);
     }
 
+    @Override
     public Dimension getPreferredSize(HVisible hvisible){
         return(null);
     }
 
+    @Override
     public Dimension getMaximumSize(HVisible hvisible){
         return(null);
     }
 
+    @Override
     public boolean isOpaque(HVisible visible){
         return(false);
     }
 
+    @Override
     public java.awt.Insets getInsets(HVisible visible){
         return(null);
     }
 
+    @Override
     public int hitTest(HOrientable component, java.awt.Point pt){
         return(0);
     }
 
+    @Override
     public java.lang.Integer getValue(HOrientable component, java.awt.Point pt){
         return(null);
     }

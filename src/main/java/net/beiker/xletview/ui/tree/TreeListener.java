@@ -19,6 +19,6 @@ import javax.swing.tree.TreePath;
  */
 public interface TreeListener {
 
-    public void pathChanged(TreePath path);
+    void pathChanged(TreePath path);
 
 }

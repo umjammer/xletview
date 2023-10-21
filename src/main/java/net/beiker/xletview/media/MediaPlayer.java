@@ -108,7 +108,7 @@ public class MediaPlayer implements ControllerListener{
     }
 
     private void createImagePlayer(URL imageURL){
-        if(imageURL != null){;
+        if(imageURL != null){
             player = new ImagePlayer(imageURL);
             visualComponent = player.getVisualComponent();
             //setSize(AWTVideoSizeControlImpl.getInstance().getSize());
@@ -126,7 +126,7 @@ public class MediaPlayer implements ControllerListener{
             MediaLocator mediaLocator = null;
             try {
                 mediaLocator = new MediaLocator(videoUrl);
-                Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
+                Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, Boolean.TRUE);
                 player = Manager.createPlayer(mediaLocator);
                 player.addControllerListener(this);
             }
@@ -137,6 +137,7 @@ public class MediaPlayer implements ControllerListener{
         play();
     }
 
+    @Override
     public void controllerUpdate(ControllerEvent event){
 
         ScreenContainer.getInstance().repaint();

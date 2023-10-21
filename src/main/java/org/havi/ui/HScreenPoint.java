@@ -21,7 +21,7 @@ package org.havi.ui;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HScreenPoint extends Object{
+public class HScreenPoint {
 
     public float x;
     public float y;

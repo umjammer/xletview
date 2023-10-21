@@ -26,8 +26,8 @@ package xjavax.tv.util;
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class TVTimer extends java.lang.Object {
-    //following variables are implicitely defined by getter- or
+public abstract class TVTimer {
+    //following variables are implicitly defined by getter- or
     // setter-methods:
     private static TVTimer timer;
 

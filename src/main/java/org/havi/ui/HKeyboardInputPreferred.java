@@ -16,22 +16,22 @@ package org.havi.ui;
 
 public interface HKeyboardInputPreferred{
 
-    public static final int INPUT_NUMERIC    = 1;
-    public static final int INPUT_ALPHA      = 2;
-    public static final int INPUT_ANY        = 4;
-    public static final int INPUT_CUSTOMIZED = 8;
+    int INPUT_NUMERIC    = 1;
+    int INPUT_ALPHA      = 2;
+    int INPUT_ANY        = 4;
+    int INPUT_CUSTOMIZED = 8;
 
-    public boolean getEditMode();
+    boolean getEditMode();
 
-    public void setEditMode(boolean edit);
+    void setEditMode(boolean edit);
 
-    public int getType();
+    int getType();
 
-    public char[] getValidInput();
+    char[] getValidInput();
 
-    public void processHTextEvent(org.havi.ui.event.HTextEvent evt);
+    void processHTextEvent(org.havi.ui.event.HTextEvent evt);
 
-    public void processHKeyEvent(org.havi.ui.event.HKeyEvent evt);
+    void processHKeyEvent(org.havi.ui.event.HKeyEvent evt);
 
 
 

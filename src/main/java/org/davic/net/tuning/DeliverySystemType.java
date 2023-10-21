@@ -16,10 +16,10 @@ package org.davic.net.tuning;
 
 public interface DeliverySystemType {
 
-    public final static int SATELLITE_DELIVERY_SYSTEM = 0;
+    int SATELLITE_DELIVERY_SYSTEM = 0;
 
-    public final static int CABLE_DELIVERY_SYSTEM = 1;
+    int CABLE_DELIVERY_SYSTEM = 1;
 
-    public final static int TERRESTRIAL_DELIVERY_SYSTEM = 2;
+    int TERRESTRIAL_DELIVERY_SYSTEM = 2;
 
 }

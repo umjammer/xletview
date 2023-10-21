@@ -29,22 +29,27 @@ import net.beiker.xletview.util.Util;
  */
 public class CenterLayout implements LayoutManager{
 
+    @Override
     public void addLayoutComponent(String s, Component c) {
         // do nothing
     }
 
+    @Override
     public void removeLayoutComponent(Component c) {
         // do nothing
     }
 
+    @Override
     public Dimension preferredLayoutSize(Container c) {
         return new Dimension(Util.parseInt(Settings.getProperty("tv.screenwidth")), Util.parseInt(Settings.getProperty("tv.screenheight")));
     }
 
+    @Override
     public Dimension minimumLayoutSize(Container c) {
         return new Dimension(Util.parseInt(Settings.getProperty("tv.screenwidth")), Util.parseInt(Settings.getProperty("tv.screenheight")));
     }
 
+    @Override
     public void layoutContainer(Container parent) {
         Rectangle bounds = parent.getBounds();
         for(int i = 0; i < parent.getComponentCount(); i++){

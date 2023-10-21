@@ -57,6 +57,7 @@ public class HStaticText extends HVisible implements HNoInputPreferred{
         this(textNormal, 0, 0, 0, 0, font, foreground, background, tlm);
     }
 
+    @Override
     public void setLook(HLook hLook) throws HInvalidLookException{
         if(hLook instanceof HTextLook || hLook == null){
             super.setLook(hLook);

@@ -38,14 +38,15 @@ public class HListGroupLook implements HAdjustableLook{
 
    }
 
+   @Override
    public void showLook(java.awt.Graphics g, HVisible visible, int state){
-       return;
    }
 
+   @Override
    public void widgetChanged (HVisible visible, HChangeData[] changes){
-       return;
    }
 
+   @Override
    public Dimension getMinimumSize(HVisible visible){
 
        int width = insets.left + insets.top;
@@ -56,6 +57,7 @@ public class HListGroupLook implements HAdjustableLook{
        return new Dimension(width + itemDim.width, height + itemDim.height);
    }
 
+   @Override
    public Dimension getPreferredSize(HVisible visible){
 
 
@@ -176,6 +178,7 @@ public class HListGroupLook implements HAdjustableLook{
        return(null);
    }
 
+   @Override
    public Dimension getMaximumSize(HVisible visible){
 
        HListGroup hGroup = (HListGroup) visible;
@@ -215,33 +218,28 @@ public class HListGroupLook implements HAdjustableLook{
        int itemWidth = elementInsets.left + elementInsets.right + iconDim.width + labelDim.width;
        int itemHeight = elementInsets.top + elementInsets.bottom;
 
-        if(hGroup.getIconSize().height > hGroup.getLabelSize().height ){
-
-            itemHeight += hGroup.getIconSize().height;
-
-        }
-        else{
-
-            itemHeight += hGroup.getLabelSize().height;
-
-        }
+       itemHeight += Math.max(hGroup.getIconSize().height, hGroup.getLabelSize().height);
 
         return new Dimension(itemWidth, itemHeight);
    }
 
 
+   @Override
    public boolean isOpaque(HVisible visible){
        return(false);
    }
 
+   @Override
    public java.awt.Insets getInsets(HVisible visible){
        return insets;
    }
 
+   @Override
    public int hitTest(HOrientable component, java.awt.Point pt){
        return(0);
    }
 
+   @Override
    public java.lang.Integer getValue(HOrientable component, java.awt.Point pt){
        return(null);
    }

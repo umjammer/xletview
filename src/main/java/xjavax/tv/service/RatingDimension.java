@@ -13,6 +13,9 @@
 
 package xjavax.tv.service;
 
+import xjavax.tv.service.guide.ContentRatingAdvisory;
+
+
 /**
  * The <code>RatingDimension</code> interface represents an
  * individual content rating scheme against which program events are
@@ -36,14 +39,14 @@ public interface RatingDimension
      *
      * @return A string representing the name of this rating dimension.
      */
-    public java.lang.String getDimensionName();
+    java.lang.String getDimensionName();
 
     /**
      * Returns the number of levels defined for this dimension.
      *
      * @return The number of levels in this dimension.
      */
-    public short getNumberOfLevels();
+    short getNumberOfLevels();
 
     /**
      * Returns a pair of strings describing the specified rating level for
@@ -52,8 +55,8 @@ public interface RatingDimension
      * @param ratingLevel - The rating level for which to retrieve the textual description.
      * @return A pair of strings representing the names for the specified rating level. The first string represents the abbreviated name for the rating level. The second string represents the full name for the rating level.
      * @throws SIException - If ratingLevel is not valid for this RatingDimension.
-     * @see ContentRatingAdvisory.getRatingLevel(java.lang.String)
+     * @see ContentRatingAdvisory#getRatingLevel(java.lang.String)
      */
-    public java.lang.String[] getRatingLevelDescription(short ratingLevel) throws SIException;
+    java.lang.String[] getRatingLevelDescription(short ratingLevel) throws SIException;
 
 }

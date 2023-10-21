@@ -91,6 +91,7 @@ public class Img extends Component{
         setBounds(x, y, this.width, this.height);
     }
 
+    @Override
     public Dimension getPreferredSize(){
         return new Dimension(this.width, this.height);
     }
@@ -149,6 +150,7 @@ public class Img extends Component{
         return image;
     }
 
+    @Override
     public void paint(Graphics g){
         if(this.image != null){
             //g.drawImage(image, 0, 0,this);

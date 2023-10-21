@@ -33,6 +33,7 @@ public abstract class MMIEvent extends java.util.EventObject {
         return dialogueId;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

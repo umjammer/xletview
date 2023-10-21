@@ -17,7 +17,7 @@ package org.havi.ui;
 import java.awt.Dimension;
 import java.awt.Point;
 
-public abstract class HScreenConfiguration extends Object{
+public abstract class HScreenConfiguration {
 
     //package scope constructor to stop javadoc generating one
     HScreenConfiguration(){

@@ -98,10 +98,12 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
         navHelper = new HNavigableHelper(this);
     }
 
+    @Override
     public void setTextContent(String string, int state){
         super.setTextContent(string, HState.ALL_STATES);
     }
 
+    @Override
     public String getTextContent(int state){
         return super.getTextContent(HState.NORMAL_STATE);
     }
@@ -130,6 +132,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
         return HSinglelineEntry.defaultHLook;
     }
 
+    @Override
     public void setLook(HLook hLook) throws HInvalidLookException{
         if(hLook instanceof HSinglelineEntryLook || hLook == null){
             super.setLook(hLook);
@@ -257,12 +260,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
             if(position > getTextContent(HState.ALL_STATES).length()){
                 caretPosition = getTextContent(HState.ALL_STATES).length();
             }
-            else if(position < 0){
-                caretPosition = 0;
-            }
-            else{
-                caretPosition = position;
-            }
+            else caretPosition = Math.max(position, 0);
             repaint();
 
         return caretPosition;
@@ -276,47 +274,58 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
         return maxChars;
     }
 
+    @Override
     public void setMove(int keyCode, HNavigable target){
         navHelper.setMove(keyCode, target);
     }
 
+    @Override
     public HNavigable getMove(int keyCode){
         return navHelper.getMove(keyCode);
     }
 
+    @Override
     public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
         navHelper.setFocusTraversal(up, down, left, right);
     }
 
+    @Override
     public boolean isSelected(){
         return navHelper.isSelected();
     }
 
+    @Override
     public void setGainFocusSound(HSound sound){
         navHelper.setGainFocusSound(sound);
     }
 
+    @Override
     public void setLoseFocusSound(HSound sound){
         navHelper.setLoseFocusSound(sound);
     }
 
+    @Override
     public HSound getGainFocusSound(){
         return navHelper.getGainFocusSound();
     }
 
+    @Override
     public HSound getLoseFocusSound(){
         return navHelper.getLoseFocusSound();
     }
 
+    @Override
     public void addHFocusListener(HFocusListener listener){
         navHelper.addHFocusListener(listener);
     }
 
 
+    @Override
     public void removeHFocusListener(HFocusListener listener){
         navHelper.removeHFocusListener(listener);
     }
 
+    @Override
     public int[] getNavigationKeys(){
         return navHelper.getNavigationKeys();
     }
@@ -324,6 +333,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
     /*
      Overloaded from HVisible, is true for HNavigable
      */
+    @Override
     public boolean isFocusTraversable() {
         return true;
     }
@@ -337,11 +347,13 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
      * This mehod overrides Component.getFocusListeners()
      * and takes care of that.
      */
+    @Override
     public synchronized FocusListener[] getFocusListeners(){
         return navHelper.getFocusListeners();
     }
 
 
+    @Override
     public void processFocusEvent(FocusEvent e){
         super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
@@ -349,6 +361,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
 
     }
 
+    @Override
     public void processHFocusEvent(HFocusEvent evt) {
         int state = getInteractionState();
         int newState = navHelper.getHFocusEventResult(evt);
@@ -359,6 +372,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
     }
 
 
+    @Override
     public void addHKeyListener(HKeyListener listener){
         if (listener == null) {
             return;
@@ -367,6 +381,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
     }
 
 
+    @Override
     public void removeHKeyListener(HKeyListener listener){
         if (listener == null) {
             return;
@@ -374,6 +389,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
         hKeyListener = HEventMulticaster.remove(hKeyListener, listener);
     }
 
+    @Override
     public void addHTextListener(HTextListener listener){
         if (listener == null) {
             return;
@@ -381,6 +397,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
         hTextListener = HEventMulticaster.add(hTextListener, listener);
     }
 
+    @Override
     public void removeHTextListener(HTextListener listener){
         if (listener == null) {
             return;
@@ -388,15 +405,18 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
         hTextListener = HEventMulticaster.remove(hTextListener, listener);
     }
 
+    @Override
     public boolean getEditMode(){
         return edit;
     }
 
+    @Override
     public void setEditMode(boolean edit){
         this.edit = edit;
         repaint();
     }
 
+    @Override
     public int getType(){
         return this.inputType;
     }
@@ -421,10 +441,12 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
      *      getValidInput in interface HKeyboardInputPreferred
      *@return an array containing the characters which this component expects the platform to provide, or null
      */
+    @Override
     public char[] getValidInput(){
         return this.validInputChars;
     }
 
+    @Override
     public void processHTextEvent(HTextEvent evt){
         Object source = evt.getSource();
         switch (evt.getID()) {
@@ -494,8 +516,8 @@ public class HSinglelineEntry extends HVisible implements HTextValue{
 
     }
 
+    @Override
     public void processHKeyEvent(HKeyEvent evt){
-        return;
     }
 
 }

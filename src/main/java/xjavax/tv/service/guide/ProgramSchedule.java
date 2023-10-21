@@ -48,7 +48,7 @@ public interface ProgramSchedule
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ProgramEvent, ReadPermission
      */
-    public SIRequest retrieveCurrentProgramEvent( SIRequestor requestor);
+    SIRequest retrieveCurrentProgramEvent(SIRequestor requestor);
 
     /**
      * Retrieves the program event for the specified time.  The
@@ -69,7 +69,7 @@ public interface ProgramSchedule
      * @throws SIException - If time does not represent a future time value.
      * @see ProgramEvent, ReadPermission
      */
-    public SIRequest retrieveFutureProgramEvent(java.util.Date time, SIRequestor requestor) throws SIException;
+    SIRequest retrieveFutureProgramEvent(java.util.Date time, SIRequestor requestor) throws SIException;
 
     /**
      * Retrieves all known program events on this service for the
@@ -83,7 +83,7 @@ public interface ProgramSchedule
      * This method returns data asynchronously.  Only program events
      * <code>pe</code> for which the caller has
      * <code>javax.tv.service.ReadPermission(pe.getLocator())</code>
-     * will be retrieved.  If no program events meet this criteria,
+     * will be retrieved.  If no program events meet these criteria,
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
@@ -94,10 +94,10 @@ public interface ProgramSchedule
      * @throws SIException - If end represents a time value before begin, or if end does not represent a future time value.
      * @see ProgramEvent, ReadPermission
      */
-    public SIRequest retrieveFutureProgramEvents(java.util.Date begin, java.util.Date end, SIRequestor requestor) throws SIException;
+    SIRequest retrieveFutureProgramEvents(java.util.Date begin, java.util.Date end, SIRequestor requestor) throws SIException;
 
     /**
-     * Retrieves a event which follows the specified event.<p>
+     * Retrieves an event which follows the specified event.<p>
      *
      * This method delivers its results asynchronously.  If the caller
      * does not have
@@ -112,7 +112,7 @@ public interface ProgramSchedule
      * @throws SIException - If event does not belong to this ProgramSchedule.
      * @see ProgramEvent, ReadPermission
      */
-    public SIRequest retrieveNextProgramEvent( ProgramEvent event, SIRequestor requestor) throws SIException;
+    SIRequest retrieveNextProgramEvent(ProgramEvent event, SIRequestor requestor) throws SIException;
 
     /**
      * Retrieves a program event matching the locator. Note that
@@ -127,7 +127,7 @@ public interface ProgramSchedule
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see ProgramEvent, ReadPermission
      */
-    public SIRequest retrieveProgramEvent( Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
+    SIRequest retrieveProgramEvent(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
 
     /**
      * Registers a <code>ProgramScheduleListener</code> to be notified of
@@ -154,7 +154,7 @@ public interface ProgramSchedule
      * @param listener - A ProgramScheduleListener to be notified of changes to program events on this ProgramSchedule.
      * @see ProgramEvent, ProgramScheduleEvent, ProgramScheduleChangeType, ReadPermission
      */
-    public void addListener( ProgramScheduleListener listener);
+    void addListener(ProgramScheduleListener listener);
 
     /**
      * Unregisters a <code>ProgramScheduleListener</code>.  If the
@@ -163,7 +163,7 @@ public interface ProgramSchedule
      *
      * @param listener - A previously registered listener.
      */
-    public void removeListener( ProgramScheduleListener listener);
+    void removeListener(ProgramScheduleListener listener);
 
     /**
      * Reports the transport-dependent locator referencing the service to
@@ -172,8 +172,8 @@ public interface ProgramSchedule
      * a <code>ProgramSchedule</code> after it has changed.
      *
      * @return The transport-dependent locator referencing the service to which this ProgramSchedule belongs.
-     * @see ProgramScheduleEvent.getProgramSchedule()
+     * @see ProgramScheduleEvent#getProgramSchedule()
      */
-    public Locator getServiceLocator();
+    Locator getServiceLocator();
 
 }

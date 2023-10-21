@@ -59,7 +59,7 @@ public interface Xlet
      * @throws XletStateChangeException - If the Xlet cannot be initialized.
      * @see XletContext
      */
-    public void initXlet( XletContext ctx) throws XletStateChangeException;
+    void initXlet(XletContext ctx) throws XletStateChangeException;
 
     /**
      * Signals the Xlet to start providing service and
@@ -71,7 +71,7 @@ public interface Xlet
      *
      * @throws XletStateChangeException - is thrown if the Xlet cannot start providing service.
      */
-    public void startXlet() throws XletStateChangeException;
+    void startXlet() throws XletStateChangeException;
 
     /**
      * Signals the Xlet to stop providing service and
@@ -79,10 +79,9 @@ public interface Xlet
      * In the <i>Paused</i> state the Xlet must stop providing
      * service, and might release all shared resources
      * and become quiescent. This method will only be called
-     * called when the Xlet is in the <i>Active</i> state. <p></DL>
-     *
+     * when the Xlet is in the <i>Active</i> state. <p></DL>
      */
-    public void pauseXlet();
+    void pauseXlet();
 
     /**
      * Signals the Xlet to terminate and enter the <i>Destroyed</i> state.
@@ -109,6 +108,6 @@ public interface Xlet
      * @param unconditional - If unconditional is true when this method is called, requests by the Xlet to not enter the destroyed state will be ignored.
      * @throws XletStateChangeException - is thrown if the Xlet wishes to continue to execute (Not enter the Destroyed state). This exception is ignored if unconditional is equal to true.
      */
-    public void destroyXlet(boolean unconditional) throws XletStateChangeException;
+    void destroyXlet(boolean unconditional) throws XletStateChangeException;
 
 }

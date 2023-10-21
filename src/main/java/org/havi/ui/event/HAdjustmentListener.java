@@ -17,6 +17,6 @@ package org.havi.ui.event;
 
 public interface HAdjustmentListener extends java.util.EventListener{
 
-    public abstract void valueChanged(org.havi.ui.event.HAdjustmentEvent e);
+    void valueChanged(org.havi.ui.event.HAdjustmentEvent e);
 
 }

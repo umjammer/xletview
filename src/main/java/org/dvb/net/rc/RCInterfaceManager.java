@@ -88,12 +88,14 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
         return this.rcInterfaces[0];
     }
 
+    @Override
     public void addResourceStatusEventListener(ResourceStatusListener listener) {
         if (!this.resourceStatusEventObjects.contains(listener)) {
             this.resourceStatusEventObjects.add(listener);
         }
     }
 
+    @Override
     public void removeResourceStatusEventListener(ResourceStatusListener listener) {
         this.resourceStatusEventObjects.remove(listener);
     }
@@ -101,7 +103,7 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
     protected void fireResorceStatusChanged(ResourceStatusEvent po) {
         // backwards so we get the last added
         for (int i = this.resourceStatusEventObjects.size() - 1; i > -1; i--) {
-            ResourceStatusListener li = (ResourceStatusListener) this.resourceStatusEventObjects.get(i);
+            ResourceStatusListener li = this.resourceStatusEventObjects.get(i);
             li.statusChanged(po);
         }
     }

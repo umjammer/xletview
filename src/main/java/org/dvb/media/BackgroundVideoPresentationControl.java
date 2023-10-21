@@ -16,9 +16,9 @@ package org.dvb.media;
 
 public interface BackgroundVideoPresentationControl extends VideoPresentationControl {
 
-    public abstract boolean setVideoTransformation(VideoTransformation t);
+    boolean setVideoTransformation(VideoTransformation t);
 
-    public abstract VideoTransformation getVideoTransformation();
+    VideoTransformation getVideoTransformation();
 
-    public abstract VideoTransformation getClosestMatch(VideoTransformation t);
+    VideoTransformation getClosestMatch(VideoTransformation t);
 }

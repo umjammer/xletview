@@ -43,7 +43,7 @@ public interface NetworkCollection extends Transport
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see Network, ReadPermission
      */
-    public SIRequest retrieveNetwork( Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
+    SIRequest retrieveNetwork(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
 
     /**
      * Retrieves an array of all the <code>Network</code> objects in
@@ -51,7 +51,7 @@ public interface NetworkCollection extends Transport
      * <code>Network</code> instances <code>n</code> for which the
      * caller has
      * <code>javax.tv.service.ReadPermission(n.getLocator())</code>. If
-     * no <code>Network</code> instances meet this criteria, this method
+     * no <code>Network</code> instances meet these criteria, this method
      * will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.<p>
      *
@@ -61,7 +61,7 @@ public interface NetworkCollection extends Transport
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see Network, ReadPermission
      */
-    public SIRequest retrieveNetworks( SIRequestor requestor);
+    SIRequest retrieveNetworks(SIRequestor requestor);
 
     /**
      * Registers a <code>NetworkChangeListener</code> to be notified of
@@ -87,7 +87,7 @@ public interface NetworkCollection extends Transport
      * @param listener - A NetworkChangeListener to be notified about changes related to Network carried on this Transport.
      * @see NetworkChangeEvent, ReadPermission
      */
-    public void addNetworkChangeListener( NetworkChangeListener listener);
+    void addNetworkChangeListener(NetworkChangeListener listener);
 
     /**
      * Called to unregister an
@@ -97,6 +97,6 @@ public interface NetworkCollection extends Transport
      *
      * @param listener - A previously registered listener.
      */
-    public void removeNetworkChangeListener( NetworkChangeListener listener);
+    void removeNetworkChangeListener(NetworkChangeListener listener);
 
 }

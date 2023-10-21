@@ -16,5 +16,5 @@ package org.dvb.si;
 
 public interface SITime extends SIInformation {
 
-    public java.util.Date getUTCTime();
+    java.util.Date getUTCTime();
 }

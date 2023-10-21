@@ -37,7 +37,7 @@ public interface ServiceIterator
      * in the list (if the list is not empty).</DL>
      *
      */
-    public void toBeginning();
+    void toBeginning();
 
     /**
      * Sets the iterator to the end of the list, such that
@@ -46,7 +46,7 @@ public interface ServiceIterator
      * in the list (if the list is not empty).</DL>
      *
      */
-    public void toEnd();
+    void toEnd();
 
     /**
      * Reports the next <code>Service</code> object in the list.  This
@@ -55,7 +55,7 @@ public interface ServiceIterator
      * @return The Service object at the next position in the list.
      * @throws java.util.NoSuchElementException - If the iteration has no next Service.
      */
-    public Service nextService();
+    Service nextService();
 
     /**
      * Reports the previous <code>Service</code> object in the list.
@@ -65,7 +65,7 @@ public interface ServiceIterator
      * @return The Service object at the previous position in the list.
      * @throws java.util.NoSuchElementException - If the iteration has no previous Service.
      */
-    public Service previousService();
+    Service previousService();
 
     /**
      * Tests if there is a <code>Service</code> in the next position in
@@ -73,7 +73,7 @@ public interface ServiceIterator
      *
      * @return true if there is a Service in the next position in the list; false otherwise.
      */
-    public boolean hasNext();
+    boolean hasNext();
 
     /**
      * Tests if there is a <code>Service</code> in the previous
@@ -81,6 +81,6 @@ public interface ServiceIterator
      *
      * @return true if there is a Service in the previous position in the list; false otherwise.
      */
-    public boolean hasPrevious();
+    boolean hasPrevious();
 
 }

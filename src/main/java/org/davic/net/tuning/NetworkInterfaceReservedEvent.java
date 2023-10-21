@@ -26,6 +26,7 @@ public class NetworkInterfaceReservedEvent extends org.davic.resources.ResourceS
         super(ni);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

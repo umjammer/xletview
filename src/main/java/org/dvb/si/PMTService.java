@@ -16,15 +16,15 @@ package org.dvb.si;
 
 public interface PMTService extends SIInformation {
 
-    public org.davic.net.dvb.DvbLocator getDvbLocator();
+    org.davic.net.dvb.DvbLocator getDvbLocator();
 
-    public int getOriginalNetworkID();
+    int getOriginalNetworkID();
 
-    public int getTransportStreamID();
+    int getTransportStreamID();
 
-    public int getServiceID();
+    int getServiceID();
 
-    public int getPcrPid();
+    int getPcrPid();
 
-    public SIRequest retrievePMTElementaryStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] somePMTDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrievePMTElementaryStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] somePMTDescriptorTags) throws SIIllegalArgumentException;
 }

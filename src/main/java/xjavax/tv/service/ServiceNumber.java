@@ -36,6 +36,6 @@ public interface ServiceNumber
      *
      * @return The number of the service.
      */
-    public int getServiceNumber();
+    int getServiceNumber();
 
 }

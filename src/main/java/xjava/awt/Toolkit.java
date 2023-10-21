@@ -144,7 +144,7 @@ public class Toolkit {
     }
 
     /**
-     * @see java.awt.Toolkit#gcreateImage(ImageProducer producer)
+     * @see java.awt.Toolkit#createImage(ImageProducer producer)
      */
     public Image createImage(ImageProducer producer) {
         return realToolkit.createImage(producer);

@@ -19,6 +19,7 @@ public class HEmulatedGraphicsConfiguration extends HGraphicsConfiguration{
     protected HEmulatedGraphicsConfiguration(){
     }
 
+    @Override
     public HGraphicsConfigTemplate getConfigTemplate(){
         return (null);
     }

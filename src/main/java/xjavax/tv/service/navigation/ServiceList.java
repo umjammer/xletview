@@ -44,9 +44,9 @@ public interface ServiceList
      * order by service name.
      *
      * @return A ServiceList sorted by service name.
-     * @see Service.getName()
+     * @see Service#getName()
      */
-    public ServiceList sortByName();
+    ServiceList sortByName();
 
     /**
      * Generates a new <code>ServiceList</code> containing the
@@ -57,7 +57,7 @@ public interface ServiceList
      * @throws SortNotAvailableException - If any of the Service objects in this ServiceList do not implement the ServiceNumber interface.
      * @see ServiceNumber
      */
-    public ServiceList sortByNumber() throws SortNotAvailableException;
+    ServiceList sortByNumber() throws SortNotAvailableException;
 
     /**
      * Reports the <code>Service</code> corresponding to the specified
@@ -67,7 +67,7 @@ public interface ServiceList
      * @return The Service corresponding to locator, or null if the Service is not a member of this list.
      * @throws InvalidLocatorException - If locator does not reference a valid Service.
      */
-    public Service findService( Locator locator) throws InvalidLocatorException;
+    Service findService(Locator locator) throws InvalidLocatorException;
 
     /**
      * Creates a new <code>ServiceList</code> object that is a subset of
@@ -85,9 +85,9 @@ public interface ServiceList
      *
      * @param filter - A filter constraining the requested service list, or null.
      * @return A ServiceList object created based on the specified filtering rules.
-     * @see ServiceFilter.accept(javax.tv.service.Service)
+     * @see ServiceFilter#accept(xjavax.tv.service.Service)
      */
-    public ServiceList filterServices( ServiceFilter filter);
+    ServiceList filterServices(ServiceFilter filter);
 
     /**
      * Generates an iterator on the <code>Service</code> elements
@@ -95,7 +95,7 @@ public interface ServiceList
      *
      * @return A ServiceIterator on the Service s in this list.
      */
-    public ServiceIterator createServiceIterator();
+    ServiceIterator createServiceIterator();
 
     /**
      * Tests if the indicated <code>Service</code> object is contained
@@ -104,7 +104,7 @@ public interface ServiceList
      * @param service - The Service object for which to search.
      * @return true if the specified Service is member of the list; false otherwise.
      */
-    public boolean contains( Service service);
+    boolean contains(Service service);
 
     /**
      * Reports the position of the first occurrence of the
@@ -113,14 +113,14 @@ public interface ServiceList
      * @param service - The Service object for which to search.
      * @return The index of the first occurrence of the service, or -1 if service is not contained in the list.
      */
-    public int indexOf( Service service);
+    int indexOf(Service service);
 
     /**
      * Reports the number of <code>Service</code> objects in the list.
      *
      * @return The number of Service objects in the list.
      */
-    public int size();
+    int size();
 
     /**
      * Reports the <code>Service</code> at the specified index position.
@@ -129,7 +129,7 @@ public interface ServiceList
      * @return The Service at the specified index.
      * @throws java.lang.IndexOutOfBoundsException - If index index > size()-1.
      */
-    public Service getService(int index);
+    Service getService(int index);
 
     /**
      * Compares the specified object with this <code>ServiceList</code>
@@ -143,9 +143,9 @@ public interface ServiceList
      *
      * @param o - The object to be compared for equality with this list.
      * @return true if the specified object is equal to this list; false otherwise.
-     * @see equals in class java.lang.Object
+     * @see #equals in class java.lang.Object
      */
-    public boolean equals(java.lang.Object o);
+    boolean equals(java.lang.Object o);
 
     /**
      * Provides the hash code value for this <code>ServiceList</code>.
@@ -153,8 +153,8 @@ public interface ServiceList
      * the same hash code.
      *
      * @return The hash code value of this ServiceList.
-     * @see hashCode in class java.lang.Object
+     * @see #hashCode in class java.lang.Object
      */
-    public int hashCode();
+    int hashCode();
 
 }

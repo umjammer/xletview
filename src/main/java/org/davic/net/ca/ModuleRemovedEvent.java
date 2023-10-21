@@ -33,6 +33,7 @@ public class ModuleRemovedEvent extends CAEvent {
         return slotNumber;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

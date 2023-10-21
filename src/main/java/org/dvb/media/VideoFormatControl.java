@@ -16,73 +16,73 @@ package org.dvb.media;
 
 public interface VideoFormatControl extends javax.media.Control{
 
-    public static final int ASPECT_RATIO_UNKNOWN = -1;
+    int ASPECT_RATIO_UNKNOWN = -1;
 
-    public static final int ASPECT_RATIO_4_3 = 2;
+    int ASPECT_RATIO_4_3 = 2;
 
-    public static final int ASPECT_RATIO_16_9 = 3;
+    int ASPECT_RATIO_16_9 = 3;
 
-    public static final int ASPECT_RATIO_2_21_1 = 4;
+    int ASPECT_RATIO_2_21_1 = 4;
 
-    public static final int AFD_NOT_PRESENT = -1;
+    int AFD_NOT_PRESENT = -1;
 
-    public static final int AFD_16_9_TOP = 2;
+    int AFD_16_9_TOP = 2;
 
-    public static final int AFD_14_9_TOP = 3;
+    int AFD_14_9_TOP = 3;
 
-    public static final int AFD_GT_16_9 = 4;
+    int AFD_GT_16_9 = 4;
 
-    public static final int AFD_SAME = 8;
+    int AFD_SAME = 8;
 
-    public static final int AFD_4_3 = 9;
+    int AFD_4_3 = 9;
 
-    public static final int AFD_16_9 = 10;
+    int AFD_16_9 = 10;
 
-    public static final int AFD_14_9 = 11;
+    int AFD_14_9 = 11;
 
-    public static final int AFD_4_3_SP_14_9 = 13;
+    int AFD_4_3_SP_14_9 = 13;
 
-    public static final int AFD_16_9_SP_14_9 = 14;
+    int AFD_16_9_SP_14_9 = 14;
 
-    public static final int AFD_16_9_SP_4_3 = 15;
+    int AFD_16_9_SP_4_3 = 15;
 
-    public static final int DFC_PROCESSING_UNKNOWN = -1;
+    int DFC_PROCESSING_UNKNOWN = -1;
 
-    public static final int DFC_PROCESSING_NONE = 0;
+    int DFC_PROCESSING_NONE = 0;
 
-    public static final int DFC_PROCESSING_FULL = 1;
+    int DFC_PROCESSING_FULL = 1;
 
-    public static final int DFC_PROCESSING_LB_16_9 = 2;
+    int DFC_PROCESSING_LB_16_9 = 2;
 
-    public static final int DFC_PROCESSING_LB_14_9 = 3;
+    int DFC_PROCESSING_LB_14_9 = 3;
 
-    public static final int DFC_PROCESSING_CCO = 4;
+    int DFC_PROCESSING_CCO = 4;
 
-    public static final int DFC_PROCESSING_PAN_SCAN = 5;
+    int DFC_PROCESSING_PAN_SCAN = 5;
 
-    public static final int DFC_PROCESSING_LB_2_21_1_ON_4_3 = 6;
+    int DFC_PROCESSING_LB_2_21_1_ON_4_3 = 6;
 
-    public static final int DFC_PROCESSING_LB_2_21_1_ON_16_9 = 7;
+    int DFC_PROCESSING_LB_2_21_1_ON_16_9 = 7;
 
-    public static final int DFC_PLATFORM = 8;
+    int DFC_PLATFORM = 8;
 
-    public static final int DAR_4_3 = 1;
+    int DAR_4_3 = 1;
 
-    public static final int DAR_16_9 = 2;
+    int DAR_16_9 = 2;
 
-    public int getAspectRatio();
+    int getAspectRatio();
 
-    public int getActiveFormatDefinition();
+    int getActiveFormatDefinition();
 
-    public int getDecoderFormatConversion();
+    int getDecoderFormatConversion();
 
-    public VideoTransformation getVideoTransformation(int dfc);
+    VideoTransformation getVideoTransformation(int dfc);
 
-    public int getDisplayAspectRatio();
+    int getDisplayAspectRatio();
 
-    public boolean isPlatform();
+    boolean isPlatform();
 
-    public void addVideoFormatListener(VideoFormatListener l);
+    void addVideoFormatListener(VideoFormatListener l);
 
-    public void removeVideoFormatListener(VideoFormatListener l);
+    void removeVideoFormatListener(VideoFormatListener l);
 }

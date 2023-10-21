@@ -81,6 +81,7 @@ public class ScreenContainer extends Container {
         return THE_INSTANCE;
     }
 
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(720, 576);
     }
@@ -105,9 +106,9 @@ public class ScreenContainer extends Container {
             layers[ScreenContainer.GRAPHICS_LAYER] = new XContainer();
             layers[ScreenContainer.EMULATOR_LAYER] = new XContainer();
 
-            for (int i = 0; i < layers.length; i++) {
-                layers[i].setBounds(screenX, screenY, SCREEN_WIDTH, SCREEN_HEIGHT);
-                add(layers[i]);
+            for (XContainer layer : layers) {
+                layer.setBounds(screenX, screenY, SCREEN_WIDTH, SCREEN_HEIGHT);
+                add(layer);
             }
 
             // progress bar
@@ -174,10 +175,12 @@ public class ScreenContainer extends Container {
         progressBar.update(procent);
     }
 
+    @Override
     public void update(Graphics g){
         paint(g);
     }
 
+    @Override
     public void paint(Graphics g) {
 //        for (int i = layers.length - 1; i > -1; i--) {
 //            layers[i].paint(g);

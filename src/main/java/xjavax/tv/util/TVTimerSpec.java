@@ -57,8 +57,8 @@ import java.util.List;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class TVTimerSpec extends java.lang.Object {
-    //following variables are implicitely defined by getter- or
+public class TVTimerSpec {
+    //following variables are implicitly defined by getter- or
     // setter-methods:
     private boolean absolute;
     private boolean repeat;
@@ -226,8 +226,8 @@ public class TVTimerSpec extends java.lang.Object {
      */
     public void notifyListeners(TVTimer source) {
         TVTimerWentOffEvent event = new TVTimerWentOffEvent(source, this);
-        for(int i = 0; i < listeners.size(); i++){
-            ((TVTimerWentOffListener)listeners.get(i)).timerWentOff(event);
+        for (TVTimerWentOffListener listener : listeners) {
+            listener.timerWentOff(event);
         }
     }
 

@@ -43,7 +43,7 @@ public interface ContentRatingAdvisory
      * @return An array of strings representing all rated dimensions in this rating region for the ProgramEvent.
      * @see RatingDimension
      */
-    public java.lang.String[] getDimensionNames();
+    java.lang.String[] getDimensionNames();
 
     /**
      * Returns a number representing the rating level in the specified
@@ -53,9 +53,9 @@ public interface ContentRatingAdvisory
      * @param dimensionName - The name of the RatingDimension for which to obtain the rating level.
      * @return A number representing the rating level. The meaning is dependent on the associated rating dimension.
      * @throws SIException - If dimensionName is not a valid name of a RatingDimension for the ProgramEvent.
-     * @see RatingDimension.getDimensionName()
+     * @see RatingDimension#getDimensionName()
      */
-    public short getRatingLevel(java.lang.String dimensionName) throws SIException;
+    short getRatingLevel(java.lang.String dimensionName) throws SIException;
 
     /**
      * Returns the rating level display string for the specified
@@ -68,9 +68,9 @@ public interface ContentRatingAdvisory
      * @param dimensionName - The name of the RatingDimension for which to obtain the rating level text.
      * @return A string representing the textual value of this rating level.
      * @throws SIException - If dimensionName is not a valid RatingDimension name for the ProgramEvent.
-     * @see RatingDimension.getDimensionName(), RatingDimension.getRatingLevelDescription(short)
+     * @see RatingDimension#getDimensionName(), RatingDimension.getRatingLevelDescription(short)
      */
-    public java.lang.String getRatingLevelText(java.lang.String dimensionName) throws SIException;
+    java.lang.String getRatingLevelText(java.lang.String dimensionName) throws SIException;
 
     /**
      * Provides a single string representing textual rating values for all
@@ -83,9 +83,9 @@ public interface ContentRatingAdvisory
      * <code>getDimensionNames()</code>.
      *
      * @return A string representing the rating level values for all dimensions in which this program event is rated.  The format of the string may be implementation-specific.
-     * @see getDimensionNames(), RatingDimension.getRatingLevelDescription(short)
+     * @see #getDimensionNames(), RatingDimension.getRatingLevelDescription(short)
      */
-    public java.lang.String getDisplayText();
+    java.lang.String getDisplayText();
 
     /**
      * Compares the current rating value with the system rating
@@ -94,6 +94,6 @@ public interface ContentRatingAdvisory
      *
      * @return true if the rating exceeds the current system rating ceiling; false otherwise.
      */
-    public boolean exceeds();
+    boolean exceeds();
 
 }

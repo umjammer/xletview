@@ -58,9 +58,9 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
     }
 
     private void addUrls(URL[] urls){
-        for (int i = 0; i < urls.length; i++) {
+        for (URL url : urls) {
             try {
-                String path = urls[i].getPath();
+                String path = url.getPath();
                 path = path.substring(1);
                 pool.appendClassPath(path);
                 log.fine("DVBClassLoader, added " + path + " to the pool");
@@ -78,6 +78,7 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         return new DVBClassLoaderImpl(urls, parent);
     }
 
+    @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         name = name.replaceAll("/", ".");
 
@@ -131,10 +132,11 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
     }
 
     private Class<?> getLoadedClass(String name) {
-        return (Class<?>) loaded.get(name);
+        return loaded.get(name);
     }
 
 
+    @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         try {
             CtClass cc = pool.get(name);
@@ -148,13 +150,7 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
 
             return super.defineClass(name, b, 0, b.length);
         }
-        catch (NotFoundException e) {
-            throw new ClassNotFoundException();
-        }
-        catch (IOException e) {
-            throw new ClassNotFoundException();
-        }
-        catch (CannotCompileException e) {
+        catch (NotFoundException | CannotCompileException | IOException e) {
             throw new ClassNotFoundException();
         }
     }

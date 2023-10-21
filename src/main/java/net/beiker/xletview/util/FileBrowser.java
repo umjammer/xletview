@@ -68,13 +68,13 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         top.setLayout(new GridLayout(2, 1));
         roots = File.listRoots();
         List<String> rootPaths = new ArrayList<>();
-        for(int i = 0; i < roots.length; i++){
-            if(roots[i].isDirectory()){
-                log.fine(roots[i].getPath());
-                rootPaths.add(roots[i].getPath());
+        for (File root : roots) {
+            if (root.isDirectory()) {
+                log.fine(root.getPath());
+                rootPaths.add(root.getPath());
             }
         }
-        combo = new JComboBox<>(rootPaths.toArray(new String[rootPaths.size()]));
+        combo = new JComboBox<>(rootPaths.toArray(String[]::new));
         combo.setActionCommand("changeDrive");
         combo.addActionListener(this);
         top.add(combo);
@@ -105,10 +105,10 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
             try {
                 files = getFiles(currentFolder);
             } catch (Exception e) {
-                for(int i = 0; i < roots.length; i++){
+                for (File root : roots) {
                     try {
-                        files = getFiles(roots[i]);
-                        currentFolder = roots[i];
+                        files = getFiles(root);
+                        currentFolder = root;
                         break;
                     } catch (Exception e2) {
                         //Debug.severe(e2);
@@ -160,25 +160,25 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         if(parentFolder != null){
             dir.add(parentFolder);
         }
-        for(int i = 0; i < filesInFolder.length; i++){
-            if(filesInFolder[i].isDirectory() && !filesInFolder[i].isHidden()){
-                dir.add(filesInFolder[i]);
-            }
-            else{
-                file.add(filesInFolder[i]);
+        for (File file1 : filesInFolder) {
+            if (file1.isDirectory() && !file1.isHidden()) {
+                dir.add(file1);
+            } else {
+                file.add(file1);
             }
         }
         File[] totFiles = new File[dir.size() + file.size()];
         int i=0;
-        for (int j = 0; j < dir.size(); j++){
-            totFiles[i++] = (File)dir.get(j);
+        for (File element : dir) {
+            totFiles[i++] = element;
         }
-        for (int j = 0; j <  file.size(); j++){
-            totFiles[i++] = (File) file.get(j);
+        for (File item : file) {
+            totFiles[i++] = item;
         }
         return totFiles;
     }
 
+    @Override
     public void actionPerformed(ActionEvent e){
         String command = e.getActionCommand();
         if(command.equals("changeDrive")){
@@ -189,8 +189,11 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
 
     }
 
+    @Override
     public void mousePressed(MouseEvent e){}
+    @Override
     public void mouseReleased(MouseEvent e){}
+    @Override
     public void mouseClicked(MouseEvent e){
         int selIndex = fileList.getSelectedIndex();
         if(selIndex != -1){
@@ -205,7 +208,9 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         }
 
     }
+    @Override
     public void mouseEntered(MouseEvent e){}
+    @Override
     public void mouseExited(MouseEvent e){}
 
     public String getValue(){
@@ -216,6 +221,7 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         this.filter = filter;
     }
 
+    @Override
     public boolean isOk(){
         return true;
     }

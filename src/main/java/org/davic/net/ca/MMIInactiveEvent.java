@@ -26,6 +26,7 @@ public class MMIInactiveEvent extends CAEvent {
         super(caModule);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

@@ -16,11 +16,11 @@ package org.havi.ui;
 
 public interface HAdjustmentInputPreferred extends HOrientable{
 
-    public boolean getAdjustMode();
+    boolean getAdjustMode();
 
-    public void setAdjustMode(boolean adjust);
+    void setAdjustMode(boolean adjust);
 
-    public void processHAdjustmentEvent(org.havi.ui.event.HAdjustmentEvent evt);
+    void processHAdjustmentEvent(org.havi.ui.event.HAdjustmentEvent evt);
 }
 
 

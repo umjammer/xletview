@@ -51,10 +51,12 @@ public class ImagePlayerVisualComponent extends XContainer {
         log.fine("destroy");
     }
 
+    @Override
     public void update(Graphics g){
         paint(g);
     }
 
+    @Override
     public void paint(Graphics g) {
         //Debug.write(this, "paint, width height = " + getWidth() + "," + getHeight());
         //Debug.write(this, "paint, icon = " + icon);

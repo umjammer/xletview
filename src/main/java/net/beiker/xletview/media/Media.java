@@ -50,7 +50,7 @@ public class Media {
     }
 
     /**
-     * @param inputStream
+     * @param url
      */
     public Media(URL url) {
 
@@ -59,7 +59,7 @@ public class Media {
     }
 
     /**
-     * @param connection
+     * @param url
      * @return
      */
     private int resolveType(URL url) {
@@ -71,10 +71,10 @@ public class Media {
             e.printStackTrace();
         }
 
-        if (type.substring(0, 5).equals("image")){
+        if (type.startsWith("image")){
             return TYPE_IMAGE;
         }
-        else if (type.substring(0, 5).equals("video")){
+        else if (type.startsWith("video")){
             return TYPE_VIDEO;
         }
         else {
@@ -90,13 +90,13 @@ public class Media {
     private int resolveType(String path){
         String s = path.toLowerCase();
 //        if (s.indexOf(filters[i]) == s.length() - filters[i].length()) {
-        for(int i = 0; i < this.validImageTypes.length; i++){
-            if (s.indexOf(this.validImageTypes[i]) == s.length() - this.validImageTypes[i].length()) {
+        for (String validImageType : this.validImageTypes) {
+            if (s.indexOf(validImageType) == s.length() - validImageType.length()) {
                 return TYPE_IMAGE;
             }
         }
-        for(int i = 0; i < this.validVideoTypes.length; i++){
-            if (s.indexOf(this.validVideoTypes[i]) == s.length() - this.validVideoTypes[i].length()) {
+        for (String validVideoType : this.validVideoTypes) {
+            if (s.indexOf(validVideoType) == s.length() - validVideoType.length()) {
                 return TYPE_VIDEO;
             }
         }

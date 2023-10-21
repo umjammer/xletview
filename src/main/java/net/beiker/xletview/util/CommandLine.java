@@ -30,7 +30,7 @@ public class CommandLine {
                  System.out.println("Error on command line!");
                  break;
                  }*/
-                if(arg.indexOf("-h") != -1 || arg.indexOf("-help") != -1 || arg.indexOf("-?") != -1){
+                if(arg.contains("-h") || arg.contains("-help") || arg.contains("-?")){
                     String help = "Command line options:" + System.getProperty("line.separator") +
                     "-h, -?, -help" + System.getProperty("line.separator") +
                     "Shows this message" + System.getProperty("line.separator") +
@@ -43,20 +43,20 @@ public class CommandLine {
                     System.out.println(help);
                     result = EXIT;
                 }
-                else if(arg.indexOf("-version") != -1){
+                else if(arg.contains("-version")){
                     String version = "XleTView, version" + Constants.VERSION;
                     System.out.println(version);
                     System.exit(0);
                 }
-                else if (arg.indexOf("xletPath") != -1) {
+                else if (arg.contains("xletPath")) {
                     xPath = args[++i].trim();
                 }
-                else if (arg.indexOf("xletExtraPath") != -1) {
+                else if (arg.contains("xletExtraPath")) {
                     String xExPath = args[++i].trim();
                     CommandLine.xExtraPaths.add(xExPath);
                     logger.fine("Added extra path '"+xExPath+"'.");
                 }
-                else if (arg.indexOf("xletClass") != -1) {
+                else if (arg.contains("xletClass")) {
                     xName = args[++i].trim();
                 }
 

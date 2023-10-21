@@ -17,33 +17,33 @@ package org.dvb.application;
 
 public interface AppAttributes{
 
-    public static final int DVB_J_application = 1;
+    int DVB_J_application = 1;
 
-    public static final int DVB_HTML_application = 2;
+    int DVB_HTML_application = 2;
 
-    public int getType();
+    int getType();
 
-    public String getName();
+    String getName();
 
-    public String getName(String iso639code) throws LanguageNotAvailableException;
+    String getName(String iso639code) throws LanguageNotAvailableException;
 
-    public String[][] getNames () ;
+    String[][] getNames() ;
 
-    public String[] getProfiles();
+    String[] getProfiles();
 
-    public int[] getVersions(String profile) throws IllegalProfileParameterException ;
+    int[] getVersions(String profile) throws IllegalProfileParameterException ;
 
-    public boolean getIsServiceBound () ;
+    boolean getIsServiceBound() ;
 
-    public boolean isStartable () ;
+    boolean isStartable() ;
 
-    public AppID getIdentifier () ;
+    AppID getIdentifier() ;
 
-    public AppIcon getAppIcon () ;
+    AppIcon getAppIcon() ;
 
-    public int getPriority();
+    int getPriority();
 
-    public org.davic.net.Locator getServiceLocator();
+    org.davic.net.Locator getServiceLocator();
 
-    public Object getProperty (String index) ;
+    Object getProperty(String index) ;
 }

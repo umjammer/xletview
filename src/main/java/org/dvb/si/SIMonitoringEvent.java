@@ -47,6 +47,7 @@ public class SIMonitoringEvent extends java.util.EventObject {
         this.endTime = endTime;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

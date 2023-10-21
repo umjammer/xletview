@@ -68,6 +68,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         super(owner, "Application's root", true);
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 //System.exit(0);
                 doClose();
@@ -79,8 +80,8 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Computer");
 
-        for (int i = 0; i < roots.length; i++) {
-            BeikerTreeNode node = new BeikerTreeNode(new UserObjectImpl(roots[i]));
+        for (File file : roots) {
+            BeikerTreeNode node = new BeikerTreeNode(new UserObjectImpl(file));
             root.add(node);
         }
 
@@ -142,15 +143,14 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         int nextSearchRow = 0;
         TreePath tp = null;
         TreePath tmp = null;
-        for (int i = 0; i < path.length; i++) {
-            tp = tree.getNextMatch(path[i], nextSearchRow, Position.Bias.Forward);
+        for (String s : path) {
+            tp = tree.getNextMatch(s, nextSearchRow, Position.Bias.Forward);
             if (tp != null) {
                 tree.expandPath(tp);
                 log.fine("match");
                 nextSearchRow = tree.getRowForPath(tp);
                 tmp = tp;
-            }
-            else {
+            } else {
                 break;
             }
         }
@@ -170,52 +170,53 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         return result;
     }
 
+    @Override
     public void valueChanged(TreeSelectionEvent event) {
         pathChanged(event.getPath());
     }
 
     public void pathChanged(TreePath path) {
         log.fine(path.toString());
-        String filePath = "";
+        StringBuilder filePath = new StringBuilder();
         for (int i = 1; i < path.getPathCount(); i++) {
             String s = path.getPathComponent(i).toString();
             int indexOfSeparator = s.indexOf(File.separator);
             if (indexOfSeparator > -1 && indexOfSeparator == s.length() - 1) {
                 s = s.substring(0, s.length() - 1);
             }
-            filePath += s + File.separator;
+            filePath.append(s).append(File.separator);
         }
-        chosenPath = filePath;
-        pathLabel.setText(filePath);
+        chosenPath = filePath.toString();
+        pathLabel.setText(filePath.toString());
     }
 
+    @Override
     public void treeExpanded(TreeExpansionEvent event) {
         //Debug.write(this, "expanded");
         TreePath treePath = event.getPath();
         Object lastInPath = treePath.getLastPathComponent();
-        if (lastInPath instanceof BeikerTreeNode) {
-            final BeikerTreeNode treeNode = (BeikerTreeNode) lastInPath;
+        if (lastInPath instanceof BeikerTreeNode treeNode) {
             //Debug.write(this, treeNode.getUserObject().toString());
 
             //treeNode.expand();
 
-            SwingUtilities.invokeLater(new Runnable() {
-                public void run() {
-                    Cursor cursor = new Cursor(Cursor.WAIT_CURSOR);
-                    tree.setCursor(cursor);
-                    treeNode.expand();
-                    model.reload(treeNode);
-                    tree.setCursor(Cursor.getDefaultCursor());
-                }
+            SwingUtilities.invokeLater(() -> {
+                Cursor cursor = new Cursor(Cursor.WAIT_CURSOR);
+                tree.setCursor(cursor);
+                treeNode.expand();
+                model.reload(treeNode);
+                tree.setCursor(Cursor.getDefaultCursor());
             });
 
         }
     }
 
+    @Override
     public void treeCollapsed(TreeExpansionEvent event) {
 
     }
 
+    @Override
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();
         if (command.equals("cancel")) {

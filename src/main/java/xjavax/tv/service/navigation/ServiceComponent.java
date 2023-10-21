@@ -36,7 +36,7 @@ public interface ServiceComponent extends SIElement
      *
      * @return A string representing the component name or an empty string if no name can be associated with this component.
      */
-    public java.lang.String getName();
+    java.lang.String getName();
 
     /**
      * Identifies the language used for the elementary stream. The
@@ -46,7 +46,7 @@ public interface ServiceComponent extends SIElement
      *
      * @return A string representing a language code defining the language associated with this component.  An empty string is returned when there is no language associated with this component.
      */
-    public java.lang.String getAssociatedLanguage();
+    java.lang.String getAssociatedLanguage();
 
     /**
      * Provides the stream type of this component. (For example, "video",
@@ -54,7 +54,7 @@ public interface ServiceComponent extends SIElement
      *
      * @return Stream type of this component.
      */
-    public StreamType getStreamType();
+    StreamType getStreamType();
 
     /**
      * Provides the <code>Service</code> object to which this
@@ -63,6 +63,6 @@ public interface ServiceComponent extends SIElement
      *
      * @return The Service to which this ServiceComponent belongs.
      */
-    public Service getService();
+    Service getService();
 
 }

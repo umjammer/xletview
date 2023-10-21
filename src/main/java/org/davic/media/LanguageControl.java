@@ -16,12 +16,12 @@ package org.davic.media;
 
 public interface LanguageControl extends javax.media.Control{
 
-    public String[] listAvailableLanguages();
+    String[] listAvailableLanguages();
 
-    public void selectLanguage(String lang) throws LanguageNotAvailableException, org.davic.media.NotAuthorizedException;
+    void selectLanguage(String lang) throws LanguageNotAvailableException, org.davic.media.NotAuthorizedException;
 
-    public String getCurrentLanguage();
+    String getCurrentLanguage();
 
-    public String selectDefaultLanguage() throws org.davic.media.NotAuthorizedException;
+    String selectDefaultLanguage() throws org.davic.media.NotAuthorizedException;
 }
 

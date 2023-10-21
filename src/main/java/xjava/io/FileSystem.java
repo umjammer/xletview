@@ -30,7 +30,7 @@ public class FileSystem {
     private static EmulatorFile mpDsmcc;
 
     /*
-     * The the current MountPoint
+     * The current MountPoint
      */
     private static EmulatorFile currentMountPoint;
     private static EmulatorFile previousMountPoint;
@@ -108,7 +108,6 @@ public class FileSystem {
 
     /**
      * Returns the path which is the added path from mount point + parent + child
-     * @param mp
      * @param parent
      * @param child
      * @return
@@ -231,18 +230,14 @@ public class FileSystem {
     static String getCanonicalPath(java.io.File file) throws IOException{
         String result = "";
         java.io.File f = getFile(file);
-        if(f != null){
-            result = f.getCanonicalPath();
-        }
+        result = f.getCanonicalPath();
         return result;
     }
 
     static java.io.File getCanonicalFile(java.io.File file) throws IOException{
         java.io.File result = null;
         java.io.File f = getFile(file);
-        if(f != null){
-            result = f.getCanonicalFile();
-        }
+        result = f.getCanonicalFile();
         return result;
     }
 

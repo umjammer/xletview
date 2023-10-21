@@ -26,6 +26,7 @@ public abstract class DescramblerEvent extends java.util.EventObject {
         super(o);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

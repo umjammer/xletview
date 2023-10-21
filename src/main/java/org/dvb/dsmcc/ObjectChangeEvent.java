@@ -33,6 +33,7 @@ public class ObjectChangeEvent extends java.util.EventObject {
         return versionNumber;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

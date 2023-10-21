@@ -65,7 +65,7 @@ public interface MediaSelectControl extends javax.media.Control
      * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
      * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(component) permission.
      */
-    public void select( Locator component) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
+    void select(Locator component) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
     /**
      * Selects one or more service components for presentation.  If
@@ -83,7 +83,7 @@ public interface MediaSelectControl extends javax.media.Control
      * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
      * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(components[i]) permission for any valid i.
      */
-    public void select( Locator[] components) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
+    void select(Locator[] components) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
     /**
      * Adds a service component (for example, subtitles) to the
@@ -100,7 +100,7 @@ public interface MediaSelectControl extends javax.media.Control
      * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
      * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(component) permission.
      */
-    public void add( Locator component) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
+    void add(Locator component) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
     /**
      * Removes a service component from the presentation. This is an
@@ -113,7 +113,7 @@ public interface MediaSelectControl extends javax.media.Control
      * @throws InvalidServiceComponentException - If removal of the specified service component would require resynchronization of the Player, or if another service component in the current presentation must be presented in conjunction with component.
      * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(component) permission.
      */
-    public void remove( Locator component) throws InvalidLocatorException, InvalidServiceComponentException, java.lang.SecurityException;
+    void remove(Locator component) throws InvalidLocatorException, InvalidServiceComponentException, java.lang.SecurityException;
 
     /**
      * Replaces a service component in the presentation. This is an
@@ -128,7 +128,7 @@ public interface MediaSelectControl extends javax.media.Control
      * @throws InsufficientResourcesException - If the operation cannot be completed due to a lack of system resources.
      * @throws java.lang.SecurityException - If the caller does not have MediaSelectPermission(fromComponent) and MediaSelectPermission(toComponent) permission.
      */
-    public void replace( Locator fromComponent, Locator toComponent) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
+    void replace(Locator fromComponent, Locator toComponent) throws InvalidLocatorException, InvalidServiceComponentException, InsufficientResourcesException, java.lang.SecurityException;
 
     /**
      * Subscribes the specified <code>MediaSelectListener</code> to
@@ -136,7 +136,7 @@ public interface MediaSelectControl extends javax.media.Control
      *
      * @param listener - The MediaSelectListener to which to send events.
      */
-    public void addMediaSelectListener( MediaSelectListener listener);
+    void addMediaSelectListener(MediaSelectListener listener);
 
     /**
      * Unsubscribes the specified <code>MediaSelectListener</code> from
@@ -144,13 +144,13 @@ public interface MediaSelectControl extends javax.media.Control
      *
      * @param listener - The MediaSelectListener to unsubscribe.
      */
-    public void removeMediaSelectListener( MediaSelectListener listener);
+    void removeMediaSelectListener(MediaSelectListener listener);
 
     /**
      * Reports the components of the current selection.
      *
      * @return An array of locators representing the service components in the current selection.
      */
-    public Locator[] getCurrentSelection();
+    Locator[] getCurrentSelection();
 
 }

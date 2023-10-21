@@ -20,7 +20,7 @@ class ClassPoolFactory {
      * @param classpath The classpaths to add to the ClassPool
      * @return A new ClassPool
      */
-    public static final ClassPool getPool(String classpath){
+    public static ClassPool getPool(String classpath){
         String[] s = classpath.split(File.pathSeparator);
         return getPool(s);
     }
@@ -30,14 +30,14 @@ class ClassPoolFactory {
      * @param paths The classpaths to add to the ClassPool
      * @return A new ClassPool
      */
-    public static final ClassPool getPool(String[] paths){
+    public static ClassPool getPool(String[] paths){
         ClassPool pool = new ClassPool(null);
 
-        for (int i = 0; i < paths.length; i++) {
+        for (String path : paths) {
             try {
-                pool.insertClassPath(paths[i]);
+                pool.insertClassPath(path);
             } catch (NotFoundException e) {
-                logger.warning("The extra classpath " + paths[i] + " was not found");
+                logger.warning("The extra classpath " + path + " was not found");
 
             }
         }

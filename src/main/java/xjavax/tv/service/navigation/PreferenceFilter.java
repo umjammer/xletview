@@ -36,7 +36,7 @@ public final class PreferenceFilter extends ServiceFilter
      *
      * @param preference - A named user preference, obtained from the listPreferences() method, representing favorite Services to be included in a resulting service list.
      * @throws java.lang.IllegalArgumentException - If the specified preference is not obtainable from the listPreferences() method.
-     * @see listPreferences()
+     * @see #listPreferences()
      */
     public PreferenceFilter( FavoriteServicesName preference)
     {
@@ -70,9 +70,10 @@ public final class PreferenceFilter extends ServiceFilter
      *
      * @param service - An individual Service to be evaluated against the filtering algorithm.
      * @return true if service is part of the favorite services indicated by the filter value; false otherwise.
-     * @see accept in class ServiceFilter
+     * @see #accept in class ServiceFilter
      */
-    public boolean accept( Service service)
+    @Override
+    public boolean accept(Service service)
     {
         return false;
         //TODO implement accept

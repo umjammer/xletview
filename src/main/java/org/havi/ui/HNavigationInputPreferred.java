@@ -17,9 +17,9 @@ package org.havi.ui;
 
 public interface HNavigationInputPreferred{
 
-    public int[] getNavigationKeys();
+    int[] getNavigationKeys();
 
-    public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt);
+    void processHFocusEvent(org.havi.ui.event.HFocusEvent evt);
 
 }
 

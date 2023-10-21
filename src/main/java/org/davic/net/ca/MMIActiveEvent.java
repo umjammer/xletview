@@ -27,6 +27,7 @@ public class MMIActiveEvent extends CAEvent {
         super(caModule);
     }
 
+    @Override
     public Object getSource() {
         return null;
     }

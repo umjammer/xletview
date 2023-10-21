@@ -32,13 +32,13 @@ public interface CAIdentification
      *
      * @return An array of CA System IDs. An empty array is returned when no CA System IDs are available.
      */
-    public int[] getCASystemIDs();
+    int[] getCASystemIDs();
 
     /**
      * Provides information concerning conditional access of this object.
      *
      * @return true if this Service is not protected by a conditional access; false if one or more components is protected by conditional access.
      */
-    public boolean isFree();
+    boolean isFree();
 
 }

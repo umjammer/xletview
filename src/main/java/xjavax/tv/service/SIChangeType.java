@@ -22,8 +22,7 @@ package xjavax.tv.service;
  *
  *
  */
-public class SIChangeType extends java.lang.Object
-{
+public class SIChangeType {
     /**
      * <code>SIChangeType</code> indicating that an <code>SIElement</code>
      * has been added.</DL>
@@ -62,7 +61,7 @@ public class SIChangeType extends java.lang.Object
      * class variable name.
      *
      * @return The string name of the type.
-     * @see toString in class java.lang.Object
+     * @see #toString in class java.lang.Object
      */
     public java.lang.String toString()
     {

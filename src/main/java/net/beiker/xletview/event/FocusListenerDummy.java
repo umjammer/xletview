@@ -14,13 +14,14 @@ public class FocusListenerDummy implements FocusListener{
 
     private static final FocusListenerDummy THE_INSTANCE = new FocusListenerDummy();
 
-    public static final FocusListenerDummy getInstance(){
+    public static FocusListenerDummy getInstance(){
         return THE_INSTANCE;
     }
 
     /* (non-Javadoc)
      * @see java.awt.event.FocusListener#focusGained(java.awt.event.FocusEvent)
      */
+    @Override
     public void focusGained(FocusEvent e) {
         log.fine("focusGained-" + e);
 
@@ -29,6 +30,7 @@ public class FocusListenerDummy implements FocusListener{
     /* (non-Javadoc)
      * @see java.awt.event.FocusListener#focusLost(java.awt.event.FocusEvent)
      */
+    @Override
     public void focusLost(FocusEvent e) {
         //Debug.write(this, "focusLost-" + e);
     }

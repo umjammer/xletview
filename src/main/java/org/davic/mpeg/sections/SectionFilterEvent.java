@@ -29,6 +29,7 @@ public class SectionFilterEvent extends java.util.EventObject{
         this.appData = appData;
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

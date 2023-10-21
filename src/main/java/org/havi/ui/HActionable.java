@@ -17,14 +17,14 @@ package org.havi.ui;
 
 public interface HActionable extends HNavigable, HActionInputPreferred{
 
-    public void addHActionListener(org.havi.ui.event.HActionListener l);
+    void addHActionListener(org.havi.ui.event.HActionListener l);
 
-    public void removeHActionListener(org.havi.ui.event.HActionListener l);
+    void removeHActionListener(org.havi.ui.event.HActionListener l);
 
-    public void setActionCommand(String command);
+    void setActionCommand(String command);
 
-    public void setActionSound(HSound sound);
+    void setActionSound(HSound sound);
 
-    public HSound getActionSound();
+    HSound getActionSound();
 
 }

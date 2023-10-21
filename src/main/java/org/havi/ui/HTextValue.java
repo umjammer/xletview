@@ -16,13 +16,13 @@ package org.havi.ui;
 
 public interface HTextValue extends HNavigable, HKeyboardInputPreferred{
 
-    public void addHKeyListener(org.havi.ui.event.HKeyListener l);
+    void addHKeyListener(org.havi.ui.event.HKeyListener l);
 
-    public void removeHKeyListener(org.havi.ui.event.HKeyListener l);
+    void removeHKeyListener(org.havi.ui.event.HKeyListener l);
 
-    public void addHTextListener(org.havi.ui.event.HTextListener l);
+    void addHTextListener(org.havi.ui.event.HTextListener l);
 
-    public void removeHTextListener(org.havi.ui.event.HTextListener l);
+    void removeHTextListener(org.havi.ui.event.HTextListener l);
 
 }
 

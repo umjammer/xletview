@@ -1,21 +1,21 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin Sveden
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin Sveden
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.app;
 
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
@@ -25,11 +25,15 @@ import net.n3.nanoxml.IXMLReader;
 import net.n3.nanoxml.StdXMLReader;
 import net.n3.nanoxml.XMLParserFactory;
 
+
 /**
- * @author Martin Sveden
+ * AppManager
  *
+ * @author Martin Sveden
  */
 public class AppManager {
+
+    private static final Logger log = Logger.getLogger(AppManager.class.getName());
 
     private static AppManager THE_INSTANCE;
     private URL appURL;
@@ -51,7 +55,7 @@ public class AppManager {
     }
 
     private void parse(){
-        IXMLElement xml = null;
+        IXMLElement xml;
         try{
             IXMLParser parser = XMLParserFactory.createDefaultXMLParser();
             //FileInputStream in = new FileInputStream(new File("config/applications.xml"));
@@ -64,12 +68,10 @@ public class AppManager {
             if(xml != null){
                 resolve(xml, this.defaultGroup);
             }
-
-        }
-        catch(Exception e){
-            e.printStackTrace();
-//            Debug.write(this,"####");
-//            Debug.severe(this, "Error reading " + appFile.getPath());
+        } catch (Exception e){
+            log.log(Level.FINE, e.toString(), e);
+//Debug.println("####");
+//Debug.println("Error reading " + appFile.getPath());
         }
     }
 
@@ -77,8 +79,8 @@ public class AppManager {
 
         // get the subgroups of this group
         List<?> subGroups = element.getChildrenNamed("GROUP");
-        for(int i = 0; i < subGroups.size(); i++){
-            IXMLElement elm = (IXMLElement)subGroups.get(i);
+        for (Object subGroup : subGroups) {
+            IXMLElement elm = (IXMLElement) subGroup;
             AppGroup newGroup = new AppGroup(elm.getAttribute("NAME", null));
             group.addChild(newGroup);
             resolve(elm, newGroup);
@@ -86,10 +88,10 @@ public class AppManager {
 
         // get the applications in this group
         List<?> apps = element.getChildrenNamed("APPLICATION");
-        for(int i = 0; i < apps.size(); i++){
+        for (Object o : apps) {
 
-            App app = null;
-            IXMLElement elm = (IXMLElement) apps.get(i);
+            App app;
+            IXMLElement elm = (IXMLElement) o;
             String name = "";
             String path = "";
             String xlet = "";
@@ -101,8 +103,7 @@ public class AppManager {
                 app = new App(name, path, xlet);
                 group.addApp(app);
 //                projects.add(project);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 // we will have exceptions, the above is made that way so don't output the errors
             }
         }
@@ -122,14 +123,12 @@ public class AppManager {
         AppGroup defaultGroup = AppManager.getInstance().getDefaultGroup();
 
         for(int i = 0; i < defaultGroup.getApps().size(); i++){
-            App app = (App) defaultGroup.getApps().get(i);
+            App app = defaultGroup.getApps().get(i);
         }
         for(int i = 0; i < defaultGroup.getSubGroups().size(); i++){
-            AppGroup app = (AppGroup) defaultGroup.getSubGroups().get(i);
+            AppGroup app = defaultGroup.getSubGroups().get(i);
         }
-//        Debug.write(AppManager.class, defaultGroup.getName());
-//        Debug.write(AppManager.class, "" + defaultGroup.getSubGroups().size());
-
+//Debug.println(defaultGroup.getName());
+//Debug.println(defaultGroup.getSubGroups().size());
     }
-
 }

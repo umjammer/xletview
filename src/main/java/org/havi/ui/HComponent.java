@@ -40,10 +40,12 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
         setBounds(x, y, width, height);
     }
 
+    @Override
     public void setMatte(HMatte hmatte) throws HMatteException {
         hMatte = hmatte;
     }
 
+    @Override
     public HMatte getMatte() {
         return hMatte;
     }
@@ -54,10 +56,12 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
         drawing is not double buffered. The default value for the double buffering
         setting is platform-specific"
     */
+    @Override
     public boolean isDoubleBuffered() {
         return false;
     }
 
+    @Override
     public boolean isOpaque() {
         /*
             " By default, the return value is false. The return value should be overridden by
@@ -67,14 +71,17 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
         return false;
     }
 
+    @Override
     public void setEnabled(boolean b) {
         enabled = b;
     }
 
+    @Override
     public boolean isEnabled() {
         return enabled;
     }
 
+    @Override
     protected void processEvent(AWTEvent awtevent) {
         super.processEvent(awtevent);
     }
@@ -82,6 +89,7 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
     /**
      * @see java.awt.Component#getGraphics()
      */
+    @Override
     public Graphics getGraphics()
     {
         return DVBGraphics.getDVBGraphics(super.getGraphics());

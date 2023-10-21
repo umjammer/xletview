@@ -36,6 +36,7 @@ public class OutputServerThread extends Thread{
 
     // This runs in a separate thread when start() is called in the
     // constructor.
+    @Override
     public void run() {
 
         try {

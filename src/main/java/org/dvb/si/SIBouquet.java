@@ -16,21 +16,24 @@ package org.dvb.si;
 
 public interface SIBouquet extends SIInformation{
 
-    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
+    @Override
+    SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
 
-    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    @Override
+    SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public short[] getDescriptorTags();
+    @Override
+    short[] getDescriptorTags();
 
-    public int getBouquetID();
+    int getBouquetID();
 
-    public java.lang.String getName();
+    java.lang.String getName();
 
-    public String getShortBouquetName();
+    String getShortBouquetName();
 
-    public SIRequest retrieveSIBouquetTransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrieveSIBouquetTransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public org.davic.net.dvb.DvbLocator[] getSIServiceLocators();
+    org.davic.net.dvb.DvbLocator[] getSIServiceLocators();
 
 }
 

@@ -32,7 +32,7 @@ import javassist.NotFoundException;
 
 
 /**
- * Loads the classes used in an Xlet. Each Xlet has their own instance of this
+ * Loads the classes used in a Xlet. Each Xlet has their own instance of this
  * Classloader. This classloader also changes the bytecode of the Xlet classes
  * to get behaviours that better simulate the platform.
  *
@@ -73,8 +73,8 @@ public final class XletClassLoader extends MainClassLoader {
 
         // deprecated warning: we should consider extra class paths
         //logger.fine("XletClassLoader's URL ("+(virtualRoot.length==1?"OK: it's exactly one URL":"WARNING: should only be one URL")+"):");
-        for (int i=0; i<virtualRoot.length; i++){
-            logger.fine(virtualRoot[i].getPath());
+        for (URL url : virtualRoot) {
+            logger.fine(url.getPath());
         }
 
 
@@ -104,6 +104,7 @@ public final class XletClassLoader extends MainClassLoader {
      *
      * @see java.lang.ClassLoader#loadClass(java.lang.String)
      */
+    @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
 
         name = name.replaceAll("/", ".");
@@ -160,12 +161,13 @@ logger.finer("try to load: " + name);
      * Returns a class if previously loaded by this classloader.
      */
     private Class<?> getLoadedClass(String name) {
-        return (Class<?>) this.loadedClasses.get(name);
+        return this.loadedClasses.get(name);
     }
 
     /**
      * Finds the class and modifies the bytecode if necessary.
      */
+    @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
 
         try {
@@ -219,6 +221,7 @@ if (!this.xletClassMap.containsKey(name)) {
      *
      * @return
      */
+    @Override
     public URL getResource(String resource){
         URL ret = null;
         logger.fine("Locating RESOURCE '"+resource+"'.");
@@ -249,6 +252,7 @@ logger.fine("path: " + path);
     /* This method is called by "jassist"'s LoaderClassPath; i.e. jassist as
      * we use it calls this method.
      */
+    @Override
     public InputStream getResourceAsStream(String name) {
         InputStream ret = null;
         logger.fine("Locating RESOURCE '"+name+"'.");

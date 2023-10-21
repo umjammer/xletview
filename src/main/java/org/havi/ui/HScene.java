@@ -73,7 +73,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     }
 
     private int getComponentIndex(Component component) {
-        Component components[] = getComponents();
+        Component[] components = getComponents();
         for (int i = 0; i < components.length; i++) {
             if (components[i] == component) {
                 return i;
@@ -82,6 +82,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
         return -1;
     }
 
+    @Override
     public Component add(Component comp) {
         return super.add(comp);
     }
@@ -89,6 +90,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Brings the component to the front.
      */
+    @Override
     public boolean popToFront(Component component) {
         int i = getComponentIndex(component);
         if (i != -1) {
@@ -104,6 +106,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Puts move just in front of behind
      */
+    @Override
     public boolean popInFrontOf(Component move, Component behind) {
         if (move == behind) {
             return true;
@@ -121,6 +124,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
      * Brings the component one step more to the front.
      * It changes order with the component before.
      */
+    @Override
     public boolean pop(Component component) {
         int i = getComponentIndex(component);
         if (i != -1 && --i != -1) {
@@ -136,6 +140,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Pushes the component one step back.
      */
+    @Override
     public boolean push(Component component) {
         int i = getComponentIndex(component);
         if (i != -1 && ++i < getComponentCount()) {
@@ -151,6 +156,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Pushes the component to the back.
      */
+    @Override
     public boolean pushToBack(Component component) {
         int i = getComponentIndex(component);
         if (i != -1) {
@@ -166,6 +172,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Adds component just before front.
      */
+    @Override
     public Component addBefore(Component component, Component behind) {
         if (component == behind) {
             return component;
@@ -182,6 +189,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Adds component just behind front.
      */
+    @Override
     public Component addAfter(Component component, Component front) {
         if (component == front) {
             return component;
@@ -205,19 +213,23 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * Puts move just behind front.
      */
+    @Override
     public boolean pushBehind(Component move, Component front) {
         return popInFrontOf(front, move);
     }
 
+    @Override
     public void setVisible(boolean visible) {
         super.setVisible(visible);
     }
 
+    @Override
     public boolean isVisible() {
         return super.isVisible();
     }
 
 
+    @Override
     public void paint(java.awt.Graphics g) {
         super.paint(g);
 
@@ -281,10 +293,12 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
         return this.renderMode;
     }
 
+    @Override
     public boolean isDoubleBuffered() {
         return false;
     }
 
+    @Override
     public boolean isOpaque() {
         return false;
     }
@@ -331,6 +345,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     /**
      * @deprecated
      */
+    @Override
     public void show() {
         super.show();
     }

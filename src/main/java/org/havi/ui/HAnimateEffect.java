@@ -16,31 +16,31 @@ package org.havi.ui;
 
 public interface HAnimateEffect{
 
-    public static final int PLAY_REPEATING   = 1;
-    public static final int PLAY_ALTERNATING = 2;
-    public static final int REPEAT_INFINITE  = -1;
+    int PLAY_REPEATING   = 1;
+    int PLAY_ALTERNATING = 2;
+    int REPEAT_INFINITE  = -1;
 
-    public void start();
+    void start();
 
-    public void stop();
+    void stop();
 
-    public boolean isAnimated();
+    boolean isAnimated();
 
-    public void setPosition(int position);
+    void setPosition(int position);
 
-    public int getPosition();
+    int getPosition();
 
-    public void setRepeatCount(int count);
+    void setRepeatCount(int count);
 
-    public int getRepeatCount();
+    int getRepeatCount();
 
-    public void setDelay(int count);
+    void setDelay(int count);
 
-    public int getDelay();
+    int getDelay();
 
-    public void setPlayMode(int mode);
+    void setPlayMode(int mode);
 
-    public int getPlayMode();
+    int getPlayMode();
 }
 
 

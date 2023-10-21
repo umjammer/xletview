@@ -129,6 +129,7 @@ public class TvWindow extends JFrame implements ActionListener {
         this.pack();
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 // save properties
                 doClose();
@@ -138,21 +139,25 @@ public class TvWindow extends JFrame implements ActionListener {
         });
 
         this.addComponentListener(new ComponentAdapter(){
+            @Override
             public void componentResized(ComponentEvent e){
                 ScreenContainer.getInstance().repaint();
             }
         });
 
         addWindowFocusListener(new WindowAdapter() {
+            @Override
             public void windowLostFocus(WindowEvent we) {
                 EventManager.getInstance().setEventEnabled(false);
             }
+            @Override
             public void windowGainedFocus(WindowEvent e) {
                 EventManager.getInstance().setEventEnabled(true);
             }
         });
 
         addComponentListener(new ComponentAdapter() {
+            @Override
             public void componentResized(ComponentEvent e) {
 
             }
@@ -223,10 +228,10 @@ public class TvWindow extends JFrame implements ActionListener {
         this.setJMenuBar(menuBar);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if (e.getSource() instanceof AppMenuItem) {
-            AppMenuItem item = (AppMenuItem) e.getSource();
+        if (e.getSource() instanceof AppMenuItem item) {
             App app = item.getApp();
             XletManager.getInstance().setXlet(app.getPath(), app.getXletName());
         }

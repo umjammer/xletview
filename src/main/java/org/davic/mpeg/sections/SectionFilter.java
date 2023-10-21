@@ -25,16 +25,16 @@ public abstract class SectionFilter{
     public void startFiltering( Object appData, int pid, int table_id ) throws FilterResourceException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException, IllegalFilterDefinitionException{
     }
 
-    public void startFiltering( Object appData, int pid, int table_id, byte posFilterDef[],  byte posFilterMask[]  ) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
+    public void startFiltering(Object appData, int pid, int table_id, byte[] posFilterDef, byte[] posFilterMask) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
     }
 
-    public void startFiltering( Object appData, int pid, int table_id, int offset, byte  posFilterDef[], byte posFilterMask[] ) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
+    public void startFiltering(Object appData, int pid, int table_id, int offset, byte[] posFilterDef, byte[] posFilterMask) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
     }
 
-    public void startFiltering( Object appData, int pid, int table_id, byte posFilterDef[],  byte posFilterMask[], byte negFilterDef[], byte negFilterMask[]) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
+    public void startFiltering(Object appData, int pid, int table_id, byte[] posFilterDef, byte[] posFilterMask, byte[] negFilterDef, byte[] negFilterMask) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
     }
 
-    public void startFiltering( Object appData, int pid, int table_id, int offset, byte posFilterDef[], byte posFilterMask[], byte negFilterDef[], byte negFilterMask[]) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
+    public void startFiltering(Object appData, int pid, int table_id, int offset, byte[] posFilterDef, byte[] posFilterMask, byte[] negFilterDef, byte[] negFilterMask) throws FilterResourceException, IllegalFilterDefinitionException, org.davic.mpeg.NotAuthorizedException, ConnectionLostException{
     }
 
     public void stopFiltering(){

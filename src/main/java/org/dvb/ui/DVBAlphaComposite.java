@@ -75,11 +75,9 @@ public final class DVBAlphaComposite {
     }
 
     public boolean equals(Object obj) {
-        if (!(obj instanceof DVBAlphaComposite)) {
+        if (!(obj instanceof DVBAlphaComposite ac)) {
             return false;
         }
-
-        DVBAlphaComposite ac = (DVBAlphaComposite) obj;
 
         if (rule != ac.rule) {
             return false;
@@ -97,26 +95,17 @@ public final class DVBAlphaComposite {
     }
 
     public static DVBAlphaComposite getInstance(int rule) {
-        switch (rule) {
-        case CLEAR:
-            return Clear;
-        case SRC:
-            return Src;
-        case SRC_OVER:
-            return SrcOver;
-        case DST_OVER:
-            return DstOver;
-        case SRC_IN:
-            return SrcIn;
-        case DST_IN:
-            return DstIn;
-        case SRC_OUT:
-            return SrcOut;
-        case DST_OUT:
-            return DstOut;
-        default:
-            throw new IllegalArgumentException("unknown composite rule");
-        }
+        return switch (rule) {
+            case CLEAR -> Clear;
+            case SRC -> Src;
+            case SRC_OVER -> SrcOver;
+            case DST_OVER -> DstOver;
+            case SRC_IN -> SrcIn;
+            case DST_IN -> DstIn;
+            case SRC_OUT -> SrcOut;
+            case DST_OUT -> DstOut;
+            default -> throw new IllegalArgumentException("unknown composite rule");
+        };
     }
 
     public static DVBAlphaComposite getInstance(int rule, float alpha) {

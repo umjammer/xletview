@@ -31,6 +31,7 @@ public class HStaticRange extends HVisible implements HNoInputPreferred, HOrient
     public HStaticRange(int orientation, int minimum, int maximum, int value){
     }
 
+    @Override
     public void setLook(HLook hlook) throws HInvalidLookException{
     }
 
@@ -41,12 +42,13 @@ public class HStaticRange extends HVisible implements HNoInputPreferred, HOrient
         return (null);
     }
 
+    @Override
     public int getOrientation(){
         return(0);
     }
 
+    @Override
     public void setOrientation(int orient){
-        return;
     }
 
     public boolean setRange(int minimum, int maximum){

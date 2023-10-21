@@ -14,7 +14,7 @@
 package xjavax.tv.service.selection;
 
 /**
- * <code>ServiceMediaHandler</code> represents an handler of service
+ * <code>ServiceMediaHandler</code> represents a handler of service
  * components that are real time media sharing the same clock.  A
  * <code>ServiceMediaHandler</code> is associated with the
  * <code>Service</code> currently selected in the

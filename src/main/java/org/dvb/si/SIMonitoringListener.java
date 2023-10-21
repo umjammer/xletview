@@ -16,6 +16,6 @@ package org.dvb.si;
 
 public interface SIMonitoringListener extends java.util.EventListener {
 
-    public void postMonitoringEvent(SIMonitoringEvent anEvent);
+    void postMonitoringEvent(SIMonitoringEvent anEvent);
 
 }

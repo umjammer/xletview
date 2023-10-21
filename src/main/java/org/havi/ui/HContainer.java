@@ -65,16 +65,18 @@ public class HContainer extends Container{
         }
     }
 
+    @Override
     public boolean isDoubleBuffered(){
         return false;
     }
 
+    @Override
     public boolean isOpaque(){
         return false;
     }
 
     private int getComponentIndex(Component component){
-        Component components[] = getComponents();
+        Component[] components = getComponents();
         for(int i = 0; i < components.length; i++)
             if(components[i] == component)
                 return i;

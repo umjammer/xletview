@@ -26,6 +26,7 @@ public class ResourceStatusEvent extends java.util.EventObject{
         super(source);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

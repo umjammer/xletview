@@ -16,19 +16,22 @@ package org.dvb.si;
 
 public interface SINetwork extends SIInformation {
 
-    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
+    @Override
+    SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
 
-    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    @Override
+    SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public short[] getDescriptorTags();
+    @Override
+    short[] getDescriptorTags();
 
-    public int getNetworkID();
+    int getNetworkID();
 
-    public java.lang.String getName();
+    java.lang.String getName();
 
-    public String getShortNetworkName();
+    String getShortNetworkName();
 
-    public SIRequest retrieveSITransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrieveSITransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
 }
 

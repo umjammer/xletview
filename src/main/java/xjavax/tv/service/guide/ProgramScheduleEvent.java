@@ -13,6 +13,8 @@
 
 package xjavax.tv.service.guide;
 
+import java.util.EventObject;
+
 import xjavax.tv.service.SIChangeEvent;
 import xjavax.tv.service.SIChangeType;
 
@@ -57,7 +59,7 @@ public class ProgramScheduleEvent extends SIChangeEvent{
      * method.
      *
      * @return The ProgramSchedule that generated the event.
-     * @see EventObject.getSource()
+     * @see EventObject#getSource()
      */
     public ProgramSchedule getProgramSchedule()    {
         return (ProgramSchedule) super.getSource();
@@ -72,7 +74,7 @@ public class ProgramScheduleEvent extends SIChangeEvent{
      * <code>SIChangeEvent.getSIElement</code> method.
      *
      * @return The ProgramEvent that changed.
-     * @see SIChangeEvent.getSIElement()
+     * @see SIChangeEvent#getSIElement()
      */
     public ProgramEvent getProgramEvent()    {
         return (ProgramEvent) super.getSIElement();

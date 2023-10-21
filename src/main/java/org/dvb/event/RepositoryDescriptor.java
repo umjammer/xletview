@@ -40,6 +40,7 @@ public class RepositoryDescriptor implements ResourceProxy {
         return repositoryName;
     }
 
+    @Override
     public ResourceClient getClient() {
         return client;
     }

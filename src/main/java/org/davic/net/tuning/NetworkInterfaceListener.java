@@ -16,7 +16,7 @@ package org.davic.net.tuning;
 
 public interface NetworkInterfaceListener extends java.util.EventListener {
 
-    public abstract void receiveNIEvent(NetworkInterfaceEvent anEvent);
+    void receiveNIEvent(NetworkInterfaceEvent anEvent);
 }
 
 

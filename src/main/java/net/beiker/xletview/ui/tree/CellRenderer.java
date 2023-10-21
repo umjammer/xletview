@@ -51,6 +51,7 @@ public class CellRenderer extends JLabel implements TreeCellRenderer {
         setOpaque(false);
     }
 
+    @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         //BeikerTreeNode node = (BeikerTreeNode) value;
@@ -90,6 +91,7 @@ public class CellRenderer extends JLabel implements TreeCellRenderer {
         return this;
     }
 
+    @Override
     public void paintComponent(Graphics g) {
         Color bColor = getBackground();
         Icon icon = getIcon();

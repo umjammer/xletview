@@ -16,9 +16,9 @@ package org.davic.media;
 
 public interface FreezeControl extends javax.media.Control {
 
-    public void freeze()throws MediaFreezeException;
+    void freeze()throws MediaFreezeException;
 
-    public void resume()throws MediaFreezeException;
+    void resume()throws MediaFreezeException;
 
 }
 

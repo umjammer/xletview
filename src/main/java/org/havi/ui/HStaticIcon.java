@@ -41,6 +41,7 @@ public class HStaticIcon extends HVisible implements HNoInputPreferred{
         this.setGraphicContent(imageNormal, HVisible.NORMAL_STATE);
     }
 
+    @Override
     public void setLook(HLook hLook) throws HInvalidLookException{
         if(hLook instanceof HGraphicLook || hLook == null ){
             super.setLook(hLook);

@@ -30,6 +30,6 @@ public interface ProgramScheduleListener extends SIChangeListener
      *
      * @param event - A ProgramScheduleEvent describing what changed and how.
      */
-    public void notifyChange( ProgramScheduleEvent event);
+    void notifyChange(ProgramScheduleEvent event);
 
 }

@@ -68,11 +68,9 @@ public class Startup {
         createSplash();
 
         // do the following on the gui thread
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                showSplash();
-                Startup.this.start = System.currentTimeMillis();
-            }
+        SwingUtilities.invokeLater(() -> {
+            showSplash();
+            Startup.this.start = System.currentTimeMillis();
         });
 
 
@@ -82,9 +80,9 @@ public class Startup {
 
         this.splash.setMessage("Initializing windows...");
 
-        final TvWindow mainFrame = new TvWindow();
+        TvWindow mainFrame = new TvWindow();
 
-        if (xPath.length() > 0 && xName.length() > 0) {
+        if (!xPath.isEmpty() && !xName.isEmpty()) {
             this.splash.setMessage("Setting xlet from command line...");
 
             URL url = pathString2URL(xPath);
@@ -180,7 +178,7 @@ public class Startup {
 
 
             /*
-             * I removed the file name normalization here because I found that the Win32 version would not
+             * I removed the file name normalization here because I found that the Win32 version would no
              * longer be able to find the resources. [Enver <enver.haase@gmx.de> on 07-Jan-2004]
              * See ChannelManager's
              * "media = new Media(Util.getURL(ChannelManager.class, Settings.getProperty("file.defaultbg")));"

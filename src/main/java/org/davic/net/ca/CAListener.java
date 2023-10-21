@@ -16,6 +16,6 @@ package org.davic.net.ca;
 
 public interface CAListener  extends java.util.EventListener {
 
-    public void receiveCAEvent(CAEvent anEvent);
+    void receiveCAEvent(CAEvent anEvent);
 
 }

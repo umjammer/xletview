@@ -57,8 +57,8 @@ public class AWTVideoSize {
         this.source = source;
         this.destination = dest;
         try{
-            xScale = destination.width / source.width;
-            yScale = destination.height / source.height;
+            xScale = (float) destination.width / source.width;
+            yScale = (float) destination.height / source.height;
         }
         catch(ArithmeticException e){
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class AWTVideoSize {
      * is <code>true</code> will have identical hash code values.
      *
      * @return The hashcode value for this AWTVideoSize.
-     * @see hashCode in class java.lang.Object
+     * @see #hashCode in class java.lang.Object
      */
     public int hashCode() {
         return toString().hashCode();
@@ -128,7 +128,7 @@ public class AWTVideoSize {
      *            The object with which to test for equality.
      * @return true if the two AWTVideoSize instances are equal; false
      *         otherwise.
-     * @see equals in class java.lang.Object
+     * @see #equals in class java.lang.Object
      */
     public boolean equals(java.lang.Object other) {
         boolean result = false;
@@ -147,7 +147,7 @@ public class AWTVideoSize {
      * its values.
      *
      * @return A string representation of this object.
-     * @see toString in class java.lang.Object
+     * @see #toString in class java.lang.Object
      */
     public java.lang.String toString() {
         String theSource = "source[x=" + source.x + ", y=" + source.y + ", width=" + source.width + ", height=" + source.height + "]";

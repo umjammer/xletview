@@ -66,6 +66,7 @@ public class SplashWindow extends JWindow implements Runnable{
         repaint();
     }
 
+    @Override
     public void paint(Graphics g){
         super.paint(g);
         if(this.message != null){
@@ -73,6 +74,7 @@ public class SplashWindow extends JWindow implements Runnable{
         }
     }
 
+    @Override
     public void run() {
         try {
             Thread.sleep(this.maxWait);

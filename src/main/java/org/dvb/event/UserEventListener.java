@@ -16,5 +16,5 @@ package org.dvb.event ;
 
 public interface UserEventListener extends java.util.EventListener {
 
-    public void userEventReceived (UserEvent e) ;
+    void userEventReceived(UserEvent e) ;
 }

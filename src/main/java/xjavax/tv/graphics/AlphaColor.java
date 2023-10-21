@@ -13,6 +13,9 @@
 
 package xjavax.tv.graphics;
 
+import java.awt.Color;
+
+
 /**
  * A class that allows a very simple, interoperable form of compositing. This
  * is achieved by setting an alpha value for alpha blending on a color. Higher
@@ -70,7 +73,7 @@ public class AlphaColor extends java.awt.Color {
      * @throws java.lang.IllegalArgumentException -
      *             If any of the input parameters are outside the range [0.0 -
      *             1.0].
-     * @see Color.getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
+     * @see Color#getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
      *      getRGB()
      */
     public AlphaColor(float r, float g, float b, float a) {
@@ -92,7 +95,7 @@ public class AlphaColor extends java.awt.Color {
      * @throws java.lang.IllegalArgumentException -
      *             If any of the input parameters are outside the range [0 -
      *             255].
-     * @see Color.getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
+     * @see Color#getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
      *      getRGB()
      */
     public AlphaColor(int r, int g, int b, int a) {
@@ -110,7 +113,7 @@ public class AlphaColor extends java.awt.Color {
      *            The combined ARGB components
      * @param hasAlpha -
      *            true if the alpha bits are to be used, false otherwise.
-     * @see Color.getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
+     * @see Color#getRed(), Color.getGreen(), Color.getBlue(), getAlpha(),
      *      getRGB()
      */
     public AlphaColor(int argb, boolean hasAlpha) {
@@ -138,9 +141,10 @@ public class AlphaColor extends java.awt.Color {
      * of rounding errors.
      *
      * @return A new AlphaColor object
-     * @see brighter in class java.awt.Color
-     * @see darker()
+     * @see #brighter in class java.awt.Color
+     * @see #darker()
      */
+    @Override
     public java.awt.Color brighter() {
         return super.brighter();
     }
@@ -154,9 +158,10 @@ public class AlphaColor extends java.awt.Color {
      * of rounding errors.
      *
      * @return A new AlphaColor object
-     * @see darker in class java.awt.Color
-     * @see brighter()
+     * @see #darker in class java.awt.Color
+     * @see #brighter()
      */
+    @Override
     public java.awt.Color darker() {
         return super.darker();
     }
@@ -172,12 +177,11 @@ public class AlphaColor extends java.awt.Color {
      * @param obj -
      *            The object to test for equality with this AlphaColor
      * @return true if the objects are the same; false otherwise.
-     * @see equals in class java.awt.Color
+     * @see #equals in class java.awt.Color
      */
     public boolean equals(java.lang.Object obj) {
         boolean same = false;
-        if (obj != null && obj instanceof AlphaColor) {
-            AlphaColor alphaColor = (AlphaColor) obj;
+        if (obj != null && obj instanceof AlphaColor alphaColor) {
             if (alphaColor.getRed() == this.getRed()) {
                 if (alphaColor.getBlue() == this.getBlue()) {
                     if (alphaColor.getGreen() == this.getGreen()) {
@@ -195,7 +199,7 @@ public class AlphaColor extends java.awt.Color {
      * Computes the hash code for this color.
      *
      * @return a hash code for this object.
-     * @see hashCode in class java.awt.Color
+     * @see #hashCode in class java.awt.Color
      */
     public int hashCode() {
         return toString().hashCode();
@@ -205,9 +209,10 @@ public class AlphaColor extends java.awt.Color {
      * Reports the alpha value of this <code>AlphaColor</code> instance.
      *
      * @return The alpha value, in the range 0-255 inclusive.
-     * @see getAlpha in class java.awt.Color
-     * @see getRGB()
+     * @see #getAlpha in class java.awt.Color
+     * @see #getRGB()
      */
+    @Override
     public int getAlpha() {
         return super.getAlpha();
     }
@@ -218,10 +223,11 @@ public class AlphaColor extends java.awt.Color {
      * are blue).
      *
      * @return The RGB value as an int.
-     * @see getRGB in class java.awt.Color
-     * @see ColorModel.getRGBdefault(), Color.getRed(), Color.getGreen(),
+     * @see #getRGB in class java.awt.Color
+     * @see java.awt.image.ColorModel#getRGBdefault(), Color.getRed(), Color.getGreen(),
      *      Color.getBlue()
      */
+    @Override
     public int getRGB() {
         return super.getRGB();
     }
@@ -230,7 +236,7 @@ public class AlphaColor extends java.awt.Color {
      * Creates a string that represents this <code>AlphaColor</code>.
      *
      * @return a representation of this color as a String object.
-     * @see toString in class java.awt.Color
+     * @see #toString in class java.awt.Color
      */
     public java.lang.String toString() {
         return super.toString();

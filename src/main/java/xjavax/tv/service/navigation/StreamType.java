@@ -21,8 +21,7 @@ package xjavax.tv.service.navigation;
  *
  *
  */
-public class StreamType extends java.lang.Object
-{
+public class StreamType {
     /**
      * Video component.</DL>
      *
@@ -76,7 +75,7 @@ public class StreamType extends java.lang.Object
      * class variable name.
      *
      * @return The string name of the type.
-     * @see toString in class java.lang.Object
+     * @see #toString in class java.lang.Object
      */
     public java.lang.String toString()
     {

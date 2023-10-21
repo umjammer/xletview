@@ -17,5 +17,5 @@ package org.havi.ui.event;
 
 
 public interface HScreenLocationModifiedListener extends java.util.EventListener{
-    public abstract void report(HScreenLocationModifiedEvent gce);
+    void report(HScreenLocationModifiedEvent gce);
 }

@@ -107,9 +107,9 @@ public class XletManager implements Runnable, DownloadEventListener{
 
     public void setXlet(URL xletHome, URL[] xletExPaths, String xletClassName){
         logger.fine("Adding Xlet's extra paths...");
-        for (int i=0; i<xletExPaths.length; i++){
-            logger.fine(xletExPaths[i].toString());
-            this.xletExtraPaths.add(xletExPaths[i]);
+        for (URL xletExPath : xletExPaths) {
+            logger.fine(xletExPath.toString());
+            this.xletExtraPaths.add(xletExPath);
         }
         logger.fine("Done adding Xlet's extra paths.");
 
@@ -171,7 +171,7 @@ public class XletManager implements Runnable, DownloadEventListener{
         URL[] xletURLs = new URL[1+this.xletExtraPaths.size()];
         xletURLs[0] = this.xletHome; // Should be used FIRST
         for (int i=0; i<this.xletExtraPaths.size(); i++){
-            xletURLs[i+1] = (URL) this.xletExtraPaths.get(i);
+            xletURLs[i+1] = this.xletExtraPaths.get(i);
         }
 
         try {
@@ -219,6 +219,7 @@ public class XletManager implements Runnable, DownloadEventListener{
         return this.scene;
     }
 
+    @Override
     public void run() {
         if(this.downloadThread != null){
             try {
@@ -228,7 +229,6 @@ public class XletManager implements Runnable, DownloadEventListener{
             }
             catch (IOException e1) {
                 e1.printStackTrace();
-                return;
             }
         }
         else if(this.xletThread != null){
@@ -252,7 +252,7 @@ public class XletManager implements Runnable, DownloadEventListener{
     }
 
     public void destroyActiveXlet() {
-        // only if an Xlet is running
+        // only if a Xlet is running
         if (this.activeContext != null) {
             logger.fine("CURRENT THREAD IS " + Thread.currentThread().getName());
 
@@ -331,16 +331,12 @@ public class XletManager implements Runnable, DownloadEventListener{
             this.activeContext = xci;
             xci.setState(XletContextImpl.INITIALIZED);
         }
-        catch (Exception e) {
-            e.printStackTrace();
-            cleanup();
-        }
         catch (NoClassDefFoundError e) {
             e.printStackTrace();
             cleanup();
             logger.info("Application not loaded!");
         }
-        catch (Error e) {
+        catch (Exception | Error e) {
             e.printStackTrace();
             cleanup();
         }
@@ -365,11 +361,7 @@ public class XletManager implements Runnable, DownloadEventListener{
                  * So, we ignore it.
                  * */
             }
-            catch (NoClassDefFoundError e) {
-                e.printStackTrace();
-                cleanup();
-            }
-            catch (Exception e) {
+            catch (NoClassDefFoundError | Exception e) {
                 e.printStackTrace();
                 cleanup();
             }
@@ -470,6 +462,7 @@ public class XletManager implements Runnable, DownloadEventListener{
     public ThreadGroup getThreadGroup() {
         if (threadGroup == null) {
             threadGroup = new ThreadGroup("xlet thread group") {
+                @Override
                 public void uncaughtException(Thread t, Throwable e) {
                     if (!(e instanceof ThreadDeath)) {
                         logger.severe(Util.getStackTrace(e)+"\n>>>>> error <<<<<");
@@ -481,6 +474,7 @@ public class XletManager implements Runnable, DownloadEventListener{
         return threadGroup;
     }
 
+    @Override
     public void downloadUpdate(DownloadEvent e) {
         //logger.fine(e.getProcent() + "%" + ", file=" + e.getFileName() );
 

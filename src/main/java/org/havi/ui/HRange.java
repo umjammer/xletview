@@ -33,52 +33,57 @@ public class HRange extends HStaticRange implements HNavigable{
         return (null);
     }
 
+    @Override
     public void setMove(int keyCode, HNavigable target){
-        return;
     }
 
+    @Override
     public HNavigable getMove(int keyCode){
         return(null);
     }
 
+    @Override
     public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
-        return;
     }
 
+    @Override
     public boolean isSelected(){
         return(false);
     }
 
+    @Override
     public void setGainFocusSound(HSound sound){
-        return;
     }
 
+    @Override
     public void setLoseFocusSound(HSound sound){
-        return;
     }
 
+    @Override
     public HSound getGainFocusSound(){
         return(null);
     }
 
+    @Override
     public HSound getLoseFocusSound(){
         return(null);
     }
 
+    @Override
     public void addHFocusListener(org.havi.ui.event.HFocusListener l){
-        return;
     }
 
 
+    @Override
     public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
-        return;
     }
 
+    @Override
     public int[] getNavigationKeys(){
         return(null);
     }
 
+    @Override
     public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt){
-        return;
     }
 }

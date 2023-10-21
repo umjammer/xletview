@@ -33,6 +33,7 @@ public abstract class SIRetrievalEvent extends java.util.EventObject {
         return appData;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

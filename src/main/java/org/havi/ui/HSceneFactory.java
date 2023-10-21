@@ -23,7 +23,7 @@ import net.beiker.xletview.media.ScreenContainer;
  * @statuscode 2
  * @comment always returns the same kind of HScene
  */
-public class HSceneFactory extends Object{
+public class HSceneFactory {
 
     private static final HSceneFactory THEINSTANCE = new HSceneFactory();
 

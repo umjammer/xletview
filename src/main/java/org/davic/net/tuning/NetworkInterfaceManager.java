@@ -48,9 +48,11 @@ public class NetworkInterfaceManager implements ResourceServer {
         return null;
     }
 
+    @Override
     public void addResourceStatusEventListener(ResourceStatusListener listener) {
     }
 
+    @Override
     public void removeResourceStatusEventListener(ResourceStatusListener listener) {
     }
 

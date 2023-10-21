@@ -20,7 +20,7 @@ package net.beiker.xletview.download;
  */
 public interface DownloadEventListener {
 
-    public void downloadUpdate(DownloadEvent downloader);
+    void downloadUpdate(DownloadEvent downloader);
 
 
 }

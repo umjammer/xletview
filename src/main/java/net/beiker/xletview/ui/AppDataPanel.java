@@ -176,62 +176,58 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
     }
 
     // implementing ActionListener -->
+    @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
-        if (command.equals("classpath")) {
-
+        switch (command) {
+        case "classpath" -> {
             String fieldText = fields[CLASSPATH].getText();
             //String[] treeData = fieldText.split(File.separator + File.separator);
             String[] treeData;
-            if(File.separator.equals("\\")){
+            if (File.separator.equals("\\")) {
                 treeData = fieldText.split("\\\\");
-            }
-            else{
+            } else {
                 treeData = fieldText.split("/");
             }
             log.fine("### " + treeData.length);
-
             DirectoryExplorer dirWin = dirWin = new DirectoryExplorer(Util.getParentFrame(this), treeData);
-
-
-            if ( dirWin != null && dirWin.getPath().length() > 0) {
+            if (dirWin != null && !dirWin.getPath().isEmpty()) {
                 fields[CLASSPATH].setText(dirWin.getPath());
                 log.fine(fields[CLASSPATH].getText());
             }
         }
-        else if (command.equals("xletname")) {
-            if (fields[CLASSPATH].getText().trim().length() == 0) {
+        case "xletname" -> {
+            if (fields[CLASSPATH].getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null, "You must specify a directory!", "Alert", JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+            } else {
                 ClassWindow classWindow = new ClassWindow(Util.getParentFrame(this), new File(fields[CLASSPATH].getText().trim()));
                 log.fine("value=" + classWindow.getValue());
                 fields[XLETNAME].setText(classWindow.getValue());
             }
-
-            //            JFileChooser fc = new JFileChooser(fields[CLASSPATH].getText());
-            //            FileFilterImpl filter = new FileFilterImpl(".class");
-            //            fc.setFileFilter(filter);
-            //            File dir = new File(fields[CLASSPATH].getText());
-            //            Debug.write(this, "** " + dir.isDirectory());
-            //            fc.setCurrentDirectory( dir );
-            //            fc.setDialogType(JFileChooser.OPEN_DIALOG);
-            //            fc.showOpenDialog(this);
-            //            String selectedPath = fc.getSelectedFile().getAbsolutePath();
-            //            Debug.write(this, "1 " + fc.getSelectedFile().getPath());
-            //            Debug.write(this, "2 " + fc.getSelectedFile().getAbsolutePath());
-            //
-            //            String className = "";
-            //            className = selectedPath.substring(fields[CLASSPATH].getText().length());
-            //            className = className.replace(File.separatorChar, '.');
-            //            className = className.replaceAll(".class", "");
-            //            className = className.replaceAll(".CLASS", "");
-            //            if(className.length() > 0){
-            //                fields[XLETNAME].setText(className);
-            //            }
         }
-        else if (command.equals("ok")) {
+
+        //            JFileChooser fc = new JFileChooser(fields[CLASSPATH].getText());
+        //            FileFilterImpl filter = new FileFilterImpl(".class");
+        //            fc.setFileFilter(filter);
+        //            File dir = new File(fields[CLASSPATH].getText());
+        //            Debug.write(this, "** " + dir.isDirectory());
+        //            fc.setCurrentDirectory( dir );
+        //            fc.setDialogType(JFileChooser.OPEN_DIALOG);
+        //            fc.showOpenDialog(this);
+        //            String selectedPath = fc.getSelectedFile().getAbsolutePath();
+        //            Debug.write(this, "1 " + fc.getSelectedFile().getPath());
+        //            Debug.write(this, "2 " + fc.getSelectedFile().getAbsolutePath());
+        //
+        //            String className = "";
+        //            className = selectedPath.substring(fields[CLASSPATH].getText().length());
+        //            className = className.replace(File.separatorChar, '.');
+        //            className = className.replaceAll(".class", "");
+        //            className = className.replaceAll(".CLASS", "");
+        //            if(className.length() > 0){
+        //                fields[XLETNAME].setText(className);
+        //            }
+        case "ok" -> {
             if (isOk()) {
                 String name = fields[NAME].getText().trim();
                 String path = fields[CLASSPATH].getText().trim();
@@ -244,8 +240,8 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
 
             }
         }
-        else if (command.equals("cancel")) {
-
+        case "cancel" -> {
+        }
         }
     }
     // implementing ActionListener //
@@ -254,19 +250,19 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         //int option = JOptionPane.showConfirmDialog(this, "nu blev det fel", "Remove", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
         String message = "The following field(s) can not be empty:\n";
         boolean ok = true;
-        if (fields[NAME].getText().trim().equals("")) {
+        if (fields[NAME].getText().trim().isEmpty()) {
             String s = fieldLabels[NAME].getText();
             s = s.substring(0, s.lastIndexOf(":"));
             message += "- " + s + "\n";
             ok = false;
         }
-        if (fields[CLASSPATH].getText().trim().equals("")) {
+        if (fields[CLASSPATH].getText().trim().isEmpty()) {
             String s = fieldLabels[CLASSPATH].getText();
             s = s.substring(0, s.lastIndexOf(":"));
             message += "- " + s + "\n";
             ok = false;
         }
-        if (fields[XLETNAME].getText().trim().equals("")) {
+        if (fields[XLETNAME].getText().trim().isEmpty()) {
             String s = fieldLabels[XLETNAME].getText();
             s = s.substring(0, s.lastIndexOf(":"));
             message += "- " + s + "\n";
@@ -279,14 +275,17 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         return true;
     }
 
+    @Override
     public void keyTyped(KeyEvent arg0) {
 
     }
 
+    @Override
     public void keyPressed(KeyEvent arg0) {
 
     }
 
+    @Override
     public void keyReleased(KeyEvent arg0) {
         save();
         appWin.updateNodeText();

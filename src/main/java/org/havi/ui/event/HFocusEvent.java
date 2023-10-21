@@ -38,6 +38,7 @@ public class HFocusEvent extends java.awt.event.FocusEvent{
         this.transferId = transferId;
     }
 
+    @Override
     public boolean isTemporary(){
         return false;
     }
@@ -52,18 +53,15 @@ public class HFocusEvent extends java.awt.event.FocusEvent{
      *
      * @return a string identifying the event and its attributes
      */
+    @Override
     public String paramString() {
         String result = null;
         if(id == FOCUS_TRANSFER) {
             result = "FOCUS_TRANSFER";
-            switch (transferId) {
-                case NO_TRANSFER_ID :
-                    result += ",NO_TRANSFER_ID";
-                    break;
-
-                default :
-                    result += ", transferId=" + transferId;
-                    break;
+            if (transferId == NO_TRANSFER_ID) {
+                result += ",NO_TRANSFER_ID";
+            } else {
+                result += ", transferId=" + transferId;
             }
         }
         if(result == null){

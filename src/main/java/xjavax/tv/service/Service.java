@@ -77,18 +77,18 @@ public interface Service
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see Locator, ServiceDetails
      */
-    public SIRequest retrieveDetails( SIRequestor requestor);
+    SIRequest retrieveDetails(SIRequestor requestor);
 
     /**
      * Returns a short service name or acronym.  For example, in ATSC
-     * systems the service name is provided by the the PSIP VCT; in DVB
+     * systems the service name is provided by the PSIP VCT; in DVB
      * systems, this information is provided by the DVB Service
      * Descriptor or the Multilingual Service Name Descriptor.  The
      * service name may also be user-defined.
      *
      * @return A string representing this service's short name.  If the short name is unavailable, the string representation of the service number is returned.
      */
-    public java.lang.String getName();
+    java.lang.String getName();
 
     /**
      * This method indicates whether the service represented by this
@@ -98,7 +98,7 @@ public interface Service
      *
      * @return true if multiple transports carry the same content identified by this Service object; false if there is only one instance of this service.
      */
-    public boolean hasMultipleInstances();
+    boolean hasMultipleInstances();
 
     /**
      * Returns the type of this service, (for example, "digital
@@ -108,7 +108,7 @@ public interface Service
      *
      * @return Service type of this Service.
      */
-    public ServiceType getServiceType();
+    ServiceType getServiceType();
 
     /**
      * Reports the <code>Locator</code> of this <code>Service</code>.
@@ -118,7 +118,7 @@ public interface Service
      * @return A locator referencing this Service.
      * @see ServiceDetails
      */
-    public Locator getLocator();
+    Locator getLocator();
 
     /**
      * Tests two <code>Service</code> objects for equality.  Returns
@@ -135,9 +135,9 @@ public interface Service
      *
      * @param obj - The object against which to test for equality.
      * @return true if the two Service objects are equal; false otherwise.
-     * @see equals in class java.lang.Object
+     * @see #equals in class java.lang.Object
      */
-    public boolean equals(java.lang.Object obj);
+    boolean equals(java.lang.Object obj);
 
     /**
      * Reports the hash code value of this <code>Service</code>.  Two
@@ -145,8 +145,8 @@ public interface Service
      * hash codes.
      *
      * @return The hash code value of this Service.
-     * @see hashCode in class java.lang.Object
+     * @see #hashCode in class java.lang.Object
      */
-    public int hashCode();
+    int hashCode();
 
 }

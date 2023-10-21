@@ -16,18 +16,18 @@ package org.dvb.si;
 
 public interface PMTElementaryStream extends SIInformation {
 
-    public org.davic.net.dvb.DvbLocator getDvbLocator();
+    org.davic.net.dvb.DvbLocator getDvbLocator();
 
-    public int getOriginalNetworkID();
+    int getOriginalNetworkID();
 
-    public int getTransportStreamID();
+    int getTransportStreamID();
 
-    public int getServiceID();
+    int getServiceID();
 
-    public int getComponentTag();
+    int getComponentTag();
 
-    public byte getStreamType();
+    byte getStreamType();
 
-    public short getElementaryPID();
+    short getElementaryPID();
 }
 

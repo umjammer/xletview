@@ -28,6 +28,7 @@ public class HScreenDeviceReservedEvent extends ResourceStatusEvent{
         super(source);
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

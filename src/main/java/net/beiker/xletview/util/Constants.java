@@ -24,19 +24,17 @@ import javax.swing.ImageIcon;
 
 public class Constants{
 
-    private static final Constants THE_INSTANCE = new Constants();
-
     public static final String VERSION = "0.3.6.2";
 
 
-    public static final String DISCLAIMER_MESSAGE = "" +
-         "********************************************************\n" +
-         "XleTView, Copyright (C) 2003 - 2004 Martin Sveden \n" +
-         "XleTView comes with ABSOLUTELY NO WARRANTY.\n" +
-         "This is free software, and you are welcome to redistribute \n" +
-         "it under certain conditions; \n" +
-         "see license document for details.\n" +
-         "********************************************************";
+    public static final String DISCLAIMER_MESSAGE = """
+            ********************************************************
+            XleTView, Copyright (C) 2003 - 2004 Martin Sveden\s
+            XleTView comes with ABSOLUTELY NO WARRANTY.
+            This is free software, and you are welcome to redistribute\s
+            it under certain conditions;\s
+            see license document for details.
+            ********************************************************""";
 
     private static Toolkit toolkit;
     public static Image ICON_DEFAULT;

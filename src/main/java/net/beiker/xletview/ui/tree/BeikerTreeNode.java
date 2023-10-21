@@ -27,6 +27,7 @@ public class BeikerTreeNode extends DefaultMutableTreeNode{
         this.userObject = userObject;
     }
 
+    @Override
     public int getChildCount(){
         int i = super.getChildCount();
 
@@ -42,13 +43,13 @@ public class BeikerTreeNode extends DefaultMutableTreeNode{
 
             Object[] objects = userObject.getChildren();
             if(userObject instanceof UserObjectImpl && objects != null){
-                for(int i = 0; i < objects.length; i++){
-                    add(new BeikerTreeNode(new UserObjectImpl(objects[i])));
+                for (Object object : objects) {
+                    add(new BeikerTreeNode(new UserObjectImpl(object)));
                 }
             }
             else if(userObject instanceof AppGroup){
-                for(int i = 0; i < objects.length; i++){
-                    add(new BeikerTreeNode((UserObject)objects[i]));
+                for (Object object : objects) {
+                    add(new BeikerTreeNode((UserObject) object));
                 }
             }
 
@@ -64,10 +65,12 @@ public class BeikerTreeNode extends DefaultMutableTreeNode{
 //        expand();
 //    }
 
+    @Override
     public Object getUserObject(){
         return userObject;
     }
 
+    @Override
     public boolean isLeaf() {
       return !userObject.hasChildren();
     }

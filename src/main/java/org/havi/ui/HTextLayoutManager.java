@@ -18,5 +18,5 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 public interface HTextLayoutManager{
-    public abstract void render(String s, Graphics g, HVisible hvisible, Insets insets);
+    void render(String s, Graphics g, HVisible hvisible, Insets insets);
 }

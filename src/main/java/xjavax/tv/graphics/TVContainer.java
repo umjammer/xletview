@@ -16,7 +16,7 @@ package xjavax.tv.graphics;
 import xjavax.tv.xlet.XletContext;
 
 /**
- * A class that allows an Xlet to get the root container for its AWT
+ * A class that allows a Xlet to get the root container for its AWT
  * components.
  * <HR>
  *
@@ -26,7 +26,7 @@ import xjavax.tv.xlet.XletContext;
 public class TVContainer
 {
     /**
-     * Get the parent container for an Xlet to put its AWT components
+     * Get the parent container for a Xlet to put its AWT components
      * in, if the Xlet has a graphical representation.  Xlets without a
      * graphical representation should never call this method.  If the Xlet
      * is the only Xlet that is currently active to invoke this method,

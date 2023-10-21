@@ -28,8 +28,7 @@ import xjavax.tv.locator.Locator;
  *
  *
  */
-public class InterfaceMap extends java.lang.Object
-{
+public class InterfaceMap {
     /**
      * Reports the local IP address assigned to the given service
      * component.

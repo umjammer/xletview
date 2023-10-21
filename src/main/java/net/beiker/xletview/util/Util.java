@@ -48,7 +48,7 @@ public class Util {
     public static Frame getParentFrame(Component component){
         Frame frame;
         Component parent = component.getParent();
-        if(parent instanceof Frame == false){
+        if(!(parent instanceof Frame)){
             frame = getParentFrame(parent);
         }
         else{
@@ -159,7 +159,7 @@ public class Util {
             logger.fine("loading image by string - " + name);
 
                         java.io.File f = new java.io.File(name);
-                        if(f.exists() == false){
+                        if(!f.exists()){
                             logger.warning(name + " was not found + " + f.getAbsolutePath());
                         }
         }
@@ -185,8 +185,8 @@ public class Util {
 
 
     /**
-     * @param class1
-     * @param property
+     * @param theClass
+     * @param path
      * @return
      */
     public static URL getURL(Class<?> theClass, String path) {
@@ -194,7 +194,7 @@ public class Util {
 
         URL url = theClass.getClassLoader().getResource(path);
 
-        logger.fine(url != null? "URL found for '"+path+"': it's '"+url.toString()+"'." : "Could not find URL for '"+path+"'.");
+        logger.fine(url != null? "URL found for '"+path+"': it's '"+ url +"'." : "Could not find URL for '"+path+"'.");
 
         if(url == null){
 

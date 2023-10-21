@@ -35,14 +35,15 @@ public class DirFilter implements FileFilter{
         this.filters = filters;
     }
 
+    @Override
     public boolean accept(File file) {
         if(file.isDirectory()){
             return true;
         }
         String s = file.getName();
         //Debug.write(this, s);
-        for (int i = 0; i < filters.length; i++) {
-            if (s.indexOf(filters[i]) == s.length() - filters[i].length()) {
+        for (String string : filters) {
+            if (s.indexOf(string) == s.length() - string.length()) {
                 return true;
             }
         }

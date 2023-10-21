@@ -65,7 +65,7 @@ public class ClassWindow extends JDialog implements ActionListener {
 
         resolve(dir);
 
-        list.setListData(classes.toArray(new String[classes.size()]));
+        list.setListData(classes.toArray(String[]::new));
 
 
         content = getContentPane();
@@ -93,6 +93,7 @@ public class ClassWindow extends JDialog implements ActionListener {
 
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 doClose();
             }
@@ -111,22 +112,20 @@ public class ClassWindow extends JDialog implements ActionListener {
     private void resolve(File dir){
             File[] files = dir.listFiles(new FileFilterImpl(".class"));
             if(files != null){
-                for(int i = 0; i < files.length; i++){
-                    if(files[i].isDirectory()){
+                for (File file : files) {
+                    if (file.isDirectory()) {
                         dirCount++;
-                        if(dirCount > 50){
+                        if (dirCount > 50) {
                             JOptionPane.showMessageDialog(null, "\nUnable to resolve the application in this directory:\n" + homeDir.getPath(), "Alert", JOptionPane.ERROR_MESSAGE);
                             break;
+                        } else {
+                            resolve(file);
                         }
-                        else{
-                            resolve(files[i]);
-                        }
-                    }
-                    else{
-                        String unformattedClassName = files[i].getPath().substring(homeDir.getPath().length()+1);
+                    } else {
+                        String unformattedClassName = file.getPath().substring(homeDir.getPath().length() + 1);
                         String formattedClassName = getClassName(unformattedClassName);
                         classes.add(formattedClassName);
-                        log.fine("" + formattedClassName);
+                        log.fine(formattedClassName);
                     }
                 }
             }
@@ -141,6 +140,7 @@ public class ClassWindow extends JDialog implements ActionListener {
         return className;
     }
 
+    @Override
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();
         if (command.equals("cancel")) {
@@ -157,7 +157,7 @@ public class ClassWindow extends JDialog implements ActionListener {
     }
 
     public String getValue(){
-        return (String)list.getSelectedValue();
+        return list.getSelectedValue();
     }
 
     private void doClose() {

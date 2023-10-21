@@ -20,41 +20,41 @@ import org.havi.ui.HScreenRectangle;
 
 public interface VideoPresentationControl extends Control {
 
-    public abstract java.awt.Dimension getInputVideoSize();
+    java.awt.Dimension getInputVideoSize();
 
-    public abstract java.awt.Dimension getVideoSize();
+    java.awt.Dimension getVideoSize();
 
-    public abstract HScreenRectangle getActiveVideoArea();
+    HScreenRectangle getActiveVideoArea();
 
-    public abstract HScreenRectangle getActiveVideoAreaOnScreen();
+    HScreenRectangle getActiveVideoAreaOnScreen();
 
-    public abstract HScreenRectangle getTotalVideoArea();
+    HScreenRectangle getTotalVideoArea();
 
-    public abstract HScreenRectangle getTotalVideoAreaOnScreen();
+    HScreenRectangle getTotalVideoAreaOnScreen();
 
-    public abstract boolean supportsClipping();
+    boolean supportsClipping();
 
-    public abstract java.awt.Rectangle setClipRegion(java.awt.Rectangle clipRect);
+    java.awt.Rectangle setClipRegion(java.awt.Rectangle clipRect);
 
-    public abstract java.awt.Rectangle getClipRegion();
+    java.awt.Rectangle getClipRegion();
 
-    public abstract float[] supportsArbitraryHorizontalScaling();
+    float[] supportsArbitraryHorizontalScaling();
 
-    public abstract float[] supportsArbitraryVerticalScaling();
+    float[] supportsArbitraryVerticalScaling();
 
-    public abstract float[] getHorizontalScalingFactors();
+    float[] getHorizontalScalingFactors();
 
-    public abstract float[] getVerticalScalingFactors();
+    float[] getVerticalScalingFactors();
 
-    public static final byte POS_CAP_FULL = 0;
+    byte POS_CAP_FULL = 0;
 
-    public static final byte POS_CAP_FULL_IF_ENTIRE_VIDEO_ON_SCREEN = 1;
+    byte POS_CAP_FULL_IF_ENTIRE_VIDEO_ON_SCREEN = 1;
 
-    public static final byte POS_CAP_FULL_EVEN_LINES = 3;
+    byte POS_CAP_FULL_EVEN_LINES = 3;
 
-    public static final byte POS_CAP_FULL_EVEN_LINES_IF_ENTIRE_VIDEO_ON_SCREEN = 4;
+    byte POS_CAP_FULL_EVEN_LINES_IF_ENTIRE_VIDEO_ON_SCREEN = 4;
 
-    public static final byte POS_CAP_OTHER = -1;
+    byte POS_CAP_OTHER = -1;
 
-    public byte getPositioningCapability();
+    byte getPositioningCapability();
 }

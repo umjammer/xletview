@@ -16,5 +16,5 @@ package org.dvb.dsmcc;
 
 public interface AsynchronousLoadingEventListener extends java.util.EventListener {
 
-    public void receiveEvent(AsynchronousLoadingEvent e);
+    void receiveEvent(AsynchronousLoadingEvent e);
     }

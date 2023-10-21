@@ -17,19 +17,19 @@ package org.havi.ui;
 
 public interface HAdjustableLook extends HLook{
 
-    public static final int ADJUST_NONE = -1;
+    int ADJUST_NONE = -1;
 
-    public static final int ADJUST_BUTTON_LESS = -2;
+    int ADJUST_BUTTON_LESS = -2;
 
-    public static final int ADJUST_BUTTON_MORE = -3;
+    int ADJUST_BUTTON_MORE = -3;
 
-    public static final int ADJUST_PAGE_LESS = -4;
+    int ADJUST_PAGE_LESS = -4;
 
-    public static final int ADJUST_PAGE_MORE = -5;
+    int ADJUST_PAGE_MORE = -5;
 
-    public static final int ADJUST_THUMB = -6;
+    int ADJUST_THUMB = -6;
 
-    public int hitTest(HOrientable component, java.awt.Point pt);
+    int hitTest(HOrientable component, java.awt.Point pt);
 
-    public java.lang.Integer getValue(HOrientable component, java.awt.Point pt);
+    java.lang.Integer getValue(HOrientable component, java.awt.Point pt);
 }

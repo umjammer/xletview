@@ -48,6 +48,7 @@ public class HStillImageBackgroundConfiguration extends HBackgroundConfiguration
                image.setVisible(true);
     }
 
+    @Override
     public void setColor(java.awt.Color color) throws org.havi.ui.HPermissionDeniedException,
            org.havi.ui.HConfigurationException{
     }

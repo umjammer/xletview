@@ -26,6 +26,7 @@ public class IncompleteFilteringEvent extends EndOfFilteringEvent{
         super(sectionFilter, appData);
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

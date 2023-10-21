@@ -32,7 +32,7 @@ public class OutputRedirector extends OutputStream {
     // we keep a buffer around for creating 1-char strings, to
     // avoid the potential horror of thousads of array allocations
     // per second
-    private byte littlebuf[] = new byte[1];
+    private byte[] littlebuf = new byte[1];
 
 
     /**
@@ -44,6 +44,7 @@ public class OutputRedirector extends OutputStream {
     }
 
     // Redirect output to the console
+    @Override
     public void write(int b) throws IOException {
         littlebuf[0] = (byte) b;
         String s = new String(littlebuf, 0, 1);
@@ -51,22 +52,26 @@ public class OutputRedirector extends OutputStream {
     }
 
     // Redirect output to the console
-    public void write(byte b[]) throws IOException {
-        String s = new String(b, 0, b.length);
+    @Override
+    public void write(byte[] b) throws IOException {
+        String s = new String(b);
         outputPrinter.print(s);
     }
 
     // Redirect output to the console
-    public void write(byte b[], int off, int len) throws IOException {
+    @Override
+    public void write(byte[] b, int off, int len) throws IOException {
         String s = new String(b, off, len);
         outputPrinter.print(s);
     }
 
     // nothing need be done here
+    @Override
     public void flush() throws IOException {
     }
 
     // nothing need be done here
+    @Override
     public void close() throws IOException {
     }
 }

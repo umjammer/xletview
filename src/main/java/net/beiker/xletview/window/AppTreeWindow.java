@@ -87,6 +87,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         content.add(BorderLayout.SOUTH, getSouthPanel());
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 //System.exit(0);
                 doClose();
@@ -166,32 +167,30 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         return buttonCont;
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if (command.equals("newgroup")) {
+        switch (command) {
+        case "newgroup" -> {
             AppGroup group = new AppGroup(null);
             tree.insertGroup(group);
-
         }
-        else if (command.equals("newapp")) {
+        case "newapp" -> {
             App app = new App(null, null, null);
             tree.insertApp(app);
         }
-        else if (command.equals("delete")) {
+        case "delete" -> {
             log.fine("delete");
             tree.removeSelected();
         }
-        else if (command.equals("ok")) {
+        case "ok" -> {
             appPanel.save();
             groupPanel.save();
             AppManager.getInstance().update();
             AppMenu.getInstance().update();
             doClose();
-
         }
-        else if (command.equals("cancel")) {
-            log.fine("cancel");
-
+        case "cancel" -> log.fine("cancel");
         }
     }
 
@@ -199,14 +198,12 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         Object userObject = tree.getSelectedNode().getUserObject();
         if (userObject instanceof UserObject) {
             Object object = ((UserObject) userObject).getObject();
-            if (object instanceof AppGroup) {
-                AppGroup group = (AppGroup) object;
+            if (object instanceof AppGroup group) {
                 tree.getSelectedNode().setUserObject(group);
                 tree.getModel().nodeStructureChanged(tree.getSelectedNode());
                 //tree.getModel().reload();
             }
-            else if (object instanceof App) {
-                App app = (App) object;
+            else if (object instanceof App app) {
                 tree.getSelectedNode().setUserObject(app);
                 tree.getModel().nodeStructureChanged(tree.getSelectedNode());
                 //tree.getModel().reload();
@@ -214,6 +211,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         }
     }
 
+    @Override
     public void pathChanged(TreePath path) {
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
@@ -221,22 +219,15 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         if (userObject instanceof UserObject) {
             Object object = ((UserObject) userObject).getObject();
 
-            if (object instanceof AppGroup) {
-                AppGroup group = (AppGroup) object;
-                if(group == AppManager.getInstance().getDefaultGroup()){
-                    deleteButton.setEnabled(false);
-                }
-                else{
-                    deleteButton.setEnabled(true);
-                }
+            if (object instanceof AppGroup group) {
+                deleteButton.setEnabled(group != AppManager.getInstance().getDefaultGroup());
                 newAppButton.setEnabled(true);
                 newGroupButton.setEnabled(true);
                 appPanel.setVisible(false);
                 groupPanel.setVisible(true);
                 groupPanel.setAppGroup(group);
             }
-            else if (object instanceof App) {
-                App app = (App) object;
+            else if (object instanceof App app) {
                 deleteButton.setEnabled(true);
                 newAppButton.setEnabled(false);
                 newGroupButton.setEnabled(false);

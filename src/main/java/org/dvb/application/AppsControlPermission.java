@@ -23,7 +23,7 @@ package org.dvb.application;
  */
 public final class AppsControlPermission extends java.security.BasicPermission {
 
-    private static final int hash = new String("AppsControlPermission").hashCode();
+    private static final int hash = "AppsControlPermission".hashCode();
 
     public AppsControlPermission() {
         super("");
@@ -33,10 +33,12 @@ public final class AppsControlPermission extends java.security.BasicPermission {
         super(name);
     }
 
+    @Override
     public String getActions() {
         return null;
     }
 
+    @Override
     public boolean implies(java.security.Permission permission) {
        return permission instanceof AppsControlPermission;
     }

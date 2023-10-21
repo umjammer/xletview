@@ -30,6 +30,7 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
     public ServiceContextFactoryImpl() {
     }
 
+    @Override
     public ServiceContext getServiceContext(XletContext xletcontext) throws SecurityException, ServiceContextException {
 
         if (xletcontext == null){
@@ -46,9 +47,7 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
 
         }
 
-        if (servicecontext instanceof ServiceContextImpl) {
-
-            ServiceContextImpl servicecontextimpl = (ServiceContextImpl) servicecontext;
+        if (servicecontext instanceof ServiceContextImpl servicecontextimpl) {
 
             if (servicecontextimpl.isDestroyed()){
 
@@ -59,10 +58,12 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
         return servicecontext;
     }
 
+    @Override
     public ServiceContext[] getServiceContexts() {
         return serviceContexts;
     }
 
+    @Override
     public ServiceContext createServiceContext() throws InsufficientResourcesException, SecurityException {
         return serviceContexts[0];
     }

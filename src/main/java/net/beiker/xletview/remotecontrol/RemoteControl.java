@@ -70,11 +70,9 @@ public class RemoteControl extends Container implements KeyListener{
         }
 
         String bgStr = this.imgRoot + root.getAttribute("backgroundimage", null);
-        if(bgStr != null){
-            Img bgImg = new Img(0, 0, Util.getURL(RemoteControl.class, bgStr));
-            add(bgImg);
-        }
-//
+        Img bgImg = new Img(0, 0, Util.getURL(RemoteControl.class, bgStr));
+        add(bgImg);
+        //
     }
 
 
@@ -82,8 +80,8 @@ public class RemoteControl extends Container implements KeyListener{
         IXMLElement element = null;
         List<?> v = group.getChildrenNamed("buttons");
 
-        for (int i = 0; i < v.size(); i++) {
-            element = (IXMLElement) v.get(i);
+        for (Object object : v) {
+            element = (IXMLElement) object;
 
             int x = parseInt(element.getAttribute("x", "0"));
             int y = parseInt(element.getAttribute("y", "0"));
@@ -100,8 +98,8 @@ public class RemoteControl extends Container implements KeyListener{
         v = group.getChildrenNamed("button");
         RemoteButton button = null;
 
-        for (int i = 0; i < v.size(); i++) {
-            element = (IXMLElement) v.get(i);
+        for (Object o : v) {
+            element = (IXMLElement) o;
             String imgPath = this.imgRoot + element.getAttribute("img", "");
             int x = parseInt(element.getAttribute("x", "0"));
             int y = parseInt(element.getAttribute("y", "0"));
@@ -119,11 +117,10 @@ public class RemoteControl extends Container implements KeyListener{
             }
 
 
-            try{
+            try {
                 String[] ss = strKey.split("\\.");
                 keyCode = getFieldValue(HRcEvent.class, ss[1]);
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -155,12 +152,14 @@ public class RemoteControl extends Container implements KeyListener{
         return result;
     }
 
+    @Override
     public Dimension getPreferredSize(){
         return new Dimension(getWidth(), getHeight());
     }
 
 
 
+    @Override
     public void paint(Graphics g){
         Color bg = getBackground();
         if(bg != null){
@@ -183,16 +182,14 @@ public class RemoteControl extends Container implements KeyListener{
     private static int getFieldValue(Class<HRcEvent> c, String fieldName) {
         int result = -1000;
         Field[] publicFields = c.getFields();
-        for (int i = 0; i < publicFields.length; i++) {
-            if(publicFields[i].getName().equals(fieldName)){
+        for (Field publicField : publicFields) {
+            if (publicField.getName().equals(fieldName)) {
 
-                Class<?> typeClass = publicFields[i].getType();
+                Class<?> typeClass = publicField.getType();
 
                 try {
-                    result = publicFields[i].getInt(c);
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
+                    result = publicField.getInt(c);
+                } catch (IllegalArgumentException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
                 String fieldType = typeClass.getName();
@@ -202,18 +199,21 @@ public class RemoteControl extends Container implements KeyListener{
         return result;
     }
 
+    @Override
     public void keyTyped(KeyEvent e) {
         //Debug.write(this, "keyTyped " + e);
         fireEvent(e);
     }
 
 
+    @Override
     public void keyPressed(KeyEvent e) {
         //Debug.write(this, "keyPressed " + e);
         fireEvent(e);
     }
 
 
+    @Override
     public void keyReleased(KeyEvent e) {
         //Debug.write(this, "keyReleased " + e);
         fireEvent(e);
@@ -221,17 +221,17 @@ public class RemoteControl extends Container implements KeyListener{
 
     public void setPressed(int keyCode){
         logger.fine("RemoteControl, keyCode=" + keyCode);
-        Object obj = this.buttons.get(keyCode + "");
+        RemoteButton obj = this.buttons.get(keyCode + "");
         logger.fine("RemoteControl, obj=" + obj);
         if(obj instanceof RemoteButton){
-            ( (RemoteButton)obj).setOn();
+            obj.setOn();
         }
     }
 
     public void setReleased(int keyCode){
-        Object obj = this.buttons.get(keyCode + "");
+        RemoteButton obj = this.buttons.get(keyCode + "");
         if(obj instanceof RemoteButton){
-            ( (RemoteButton)obj).setNormal();
+            obj.setNormal();
         }
     }
 

@@ -37,7 +37,7 @@ public class HGraphicsDevice extends HScreenDevice{
         return hGraphicsConfiguration;
     }
 
-    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate hgcta[]){
+    public HGraphicsConfiguration getBestConfiguration(HGraphicsConfigTemplate[] hgcta){
         return hGraphicsConfiguration;
     }
 

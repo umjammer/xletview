@@ -28,6 +28,7 @@ public class UserEventAvailableEvent extends ResourceStatusEvent {
         super(source);
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

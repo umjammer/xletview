@@ -134,7 +134,7 @@ public abstract class SIManager {
      * @param name - The name of the requested rating dimension.
      * @return The requested RatingDimension.
      * @throws SIException - If name is not a supported rating dimension, as returned by getSupportedDimensions().
-     * @see getSupportedDimensions()
+     * @see #getSupportedDimensions()
      */
     public abstract RatingDimension getRatingDimension(java.lang.String name) throws SIException;
 
@@ -236,7 +236,7 @@ public abstract class SIManager {
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @throws InvalidLocatorException - If locator does not reference a valid ProgramEvent.
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
-     * @see ProgramEvent, ReadPermission
+     * @see xjavax.tv.service.guide.ProgramEvent, ReadPermission
      */
     public abstract SIRequest retrieveProgramEvent( Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
 
@@ -257,7 +257,7 @@ public abstract class SIManager {
      *
      * @param filter - A ServiceFilter by which to generate the requested service list, or null.
      * @return A ServiceList generated according to the specified filtering rules.
-     * @see ServiceFilter.accept(javax.tv.service.Service)
+     * @see ServiceFilter#accept(xjavax.tv.service.Service)
      */
     public abstract ServiceList filterServices( ServiceFilter filter);
 

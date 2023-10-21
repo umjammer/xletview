@@ -26,6 +26,7 @@ public class LoadingAbortedEvent extends AsynchronousLoadingEvent {
         super(aDSMCCObject);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

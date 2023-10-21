@@ -16,5 +16,5 @@ package org.dvb.dsmcc;
 
 public interface ObjectChangeEventListener extends java.util.EventListener {
 
-    public void receiveObjectChangeEvent(ObjectChangeEvent e);
+    void receiveObjectChangeEvent(ObjectChangeEvent e);
 }

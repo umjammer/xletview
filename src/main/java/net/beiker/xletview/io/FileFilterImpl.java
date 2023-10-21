@@ -36,33 +36,36 @@ public class FileFilterImpl extends FileFilter implements FilenameFilter{
         this.filters = filters;
     }
 
+    @Override
     public boolean accept(File file) {
         if(file.isDirectory()){
             return true;
         }
         String s = file.getName();
-        for (int i = 0; i < filters.length; i++) {
-            if (s.indexOf(filters[i]) == s.length() - filters[i].length()) {
+        for (String string : filters) {
+            if (s.indexOf(string) == s.length() - string.length()) {
                 return true;
             }
         }
         return false;
     }
 
+    @Override
     public String getDescription() {
-        String s = "filters: ";
-        for(int i = 0; i < filters.length; i++){
-            s += filters[i] + " ";
+        StringBuilder s = new StringBuilder("filters: ");
+        for (String string : filters) {
+            s.append(string).append(" ");
         }
-        return s;
+        return s.toString();
     }
 
     /**
      * FilenameFilter implementation
      */
+    @Override
     public boolean accept(File dir, String name) {
-        for (int i = 0; i < filters.length; i++) {
-            if (name.toLowerCase().endsWith(filters[i])) {
+        for (String s : filters) {
+            if (name.toLowerCase().endsWith(s)) {
                 return true;
             }
         }

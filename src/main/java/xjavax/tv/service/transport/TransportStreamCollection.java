@@ -40,7 +40,7 @@ public interface TransportStreamCollection extends Transport
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see TransportStream, ReadPermission
      */
-    public SIRequest retrieveTransportStream( Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
+    SIRequest retrieveTransportStream(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
 
     /**
      * Retrieves an array of the <code>TransportStream</code> objects in
@@ -48,7 +48,7 @@ public interface TransportStreamCollection extends Transport
      * contain <code>TransportStream</code> instances <code>ts</code>
      * for which the caller has
      * <code>javax.tv.service.ReadPermission(ts.getLocator())</code>. If
-     * no <code>TransportStream</code> instances meet this criteria,
+     * no <code>TransportStream</code> instances meet these criteria,
      * this method will result in an <code>SIRequestFailureType</code>
      * of <code>DATA_UNAVAILABLE</code>.<p>
      *
@@ -58,7 +58,7 @@ public interface TransportStreamCollection extends Transport
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see TransportStream, ReadPermission
      */
-    public SIRequest retrieveTransportStreams( SIRequestor requestor);
+    SIRequest retrieveTransportStreams(SIRequestor requestor);
 
     /**
      * Registers a <code>TransportStreamChangeListener</code> to be
@@ -84,7 +84,7 @@ public interface TransportStreamCollection extends Transport
      * @param listener - A TransportStreamChangeListener to be notified about changes related to TransportStream carried on this Transport.
      * @see TransportStreamChangeEvent, ReadPermission
      */
-    public void addTransportStreamChangeListener( TransportStreamChangeListener listener);
+    void addTransportStreamChangeListener(TransportStreamChangeListener listener);
 
     /**
      * Called to unregister an
@@ -94,6 +94,6 @@ public interface TransportStreamCollection extends Transport
      *
      * @param listener - A previously registered listener.
      */
-    public void removeTransportStreamChangeListener( TransportStreamChangeListener listener);
+    void removeTransportStreamChangeListener(TransportStreamChangeListener listener);
 
 }

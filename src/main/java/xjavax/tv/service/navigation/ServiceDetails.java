@@ -51,7 +51,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ServiceDescription
      */
-    public SIRequest retrieveServiceDescription( SIRequestor requestor);
+    SIRequest retrieveServiceDescription(SIRequestor requestor);
 
     /**
      * Returns the type of this service, for example, "digital
@@ -61,7 +61,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      *
      * @return Service type of this service.
      */
-    public ServiceType getServiceType();
+    ServiceType getServiceType();
 
     /**
      * Retrieves an array of elementary components which are part of
@@ -69,7 +69,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * <code>ServiceComponent</code> instances <code>c</code> for which
      * the caller has
      * <code>javax.tv.service.ReadPermission(c.getLocator())</code>.  If
-     * no <code>ServiceComponent</code> instances meet this criteria,
+     * no <code>ServiceComponent</code> instances meet these criteria,
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
@@ -79,14 +79,14 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ServiceComponent, ReadPermission
      */
-    public SIRequest retrieveComponents( SIRequestor requestor);
+    SIRequest retrieveComponents(SIRequestor requestor);
 
     /**
      * Returns a schedule of program events associated with this service.
      *
      * @return The program schedule for this service, or null if no schedule is available.
      */
-    public ProgramSchedule getProgramSchedule();
+    ProgramSchedule getProgramSchedule();
 
     /**
      * Called to obtain a full service name. For example, this
@@ -96,7 +96,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      *
      * @return A string representing the full service name, or an empty string if the name is not available.
      */
-    public java.lang.String getLongName();
+    java.lang.String getLongName();
 
     /**
      * Returns the <code>Service</code> this <code>ServiceDetails</code>
@@ -104,7 +104,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      *
      * @return The Service to which this ServiceDetails belongs.
      */
-    public Service getService();
+    Service getService();
 
     /**
      * Registers a <code>ServiceComponentChangeListener</code> to be
@@ -130,7 +130,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      * @param listener - A ServiceComponentChangeListener to be notified about changes related to a ServiceComponent in this ServiceDetails.
      * @see ServiceComponentChangeEvent, ReadPermission
      */
-    public void addServiceComponentChangeListener( ServiceComponentChangeListener listener);
+    void addServiceComponentChangeListener(ServiceComponentChangeListener listener);
 
     /**
      * Called to unregister an
@@ -140,7 +140,7 @@ public interface ServiceDetails extends SIElement, CAIdentification
      *
      * @param listener - A previously registered listener.
      */
-    public void removeServiceComponentChangeListener( ServiceComponentChangeListener listener);
+    void removeServiceComponentChangeListener(ServiceComponentChangeListener listener);
 
     /**
      * Reports the type of mechanism by which this service was
@@ -148,6 +148,6 @@ public interface ServiceDetails extends SIElement, CAIdentification
      *
      * @return The delivery system type of this service.
      */
-    public DeliverySystemType getDeliverySystemType();
+    DeliverySystemType getDeliverySystemType();
 
 }

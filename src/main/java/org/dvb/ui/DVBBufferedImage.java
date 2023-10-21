@@ -54,10 +54,12 @@ public class DVBBufferedImage extends java.awt.Image {
         return bimg == null ? null : new DVBGraphicsImpl(bimg.createGraphics());
     }
 
+    @Override
     public java.awt.Graphics getGraphics() {
         return createGraphics();
     }
 
+    @Override
     public void flush() {
         if(bimg != null)
             bimg.flush();
@@ -67,6 +69,7 @@ public class DVBBufferedImage extends java.awt.Image {
         return bimg == null ? -1 : bimg.getHeight();
     }
 
+    @Override
     public int getHeight(ImageObserver observer) {
         return bimg == null ? -1 : bimg.getHeight(observer);
     }
@@ -79,6 +82,7 @@ public class DVBBufferedImage extends java.awt.Image {
         bimg = null;
     }
 
+    @Override
     public Object getProperty(String name, ImageObserver observer) {
         return bimg == null ? null : bimg.getProperty(name, observer);
     }
@@ -91,6 +95,7 @@ public class DVBBufferedImage extends java.awt.Image {
         return bimg == null ? null : bimg.getRGB(startX, startY, w, h, rgbArray, offset, scansize);
     }
 
+    @Override
     public ImageProducer getSource() {
         return bimg == null ? null : bimg.getSource();
     }
@@ -103,6 +108,7 @@ public class DVBBufferedImage extends java.awt.Image {
         return bimg == null ? -1 : bimg.getWidth();
     }
 
+    @Override
     public int getWidth(ImageObserver observer) {
         return bimg == null ? -1 : bimg.getWidth(observer);
     }
@@ -118,7 +124,7 @@ public class DVBBufferedImage extends java.awt.Image {
     }
 
     public String toString() {
-        StringBuffer buf = new StringBuffer("DVBBufferedImage@");
+        StringBuilder buf = new StringBuilder("DVBBufferedImage@");
         buf.append(Integer.toHexString(hashCode()));
         if(bimg != null)
         {
@@ -128,6 +134,7 @@ public class DVBBufferedImage extends java.awt.Image {
         return buf.toString();
     }
 
+    @Override
     public java.awt.Image getScaledInstance(int width, int height, int hints) {
         return bimg == null ? null : bimg.getScaledInstance(width, height, hints);
     }

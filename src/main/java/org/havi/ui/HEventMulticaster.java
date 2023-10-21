@@ -125,111 +125,133 @@ HTextListener, HKeyListener, ResourceStatusListener{
         return (HScreenLocationModifiedListener) removeInternal(l, oldl);
     }
 
+    @Override
     public void imageLoaded(HBackgroundImageEvent  e){
         ((HBackgroundImageListener)a).imageLoaded(e);
         ((HBackgroundImageListener)b).imageLoaded(e);
     }
 
+    @Override
     public void imageLoadFailed(HBackgroundImageEvent  e){
         ((HBackgroundImageListener)a).imageLoadFailed(e);
         ((HBackgroundImageListener)b).imageLoadFailed(e);
     }
 
+    @Override
     public void report(HScreenConfigurationEvent  e){
         ((HScreenConfigurationListener)a).report(e);
         ((HScreenConfigurationListener)b).report(e);
     }
 
+    @Override
     public void report(HScreenLocationModifiedEvent   e){
         ((HScreenLocationModifiedListener)a).report(e);
         ((HScreenLocationModifiedListener)b).report(e);
     }
 
+    @Override
     public void windowOpened(WindowEvent e) {
         ((WindowListener)a).windowOpened(e);
         ((WindowListener)b).windowOpened(e);
     }
 
+    @Override
     public void windowClosing(WindowEvent e) {
         ((WindowListener)a).windowClosing(e);
         ((WindowListener)b).windowClosing(e);
     }
 
+    @Override
     public void windowClosed(WindowEvent e) {
         ((WindowListener)a).windowClosed(e);
         ((WindowListener)b).windowClosed(e);
     }
 
+    @Override
     public void windowIconified(WindowEvent e) {
         ((WindowListener)a).windowIconified(e);
         ((WindowListener)b).windowIconified(e);
     }
 
+    @Override
     public void windowDeiconified(WindowEvent e) {
         ((WindowListener)a).windowDeiconified(e);
         ((WindowListener)b).windowDeiconified(e);
     }
 
+    @Override
     public void windowActivated(WindowEvent e) {
         ((WindowListener)a).windowActivated(e);
         ((WindowListener)b).windowActivated(e);
     }
 
+    @Override
     public void windowDeactivated(WindowEvent e) {
         ((WindowListener)a).windowDeactivated(e);
         ((WindowListener)b).windowDeactivated(e);
     }
 
+    @Override
     public void actionPerformed(ActionEvent e) {
         ((ActionListener)a).actionPerformed(e);
         ((ActionListener)b).actionPerformed(e);
     }
 
+    @Override
     public void focusLost(FocusEvent e){
         ((FocusListener)a).focusLost(e);
         ((FocusListener)b).focusLost(e);
     }
 
+    @Override
     public void focusGained(FocusEvent e)  {
         ((FocusListener)a).focusGained(e);
         ((FocusListener)b).focusGained(e);
     }
 
+    @Override
     public void valueChanged(HAdjustmentEvent e){
         ((HAdjustmentListener)a).valueChanged(e);
         ((HAdjustmentListener)b).valueChanged(e);
     }
 
+    @Override
     public void selectionChanged(HItemEvent e){
         ((HItemListener)a).selectionChanged(e);
         ((HItemListener)b).selectionChanged(e);
     }
 
+    @Override
     public  void currentItemChanged(HItemEvent e) {
         ((HItemListener)a).currentItemChanged(e);
         ((HItemListener)b).currentItemChanged(e);
     }
 
+    @Override
     public void textChanged(HTextEvent e){
         ((HTextListener)a).textChanged(e);
         ((HTextListener)b).textChanged(e);
     }
 
+    @Override
     public void caretMoved(HTextEvent e){
         ((HTextListener)a).caretMoved(e);
         ((HTextListener)b).caretMoved(e);
     }
 
+    @Override
     public void keyTyped(KeyEvent e){
         ((KeyListener)a).keyTyped(e);
         ((KeyListener)b).keyTyped(e);
     }
 
+    @Override
     public void keyPressed(KeyEvent e){
         ((KeyListener)a).keyPressed(e);
         ((KeyListener)b).keyPressed(e);
     }
 
+    @Override
     public void keyReleased(KeyEvent e){
         ((KeyListener)a).keyReleased(e);
         ((KeyListener)b).keyReleased(e);
@@ -283,6 +305,7 @@ HTextListener, HKeyListener, ResourceStatusListener{
         return (HKeyListener) removeInternal(l, oldl);
     }
 
+    @Override
     public void statusChanged(ResourceStatusEvent e) {
         ((ResourceStatusListener)a).statusChanged(e);
         ((ResourceStatusListener)b).statusChanged(e);

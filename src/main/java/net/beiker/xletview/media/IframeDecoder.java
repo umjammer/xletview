@@ -95,7 +95,7 @@ public class IframeDecoder  {
     int width = 720;
     int height = 576;
 
-    private int pixels2[] = new int[this.width * this.height];
+    private int[] pixels2 = new int[this.width * this.height];
     private Image image;
     private MemoryImageSource source;
     private boolean FAST = false;
@@ -112,11 +112,11 @@ public class IframeDecoder  {
     }
 
     private long cutfiles_length = 0;
-    private long cutfiles_points[] = null;
-    private String info_4 = "";
-    private String info_3 = "";
-    private String info_2 = "";
-    private String info_1 = "";
+    private long[] cutfiles_points = null;
+    private StringBuilder info_4 = new StringBuilder();
+    private StringBuilder info_3 = new StringBuilder();
+    private StringBuilder info_2 = new StringBuilder();
+    private StringBuilder info_1 = new StringBuilder();
 
     private String file = "";
     private int Fault_Flag = 0;
@@ -124,23 +124,23 @@ public class IframeDecoder  {
     private byte[] buf = new byte[0];
     private int BitPos = 0;
     private int BufferPos = 0;
-    private int pixels[] = new int[250];
+    private int[] pixels = new int[250];
     private boolean PLAY = true, DIRECTION = false, ERROR1 = false, ERROR2 = false;
     private long StartPos = 0;
     private int SequenceHeader = 0; //DM28112003 081.5++
     public boolean viewGOP = true;
 
-    final int PICTURE_START_CODE = 0x100;
-    final int SLICE_START_CODE_MIN = 0x101;
-    final int SLICE_START_CODE_MAX = 0x1AF;
-    final int USER_DATA_START_CODE = 0x1B2;
-    final int SEQUENCE_HEADER_CODE = 0x1B3;
-    final int EXTENSION_START_CODE = 0x1B5;
-    final int SEQUENCE_END_CODE = 0x1B7;
-    final int GROUP_START_CODE = 0x1B8;
-    final int SYSTEM_END_CODE = 0x1B9;
-    final int PACK_START_CODE = 0x1BA;
-    final int SYSTEM_START_CODE = 0x1BB;
+    static final int PICTURE_START_CODE = 0x100;
+    static final int SLICE_START_CODE_MIN = 0x101;
+    static final int SLICE_START_CODE_MAX = 0x1AF;
+    static final int USER_DATA_START_CODE = 0x1B2;
+    static final int SEQUENCE_HEADER_CODE = 0x1B3;
+    static final int EXTENSION_START_CODE = 0x1B5;
+    static final int SEQUENCE_END_CODE = 0x1B7;
+    static final int GROUP_START_CODE = 0x1B8;
+    static final int SYSTEM_END_CODE = 0x1B9;
+    static final int PACK_START_CODE = 0x1BA;
+    static final int SYSTEM_START_CODE = 0x1BB;
 
     private int File_Flag;
     private int File_Limit;
@@ -153,36 +153,36 @@ public class IframeDecoder  {
     private int ERROR_CODE1 = 0;
 
     /* extension start code IDs */
-    final int SEQUENCE_EXTENSION_ID = 1;
-    final int SEQUENCE_DISPLAY_EXTENSION_ID = 2;
-    final int QUANT_MATRIX_EXTENSION_ID = 3;
-    final int COPYRIGHT_EXTENSION_ID = 4;
-    final int PICTURE_DISPLAY_EXTENSION_ID = 7;
-    final int PICTURE_CODING_EXTENSION_ID = 8;
-    final int ZIG_ZAG = 0;
-    final int MB_WEIGHT = 32;
-    final int MB_CLASS4 = 64;
-    final int MC_FIELD = 1;
-    final int MC_FRAME = 2;
-    final int MC_16X8 = 2;
-    final int MC_DMV = 3;
-    final int MV_FIELD = 0;
-    final int MV_FRAME = 1;
-    final int I_TYPE = 1;
-    final int P_TYPE = 2;
-    final int B_TYPE = 3;
-    final int TOP_FIELD = 1;
-    final int BOTTOM_FIELD = 2;
-    final int FRAME_PICTURE = 3;
-    final int MACROBLOCK_INTRA = 1;
-    final int MACROBLOCK_PATTERN = 2;
-    final int MACROBLOCK_MOTION_BACKWARD = 4;
-    final int MACROBLOCK_MOTION_FORWARD = 8;
-    final int MACROBLOCK_QUANT = 16;
-    final int CHROMA420 = 1;
-    final int CHROMA422 = 2;
-    final int CHROMA444 = 3;
-    final int IDCT_CLIP_TABLE_OFFSET = 512;
+    static final int SEQUENCE_EXTENSION_ID = 1;
+    static final int SEQUENCE_DISPLAY_EXTENSION_ID = 2;
+    static final int QUANT_MATRIX_EXTENSION_ID = 3;
+    static final int COPYRIGHT_EXTENSION_ID = 4;
+    static final int PICTURE_DISPLAY_EXTENSION_ID = 7;
+    static final int PICTURE_CODING_EXTENSION_ID = 8;
+    static final int ZIG_ZAG = 0;
+    static final int MB_WEIGHT = 32;
+    static final int MB_CLASS4 = 64;
+    static final int MC_FIELD = 1;
+    static final int MC_FRAME = 2;
+    static final int MC_16X8 = 2;
+    static final int MC_DMV = 3;
+    static final int MV_FIELD = 0;
+    static final int MV_FRAME = 1;
+    static final int I_TYPE = 1;
+    static final int P_TYPE = 2;
+    static final int B_TYPE = 3;
+    static final int TOP_FIELD = 1;
+    static final int BOTTOM_FIELD = 2;
+    static final int FRAME_PICTURE = 3;
+    static final int MACROBLOCK_INTRA = 1;
+    static final int MACROBLOCK_PATTERN = 2;
+    static final int MACROBLOCK_MOTION_BACKWARD = 4;
+    static final int MACROBLOCK_MOTION_FORWARD = 8;
+    static final int MACROBLOCK_QUANT = 16;
+    static final int CHROMA420 = 1;
+    static final int CHROMA422 = 2;
+    static final int CHROMA444 = 3;
+    static final int IDCT_CLIP_TABLE_OFFSET = 512;
 
     private int q_scale_type = 0; //1
     private int quantizer_scale = 0, alternate_scan = 0; //1
@@ -199,16 +199,16 @@ public class IframeDecoder  {
     private int chroma_format = 1; //4:2:0std
     private int profile_and_level_indication;
     private int video_format;
-    private String video_format_S[] = { "comp", "PAL", "NTSC", "SECAM", "MAC", "unspec", "res", "res" };
-    private String prof[] = { "res", "HP", "SS", "SNR", "MP", "SP", "res", "res" };
-    private String lev[] = { "res", "res", "res", "res", "HL", "res", "HL1440", "res", "ML", "res", "LL", "res", "res", "res", "res" };
+    private String[] video_format_S = { "comp", "PAL", "NTSC", "SECAM", "MAC", "unspec", "res", "res" };
+    private String[] prof = { "res", "HP", "SS", "SNR", "MP", "SP", "res", "res" };
+    private String[] lev = { "res", "res", "res", "res", "HL", "res", "HL1440", "res", "ML", "res", "LL", "res", "res", "res", "res" };
 
     /* ISO/IEC 13818-2 section 6.2.3: picture_header() */
     private int picture_coding_type = 0;
     private int temporal_reference = 0;
 
     /* ISO/IEC 13818-2 section 6.2.3.1: picture_coding_extension() header */
-    private int f_code[][] = new int[2][2];
+    private int[][] f_code = new int[2][2];
     private int picture_structure = 3; //0
     private int frame_pred_frame_dct = 1; //0
     private int progressive_frame = 1; //0
@@ -218,26 +218,26 @@ public class IframeDecoder  {
     private int repeat_first_field = 0;
     private int intra_vlc_format = 0; //
 
-    private int intra_quantizer_matrix[] = new int[64];
-    private int non_intra_quantizer_matrix[] = new int[64];
-    private int chroma_intra_quantizer_matrix[] = new int[64];
-    private int chroma_non_intra_quantizer_matrix[] = new int[64];
+    private int[] intra_quantizer_matrix = new int[64];
+    private int[] non_intra_quantizer_matrix = new int[64];
+    private int[] chroma_intra_quantizer_matrix = new int[64];
+    private int[] chroma_non_intra_quantizer_matrix = new int[64];
 
     private int load_intra_quantizer_matrix = 0;
     private int load_non_intra_quantizer_matrix = 0;
     private int load_chroma_intra_quantizer_matrix = 0;
     private int load_chroma_non_intra_quantizer_matrix = 0;
 
-    private short block[][] = new short[12][64]; //macroblocks
+    private short[][] block = new short[12][64]; //macroblocks
 
-    final String picture_coding_type_string[] = { "bad", "I", "P", "B", "D" };
+    final String[] picture_coding_type_string = { "bad", "I", "P", "B", "D" };
 
-    final String progressive_string[] = { "i", "p" };
+    final String[] progressive_string = { "i", "p" };
 
-    final String aspect_ratio_string[] = { "bad", "(1:1)", "(4:3)", "(16:9)", "(2.21:1)", "(0.8055)", "(0.8437)", "(0.9375)", "(0.9815)", "(1.0255)", "(1.0695)", "(1.1250)", "(1.1575)", "(1.2015)" };
+    final String[] aspect_ratio_string = { "bad", "(1:1)", "(4:3)", "(16:9)", "(2.21:1)", "(0.8055)", "(0.8437)", "(0.9375)", "(0.9815)", "(1.0255)", "(1.0695)", "(1.1250)", "(1.1575)", "(1.2015)" };
 
     /* cosine transform matrix for 8x1 IDCT */
-    final float ref_dct_matrix[][] = { { /* [0][0-7] */
+    final float[][] ref_dct_matrix = { { /* [0][0-7] */
             3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, }, { /* [1][0-7] */
             4.9039264020161522e-001f, 4.1573480615127262e-001f, 2.7778511650980114e-001f, 9.7545161008064166e-002f, -9.7545161008064096e-002f, -2.7778511650980098e-001f, -4.1573480615127267e-001f, -4.9039264020161522e-001f, }, { /* [2][0-7] */
             4.6193976625564337e-001f, 1.9134171618254492e-001f, -1.9134171618254486e-001f, -4.6193976625564337e-001f, -4.6193976625564342e-001f, -1.9134171618254517e-001f, 1.9134171618254500e-001f, 4.6193976625564326e-001f, }, { /* [3][0-7] */
@@ -247,165 +247,163 @@ public class IframeDecoder  {
             1.9134171618254492e-001f, -4.6193976625564342e-001f, 4.6193976625564326e-001f, -1.9134171618254495e-001f, -1.9134171618254528e-001f, 4.6193976625564337e-001f, -4.6193976625564320e-001f, 1.9134171618254478e-001f, }, { /* [7][0-7] */
             9.7545161008064166e-002f, -2.7778511650980109e-001f, 4.1573480615127273e-001f, -4.9039264020161533e-001f, 4.9039264020161522e-001f, -4.1573480615127251e-001f, 2.7778511650980076e-001f, -9.7545161008064291e-002f, }, };
 
-    final short idct_clip_table[] =
+    final short[] idct_clip_table =
     {
         -256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-256,-255,-254,-253,-252,-251,-250,-249,-248,-247,-246,-245,-244,-243,-242,-241,-240,-239,-238,-237,-236,-235,-234,-233,-232,-231,-230,-229,-228,-227,-226,-225,-224,-223,-222,-221,-220,-219,-218,-217,-216,-215,-214,-213,-212,-211,-210,-209,-208,-207,-206,-205,-204,-203,-202,-201,-200,-199,-198,-197,-196,-195,-194,-193,-192,-191,-190,-189,-188,-187,-186,-185,-184,-183,-182,-181,-180,-179,-178,-177,-176,-175,-174,-173,-172,-171,-170,-169,-168,-167,-166,-165,-164,-163,-162,-161,-160,-159,-158,-157,-156,-155,-154,-153,-152,-151,-150,-149,-148,-147,-146,-145,-144,-143,-142,-141,-140,-139,-138,-137,-136,-135,-134,-133,-132,-131,-130,-129,-128,-127,-126,-125,-124,-123,-122,-121,-120,-119,-118,-117,-116,-115,-114,-113,-112,-111,-110,-109,-108,-107,-106,-105,-104,-103,-102,-101,-100,-99,-98,-97,-96,-95,-94,-93,-92,-91,-90,-89,-88,-87,-86,-85,-84,-83,-82,-81,-80,-79,-78,-77,-76,-75,-74,-73,-72,-71,-70,-69,-68,-67,-66,-65,-64,-63,-62,-61,-60,-59,-58,-57,-56,-55,-54,-53,-52,-51,-50,-49,-48,-47,-46,-45,-44,-43,-42,-41,-40,-39,-38,-37,-36,-35,-34,-33,-32,-31,-30,-29,-28,-27,-26,-25,-24,-23,-22,-21,-20,-19,-18,-17,-16,-15,-14,-13,-12,-11,-10,-9,-8,-7,-6,-5,-4,-3,-2,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218,219,220,221,222,223,224,225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,240,241,242,243,244,245,246,247,248,249,250,251,252,253,254,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,255,
     };
 
-    final byte cc_table[] = { 0, 0, 0, 0, 1, 2, 1, 2, 1, 2, 1, 2 };
+    final byte[] cc_table = { 0, 0, 0, 0, 1, 2, 1, 2, 1, 2, 1, 2 };
 
-    final int ChromaFormat[] = { 0, 6, 8, 12 };
+    final int[] ChromaFormat = { 0, 6, 8, 12 };
 
     /* non-linear quantization coefficient table */
-    final byte Non_Linear_quantizer_scale[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 52, 56, 64, 72, 80, 88, 96, 104, 112 };
+    final byte[] Non_Linear_quantizer_scale = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20, 22, 24, 28, 32, 36, 40, 44, 48, 52, 56, 64, 72, 80, 88, 96, 104, 112 };
 
-    final byte MBAtab1[][] = { //VLCtab val,len
+    final byte[][] MBAtab1 = { //VLCtab val,len
                 { -1, 0 }, {-1, 0 }, {7, 5 }, {6, 5 }, {5, 4 }, {5, 4 }, {4, 4 }, {4, 4 }, {3, 3 }, {3, 3 }, {3, 3 }, {3, 3 }, {2, 3 }, {2, 3 }, {2, 3 }, {2, 3 }
     };
 
     /* Table B-1, macroblock_address_increment, codes 00000011000 ... 0000111xxxx */
-    final byte MBAtab2[][] = { //VLCtab val,len
+    final byte[][] MBAtab2 = { //VLCtab val,len
                 { 33, 11 }, {32, 11 }, {31, 11 }, {30, 11 }, {29, 11 }, {28, 11 }, {27, 11 }, {26, 11 }, {25, 11 }, {24, 11 }, {23, 11 }, {22, 11 }, {21, 10 }, {21, 10 }, {20, 10 }, {20, 10 }, {19, 10 }, {19, 10 }, {18, 10 }, {18, 10 }, {17, 10 }, {17, 10 }, {16, 10 }, {16, 10 }, {15, 8 }, {15, 8 }, {15, 8 }, {15, 8 }, {15, 8 }, {15, 8 }, {15, 8 }, {15, 8 }, {14, 8 }, {14, 8 }, {14, 8 }, {14, 8 }, {14, 8 }, {14, 8 }, {14, 8 }, {14, 8 }, {13, 8 }, {13, 8 }, {13, 8 }, {13, 8 }, {13, 8 }, {13, 8 }, {13, 8 }, {13, 8 }, {12, 8 }, {12, 8 }, {12, 8 }, {12, 8 }, {12, 8 }, {12, 8 }, {12, 8 }, {12, 8 }, {11, 8 }, {11, 8 }, {11, 8 }, {11, 8 }, {11, 8 }, {11, 8 }, {11, 8 }, {11, 8 }, {10, 8 }, {10, 8 }, {10, 8 }, {10, 8 }, {10, 8 }, {10, 8 }, {10, 8 }, {10, 8 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {9, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }
     };
 
     /* default intra quantization matrix */
-    final int default_intra_quantizer_matrix[] =
+    final int[] default_intra_quantizer_matrix =
         { 8, 16, 19, 22, 26, 27, 29, 34, 16, 16, 22, 24, 27, 29, 34, 37, 19, 22, 26, 27, 29, 34, 34, 38, 22, 22, 26, 27, 29, 34, 37, 40, 22, 26, 27, 29, 32, 35, 40, 48, 26, 27, 29, 32, 35, 40, 48, 58, 26, 27, 29, 34, 38, 46, 56, 69, 27, 29, 35, 38, 46, 56, 69, 83 };
 
     /* zig-zag and alternate scan patterns */
-    final byte scan[][] = { { /* Zig-Zag scan pattern  */
+    final byte[][] scan = { { /* Zig-Zag scan pattern  */
             0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46, 53, 60, 61, 54, 47, 55, 62, 63 }, { /* Alternate scan pattern */
             0, 8, 16, 24, 1, 9, 2, 10, 17, 25, 32, 40, 48, 56, 57, 49, 41, 33, 26, 18, 3, 11, 4, 12, 19, 27, 34, 42, 50, 58, 35, 43, 51, 59, 20, 28, 5, 13, 6, 14, 21, 29, 36, 44, 52, 60, 37, 45, 53, 61, 22, 30, 7, 15, 23, 31, 38, 46, 54, 62, 39, 47, 55, 63 }
     };
 
-    /***
-    typedef struct {
-        char run, level, len;
-    } DCTtab;
-
-    typedef struct {
-        char val, len;
-    } VLCtab;
-    ***/
+//    typedef struct {
+//        char run, level, len;
+//    } DCTtab;
+//
+//    typedef struct {
+//        char val, len;
+//    } VLCtab;
 
     /* Table B-14, DCT coefficients table zero,
      * codes 000001xx ... 00111xxx  */
-    final byte DCTtab0[][] = {
+    final byte[][] DCTtab0 = {
         { 65, 0, 6 }, {65, 0, 6 }, {65, 0, 6 }, {65, 0, 6 }, /* Escape */ {2, 2, 7 }, {2, 2, 7 }, {9, 1, 7 }, {9, 1, 7 }, {0, 4, 7 }, {0, 4, 7 }, {8, 1, 7 }, {8, 1, 7 }, {7, 1, 6 }, {7, 1, 6 }, {7, 1, 6 }, {7, 1, 6 }, {6, 1, 6 }, {6, 1, 6 }, {6, 1, 6 }, {6, 1, 6 }, {1, 2, 6 }, {1, 2, 6 }, {1, 2, 6 }, {1, 2, 6 }, {5, 1, 6 }, {5, 1, 6 }, {5, 1, 6 }, {5, 1, 6 }, {13, 1, 8 }, {0, 6, 8 }, {12, 1, 8 }, {11, 1, 8 }, {3, 2, 8 }, {1, 3, 8 }, {0, 5, 8 }, {10, 1, 8 }, {0, 3, 5 }, {0, 3, 5 }, {0, 3, 5 }, {0, 3, 5 }, {0, 3, 5 }, {0, 3, 5 }, {0, 3, 5 }, {0, 3, 5 }, {4, 1, 5 }, {4, 1, 5 }, {4, 1, 5 }, {4, 1, 5 }, {4, 1, 5 }, {4, 1, 5 }, {4, 1, 5 }, {4, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }
     };
 
     /* Table B-15, DCT coefficients table one,
      * codes 000001xx ... 11111111 */
-    final byte DCTtab0a[][] = {
+    final byte[][] DCTtab0a = {
                 { 65, 0, 6 }, {65, 0, 6 }, {65, 0, 6 }, {65, 0, 6 }, /* Escape */ {7, 1, 7 }, {7, 1, 7 }, {8, 1, 7 }, {8, 1, 7 }, {6, 1, 7 }, {6, 1, 7 }, {2, 2, 7 }, {2, 2, 7 }, {0, 7, 6 }, {0, 7, 6 }, {0, 7, 6 }, {0, 7, 6 }, {0, 6, 6 }, {0, 6, 6 }, {0, 6, 6 }, {0, 6, 6 }, {4, 1, 6 }, {4, 1, 6 }, {4, 1, 6 }, {4, 1, 6 }, {5, 1, 6 }, {5, 1, 6 }, {5, 1, 6 }, {5, 1, 6 }, {1, 5, 8 }, {11, 1, 8 }, {0, 11, 8 }, {0, 10, 8 }, {13, 1, 8 }, {12, 1, 8 }, {3, 2, 8 }, {1, 4, 8 }, {2, 1, 5 }, {2, 1, 5 }, {2, 1, 5 }, {2, 1, 5 }, {2, 1, 5 }, {2, 1, 5 }, {2, 1, 5 }, {2, 1, 5 }, {1, 2, 5 }, {1, 2, 5 }, {1, 2, 5 }, {1, 2, 5 }, {1, 2, 5 }, {1, 2, 5 }, {1, 2, 5 }, {1, 2, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {3, 1, 5 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {1, 1, 3 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, /* EOB */ {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {64, 0, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 3, 4 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 2, 3 }, {0, 4, 5 }, {0, 4, 5 }, {0, 4, 5 }, {0, 4, 5 }, {0, 4, 5 }, {0, 4, 5 }, {0, 4, 5 }, {0, 4, 5 }, {0, 5, 5 }, {0, 5, 5 }, {0, 5, 5 }, {0, 5, 5 }, {0, 5, 5 }, {0, 5, 5 }, {0, 5, 5 }, {0, 5, 5 }, {9, 1, 7 }, {9, 1, 7 }, {1, 3, 7 }, {1, 3, 7 }, {10, 1, 7 }, {10, 1, 7 }, {0, 8, 7 }, {0, 8, 7 }, {0, 9, 7 }, {0, 9, 7 }, {0, 12, 8 }, {0, 13, 8 }, {2, 3, 8 }, {4, 2, 8 }, {0, 14, 8 }, {0, 15, 8 }
     };
 
     /* Table B-14, DCT coefficients table zero,
      * codes 0000001000 ... 0000001111 */
-    final byte DCTtab1[][] = {
+    final byte[][] DCTtab1 = {
                 { 16, 1, 10 }, {5, 2, 10 }, {0, 7, 10 }, {2, 3, 10 }, {1, 4, 10 }, {15, 1, 10 }, {14, 1, 10 }, {4, 2, 10 }
     };
 
     /* Table B-15, DCT coefficients table one,
      * codes 000000100x ... 000000111x */
-    final byte DCTtab1a[][] = {
+    final byte[][] DCTtab1a = {
                 { 5, 2, 9 }, {5, 2, 9 }, {14, 1, 9 }, {14, 1, 9 }, {2, 4, 10 }, {16, 1, 10 }, {15, 1, 9 }, {15, 1, 9 }
     };
 
     /* Table B-14/15, DCT coefficients table zero / one,
      * codes 000000010000 ... 000000011111 */
-    final byte DCTtab2[][] = {
+    final byte[][] DCTtab2 = {
                 { 0, 11, 12 }, {8, 2, 12 }, {4, 3, 12 }, {0, 10, 12 }, {2, 4, 12 }, {7, 2, 12 }, {21, 1, 12 }, {20, 1, 12 }, {0, 9, 12 }, {19, 1, 12 }, {18, 1, 12 }, {1, 5, 12 }, {3, 3, 12 }, {0, 8, 12 }, {6, 2, 12 }, {17, 1, 12 }
     };
 
     /* Table B-14/15, DCT coefficients table zero / one,
      * codes 0000000010000 ... 0000000011111 */
-    final byte DCTtab3[][] = {
+    final byte[][] DCTtab3 = {
                 { 10, 2, 13 }, {9, 2, 13 }, {5, 3, 13 }, {3, 4, 13 }, {2, 5, 13 }, {1, 7, 13 }, {1, 6, 13 }, {0, 15, 13 }, {0, 14, 13 }, {0, 13, 13 }, {0, 12, 13 }, {26, 1, 13 }, {25, 1, 13 }, {24, 1, 13 }, {23, 1, 13 }, {22, 1, 13 }
     };
 
     /* Table B-14/15, DCT coefficients table zero / one,
      * codes 00000000010000 ... 00000000011111 */
-    final byte DCTtab4[][] = {
+    final byte[][] DCTtab4 = {
                 { 0, 31, 14 }, {0, 30, 14 }, {0, 29, 14 }, {0, 28, 14 }, {0, 27, 14 }, {0, 26, 14 }, {0, 25, 14 }, {0, 24, 14 }, {0, 23, 14 }, {0, 22, 14 }, {0, 21, 14 }, {0, 20, 14 }, {0, 19, 14 }, {0, 18, 14 }, {0, 17, 14 }, {0, 16, 14 }
     };
 
     /* Table B-14/15, DCT coefficients table zero / one,
      * codes 000000000010000 ... 000000000011111 */
-    final byte DCTtab5[][] = {
+    final byte[][] DCTtab5 = {
                 { 0, 40, 15 }, {0, 39, 15 }, {0, 38, 15 }, {0, 37, 15 }, {0, 36, 15 }, {0, 35, 15 }, {0, 34, 15 }, {0, 33, 15 }, {0, 32, 15 }, {1, 14, 15 }, {1, 13, 15 }, {1, 12, 15 }, {1, 11, 15 }, {1, 10, 15 }, {1, 9, 15 }, {1, 8, 15 }
     };
 
     /* Table B-14/15, DCT coefficients table zero / one,
      * codes 0000000000010000 ... 0000000000011111 */
-    final byte DCTtab6[][] = { //DCTtab run,level,len
+    final byte[][] DCTtab6 = { //DCTtab run,level,len
                 { 1, 18, 16 }, {1, 17, 16 }, {1, 16, 16 }, {1, 15, 16 }, {6, 3, 16 }, {16, 2, 16 }, {15, 2, 16 }, {14, 2, 16 }, {13, 2, 16 }, {12, 2, 16 }, {11, 2, 16 }, {31, 1, 16 }, {30, 1, 16 }, {29, 1, 16 }, {28, 1, 16 }, {27, 1, 16 }
     };
 
     /* Table B-14, DCT coefficients table zero,
      * codes 0100 ... 1xxx (used for first (DC) coefficient)  */
-    final byte DCTtabfirst[][] = {
+    final byte[][] DCTtabfirst = {
                 { 0, 2, 4 }, {2, 1, 4 }, {1, 1, 3 }, {1, 1, 3 }, {0, 1, 1 }, {0, 1, 1 }, {0, 1, 1 }, {0, 1, 1 }, {0, 1, 1 }, {0, 1, 1 }, {0, 1, 1 }, {0, 1, 1 }
     };
 
     /* Table B-14, DCT coefficients table zero,
      * codes 0100 ... 1xxx (used for all other coefficients) */
-    final byte DCTtabnext[][] = {
+    final byte[][] DCTtabnext = {
                 { 0, 2, 4 }, {2, 1, 4 }, {1, 1, 3 }, {1, 1, 3 }, {64, 0, 2 }, {64, 0, 2 }, {64, 0, 2 }, {64, 0, 2 }, /* EOB */ {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }, {0, 1, 2 }
     };
 
     /* Table B-9, coded_block_pattern, codes 01000 ... 111xx */
-    final byte CBPtab0[][] = {
+    final byte[][] CBPtab0 = {
                 { -1, 0 }, {-1, 0 }, {-1, 0 }, {-1, 0 }, {-1, 0 }, {-1, 0 }, {-1, 0 }, {-1, 0 }, {62, 5 }, {2, 5 }, {61, 5 }, {1, 5 }, {56, 5 }, {52, 5 }, {44, 5 }, {28, 5 }, {40, 5 }, {20, 5 }, {48, 5 }, {12, 5 }, {32, 4 }, {32, 4 }, {16, 4 }, {16, 4 }, {8, 4 }, {8, 4 }, {4, 4 }, {4, 4 }, {60, 3 }, {60, 3 }, {60, 3 }, {60, 3 }
     };
 
     /* Table B-9, coded_block_pattern, codes 00000100 ... 001111xx */
-    final byte CBPtab1[][] = {
+    final byte[][] CBPtab1 = {
                 { -1, 0 }, {-1, 0 }, {-1, 0 }, {-1, 0 }, {58, 8 }, {54, 8 }, {46, 8 }, {30, 8 }, {57, 8 }, {53, 8 }, {45, 8 }, {29, 8 }, {38, 8 }, {26, 8 }, {37, 8 }, {25, 8 }, {43, 8 }, {23, 8 }, {51, 8 }, {15, 8 }, {42, 8 }, {22, 8 }, {50, 8 }, {14, 8 }, {41, 8 }, {21, 8 }, {49, 8 }, {13, 8 }, {35, 8 }, {19, 8 }, {11, 8 }, {7, 8 }, {34, 7 }, {34, 7 }, {18, 7 }, {18, 7 }, {10, 7 }, {10, 7 }, {6, 7 }, {6, 7 }, {33, 7 }, {33, 7 }, {17, 7 }, {17, 7 }, {9, 7 }, {9, 7 }, {5, 7 }, {5, 7 }, {63, 6 }, {63, 6 }, {63, 6 }, {63, 6 }, {3, 6 }, {3, 6 }, {3, 6 }, {3, 6 }, {36, 6 }, {36, 6 }, {36, 6 }, {36, 6 }, {24, 6 }, {24, 6 }, {24, 6 }, {24, 6 }
     };
 
     /* Table B-9, coded_block_pattern, codes 000000001 ... 000000111 */
-    final byte CBPtab2[][] = {
+    final byte[][] CBPtab2 = {
                 { -1, 0 }, {0, 9 }, {39, 9 }, {27, 9 }, {59, 9 }, {55, 9 }, {47, 9 }, {31, 9 }
     };
 
     /* Table B-12, dct_dc_size_luminance, codes 00xxx ... 11110 */
-    final byte DClumtab0[][] = {
+    final byte[][] DClumtab0 = {
                 { 1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {0, 3 }, {0, 3 }, {0, 3 }, {0, 3 }, {3, 3 }, {3, 3 }, {3, 3 }, {3, 3 }, {4, 3 }, {4, 3 }, {4, 3 }, {4, 3 }, {5, 4 }, {5, 4 }, {6, 5 }, {-1, 0 }
     };
 
     /* Table B-12, dct_dc_size_luminance, codes 111110xxx ... 111111111 */
-    final byte DClumtab1[][] = {
+    final byte[][] DClumtab1 = {
                 { 7, 6 }, {7, 6 }, {7, 6 }, {7, 6 }, {7, 6 }, {7, 6 }, {7, 6 }, {7, 6 }, {8, 7 }, {8, 7 }, {8, 7 }, {8, 7 }, {9, 8 }, {9, 8 }, {10, 9 }, {11, 9 }
     };
 
     /* Table B-13, dct_dc_size_chrominance, codes 00xxx ... 11110 */
-    final byte DCchromtab0[][] = {
+    final byte[][] DCchromtab0 = {
                 { 0, 2 }, {0, 2 }, {0, 2 }, {0, 2 }, {0, 2 }, {0, 2 }, {0, 2 }, {0, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {1, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {2, 2 }, {3, 3 }, {3, 3 }, {3, 3 }, {3, 3 }, {4, 4 }, {4, 4 }, {5, 5 }, {-1, 0 }
     };
 
     /* Table B-13, dct_dc_size_chrominance, codes 111110xxxx ... 1111111111 */
-    final byte DCchromtab1[][] = {
+    final byte[][] DCchromtab1 = {
                 { 6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {6, 6 }, {7, 7 }, {7, 7 }, {7, 7 }, {7, 7 }, {7, 7 }, {7, 7 }, {7, 7 }, {7, 7 }, {8, 8 }, {8, 8 }, {8, 8 }, {8, 8 }, {9, 9 }, {9, 9 }, {10, 10 }, {11, 10 }
     };
 
     /* Table B-10, motion_code, codes 0001 ... 01xx */
-    final byte MVtab0[][] = {
+    final byte[][] MVtab0 = {
                 { -1, 0 }, {3, 3 }, {2, 2 }, {2, 2 }, {1, 1 }, {1, 1 }, {1, 1 }, {1, 1 }
     };
 
     /* Table B-10, motion_code, codes 0000011 ... 000011x */
-    final byte MVtab1[][] = {
+    final byte[][] MVtab1 = {
                 { -1, 0 }, {-1, 0 }, {-1, 0 }, {7, 6 }, {6, 6 }, {5, 6 }, {4, 5 }, {4, 5 }
     };
 
     /* Table B-10, motion_code, codes 0000001100 ... 000001011x */
-    final byte MVtab2[][] = {
+    final byte[][] MVtab2 = {
                 { 16, 9 }, {15, 9 }, {14, 9 }, {13, 9 }, {12, 9 }, {11, 9 }, {10, 8 }, {10, 8 }, {9, 8 }, {9, 8 }, {8, 8 }, {8, 8 }
     };
 
     /* Table B-3, macroblock_type in P-pictures, codes 001..1xx */
-    final byte PMBtab0[][] = { { -1, 0 }, {
+    final byte[][] PMBtab0 = { { -1, 0 }, {
             MACROBLOCK_MOTION_FORWARD, 3 }, {
             MACROBLOCK_PATTERN, 2 }, {
             MACROBLOCK_PATTERN, 2 }, {
@@ -416,7 +414,7 @@ public class IframeDecoder  {
     };
 
     /* Table B-3, macroblock_type in P-pictures, codes 000001..00011x */
-    final byte PMBtab1[][] = { { -1, 0 }, {
+    final byte[][] PMBtab1 = { { -1, 0 }, {
             MACROBLOCK_QUANT | MACROBLOCK_INTRA, 6 }, {
             MACROBLOCK_QUANT | MACROBLOCK_PATTERN, 5 }, {
             MACROBLOCK_QUANT | MACROBLOCK_PATTERN, 5 }, {
@@ -427,7 +425,7 @@ public class IframeDecoder  {
     };
 
     /* Table B-4, macroblock_type in B-pictures, codes 0010..11xx */
-    final byte BMBtab0[][] = { { -1, 0 }, {
+    final byte[][] BMBtab0 = { { -1, 0 }, {
             -1, 0 }, {
             MACROBLOCK_MOTION_FORWARD, 4 }, {
             MACROBLOCK_MOTION_FORWARD | MACROBLOCK_PATTERN, 4 }, {
@@ -446,7 +444,7 @@ public class IframeDecoder  {
     };
 
     /* Table B-4, macroblock_type in B-pictures, codes 000001..00011x */
-    final byte BMBtab1[][] = { { -1, 0 }, {
+    final byte[][] BMBtab1 = { { -1, 0 }, {
             MACROBLOCK_QUANT | MACROBLOCK_INTRA, 6 }, {
             MACROBLOCK_QUANT | MACROBLOCK_MOTION_BACKWARD | MACROBLOCK_PATTERN, 6 }, {
             MACROBLOCK_QUANT | MACROBLOCK_MOTION_FORWARD | MACROBLOCK_PATTERN, 6 }, {
@@ -456,12 +454,12 @@ public class IframeDecoder  {
             MACROBLOCK_INTRA, 5 }
     };
 
-    final double frame_rate_Table[] = { 0.0, ((24.0 * 1000.0) / 1001.0), 24.0, 25.0, ((30.0 * 1000.0) / 1001.0), 30.0, 50.0, ((60.0 * 1000.0) / 1001.0), 60.0, -1, // reserved
+    final double[] frame_rate_Table = { 0.0, ((24.0 * 1000.0) / 1001.0), 24.0, 25.0, ((30.0 * 1000.0) / 1001.0), 30.0, 50.0, ((60.0 * 1000.0) / 1001.0), 60.0, -1, // reserved
         -1, -1, -1, -1, -1, -1 };
 
     /* global value */
-    private byte backward_reference_frame[] = new byte[3], forward_reference_frame[] = new byte[3];
-    private byte auxframe[] = new byte[3], current_frame[] = new byte[3];
+    private byte[] backward_reference_frame = new byte[3], forward_reference_frame = new byte[3];
+    private byte[] auxframe = new byte[3], current_frame = new byte[3];
     private byte u422, v422, u444, v444, rgb24, lum;
     private int pf_backward, pf_forward, pf_current;
     private float frame_rate, Frame_Rate;
@@ -631,11 +629,13 @@ public class IframeDecoder  {
 
         frame_rate = (float) frame_rate_Table[frame_rate_code];
 
-        info_4 = "";
+        info_4.setLength(0);
 
         extension_and_user_data();
 
-        info_3 = ", " + (bit_rate_value * 400) + "bps, vbv " + vbv_buffer_size + ", cpf=" + constrained_parameters_flag;
+        info_3.append(", ").append(bit_rate_value * 400)
+                .append("bps, vbv ").append(vbv_buffer_size)
+                .append(", cpf=").append(constrained_parameters_flag);
     }
 
     /* decode group of pictures header */
@@ -687,15 +687,17 @@ public class IframeDecoder  {
                 }
                 next_start_code();
             } else {
-                info_4 += ", user_data"; //DM06052004 081.7 int02 add
+                info_4.append(", user_data"); //DM06052004 081.7 int02 add
                 Flush_Bits(32); // ISO/IEC 13818-2  sections 6.3.4.1 and 6.2.2.2.2
                 next_start_code(); // skip user data
             }
         }
     }
 
-    /* decode picture header */
-    /* ISO/IEC 13818-2 section 6.2.3 */
+    /**
+     * decode picture header
+     * @see "ISO/IEC 13818-2 section 6.2.3"
+     */
     public void picture_header() {
         int vbv_delay;
         int full_pel_forward_vector;
@@ -752,7 +754,7 @@ public class IframeDecoder  {
         horizontal_size = (horizontal_size_extension << 12) | (horizontal_size & 0xfff);
         vertical_size = (vertical_size_extension << 12) | (vertical_size & 0xfff);
 
-        info_4 += ", low delay=" + low_delay;
+        info_4.append(", low delay=").append(low_delay);
     }
 
     /* decode sequence display extension */
@@ -779,7 +781,7 @@ public class IframeDecoder  {
 
         //DM06052004 081.7 int02 add
         //DM26052004 081.7 int03 changed
-        info_4 += ", SDE: " + display_horizontal_size + "*" + display_vertical_size;
+        info_4.append(", SDE: ").append(display_horizontal_size).append("*").append(display_vertical_size);
     }
 
     /* decode quant matrix entension */
@@ -807,8 +809,8 @@ public class IframeDecoder  {
     /* decode picture display extension */
     /* ISO/IEC 13818-2 section 6.2.3.3. */
     public void picture_display_extension() {
-        int frame_center_horizontal_offset[] = new int[3];
-        int frame_center_vertical_offset[] = new int[3];
+        int[] frame_center_horizontal_offset = new int[3];
+        int[] frame_center_vertical_offset = new int[3];
 
         int i;
         int number_of_frame_center_offsets;
@@ -962,34 +964,32 @@ public class IframeDecoder  {
         }
 
         //moved
-        String SH[] = { "G", "S" };
-        String cf[] = { "res.", "4:2:0", "4:2:2", "4:4:4" };
-        String fieldorder[] = { "B", "T" }; //<==TheHorse 221003
-        String picture_struc[] = { "-", "T", "B", "F" }; //DM08022004 081.6 int16 add
+        String[] SH = { "G", "S" };
+        String[] cf = { "res.", "4:2:0", "4:2:2", "4:4:4" };
+        String[] fieldorder = { "B", "T" }; // <==TheHorse 221003
+        String[] picture_struc = { "-", "T", "B", "F" }; // DM08022004 081.6 int16 add
 
-        info_2 = "" + gop_hour + ":" + gop_minute + ":" + gop_sec + ":" + gop_frame + " ";
-        info_2 += ", " + drop_flag + "/" + closed_gop + "/" + broken_link + " ";
-        info_2 += ", " + (Math.round(frame_rate * 1000) / 1000.0f) + "fps ";
-        info_2 += ", " + SH[SequenceHeader] + " ";
-        info_2 += ", " + picture_struc[picture_structure]; //DM08022004 081.6 int16 add
-        info_2 += ", " + ((progressive_sequence == 0) ? fieldorder[top_field_first] : "-") + " ";
-        info_2 += ", " + cf[chroma_format];
-        info_2 += info_3;
+        info_2.setLength(0);
+        info_2.append(gop_hour).append(":").append(gop_minute).append(":").append(gop_sec).append(":").append(gop_frame).append(" ");
+        info_2.append(", ").append(drop_flag).append("/").append(closed_gop).append("/").append(broken_link).append(" ");
+        info_2.append(", ").append(Math.round(frame_rate * 1000) / 1000.0f).append("fps ");
+        info_2.append(", ").append(SH[SequenceHeader]).append(" ");
+        info_2.append(", ").append(picture_struc[picture_structure]); // DM08022004 081.6 int16 add
+        info_2.append(", ").append((progressive_sequence == 0) ? fieldorder[top_field_first] : "-").append(" ");
+        info_2.append(", ").append(cf[chroma_format]);
+        info_2.append(info_3);
 
         SequenceHeader = 0;
         Update_Picture_Buffers();
         picture_data();
         scale_Picture();
 
-
-        /**
-            if (ref>0 && (picture_structure==FRAME_PICTURE || Second_Field>0)){
-                if (picture_coding_type==B_TYPE)
-                    FrametoRGB(auxframe, pf_current, dst, pitch);
-                else
-                    FrametoRGB(forward_reference_frame, pf_forward, dst, pitch);
-            }
-        **/
+//        if (ref > 0 && (picture_structure == FRAME_PICTURE || Second_Field > 0)) {
+//            if (picture_coding_type == B_TYPE)
+//                FrametoRGB(auxframe, pf_current, dst, pitch);
+//            else
+//                FrametoRGB(forward_reference_frame, pf_forward, dst, pitch);
+//        }
         if (picture_structure != FRAME_PICTURE)
             Second_Field ^= Second_Field;
     }
@@ -997,11 +997,11 @@ public class IframeDecoder  {
     /* reuse old picture buffers as soon as they are no longer needed */
     public void Update_Picture_Buffers() {
 
-        int cc; /* color component index */
-        byte tmp; /* temporary swap pointer */
+        int cc; // color component index
+        byte tmp; // temporary swap pointer
 
         for (cc = 0; cc < 3; cc++) {
-            /* B pictures  do not need to be save for future reference */
+            // B pictures do not need to be saved for future reference
             if (picture_coding_type == B_TYPE)
                 current_frame[cc] = auxframe[cc];
             else {
@@ -1025,7 +1025,7 @@ public class IframeDecoder  {
             }
 
             if (picture_structure == BOTTOM_FIELD)
-                current_frame[cc] += (cc == 0) ? Coded_Picture_Width : Chroma_Width;
+                current_frame[cc] += (byte) ((cc == 0) ? Coded_Picture_Width : Chroma_Width);
         }
     }
 
@@ -1091,8 +1091,16 @@ public class IframeDecoder  {
     /* return -1: go to next picture */
     public int slice(int MBAmax) {
 
-        int MBA[] = { 0 }, MBAinc[] = { 0 }, macroblock_type[] = { 0 }, motion_type[] = { 0 }, dct_type[] = { 0 }, ret = 0;
-        int dc_dct_pred[] = new int[3], PMV[][][] = new int[2][2][2], motion_vertical_field_select[][] = new int[2][2], dmvector[] = new int[2];
+        int[] MBA = { 0 };
+        int[] MBAinc = { 0 };
+        int[] macroblock_type = { 0 };
+        int[] motion_type = { 0 };
+        int[] dct_type = { 0 };
+        int ret = 0;
+        int[] dc_dct_pred = new int[3];
+        int[][][] PMV = new int[2][2][2];
+        int[][] motion_vertical_field_select = new int[2][2];
+        int[] dmvector = new int[2];
 
         if ((ret = start_of_slice(MBA, MBAinc, dc_dct_pred, PMV)) != 1)
             return ret;
@@ -1139,7 +1147,7 @@ public class IframeDecoder  {
     }
 
     /* ISO/IEC 13818-2 section 7.6.6 */
-    public void skipped_macroblock(int dc_dct_pred[], int PMV[][][], int motion_type[], int motion_vertical_field_select[][], int macroblock_type[]) {
+    public void skipped_macroblock(int[] dc_dct_pred, int[][][] PMV, int[] motion_type, int[][] motion_vertical_field_select, int[] macroblock_type) {
 
         int comp;
 
@@ -1168,10 +1176,15 @@ public class IframeDecoder  {
     }
 
     /* ISO/IEC 13818-2 sections 7.2 through 7.5 */
-    public int decode_macroblock(int macroblock_type[], int motion_type[], int dct_type[], int PMV[][][], int dc_dct_pred[], int motion_vertical_field_select[][], int dmvector[]) {
+    public int decode_macroblock(int[] macroblock_type, int[] motion_type, int[] dct_type, int[][][] PMV, int[] dc_dct_pred, int[][] motion_vertical_field_select, int[] dmvector) {
 
-        int quantizer_scale_code, comp, motion_vector_count[] = { 0 }, mv_format[] = { 0 };
-        int dmv[] = { 0 }, mvscale[] = { 0 }, coded_block_pattern;
+        int quantizer_scale_code;
+        int comp;
+        int[] motion_vector_count = { 0 };
+        int[] mv_format = { 0 };
+        int[] dmv = { 0 };
+        int[] mvscale = { 0 };
+        int coded_block_pattern;
 
         /* ISO/IEC 13818-2 section 6.3.17.1: Macroblock modes */
         macroblock_modes(macroblock_type, motion_type, motion_vector_count, mv_format, dmv, mvscale, dct_type);
@@ -1270,30 +1283,27 @@ public class IframeDecoder  {
     }
 
     /* decode one intra coded MPEG-2 block */
-    public void Decode_MPEG2_Intra_Block(int comp, int dc_dct_pred[]) {
+    public void Decode_MPEG2_Intra_Block(int comp, int[] dc_dct_pred) {
 
-        int val = 0, i, j, sign, qmat[]; //qmat woanders??
+        int val = 0; //qmat woanders??
+        int i;
+        int j;
+        int sign;
+        int[] qmat;
         int code;
-        byte tab[];
-        short bp[]; //bp woanders array?
+        byte[] tab;
+        short[] bp; //bp woanders array?
 
         bp = block[comp]; //macroblock
         qmat = (comp < 4 || chroma_format == CHROMA420) ? intra_quantizer_matrix : chroma_intra_quantizer_matrix;
 
         /* ISO/IEC 13818-2 section 7.2.1: decode DC coefficients */
-        switch (cc_table[comp]) {
-            case 0 :
-                val = (dc_dct_pred[0] += Get_Luma_DC_dct_diff());
-                break;
-
-            case 1 :
-                val = (dc_dct_pred[1] += Get_Chroma_DC_dct_diff());
-                break;
-
-            case 2 :
-                val = (dc_dct_pred[2] += Get_Chroma_DC_dct_diff());
-                break;
-        }
+        val = switch (cc_table[comp]) {
+            case 0 -> (dc_dct_pred[0] += Get_Luma_DC_dct_diff());
+            case 1 -> (dc_dct_pred[1] += Get_Chroma_DC_dct_diff());
+            case 2 -> (dc_dct_pred[2] += Get_Chroma_DC_dct_diff());
+            default -> val;
+        };
 
         bp[0] = (short) (val << (3 - intra_dc_precision)); //the top-left pixel value of block
 
@@ -1366,10 +1376,14 @@ public class IframeDecoder  {
 
     /* decode one non-intra coded MPEG-2 block */
     public void Decode_MPEG2_Non_Intra_Block(int comp) {
-        int val, i, j, sign, qmat[];
+        int val;
+        int i;
+        int j;
+        int sign;
+        int[] qmat;
         int code;
-        byte tab[];
-        short bp[];
+        byte[] tab;
+        short[] bp;
 
         bp = block[comp];
         qmat = (comp < 4 || chroma_format == CHROMA420) ? non_intra_quantizer_matrix : chroma_non_intra_quantizer_matrix;
@@ -1516,7 +1530,7 @@ public class IframeDecoder  {
     /* return==-1 means go to next picture */
     /* the expression "start of slice" is used throughout the normative
        body of the MPEG specification */
-    public int start_of_slice(int MBA[], int MBAinc[], int dc_dct_pred[], int PMV[][][]) {
+    public int start_of_slice(int[] MBA, int[] MBAinc, int[] dc_dct_pred, int[][][] PMV) {
 
         next_start_code();
         int code = Get_Bits(32);
@@ -1593,7 +1607,7 @@ public class IframeDecoder  {
     }
 
     /* ISO/IEC 13818-2 sections 6.2.5.2, 6.3.17.2, and 7.6.3: Motion vectors */
-    public void motion_vectors(int PMV[][][], int dmvector[], int motion_vertical_field_select[][], int s, int motion_vector_count[], int mv_format[], int h_r_size, int v_r_size, int dmv[], int mvscale[]) {
+    public void motion_vectors(int[][][] PMV, int[] dmvector, int[][] motion_vertical_field_select, int s, int[] motion_vector_count, int[] mv_format, int h_r_size, int v_r_size, int[] dmv, int[] mvscale) {
 
         if (motion_vector_count[0] == 1) {
             if (mv_format[0] == MV_FIELD && dmv[0] < 1)
@@ -1613,7 +1627,7 @@ public class IframeDecoder  {
     }
 
     /* get and decode motion vector and differential motion vector for one prediction */
-    public void motion_vector(int PMV[], int dmvector[], int h_r_size, int v_r_size, int dmv[], int mvscale[], int full_pel_vector) {
+    public void motion_vector(int[] PMV, int[] dmvector, int h_r_size, int v_r_size, int[] dmv, int[] mvscale, int full_pel_vector) {
 
         int motion_code, motion_residual;
 
@@ -1669,7 +1683,7 @@ public class IframeDecoder  {
     }
 
     /* ISO/IEC 13818-2 section 7.6.3.6: Dual prime additional arithmetic */
-    public void Dual_Prime_Arithmetic(int DMV[][], int dmvector[], int mvx, int mvy) {
+    public void Dual_Prime_Arithmetic(int[][] DMV, int[] dmvector, int mvx, int mvy) {
         if (picture_structure == FRAME_PICTURE) {
             if (top_field_first > 0) {
                 /* vector for prediction of top field from bottom field */
@@ -1703,7 +1717,7 @@ public class IframeDecoder  {
     }
 
     /* ISO/IEC 13818-2 section 7.6 */
-    public void motion_compensation(int MBA[], int macroblock_type[], int motion_type[], int PMV[][][], int motion_vertical_field_select[][], int dmvector[], int dct_type[]) {
+    public void motion_compensation(int[] MBA, int[] macroblock_type, int[] motion_type, int[][][] PMV, int[][] motion_vertical_field_select, int[] dmvector, int[] dct_type) {
 
         int bx, by;
         int comp;
@@ -1732,10 +1746,10 @@ public class IframeDecoder  {
      *  direct matrix multiply) Inverse Discrete Cosine Transform
      */
     //DM08022004 081.6 int16 changed to float and first pixel only
-    public void IDCT_reference(short block[], int len) {
+    public void IDCT_reference(short[] block, int len) {
         int i, j, k, v;
         float partial_product;
-        float tmp[] = new float[64];
+        float[] tmp = new float[64];
 
         for (i = 0; i < len; i++)
             for (j = 0; j < len; j++) {
@@ -1771,11 +1785,11 @@ public class IframeDecoder  {
        - ISO/IEC 13818-2 section 7.6.7: Combining predictions
        - ISO/IEC 13818-2 section 6.1.3: Macroblock
     */
-    public void Add_Block(int comp, int bx, int by, int dct_type[], boolean addflag) {
+    public void Add_Block(int comp, int bx, int by, int[] dct_type, boolean addflag) {
 
         int cc, iincr;
         int rfp;
-        short Block_Ptr[] = block[comp];
+        short[] Block_Ptr = block[comp];
 
         /* derive color component index */
         /* equivalent to ISO/IEC 13818-2 Table 7-1 */
@@ -1825,7 +1839,7 @@ public class IframeDecoder  {
                 for (int x = 0; x < 8; x++) {
                     pPos = rfp + x + (y * iincr);
                     val = Block_Ptr[x + (y * 8)] + ((picture_coding_type == I_TYPE) ? 128 : 0);
-                    val = val < 0 ? 0 : (val > 255 ? 255 : val);
+                    val = val < 0 ? 0 : (Math.min(val, 255));
                     pixels[pPos] += val << 16 | val << 8 | val;
                 }
             }
@@ -1844,14 +1858,14 @@ public class IframeDecoder  {
                         r = (0xFF & luma >>> 16);
                         g = (int) ((0xFF & luma >>> 8) - 0.34414f * val);
                         b = (int) ((0xFF & luma) + 1.722f * val);
-                        g = g < 0 ? 0 : (g > 255 ? 255 : g);
-                        b = b < 0 ? 0 : (b > 255 ? 255 : b);
+                        g = g < 0 ? 0 : (Math.min(g, 255));
+                        b = b < 0 ? 0 : (Math.min(b, 255));
                     } else {
                         r = (int) ((0xFF & luma >>> 16) + 1.402f * val);
                         g = (int) ((0xFF & luma >>> 8) - 0.71414f * val);
                         b = (0xFF & luma);
-                        r = r < 0 ? 0 : (r > 255 ? 255 : r);
-                        g = g < 0 ? 0 : (g > 255 ? 255 : g);
+                        r = r < 0 ? 0 : (Math.min(r, 255));
+                        g = g < 0 ? 0 : (Math.min(g, 255));
                     }
                     pixels[pPos] = r << 16 | g << 8 | b;
                     if (chroma_format == CHROMA444)
@@ -1865,7 +1879,7 @@ public class IframeDecoder  {
     //DM02092003-
 
     /* ISO/IEC 13818-2 section 6.3.17.1: Macroblock modes */
-    public void macroblock_modes(int pmacroblock_type[], int pmotion_type[], int pmotion_vector_count[], int pmv_format[], int pdmv[], int pmvscale[], int pdct_type[]) {
+    public void macroblock_modes(int[] pmacroblock_type, int[] pmotion_type, int[] pmotion_vector_count, int[] pmv_format, int[] pdmv, int[] pmvscale, int[] pdct_type) {
 
         int macroblock_type, motion_type = 0, motion_vector_count;
         int mv_format, dmv, mvscale, dct_type;
@@ -1916,21 +1930,12 @@ public class IframeDecoder  {
     }
 
     public int Get_macroblock_type() {
-        int macroblock_type = 0;
-
-        switch (picture_coding_type) {
-            case I_TYPE :
-                macroblock_type = Get_I_macroblock_type();
-                break;
-
-            case P_TYPE :
-                macroblock_type = Get_P_macroblock_type();
-                break;
-
-            case B_TYPE :
-                macroblock_type = Get_B_macroblock_type();
-                break;
-        }
+        int macroblock_type = switch (picture_coding_type) {
+            case I_TYPE -> Get_I_macroblock_type();
+            case P_TYPE -> Get_P_macroblock_type();
+            case B_TYPE -> Get_B_macroblock_type();
+            default -> 0;
+        };
 
         return macroblock_type;
     }
@@ -2043,11 +2048,11 @@ public class IframeDecoder  {
     }
 
 
-    public void showCut(boolean play, long cutPoints[], java.util.ArrayList<Object[]> previewList) {
+    public void showCut(boolean play, long[] cutPoints, java.util.ArrayList<Object[]> previewList) {
         PLAY = play;
 
         if (!previewList.isEmpty()) {
-            Object filedata[] = (Object[]) previewList.get(previewList.size() - 1);
+            Object[] filedata = previewList.get(previewList.size() - 1);
             cutfiles_length = ((long[]) filedata[1])[1];
             cutfiles_points = cutPoints;
         } else {
@@ -2057,7 +2062,7 @@ public class IframeDecoder  {
     }
 
     /** call **/
-    public long decodeArray(byte array[], boolean direction, boolean viewGOP, boolean fast) {
+    public long decodeArray(byte[] array, boolean direction, boolean viewGOP, boolean fast) {
         FAST = fast;
         DIRECTION = direction;
         ERROR1 = false;
@@ -2091,9 +2096,7 @@ public class IframeDecoder  {
                 }
             }
             ERROR2 = true;
-        } catch (ArrayIndexOutOfBoundsException ae) {
-            ERROR1 = true;
-        } catch (Error ee) {
+        } catch (ArrayIndexOutOfBoundsException | Error ae) {
             ERROR1 = true;
         }
 
@@ -2158,7 +2161,7 @@ public class IframeDecoder  {
     }
 
     //DM02092003+
-    private byte bmpHead[] = { 0x42, 0x4D, //'B','M'
+    private byte[] bmpHead = { 0x42, 0x4D, //'B','M'
         0, 0, 0, 0, // real filesize 32bit, little endian (real size*3 +
                     // header(0x36))
         0, 0, 0, 0, 0x36, 0, 0, 0, //bitmap info size
@@ -2191,7 +2194,7 @@ public class IframeDecoder  {
             return null;
 
 
-        byte bmp24[] = new byte[3];
+        byte[] bmp24 = new byte[3];
         littleEndian(bmpHead, 2, (54 + size * 3));
         littleEndian(bmpHead, 18, horizontal_size);
         littleEndian(bmpHead, 22, vertical_size);

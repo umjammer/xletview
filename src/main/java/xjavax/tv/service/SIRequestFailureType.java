@@ -22,8 +22,7 @@ package xjavax.tv.service;
  *
  *
  */
-public class SIRequestFailureType extends java.lang.Object
-{
+public class SIRequestFailureType {
     /**
      * The reason generated when the <code>SIRequest</code> is canceled.
      * <DT><B>See Also: </B>
@@ -74,7 +73,7 @@ public class SIRequestFailureType extends java.lang.Object
      * class variable name.
      *
      * @return The string name of the type.
-     * @see toString in class java.lang.Object
+     * @see #toString in class java.lang.Object
      */
     public java.lang.String toString()
     {

@@ -20,7 +20,7 @@ package org.havi.ui;
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HImageHints extends Object{
+public class HImageHints {
 
     public static final int NATURAL_IMAGE = 0x01;
     public static final int CARTOON = 0x02;

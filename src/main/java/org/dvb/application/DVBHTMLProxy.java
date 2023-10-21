@@ -16,13 +16,13 @@ package org.dvb.application ;
 
 public interface DVBHTMLProxy extends AppProxy {
 
-    public static final int LOADING = 6;
-    public static final int KILLED = 7;
+    int LOADING = 6;
+    int KILLED = 7;
 
-    public void prefetch () ;
+    void prefetch() ;
 
-    public void startTrigger (java.util.Date starttime) ;
+    void startTrigger(java.util.Date starttime) ;
 
-    public void trigger (java.util.Date time, Object triggerPayload) ;
+    void trigger(java.util.Date time, Object triggerPayload) ;
 }
 

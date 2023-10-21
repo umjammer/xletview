@@ -39,6 +39,7 @@ public class HMultilineEntry extends HSinglelineEntry{
         return (null);
     }
 
+    @Override
     public void setLook(HLook hlook) throws HInvalidLookException{
     }
 

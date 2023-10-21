@@ -60,6 +60,7 @@ public class DescramblerProxy implements ResourceProxy {
         return null;
     }
 
+    @Override
     public ResourceClient getClient() {
         return null;
     }

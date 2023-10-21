@@ -16,13 +16,13 @@ package org.dvb.si;
 
 public interface SITransportStream extends SIInformation {
 
-    public org.davic.net.dvb.DvbLocator getDvbLocator();
+    org.davic.net.dvb.DvbLocator getDvbLocator();
 
-    public int getOriginalNetworkID();
+    int getOriginalNetworkID();
 
-    public int getTransportStreamID();
+    int getTransportStreamID();
 
-    public SIRequest retrieveSIServices(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrieveSIServices(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
 }
 

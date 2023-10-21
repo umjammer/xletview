@@ -153,6 +153,7 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
             return -1;
     }
 
+    @Override
     public ResourceClient getClient() {
         return this.resourceClient;
     }
@@ -170,11 +171,12 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
     private void fireConnectionEvent(ConnectionRCEvent e) {
         // backwards so we get the last added
         for (int i = this.listenerObjects.size() - 1; i > -1; i--) {
-            ConnectionListener ali = (ConnectionListener) this.listenerObjects.get(i);
+            ConnectionListener ali = this.listenerObjects.get(i);
             ali.connectionChanged(e);
         }
     }
 
+    @Override
     public void run() {
         try {
             Thread.sleep(FAKED_CONNECION_TIME);

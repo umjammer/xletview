@@ -18,7 +18,7 @@ import java.awt.Color;
 import java.awt.Image;
 
 
-public class HEventRepresentation extends Object{
+public class HEventRepresentation {
 
     public static final int ER_TYPE_NOT_SUPPORTED = 0;
     public static final int ER_TYPE_STRING = 1;

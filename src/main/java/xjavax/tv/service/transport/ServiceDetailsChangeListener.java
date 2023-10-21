@@ -30,6 +30,6 @@ public interface ServiceDetailsChangeListener extends SIChangeListener
      *
      * @param event - A ServiceDetailsChangeEvent describing what changed and how.
      */
-    public void notifyChange( ServiceDetailsChangeEvent event);
+    void notifyChange(ServiceDetailsChangeEvent event);
 
 }

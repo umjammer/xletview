@@ -11,24 +11,27 @@
 
 */
 
-
 package org.dvb.media;
+
+import java.util.EventObject;
 
 import org.davic.media.SubtitlingLanguageControl;
 
+
 /**
- *
+ * SubtitleNotSelectedEvent
  *
  * @author Martin Sveden
  * @statuscode 4
  */
-public class SubtitleNotSelectedEvent extends java.util.EventObject {
+public class SubtitleNotSelectedEvent extends EventObject {
 
     public SubtitleNotSelectedEvent(SubtitlingLanguageControl source){
         super(source);
     }
 
-    public java.lang.Object getSource()    {
+    @Override
+    public Object getSource()    {
         return super.getSource();
     }
 }

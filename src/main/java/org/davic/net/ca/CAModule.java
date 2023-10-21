@@ -85,7 +85,7 @@ public abstract class CAModule {
 
     public String getApplicationTitle() throws ModuleUnavailableException{return null;}
 
-    public void enterApplication() throws ModuleUnavailableException{};
+    public void enterApplication() throws ModuleUnavailableException{}
 
     public void closeMMI() throws ModuleUnavailableException{}
 }

@@ -83,6 +83,7 @@ public class ConsoleWindow extends JFrame implements ActionListener{
         content.add(topCont, BorderLayout.NORTH);
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 setVisible(false);
             }
@@ -108,6 +109,7 @@ public class ConsoleWindow extends JFrame implements ActionListener{
         setVisible(isVisible());
     }
 
+    @Override
     public void actionPerformed(ActionEvent e){
         if(e.getActionCommand().equals("toggleOutput")){
             if(toggleButton.getText().equals(toggleText[START])){

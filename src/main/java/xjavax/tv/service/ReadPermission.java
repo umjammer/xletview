@@ -67,8 +67,9 @@ public final class ReadPermission extends java.security.Permission implements ja
      *
      * @param p - The permission to check against.
      * @return true if the specified permission is implied by this object, false if not.
-     * @see implies in class java.security.Permission
+     * @see #implies in class java.security.Permission
      */
+    @Override
     public boolean implies(java.security.Permission p)
     {
         return false;
@@ -82,7 +83,7 @@ public final class ReadPermission extends java.security.Permission implements ja
      *
      * @param other - the object we are testing for equality with this object.
      * @return true if other is of type ReadPermission and has the same locator as this ReadPermission object.
-     * @see equals in class java.security.Permission
+     * @see #equals in class java.security.Permission
      */
     public boolean equals(java.lang.Object other)
     {
@@ -94,7 +95,7 @@ public final class ReadPermission extends java.security.Permission implements ja
      * Returns the hash code value for this object.
      *
      * @return A hash code value for this object.
-     * @see hashCode in class java.security.Permission
+     * @see #hashCode in class java.security.Permission
      */
     public int hashCode()
     {
@@ -108,8 +109,9 @@ public final class ReadPermission extends java.security.Permission implements ja
      * a ReadPermission.
      *
      * @return the empty string "".
-     * @see getActions in class java.security.Permission
+     * @see #getActions in class java.security.Permission
      */
+    @Override
     public java.lang.String getActions()
     {
         return this.actions;

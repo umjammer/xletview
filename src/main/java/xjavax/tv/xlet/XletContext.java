@@ -36,7 +36,7 @@ public interface XletContext
      *
      *
      */
-    public static final java.lang.String ARGS = "javax.tv.xlet.args";
+    java.lang.String ARGS = "javax.tv.xlet.args";
 
 
 
@@ -52,7 +52,7 @@ public interface XletContext
      * <code>Xlet.destroyXlet()</code> had been called.</DL>
      *
      */
-    public void notifyDestroyed();
+    void notifyDestroyed();
 
     /**
      * Notifies the manager that the Xlet does not want to be active and has
@@ -60,13 +60,13 @@ public interface XletContext
      * have no effect if the Xlet is destroyed, or if it has not
      * yet been started. <p>
      *
-     * If an Xlet calls <code>notifyPaused()</code>, in the
+     * If a Xlet calls <code>notifyPaused()</code>, in the
      * future it may receive an <i>Xlet.startXlet()</i> call to request
      * it to become active, or an <i>Xlet.destroyXlet()</i> call to request
      * it to destroy itself.</DL>
      *
      */
-    public void notifyPaused();
+    void notifyPaused();
 
     /**
      * Provides an Xlet with a mechanism to retrieve named
@@ -75,7 +75,7 @@ public interface XletContext
      * @param key - The name of the property.
      * @return A reference to an object representing the property. null is returned if no value is available for key.
      */
-    public java.lang.Object getXletProperty(java.lang.String key);
+    java.lang.Object getXletProperty(java.lang.String key);
 
     /**
      * Provides the Xlet with a mechanism to indicate that it is
@@ -86,8 +86,8 @@ public interface XletContext
      * be made via a different thread than the one used to call
      * <code>resumeRequest()</code>.
      *
-     * @see Xlet.startXlet()
+     * @see Xlet#startXlet()
      */
-    public void resumeRequest();
+    void resumeRequest();
 
 }

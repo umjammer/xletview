@@ -39,7 +39,7 @@ public class HVideoDevice extends HScreenDevice{
         return hVideoConfiguration;
     }
 
-    public HVideoConfiguration getBestConfiguration(HVideoConfigTemplate hvcta[]){
+    public HVideoConfiguration getBestConfiguration(HVideoConfigTemplate[] hvcta){
         return hVideoConfiguration;
     }
 

@@ -117,12 +117,12 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
         return model;
     }
 
+    @Override
     public void treeExpanded(TreeExpansionEvent event) {
         //Debug.write(this, "expanded");
         TreePath treePath = event.getPath();
         Object lastInPath = treePath.getLastPathComponent();
-        if (lastInPath instanceof BeikerTreeNode) {
-            final BeikerTreeNode treeNode = (BeikerTreeNode) lastInPath;
+        if (lastInPath instanceof BeikerTreeNode treeNode) {
             //Debug.write(this, treeNode.getUserObject().toString());
             treeNode.expand();
             model.reload(treeNode);
@@ -130,9 +130,11 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
         }
     }
 
+    @Override
     public void treeCollapsed(TreeExpansionEvent event) {
     }
 
+    @Override
     public void valueChanged(TreeSelectionEvent event) {
         selectedPath = event.getPath();
         notifyTreeListeners(selectedPath);
@@ -156,9 +158,8 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
             Object object = ((UserObject) userObject).getObject();
             log.fine("userObject is " + userObject.getClass().getName());
 
-            if (object instanceof AppGroup) {
+            if (object instanceof AppGroup parentGroup) {
                 log.fine("userObject is AppGroup");
-                AppGroup parentGroup = (AppGroup) object;
                 parentGroup.addChild(group);
                 BeikerTreeNode childNode = new BeikerTreeNode(group);
                 model.insertNodeInto(childNode, node, node.getChildCount());
@@ -170,7 +171,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     /**
      * Adds an App in the tree as a child to the
      * selected group.
-     * @param group the App to be added
+     * @param app the App to be added
      */
     public void insertApp(App app) {
         log.fine("insert app");
@@ -181,9 +182,8 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
             Object object = ((UserObject) userObject).getObject();
             log.fine("userObject is " + userObject.getClass().getName());
 
-            if (object instanceof AppGroup) {
+            if (object instanceof AppGroup parentGroup) {
                 log.fine("userObject is AppGroup");
-                AppGroup parentGroup = (AppGroup) object;
                 parentGroup.addApp(app);
 
                 BeikerTreeNode childNode = new BeikerTreeNode(app);
@@ -244,8 +244,8 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     }
 
     public void notifyTreeListeners(TreePath path) {
-        for (int i = 0; i < listeners.size(); i++) {
-            ((TreeListener) listeners.get(i)).pathChanged(path);
+        for (TreeListener listener : listeners) {
+            listener.pathChanged(path);
         }
     }
 

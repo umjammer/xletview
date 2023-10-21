@@ -16,6 +16,6 @@ package org.dvb.si;
 
 public interface SITransportStreamNIT extends SITransportStream {
 
-    public int getNetworkID();
+    int getNetworkID();
 
 }

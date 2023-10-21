@@ -35,13 +35,13 @@ public interface Bouquet extends SIElement
      *
      * @return A number identifying this bouquet
      */
-    public int getBouquetID();
+    int getBouquetID();
 
     /**
      * Reports the name of this bouquet.
      *
      * @return A string representing the name of this bouquet, or an empty string if the name is not available.
      */
-    public java.lang.String getName();
+    java.lang.String getName();
 
 }

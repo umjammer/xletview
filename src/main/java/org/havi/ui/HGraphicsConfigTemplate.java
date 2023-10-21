@@ -32,16 +32,20 @@ public class HGraphicsConfigTemplate extends HScreenConfigTemplate{
         return (true);
     }
 
+    @Override
     public void setPreference(int preference, int priority){
     }
 
+    @Override
     public int getPreferencePriority(int preference){
         return (REQUIRED);
     }
 
+    @Override
     public void setPreference(int preference, Object object, int priority){
     }
 
+    @Override
     public Object getPreferenceObject(int preference){
         return (null);
     }

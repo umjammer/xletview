@@ -38,6 +38,7 @@ public class ProgressBar extends JPanel{
         setVisible(false);
     }
 
+    @Override
     public Dimension getPreferredSize(){
         return new Dimension(getSize().width, height);
     }
@@ -48,6 +49,7 @@ public class ProgressBar extends JPanel{
         repaint();
     }
 
+    @Override
     public void paint(Graphics g){
         int width = getWidth();
 

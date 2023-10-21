@@ -47,8 +47,8 @@ public interface CarouselFileListener extends java.util.EventListener
      * if a change is detected.
      *
      * @param event - Event indicating CarouselFile that has changed.
-     * @see CarouselFile.refreshCache()
+     * @see CarouselFile#refreshCache()
      */
-    public void carouselFileChanged( CarouselFileChangeEvent event);
+    void carouselFileChanged(CarouselFileChangeEvent event);
 
 }

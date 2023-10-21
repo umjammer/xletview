@@ -56,7 +56,7 @@ public class HScreen{
     public static HScreen[] getHScreens(){
         HScreen[] screens = new HScreen[hScreens.size()];
         for(int i = 0; i < screens.length; i++){
-            screens[i] = (HScreen) hScreens.get(i);
+            screens[i] = hScreens.get(i);
         }
         return screens;
     }

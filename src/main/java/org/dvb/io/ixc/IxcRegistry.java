@@ -71,7 +71,7 @@ public class IxcRegistry {
         boolean external;
     }
 
-    private static Map<String, RegistryEntry> registry = new HashMap<>();
+    private static final Map<String, RegistryEntry> registry = new HashMap<>();
 
     private IxcRegistry() {
     }
@@ -80,7 +80,7 @@ public class IxcRegistry {
             throws NotBoundException, RemoteException {
         RegistryEntry entry;
         synchronized (registry) {
-            entry = (RegistryEntry) registry.get(name);
+            entry = registry.get(name);
         }
         if (entry == null) throw new NotBoundException();
 
@@ -105,7 +105,7 @@ public class IxcRegistry {
                 + Integer.toHexString(thisAppId.getAID()) + "/" + name;
 
         synchronized (registry) {
-            RegistryEntry entry = (RegistryEntry) registry.get(name);
+            RegistryEntry entry = registry.get(name);
             if (entry != null) throw new AlreadyBoundException();
             registry.put(name, new RegistryEntry(obj, external));
         }

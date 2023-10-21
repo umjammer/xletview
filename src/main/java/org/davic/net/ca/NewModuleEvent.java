@@ -33,6 +33,7 @@ public class NewModuleEvent extends CAEvent {
         return caModule;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

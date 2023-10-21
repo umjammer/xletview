@@ -66,20 +66,21 @@ public class HToggleButton extends HGraphicButton implements HSwitchable{
         return (null);
     }
 
+    @Override
     public boolean getSwitchableState(){
         return(false);
     }
 
+    @Override
     public void setSwitchableState(boolean state){
-        return;
     }
 
+    @Override
     public void setUnsetActionSound(HSound sound){
-        return;
     }
 
+    @Override
     public HSound getUnsetActionSound(){
         return(null);
     }
-
 }

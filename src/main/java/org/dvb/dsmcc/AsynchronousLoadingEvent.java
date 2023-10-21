@@ -25,6 +25,7 @@ public abstract class AsynchronousLoadingEvent extends java.util.EventObject {
         super(dsmccobject);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

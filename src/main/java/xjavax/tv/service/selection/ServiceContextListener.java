@@ -28,6 +28,6 @@ public interface ServiceContextListener extends java.util.EventListener
      *
      * @param e - The generated event.
      */
-    public void receiveServiceContextEvent( ServiceContextEvent e);
+    void receiveServiceContextEvent(ServiceContextEvent e);
 
 }

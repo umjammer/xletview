@@ -22,11 +22,11 @@ public class DSMCCStreamEvent extends DSMCCStream {
         super (aDSMCCObject);
     }
 
-    public DSMCCStreamEvent(String path) throws IOException, IllegalObjectTypeException    {
+    public DSMCCStreamEvent(String path) throws IOException {
         super(path);
     }
 
-    public DSMCCStreamEvent(String path, String name) throws IOException, IllegalObjectTypeException {super(path, name);
+    public DSMCCStreamEvent(String path, String name) throws IOException {super(path, name);
     }
 
     public synchronized int subscribe(String eventName, StreamEventListener l) throws UnknownEventException, InsufficientResourcesException    {

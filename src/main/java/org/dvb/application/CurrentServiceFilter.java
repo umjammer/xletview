@@ -33,6 +33,7 @@ public class CurrentServiceFilter extends AppsDatabaseFilter {
         super();
     }
 
+    @Override
     public boolean accept(AppID appId) {
 
         // get the AppsDatabase

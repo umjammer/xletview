@@ -28,6 +28,7 @@ public class SubtitleAvailableEvent    extends java.util.EventObject {
         super(source);
     }
 
+    @Override
     public java.lang.Object getSource()    {
         return super.getSource();
     }

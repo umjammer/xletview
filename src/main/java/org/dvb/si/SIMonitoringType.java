@@ -16,16 +16,16 @@ package org.dvb.si;
 
 public interface SIMonitoringType{
 
-  public final static byte NETWORK = 1;
+  byte NETWORK = 1;
 
-  public final static byte BOUQUET = 2;
+  byte BOUQUET = 2;
 
-  public final static byte SERVICE = 3;
+  byte SERVICE = 3;
 
-  public final static byte PMT_SERVICE = 4;
+  byte PMT_SERVICE = 4;
 
-  public final static byte PRESENT_FOLLOWING_EVENT = 5;
+  byte PRESENT_FOLLOWING_EVENT = 5;
 
-  public final static byte SCHEDULED_EVENT = 6;
+  byte SCHEDULED_EVENT = 6;
 
 }

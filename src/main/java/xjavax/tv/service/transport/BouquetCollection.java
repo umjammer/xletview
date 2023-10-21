@@ -42,14 +42,14 @@ public interface BouquetCollection extends Transport
      * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see Bouquet, ReadPermission
      */
-    public SIRequest retrieveBouquet( Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
+    SIRequest retrieveBouquet(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
 
     /**
      * Retrieves an array of all the <code>Bouquet</code> objects in
      * this <code>BouquetCollection</code>.  This array will only contain
      * <code>Bouquet</code> instances <code>b</code> for which the caller has
      * <code>javax.tv.service.ReadPermission(b.getLocator())</code>.  If
-     * no <code>Bouquet</code> instances meet this criteria, this method
+     * no <code>Bouquet</code> instances meet these criteria, this method
      * will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.<p>
      *
@@ -59,7 +59,7 @@ public interface BouquetCollection extends Transport
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see Bouquet, ReadPermission
      */
-    public SIRequest retrieveBouquets( SIRequestor requestor);
+    SIRequest retrieveBouquets(SIRequestor requestor);
 
     /**
      * Registers a <code>BouquetChangeListener</code> to be notified of
@@ -85,7 +85,7 @@ public interface BouquetCollection extends Transport
      * @param listener - A BouquetChangeListener to be notified about changes related to Bouquet carried on this Transport.
      * @see BouquetChangeEvent, ReadPermission
      */
-    public void addBouquetChangeListener( BouquetChangeListener listener);
+    void addBouquetChangeListener(BouquetChangeListener listener);
 
     /**
      * Called to unregister an
@@ -95,6 +95,6 @@ public interface BouquetCollection extends Transport
      *
      * @param listener - A previously registered listener.
      */
-    public void removeBouquetChangeListener( BouquetChangeListener listener);
+    void removeBouquetChangeListener(BouquetChangeListener listener);
 
 }

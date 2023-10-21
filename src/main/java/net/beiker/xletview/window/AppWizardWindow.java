@@ -107,6 +107,7 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
 
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 doClose();
             }
@@ -327,49 +328,45 @@ public class AppWizardWindow  extends JFrame implements ActionListener{
     }
 
 
+    @Override
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();
-        if(command.equals("cancel")){
-            doClose();
-        }
-        else if(command.equals("next")){
-            if(state == STATE_FINNISHED){
+        switch (command) {
+        case "cancel" -> doClose();
+        case "next" -> {
+            if (state == STATE_FINNISHED) {
                 doClose();
-            }
-            else{
+            } else {
                 next();
             }
         }
-        else if(command.equals("back")){
-            back();
-        }
-        else if(command.equals("classpath")){
+        case "back" -> back();
+        case "classpath" -> {
             File[] roots = File.listRoots();
+        }
 //            DirectoryWindow dirWin = new DirectoryWindow(this, roots, false);
 //            if(dirWin.getPath().length() > 0){
 //                pathField.setText(dirWin.getPath());
 //                Debug.write(this, pathField.getText());
 //            }
-        }
-        else if(command.equals("xlet")){
-
+        case "xlet" -> {
             JFileChooser fc = new JFileChooser(pathField.getText());
             FileFilterImpl filter = new FileFilterImpl(".class");
             fc.setFileFilter(filter);
-            fc.setCurrentDirectory( new File(pathField.getText()) );
+            fc.setCurrentDirectory(new File(pathField.getText()));
             fc.setDialogType(JFileChooser.OPEN_DIALOG);
             fc.showOpenDialog(this);
             String selectedPath = fc.getSelectedFile().getAbsolutePath();
             log.fine("chosen file " + fc.getSelectedFile());
-
             String className = "";
             className = selectedPath.substring(pathField.getText().length());
             className = className.replace(File.separatorChar, '.');
             className = className.replaceAll(".class", "");
             className = className.replaceAll(".CLASS", "");
-            if(className.length() > 0){
+            if (!className.isEmpty()) {
                 xletField.setText(className);
             }
+        }
 
             /*
             File[] files = new File[1];

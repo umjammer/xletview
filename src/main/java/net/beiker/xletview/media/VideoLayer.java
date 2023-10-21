@@ -64,6 +64,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
      * it's only possible to add one Component
      *
      */
+    @Override
     public Component add(Component comp){
         Component added = null;
         if(getComponentCount() < 1){
@@ -80,10 +81,12 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
         return added;
     }
 
+    @Override
     public Component add(Component comp, int index){
         return add(comp);
     }
 
+    @Override
     public Component add(String name, Component comp){
         return add(comp);
     }
@@ -103,6 +106,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     //        super.paint(g);
     //    }
 
+    @Override
     public void paint(Graphics g) {
         for (int i = 0; i < getComponentCount(); i++) {
             getComponent(i).paint(g);
@@ -112,6 +116,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see xjavax.tv.service.selection.ServiceContentHandler#getServiceContentLocators()
      */
+    @Override
     public Locator[] getServiceContentLocators() {
         // TODO Auto-generated method stub
         logger.fine("getServiceContentLocators");
@@ -121,6 +126,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Player#getVisualComponent()
      */
+    @Override
     public Component getVisualComponent() {
         // TODO Auto-generated method stub
         logger.fine("getVisualComponent");
@@ -130,6 +136,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Player#getGainControl()
      */
+    @Override
     public GainControl getGainControl() {
         // TODO Auto-generated method stub
         logger.fine("getGainControl");
@@ -139,6 +146,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Player#getControlPanelComponent()
      */
+    @Override
     public Component getControlPanelComponent() {
         // TODO Auto-generated method stub
         logger.fine("getControlPanelComponent");
@@ -148,6 +156,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Player#start()
      */
+    @Override
     public void start() {
         // TODO Auto-generated method stub
         logger.fine("start");
@@ -157,6 +166,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Player#addController(javax.media.Controller)
      */
+    @Override
     public void addController(Controller arg0) throws IncompatibleTimeBaseException {
         // TODO Auto-generated method stub
         logger.fine("addController");
@@ -166,6 +176,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Player#removeController(javax.media.Controller)
      */
+    @Override
     public void removeController(Controller arg0) {
         // TODO Auto-generated method stub
         logger.fine("removeController");
@@ -175,6 +186,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.MediaHandler#setSource(javax.media.protocol.DataSource)
      */
+    @Override
     public void setSource(DataSource arg0) throws IOException, IncompatibleSourceException {
         // TODO Auto-generated method stub
         logger.fine("setSource");
@@ -184,6 +196,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#getState()
      */
+    @Override
     public int getState() {
         // TODO Auto-generated method stub
         logger.fine("getState");
@@ -193,6 +206,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#getTargetState()
      */
+    @Override
     public int getTargetState() {
         // TODO Auto-generated method stub
         logger.fine("getTargetState");
@@ -202,6 +216,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#realize()
      */
+    @Override
     public void realize() {
         // TODO Auto-generated method stub
         logger.fine("realize");
@@ -211,6 +226,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#prefetch()
      */
+    @Override
     public void prefetch() {
         // TODO Auto-generated method stub
         logger.fine("prefetch");
@@ -220,6 +236,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#deallocate()
      */
+    @Override
     public void deallocate() {
         // TODO Auto-generated method stub
         logger.fine("deallocate");
@@ -229,6 +246,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#close()
      */
+    @Override
     public void close() {
         // TODO Auto-generated method stub
         logger.fine("close");
@@ -238,6 +256,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#getStartLatency()
      */
+    @Override
     public Time getStartLatency() {
         // TODO Auto-generated method stub
         logger.fine("getStartLatency");
@@ -247,6 +266,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#getControls()
      */
+    @Override
     public Control[] getControls() {
         // TODO Auto-generated method stub
         logger.fine("getControls");
@@ -256,6 +276,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#getControl(java.lang.String)
      */
+    @Override
     public Control getControl(String s) {
         Control result = null;
 
@@ -269,6 +290,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#addControllerListener(javax.media.ControllerListener)
      */
+    @Override
     public void addControllerListener(ControllerListener arg0) {
         // TODO Auto-generated method stub
         logger.fine("addControllerListener");
@@ -278,6 +300,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Controller#removeControllerListener(javax.media.ControllerListener)
      */
+    @Override
     public void removeControllerListener(ControllerListener arg0) {
         // TODO Auto-generated method stub
         logger.fine("removeControllerListener");
@@ -287,6 +310,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#setTimeBase(javax.media.TimeBase)
      */
+    @Override
     public void setTimeBase(TimeBase arg0) throws IncompatibleTimeBaseException {
         // TODO Auto-generated method stub
         logger.fine("setTimeBase");
@@ -296,6 +320,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#syncStart(javax.media.Time)
      */
+    @Override
     public void syncStart(Time arg0) {
         // TODO Auto-generated method stub
         logger.fine("syncStart");
@@ -305,6 +330,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#stop()
      */
+    @Override
     public void stop() {
         // TODO Auto-generated method stub
         logger.fine("stop");
@@ -314,6 +340,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#setStopTime(javax.media.Time)
      */
+    @Override
     public void setStopTime(Time arg0) {
         // TODO Auto-generated method stub
         logger.fine("setStopTime");
@@ -323,6 +350,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#getStopTime()
      */
+    @Override
     public Time getStopTime() {
         // TODO Auto-generated method stub
         logger.fine("getStopTime");
@@ -332,6 +360,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#setMediaTime(javax.media.Time)
      */
+    @Override
     public void setMediaTime(Time arg0) {
         // TODO Auto-generated method stub
         logger.fine("setMediaTime");
@@ -341,6 +370,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#getMediaTime()
      */
+    @Override
     public Time getMediaTime() {
         // TODO Auto-generated method stub
         logger.fine("getMediaTime");
@@ -350,6 +380,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#getMediaNanoseconds()
      */
+    @Override
     public long getMediaNanoseconds() {
         // TODO Auto-generated method stub
         logger.fine("getMediaNanoseconds");
@@ -359,6 +390,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#getSyncTime()
      */
+    @Override
     public Time getSyncTime() {
         // TODO Auto-generated method stub
         logger.fine("getSyncTime");
@@ -368,6 +400,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#getTimeBase()
      */
+    @Override
     public TimeBase getTimeBase() {
         // TODO Auto-generated method stub
         logger.fine("getTimeBase");
@@ -377,6 +410,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#mapToTimeBase(javax.media.Time)
      */
+    @Override
     public Time mapToTimeBase(Time arg0) throws ClockStoppedException {
         // TODO Auto-generated method stub
         logger.fine("mapToTimeBase");
@@ -386,6 +420,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#getRate()
      */
+    @Override
     public float getRate() {
         // TODO Auto-generated method stub
         logger.fine("getRate");
@@ -395,6 +430,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Clock#setRate(float)
      */
+    @Override
     public float setRate(float arg0) {
         // TODO Auto-generated method stub
         logger.fine("setRate");
@@ -404,6 +440,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     /* (non-Javadoc)
      * @see javax.media.Duration#getDuration()
      */
+    @Override
     public Time getDuration() {
         // TODO Auto-generated method stub
         logger.fine("getDuration");

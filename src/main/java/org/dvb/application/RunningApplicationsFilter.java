@@ -20,6 +20,7 @@ public class RunningApplicationsFilter extends AppsDatabaseFilter {
         super();
     }
 
+    @Override
     public boolean accept(AppID appid) { return false;}
 
 }

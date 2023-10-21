@@ -37,10 +37,12 @@ public abstract class Locator implements xjavax.tv.locator.Locator {
         return "org.davic.net.Locator, url=" + url;
     }
 
+    @Override
     public boolean hasMultipleTransformations() {
         return false;
     }
 
+    @Override
     public String toExternalForm() {
         return url;
     }

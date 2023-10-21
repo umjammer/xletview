@@ -16,5 +16,5 @@ package org.dvb.dsmcc;
 
 public interface StreamEventListener extends java.util.EventListener {
 
-    public void receiveStreamEvent(StreamEvent e);
+    void receiveStreamEvent(StreamEvent e);
 }

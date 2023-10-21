@@ -35,6 +35,7 @@ public class StreamEvent extends java.util.EventObject {
         this.eventData = eventData;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

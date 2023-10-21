@@ -16,11 +16,11 @@ package org.havi.ui;
 
 
 public interface HSelectionInputPreferred extends HOrientable{
-    public boolean getSelectionMode();
+    boolean getSelectionMode();
 
-    public void setSelectionMode(boolean edit);
+    void setSelectionMode(boolean edit);
 
-    public void processHItemEvent(org.havi.ui.event.HItemEvent evt);
+    void processHItemEvent(org.havi.ui.event.HItemEvent evt);
 }
 
 

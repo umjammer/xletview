@@ -191,11 +191,12 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
     }
 
     private void notifyListeners(String markedUpString, HVisible hVisible, boolean overflowedHorizontally, boolean overflowedVertically) {
-        for (int i = 0; i < listeners.size(); i++) {
-            ((TextOverflowListener) listeners.get(i)).notifyTextOverflow(markedUpString, hVisible, overflowedHorizontally, overflowedVertically);
+        for (TextOverflowListener listener : listeners) {
+            listener.notifyTextOverflow(markedUpString, hVisible, overflowedHorizontally, overflowedVertically);
         }
     }
 
+    @Override
     public void render(String markedUpString, java.awt.Graphics g, HVisible hVisible, java.awt.Insets insets) {
 
         String lb = System.getProperty("line.separator");
@@ -263,11 +264,10 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
     }
 
     /**
+     * @param string
      * @param font
      * @param width
      *            width after the insets have been subtracted
-     * @param height
-     *            height after the insets have been subtracted
      */
     private void createRows(String string, Font font, int width) {
         rows = new String[0];
@@ -312,8 +312,8 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         textHeight = rows.length * rowHeight;
         textWidth = 0;
 
-        for (int i = 0; i < rows.length; i++) {
-            int rowWidth = fm.stringWidth(rows[i]);
+        for (String row : rows) {
+            int rowWidth = fm.stringWidth(row);
             if (textWidth < rowWidth) {
                 textWidth = rowWidth;
             }

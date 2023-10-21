@@ -16,19 +16,19 @@ package org.havi.ui;
 
 public interface HComponentOrdering{
 
-    public java.awt.Component addBefore(java.awt.Component component, java.awt.Component behind);
+    java.awt.Component addBefore(java.awt.Component component, java.awt.Component behind);
 
-    public java.awt.Component addAfter(java.awt.Component component, java.awt.Component front);
+    java.awt.Component addAfter(java.awt.Component component, java.awt.Component front);
 
-    public boolean popToFront(java.awt.Component component);
+    boolean popToFront(java.awt.Component component);
 
-    public boolean pushToBack(java.awt.Component component);
+    boolean pushToBack(java.awt.Component component);
 
-    public boolean pop(java.awt.Component component);
+    boolean pop(java.awt.Component component);
 
-    public boolean push(java.awt.Component component);
+    boolean push(java.awt.Component component);
 
-    public boolean popInFrontOf(java.awt.Component move, java.awt.Component behind);
+    boolean popInFrontOf(java.awt.Component move, java.awt.Component behind);
 
-    public boolean pushBehind(java.awt.Component move, java.awt.Component front);
+    boolean pushBehind(java.awt.Component move, java.awt.Component front);
 }

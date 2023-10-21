@@ -23,8 +23,8 @@ public interface SIRequest
      * action is performed.
      *
      * @return true if the request was pending and successfully canceled; false otherwise.
-     * @see SIRequestor.notifyFailure(javax.tv.service.SIRequestFailureType), SIRequestFailureType.CANCELED
+     * @see SIRequestor#notifyFailure(xjavax.tv.service.SIRequestFailureType), SIRequestFailureType.CANCELED
      */
-    public boolean cancel();
+    boolean cancel();
 
 }

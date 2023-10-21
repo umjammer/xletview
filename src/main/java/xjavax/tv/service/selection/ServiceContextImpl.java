@@ -34,8 +34,9 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     private ServiceContextImpl(){
     }
 
+    @Override
     public ServiceContentHandler[] getServiceContentHandlers() throws SecurityException{
-        ServiceContentHandler aservicecontenthandler[] = new ServiceContentHandler[1];
+        ServiceContentHandler[] aservicecontenthandler = new ServiceContentHandler[1];
         aservicecontenthandler[0] = VideoLayer.getInstance();
         return aservicecontenthandler;
     }
@@ -44,18 +45,25 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
         return false;
     }
     // implementing ServiceContext
+    @Override
     public void addListener(xjavax.tv.service.selection.ServiceContextListener scl){
     }
+    @Override
     public void removeListener(xjavax.tv.service.selection.ServiceContextListener scl){
     }
+    @Override
     public void select(xjavax.tv.service.Service s){
     }
+    @Override
     public void select(xjavax.tv.locator.Locator[] l){
     }
+    @Override
     public void stop(){
     }
+    @Override
     public void destroy(){
     }
+    @Override
     public Service getService(){
         return THEINSTANCE;
     }
@@ -65,21 +73,26 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     public boolean equals(java.lang.Object obj){
         return false;
     }
+    @Override
     public  Locator getLocator(){
         return THEINSTANCE;
     }
+    @Override
     public String getName(){
         return "";
     }
+    @Override
     public ServiceType getServiceType(){
         return null;//new ServiceType("DIGITAL_TV");
     }
     public int hashCode(){
         return 0;
     }
+    @Override
     public boolean hasMultipleInstances(){
         return false;
     }
+    @Override
     public SIRequest retrieveDetails(SIRequestor requestor){
         return THEINSTANCE;
     }
@@ -95,9 +108,11 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
         return 0;
     }
     */
+    @Override
     public boolean hasMultipleTransformations(){
         return false;
     }
+    @Override
     public java.lang.String toExternalForm(){
         return "";
     }
@@ -107,6 +122,7 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     // implementing Locator end
 
     // implementing SIRequestor
+    @Override
     public boolean cancel(){
         return false;
     }

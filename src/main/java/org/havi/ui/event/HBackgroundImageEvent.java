@@ -41,6 +41,7 @@ public class HBackgroundImageEvent extends java.util.EventObject{
         this.id = id;
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

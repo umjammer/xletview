@@ -22,10 +22,10 @@ public class DSMCCStream {
     public DSMCCStream(DSMCCObject aDSMCCObject) throws NotLoadedException, IllegalObjectTypeException{
     }
 
-    public DSMCCStream(String path) throws IOException, IllegalObjectTypeException{
+    public DSMCCStream(String path) throws IOException {
     }
 
-    public DSMCCStream(String path, String name) throws IOException, IllegalObjectTypeException    {
+    public DSMCCStream(String path, String name) throws IOException {
     }
 
 
@@ -59,7 +59,7 @@ public class DSMCCStream {
 
     public NPTRate getNPTRate() throws MPEGDeliveryException { return null; }
 
-    public void addNPTListener(NPTListener l){};
+    public void addNPTListener(NPTListener l){}
 
-    public void removeNPTListener(NPTListener l) {};
+    public void removeNPTListener(NPTListener l) {}
 }

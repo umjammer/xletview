@@ -48,9 +48,9 @@ public interface Locator
      * <code>URL</code>s.
      *
      * @return A string-based representation of this Locator.
-     * @see LocatorFactory.createLocator(java.lang.String),  javax.media.MediaLocator, URL
+     * @see LocatorFactory#createLocator(java.lang.String),  javax.media.MediaLocator, URL
      */
-    public java.lang.String toExternalForm();
+    java.lang.String toExternalForm();
 
     /**
      * Indicates whether this <code>Locator</code> has a mapping to
@@ -58,7 +58,7 @@ public interface Locator
      *
      * @return true if multiple transformations exist for this Locator, false otherwise.
      */
-    public boolean hasMultipleTransformations();
+    boolean hasMultipleTransformations();
 
     /**
      * Compares this <code>Locator</code> with the specified object for
@@ -69,10 +69,10 @@ public interface Locator
      *
      * @param o - The object against which to compare this Locator.
      * @return true if the specified object is equal to this Locator.
-     * @see equals in class java.lang.Object
-     * @see String.equals(Object)
+     * @see #equals in class java.lang.Object
+     * @see String#equals(Object)
      */
-    public boolean equals(java.lang.Object o);
+    boolean equals(java.lang.Object o);
 
     /**
      * Generates a hash code value for this <code>Locator</code>.
@@ -80,18 +80,18 @@ public interface Locator
      * is <code>true</code> will have identical hash code values.
      *
      * @return The hash code value for this Locator.
-     * @see hashCode in class java.lang.Object
-     * @see equals(Object)
+     * @see #hashCode in class java.lang.Object
+     * @see #equals(Object)
      */
-    public int hashCode();
+    int hashCode();
 
     /**
      * Returns the string used to create this locator.
      *
      * @return The string used to create this locator.
-     * @see toString in class java.lang.Object
-     * @see LocatorFactory.createLocator(java.lang.String)
+     * @see #toString in class java.lang.Object
+     * @see LocatorFactory#createLocator(java.lang.String)
      */
-    public java.lang.String toString();
+    java.lang.String toString();
 
 }

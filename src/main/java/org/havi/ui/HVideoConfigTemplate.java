@@ -25,13 +25,16 @@ public class HVideoConfigTemplate extends HScreenConfigTemplate{
         return (true);
     }
 
+    @Override
     public int getPreferencePriority(int preference){
         return (REQUIRED);
     }
 
+    @Override
     public void setPreference(int preference, Object object, int priority){
     }
 
+    @Override
     public Object getPreferenceObject(int preference){
         return (null);
     }

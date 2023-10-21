@@ -14,6 +14,9 @@
 
 package org.havi.ui;
 
+import java.util.Arrays;
+
+
 /**
  *
  *
@@ -28,20 +31,20 @@ public class HBackgroundConfigTemplate extends HScreenConfigTemplate{
 
     public HBackgroundConfigTemplate(){
         preferences = new int[12];
-        for(int i = 0; i < preferences.length; i++){
-            // don't care about anything
-            preferences[i] = HScreenConfigTemplate.DONT_CARE;
-        }
+        // don't care about anything
+        Arrays.fill(preferences, HScreenConfigTemplate.DONT_CARE);
     }
 
     public boolean isConfigSupported(HBackgroundConfiguration hbc){
         return true;
     }
 
+    @Override
     public void setPreference(int preference, int priority){
         preferences[preference] = priority;
     }
 
+    @Override
     public int getPreferencePriority(int preference){
         return preferences[preference];
     }

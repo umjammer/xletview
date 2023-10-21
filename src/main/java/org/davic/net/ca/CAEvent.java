@@ -26,6 +26,7 @@ public abstract class CAEvent extends java.util.EventObject{
         super(o);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

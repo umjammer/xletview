@@ -62,14 +62,17 @@ public class KeyButton extends Container implements MouseListener{
         return new Dimension(getWidth(), getHeight());
     }
 
+    @Override
     public Dimension getMinimumSize(){
         return getPrefferedSize();
     }
 
+    @Override
     public Dimension getMaximumSize(){
         return getPrefferedSize();
     }
 
+    @Override
     public void addKeyListener(KeyListener keyListener){
         this.keyListener = AWTEventMulticaster.add(this.keyListener, keyListener);
     }
@@ -103,22 +106,27 @@ public class KeyButton extends Container implements MouseListener{
     }
 
     // implementing MouseListener -->
+    @Override
     public void mouseClicked(MouseEvent e){
         fireKeyEvent(KeyEvent.KEY_TYPED);
     }
 
+    @Override
     public void mousePressed(MouseEvent e){
         setOn();
         fireKeyEvent(KeyEvent.KEY_PRESSED);
     }
 
+    @Override
     public void mouseReleased(MouseEvent e){
         setNormal();
         fireKeyEvent(KeyEvent.KEY_RELEASED);
     }
 
+    @Override
     public void mouseEntered(MouseEvent e){}
 
+    @Override
     public void mouseExited(MouseEvent e){}
 
 

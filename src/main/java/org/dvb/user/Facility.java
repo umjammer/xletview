@@ -31,7 +31,7 @@ public class Facility {
         values[0] = value;
     }
 
-    public Facility (String preference, String values[]) {
+    public Facility (String preference, String[] values) {
         this.preference = preference;
         this.values = values;
     }

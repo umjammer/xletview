@@ -26,6 +26,7 @@ public abstract class NetworkInterfaceEvent extends java.util.EventObject {
         super(networkInterface);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

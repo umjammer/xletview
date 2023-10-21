@@ -16,11 +16,11 @@ package org.davic.resources;
 
 public interface ResourceClient{
 
-    public abstract boolean requestRelease(ResourceProxy proxy, Object requestData);
+    boolean requestRelease(ResourceProxy proxy, Object requestData);
 
-    public abstract void release(ResourceProxy proxy);
+    void release(ResourceProxy proxy);
 
-    public abstract void notifyRelease(ResourceProxy proxy);
+    void notifyRelease(ResourceProxy proxy);
 
 }
 

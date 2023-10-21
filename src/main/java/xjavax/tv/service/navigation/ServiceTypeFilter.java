@@ -57,9 +57,10 @@ public final class ServiceTypeFilter extends ServiceFilter
      *
      * @param service - An individual Service to be evaluated against the filtering algorithm.
      * @return true if service is of the type indicated by the filter value; false otherwise.
-     * @see accept in class ServiceFilter
+     * @see #accept in class ServiceFilter
      */
-    public boolean accept( Service service)
+    @Override
+    public boolean accept(Service service)
     {
         return false;
         //TODO implement accept

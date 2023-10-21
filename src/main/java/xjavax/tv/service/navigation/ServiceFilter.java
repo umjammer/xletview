@@ -27,7 +27,7 @@ import xjavax.tv.service.Service;
  * @author Martin Sveden
  * @statuscode 4
  */
-public abstract class ServiceFilter extends java.lang.Object{
+public abstract class ServiceFilter {
     /**
      * Constructs the filter.</DL>
      *

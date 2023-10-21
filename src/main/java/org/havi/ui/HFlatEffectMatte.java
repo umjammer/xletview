@@ -30,46 +30,51 @@ public class HFlatEffectMatte implements HMatte, HAnimateEffect{
         return (null);
     }
 
+    @Override
     public void start(){
-        return;
     }
 
+    @Override
     public void stop(){
-        return;
     }
 
+    @Override
     public boolean isAnimated(){
         return(false);
     }
 
+    @Override
     public void setPosition(int position){
-        return;
     }
 
+    @Override
     public int getPosition(){
         return(0);
     }
 
+    @Override
     public void setRepeatCount(int count){
-        return;
     }
 
+    @Override
     public int getRepeatCount(){
         return(0);
     }
 
+    @Override
     public void setDelay(int count){
-        return;
     }
 
+    @Override
     public int getDelay(){
         return(0);
     }
 
+    @Override
     public void setPlayMode(int mode){
-        return;
     }
 
+    @Override
     public int getPlayMode(){
         return(0);
     }

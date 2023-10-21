@@ -16,6 +16,6 @@ package org.dvb.si;
 
 public interface SIRetrievalListener extends java.util.EventListener {
 
-    public void postRetrievalEvent(SIRetrievalEvent event);
+    void postRetrievalEvent(SIRetrievalEvent event);
 
 }

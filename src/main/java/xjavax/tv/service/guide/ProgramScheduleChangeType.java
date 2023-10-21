@@ -51,7 +51,7 @@ public class ProgramScheduleChangeType extends SIChangeType
      * class variable name.
      *
      * @return The string name of the type.
-     * @see toString in class SIChangeType
+     * @see #toString in class SIChangeType
      */
     public java.lang.String toString()
     {

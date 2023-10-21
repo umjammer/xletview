@@ -20,8 +20,7 @@ package xjavax.tv.locator;
  *
  *
  */
-public abstract class LocatorFactory extends java.lang.Object
-{
+public abstract class LocatorFactory {
     //following variables are implicitely defined by getter- or setter-methods:
     private static LocatorFactory instance;
 
@@ -53,7 +52,7 @@ public abstract class LocatorFactory extends java.lang.Object
      * @param locatorString - The string form of the Locator to be created.
      * @return A Locator object representing the resource referenced by the given locator string.
      * @throws MalformedLocatorException - If an incorrectly formatted locator string is detected.
-     * @see Locator.toExternalForm()
+     * @see Locator#toExternalForm()
      */
     public abstract Locator createLocator(java.lang.String locatorString) throws MalformedLocatorException;
 

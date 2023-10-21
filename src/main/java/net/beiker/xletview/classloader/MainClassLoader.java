@@ -47,9 +47,9 @@ public class MainClassLoader extends URLClassLoader {
     public void addClassPath(String classpath){
         String[] s = classpath.split(File.pathSeparator);
 
-        for (int i = 0; i < s.length; i++) {
+        for (String string : s) {
             try {
-                URL url = new File(s[i]).toURI().toURL();
+                URL url = new File(string).toURI().toURL();
                 super.addURL(url);
                 logger.fine("added " + url);
             } catch (MalformedURLException e) {
@@ -71,10 +71,10 @@ public class MainClassLoader extends URLClassLoader {
 //        paths.add("jars/javassist.jar");
 //        paths.add("jars/log4j-1.2.8.jar");
 
-        URL[] urls = new URL[paths.size()];
+        URL[] urls = new URL[paths.size()]; // TODO
 
         for (int i = 0; i < paths.size(); i++) {
-            String s = (String) paths.get(i);
+            String s = paths.get(i);
             File f = new File(s);
             try {
                 urls[i] = f.toURI().toURL();
@@ -90,6 +90,7 @@ public class MainClassLoader extends URLClassLoader {
      *  (non-Javadoc)
      * @see java.lang.ClassLoader#loadClass(java.lang.String)
      */
+    @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
 
         name = name.replaceAll("/", ".");
@@ -126,12 +127,13 @@ public class MainClassLoader extends URLClassLoader {
      * this classloader.
      */
     private Class<?> getLoadedClass(String name){
-        return (Class<?>)this.loadedClasses.get(name);
+        return this.loadedClasses.get(name);
     }
 
     /*
      * overridden to take care of the exception
      */
+    @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         Class<?> theClass = null;
         try {

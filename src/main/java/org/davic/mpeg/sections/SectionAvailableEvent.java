@@ -27,6 +27,7 @@ public class SectionAvailableEvent    extends SectionFilterEvent{
         super(sectionFilter,appData);
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

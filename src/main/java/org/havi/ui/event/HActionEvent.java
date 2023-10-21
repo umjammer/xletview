@@ -27,10 +27,12 @@ public class HActionEvent extends java.awt.event.ActionEvent{
         super(source, id, command);
     }
 
+    @Override
     public String getActionCommand(){
         return super.getActionCommand();
     }
 
+    @Override
     public int getModifiers(){
         return super.getModifiers();
     }

@@ -117,8 +117,9 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      *
      * @param p - The permission against which to test.
      * @return true if the specified permission is equal to or implied by this permission; false otherwise.
-     * @see implies in class java.security.BasicPermission
+     * @see #implies in class java.security.BasicPermission
      */
+    @Override
     public boolean implies(java.security.Permission p)
     {
         return false;
@@ -134,7 +135,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      *
      * @param obj - The object to test for equality.
      * @return true if the two permissions are equal; false otherwise.
-     * @see equals in class java.security.BasicPermission
+     * @see #equals in class java.security.BasicPermission
      */
     public boolean equals(java.lang.Object obj)
     {
@@ -148,7 +149,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * return the same hash code.
      *
      * @return The hash code value of this object.
-     * @see hashCode in class java.security.BasicPermission
+     * @see #hashCode in class java.security.BasicPermission
      */
     public int hashCode()
     {
@@ -160,8 +161,9 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * Returns the canonical representation of the actions string.
      *
      * @return The actions string of this permission.
-     * @see getActions in class java.security.BasicPermission
+     * @see #getActions in class java.security.BasicPermission
      */
+    @Override
     public java.lang.String getActions()
     {
         return this.actions;

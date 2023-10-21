@@ -22,18 +22,22 @@ public class NotAuthorizedException extends java.lang.Exception implements NotAu
     public NotAuthorizedException(String s) {
     }
 
+    @Override
     public int getType(){
        return 0;
     }
 
+    @Override
     public Service getService(){
         return null;
     }
 
+    @Override
     public ElementaryStream[] getElementaryStreams(){
         return null;
     }
 
+    @Override
     public int[] getReason(int index) throws java.lang.IndexOutOfBoundsException {
         return null;
     }

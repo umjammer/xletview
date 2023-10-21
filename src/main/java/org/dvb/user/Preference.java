@@ -15,6 +15,7 @@
 package org.dvb.user ;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -35,27 +36,25 @@ public abstract class Preference {
     public Preference (String name, String value) {
         this();
         this.name = name;
-        if(value != null && value.length() > 0){
+        if(value != null && !value.isEmpty()){
             values.add(value);
         }
     }
 
-    public Preference (String name, String value[]) {
+    public Preference (String name, String[] value) {
         this();
         this.name = name;
-        for (int i = 0; i < value.length; i++) {
-            values.add(value[i]);
-        }
+        Collections.addAll(values, value);
     }
 
     public void add (String value) {
         values.add(value);
     }
 
-    public void add( String value[]){
-        for (int i = 0; i < value.length; i++) {
-            values.remove(value[i]);
-            values.add(value[i]);
+    public void add(String[] value){
+        for (String s : value) {
+            values.remove(s);
+            values.add(s);
         }
     }
 
@@ -82,8 +81,8 @@ public abstract class Preference {
     public String getMostFavourite () {
         String result = null;
 
-        if(values.size() > 0){
-            result = (String) values.get(0);
+        if(!values.isEmpty()){
+            result = values.get(0);
         }
         return result;
     }
@@ -97,7 +96,7 @@ public abstract class Preference {
     }
 
     public boolean hasValue () {
-        return values.size() > 0;
+        return !values.isEmpty();
     }
 
     public void remove (String value){
@@ -114,15 +113,15 @@ public abstract class Preference {
     }
 
     public String toString() {
-        String result = name + " [";
+        StringBuilder result = new StringBuilder(name + " [");
         for (int i = 0; i < values.size(); i++) {
-            result += values.get(i);
+            result.append(values.get(i));
             if(i < values.size() - 1){
-                result += ",";
+                result.append(",");
             }
         }
-        result += "]";
-        return result;
+        result.append("]");
+        return result.toString();
     }
 
 

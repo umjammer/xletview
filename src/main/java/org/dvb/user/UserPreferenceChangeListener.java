@@ -16,6 +16,6 @@ package org.dvb.user ;
 
 public interface UserPreferenceChangeListener {
 
-    public abstract void receiveUserPreferenceChangeEvent (UserPreferenceChangeEvent e);
+    void receiveUserPreferenceChangeEvent(UserPreferenceChangeEvent e);
 
 }

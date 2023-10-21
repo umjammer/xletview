@@ -18,12 +18,12 @@ import java.util.EventListener;
 
 public interface AppsDatabaseEventListener extends EventListener{
 
-    public void newDatabase(AppsDatabaseEvent evt);
+    void newDatabase(AppsDatabaseEvent evt);
 
-    public void entryAdded(AppsDatabaseEvent evt);
+    void entryAdded(AppsDatabaseEvent evt);
 
-    public void entryRemoved(AppsDatabaseEvent evt);
+    void entryRemoved(AppsDatabaseEvent evt);
 
-    public void entryChanged(AppsDatabaseEvent evt);
+    void entryChanged(AppsDatabaseEvent evt);
 }
 

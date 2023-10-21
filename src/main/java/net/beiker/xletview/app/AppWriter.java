@@ -14,7 +14,6 @@
 
 package net.beiker.xletview.app;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -70,7 +69,7 @@ public class AppWriter{
 
         OutputStream out = null;
         try {
-            out = new FileOutputStream(new File(url.getFile()));
+            out = new FileOutputStream(url.getFile());
         }
         catch (Exception e1){
             try{
@@ -103,8 +102,8 @@ public class AppWriter{
         // get the subgroups of this group
         List<?> subGroups = group.getSubGroups();
         logger.fine(group.getName() + ", children = " +subGroups.size());
-        for(int i = 0; i < subGroups.size(); i++){
-            AppGroup subGroup = (AppGroup)subGroups.get(i);
+        for (Object object : subGroups) {
+            AppGroup subGroup = (AppGroup) object;
             String name = subGroup.getName();
             XMLElement child = new XMLElement("GROUP");
             child.setAttribute("NAME", name);
@@ -116,8 +115,8 @@ public class AppWriter{
 
         // get the applications in this group
         List<?> apps = group.getApps();
-        for(int i = 0; i < apps.size(); i++){
-            App app = (App) apps.get(i);
+        for (Object o : apps) {
+            App app = (App) o;
             //Debug.info(app.getName());
             XMLElement appElement = new XMLElement("APPLICATION");
 

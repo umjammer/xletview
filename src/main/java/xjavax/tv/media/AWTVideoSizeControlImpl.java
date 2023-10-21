@@ -52,24 +52,29 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
     }
 
 
+    @Override
     public AWTVideoSize checkSize(AWTVideoSize awtvideosize){
         return currentSize;
     }
 
+    @Override
     public AWTVideoSize getDefaultSize(){
         return defaultSize;
     }
 
+    @Override
     public AWTVideoSize getSize(){
         return currentSize;
     }
 
+    @Override
     public Dimension getSourceVideoSize(){
         Rectangle rect = currentSize.getSource();
         Dimension dim = new Dimension(rect.width, rect.height);
         return dim;
     }
 
+    @Override
     public boolean setSize(AWTVideoSize awtvideosize){
         currentSize = awtvideosize;
 
@@ -78,6 +83,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl{
         return true;
     }
 
+    @Override
     public Component getControlComponent(){
         return null;
     }

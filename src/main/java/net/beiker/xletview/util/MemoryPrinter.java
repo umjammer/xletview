@@ -40,7 +40,7 @@ public abstract class MemoryPrinter {
             result = "" + size;
         }
         else {
-            result = (new Float(size / 1024).intValue()) + " K";
+            result = (new Float((float) size / 1024).intValue()) + " K";
         }
         return result;
     }

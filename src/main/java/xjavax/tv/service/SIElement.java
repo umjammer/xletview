@@ -45,7 +45,7 @@ public interface SIElement extends SIRetrievable
      *
      * @return Locator The locator referencing this SIElement
      */
-    public Locator getLocator();
+    Locator getLocator();
 
     /**
      * Tests two <code>SIElement</code> objects for equality.  Returns
@@ -61,9 +61,9 @@ public interface SIElement extends SIRetrievable
      *
      * @param obj - The object against which to test for equality.
      * @return true if the two SIElement objects are equal; false otherwise.
-     * @see equals in class java.lang.Object
+     * @see #equals in class java.lang.Object
      */
-    public boolean equals(java.lang.Object obj);
+    boolean equals(java.lang.Object obj);
 
     /**
      * Reports the hash code value of this <code>SIElement</code>.  Two
@@ -71,9 +71,9 @@ public interface SIElement extends SIRetrievable
      * hash codes.
      *
      * @return The hash code value of this SIElement.
-     * @see hashCode in class java.lang.Object
+     * @see #hashCode in class java.lang.Object
      */
-    public int hashCode();
+    int hashCode();
 
     /**
      * Reports the SI format in which this <code>SIElement</code> was
@@ -81,6 +81,6 @@ public interface SIElement extends SIRetrievable
      *
      * @return The SI format in which this SI element was delivered.
      */
-    public ServiceInformationType getServiceInformationType();
+    ServiceInformationType getServiceInformationType();
 
 }

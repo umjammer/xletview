@@ -57,9 +57,9 @@ public class EmulatorFile {
 
         java.io.File[] files = realFile.listFiles();
         if(files != null){
-            for(int i = 0; i < files.length; i++){
+            for (java.io.File file : files) {
 //                addChild(new EmulatorFile(this, files[i]));
-                new EmulatorFile(this, files[i]);
+                new EmulatorFile(this, file);
             }
         }
         parent.addChild(this);
@@ -67,7 +67,7 @@ public class EmulatorFile {
 
     EmulatorFile(EmulatorFile parent, java.io.File realFile) throws IllegalArgumentException {
         this();
-        if(parent == null || realFile == null || realFile.exists() == false){
+        if(parent == null || realFile == null || !realFile.exists()){
             throw new IllegalArgumentException("the file did not exist");
         }
 
@@ -79,9 +79,9 @@ public class EmulatorFile {
 
         java.io.File[] files = realFile.listFiles();
         if(files != null){
-            for(int i = 0; i < files.length; i++){
+            for (java.io.File file : files) {
 //                addChild(new EmulatorFile(this, files[i]));
-                new EmulatorFile(this, files[i]);
+                new EmulatorFile(this, file);
             }
         }
         parent.addChild(this);
@@ -130,11 +130,11 @@ public class EmulatorFile {
     EmulatorFile getChild(String name){
         EmulatorFile result = null;
         log.fine(this.name + ", children.size() = " + children.size());
-        for(int i = 0; i < children.size(); i++){
-            EmulatorFile ef = (EmulatorFile) children.get(i);
+        for (EmulatorFile child : children) {
+            EmulatorFile ef = child;
             String s = ef.getName();
             log.fine("checking in " + getName() + " if there is a child with the name " + name + ", child has name " + s);
-            if(s.equals(name)){
+            if (s.equals(name)) {
                 result = ef;
                 break;
             }

@@ -30,6 +30,6 @@ public interface TransportStreamChangeListener extends SIChangeListener
      *
      * @param event - A TransportStreamChangeEvent describing what changed and how.
      */
-    public void notifyChange( TransportStreamChangeEvent event);
+    void notifyChange(TransportStreamChangeEvent event);
 
 }

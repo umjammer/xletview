@@ -16,15 +16,15 @@ package org.havi.ui;
 
 public interface HOrientable{
 
-    public static final int ORIENT_LEFT_TO_RIGHT = 0;
+    int ORIENT_LEFT_TO_RIGHT = 0;
 
-    public static final int ORIENT_RIGHT_TO_LEFT = 1;
+    int ORIENT_RIGHT_TO_LEFT = 1;
 
-    public static final int ORIENT_TOP_TO_BOTTOM = 2;
+    int ORIENT_TOP_TO_BOTTOM = 2;
 
-    public static final int ORIENT_BOTTOM_TO_TOP = 3;
+    int ORIENT_BOTTOM_TO_TOP = 3;
 
-    public int getOrientation();
+    int getOrientation();
 
-    public void setOrientation(int orient);
+    void setOrientation(int orient);
 }

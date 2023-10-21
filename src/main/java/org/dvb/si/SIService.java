@@ -16,40 +16,41 @@ package org.dvb.si;
 
 public interface SIService extends SIInformation, TextualServiceIdentifierQuery{
 
-    public org.davic.net.dvb.DvbLocator getDvbLocator();
+    org.davic.net.dvb.DvbLocator getDvbLocator();
 
-    public int getOriginalNetworkID();
+    int getOriginalNetworkID();
 
-    public int getTransportStreamID();
+    int getTransportStreamID();
 
-    public int getServiceID();
+    int getServiceID();
 
-    public short getSIServiceType();
+    short getSIServiceType();
 
-    public String getName();
+    String getName();
 
-    public String getShortServiceName();
+    String getShortServiceName();
 
-    public String getProviderName();
+    String getProviderName();
 
-    public String getShortProviderName();
+    String getShortProviderName();
 
-    public boolean getEITScheduleFlag();
+    boolean getEITScheduleFlag();
 
-    public boolean getEITPresentFollowingFlag();
+    boolean getEITPresentFollowingFlag();
 
-    public byte getRunningStatus();
+    byte getRunningStatus();
 
-    public boolean getFreeCAMode();
+    boolean getFreeCAMode();
 
-    public SIRequest retrievePresentSIEvent(short retrieveMode, Object appData, SIRetrievalListener listener, short[]someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrievePresentSIEvent(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public SIRequest retrieveFollowingSIEvent(short retrieveMode, Object appData, SIRetrievalListener listener, short[]someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrieveFollowingSIEvent(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public SIRequest retrieveScheduledSIEvents(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags, java.util.Date startTime, java.util.Date endTime) throws SIIllegalArgumentException, SIInvalidPeriodException;
+    SIRequest retrieveScheduledSIEvents(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags, java.util.Date startTime, java.util.Date endTime) throws SIIllegalArgumentException, SIInvalidPeriodException;
 
-    public SIRequest retrievePMTService(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrievePMTService(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public String[] getTextualServiceIdentifiers();
+    @Override
+    String[] getTextualServiceIdentifiers();
 
 }

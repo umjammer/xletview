@@ -37,7 +37,7 @@ public interface SIRequestor
      *
      * @param result - The previously requested data.
      */
-    public void notifySuccess( SIRetrievable[] result);
+    void notifySuccess(SIRetrievable[] result);
 
     /**
      * Notifies the <code>SIRequestor</code> of unsuccessful asynchronous
@@ -45,6 +45,6 @@ public interface SIRequestor
      *
      * @param reason - The reason why the asynchronous request failed.
      */
-    public void notifyFailure( SIRequestFailureType reason);
+    void notifyFailure(SIRequestFailureType reason);
 
 }

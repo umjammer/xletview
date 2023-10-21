@@ -17,24 +17,24 @@ package org.havi.ui;
 
     public interface HNavigable extends HNavigationInputPreferred{
 
-    public void setMove(int keyCode, HNavigable target);
+    void setMove(int keyCode, HNavigable target);
 
-    public HNavigable getMove(int keyCode);
+    HNavigable getMove(int keyCode);
 
-    public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right);
+    void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right);
 
-    public boolean isSelected();
+    boolean isSelected();
 
-    public void setGainFocusSound(HSound sound);
+    void setGainFocusSound(HSound sound);
 
-    public void setLoseFocusSound(HSound sound);
+    void setLoseFocusSound(HSound sound);
 
-    public HSound getGainFocusSound();
+    HSound getGainFocusSound();
 
-    public HSound getLoseFocusSound();
+    HSound getLoseFocusSound();
 
-    public void addHFocusListener(org.havi.ui.event.HFocusListener l);
+    void addHFocusListener(org.havi.ui.event.HFocusListener l);
 
-    public void removeHFocusListener(org.havi.ui.event.HFocusListener l);
+    void removeHFocusListener(org.havi.ui.event.HFocusListener l);
 
 }

@@ -83,8 +83,9 @@ public final class SelectPermission extends java.security.Permission implements 
      *
      * @param p - The permission against which to check.
      * @return true if the specified permission is implied by this object, false if not.
-     * @see implies in class java.security.Permission
+     * @see #implies in class java.security.Permission
      */
+    @Override
     public boolean implies(java.security.Permission p)
     {
         return false;
@@ -99,7 +100,7 @@ public final class SelectPermission extends java.security.Permission implements 
      *
      * @param other - The object to test for equality.
      * @return true if other is a SelectPermission and has the same locator and actions string as this SelectPermission object; false otherwise.
-     * @see equals in class java.security.Permission
+     * @see #equals in class java.security.Permission
      */
     public boolean equals(java.lang.Object other)
     {
@@ -111,7 +112,7 @@ public final class SelectPermission extends java.security.Permission implements 
      * Returns the hash code value for this object.
      *
      * @return A hash code value for this object.
-     * @see hashCode in class java.security.Permission
+     * @see #hashCode in class java.security.Permission
      */
     public int hashCode()
     {
@@ -123,8 +124,9 @@ public final class SelectPermission extends java.security.Permission implements 
      * Returns the canonical string representation of the actions.
      *
      * @return The canonical string representation of the actions.
-     * @see getActions in class java.security.Permission
+     * @see #getActions in class java.security.Permission
      */
+    @Override
     public java.lang.String getActions()
     {
         return this.actions;

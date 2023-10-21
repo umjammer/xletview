@@ -18,6 +18,6 @@ package net.beiker.xletview.io;
  */
 public interface OutputPrinter {
 
-    public void print(String s);
+    void print(String s);
 
 }

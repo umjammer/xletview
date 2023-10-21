@@ -43,7 +43,7 @@ public class NotAuthorizedMediaException extends NotAuthorizedException    imple
         this.type = NotAuthorizedInterface.SERVICE;
     }
 
-    public NotAuthorizedMediaException(ElementaryStream[] eStreams, int reasons[]){
+    public NotAuthorizedMediaException(ElementaryStream[] eStreams, int[] reasons){
         this.streams = eStreams;
         this.reasons = reasons;
         type = NotAuthorizedInterface.ELEMENTARY_STREAM;
@@ -56,18 +56,22 @@ public class NotAuthorizedMediaException extends NotAuthorizedException    imple
         reasons[1] = minor_reason;
     }
 
+    @Override
     public int getType(){
         return type;
     }
 
+    @Override
     public Service getService(){
         return service;
     }
 
+    @Override
     public ElementaryStream[] getElementaryStreams()    {
         return streams;
     }
 
+    @Override
     public int[] getReason(int index) throws java.lang.IndexOutOfBoundsException{
         return reasons;
     }

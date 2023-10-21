@@ -37,8 +37,7 @@ public class Settings {
 
     private static Properties properties;
 //    private static File file;
-    private static String instruction = "" +
-    "#Mind that paths can not contain backslash" + System.getProperty("line.separator") +
+    private static String instruction = "#Mind that paths can not contain backslash" + System.getProperty("line.separator") +
     "#Make sure there are no spaces after the values" +  System.getProperty("line.separator");
 
     private static String[] exclude = {"path.home"};
@@ -85,15 +84,15 @@ public class Settings {
 
 
             // Sort
-            List<String> v = Arrays.asList(properties.keySet().toArray(new String[0]));
+            List<String> v = Arrays.asList(properties.keySet().toArray(String[]::new));
             Collections.sort(v);
 
             try {
                 osw.write(instruction + System.getProperty("line.separator"));
                 for (String name : v) {
                     boolean include = true;
-                    for(int i = 0; i < exclude.length; i++){
-                        if(name.indexOf(exclude[i]) != -1){
+                    for (String s : exclude) {
+                        if (name.contains(s)) {
                             include = false;
                             break;
                         }

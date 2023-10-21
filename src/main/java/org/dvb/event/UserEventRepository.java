@@ -43,10 +43,10 @@ public class UserEventRepository extends RepositoryDescriptor {
      * */
     public void addUserEvent(UserEvent event) {
         //Debug.write(this, "event code = " + event.getCode());
-        for(int i = 0; i < userEvents.size(); i++){
-            UserEvent ue = (UserEvent) userEvents.get(i);
-            if(ue.getCode() == event.getCode()){
-                // it already exist so we don't want to add it
+        for (UserEvent userEvent : userEvents) {
+            UserEvent ue = userEvent;
+            if (ue.getCode() == event.getCode()) {
+                // it already exists so we don't want to add it
                 return;
             }
         }
@@ -59,8 +59,8 @@ public class UserEventRepository extends RepositoryDescriptor {
 
         UserEvent[] events = new UserEvent[userEvents.size()];
         for(int i = 0; i < userEvents.size(); i++){
-            Object o = userEvents.get(i);
-            events[i] = (UserEvent) o;
+            UserEvent o = userEvents.get(i);
+            events[i] = o;
         }
         return events;
     }
@@ -75,9 +75,9 @@ public class UserEventRepository extends RepositoryDescriptor {
 
     public void removeKey (int keyCode) {
         for(int i = 0; i < userEvents.size(); i++){
-            UserEvent ue = (UserEvent) userEvents.get(i);
+            UserEvent ue = userEvents.get(i);
             if(ue.getCode() == keyCode){
-                // it already exist so we remove it
+                // it already exists so we remove it
                 userEvents.remove(ue);
             }
         }

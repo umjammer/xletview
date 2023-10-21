@@ -33,96 +33,105 @@ public class HRangeValue extends HRange implements HAdjustmentValue{
         return (null);
     }
 
+    @Override
     public void setMove(int keyCode, HNavigable target){
-        return;
     }
 
+    @Override
     public HNavigable getMove(int keyCode){
         return(null);
     }
 
+    @Override
     public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
-        return;
     }
 
+    @Override
     public boolean isSelected(){
         return(false);
     }
 
+    @Override
     public void setGainFocusSound(HSound sound){
-        return;
     }
 
+    @Override
     public void setLoseFocusSound(HSound sound){
-        return;
     }
 
+    @Override
     public HSound getGainFocusSound(){
         return(null);
     }
 
+    @Override
     public HSound getLoseFocusSound(){
         return(null);
     }
 
+    @Override
     public void addHFocusListener(org.havi.ui.event.HFocusListener l){
-        return;
     }
 
 
+    @Override
     public void removeHFocusListener(org.havi.ui.event.HFocusListener l){
-        return;
     }
 
+    @Override
     public int[] getNavigationKeys(){
         return(null);
     }
 
+    @Override
     public void processHFocusEvent(org.havi.ui.event.HFocusEvent evt){
-        return;
     }
 
+    @Override
     public void setUnitIncrement(int increment){
-        return;
     }
 
+    @Override
     public int getUnitIncrement(){
         return(1);
     }
 
+    @Override
     public void setBlockIncrement(int increment){
-        return;
     }
 
+    @Override
     public int getBlockIncrement(){
         return(1);
     }
 
+    @Override
     public void addAdjustmentListener(org.havi.ui.event.HAdjustmentListener l){
-        return;
     }
 
+    @Override
     public void removeAdjustmentListener(org.havi.ui.event.HAdjustmentListener l){
-        return;
     }
 
+    @Override
     public void setAdjustmentSound(HSound sound){
-        return;
     }
 
+    @Override
     public HSound getAdjustmentSound(){
         return(null);
     }
 
+    @Override
     public boolean getAdjustMode(){
         return(true);
     }
 
+    @Override
     public void setAdjustMode(boolean adjust){
-        return;
     }
 
+    @Override
     public void processHAdjustmentEvent(org.havi.ui.event.HAdjustmentEvent evt){
-        return;
     }
 }

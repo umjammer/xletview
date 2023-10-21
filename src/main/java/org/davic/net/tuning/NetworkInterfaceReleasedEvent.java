@@ -28,6 +28,7 @@ public class NetworkInterfaceReleasedEvent extends ResourceStatusEvent {
         super(ni);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

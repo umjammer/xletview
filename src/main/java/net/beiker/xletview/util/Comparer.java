@@ -11,5 +11,5 @@ public interface Comparer {
    * @param b
    * @return
    */
-   public int compare(Object a, Object b);
+  int compare(Object a, Object b);
 }

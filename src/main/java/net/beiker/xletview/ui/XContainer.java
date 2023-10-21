@@ -39,6 +39,7 @@ public class XContainer extends Container{
         prefSize = dimension;
     }
 
+    @Override
     public Dimension getPreferredSize(){
         Dimension d = null;
         if(prefSize == null){

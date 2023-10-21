@@ -37,6 +37,7 @@ public abstract class MessageEvent extends java.util.EventObject {
         return sessionId;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

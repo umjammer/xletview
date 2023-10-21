@@ -26,6 +26,7 @@ public class MPEGDeliveryErrorEvent extends AsynchronousLoadingEvent {
         super(o);
     }
 
+    @Override
     public java.lang.Object getSource() {
         return super.getSource();
     }

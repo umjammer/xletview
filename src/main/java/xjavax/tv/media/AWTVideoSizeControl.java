@@ -53,7 +53,7 @@ public interface AWTVideoSizeControl extends javax.media.Control
      *
      * @return A copy of the JMF Player's current video size, in the AWT coordinate space.
      */
-    public AWTVideoSize getSize();
+    AWTVideoSize getSize();
 
     /**
      * Reports the default <code>AWTVideoSize</code> for this control.
@@ -63,7 +63,7 @@ public interface AWTVideoSizeControl extends javax.media.Control
      *
      * @return The default AWTVideoSize.
      */
-    public AWTVideoSize getDefaultSize();
+    AWTVideoSize getDefaultSize();
 
     /**
      * Reports the size of the source video, in the screen's
@@ -71,7 +71,7 @@ public interface AWTVideoSizeControl extends javax.media.Control
      *
      * @return The size of the source video.
      */
-    public java.awt.Dimension getSourceVideoSize();
+    java.awt.Dimension getSourceVideoSize();
 
     /**
      * Sets the video size.  If the size provided cannot be supported
@@ -80,9 +80,9 @@ public interface AWTVideoSizeControl extends javax.media.Control
      *
      * @param sz - The desired video size, in the AWT coordinate space.
      * @return true if the size was successfully changed; false if the platform is incapable of supporting the given size.
-     * @see checkSize(AWTVideoSize)
+     * @see #checkSize(AWTVideoSize)
      */
-    public boolean setSize( AWTVideoSize sz);
+    boolean setSize(AWTVideoSize sz);
 
     /**
      * Reports how closely the underlying platform can approximate a
@@ -93,6 +93,6 @@ public interface AWTVideoSizeControl extends javax.media.Control
      * @param sz - The desired video size.
      * @return The actual size that the platform would be able to set.
      */
-    public AWTVideoSize checkSize( AWTVideoSize sz);
+    AWTVideoSize checkSize(AWTVideoSize sz);
 
 }

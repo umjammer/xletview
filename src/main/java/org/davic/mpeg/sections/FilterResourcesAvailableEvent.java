@@ -28,6 +28,7 @@ public class FilterResourcesAvailableEvent extends ResourceStatusEvent{
         super(sectionFilterGroup);
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

@@ -21,17 +21,17 @@ import java.awt.Insets;
 
 public interface HLook    extends Cloneable{
 
-    public abstract void showLook(Graphics g, HVisible hvisible, int i);
+    void showLook(Graphics g, HVisible hvisible, int i);
 
-    public abstract void widgetChanged(HVisible hvisible, HChangeData ahchangedata[]);
+    void widgetChanged(HVisible hvisible, HChangeData[] ahchangedata);
 
-    public abstract Dimension getMinimumSize(HVisible hvisible);
+    Dimension getMinimumSize(HVisible hvisible);
 
-    public abstract Dimension getPreferredSize(HVisible hvisible);
+    Dimension getPreferredSize(HVisible hvisible);
 
-    public abstract Dimension getMaximumSize(HVisible hvisible);
+    Dimension getMaximumSize(HVisible hvisible);
 
-    public abstract boolean isOpaque(HVisible hvisible);
+    boolean isOpaque(HVisible hvisible);
 
-    public abstract Insets getInsets(HVisible hvisible);
+    Insets getInsets(HVisible hvisible);
 }

@@ -26,6 +26,7 @@ public abstract class NPTStatusEvent extends java.util.EventObject {
         super(source);
     }
 
+    @Override
     public Object getSource(){
         return super.getSource();
     }

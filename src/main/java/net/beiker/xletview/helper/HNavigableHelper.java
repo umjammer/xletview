@@ -57,11 +57,9 @@ public final class HNavigableHelper {
             // create it
             navTargets = new HashMap<>();
         }
-        Integer code = new Integer(keyCode);
+        Integer code = keyCode;
         // check if key already exist, if so, remove it
-        if(navTargets.containsKey(code)){
-            navTargets.remove(code);
-        }
+        navTargets.remove(code);
         // put the target, but only if target != null
         if(target != null){
             navTargets.put(code, target);
@@ -76,8 +74,7 @@ public final class HNavigableHelper {
             return null;
         }
         else{
-            Integer code = new Integer(keyCode);
-            HNavigable nav = (HNavigable) navTargets.get(code);
+            HNavigable nav = navTargets.get(keyCode);
             return nav;
         }
     }
@@ -171,14 +168,14 @@ public final class HNavigableHelper {
         if(navTargets == null){
             return null;
         }
-        else if(navTargets.size() == 0){
+        else if(navTargets.isEmpty()){
             return null;
         }
         else{
             int[] keyCodes = new int[navTargets.size()];
             int i = 0;
             for (Integer integer : navTargets.keySet()){
-                keyCodes[i] = integer.intValue();
+                keyCodes[i] = integer;
                 i++;
             }
             return keyCodes;
@@ -214,8 +211,8 @@ public final class HNavigableHelper {
             }
         }
         else if(evt.getID() == HFocusEvent.FOCUS_TRANSFER && evt.getTransferId() != HFocusEvent.NO_TRANSFER_ID){
-            Integer navTarget = new Integer(evt.getTransferId());
-            HNavigable newNav = (HNavigable)navTargets.get(navTarget);
+            int navTarget = evt.getTransferId();
+            HNavigable newNav = navTargets.get(navTarget);
 
             if(newNav instanceof Component){
                 ((Component)newNav).requestFocus();
@@ -235,7 +232,7 @@ public final class HNavigableHelper {
      */
     public synchronized FocusListener[] getFocusListeners(){
         hVisible.removeFocusListener(net.beiker.xletview.event.FocusListenerDummy.getInstance());
-        FocusListener[] listeners = (FocusListener[]) hVisible.getListeners(FocusListener.class);
+        FocusListener[] listeners = hVisible.getListeners(FocusListener.class);
         hVisible.addFocusListener(net.beiker.xletview.event.FocusListenerDummy.getInstance());
         return listeners;
 //        FocusListener[] listeners = (FocusListener[]) hVisible.getListeners(FocusListener.class);

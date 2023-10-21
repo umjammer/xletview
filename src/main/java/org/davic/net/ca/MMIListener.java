@@ -16,6 +16,6 @@ package org.davic.net.ca;
 
 public interface MMIListener  extends java.util.EventListener {
 
-  public void receiveMMIEvent(MMIEvent event);
+  void receiveMMIEvent(MMIEvent event);
 
 }

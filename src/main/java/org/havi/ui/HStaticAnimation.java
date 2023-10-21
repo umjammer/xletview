@@ -53,7 +53,8 @@ public class HStaticAnimation
      * the animation.
      */
     private class AnimationTimerListner implements TVTimerWentOffListener{
-        public void timerWentOff( TVTimerWentOffEvent e){
+        @Override
+        public void timerWentOff(TVTimerWentOffEvent e){
             boolean hasNewRepeat = false; // used to indicate if the animation has reached the end/start of loop
             //logger.fine("animate event");
             Image[] images = getAnimateContent(getInteractionState());
@@ -75,13 +76,13 @@ public class HStaticAnimation
 
             // check if the animation has a limited amount of repeats, if so stop it if
             // the repeat count has reached the end.
-            if (hasNewRepeat == true && repeatCount != HAnimateEffect.REPEAT_INFINITE ){
+            if (hasNewRepeat && repeatCount != HAnimateEffect.REPEAT_INFINITE ){
                 currentRepeatCount++;
                 if (currentRepeatCount > repeatCount){
                     stop();
                 }
             }
-            if (isRunning == true){
+            if (isRunning){
                 //logger.fine( "new position=" + position );
                 repaint();
             }
@@ -115,13 +116,15 @@ public class HStaticAnimation
         this(imagesNormal, delay, playMode, repeatCount, 0, 0, 0, 0);
     }
 
+    @Override
     public void setLook(HLook hlook) throws HInvalidLookException {
-        if(hlook instanceof HAnimateLook == false){
+        if(!(hlook instanceof HAnimateLook)){
             throw new HInvalidLookException("Invalid HLook datatype. Must be of type HAnimateLook.");
         }
         this.hlook = hlook;
     }
 
+    @Override
     public HLook getLook() {
         return hlook;
     }
@@ -134,6 +137,7 @@ public class HStaticAnimation
         return HStaticAnimation.defaultLook;
     }
 
+    @Override
     public void start() {
         isRunning = true;
         // indicate that animation is running
@@ -153,8 +157,9 @@ public class HStaticAnimation
         }
     }
 
+    @Override
     public void stop() {
-        if (isRunning == true){
+        if (isRunning){
             log.fine("Animation stopped");
             isRunning = false;
             // deschedule animation event
@@ -162,10 +167,12 @@ public class HStaticAnimation
         }
     }
 
+    @Override
     public boolean isAnimated() {
         return isRunning;
     }
 
+    @Override
     public void setPosition(int position) {
         // make check so that position is not set outside the bounds of the image array
         if(getAnimateContent(getInteractionState()) != null && position > -1 && position < getAnimateContent(getInteractionState()).length ){
@@ -176,10 +183,12 @@ public class HStaticAnimation
         }
     }
 
+    @Override
     public int getPosition() {
         return this.position;
     }
 
+    @Override
     public void setRepeatCount(int count) {
         if (count > 0)
             this.repeatCount = 1;
@@ -187,26 +196,31 @@ public class HStaticAnimation
             this.repeatCount = count;
     }
 
+    @Override
     public int getRepeatCount() {
         return this.repeatCount;
     }
 
+    @Override
     public void setDelay(int count) {
         // 1 count unit = 0.1 sec
         // convert the count to milliseconds
         this.delay = count * 100;
     }
 
+    @Override
     public int getDelay() {
         // convert it to: 1 unit = 0.1, delay currently has milliseconds
         return this.delay / 100;
     }
 
+    @Override
     public void setPlayMode(int mode) {
         playDirection = 1;
         this.playMode = mode;
     }
 
+    @Override
     public int getPlayMode() {
         return this.playMode;
     }

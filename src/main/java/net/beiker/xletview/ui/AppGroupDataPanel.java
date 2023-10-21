@@ -104,16 +104,11 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 
     /**
      * Saves the data for previous App and displays the data for the new one.
-     * @param app the new App
+     * @param group the new App
      */
     public void setAppGroup(AppGroup group) {
         save();
-        if(group == AppManager.getInstance().getDefaultGroup()){
-            fields[NAME].setEditable(false);
-        }
-        else{
-            fields[NAME].setEditable(true);
-        }
+        fields[NAME].setEditable(group != AppManager.getInstance().getDefaultGroup());
         fields[NAME].setText(group.getName());
         this.group = group;
     }
@@ -134,7 +129,7 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         //int option = JOptionPane.showConfirmDialog(this, "nu blev det fel", "Remove", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
         String message = "The following field(s) can not be empty:\n";
         boolean ok = true;
-        if (fields[NAME].getText().trim().equals("")) {
+        if (fields[NAME].getText().trim().isEmpty()) {
             String s = fieldLabels[NAME].getText();
             s = s.substring(0, s.lastIndexOf(":"));
             message += "- " + s + "\n";
@@ -143,14 +138,17 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         return true;
     }
 
+    @Override
     public void keyTyped(KeyEvent arg0) {
 
     }
 
+    @Override
     public void keyPressed(KeyEvent arg0) {
 
     }
 
+    @Override
     public void keyReleased(KeyEvent arg0) {
         save();
         appWin.updateNodeText();

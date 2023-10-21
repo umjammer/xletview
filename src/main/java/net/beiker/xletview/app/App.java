@@ -84,6 +84,7 @@ public class App implements UserObject{
     /* (non-Javadoc)
      * @see net.beiker.xletview.ui.tree.UserObject#getObject()
      */
+    @Override
     public Object getObject() {
         return this;
     }
@@ -91,6 +92,7 @@ public class App implements UserObject{
     /* (non-Javadoc)
      * @see net.beiker.xletview.ui.tree.UserObject#hasChildren()
      */
+    @Override
     public boolean hasChildren() {
         return false;
     }
@@ -98,6 +100,7 @@ public class App implements UserObject{
     /* (non-Javadoc)
      * @see net.beiker.xletview.ui.tree.UserObject#getChildren()
      */
+    @Override
     public Object[] getChildren() {
         return null;
     }
@@ -105,6 +108,7 @@ public class App implements UserObject{
     /* (non-Javadoc)
      * @see net.beiker.xletview.ui.tree.UserObject#isLeaf()
      */
+    @Override
     public boolean isBranch() {
         return false;
     }

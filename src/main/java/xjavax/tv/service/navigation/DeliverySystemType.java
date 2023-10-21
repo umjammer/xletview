@@ -19,8 +19,7 @@ package xjavax.tv.service.navigation;
  *
  *
  */
-public class DeliverySystemType extends java.lang.Object
-{
+public class DeliverySystemType {
     /**
      * Satellite delivery system type.</DL>
      *
@@ -62,7 +61,7 @@ public class DeliverySystemType extends java.lang.Object
      * to the class variable name.
      *
      * @return The string name of the delivery system type.
-     * @see toString in class java.lang.Object
+     * @see #toString in class java.lang.Object
      */
     public java.lang.String toString()
     {

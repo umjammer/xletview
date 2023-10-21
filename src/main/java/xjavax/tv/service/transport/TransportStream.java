@@ -30,13 +30,13 @@ public interface TransportStream extends SIElement
      *
      * @return A number identifying this transport stream.
      */
-    public int getTransportStreamID();
+    int getTransportStreamID();
 
     /**
      * Reports the textual name or description of this transport stream.
      *
      * @return A string representing the name of this transport stream, or an empty string if no information is available.
      */
-    public java.lang.String getDescription();
+    java.lang.String getDescription();
 
 }

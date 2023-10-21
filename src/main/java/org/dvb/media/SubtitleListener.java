@@ -15,6 +15,6 @@
 package org.dvb.media;
 
 public interface SubtitleListener extends java.util.EventListener {
-    public void subtitleStatusChanged(java.util.EventObject event);
+    void subtitleStatusChanged(java.util.EventObject event);
 }
 

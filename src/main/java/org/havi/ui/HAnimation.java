@@ -74,46 +74,57 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
         return HAnimation.defaultHLook;
     }
 
+    @Override
     public void setMove(int keyCode, HNavigable target){
         helper.setMove(keyCode, target);
     }
 
+    @Override
     public HNavigable getMove(int keyCode){
         return helper.getMove(keyCode);
     }
 
+    @Override
     public void setFocusTraversal(HNavigable up, HNavigable down, HNavigable left, HNavigable right){
         helper.setFocusTraversal(up, down, left, right);
     }
 
+    @Override
     public boolean isSelected(){
         return helper.isSelected();
     }
 
+    @Override
     public void setGainFocusSound(HSound sound){
         helper.setGainFocusSound(sound);
     }
 
+    @Override
     public void setLoseFocusSound(HSound sound){
         helper.setLoseFocusSound(sound);
     }
 
+    @Override
     public HSound getGainFocusSound(){
         return helper.getGainFocusSound();
     }
 
+    @Override
     public HSound getLoseFocusSound(){
         return helper.getLoseFocusSound();
     }
 
+    @Override
     public synchronized void addHFocusListener(org.havi.ui.event.HFocusListener listener){
         helper.addHFocusListener(listener);
     }
 
+    @Override
     public synchronized void removeHFocusListener(org.havi.ui.event.HFocusListener listener){
         helper.removeHFocusListener(listener);
     }
 
+    @Override
     public int[] getNavigationKeys(){
         return helper.getNavigationKeys();
     }
@@ -121,6 +132,7 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
     /*
      Overloaded from HVisible, is true for HNavigable
      */
+    @Override
     public boolean isFocusTraversable() {
         return true;
     }
@@ -134,11 +146,13 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
      * This mehod overrides Component.getFocusListeners()
      * and takes care of that.
      */
+    @Override
     public synchronized FocusListener[] getFocusListeners(){
         return helper.getFocusListeners();
     }
 
 
+    @Override
     public void processFocusEvent(FocusEvent e){
         super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
@@ -147,6 +161,7 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
     }
 
 
+    @Override
     public void processHFocusEvent(HFocusEvent evt) {
         int state = getInteractionState();
         int newState = helper.getHFocusEventResult(evt);
@@ -157,6 +172,7 @@ public class HAnimation extends HStaticAnimation implements HNavigable{
     }
 
 
+    @Override
     protected void setInteractionState(int state){
         super.setInteractionState(state);
         super.setPosition(0);

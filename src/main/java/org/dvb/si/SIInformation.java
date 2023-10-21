@@ -17,25 +17,25 @@ package org.dvb.si;
 public interface SIInformation{
 
 
-    public static final short FROM_CACHE_ONLY = 0;
+    short FROM_CACHE_ONLY = 0;
 
-    public static final short FROM_CACHE_OR_STREAM = 1;
+    short FROM_CACHE_OR_STREAM = 1;
 
-    public static final short FROM_STREAM_ONLY = 2;
+    short FROM_STREAM_ONLY = 2;
 
-    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
+    SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener) throws SIIllegalArgumentException;
 
-    public SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrieveDescriptors(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
-    public short[] getDescriptorTags();
+    short[] getDescriptorTags();
 
-    public SIDatabase getSIDatabase();
+    SIDatabase getSIDatabase();
 
-    public java.util.Date getUpdateTime();
+    java.util.Date getUpdateTime();
 
-    public boolean fromActual();
+    boolean fromActual();
 
-    public org.davic.mpeg.TransportStream getDataSource();
+    org.davic.mpeg.TransportStream getDataSource();
 
 }
 

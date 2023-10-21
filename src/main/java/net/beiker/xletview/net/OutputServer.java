@@ -28,7 +28,7 @@ public class OutputServer implements OutputPrinter{
     private ServerSocket ss;
 
     // for mapping sockets to DataOutputStreams
-    private Map<Socket, DataOutputStream> outputStreams = new HashMap<>();
+    private final Map<Socket, DataOutputStream> outputStreams = new HashMap<>();
 
     // Constructor and while-accept loop all in one.
     public OutputServer(int port, PrintStream original) throws IOException {
@@ -114,6 +114,7 @@ public class OutputServer implements OutputPrinter{
      * @see net.beiker.xletview.io.OutputPrinter#print(java.lang.String)
      */
      static int i = 0;
+    @Override
     public void print(String s) {
         // TODO Auto-generated method stub
         if(i < 4){

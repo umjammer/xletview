@@ -28,6 +28,6 @@ public interface FavoriteServicesName
      *
      * @return The name of the favorite services preference.
      */
-    public java.lang.String getName();
+    java.lang.String getName();
 
 }

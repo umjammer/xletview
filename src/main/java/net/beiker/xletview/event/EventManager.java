@@ -75,23 +75,17 @@ public class EventManager implements AWTEventListener{
      * @return a key code
      */
     public int convertCode(int incoming){
-        int outgoing;
-        switch(incoming){
-            case 112: // F1
-                outgoing = 403;
-            break;
-            case 113: // F1
-                outgoing = 404;
-            break;
-            case 114: // F1
-                outgoing = 405;
-            break;
-            case 115: // F1
-                outgoing = 406;
-            break;
-            default:
-                outgoing = incoming;
-        }
+        int outgoing = switch (incoming) {
+            case 112 -> // F1
+                    403;
+            case 113 -> // F1
+                    404;
+            case 114 -> // F1
+                    405;
+            case 115 -> // F1
+                    406;
+            default -> incoming;
+        };
         return outgoing;
     }
 
@@ -114,9 +108,8 @@ public class EventManager implements AWTEventListener{
             int keyCode = event.getKeyCode();
 
             // do HFocusEvent
-            if(focusOwner != null && focusOwner instanceof HNavigable  && event.getID() == KeyEvent.KEY_PRESSED){
+            if(focusOwner != null && focusOwner instanceof HNavigable nav && event.getID() == KeyEvent.KEY_PRESSED){
                 //logger.fine("focusOwner=" + focusOwner);
-                HNavigable nav = (HNavigable) focusOwner;
 
 
                 HNavigable transferTo = nav.getMove(keyCode);
@@ -132,8 +125,7 @@ public class EventManager implements AWTEventListener{
                 nav.processHFocusEvent(hEvent);
 //                Debug.write(this, "is HIcon? " + (focusOwner instanceof HIcon) + ", nav=" + nav);
 
-                if(focusOwner instanceof HActionable){
-                    HActionable act = (HActionable) focusOwner;
+                if(focusOwner instanceof HActionable act){
                     HActionEvent haEvent = new HActionEvent(act, HActionEvent.ACTION_PERFORMED, act.getActionCommand());
                     act.processHActionEvent(haEvent);
                 }
@@ -206,6 +198,7 @@ public class EventManager implements AWTEventListener{
         eventEnabled = b;
     }
 
+    @Override
     public void eventDispatched(AWTEvent e) {
 
         //Component fo = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
@@ -217,8 +210,7 @@ public class EventManager implements AWTEventListener{
 
 
 
-        if (e instanceof KeyEvent) {
-            KeyEvent ke = (KeyEvent) e;
+        if (e instanceof KeyEvent ke) {
 
             int keyCode = ke.getKeyCode();
 
@@ -234,10 +226,9 @@ public class EventManager implements AWTEventListener{
             fireEvents(ke);
 
         }
-        if (e instanceof FocusEvent) {
+        if (e instanceof FocusEvent fe) {
             //Debug.write(this, "event=" + e);
             //Debug.write(this, "eventDispatched-" + e);
-            FocusEvent fe = (FocusEvent) e;
             Component c = fe.getComponent();
 
             if(fe.getID() == FocusEvent.FOCUS_GAINED && c != null){

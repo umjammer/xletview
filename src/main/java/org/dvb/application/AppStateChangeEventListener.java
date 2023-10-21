@@ -18,6 +18,6 @@ import java.util.EventListener;
 
 public interface AppStateChangeEventListener extends EventListener{
 
-    public void stateChange(AppStateChangeEvent evt);
+    void stateChange(AppStateChangeEvent evt);
 
 }

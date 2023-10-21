@@ -72,26 +72,32 @@ public class HTextButton extends HText implements HActionable{
     }
 
 
+    @Override
     public void addHActionListener(org.havi.ui.event.HActionListener listener){
         helper.addHActionListener(listener);
     }
 
+    @Override
     public void removeHActionListener(org.havi.ui.event.HActionListener listener){
         helper.removeHActionListener(listener);
     }
 
+    @Override
     public void setActionCommand(String command){
         helper.setActionCommand(command);
     }
 
+    @Override
     public void setActionSound(HSound sound){
         helper.setActionSound(sound);
     }
 
+    @Override
     public HSound getActionSound(){
         return helper.getActionSound();
     }
 
+    @Override
     public void processHActionEvent(org.havi.ui.event.HActionEvent evt){
         //Debug.write(this, "processHActionEvent");
         int state = getInteractionState();
@@ -102,6 +108,7 @@ public class HTextButton extends HText implements HActionable{
         }
     }
 
+    @Override
     public java.lang.String getActionCommand(){
         return helper.getActionCommand();
     }

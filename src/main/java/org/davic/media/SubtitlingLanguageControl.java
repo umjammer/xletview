@@ -16,8 +16,8 @@ package org.davic.media;
 
 public interface SubtitlingLanguageControl extends LanguageControl {
 
-    public boolean isSubtitlingOn();
+    boolean isSubtitlingOn();
 
-    public boolean setSubtitling(boolean new_value);
+    boolean setSubtitling(boolean new_value);
 }
 

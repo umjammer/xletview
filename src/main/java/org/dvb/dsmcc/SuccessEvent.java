@@ -27,6 +27,7 @@ public class SuccessEvent extends AsynchronousLoadingEvent {
         super(o);
     }
 
+    @Override
     public Object getSource () {
         return super.getSource();
     }

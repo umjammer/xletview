@@ -16,11 +16,11 @@ package net.beiker.xletview.ui.tree;
  */
 public interface UserObject {
 
-    public Object getObject();
+    Object getObject();
 
-    public boolean hasChildren();
+    boolean hasChildren();
 
-    public boolean isBranch();
+    boolean isBranch();
 
-    public Object[] getChildren();
+    Object[] getChildren();
 }

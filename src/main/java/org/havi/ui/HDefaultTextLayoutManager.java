@@ -53,15 +53,14 @@ public class HDefaultTextLayoutManager implements HTextLayoutManager{
         available, the string shall be truncated and an ellipsis ("...") appended to
         indicate the truncation "
     */
+    @Override
     public void render(String string, Graphics g, HVisible hVisible, Insets insets){
         String lb = System.getProperty("line.separator");
 
-        /*
-            " The text should be laid out in the layout area, which is defined by
-            the bounds of the specified HVisible, after subtracting the insets.
-            If the insets are null the full bounding rectangle is used as the
-            area to render text into.
-        */
+        // The text should be laid out in the layout area, which is defined by
+        // the bounds of the specified HVisible, after subtracting the insets.
+        // If the insets are null the full bounding rectangle is used as the
+        // area to render text into.
         int insetLeft      = 0;
         int insetRight     = 0;
         int insetTop       = 0;

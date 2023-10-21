@@ -37,6 +37,7 @@ public class HAnimateLook implements HLook {
     public HAnimateLook() {
     }
 
+    @Override
     public void showLook(java.awt.Graphics g, HVisible hVisible, int state) {
 //        logger.fine("Repaiting animation");
 
@@ -108,6 +109,7 @@ public class HAnimateLook implements HLook {
 
     }
 
+    @Override
     public void widgetChanged(HVisible visible, HChangeData[] changes) {
         /*
            " Note that implementations of HLook may not actually implement more efficient
@@ -128,22 +130,27 @@ public class HAnimateLook implements HLook {
         visible.repaint();
     }
 
+    @Override
     public Dimension getMinimumSize(HVisible hvisible) {
         return hvisible.getMinimumSize();
     }
 
+    @Override
     public Dimension getPreferredSize(HVisible hvisible) {
         return hvisible.getPreferredSize();
     }
 
+    @Override
     public Dimension getMaximumSize(HVisible hvisible) {
         return hvisible.getMaximumSize();
     }
 
+    @Override
     public boolean isOpaque(HVisible visible) {
         return visible.isOpaque();
     }
 
+    @Override
     public java.awt.Insets getInsets(HVisible visible) {
         return insets;
     }

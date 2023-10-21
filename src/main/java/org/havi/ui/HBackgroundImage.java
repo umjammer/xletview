@@ -74,7 +74,7 @@ public class HBackgroundImage extends Component{
 
     }
 
-    public HBackgroundImage(byte pixels[]){
+    public HBackgroundImage(byte[] pixels){
     }
 
     public HBackgroundImage(URL contents){
@@ -83,10 +83,12 @@ public class HBackgroundImage extends Component{
     public void load(HBackgroundImageListener hbackgroundimagelistener){
     }
 
+    @Override
     public int getHeight(){
         return super.getHeight();
     }
 
+    @Override
     public int getWidth(){
         return super.getWidth();
     }

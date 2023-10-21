@@ -34,7 +34,7 @@ public class ServiceManager {
      * Returns the singelton system-wide ServiceManager object.
      * @return the singelton ServiceManager object
      */
-    public static final ServiceManager getInstance(){
+    public static ServiceManager getInstance(){
         return THE_INSTANCE;
     }
 

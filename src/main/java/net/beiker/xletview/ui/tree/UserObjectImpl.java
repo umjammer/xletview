@@ -31,21 +31,20 @@ public class UserObjectImpl implements UserObject{
 
     public UserObjectImpl(Object object){
         this.object = object;
-        if(object instanceof File){
-            File file = (File)object;
+        if(object instanceof File file){
 
-            isRoot = (file.getName().length() != 0)? false: true;
-            name = (file.getName().length() != 0)? file.getName(): file.getPath();
+            isRoot = (!file.getName().isEmpty())? false: true;
+            name = (!file.getName().isEmpty())? file.getName(): file.getPath();
             name = name.replaceAll("\\\\", "");
             name = name.replaceAll("/", "");
             //Debug.write(this, name);
         }
     }
 
+    @Override
     public boolean hasChildren(){
         boolean result = false;
-        if(object instanceof File){
-            File file = (File)object;
+        if(object instanceof File file){
             if(isRoot){
                 result = true;
             }
@@ -63,9 +62,9 @@ public class UserObjectImpl implements UserObject{
         return result;
     }
 
+    @Override
     public Object[] getChildren(){
-        if(object instanceof File){
-            File file = (File)object;
+        if(object instanceof File file){
             if(file.isDirectory()){
                 File[] files = file.listFiles();
                 if(files != null){
@@ -79,18 +78,19 @@ public class UserObjectImpl implements UserObject{
 
     public File[] getDirs(File[] files){
         List<File> v = new ArrayList<>();
-        for(int i = 0; i < files.length; i++){
-            if(files[i].isDirectory()){
-                v.add(files[i]);
+        for (File file : files) {
+            if (file.isDirectory()) {
+                v.add(file);
             }
         }
         File[] dirs = new File[v.size()];
         for(int i = 0; i < v.size(); i++){
-            dirs[i] = (File)v.get(i);
+            dirs[i] = v.get(i);
         }
         return dirs;
     }
 
+    @Override
     public Object getObject() {
         return object;
     }
@@ -102,6 +102,7 @@ public class UserObjectImpl implements UserObject{
     /* (non-Javadoc)
      * @see net.beiker.xletview.ui.tree.UserObject#isLeaf()
      */
+    @Override
     public boolean isBranch() {
         return true;
     }

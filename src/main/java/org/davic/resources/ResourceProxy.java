@@ -15,7 +15,7 @@
 package org.davic.resources;
 
 public interface ResourceProxy{
-    public abstract ResourceClient getClient();
+    ResourceClient getClient();
 }
 
 

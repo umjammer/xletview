@@ -33,6 +33,7 @@ public abstract class DVBGraphics extends Graphics {
         return new DVBColor(c);
     }
 
+    @Override
     public abstract java.awt.Color getColor();
 
     public abstract DVBAlphaComposite getDVBComposite();
@@ -41,6 +42,7 @@ public abstract class DVBGraphics extends Graphics {
         return 0;
     }
 
+    @Override
     public abstract void setColor(java.awt.Color c);
 
     public abstract void setDVBComposite(DVBAlphaComposite comp) throws UnsupportedDrawingOperationException;

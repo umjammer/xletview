@@ -53,6 +53,6 @@ public interface PushSourceStream2 extends javax.media.protocol.PushSourceStream
      * @throws DataLostException - If data from the stream has been lost.
      * @throws ArrayIndexOutOfBoundsException - If offset , length , or offset+length > buffer.length.
      */
-    public int readStream(byte[] buffer, int offset, int length) throws java.io.IOException, DataLostException;
+    int readStream(byte[] buffer, int offset, int length) throws java.io.IOException, DataLostException;
 
 }

@@ -43,18 +43,19 @@ public class DVBColor extends java.awt.Color{
         //super(c);
     }
 
+    @Override
     public java.awt.Color brighter(){
         return super.brighter();
     }
 
+    @Override
     public java.awt.Color darker(){
         return super.darker();
     }
 
     public boolean equals(java.lang.Object obj)    {
         boolean same = false;
-        if(obj != null && obj instanceof DVBColor){
-            DVBColor dvbColor = (DVBColor) obj;
+        if(obj != null && obj instanceof DVBColor dvbColor){
             if(dvbColor.getRed() == this.getRed()){
                 if(dvbColor.getBlue() == this.getBlue()){
                     if(dvbColor.getGreen() == this.getGreen()){
@@ -68,10 +69,12 @@ public class DVBColor extends java.awt.Color{
         return same;
     }
 
+    @Override
     public int getAlpha(){
         return super.getAlpha();
     }
 
+    @Override
     public int getRGB(){
         return super.getRGB();
     }

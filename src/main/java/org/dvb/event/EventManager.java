@@ -95,32 +95,24 @@ public class EventManager implements ResourceServer{
     }
 
     public void removeUserEventListener(UserEventListener listener){
-        for(int i = 0; i <listenerObjects.size(); i++){
-            ListenerItem li = listenerObjects.get(i);
-            UserEventListener ul = li.getListener();
-            if(ul == listener){
-                listenerObjects.remove(i);
-            }
-        }
+        listenerObjects.removeIf(li -> li.getListener() == listener);
     }
 
     public void removeExclusiveAccessToAWTEvent(ResourceClient client) {
-        for(int i = 0; i < awtListenerObjects.size(); i++){
-            AwtListenerItem li = awtListenerObjects.get(i);
-            ResourceClient rc = li.getResourceClient();
-            if(rc == client){
-                awtListenerObjects.remove(i);
-                fireResourceStatusEvent();
-            }
+        boolean r = awtListenerObjects.removeIf(li -> li.getResourceClient() == client);
+        if (r) {
+            fireResourceStatusEvent();
         }
     }
 
+    @Override
     public void addResourceStatusEventListener(ResourceStatusListener listener) {
         if(!resourceStatusListeners.contains(listener)){
             resourceStatusListeners.add(listener);
         }
     }
 
+    @Override
     public void removeResourceStatusEventListener(ResourceStatusListener listener) {
         resourceStatusListeners.remove(listener);
     }
@@ -141,8 +133,8 @@ public class EventManager implements ResourceServer{
         for(int i = listenerObjects.size()-1; i > -1; i--){
             ListenerItem li = listenerObjects.get(i);
             UserEvent[] userEvents = li.getEvents();
-            for(int k = 0; k < userEvents.length; k++){
-                if(userEvents[k].getCode() == keyCode){
+            for (UserEvent userEvent : userEvents) {
+                if (userEvent.getCode() == keyCode) {
                     UserEvent ue = new UserEvent(source, UserEvent.UEF_KEY_EVENT, keyEvent.getID(), keyCode, -1, System.currentTimeMillis());
                     li.getListener().userEventReceived(ue);
                 }
@@ -160,12 +152,11 @@ public class EventManager implements ResourceServer{
 
             // awt event
             KeyListener[] kl = focusOwner.getKeyListeners();
-            for(int i = 0; i < kl.length; i++){
-                if(keyEvent.getID() == KeyEvent.KEY_PRESSED){
-                    kl[i].keyPressed(new KeyEvent(focusOwner,KeyEvent.KEY_PRESSED, 0L, 0, keyCode, keyChar));
-                }
-                else if(keyEvent.getID() == KeyEvent.KEY_RELEASED){
-                    kl[i].keyReleased(new KeyEvent(focusOwner,KeyEvent.KEY_RELEASED, 0L, 0, keyCode, keyChar));
+            for (KeyListener keyListener : kl) {
+                if (keyEvent.getID() == KeyEvent.KEY_PRESSED) {
+                    keyListener.keyPressed(new KeyEvent(focusOwner, KeyEvent.KEY_PRESSED, 0L, 0, keyCode, keyChar));
+                } else if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
+                    keyListener.keyReleased(new KeyEvent(focusOwner, KeyEvent.KEY_RELEASED, 0L, 0, keyCode, keyChar));
                 }
 
 
@@ -178,8 +169,8 @@ public class EventManager implements ResourceServer{
 
     /* Fired when there is a change in resouce clients */
     private void fireResourceStatusEvent(){
-        for(int i = 0; i < resourceStatusListeners.size(); i++){
-            ResourceStatusListener listener = (ResourceStatusListener) resourceStatusListeners.get(i);
+        for (ResourceStatusListener resourceStatusListener : resourceStatusListeners) {
+            ResourceStatusListener listener = resourceStatusListener;
             listener.statusChanged(new ResourceStatusEvent(this));
         }
     }
@@ -189,7 +180,7 @@ public class EventManager implements ResourceServer{
      * Class that makes it easier to handle the listener/events-from-repository
      *
      * */
-    private class ListenerItem{
+    private static class ListenerItem{
         private UserEventListener listener;
         private UserEvent[] events;
         private ResourceClient client;
@@ -218,7 +209,7 @@ public class EventManager implements ResourceServer{
         }
     }
 
-    private class AwtListenerItem{
+    private static class AwtListenerItem{
         private ResourceClient resourceClient;
         private UserEvent[] events;
 

@@ -38,7 +38,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener{
         //JPanel container = new JPanel();
 
         URL webPage = null;
-        String html = "";
+        StringBuilder html = new StringBuilder();
         try{
             webPage = new java.net.URL("http://xletview.sourceforge.net/client/aboutwindow.html");
             webPage.openStream();
@@ -50,7 +50,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener{
             String inputLine;
 
             while ((inputLine = in.readLine()) != null){
-                html += inputLine;
+                html.append(inputLine);
             }
 
             in.close();
@@ -65,7 +65,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener{
         htmlPanel.setPreferredSize(new Dimension(550, 500));
         htmlPanel.setContentType( "text/html" );
         htmlPanel.setEditable(false);
-        htmlPanel.setText(html);
+        htmlPanel.setText(html.toString());
         htmlPanel.addHyperlinkListener(this);
 
         JScrollPane scroll = new JScrollPane(htmlPanel);
@@ -73,6 +73,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener{
         setContentPane(scroll);
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 doClose();
             }
@@ -88,6 +89,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener{
         setVisible(false);
     }
 
+    @Override
     public void hyperlinkUpdate(HyperlinkEvent e){
         HyperlinkEvent.EventType eventType = e.getEventType();
         if(eventType == HyperlinkEvent.EventType.ACTIVATED){

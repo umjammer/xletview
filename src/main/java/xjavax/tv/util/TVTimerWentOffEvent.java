@@ -23,7 +23,7 @@ package xjavax.tv.util;
  * @statuscode 4
  */
 public class TVTimerWentOffEvent extends java.util.EventObject {
-    //following variables are implicitely defined by getter- or
+    //following variables are implicitly defined by getter- or
     // setter-methods:
     private TVTimerSpec timerSpec;
 

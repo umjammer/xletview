@@ -70,8 +70,9 @@ public final class MediaSelectPermission extends java.security.Permission implem
      *
      * @param p - The Permission to check against.
      * @return true if the specified Permission is implied by this object; false otherwise.
-     * @see implies in class java.security.Permission
+     * @see #implies in class java.security.Permission
      */
+    @Override
     public boolean implies(java.security.Permission p)
     {
         return false;
@@ -86,7 +87,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
      *
      * @param other - The object to test for equality.
      * @return true if other is a MediaSelectPermission, and has the same Locator as this MediaSelectPermission.
-     * @see equals in class java.security.Permission
+     * @see #equals in class java.security.Permission
      */
     public boolean equals(java.lang.Object other)
     {
@@ -98,7 +99,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * Returns the hash code value for this object.
      *
      * @return The hash code value for this object.
-     * @see hashCode in class java.security.Permission
+     * @see #hashCode in class java.security.Permission
      */
     public int hashCode()
     {
@@ -112,8 +113,9 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * actions for a <code>MediaSelectPermission</code>.
      *
      * @return The empty string "".
-     * @see getActions in class java.security.Permission
+     * @see #getActions in class java.security.Permission
      */
+    @Override
     public java.lang.String getActions()
     {
         return this.actions;

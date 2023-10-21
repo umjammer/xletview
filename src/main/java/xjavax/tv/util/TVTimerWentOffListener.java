@@ -28,6 +28,6 @@ public interface TVTimerWentOffListener
      *
      * @param e - The event specifying which timer and which timer specification went off.
      */
-    public void timerWentOff( TVTimerWentOffEvent e);
+    void timerWentOff(TVTimerWentOffEvent e);
 
 }

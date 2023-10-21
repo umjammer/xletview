@@ -17,11 +17,11 @@ package org.havi.ui;
 
 public interface HSwitchable extends HActionable{
 
-    public boolean getSwitchableState();
+    boolean getSwitchableState();
 
-    public void setSwitchableState(boolean state);
+    void setSwitchableState(boolean state);
 
-    public void setUnsetActionSound(HSound sound);
+    void setUnsetActionSound(HSound sound);
 
-    public HSound getUnsetActionSound();
+    HSound getUnsetActionSound();
 }

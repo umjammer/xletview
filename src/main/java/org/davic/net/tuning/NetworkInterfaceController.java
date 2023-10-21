@@ -42,6 +42,7 @@ public class NetworkInterfaceController implements ResourceProxy {
         return null;
     }
 
+    @Override
     public ResourceClient getClient() {
         return null;
     }

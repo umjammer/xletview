@@ -23,7 +23,7 @@ import xjavax.tv.locator.Locator;
  * locators to those parts.  Each locator reported by a
  * <code>ServiceContentHandler</code> refers either to an individual
  * service component or to content within a service component (such as
- * an Xlet).
+ * a Xlet).
  * <HR>
  *
  *
@@ -34,8 +34,8 @@ public interface ServiceContentHandler
      * Reports the portions of the service on which this handler operates.
      *
      * @return An array of locators representing the portions of the service on which this handler operates.
-     * @see ServiceContext.select(Locator[] components)
+     * @see ServiceContext#select(Locator[] components)
      */
-    public Locator[] getServiceContentLocators();
+    Locator[] getServiceContentLocators();
 
 }

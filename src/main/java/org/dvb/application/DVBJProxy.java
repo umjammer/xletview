@@ -16,10 +16,10 @@ package org.dvb.application;
 
 public interface DVBJProxy extends AppProxy{
 
-    public static final int LOADED = 5;
+    int LOADED = 5;
 
-    public void load();
+    void load();
 
-    public void init() ;
+    void init() ;
 }
 

@@ -35,7 +35,7 @@ import javax.media.Time;
  * @comment bugfixed
  *
  */
-public class HSound extends java.lang.Object{
+public class HSound {
 
     private boolean isLooping;
     private Player player;
@@ -45,6 +45,7 @@ public class HSound extends java.lang.Object{
 
     // Handles events that are created by the mediaplayer
     private class MediaControllerListner implements ControllerListener{
+        @Override
         public void controllerUpdate(ControllerEvent event){
             logger.fine(event.toString());
             if (event instanceof EndOfMediaEvent){
@@ -92,7 +93,7 @@ public class HSound extends java.lang.Object{
         player.addControllerListener(playerListner);
     }
 
-    public void set(byte data[]){
+    public void set(byte[] data){
         logger.info("Has no implementation, so calling this will not do anything." );
     }
 

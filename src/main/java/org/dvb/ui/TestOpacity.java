@@ -16,6 +16,6 @@ package org.dvb.ui;
 
 public interface TestOpacity {
 
-    public boolean isOpaque();
+    boolean isOpaque();
 
 }

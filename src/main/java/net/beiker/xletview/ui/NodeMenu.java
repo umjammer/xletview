@@ -13,9 +13,6 @@
 
 package net.beiker.xletview.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JTree;
@@ -34,17 +31,13 @@ public class NodeMenu extends JPopupMenu {
 
     private void createMenu() {
         JMenuItem rename = new JMenuItem("Rename node");
-        rename.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // rename the node
-            }
+        rename.addActionListener(e -> {
+            // rename the node
         });
         add(rename);
         JMenuItem delete = new JMenuItem("Delete node");
-        rename.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // delete the node
-            }
+        rename.addActionListener(e -> {
+            // delete the node
         });
         add(delete);
 

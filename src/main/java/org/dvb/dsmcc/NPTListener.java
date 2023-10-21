@@ -17,7 +17,7 @@ package org.dvb.dsmcc;
 
 public interface NPTListener extends java.util.EventListener {
 
-    public void receiveRateChangedEvent( NPTRateChangeEvent e);
+    void receiveRateChangedEvent(NPTRateChangeEvent e);
 
-    public void receiveNPTStatusEvent( NPTStatusEvent e);
+    void receiveNPTStatusEvent(NPTStatusEvent e);
 }

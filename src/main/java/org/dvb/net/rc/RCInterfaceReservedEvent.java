@@ -36,6 +36,7 @@ public class RCInterfaceReservedEvent
     connection = bg;
   }
 
+  @Override
   public Object getSource()
   {
     return connection;

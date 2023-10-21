@@ -16,20 +16,20 @@ package org.havi.ui;
 
 public interface HAdjustmentValue extends HNavigable, HAdjustmentInputPreferred{
 
-    public void setUnitIncrement(int increment);
+    void setUnitIncrement(int increment);
 
-    public int getUnitIncrement();
+    int getUnitIncrement();
 
-    public void setBlockIncrement(int increment);
+    void setBlockIncrement(int increment);
 
-    public int getBlockIncrement();
+    int getBlockIncrement();
 
-    public void addAdjustmentListener(org.havi.ui.event.HAdjustmentListener l);
+    void addAdjustmentListener(org.havi.ui.event.HAdjustmentListener l);
 
-    public void removeAdjustmentListener(org.havi.ui.event.HAdjustmentListener l);
+    void removeAdjustmentListener(org.havi.ui.event.HAdjustmentListener l);
 
-    public void setAdjustmentSound(HSound sound);
+    void setAdjustmentSound(HSound sound);
 
-    public HSound getAdjustmentSound();
+    HSound getAdjustmentSound();
 
 }

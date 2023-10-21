@@ -96,8 +96,8 @@ public class AppMenu extends JMenu implements ActionListener{
       AppMenuItem item;
       JMenu submenu;
       List<?> subGroups = group.getSubGroups();
-      for(int i = 0; i < subGroups.size(); i++){
-          AppGroup subGroup = (AppGroup)subGroups.get(i);
+      for (Object object : subGroups) {
+          AppGroup subGroup = (AppGroup) object;
           submenu = new JMenu(subGroup.getName());
           submenu.setIcon(Constants.ICON_FOLDER);
           menu.add(submenu);
@@ -109,14 +109,14 @@ public class AppMenu extends JMenu implements ActionListener{
 //        menu.addSeparator();
 //      }
 
-      for (int i = 0; i < apps.size(); i++) {
-          App app = (App) apps.get(i);
+      for (Object o : apps) {
+          App app = (App) o;
           item = new AppMenuItem(app);
           item.setIcon(Constants.ICON_XLET);
           item.addActionListener(this);
           menu.add(item);
       }
-      if(apps.size() == 0 && subGroups.size() == 0 && group != AppManager.getInstance().getDefaultGroup()){
+      if(apps.isEmpty() && subGroups.isEmpty() && group != AppManager.getInstance().getDefaultGroup()){
           JMenuItem emptyItem = new JMenuItem("(empty)");
           menu.add(emptyItem);
       }
@@ -143,10 +143,10 @@ public class AppMenu extends JMenu implements ActionListener{
 //        }
 //    }
 
+    @Override
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();
-        if (event.getSource() instanceof AppMenuItem) {
-            AppMenuItem item = (AppMenuItem) event.getSource();
+        if (event.getSource() instanceof AppMenuItem item) {
             App app = item.getApp();
             log.fine(app.getPath());
             XletManager.getInstance().setXlet(app.getPath(), app.getXletName());

@@ -47,21 +47,21 @@ public interface ProgramEvent extends SIElement
      *
      * @return This program's start time (UTC).
      */
-    public java.util.Date getStartTime();
+    java.util.Date getStartTime();
 
     /**
      * Returns the end time of this program event. The end time is in UTC time.
      *
      * @return This program's end time (UTC).
      */
-    public java.util.Date getEndTime();
+    java.util.Date getEndTime();
 
     /**
      * Returns the duration of this program event in seconds.
      *
      * @return This program's duration in seconds.
      */
-    public long getDuration();
+    long getDuration();
 
     /**
      * Returns the program event title. This information may be obtained in
@@ -69,7 +69,7 @@ public interface ProgramEvent extends SIElement
      *
      * @return A string representing this program's title, or an empty string if the title is unavailable.
      */
-    public java.lang.String getName();
+    java.lang.String getName();
 
     /**
      * Retrieves a textual description of the event. This method
@@ -79,7 +79,7 @@ public interface ProgramEvent extends SIElement
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see ProgramEventDescription
      */
-    public SIRequest retrieveDescription( SIRequestor requestor);
+    SIRequest retrieveDescription(SIRequestor requestor);
 
     /**
      * Reports content advisory information associated with this program for
@@ -87,14 +87,14 @@ public interface ProgramEvent extends SIElement
      *
      * @return A ContentRatingAdvisory object describing the rating of this ProgramEvent or null if no rating information is available.
      */
-    public ContentRatingAdvisory getRating();
+    ContentRatingAdvisory getRating();
 
     /**
      * Reports the <code>Service</code> this program event is associated with.
      *
      * @return The Service this program event is delivered on.
      */
-    public Service getService();
+    Service getService();
 
     /**
      * Retrieves an array of service components which are part of this
@@ -110,14 +110,13 @@ public interface ProgramEvent extends SIElement
      * array will only contain <code>ServiceComponent</code> instances
      * <code>c</code> for which the caller has
      * <code>javax.tv.service.ReadPermission(c.getLocator())</code>.  If
-     * no <code>ServiceComponent</code> instances meet this criteria,
+     * no <code>ServiceComponent</code> instances meet these criteria,
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
      * @param requestor - The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @see ServiceComponent, ReadPermission
+     * @see xjavax.tv.service.navigation.ServiceComponent, ReadPermission
      */
-    public SIRequest retrieveComponents( SIRequestor requestor);
-
+    SIRequest retrieveComponents(SIRequestor requestor);
 }

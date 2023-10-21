@@ -12,7 +12,6 @@
 package org.dvb.user;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,8 +58,6 @@ public class UserPreferenceManager {
         Properties props = new Properties();
         try {
             props.load(new FileInputStream(settingsPath));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +104,7 @@ public class UserPreferenceManager {
 
     public void read(Preference p) {
         String name = p.getName();
-        String[] s = (String[]) prefs.get(name);
+        String[] s = prefs.get(name);
         p.add(s);
 
         UserPreferenceChangeEvent event = new UserPreferenceChangeEvent(name);
@@ -121,13 +118,13 @@ public class UserPreferenceManager {
 
 
         if(name != null && name.equals(fName)) {
-            String[] s = (String[]) prefs.get(name);
+            String[] s = prefs.get(name);
             String[] wanted = facility.getValues();
 
-            for (int i = 0; i < wanted.length; i++) {
-                for (int j = 0; j < s.length; j++) {
-                    if(s[j].equals(wanted[i])){
-                        p.add(s[j]);
+            for (String value : wanted) {
+                for (String string : s) {
+                    if (string.equals(value)) {
+                        p.add(string);
                         UserPreferenceChangeEvent event = new UserPreferenceChangeEvent(name);
                         notifyListeners(event);
                     }
@@ -154,8 +151,8 @@ public class UserPreferenceManager {
     }
 
     private void notifyListeners(UserPreferenceChangeEvent event){
-        for(int i = 0; i < listeners.size(); i++){
-            ((UserPreferenceChangeListener) listeners.get(i)).receiveUserPreferenceChangeEvent(event);
+        for (UserPreferenceChangeListener listener : listeners) {
+            listener.receiveUserPreferenceChangeEvent(event);
         }
     }
 

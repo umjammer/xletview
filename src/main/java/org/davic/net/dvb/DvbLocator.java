@@ -64,7 +64,7 @@ public class DvbLocator extends org.davic.net.Locator {
 
     public DvbLocator(String url) throws InvalidLocatorException {
         super(url);
-        if(url.startsWith("dvb://") == false){
+        if(!url.startsWith("dvb://")){
             throw new InvalidLocatorException("The string does not start with 'dvb://'");
         }
 
@@ -197,7 +197,7 @@ public class DvbLocator extends org.davic.net.Locator {
         log.fine("strInt=" + strInt);
         try {
             //result = Integer.parseInt("0x" + strInt);
-            result= Integer.valueOf(strInt, 16).intValue();
+            result= Integer.valueOf(strInt, 16);
             //result = Integer.valueOf(strInt, 16);
             log.fine("result=" + result);
 
@@ -207,22 +207,23 @@ public class DvbLocator extends org.davic.net.Locator {
         return result;
     }
 
+    @Override
     public String toExternalForm(){
-        String result = "dvb://" + orgNetworkId + "." + trasportStreamId + "." + serviceId;
+        StringBuilder result = new StringBuilder("dvb://" + orgNetworkId + "." + trasportStreamId + "." + serviceId);
         if(componentTags != null && componentTags.length > 0){
-            for (int i = 0; i < componentTags.length; i++) {
-                result += "." + componentTags[i];
+            for (int componentTag : componentTags) {
+                result.append(".").append(componentTag);
             }
         }
 
         if(eventId > -1){
-            result += ";" + eventId;
+            result.append(";").append(eventId);
         }
 
         if(filePath != null){
-            result += filePath;
+            result.append(filePath);
         }
-        return result;
+        return result.toString();
     }
 }
 

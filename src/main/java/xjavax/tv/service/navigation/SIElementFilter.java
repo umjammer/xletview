@@ -70,9 +70,10 @@ public final class SIElementFilter extends ServiceFilter
      *
      * @param service - An individual Service to be evaluated against the filtering algorithm.
      * @return true if service has a corresponding ServiceDetails which contains or is contained by the SIElement indicated by the filter value; false otherwise.
-     * @see accept in class ServiceFilter
+     * @see #accept in class ServiceFilter
      */
-    public boolean accept( Service service)
+    @Override
+    public boolean accept(Service service)
     {
         return false;
         //TODO implement accept

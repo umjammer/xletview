@@ -28,10 +28,10 @@ public class ServiceDomain {
     public void attach(org.davic.net.Locator aDVBService, int aCarouselId) throws ServiceXFRException, InterruptedIOException, MPEGDeliveryException {
     }
 
-    public void attach (org.davic.net.Locator l) throws DSMCCException, InterruptedIOException, MPEGDeliveryException  {
+    public void attach (org.davic.net.Locator l) throws DSMCCException, InterruptedIOException {
     }
 
-    public void attach(byte[] NSAPAddress) throws DSMCCException, InterruptedIOException, InvalidAddressException, MPEGDeliveryException  {
+    public void attach(byte[] NSAPAddress) throws DSMCCException, InterruptedIOException {
     }
 
     public void detach() throws NotLoadedException {}

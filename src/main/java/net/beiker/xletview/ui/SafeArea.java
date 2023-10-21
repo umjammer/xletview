@@ -34,6 +34,7 @@ public class SafeArea extends Component{
         setBounds(x-border, y-border, width+border*2, height+border*2);
     }
 
+    @Override
     public void paint(Graphics g){
 
         g.setColor(color);

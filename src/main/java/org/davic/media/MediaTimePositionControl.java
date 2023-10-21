@@ -16,9 +16,9 @@ package org.davic.media;
 
 public interface MediaTimePositionControl extends javax.media.Control {
 
-    public javax.media.Time setMediaTimePosition(javax.media.Time mediaTime);
+    javax.media.Time setMediaTimePosition(javax.media.Time mediaTime);
 
-    public javax.media.Time getMediaTimePosition();
+    javax.media.Time getMediaTimePosition();
 }
 
 

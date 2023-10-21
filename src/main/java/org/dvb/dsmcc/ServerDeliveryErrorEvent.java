@@ -26,6 +26,7 @@ public class ServerDeliveryErrorEvent extends AsynchronousLoadingEvent {
         super(o);
     }
 
+    @Override
     public java.lang.Object getSource() {
         return super.getSource();
     }

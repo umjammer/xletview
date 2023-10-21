@@ -36,7 +36,7 @@ public class FileInfo{
 
     public String toString(){
         String name = this.file.getName();
-        if(name.length() < 1) name = this.file.getPath();
+        if(name.isEmpty()) name = this.file.getPath();
         return name;
     }
 

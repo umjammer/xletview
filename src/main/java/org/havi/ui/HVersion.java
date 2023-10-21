@@ -21,17 +21,17 @@ package org.havi.ui;
 
 public interface HVersion {
 
-    public static final String HAVI_SPECIFICATION_VENDOR = "havi.specification.vendor";
+    String HAVI_SPECIFICATION_VENDOR = "havi.specification.vendor";
 
-    public static final String HAVI_SPECIFICATION_NAME = "havi.specification.name";
+    String HAVI_SPECIFICATION_NAME = "havi.specification.name";
 
-    public static final String HAVI_SPECIFICATION_VERSION = "havi.specification.version";
+    String HAVI_SPECIFICATION_VERSION = "havi.specification.version";
 
-    public static final String HAVI_IMPLEMENTATION_VENDOR = "havi.implementation.vendor";
+    String HAVI_IMPLEMENTATION_VENDOR = "havi.implementation.vendor";
 
-    public static final String HAVI_IMPLEMENTATION_VERSION = "havi.implementation.version";
+    String HAVI_IMPLEMENTATION_VERSION = "havi.implementation.version";
 
-    public static final String HAVI_IMPLEMENTATION_NAME = "havi.implementation.name";
+    String HAVI_IMPLEMENTATION_NAME = "havi.implementation.name";
 
 }
 

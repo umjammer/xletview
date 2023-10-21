@@ -16,12 +16,12 @@ package org.dvb.si;
 
 public interface PMTStreamType {
 
-    public static final byte MPEG1_VIDEO = 1;
+    byte MPEG1_VIDEO = 1;
 
-    public static final byte MPEG2_VIDEO = 2;
+    byte MPEG2_VIDEO = 2;
 
-    public static final byte MPEG1_AUDIO = 3;
+    byte MPEG1_AUDIO = 3;
 
-    public static final byte MPEG2_AUDIO = 4;
+    byte MPEG2_AUDIO = 4;
 }
 

@@ -63,7 +63,7 @@ public interface Transport
      * @param listener - An ServiceDetailsChangeListener to be notified about changes related to ServiceDetails carried on this Transport.
      * @see ServiceDetailsChangeEvent, SIManager.registerInterest(javax.tv.locator.Locator, boolean), ReadPermission
      */
-    public void addServiceDetailsChangeListener( ServiceDetailsChangeListener listener);
+    void addServiceDetailsChangeListener(ServiceDetailsChangeListener listener);
 
     /**
      * Called to unregister an
@@ -73,7 +73,7 @@ public interface Transport
      *
      * @param listener - A previously registered listener.
      */
-    public void removeServiceDetailsChangeListener( ServiceDetailsChangeListener listener);
+    void removeServiceDetailsChangeListener(ServiceDetailsChangeListener listener);
 
     /**
      * Reports the type of mechanism by which this
@@ -81,6 +81,6 @@ public interface Transport
      *
      * @return The delivery system type of this transport.
      */
-    public DeliverySystemType getDeliverySystemType();
+    DeliverySystemType getDeliverySystemType();
 
 }

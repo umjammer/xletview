@@ -49,7 +49,7 @@ public class HBackgroundDevice extends HScreenDevice{
         return new HStillImageBackgroundConfiguration();
     }
 
-    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate hbcta[]){
+    public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate[] hbcta){
         return hBackgroundConfiguration;
     }
 

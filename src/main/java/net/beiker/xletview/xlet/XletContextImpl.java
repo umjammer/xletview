@@ -82,40 +82,44 @@ public class XletContextImpl implements XletContext{
     /* (non-Javadoc)
      * @see xjavax.tv.xlet.XletContext#getXletProperty(java.lang.String)
      */
+    @Override
     public Object getXletProperty(String key){
         log.fine("getXletProperty(" + key + ")");
-        if(key.equals(XletContext.ARGS)){
+        switch (key) {
+        case XletContext.ARGS -> {
             return xletArgs;
         }
-        else if(key.equals(PROPERTY_CALLER_PARAMS)){
+        case PROPERTY_CALLER_PARAMS -> {
             return callerArgs;
         }
-        else if(key.equals(CONTAINER)){
+        case CONTAINER -> {
             return ScreenContainer.getInstance().getXletContainer();
         }
-        else if(key.equals(SERVICE_CONTEXT)){
+        case SERVICE_CONTEXT -> {
             return ServiceContextImpl.getInstance();
         }
-        else if(key.equals(APP_DIR)){
+        case APP_DIR -> {
             return applicationDirectory;
         }
-        else if(key.equals(PROPERTY_APP_ID)){
+        case PROPERTY_APP_ID -> {
             log.fine("NOT IMPLEMENTED - RETURNING '0' AS APP_ID STRING.");
             return "0";
         }
-        else if(key.equals(PROPERTY_ORG_ID)){
+        case PROPERTY_ORG_ID -> {
             log.fine("NOT IMPLEMENTED - RETURNING '0' AS ORG_ID STRING.");
             return "0";
         }
-        else{
-            log.fine("getXletProperty() for a key '"+key+"' that is unknown. Returning null.");
+        default -> {
+            log.fine("getXletProperty() for a key '" + key + "' that is unknown. Returning null.");
             return null;
+        }
         }
     }
 
     /* (non-Javadoc)
      * @see xjavax.tv.xlet.XletContext#notifyDestroyed()
      */
+    @Override
     public void notifyDestroyed(){
         setState(DESTROYED);
         manager.notifyDestroyed(this);
@@ -124,6 +128,7 @@ public class XletContextImpl implements XletContext{
     /* (non-Javadoc)
      * @see xjavax.tv.xlet.XletContext#notifyPaused()
      */
+    @Override
     public void notifyPaused(){
         setState(PAUSED);
         manager.notifyPaused(this);
@@ -132,6 +137,7 @@ public class XletContextImpl implements XletContext{
     /* (non-Javadoc)
      * @see xjavax.tv.xlet.XletContext#resumeRequest()
      */
+    @Override
     public void resumeRequest(){
         manager.resumeRequest(this);
     }

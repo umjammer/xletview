@@ -26,6 +26,7 @@ public class SessionOpenedEvent extends MessageEvent {
         super(caModule, sessionId);
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

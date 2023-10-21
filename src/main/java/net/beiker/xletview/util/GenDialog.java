@@ -60,6 +60,7 @@ public class GenDialog extends JDialog implements ActionListener{
 
         addWindowListener(
             new WindowAdapter() {
+                @Override
                 public void windowClosing(WindowEvent we) {
                     doClose();
                 }
@@ -76,6 +77,7 @@ public class GenDialog extends JDialog implements ActionListener{
         show();
     }
 
+    @Override
     public void actionPerformed(ActionEvent e){
         String command = e.getActionCommand();
         if(command.equals("cancel")){

@@ -43,7 +43,7 @@ public class ChannelManager {
         parse();
 
         // if there is no channels, add the default one
-        if(this.channels.size() == 0){
+        if(this.channels.isEmpty()){
             //Media media = new Media(Util.getURLConnection(ChannelManager.class, Settings.getProperty("file.defaultbg")) );
 
             Media media;
@@ -71,9 +71,9 @@ public class ChannelManager {
     public void setChannel(int channel){
         // check if it is a valid channel number
         if(isValidNumber(channel)){
-            log.fine("current channel is now " + ((Channel)this.channels.get(channel)).getName());
+            log.fine("current channel is now " + this.channels.get(channel).getName());
             this.currentChannelNumber = channel;
-            Media media = ((Channel)this.channels.get(channel)).getMedia();
+            Media media = this.channels.get(channel).getMedia();
             MediaPlayer.getInstance().setMedia(media);
         }
         else{
@@ -101,10 +101,7 @@ public class ChannelManager {
      * / checks if it is a valid channel number
      */
     private boolean isValidNumber(int i){
-        boolean result = false;
-        if(i > -1 && i < this.channels.size()){
-            result = true;
-        }
+        boolean result = i > -1 && i < this.channels.size();
         return result;
     }
 
@@ -116,15 +113,15 @@ public class ChannelManager {
      * @return a list of avaliable channels, convenient for debugging
      */
     public String getChannelList(){
-        String s = "";
-        for(int i = 0; i < this.channels.size(); i++){
-            Channel ch = (Channel) this.channels.get(i);
-            s += "name=" + ch.getName() + ", media=" + ch.getMedia();
+        StringBuilder s = new StringBuilder();
+        for (Channel channel : this.channels) {
+            Channel ch = channel;
+            s.append("name=").append(ch.getName()).append(", media=").append(ch.getMedia());
         }
-        if(s.length() == 0){
-            s = "no channels avaliable";
+        if(s.isEmpty()){
+            s = new StringBuilder("no channels avaliable");
         }
-        return s;
+        return s.toString();
     }
 
     public void parse(){
@@ -137,22 +134,21 @@ public class ChannelManager {
             xml = (IXMLElement) parser.parse();
 
             List<?> v = xml.getChildren();
-            for(int i = 0; i < v.size(); i++){
-                IXMLElement element = (IXMLElement) v.get(i);
+            for (Object o : v) {
+                IXMLElement element = (IXMLElement) o;
                 String name = "";
                 String path = "";
                 try {
                     name = ((IXMLElement) element.getChildrenNamed("NAME").get(0)).getContent();
                     path = ((IXMLElement) element.getChildrenNamed("MEDIA").get(0)).getContent();
 
-                    if(name != null && path != null && name.length() > 0 && path.length() > 0){
+                    if (name != null && path != null && !name.isEmpty() && !path.isEmpty()) {
                         Media media = new Media(path);
                         Channel channel = new Channel(name, media);
                         this.channels.add(channel);
                     }
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 log.fine(element.getName());

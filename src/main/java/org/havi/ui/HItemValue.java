@@ -17,12 +17,12 @@ package org.havi.ui;
 
 public interface HItemValue extends HNavigable,  HSelectionInputPreferred{
 
-    public void addItemListener(org.havi.ui.event.HItemListener l);
+    void addItemListener(org.havi.ui.event.HItemListener l);
 
-    public void removeItemListener(org.havi.ui.event.HItemListener l);
+    void removeItemListener(org.havi.ui.event.HItemListener l);
 
-    public void setSelectionSound(HSound sound);
+    void setSelectionSound(HSound sound);
 
-    public HSound getSelectionSound();
+    HSound getSelectionSound();
 
 }

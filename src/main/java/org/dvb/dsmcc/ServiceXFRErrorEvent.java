@@ -30,6 +30,7 @@ public class ServiceXFRErrorEvent extends AsynchronousLoadingEvent {
         this.reference = ref;
     }
 
+    @Override
     public java.lang.Object getSource() {
         return super.getSource();
     }

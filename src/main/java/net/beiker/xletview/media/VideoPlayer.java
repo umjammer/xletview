@@ -52,7 +52,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
     public VideoPlayer(){
         this.setTitle("VideoPlayer");
         this.cont = getContentPane();
-        logger.fine(this.toString() + this.cont.getClass().getName());
+        logger.fine(this + this.cont.getClass().getName());
         this.xcont = new XContainer();
         this.cont2 = new XContainer();
         this.cont2.setLayout(new BorderLayout());
@@ -69,11 +69,14 @@ public class VideoPlayer extends JFrame implements ControllerListener{
         }
 
         addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent we) {
                 System.exit(0);
             }
+            @Override
             public void windowDeactivated(WindowEvent we) {
             }
+            @Override
             public void windowGainedFocus(WindowEvent e) {
             }
         });
@@ -87,7 +90,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
 
         try {
             mediaLocator = new MediaLocator(fileName);
-            Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, new Boolean(true));
+            Manager.setHint(Manager.LIGHTWEIGHT_RENDERER, Boolean.TRUE);
             this.player = Manager.createPlayer(mediaLocator);
             this.player.addControllerListener(this);
         }
@@ -97,6 +100,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
 
     }
 
+   @Override
    public synchronized void controllerUpdate(ControllerEvent event) {
       logger.fine(this+toString() + "event = " + event);
       if (event instanceof RealizeCompleteEvent) {
@@ -122,7 +126,7 @@ public class VideoPlayer extends JFrame implements ControllerListener{
         // start over
         this.player.setMediaTime(new Time(0));
         this.player.start();
-        logger.fine(this.toString() + "count = " + (count++));
+        logger.fine(this + "count = " + (count++));
       }
    }
 

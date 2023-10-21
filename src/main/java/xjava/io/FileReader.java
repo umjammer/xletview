@@ -45,12 +45,7 @@ public class FileReader extends java.io.FileReader {
 
         java.io.File file = FileSystem.getFile(fileName);
 
-        if(file != null){
-            result = new java.io.FileReader(file);
-        }
-        else{
-            throw new FileNotFoundException(fileName + " (The system cannot find the file specified)");
-        }
+        result = new java.io.FileReader(file);
 
         /*
          try {

@@ -36,6 +36,7 @@ public class HSinglelineEntryLook implements HLook{
     }
 
 
+    @Override
     public void showLook(Graphics g, HVisible hVisible, int state){
 
         Dimension dimension = hVisible.getSize();
@@ -79,10 +80,8 @@ public class HSinglelineEntryLook implements HLook{
 
         HTextLayoutManager htlm = hVisible.getTextLayoutManager();
 
-        if(hVisible instanceof HSinglelineEntry && htlm instanceof HDefaultTextLayoutManager){
-            HSinglelineEntry entry = (HSinglelineEntry) hVisible;
-            if(htlm instanceof HDefaultTextLayoutManager){
-                HDefaultTextLayoutManager hdtlm = (HDefaultTextLayoutManager) htlm;
+        if(hVisible instanceof HSinglelineEntry entry && htlm instanceof HDefaultTextLayoutManager){
+            if(htlm instanceof HDefaultTextLayoutManager hdtlm){
                 if(entry.getEditMode()){
 
                     // show caret
@@ -96,11 +95,9 @@ public class HSinglelineEntryLook implements HLook{
 
             char echoChar = entry.getEchoChar();
             if(echoChar != '\0'){
-                String  tmp = "";
-                for(int i = 0; i < string.length(); i++){
-                    tmp += echoChar;
-                }
-                string = tmp;
+                StringBuilder tmp = new StringBuilder();
+                tmp.append(String.valueOf(echoChar).repeat(string.length()));
+                string = tmp.toString();
             }
         }
 
@@ -111,7 +108,8 @@ public class HSinglelineEntryLook implements HLook{
     }
 
 
-    public void widgetChanged(HVisible hVisible, HChangeData changes[]){
+    @Override
+    public void widgetChanged(HVisible hVisible, HChangeData[] changes){
         /*
          " Note that implementations of HLook may not actually implement more efficient
          drawing code for a given hint. In particular, simply repainting the entire
@@ -132,22 +130,27 @@ public class HSinglelineEntryLook implements HLook{
     }
 
 
+    @Override
     public Dimension getMinimumSize(HVisible hVisible){
         return hVisible.getSize();
     }
 
+    @Override
     public Dimension getPreferredSize(HVisible hVisible){
         return hVisible.getSize();
     }
 
+    @Override
     public Dimension getMaximumSize(HVisible hVisible){
         return hVisible.getSize();
     }
 
+    @Override
     public boolean isOpaque(HVisible hVisible){
         return hVisible.isOpaque();
     }
 
+    @Override
     public Insets getInsets(HVisible visible){
         return insets;
     }

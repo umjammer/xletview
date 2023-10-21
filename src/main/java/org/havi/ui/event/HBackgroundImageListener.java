@@ -18,8 +18,8 @@ import java.util.EventListener;
 
 public interface HBackgroundImageListener extends EventListener{
 
-    public void imageLoaded(HBackgroundImageEvent e);
+    void imageLoaded(HBackgroundImageEvent e);
 
-    public void imageLoadFailed(HBackgroundImageEvent e);
+    void imageLoadFailed(HBackgroundImageEvent e);
 
 }

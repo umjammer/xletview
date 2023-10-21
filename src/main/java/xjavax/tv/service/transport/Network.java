@@ -32,14 +32,14 @@ public interface Network extends SIElement
      *
      * @return A number identifying this network.
      */
-    public int getNetworkID();
+    int getNetworkID();
 
     /**
      * Reports the name of this network.
      *
      * @return A string representing the name of this network, or an empty string if the name is unavailable.
      */
-    public java.lang.String getName();
+    java.lang.String getName();
 
     /**
      * Retrieves an array of <code>TransportStream</code> objects
@@ -48,7 +48,7 @@ public interface Network extends SIElement
      * <code>ts</code> for which the caller has
      * <code>javax.tv.service.ReadPermission(ts.getLocator())</code>
      * will be present in the array. If no <code>TransportStream</code>
-     * instances meet this criteria or if this <code>Network</code> does
+     * instances meet these criteria or if this <code>Network</code> does
      * not aggregate transport streams, the result is an
      * <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.<p>
@@ -59,6 +59,6 @@ public interface Network extends SIElement
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see TransportStream, ReadPermission
      */
-    public SIRequest retrieveTransportStreams( SIRequestor requestor);
+    SIRequest retrieveTransportStreams(SIRequestor requestor);
 
 }

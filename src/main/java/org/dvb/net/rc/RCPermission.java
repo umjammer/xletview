@@ -30,5 +30,6 @@ public class RCPermission extends java.security.BasicPermission{
         super(name,actions);
     }
 
+    @Override
     public boolean implies(java.security.Permission p) {  return false; }
 }

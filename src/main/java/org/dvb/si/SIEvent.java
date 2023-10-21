@@ -16,35 +16,35 @@ package org.dvb.si;
 
 public interface SIEvent extends SIInformation {
 
-    public org.davic.net.dvb.DvbLocator getDvbLocator();
+    org.davic.net.dvb.DvbLocator getDvbLocator();
 
-    public int getOriginalNetworkID();
+    int getOriginalNetworkID();
 
-    public int getTransportStreamID();
+    int getTransportStreamID();
 
-    public int getServiceID();
+    int getServiceID();
 
-    public int getEventID();
+    int getEventID();
 
-    public java.util.Date getStartTime();
+    java.util.Date getStartTime();
 
-    public long getDuration();
+    long getDuration();
 
-    public byte getRunningStatus();
+    byte getRunningStatus();
 
-    public boolean getFreeCAMode();
+    boolean getFreeCAMode();
 
-    public java.lang.String getName();
+    java.lang.String getName();
 
-    public String getShortEventName();
+    String getShortEventName();
 
-    public java.lang.String getShortDescription();
+    java.lang.String getShortDescription();
 
-    public byte[] getLevel1ContentNibbles();
+    byte[] getLevel1ContentNibbles();
 
-    public byte[] getContentNibbles();
+    byte[] getContentNibbles();
 
-    public SIRequest retrieveSIService(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
+    SIRequest retrieveSIService(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 }
 
 

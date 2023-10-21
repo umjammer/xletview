@@ -151,6 +151,7 @@ public class HVisible extends HComponent implements HState{
     /*
         By default an HVisible component is not focus-traversable.
     */
+    @Override
     public boolean isFocusTraversable(){
         return false;
     }
@@ -160,15 +161,11 @@ public class HVisible extends HComponent implements HState{
      * @param state
      */
     private void checkStateArgument(int state){
-        boolean result = true;
-        switch (state) {
-            case HState.FOCUSED_STATE_BIT :
-            case HState.ACTIONED_STATE_BIT :
-            case HState.DISABLED_STATE_BIT :
-                result = false;
-                break;
-        }
-        if(result == false){
+        boolean result = switch (state) {
+            case HState.FOCUSED_STATE_BIT, HState.ACTIONED_STATE_BIT, HState.DISABLED_STATE_BIT -> false;
+            default -> true;
+        };
+        if(!result){
             throw new java.lang.IllegalArgumentException("argument is STATE_BIT rather than a STATE");
         }
     }
@@ -227,29 +224,17 @@ public class HVisible extends HComponent implements HState{
         Object result = contents[state - HState.NORMAL_STATE];
 
         if(result == null){
-            switch (state) {
-                case HState.FOCUSED_STATE :
-                    result = getForNearestMatchingState(HState.NORMAL_STATE, contents);
-                    break;
-                case HState.ACTIONED_STATE :
-                    result = getForNearestMatchingState(HState.FOCUSED_STATE, contents);
-                    break;
-                case HState.ACTIONED_FOCUSED_STATE :
-                    result = getForNearestMatchingState(HState.FOCUSED_STATE, contents);
-                    break;
-                case HState.DISABLED_STATE :
-                    result = getForNearestMatchingState(HState.NORMAL_STATE, contents);
-                    break;
-                case HState.DISABLED_FOCUSED_STATE :
-                    result = getForNearestMatchingState(HState.DISABLED_STATE, contents);
-                    break;
-                case HState.DISABLED_ACTIONED_STATE :
-                    result = getForNearestMatchingState(HState.ACTIONED_STATE, contents);
-                    break;
-                case HState.DISABLED_ACTIONED_FOCUSED_STATE :
-                    result = getForNearestMatchingState(HState.DISABLED_STATE, contents);
-                    break;
-            }
+            result = switch (state) {
+                case HState.FOCUSED_STATE -> getForNearestMatchingState(HState.NORMAL_STATE, contents);
+                case HState.ACTIONED_STATE -> getForNearestMatchingState(HState.FOCUSED_STATE, contents);
+                case HState.ACTIONED_FOCUSED_STATE -> getForNearestMatchingState(HState.FOCUSED_STATE, contents);
+                case HState.DISABLED_STATE -> getForNearestMatchingState(HState.NORMAL_STATE, contents);
+                case HState.DISABLED_FOCUSED_STATE -> getForNearestMatchingState(HState.DISABLED_STATE, contents);
+                case HState.DISABLED_ACTIONED_STATE -> getForNearestMatchingState(HState.ACTIONED_STATE, contents);
+                case HState.DISABLED_ACTIONED_FOCUSED_STATE ->
+                        getForNearestMatchingState(HState.DISABLED_STATE, contents);
+                default -> result;
+            };
         }
 
         return result;
@@ -288,6 +273,7 @@ public class HVisible extends HComponent implements HState{
         return this.hLook;
     }
 
+    @Override
     public Dimension getPreferredSize(){
         Dimension dimension = null;
         if(this.hLook != null){
@@ -299,6 +285,7 @@ public class HVisible extends HComponent implements HState{
         return dimension;
     }
 
+    @Override
     public Dimension getMaximumSize(){
         Dimension dimension = null;
         if(this.hLook != null){
@@ -310,6 +297,7 @@ public class HVisible extends HComponent implements HState{
         return dimension;
     }
 
+    @Override
     public Dimension getMinimumSize(){
         Dimension dimension = null;
         if(this.hLook != null){
@@ -347,6 +335,7 @@ public class HVisible extends HComponent implements HState{
         this.backgroundMode = mode;
     }
 
+    @Override
     public boolean isOpaque(){
         /*
             Normally the associated HLook does not paint the background of the HVisible,
@@ -358,12 +347,7 @@ public class HVisible extends HComponent implements HState{
             is opaque. If the background mode is set to NO_BACKGROUND_FILL the isOpaque
             method must return false.
         */
-        if(this.backgroundMode == HVisible.NO_BACKGROUND_FILL){
-            return false;
-        }
-        else{
-            return true;
-        }
+        return this.backgroundMode != HVisible.NO_BACKGROUND_FILL;
     }
 
     public void setDefaultSize(Dimension defaultSize){
@@ -413,7 +397,7 @@ public class HVisible extends HComponent implements HState{
 
     public int getHorizontalAlignment(){
         /*
-            " Get the horizontal alignment of any state-based content rendered by an associated HLook. If content is not used in the rendering of this HVisible the value returned shall be valid, but has no affect on the rendered representation. "
+            " Get the horizontal alignment of any state-based content rendered by an associated HLook. If content is not used in the rendering of this HVisible the value returned shall be valid, but has no effect on the rendered representation. "
         */
         return this.horizontalAlignment;
     }
@@ -422,7 +406,7 @@ public class HVisible extends HComponent implements HState{
         /*
             " Get the vertical alignment of any state-based content rendered by an associated HLook.
             If content is not used in the rendering of this HVisible the value returned shall be valid,
-            but has no affect on the rendered representation."
+            but has no effect on the rendered representation."
         */
         return this.verticalAlignment;
     }
@@ -443,9 +427,10 @@ public class HVisible extends HComponent implements HState{
         return this.resizeMode;
     }
 
+    @Override
     public void setEnabled(boolean b){
         super.setEnabled(b);
-        if(b == false){
+        if(!b){
             if(getInteractionState() >= HState.NORMAL_STATE || getInteractionState() <= HState.ACTIONED_FOCUSED_STATE){
                 this.setInteractionState(getInteractionState() - 4);
             }
@@ -477,6 +462,7 @@ public class HVisible extends HComponent implements HState{
         and override the paint method, without supporting the HLook interface.
 
     */
+    @Override
     public void paint(Graphics g){
         if(this.hLook != null){
             this.hLook.showLook(g, this, this.getInteractionState());
@@ -489,6 +475,7 @@ public class HVisible extends HComponent implements HState{
         Color of the Graphics object to match that of the components background
         Color, and calls the paint() method.
     */
+    @Override
     public void update(java.awt.Graphics g){
         g.setColor(this.getBackground());
         paint(g);

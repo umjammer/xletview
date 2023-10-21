@@ -50,9 +50,11 @@ public class CAModuleManager implements ResourceServer {
     public void removeMMIListener(MMIListener listener) {
     }
 
+    @Override
     public void addResourceStatusEventListener(ResourceStatusListener l) {
     }
 
+    @Override
     public void removeResourceStatusEventListener(ResourceStatusListener l) {
     }
 

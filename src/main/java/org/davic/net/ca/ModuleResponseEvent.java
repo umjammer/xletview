@@ -29,6 +29,7 @@ public abstract class ModuleResponseEvent extends MessageEvent{
         this.data = data;
     }
 
+    @Override
     public Object getSource() {
         return super.getSource();
     }

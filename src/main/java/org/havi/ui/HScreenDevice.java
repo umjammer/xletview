@@ -81,14 +81,17 @@ public class HScreenDevice implements org.davic.resources.ResourceProxy, org.dav
         currentResourceClient = null;
     }
 
+    @Override
     public ResourceClient getClient(){
         return currentResourceClient;
     }
 
+    @Override
     public void addResourceStatusEventListener(ResourceStatusListener listener){
         resourceStatusListener = HEventMulticaster.add(resourceStatusListener, listener);
     }
 
+    @Override
     public void removeResourceStatusEventListener(ResourceStatusListener listener){
         resourceStatusListener = HEventMulticaster.remove(resourceStatusListener, listener);
     }
