@@ -25,6 +25,5 @@ public class DripFeedPermission extends java.security.BasicPermission {
     public boolean implies(java.security.Permission p) {
         return false;
     }
-
 }
 

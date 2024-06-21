@@ -18,12 +18,12 @@ import net.beiker.xletview.ui.tree.UserObject;
 
 public class App implements UserObject {
 
+    private static String defaultBackgroundPath;
+    private static int count;
     private String name;
     private String path;
     private String xletName;
-    private static String defaultBackgroundPath;
     private String backgroundPath;
-    private static int count;
 
     public App(String projectName, String path, String xletName) {
         this.name = (projectName != null) ? projectName : "new app " + (count++);
@@ -35,8 +35,8 @@ public class App implements UserObject {
         }
     }
 
-    public void setBackgroundPath(String path) {
-        backgroundPath = path;
+    public static String getDefaultBackgroundPath() {
+        return defaultBackgroundPath;
     }
 
     public static void setDefaultBackgroundPath(String path) {
@@ -47,32 +47,32 @@ public class App implements UserObject {
         return backgroundPath;
     }
 
-    public static String getDefaultBackgroundPath() {
-        return defaultBackgroundPath;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setBackgroundPath(String path) {
+        backgroundPath = path;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPath() {
         return path;
     }
 
-    public void setXletName(String xletName) {
-        this.xletName = xletName;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getXletName() {
         return xletName;
+    }
+
+    public void setXletName(String xletName) {
+        this.xletName = xletName;
     }
 
     public String toString() {

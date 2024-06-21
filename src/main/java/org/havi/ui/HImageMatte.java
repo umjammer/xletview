@@ -23,17 +23,17 @@ public class HImageMatte implements HMatte {
     public HImageMatte(Image data) {
     }
 
-    public void setMatteData(Image data) {
-    }
-
     public Image getMatteData() {
         return (null);
     }
 
-    public void setOffset(Point p) {
+    public void setMatteData(Image data) {
     }
 
     public Point getOffset() {
         return (null);
+    }
+
+    public void setOffset(Point p) {
     }
 }

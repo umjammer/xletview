@@ -92,5 +92,4 @@ public interface AWTVideoSizeControl extends javax.media.Control {
      * @return The actual size that the platform would be able to set.
      */
     AWTVideoSize checkSize(AWTVideoSize sz);
-
 }

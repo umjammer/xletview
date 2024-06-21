@@ -22,7 +22,7 @@ import javax.media.StopEvent;
  */
 public class NoComponentSelectedEvent extends StopEvent {
 
-    private MediaLocator stream;
+    private final MediaLocator stream;
 
     public NoComponentSelectedEvent(Controller source, int previous, int current, int target, MediaLocator stream) {
         super(source, 0, 0, 0, null);

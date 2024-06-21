@@ -84,7 +84,7 @@ package xjavax.tv.service.selection;
  */
 public final class ServiceContextPermission extends java.security.BasicPermission {
 
-    //following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private java.lang.String actions;
 
     /**
@@ -92,11 +92,11 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      * name.  The name is the symbolic name of the permission, such as
      * "create".  An asterisk may be used to signify a wildcard match.
      *
-     * @param name The name of the ServiceContextPermission
+     * @param name    The name of the ServiceContextPermission
      * @param actions The actions string, as detailed in the class description.
      */
     public ServiceContextPermission(java.lang.String name, java.lang.String actions) {
-        //TODO implement ServiceContextPermission
+        // TODO implement ServiceContextPermission
         super(name, actions);
     }
 
@@ -119,7 +119,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
     @Override
     public boolean implies(java.security.Permission p) {
         return false;
-        //TODO implement implies
+        // TODO implement implies
     }
 
     /**
@@ -135,7 +135,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      */
     public boolean equals(java.lang.Object obj) {
         return false;
-        //TODO implement equals
+        // TODO implement equals
     }
 
     /**
@@ -148,7 +148,7 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
      */
     public int hashCode() {
         return 0;
-        //TODO implement hashCode
+        // TODO implement hashCode
     }
 
     /**
@@ -161,5 +161,4 @@ public final class ServiceContextPermission extends java.security.BasicPermissio
     public java.lang.String getActions() {
         return this.actions;
     }
-
 }

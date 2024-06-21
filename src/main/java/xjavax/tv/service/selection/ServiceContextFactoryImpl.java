@@ -23,7 +23,7 @@ import xjavax.tv.xlet.XletContext;
  */
 public class ServiceContextFactoryImpl extends ServiceContextFactory {
 
-    ServiceContext[] serviceContexts = {ServiceContextImpl.getInstance()};
+    final ServiceContext[] serviceContexts = {ServiceContextImpl.getInstance()};
 
     public ServiceContextFactoryImpl() {
     }
@@ -32,25 +32,19 @@ public class ServiceContextFactoryImpl extends ServiceContextFactory {
     public ServiceContext getServiceContext(XletContext xletcontext) throws SecurityException, ServiceContextException {
 
         if (xletcontext == null) {
-
             throw new NullPointerException("XletContext null");
-
         }
 
         ServiceContext servicecontext = (ServiceContext) xletcontext.getXletProperty(XletContextImpl.SERVICE_CONTEXT);
 
         if (servicecontext == null) {
-
             throw new ServiceContextException("xlet not running in a ServiceContext");
-
         }
 
         if (servicecontext instanceof ServiceContextImpl servicecontextimpl) {
 
             if (servicecontextimpl.isDestroyed()) {
-
                 throw new ServiceContextException("ServiceContext is destroyed");
-
             }
         }
         return servicecontext;

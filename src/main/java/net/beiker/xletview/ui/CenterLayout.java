@@ -56,8 +56,6 @@ public class CenterLayout implements LayoutManager {
             int x = (int) (bounds.getWidth() - comp.getWidth()) / 2;
             int y = (int) (bounds.getHeight() - comp.getHeight()) / 2;
             comp.setLocation(x, y);
-
         }
     }
-
 }

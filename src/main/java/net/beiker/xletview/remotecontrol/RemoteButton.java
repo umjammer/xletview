@@ -25,6 +25,4 @@ public class RemoteButton extends KeyButton {
         super(imgUrl, width, height, keyCode, ch);
         this.setLocation(x, y);
     }
-
-
 }

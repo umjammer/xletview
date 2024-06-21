@@ -71,7 +71,6 @@ public class HMultilineEntryLook extends HSinglelineEntryLook {
     public int[] getSoftLineBreakPositions(HVisible visible) {
         return null;
     }
-
 }
 
 

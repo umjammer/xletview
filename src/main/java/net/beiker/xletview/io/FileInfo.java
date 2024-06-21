@@ -23,14 +23,14 @@ public class FileInfo {
     /** Debugging facility */
     private final static Logger logger = getLogger(FileInfo.class.getName());
 
-    private File file;
+    private final File file;
 
     public FileInfo(File file) {
         this.file = file;
     }
 
     public String getPath() {
-        logger.log(Level.DEBUG, "-->" + this.file.getPath());
+logger.log(Level.DEBUG, "-->" + this.file.getPath());
         return this.file.getPath();
     }
 

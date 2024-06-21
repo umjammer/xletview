@@ -18,5 +18,4 @@ package org.dvb.application;
 public abstract class AppsDatabaseFilter {
 
     public abstract boolean accept(AppID appid);
-
 }

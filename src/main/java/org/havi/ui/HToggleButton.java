@@ -46,21 +46,21 @@ public class HToggleButton extends HGraphicButton implements HSwitchable {
     public HToggleButton(Image imageNormal, Image imageFocused, Image imageActioned, Image imageNormalActioned, boolean state, HToggleGroup group) {
     }
 
-    public void setToggleGroup(HToggleGroup group) {
+    public static HGraphicLook getDefaultLook() {
+        return (null);
+    }
+
+    public static void setDefaultLook(HGraphicLook hlook) {
     }
 
     public HToggleGroup getToggleGroup() {
         return (null);
     }
 
+    public void setToggleGroup(HToggleGroup group) {
+    }
+
     public void removeToggleGroup() {
-    }
-
-    public static void setDefaultLook(HGraphicLook hlook) {
-    }
-
-    public static HGraphicLook getDefaultLook() {
-        return (null);
     }
 
     @Override
@@ -73,11 +73,11 @@ public class HToggleButton extends HGraphicButton implements HSwitchable {
     }
 
     @Override
-    public void setUnsetActionSound(HSound sound) {
+    public HSound getUnsetActionSound() {
+        return (null);
     }
 
     @Override
-    public HSound getUnsetActionSound() {
-        return (null);
+    public void setUnsetActionSound(HSound sound) {
     }
 }

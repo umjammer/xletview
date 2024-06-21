@@ -20,5 +20,4 @@ public class ConnectionTerminatedEvent extends ConnectionRCEvent {
     public ConnectionTerminatedEvent(Object source) {
         super(source);
     }
-
 }

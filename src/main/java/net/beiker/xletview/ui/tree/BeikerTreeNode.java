@@ -21,7 +21,7 @@ public class BeikerTreeNode extends DefaultMutableTreeNode {
 
     private static final Logger logger = getLogger(BeikerTreeNode.class.getName());
 
-    private UserObject userObject;
+    private final UserObject userObject;
     private boolean childrenDefined;
 //    private int childCount = 3;
 

@@ -13,7 +13,6 @@ package org.davic.net.dvb;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.util.stream.Stream;
 
 import org.davic.net.InvalidLocatorException;
 
@@ -32,29 +31,13 @@ public class DvbLocator extends org.davic.net.Locator {
     private String textualServiceIdentifier;
 
     private int orgNetworkId;
-    private int trasportStreamId;
+    private int transportStreamId;
     private int serviceId;
 
     private int eventId = -1;
     private int[] componentTags;
 
     private String filePath;
-
-    public static void main(String[] args) {
-        DvbNetworkBoundLocator netLoc = null;
-        DvbLocator loc = null;
-        try {
-            loc = new DvbLocator("dvb://1.2.3.4;55");
-            netLoc = new DvbNetworkBoundLocator(loc, 12);
-
-        } catch (InvalidLocatorException e) {
-            // TODO Auto-generated catch block
-            logger.log(Level.ERROR, e.getMessage(), e);
-        }
-
-        logger.log(Level.DEBUG, "toExternalForm - " + loc.toExternalForm());
-        logger.log(Level.DEBUG, "netLoc.getOriginalNetworkId() - " + netLoc.getNetworkId());
-    }
 
     protected DvbLocator() {
         super(null);
@@ -68,20 +51,20 @@ public class DvbLocator extends org.davic.net.Locator {
 
         textualServiceIdentifier = url;
 
-        String s = url.substring(6);// crop "dvb://"
-        logger.log(Level.DEBUG, s);
+        String s = url.substring(6); // crop "dvb://"
+logger.log(Level.DEBUG, s);
 
         // extract filepath
         int indexOfSlash = s.indexOf('/');
         if (indexOfSlash > -1) {
             filePath = s.substring(indexOfSlash);
             s = s.substring(0, indexOfSlash);
-            logger.log(Level.DEBUG, "filePath=" + filePath);
-            logger.log(Level.DEBUG, "s=" + s);
+logger.log(Level.DEBUG, "filePath=" + filePath);
+logger.log(Level.DEBUG, "s=" + s);
         }
 
         String[] ids = s.split("\\.");
-        logger.log(Level.DEBUG, "ids.length=" + ids.length);
+logger.log(Level.DEBUG, "ids.length=" + ids.length);
         // check that the locator contains
         // Original Network ID, Transport Stream ID and Service ID
         if (ids.length < 2) {
@@ -96,14 +79,14 @@ public class DvbLocator extends org.davic.net.Locator {
             eventId = getIntFromParameter(tmp[1]); // Integer.parseInt(tmp[1]);
 
         }
-        logger.log(Level.DEBUG, ids[ids.length - 1]);
-        logger.log(Level.DEBUG, "eventId=" + eventId);
+logger.log(Level.DEBUG, ids[ids.length - 1]);
+logger.log(Level.DEBUG, "eventId=" + eventId);
 
         // check for component tag id
         if (ids.length == 4) {
             componentTags = new int[1];
             int componentTag = getIntFromParameter(ids[3]); // Integer.parseInt(ids[3]);
-            logger.log(Level.DEBUG, "componentTag=" + componentTag);
+logger.log(Level.DEBUG, "componentTag=" + componentTag);
             componentTags[0] = componentTag;
 
         }
@@ -111,14 +94,14 @@ public class DvbLocator extends org.davic.net.Locator {
         // set Original Network ID, Transport Stream ID and Service ID
 
         orgNetworkId = getIntFromParameter(ids[0]); // Integer.parseInt(ids[0]);
-        trasportStreamId = getIntFromParameter(ids[1]); // Integer.parseInt(ids[1]);
+        transportStreamId = getIntFromParameter(ids[1]); // Integer.parseInt(ids[1]);
         serviceId = getIntFromParameter(ids[2]); // Integer.parseInt(ids[2]);
     }
 
     public DvbLocator(int onid, int tsid) throws InvalidLocatorException {
         super(null);
         orgNetworkId = onid;
-        trasportStreamId = tsid;
+        transportStreamId = tsid;
     }
 
     public DvbLocator(int onid, int tsid, int serviceId) throws InvalidLocatorException {
@@ -148,13 +131,27 @@ public class DvbLocator extends org.davic.net.Locator {
         this.filePath = filePath;
     }
 
+    public static void main(String[] args) {
+        DvbNetworkBoundLocator netLoc = null;
+        DvbLocator loc = null;
+        try {
+            loc = new DvbLocator("dvb://1.2.3.4;55");
+            netLoc = new DvbNetworkBoundLocator(loc, 12);
+
+        } catch (InvalidLocatorException e) {
+            logger.log(Level.ERROR, e.getMessage(), e);
+        }
+
+logger.log(Level.DEBUG, "toExternalForm - " + loc.toExternalForm());
+logger.log(Level.DEBUG, "netLoc.getOriginalNetworkId() - " + netLoc.getNetworkId());
+    }
 
     public int getOriginalNetworkId() {
         return orgNetworkId;
     }
 
     public int getTransportStreamId() {
-        return trasportStreamId;
+        return transportStreamId;
     }
 
     public int getServiceId() {
@@ -179,12 +176,12 @@ public class DvbLocator extends org.davic.net.Locator {
 
     private int getIntFromParameter(String strInt) throws InvalidLocatorException {
         int result = -1;
-        logger.log(Level.DEBUG, "strInt=" + strInt);
+logger.log(Level.DEBUG, "strInt=" + strInt);
         try {
 //            result = Integer.parseInt("0x" + strInt);
             result = Integer.valueOf(strInt, 16);
 //            result = Integer.valueOf(strInt, 16);
-            logger.log(Level.DEBUG, "result=" + result);
+logger.log(Level.DEBUG, "result=" + result);
 
         } catch (NumberFormatException e) {
             throw new InvalidLocatorException("invalid parameter");
@@ -194,7 +191,7 @@ public class DvbLocator extends org.davic.net.Locator {
 
     @Override
     public String toExternalForm() {
-        StringBuilder result = new StringBuilder("dvb://" + orgNetworkId + "." + trasportStreamId + "." + serviceId);
+        StringBuilder result = new StringBuilder("dvb://" + orgNetworkId + "." + transportStreamId + "." + serviceId);
         if (componentTags != null && componentTags.length > 0) {
             for (int componentTag : componentTags) {
                 result.append(".").append(componentTag);

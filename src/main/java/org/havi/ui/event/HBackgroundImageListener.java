@@ -19,5 +19,4 @@ public interface HBackgroundImageListener extends EventListener {
     void imageLoaded(HBackgroundImageEvent e);
 
     void imageLoadFailed(HBackgroundImageEvent e);
-
 }

@@ -15,8 +15,8 @@ package org.havi.ui;
 public class HVideoDevice extends HScreenDevice {
 
     public static final HVideoConfiguration NOT_CONTRIBUTING = new HVideoConfiguration();
-    private HVideoConfiguration hVideoConfiguration;
-    private HVideoConfiguration[] hVideoConfigurations;
+    private final HVideoConfiguration hVideoConfiguration;
+    private final HVideoConfiguration[] hVideoConfigurations;
 
     protected HVideoDevice() {
         hVideoConfiguration = new HVideoConfiguration();
@@ -47,15 +47,15 @@ public class HVideoDevice extends HScreenDevice {
     public boolean setVideoConfiguration(HVideoConfiguration hvc) throws SecurityException,
             org.havi.ui.HPermissionDeniedException,
             org.havi.ui.HConfigurationException {
-        return (false);
+        return false;
     }
 
     public Object getVideoSource() throws SecurityException,
             org.havi.ui.HPermissionDeniedException {
-        return (null);
+        return null;
     }
 
     public Object getVideoController() throws SecurityException, org.havi.ui.HPermissionDeniedException {
-        return (null);
+        return null;
     }
 }

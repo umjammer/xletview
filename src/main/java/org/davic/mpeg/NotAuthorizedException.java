@@ -38,7 +38,6 @@ public class NotAuthorizedException extends java.lang.Exception implements NotAu
     public int[] getReason(int index) throws java.lang.IndexOutOfBoundsException {
         return null;
     }
-
 }
 
 

@@ -11,7 +11,7 @@ See LICENSE document for details.
 
 */
 
-package  org.havi.ui;
+package org.havi.ui;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
@@ -34,27 +34,26 @@ public class HListGroup extends HVisible implements HItemValue {
     public static final int DEFAULT_LABEL_HEIGHT = -2;
     public static final int DEFAULT_ICON_WIDTH = -3;
     public static final int DEFAULT_ICON_HEIGHT = -4;
-
-    private HNavigableHelper helper;
-    private HSound sound;
     private static HListGroupLook defaultLook = new HListGroupLook();
+    private final HNavigableHelper helper;
+    private HSound sound;
     private boolean multiSelection;
     private boolean selectionMode;
 
     // holds all HListElements
-    private List<HListElement> items;
+    private final List<HListElement> items;
 
     private Dimension iconSize;
     private Dimension labelSize;
     private int orientation;
 
     // holds the HListElements that are selected
-    private List<HListElement> selectedIndexes;
+    private final List<HListElement> selectedIndexes;
 
     // holds the index of the current item
     private int currentItemIndex;
 
-    private List<HItemListener> itemListeners;
+    private final List<HItemListener> itemListeners;
 
     /**
      * The scroll position determines the first HListElement to be drawn when the HListGroupLook lays out the list.
@@ -96,7 +95,15 @@ public class HListGroup extends HVisible implements HItemValue {
 
         orientation = ORIENT_TOP_TO_BOTTOM;
 
-        // selectionSound = null
+//        selectionSound = null
+    }
+
+    public static HListGroupLook getDefaultLook() {
+        return HListGroup.defaultLook;
+    }
+
+    public static void setDefaultLook(HListGroupLook look) {
+        HListGroup.defaultLook = look;
     }
 
     @Override
@@ -106,14 +113,6 @@ public class HListGroup extends HVisible implements HItemValue {
         } else {
             throw new HInvalidLookException("HLook was not a org.havi.ui.HListGroupLook");
         }
-    }
-
-    public static void setDefaultLook(HListGroupLook look) {
-        HListGroup.defaultLook = look;
-    }
-
-    public static HListGroupLook getDefaultLook() {
-        return HListGroup.defaultLook;
     }
 
     public HListElement[] getListContent() {
@@ -180,9 +179,7 @@ public class HListGroup extends HVisible implements HItemValue {
             HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, items.get(currentItemIndex));
             notifyItemChangedEvent(evt);
         }
-
     }
-
 
     public HListElement getItem(int index) {
 
@@ -223,7 +220,6 @@ public class HListGroup extends HVisible implements HItemValue {
 
             items.remove(index);
 
-
             // check if current index changed
             if (index <= currentItemIndex) {
 
@@ -241,7 +237,6 @@ public class HListGroup extends HVisible implements HItemValue {
                 HItemEvent evt = new HItemEvent(this, HItemEvent.ITEM_SET_CURRENT, getCurrentItem());
                 notifyItemChangedEvent(evt);
             }
-
         }
 
         return element;
@@ -261,11 +256,8 @@ public class HListGroup extends HVisible implements HItemValue {
         }
     }
 
-
     public HListElement getCurrentItem() {
-
         return items.get(currentItemIndex);
-
     }
 
     public boolean setCurrentItem(int index) {
@@ -283,7 +275,7 @@ public class HListGroup extends HVisible implements HItemValue {
 
     public int[] getSelectionIndices() {
 
-        // TODO: fix sorting
+        // TODO fix sorting
 
         int[] result = new int[0];
         for (HListElement selectedIndex : selectedIndexes) {
@@ -296,9 +288,7 @@ public class HListGroup extends HVisible implements HItemValue {
                 tmp[result.length] = index;
                 result = tmp;
             }
-
         }
-
 
         return result;
     }
@@ -347,10 +337,8 @@ public class HListGroup extends HVisible implements HItemValue {
 
                 selectedIndexes.remove(element);
                 notifySelectionChanged(new HItemEvent(this, HItemEvent.ITEM_CLEARED, element));
-
             }
         }
-
     }
 
     public boolean isItemSelected(int index) {
@@ -367,7 +355,6 @@ public class HListGroup extends HVisible implements HItemValue {
         } else {
             return scrollPosition;
         }
-
     }
 
     public void setScrollPosition(int index) {
@@ -377,7 +364,6 @@ public class HListGroup extends HVisible implements HItemValue {
         }
 
         scrollPosition = index;
-
     }
 
     public Dimension getIconSize() {
@@ -417,23 +403,23 @@ public class HListGroup extends HVisible implements HItemValue {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-        helper.setGainFocusSound(sound);
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-        helper.setLoseFocusSound(sound);
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+        helper.setGainFocusSound(sound);
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
+        helper.setLoseFocusSound(sound);
     }
 
     @Override
@@ -482,13 +468,13 @@ public class HListGroup extends HVisible implements HItemValue {
     }
 
     @Override
-    public void setSelectionSound(HSound sound) {
-        this.sound = sound;
+    public HSound getSelectionSound() {
+        return sound;
     }
 
     @Override
-    public HSound getSelectionSound() {
-        return sound;
+    public void setSelectionSound(HSound sound) {
+        this.sound = sound;
     }
 
     @Override
@@ -511,18 +497,14 @@ public class HListGroup extends HVisible implements HItemValue {
             boolean oldMode = selectionMode;
 
             switch (evt.getID()) {
-            case HItemEvent.ITEM_START_CHANGE:
-
-                setSelectionMode(true);
-
-                break;
-            case HItemEvent.ITEM_END_CHANGE:
-
-                setSelectionMode(false);
-
-                break;
-            default:
-                break;
+                case HItemEvent.ITEM_START_CHANGE:
+                    setSelectionMode(true);
+                    break;
+                case HItemEvent.ITEM_END_CHANGE:
+                    setSelectionMode(false);
+                    break;
+                default:
+                    break;
             }
 
             if (oldMode != getSelectionMode()) {
@@ -538,22 +520,15 @@ public class HListGroup extends HVisible implements HItemValue {
                 HListElement oldItem = getCurrentItem();
 
                 switch (evt.getID()) {
-                    /*case HItemEvent.ITEM_SET_CURRENT :
-
-                        break;*/
-                case HItemEvent.ITEM_SET_PREVIOUS:
-
-                    // 1. set the previous
-
-                    setCurrentItem(getCurrentIndex() - 1);
-
-
-                    break;
-                case HItemEvent.ITEM_SET_NEXT:
-
-                    setCurrentItem(getCurrentIndex() + 1);
-
-                    break;
+//                    case HItemEvent.ITEM_SET_CURRENT :
+//                        break;
+                    case HItemEvent.ITEM_SET_PREVIOUS:
+                        // 1. set the previous
+                        setCurrentItem(getCurrentIndex() - 1);
+                        break;
+                    case HItemEvent.ITEM_SET_NEXT:
+                        setCurrentItem(getCurrentIndex() + 1);
+                        break;
                 }
 
                 // check if the current item is changed
@@ -568,12 +543,8 @@ public class HListGroup extends HVisible implements HItemValue {
 
                     notifyItemChangedEvent(changedEvent);
                 }
-
             }
-
         }
-
-
     }
 
     /**
@@ -586,9 +557,7 @@ public class HListGroup extends HVisible implements HItemValue {
         for (HItemListener arrListener : itemListeners) {
 
             arrListener.selectionChanged(event);
-
         }
-
     }
 
     /**
@@ -601,20 +570,14 @@ public class HListGroup extends HVisible implements HItemValue {
         for (HItemListener arrListener : itemListeners) {
 
             arrListener.currentItemChanged(event);
-
         }
-
     }
-
 
     @Override
     public boolean isFocusTraversable() {
-        /*
-         * "Note that the java.awt.Component method isFocusTraversable
-         * shall always return true for a java.awt.Component implementing
-         * this interface."
-         */
+        // "Note that the java.awt.Component method isFocusTraversable
+        // shall always return true for a java.awt.Component implementing
+        // this interface."
         return true;
     }
-
 }

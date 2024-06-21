@@ -46,19 +46,16 @@ import static java.lang.System.getLogger;
  */
 public class AppDataPanel extends JPanel implements ActionListener, KeyListener {
 
-    private static final Logger logger = getLogger(RemoteControl.class.getName());
-
-    private AppTreeWindow appWin;
-    private App app;
-
     public final static int NAME = 0;
     public final static int CLASSPATH = 1;
     public final static int XLETNAME = 2;
-
-    private Container content;
-    private JTextField[] fields;
-    private JButton[] fieldButtons;
-    private JLabel[] fieldLabels;
+    private static final Logger logger = getLogger(RemoteControl.class.getName());
+    private final AppTreeWindow appWin;
+    private App app;
+    private final Container content;
+    private final JTextField[] fields;
+    private final JButton[] fieldButtons;
+    private final JLabel[] fieldLabels;
 
     public AppDataPanel(AppTreeWindow appWin) {
         this.appWin = appWin;
@@ -135,7 +132,6 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
 //        content.add(BorderLayout.SOUTH, buttonCont);
 
         add(content);
-
     }
 
 //    public AppDataPanel() {
@@ -182,73 +178,74 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         String command = e.getActionCommand();
 
         switch (command) {
-        case "classpath" -> {
-            String fieldText = fields[CLASSPATH].getText();
-            //String[] treeData = fieldText.split(File.separator + File.separator);
-            String[] treeData;
-            if (File.separator.equals("\\")) {
-                treeData = fieldText.split("\\\\");
-            } else {
-                treeData = fieldText.split("/");
+            case "classpath" -> {
+                String fieldText = fields[CLASSPATH].getText();
+//                String[] treeData = fieldText.split(File.separator + File.separator);
+                String[] treeData;
+                if (File.separator.equals("\\")) {
+                    treeData = fieldText.split("\\\\");
+                } else {
+                    treeData = fieldText.split("/");
+                }
+                logger.log(Level.DEBUG, "### " + treeData.length);
+                DirectoryExplorer dirWin = dirWin = new DirectoryExplorer(Util.getParentFrame(this), treeData);
+                if (dirWin != null && !dirWin.getPath().isEmpty()) {
+                    fields[CLASSPATH].setText(dirWin.getPath());
+                    logger.log(Level.DEBUG, fields[CLASSPATH].getText());
+                }
             }
-            logger.log(Level.DEBUG, "### " + treeData.length);
-            DirectoryExplorer dirWin = dirWin = new DirectoryExplorer(Util.getParentFrame(this), treeData);
-            if (dirWin != null && !dirWin.getPath().isEmpty()) {
-                fields[CLASSPATH].setText(dirWin.getPath());
-                logger.log(Level.DEBUG, fields[CLASSPATH].getText());
+            case "xletname" -> {
+                if (fields[CLASSPATH].getText().trim().isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "You must specify a directory!", "Alert", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ClassWindow classWindow = new ClassWindow(Util.getParentFrame(this), new File(fields[CLASSPATH].getText().trim()));
+                    logger.log(Level.DEBUG, "value=" + classWindow.getValue());
+                    fields[XLETNAME].setText(classWindow.getValue());
+                }
             }
-        }
-        case "xletname" -> {
-            if (fields[CLASSPATH].getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "You must specify a directory!", "Alert", JOptionPane.ERROR_MESSAGE);
-            } else {
-                ClassWindow classWindow = new ClassWindow(Util.getParentFrame(this), new File(fields[CLASSPATH].getText().trim()));
-                logger.log(Level.DEBUG, "value=" + classWindow.getValue());
-                fields[XLETNAME].setText(classWindow.getValue());
-            }
-        }
 
-        //            JFileChooser fc = new JFileChooser(fields[CLASSPATH].getText());
-        //            FileFilterImpl filter = new FileFilterImpl(".class");
-        //            fc.setFileFilter(filter);
-        //            File dir = new File(fields[CLASSPATH].getText());
-        //            logger.log(Level.DEBUG, this, "** " + dir.isDirectory());
-        //            fc.setCurrentDirectory( dir );
-        //            fc.setDialogType(JFileChooser.OPEN_DIALOG);
-        //            fc.showOpenDialog(this);
-        //            String selectedPath = fc.getSelectedFile().getAbsolutePath();
-        //            logger.log(Level.DEBUG, this, "1 " + fc.getSelectedFile().getPath());
-        //            logger.log(Level.DEBUG, this, "2 " + fc.getSelectedFile().getAbsolutePath());
-        //
-        //            String className = "";
-        //            className = selectedPath.substring(fields[CLASSPATH].getText().length());
-        //            className = className.replace(File.separatorChar, '.');
-        //            className = className.replaceAll(".class", "");
-        //            className = className.replaceAll(".CLASS", "");
-        //            if(className.length() > 0){
-        //                fields[XLETNAME].setText(className);
-        //            }
-        case "ok" -> {
-            if (isOk()) {
-                String name = fields[NAME].getText().trim();
-                String path = fields[CLASSPATH].getText().trim();
-                String xlet = fields[XLETNAME].getText().trim();
-                App app = new App(name, path, xlet);
-                AppManager.getInstance().getDefaultGroup().addApp(app);
-                AppManager.getInstance().update();
-                AppMenu.getInstance().update();
-                logger.log(Level.DEBUG, "name=" + name + ", path=" + path + ", xlet=" + xlet);
+//            JFileChooser fc = new JFileChooser(fields[CLASSPATH].getText());
+//            FileFilterImpl filter = new FileFilterImpl(".class");
+//            fc.setFileFilter(filter);
+//            File dir = new File(fields[CLASSPATH].getText());
+//logger.log(Level.DEBUG, this, "** " + dir.isDirectory());
+//            fc.setCurrentDirectory( dir );
+//            fc.setDialogType(JFileChooser.OPEN_DIALOG);
+//            fc.showOpenDialog(this);
+//            String selectedPath = fc.getSelectedFile().getAbsolutePath();
+//logger.log(Level.DEBUG, this, "1 " + fc.getSelectedFile().getPath());
+//logger.log(Level.DEBUG, this, "2 " + fc.getSelectedFile().getAbsolutePath());
+//
+//            String className = "";
+//            className = selectedPath.substring(fields[CLASSPATH].getText().length());
+//            className = className.replace(File.separatorChar, '.');
+//            className = className.replaceAll(".class", "");
+//            className = className.replaceAll(".CLASS", "");
+//            if(className.length() > 0){
+//                fields[XLETNAME].setText(className);
+//            }
+            case "ok" -> {
+                if (isOk()) {
+                    String name = fields[NAME].getText().trim();
+                    String path = fields[CLASSPATH].getText().trim();
+                    String xlet = fields[XLETNAME].getText().trim();
+                    App app = new App(name, path, xlet);
+                    AppManager.getInstance().getDefaultGroup().addApp(app);
+                    AppManager.getInstance().update();
+                    AppMenu.getInstance().update();
+                    logger.log(Level.DEBUG, "name=" + name + ", path=" + path + ", xlet=" + xlet);
 
+                }
             }
-        }
-        case "cancel" -> {
-        }
+            case "cancel" -> {
+            }
         }
     }
-    // implementing ActionListener //
+
+//#region implementing ActionListener
 
     public boolean isOk() {
-        //int option = JOptionPane.showConfirmDialog(this, "nu blev det fel", "Remove", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
+//        int option = JOptionPane.showConfirmDialog(this, "nu blev det fel", "Remove", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
         String message = "The following field(s) can not be empty:\n";
         boolean ok = true;
         if (fields[NAME].getText().trim().isEmpty()) {
@@ -278,12 +275,10 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
 
     @Override
     public void keyTyped(KeyEvent arg0) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-
     }
 
     @Override
@@ -292,4 +287,5 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         appWin.updateNodeText();
     }
 
+//#endregion
 }

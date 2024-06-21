@@ -43,5 +43,4 @@ public class FilterNotSupportedException extends SIException {
     public FilterNotSupportedException(String reason) {
         super(reason);
     }
-
 }

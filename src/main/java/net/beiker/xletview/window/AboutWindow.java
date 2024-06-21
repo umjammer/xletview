@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  net.beiker.xletview.window;
+package net.beiker.xletview.window;
 
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -38,7 +38,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
     public AboutWindow(Frame owner) {
         super(owner, false);
 
-        //JPanel container = new JPanel();
+//        JPanel container = new JPanel();
 
         URL webPage = null;
         StringBuilder html = new StringBuilder();
@@ -46,8 +46,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
             webPage = new java.net.URL("http://xletview.sourceforge.net/client/aboutwindow.html");
             webPage.openStream();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(webPage.openStream())
-            );
+            BufferedReader in = new BufferedReader(new InputStreamReader(webPage.openStream()));
 
             String inputLine;
 
@@ -92,10 +91,10 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
     public void hyperlinkUpdate(HyperlinkEvent e) {
         HyperlinkEvent.EventType eventType = e.getEventType();
         if (eventType == HyperlinkEvent.EventType.ACTIVATED) {
-            logger.log(Level.DEBUG, "" + e.getURL());
+logger.log(Level.DEBUG, "" + e.getURL());
             try {
                 String url = e.getURL().toString();
-                logger.log(Level.DEBUG, "url = " + url);
+logger.log(Level.DEBUG, "url = " + url);
                 String[] s = {"C:\\Program Files\\Internet Explorer\\iexplore.exe", url};
                 Runtime.getRuntime().exec(s);
             } catch (Exception ex) {

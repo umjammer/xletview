@@ -22,16 +22,15 @@ public interface HNavigable extends HNavigationInputPreferred {
 
     boolean isSelected();
 
-    void setGainFocusSound(HSound sound);
-
-    void setLoseFocusSound(HSound sound);
-
     HSound getGainFocusSound();
 
+    void setGainFocusSound(HSound sound);
+
     HSound getLoseFocusSound();
+
+    void setLoseFocusSound(HSound sound);
 
     void addHFocusListener(org.havi.ui.event.HFocusListener l);
 
     void removeHFocusListener(org.havi.ui.event.HFocusListener l);
-
 }

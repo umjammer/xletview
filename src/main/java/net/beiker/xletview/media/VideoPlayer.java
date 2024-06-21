@@ -36,23 +36,21 @@ import static java.lang.System.getLogger;
 
 public class VideoPlayer extends JFrame implements ControllerListener {
 
-    /** Debugging facility. */
-    private static final Logger logger = getLogger(VideoPlayer.class.getName());
-
-    private static int count;
     public static final int WIDTH = 720;
     public static final int HEIGHT = 576;
     public static final char FS = File.separatorChar;
-
+    /** Debugging facility. */
+    private static final Logger logger = getLogger(VideoPlayer.class.getName());
+    private static int count;
     private Player player;
-    private Container cont;
-    private XContainer cont2;
-    private XContainer xcont;
+    private final Container cont;
+    private final XContainer cont2;
+    private final XContainer xcont;
 
     public VideoPlayer() {
         this.setTitle("VideoPlayer");
         this.cont = getContentPane();
-        logger.log(Level.DEBUG, this + this.cont.getClass().getName());
+logger.log(Level.DEBUG, this + this.cont.getClass().getName());
         this.xcont = new XContainer();
         this.cont2 = new XContainer();
         this.cont2.setLayout(new BorderLayout());
@@ -64,7 +62,7 @@ public class VideoPlayer extends JFrame implements ControllerListener {
             this.player.realize();
             this.player.start();
         } else {
-            logger.log(Level.WARNING, this + toString() + "player is null");
+logger.log(Level.WARNING, this + toString() + "player is null");
         }
 
         addWindowListener(new WindowAdapter() {
@@ -75,6 +73,10 @@ public class VideoPlayer extends JFrame implements ControllerListener {
         });
         setSize(400, 400);
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new VideoPlayer();
     }
 
     public void createPlayer() {
@@ -93,7 +95,7 @@ public class VideoPlayer extends JFrame implements ControllerListener {
 
     @Override
     public synchronized void controllerUpdate(ControllerEvent event) {
-        logger.log(Level.DEBUG, this + toString() + "event = " + event);
+logger.log(Level.DEBUG, this + toString() + "event = " + event);
         if (event instanceof RealizeCompleteEvent) {
             Component comp;
             if ((comp = this.player.getVisualComponent()) != null) {
@@ -104,10 +106,10 @@ public class VideoPlayer extends JFrame implements ControllerListener {
 //             this.add(jp);
 //             this.repaint();
 
-//                logger.log(Level.DEBUG, this, "**** " + comp.getClass().getName());
+//logger.log(Level.TRACE, this, "**** " + comp.getClass().getName());
                 comp.setBounds(0, 0, this.getSize().width, this.getSize().height);
                 this.cont2.add(comp);
-                logger.log(Level.DEBUG, this + "RealizeCompleteEvent");
+logger.log(Level.DEBUG, this + "RealizeCompleteEvent");
 
             }
             validate();
@@ -115,11 +117,7 @@ public class VideoPlayer extends JFrame implements ControllerListener {
             // We've reached the end of the media; rewind and start over
             this.player.setMediaTime(new Time(0));
             this.player.start();
-            logger.log(Level.DEBUG, this + "count = " + (count++));
+logger.log(Level.DEBUG, this + "count = " + (count++));
         }
-    }
-
-    public static void main(String[] args) {
-        new VideoPlayer();
     }
 }

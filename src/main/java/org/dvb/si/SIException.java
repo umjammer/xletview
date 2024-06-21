@@ -24,5 +24,4 @@ public abstract class SIException extends java.lang.Exception {
     public SIException(String reason) {
         super(reason);
     }
-
 }

@@ -18,8 +18,8 @@ package net.beiker.xletview.media;
  */
 public class Channel {
 
-    private String name;
-    private Media media;
+    private final String name;
+    private final Media media;
 
     public Channel(String name, Media media) {
         this.name = name;
@@ -33,5 +33,4 @@ public class Channel {
     public Media getMedia() {
         return media;
     }
-
 }

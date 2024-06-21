@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  net.beiker.xletview.ui;
+package net.beiker.xletview.ui;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;

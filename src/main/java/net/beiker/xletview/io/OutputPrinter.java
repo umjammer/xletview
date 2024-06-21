@@ -19,5 +19,4 @@ package net.beiker.xletview.io;
 public interface OutputPrinter {
 
     void print(String s);
-
 }

@@ -36,12 +36,12 @@ public class HListElement {
         return label;
     }
 
-    public Image getIcon() {
-        return icon;
-    }
-
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public Image getIcon() {
+        return icon;
     }
 
     public void setIcon(Image icon) {

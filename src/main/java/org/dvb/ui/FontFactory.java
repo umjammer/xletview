@@ -25,5 +25,4 @@ public class FontFactory {
     public java.awt.Font createFont(String name, int style, int size) throws FontNotAvailableException, FontFormatException, IOException {
         return null;
     }
-
 }

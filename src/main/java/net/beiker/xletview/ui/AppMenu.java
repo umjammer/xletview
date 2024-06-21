@@ -14,9 +14,9 @@ package net.beiker.xletview.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.List;
-import java.lang.System.Logger;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -66,7 +66,6 @@ public class AppMenu extends JMenu implements ActionListener {
         List<?> applications = defGroup.getApps();
         logger.log(Level.DEBUG, "projects.size() = " + applications.size());
 
-
 //        menuItem = new JMenuItem("Add new...");
 //        menuItem.setActionCommand("new");
 //        menuItem.addActionListener(this);
@@ -88,8 +87,6 @@ public class AppMenu extends JMenu implements ActionListener {
         addSeparator();
 
         buildAppMenu(this, defGroup);
-
-
     }
 
     private JMenu buildAppMenu(JMenu menu, AppGroup group) {
@@ -102,12 +99,12 @@ public class AppMenu extends JMenu implements ActionListener {
             submenu.setIcon(Constants.ICON_FOLDER);
             menu.add(submenu);
             buildAppMenu(submenu, subGroup);
-            //menu.addSeparator();
+//            menu.addSeparator();
         }
         List<?> apps = group.getApps();
-//      if(apps.size() > 0){
-//        menu.addSeparator();
-//      }
+//        if (apps.size() > 0) {
+//            menu.addSeparator();
+//        }
 
         for (Object o : apps) {
             App app = (App) o;
@@ -124,11 +121,11 @@ public class AppMenu extends JMenu implements ActionListener {
     }
 
 //    private void buildAppMenu(AppGroup group){
-//        logger.log(Level.DEBUG, this, group.getName());
+//logger.log(Level.DEBUG, this, group.getName());
 //        AppMenuItem item;
 //        JMenu submenu;
 //        List subGroups = group.getChildren();
-//        for(int i = 0; i < subGroups.size(); i++){
+//        for (int i = 0; i < subGroups.size(); i++) {
 //            AppGroup subGroup = (AppGroup)subGroups.get(i);
 //            submenu = new JMenu(subGroup.getName());
 //            add(submenu);

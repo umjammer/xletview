@@ -65,6 +65,4 @@ public class XContainer extends Container {
 //            getComponent(i).paint(g);
 //        }
 //    }
-
-
 }

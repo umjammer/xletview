@@ -27,8 +27,8 @@ public class HBackgroundDevice extends HScreenDevice {
 
     private static final Logger logger = getLogger(HBackgroundDevice.class.getName());
 
-    private HBackgroundConfiguration hBackgroundConfiguration;
-    private HBackgroundConfiguration[] hBackgroundConfigurations;
+    private final HBackgroundConfiguration hBackgroundConfiguration;
+    private final HBackgroundConfiguration[] hBackgroundConfigurations;
 
     protected HBackgroundDevice() {
         hBackgroundConfiguration = new HBackgroundConfiguration(this);
@@ -46,7 +46,7 @@ public class HBackgroundDevice extends HScreenDevice {
 
     public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate hbc) {
         // At the moment we always return a HStillImageBackgroundConfiguration
-        logger.log(Level.INFO, "\n---\nAt the moment XleTView always return a HStillImageBackgroundConfiguration here\n---");
+logger.log(Level.INFO, "\n---\nAt the moment XleTView always return a HStillImageBackgroundConfiguration here\n---");
         return new HStillImageBackgroundConfiguration();
     }
 

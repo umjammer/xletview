@@ -23,5 +23,4 @@ public class DVBClassLoaderImpl extends DVBClassLoader {
     public DVBClassLoaderImpl(URL[] urls) {
         super(urls);
     }
-
 }

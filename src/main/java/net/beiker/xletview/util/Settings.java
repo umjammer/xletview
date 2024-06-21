@@ -20,7 +20,6 @@ import java.io.OutputStreamWriter;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URLConnection;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
@@ -40,10 +39,10 @@ public class Settings {
 
     private static Properties properties;
 //    private static File file;
-    private static String instruction = "#Mind that paths can not contain backslash" + System.lineSeparator() +
+    private static final String instruction = "#Mind that paths can not contain backslash" + System.lineSeparator() +
             "#Make sure there are no spaces after the values" + System.lineSeparator();
 
-    private static String[] exclude = {"path.home"};
+    private static final String[] exclude = {"path.home"};
 
     private Settings() {
     }
@@ -74,17 +73,15 @@ public class Settings {
         URLConnection settingsPath = Util.getURLConnection(Startup.class, Constants.PATH_SETTINGS);
 //        String settingsPath = Settings.getProperty("path.home") + Constants.PATH_SETTINGS;
 //        File file2 = new File(settingsPath);
-//        System.out.println(file.getAbsolutePath());
+//logger.log(Level.DEBUG, file.getAbsolutePath());
 //        FileOutputStream os = new FileOutputStream(settingsPath);
         OutputStream os = null;
         try {
             os = settingsPath.getOutputStream();
         } catch (IOException e2) {
-            // TODO Auto-generated catch block
-            e2.printStackTrace();
+            logger.log(Level.ERROR, e2.getMessage(), e2);
         }
         OutputStreamWriter osw = new OutputStreamWriter(os);
-
 
         // Sort
         List<String> v = List.of(properties.keySet().toArray(String[]::new));
@@ -102,22 +99,21 @@ public class Settings {
                 }
                 if (include) {
                     String value = properties.getProperty(name);
-                    logger.log(Level.DEBUG, name + "=" + value);
+logger.log(Level.DEBUG, name + "=" + value);
 
                     osw.write(name + "=" + fixPath(value) + System.lineSeparator());
                 }
             }
         } catch (IOException e1) {
-            e1.printStackTrace();
+            logger.log(Level.ERROR, e1.getMessage(), e1);
         }
         try {
             osw.close();
         } catch (IOException e1) {
-            e1.printStackTrace();
-        }
+            logger.log(Level.ERROR, e1.getMessage(), e1);
 //        } catch (FileNotFoundException e) {
-//            logger.log(Level.ERROR, e.getMessage(), e);
-//        }
+//logger.log(Level.ERROR, e.getMessage(), e);
+        }
     }
 
     /**
@@ -129,16 +125,16 @@ public class Settings {
         return s;
     }
 
-    public static void setProperties(Properties p) {
-        properties = p;
-    }
-
     public static Properties getProperties() {
         return properties;
     }
 
+    public static void setProperties(Properties p) {
+        properties = p;
+    }
+
     public static String getProperty(String key) {
-//        logger.log(Level.DEBUG, Settings.class, key);
+//logger.log(Level.DEBUG, Settings.class, key);
         return properties.getProperty(key);
     }
 

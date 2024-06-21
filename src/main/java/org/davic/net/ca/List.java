@@ -13,7 +13,6 @@ package org.davic.net.ca;
 
 public class List extends MMIObject {
 
-
     List() {
     }
 

@@ -24,5 +24,4 @@ public class SIIllegalArgumentException extends SIException {
     public SIIllegalArgumentException(String reason) {
         super(reason);
     }
-
 }

@@ -23,23 +23,19 @@ import java.awt.Insets;
  */
 public class HTextLook implements HLook {
 
-
     // platform specific
 
-
-    private static Insets insets = new Insets(2, 2, 2, 2);
+    private static final Insets insets = new Insets(2, 2, 2, 2);
 
     public HTextLook() {
     }
-
 
     @Override
     public void showLook(Graphics g, HVisible hVisible, int state) {
 
         Dimension dimension = hVisible.getSize();
 
-        // fix: check clip issues
-
+        // TODO: check clip issues
 
         if (hVisible.getBackgroundMode() == HVisible.BACKGROUND_FILL) {
             Color bg = hVisible.getBackground();
@@ -80,20 +76,17 @@ public class HTextLook implements HLook {
 
     @Override
     public void widgetChanged(HVisible hVisible, HChangeData[] changes) {
-        /*
-            " Note that implementations of HLook may not actually implement more efficient
-            drawing code for a given hint. In particular, simply repainting the entire
-            HVisible is a valid implementation option. "
+        // " Note that implementations of HLook may not actually implement more efficient
+        // drawing code for a given hint. In particular, simply repainting the entire
+        // HVisible is a valid implementation option. "
+        //
+        // " The implementation of this method should work out which graphical areas of
+        // the HVisible have changed and make any relevant calls to trigger the repainting of those areas.
+        //
+        // A minimum implementation of this method could simply call
+        //  visible.repaint()
+        // "
 
-            " The implementation of this method should work out which graphical areas of
-            the HVisible have changed and make any relevant calls to trigger the repainting of those areas.
-
-            A minimum implementation of this method could simply call
-
-             visible.repaint()
-            "
-
-        */
         // so... at the moment we don't care about the HChangeData;
         // we're not allowed to call anything else than the hVisible repaint() method
         hVisible.repaint();

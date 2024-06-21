@@ -19,5 +19,4 @@ public class ApplicationOrigin {
     public static Service getService() {
         return null;
     }
-
 }

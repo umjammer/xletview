@@ -25,9 +25,8 @@ import org.havi.ui.event.HFocusEvent;
  */
 public class HAnimation extends HStaticAnimation implements HNavigable {
 
-    private HNavigableHelper helper;
-
     private static HAnimateLook defaultHLook = new HAnimateLook();
+    private HNavigableHelper helper;
 
     public HAnimation() {
         super();
@@ -55,18 +54,17 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
         this.setAnimateContent(imagesFocused, HVisible.FOCUSED_STATE);
         init();
     }
-    // constructors end //
 
-    private void init() {
-        helper = new HNavigableHelper(this);
+    public static HAnimateLook getDefaultLook() {
+        return HAnimation.defaultHLook;
     }
 
     public static void setDefaultLook(HAnimateLook defaultHLook) {
         HAnimation.defaultHLook = defaultHLook;
     }
 
-    public static HAnimateLook getDefaultLook() {
-        return HAnimation.defaultHLook;
+    private void init() {
+        helper = new HNavigableHelper(this);
     }
 
     @Override
@@ -90,23 +88,23 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-        helper.setGainFocusSound(sound);
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-        helper.setLoseFocusSound(sound);
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+        helper.setGainFocusSound(sound);
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
+        helper.setLoseFocusSound(sound);
     }
 
     @Override
@@ -124,9 +122,8 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
         return helper.getNavigationKeys();
     }
 
-    /*
-     Overloaded from HVisible, is true for HNavigable
-     */
+//#region Overloaded from HVisible, is true for HNavigable
+
     @Override
     public boolean isFocusTraversable() {
         return true;
@@ -146,7 +143,6 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
         return helper.getFocusListeners();
     }
 
-
     @Override
     public void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
@@ -154,7 +150,6 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
         processHFocusEvent(event);
 
     }
-
 
     @Override
     public void processHFocusEvent(HFocusEvent evt) {
@@ -166,7 +161,6 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
         }
     }
 
-
     @Override
     protected void setInteractionState(int state) {
         super.setInteractionState(state);
@@ -177,4 +171,5 @@ public class HAnimation extends HStaticAnimation implements HNavigable {
         }
     }
 
+//#endregion
 }

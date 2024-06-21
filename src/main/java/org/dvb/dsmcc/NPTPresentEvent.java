@@ -20,5 +20,4 @@ public class NPTPresentEvent extends NPTStatusEvent {
     public NPTPresentEvent(DSMCCStream source) {
         super(source);
     }
-
 }

@@ -30,5 +30,4 @@ public interface BouquetChangeListener extends SIChangeListener {
      * @param event A BouquetChangeEvent describing what changed and how.
      */
     void notifyChange(BouquetChangeEvent event);
-
 }

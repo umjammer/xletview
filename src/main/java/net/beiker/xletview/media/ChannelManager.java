@@ -12,10 +12,10 @@
 package net.beiker.xletview.media;
 
 import java.io.InputStream;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.System.Logger;
 
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
@@ -38,7 +38,7 @@ public class ChannelManager {
     private static ChannelManager THE_INSTANCE;
 
     private int currentChannelNumber;
-    private List<Channel> channels;
+    private final List<Channel> channels;
 
     private ChannelManager() {
         this.channels = new ArrayList<>();
@@ -152,7 +152,7 @@ public class ChannelManager {
                 } catch (Exception e) {
                     logger.log(Level.ERROR, e.getMessage(), e);
                 }
-                logger.log(Level.DEBUG, element.getName());
+logger.log(Level.DEBUG, element.getName());
             }
 
         } catch (Exception e) {

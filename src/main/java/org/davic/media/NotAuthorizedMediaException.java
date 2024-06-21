@@ -24,9 +24,9 @@ import org.davic.mpeg.Service;
 public class NotAuthorizedMediaException extends NotAuthorizedException implements org.davic.mpeg.NotAuthorizedInterface {
 
     private Service service;
-    private int[] reasons;
+    private final int[] reasons;
     private ElementaryStream[] streams;
-    private int type;
+    private final int type;
 
     public NotAuthorizedMediaException(Service service, int reason) {
         super();

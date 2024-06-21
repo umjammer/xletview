@@ -23,6 +23,10 @@ public class ServiceDomain {
     public ServiceDomain() {
     }
 
+    public static java.net.URL getURL(org.davic.net.Locator l) throws NotLoadedException, InvalidLocatorException, FileNotFoundException {
+        return null;
+    }
+
     public void attach(org.davic.net.Locator aDVBService, int aCarouselId) throws ServiceXFRException, InterruptedIOException, MPEGDeliveryException {
     }
 
@@ -36,10 +40,6 @@ public class ServiceDomain {
     }
 
     public byte[] getNSAPAddress() throws NotLoadedException {
-        return null;
-    }
-
-    public static java.net.URL getURL(org.davic.net.Locator l) throws NotLoadedException, InvalidLocatorException, FileNotFoundException {
         return null;
     }
 

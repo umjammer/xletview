@@ -23,10 +23,10 @@ public class OutputServerThread extends Thread {
     private final static Logger logger = getLogger(OutputServerThread.class.getName());
 
     /** The Server that spawned us */
-    private OutputServer server;
+    private final OutputServer server;
 
     /** The Socket connected to our client */
-    private Socket socket;
+    private final Socket socket;
 
     /** Constructor. */
     public OutputServerThread(OutputServer server, Socket socket) {
@@ -56,7 +56,7 @@ public class OutputServerThread extends Thread {
                 String message = din.readUTF();
 
                 // ... tell the world ...
-                logger.log(Level.DEBUG, "Sending " + message);
+logger.log(Level.DEBUG, "Sending " + message);
 
                 // ... and have the server send it to all clients
                 this.server.sendToAll(message);

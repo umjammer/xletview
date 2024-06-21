@@ -17,7 +17,7 @@ package org.havi.ui;
  */
 public class HBackgroundConfiguration extends HScreenConfiguration {
 
-    private HBackgroundConfigTemplate template;
+    private final HBackgroundConfigTemplate template;
     private HBackgroundDevice backgroundDevice;
 
     protected HBackgroundConfiguration() {
@@ -25,7 +25,7 @@ public class HBackgroundConfiguration extends HScreenConfiguration {
         template = new HBackgroundConfigTemplate();
     }
 
-    /* added this constructor to make the "connection" to the HBackgroundDevice */
+    /** added this constructor to make the "connection" to the HBackgroundDevice */
     protected HBackgroundConfiguration(HBackgroundDevice bgDevice) {
         this();
         backgroundDevice = bgDevice;

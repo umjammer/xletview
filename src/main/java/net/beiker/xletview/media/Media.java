@@ -27,19 +27,17 @@ import static java.lang.System.getLogger;
  */
 public class Media {
 
-    /** Debugging facility */
-    private final static Logger logger = getLogger(Media.class.getName());
-
     public static final int TYPE_VIDEO = 0;
     public static final int TYPE_IMAGE = 1;
     public static final int TYPE_INVALID = 2;
-
+    /** Debugging facility */
+    private final static Logger logger = getLogger(Media.class.getName());
     //private String path;
     private URL media;
-    private int type;
+    private final int type;
 
-    private String[] validImageTypes = {".jpg"};
-    private String[] validVideoTypes = {".avi", ".mov"};
+    private final String[] validImageTypes = {".jpg"};
+    private final String[] validVideoTypes = {".avi", ".mov"};
 
     public Media(String path) {
         try {
@@ -103,9 +101,9 @@ public class Media {
         return TYPE_INVALID;
     }
 
-    //public String getPath(){
-    //    return this.path;
-    //}
+//    public String getPath(){
+//        return this.path;
+//    }
 
     public int getType() {
         return this.type;

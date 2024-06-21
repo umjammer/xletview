@@ -33,7 +33,7 @@ public class HStaticText extends HVisible implements HNoInputPreferred {
         this.setTextLayoutManager(new HDefaultTextLayoutManager());
         this.setBackgroundMode(HVisible.BACKGROUND_FILL);
 
-        //logger.log(Level.DEBUG, "constructor");
+//logger.log(Level.DEBUG, "constructor");
     }
 
     public HStaticText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm) {
@@ -52,6 +52,14 @@ public class HStaticText extends HVisible implements HNoInputPreferred {
         this(textNormal, 0, 0, 0, 0, font, foreground, background, tlm);
     }
 
+    public static HTextLook getDefaultLook() {
+        return HStaticText.defaultHLook;
+    }
+
+    public static void setDefaultLook(HTextLook defaultHLook) {
+        HStaticText.defaultHLook = defaultHLook;
+    }
+
     @Override
     public void setLook(HLook hLook) throws HInvalidLookException {
         if (hLook instanceof HTextLook || hLook == null) {
@@ -59,14 +67,6 @@ public class HStaticText extends HVisible implements HNoInputPreferred {
         } else {
             throw new HInvalidLookException("HLook was not a org.havi.ui.HTextLook");
         }
-    }
-
-    public static void setDefaultLook(HTextLook defaultHLook) {
-        HStaticText.defaultHLook = defaultHLook;
-    }
-
-    public static HTextLook getDefaultLook() {
-        return HStaticText.defaultHLook;
     }
 
     public String toString() {

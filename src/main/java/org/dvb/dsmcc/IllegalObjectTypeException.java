@@ -24,5 +24,4 @@ public class IllegalObjectTypeException extends DSMCCException {
     public IllegalObjectTypeException(String s) {
         super(s);
     }
-
 }

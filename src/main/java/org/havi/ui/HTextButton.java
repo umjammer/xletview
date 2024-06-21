@@ -23,9 +23,8 @@ import net.beiker.xletview.helper.HActionableHelper;
  */
 public class HTextButton extends HText implements HActionable {
 
-    private HActionableHelper helper;
-
     private static HTextLook defaultHLook = new HTextLook();
+    private HActionableHelper helper;
 
     public HTextButton() {
         super();
@@ -51,21 +50,18 @@ public class HTextButton extends HText implements HActionable {
         super(textNormal, font, foreground, background, tlm);
         init();
     }
-    // constructors end //
-
-    private void init() {
-        helper = new HActionableHelper(this);
-    }
-
-
-    public static void setDefaultLook(HTextLook hLook) {
-        HTextButton.defaultHLook = hLook;
-    }
 
     public static HTextLook getDefaultLook() {
         return HTextButton.defaultHLook;
     }
 
+    public static void setDefaultLook(HTextLook hLook) {
+        HTextButton.defaultHLook = hLook;
+    }
+
+    private void init() {
+        helper = new HActionableHelper(this);
+    }
 
     @Override
     public void addHActionListener(org.havi.ui.event.HActionListener listener) {
@@ -78,18 +74,13 @@ public class HTextButton extends HText implements HActionable {
     }
 
     @Override
-    public void setActionCommand(String command) {
-        helper.setActionCommand(command);
+    public HSound getActionSound() {
+        return helper.getActionSound();
     }
 
     @Override
     public void setActionSound(HSound sound) {
         helper.setActionSound(sound);
-    }
-
-    @Override
-    public HSound getActionSound() {
-        return helper.getActionSound();
     }
 
     @Override
@@ -108,4 +99,8 @@ public class HTextButton extends HText implements HActionable {
         return helper.getActionCommand();
     }
 
+    @Override
+    public void setActionCommand(String command) {
+        helper.setActionCommand(command);
+    }
 }

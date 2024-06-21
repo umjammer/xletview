@@ -24,5 +24,4 @@ public class UnknownSessionException extends CAException {
     public UnknownSessionException(String reason) {
         super(reason);
     }
-
 }

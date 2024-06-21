@@ -4,10 +4,10 @@ import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.Map;
-import java.lang.System.Logger;
 
 import org.havi.ui.HEventMulticaster;
 import org.havi.ui.HNavigable;
@@ -27,14 +27,12 @@ import static java.lang.System.getLogger;
 public final class HNavigableHelper {
 
     private static final Logger logger = getLogger(HNavigableHelper.class.getName());
-
+    transient HFocusListener hFocusListener;
+    transient FocusListener focusListener;
     private Map<Integer, HNavigable> navTargets;
     private HSound gainFocusSound;
     private HSound loseFocusSound;
-    transient HFocusListener hFocusListener;
-    transient FocusListener focusListener;
-
-    private HVisible hVisible;
+    private final HVisible hVisible;
 
     public HNavigableHelper(HVisible hVisible) {
         this.hVisible = hVisible;
@@ -99,20 +97,6 @@ public final class HNavigableHelper {
     }
 
     /* (non-Javadoc)
-     * @see org.havi.ui.HNavigable#setGainFocusSound(org.havi.ui.HSound)
-     */
-    public void setGainFocusSound(HSound sound) {
-        gainFocusSound = sound;
-    }
-
-    /* (non-Javadoc)
-     * @see org.havi.ui.HNavigable#setLoseFocusSound(org.havi.ui.HSound)
-     */
-    public void setLoseFocusSound(HSound sound) {
-        loseFocusSound = sound;
-    }
-
-    /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#getGainFocusSound()
      */
     public HSound getGainFocusSound() {
@@ -120,10 +104,24 @@ public final class HNavigableHelper {
     }
 
     /* (non-Javadoc)
+     * @see org.havi.ui.HNavigable#setGainFocusSound(org.havi.ui.HSound)
+     */
+    public void setGainFocusSound(HSound sound) {
+        gainFocusSound = sound;
+    }
+
+    /* (non-Javadoc)
      * @see org.havi.ui.HNavigable#getLoseFocusSound()
      */
     public HSound getLoseFocusSound() {
         return loseFocusSound;
+    }
+
+    /* (non-Javadoc)
+     * @see org.havi.ui.HNavigable#setLoseFocusSound(org.havi.ui.HSound)
+     */
+    public void setLoseFocusSound(HSound sound) {
+        loseFocusSound = sound;
     }
 
     /* (non-Javadoc)

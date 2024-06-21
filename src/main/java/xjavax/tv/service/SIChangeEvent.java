@@ -66,21 +66,20 @@ package xjavax.tv.service;
  */
 public abstract class SIChangeEvent extends java.util.EventObject {
 
-    private SIElement sIElement;
-    private SIChangeType changeType;
+    private final SIElement sIElement;
+    private final SIChangeType changeType;
 
     /**
      * Constructs an <code>SIChangeEvent</code> object.
      *
      * @param source The entity in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param e The SIElement that changed, or null if this is unknown.
+     * @param type   The type of change that occurred.
+     * @param e      The SIElement that changed, or null if this is unknown.
      */
     public SIChangeEvent(java.lang.Object source, SIChangeType type, SIElement e) {
         super(source);
         changeType = type;
         sIElement = e;
-
     }
 
     /**
@@ -104,5 +103,4 @@ public abstract class SIChangeEvent extends java.util.EventObject {
     public SIChangeType getChangeType() {
         return this.changeType;
     }
-
 }

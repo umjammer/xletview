@@ -24,5 +24,4 @@ public class BufferFullException extends CAException {
     public BufferFullException(String reason) {
         super(reason);
     }
-
 }

@@ -91,5 +91,4 @@ public interface Locator {
      * @see LocatorFactory#createLocator(java.lang.String)
      */
     java.lang.String toString();
-
 }

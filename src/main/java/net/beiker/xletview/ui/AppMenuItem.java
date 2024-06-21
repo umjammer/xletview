@@ -21,7 +21,7 @@ import net.beiker.xletview.app.App;
  */
 public class AppMenuItem extends JMenuItem {
 
-    private App app;
+    private final App app;
 
     public AppMenuItem(App app) {
         super(app.getName());

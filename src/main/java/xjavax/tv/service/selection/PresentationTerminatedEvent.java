@@ -77,7 +77,7 @@ public class PresentationTerminatedEvent extends ServiceContextEvent {
      */
     public static final int USER_STOP = 5;
 
-    private int reason;
+    private final int reason;
 
     /**
      * Constructs the event with a reason code.
@@ -98,5 +98,4 @@ public class PresentationTerminatedEvent extends ServiceContextEvent {
     public int getReason() {
         return this.reason;
     }
-
 }

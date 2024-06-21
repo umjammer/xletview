@@ -20,11 +20,3 @@ public interface HSelectionInputPreferred extends HOrientable {
 
     void processHItemEvent(org.havi.ui.event.HItemEvent evt);
 }
-
-
-
-
-
-
-
-

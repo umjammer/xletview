@@ -14,13 +14,12 @@ package net.beiker.xletview.app;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.util.List;
-import java.lang.System.Logger;
 
- import net.beiker.xletview.app.AppGroup;
- import net.beiker.xletview.util.Util;
+import net.beiker.xletview.util.Util;
 import net.n3.nanoxml.XMLElement;
 import net.n3.nanoxml.XMLWriter;
 
@@ -60,7 +59,7 @@ public class AppWriter {
 //            writer.write(root, true, 0, false);
 //            out.close();
 //         } catch (Exception e) {
-//            logger.log(Level.ERROR, e.getMessage(), e);
+//logger.log(Level.ERROR, e.getMessage(), e);
 //         }
 //    }
 
@@ -86,10 +85,8 @@ public class AppWriter {
             writer.write(root, true, 0, false);
             out.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             logger.log(Level.ERROR, e.getMessage(), e);
         }
-
     }
 
     private static void build(AppGroup group, XMLElement parent) {
@@ -117,7 +114,7 @@ public class AppWriter {
         List<?> apps = group.getApps();
         for (Object o : apps) {
             App app = (App) o;
-//            logger.log(Level.INFO, app.getName());
+//logger.log(Level.INFO, app.getName());
             XMLElement appElement = new XMLElement("APPLICATION");
 
             XMLElement nameElement = new XMLElement("NAME");

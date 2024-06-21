@@ -24,5 +24,4 @@ public interface SIMonitoringType {
     byte PRESENT_FOLLOWING_EVENT = 5;
 
     byte SCHEDULED_EVENT = 6;
-
 }

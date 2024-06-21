@@ -3,13 +3,13 @@ package net.beiker.xletview.net;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.lang.System.Logger;
 
 import net.beiker.xletview.io.OutputPrinter;
 
@@ -23,16 +23,14 @@ public class OutputServer implements OutputPrinter {
 
     /** Debugging facility. */
     private final static Logger logger = getLogger(OutputServer.class.getName());
-
-    private PrintStream original;
-
-    // a ServerSocket for accepting new connections
-    private ServerSocket ss;
-
+    static int i = 0;
     // for mapping sockets to DataOutputStreams
     private final Map<Socket, DataOutputStream> outputStreams = new HashMap<>();
+    private final PrintStream original;
+    /** a ServerSocket for accepting new connections */
+    private ServerSocket ss;
 
-    // Constructor and while-accept loop all in one.
+    /** Constructor and while-accept loop all in one. */
     public OutputServer(int port, PrintStream original) throws IOException {
         this.original = original;
         // All we have to do is listen
@@ -42,14 +40,14 @@ public class OutputServer implements OutputPrinter {
     private void listen(int port) throws IOException {
 
         this.ss = new ServerSocket(port);
-        logger.log(Level.DEBUG, "Listening on " + this.ss);
+logger.log(Level.DEBUG, "Listening on " + this.ss);
 
         // accepting forever
         while (true) {
 
             // accept incoming
             Socket s = this.ss.accept();
-            logger.log(Level.DEBUG, "Connection from " + s);
+logger.log(Level.DEBUG, "Connection from " + s);
 
             DataOutputStream dout = new DataOutputStream(s.getOutputStream());
 
@@ -61,8 +59,10 @@ public class OutputServer implements OutputPrinter {
         }
     }
 
-    // Get an enumeration of all the OutputStreams, one for each client
-    // connected to us
+    /**
+     * Get an enumeration of all the OutputStreams, one for each client
+     * connected to us
+     */
     private Collection<DataOutputStream> getOutputStreams() {
         return this.outputStreams.values();
     }
@@ -95,7 +95,7 @@ public class OutputServer implements OutputPrinter {
         // down the list of all output streamsa
         synchronized (this.outputStreams) {
 
-            logger.log(Level.DEBUG, "Removing connection to " + s);
+logger.log(Level.DEBUG, "Removing connection to " + s);
 
             // Remove it from our hashtable/list
             this.outputStreams.remove(s);
@@ -104,19 +104,17 @@ public class OutputServer implements OutputPrinter {
             try {
                 s.close();
             } catch (IOException ie) {
-                logger.log(Level.ERROR, "Error closing " + s);
-                logger.log(Level.ERROR, ie.getMessage(), ie);
+logger.log(Level.DEBUG, "Error closing " + s);
+                logger.log(Level.TRACE, ie.getMessage(), ie);
             }
         }
     }
-
-    static int i = 0;
 
     @Override
     public void print(String s) {
         // TODO Auto-generated method stub
         if (i < 4) {
-            logger.log(Level.DEBUG, "echo");
+logger.log(Level.DEBUG, "echo");
             i++;
         }
         sendToAll(s);

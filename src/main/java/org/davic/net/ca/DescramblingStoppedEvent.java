@@ -25,5 +25,4 @@ public class DescramblingStoppedEvent extends org.davic.resources.ResourceStatus
     public Object getSource() {
         return null;
     }
-
 }

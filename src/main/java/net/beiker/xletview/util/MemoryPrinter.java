@@ -31,11 +31,11 @@ public abstract class MemoryPrinter {
     public static void print() {
         long total = Runtime.getRuntime().totalMemory();
         long free = Runtime.getRuntime().freeMemory();
-        logger.log(Level.DEBUG, "free/used/total: " + format(free) + " / " + format(total - free) + " / " + format(total));
+logger.log(Level.DEBUG, "free/used/total: " + format(free) + " / " + format(total - free) + " / " + format(total));
     }
 
     private static String format(long size) {
-        String result = null;
+        String result;
         if (size < 1024) {
             result = "" + size;
         } else {

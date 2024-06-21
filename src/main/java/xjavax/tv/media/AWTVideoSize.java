@@ -41,8 +41,8 @@ public class AWTVideoSize {
 
     private static final Logger logger = getLogger(AWTVideoSize.class.getName());
 
-    private java.awt.Rectangle source;
-    private java.awt.Rectangle destination;
+    private final java.awt.Rectangle source;
+    private final java.awt.Rectangle destination;
     private float xScale;
     private float yScale;
 
@@ -57,7 +57,7 @@ public class AWTVideoSize {
      *
      * @param source *               The rectangle representing the portion of the source video to
      *               display, in the coordinate system of the screen.
-     * @param dest *               The rectangle representing where the video is to be
+     * @param dest   *               The rectangle representing where the video is to be
      *               displayed, in the coordinate system of the screen.
      */
     public AWTVideoSize(java.awt.Rectangle source, java.awt.Rectangle dest) {
@@ -69,7 +69,6 @@ public class AWTVideoSize {
         } catch (ArithmeticException e) {
             logger.log(Level.ERROR, e.getMessage(), e);
         }
-
     }
 
     /**

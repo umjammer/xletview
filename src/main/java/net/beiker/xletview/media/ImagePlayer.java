@@ -9,12 +9,12 @@
  * See LICENSE document for details.
  */
 
-package  net.beiker.xletview.media;
+package net.beiker.xletview.media;
 
 import java.awt.Component;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.lang.System.Logger;
 import javax.media.ClockStoppedException;
 import javax.media.Control;
 import javax.media.Controller;
@@ -34,7 +34,7 @@ public class ImagePlayer implements Player {
 
     private static final Logger logger = getLogger(ImagePlayer.class.getName());
 
-    private ImagePlayerVisualComponent visualComponent;
+    private final ImagePlayerVisualComponent visualComponent;
     private ControllerListener controllerListener;
 
     public ImagePlayer(URL imageURL) {
@@ -98,15 +98,7 @@ public class ImagePlayer implements Player {
 //#region javax.media.Clock
 
     @Override
-    public void setTimeBase(TimeBase master) throws IncompatibleTimeBaseException {
-    }
-
-    @Override
     public void syncStart(Time at) {
-    }
-
-    @Override
-    public void setStopTime(Time stopTime) {
     }
 
     @Override
@@ -115,12 +107,16 @@ public class ImagePlayer implements Player {
     }
 
     @Override
-    public void setMediaTime(Time now) {
+    public void setStopTime(Time stopTime) {
     }
 
     @Override
     public Time getMediaTime() {
         return null;
+    }
+
+    @Override
+    public void setMediaTime(Time now) {
     }
 
     @Override
@@ -136,6 +132,10 @@ public class ImagePlayer implements Player {
     @Override
     public TimeBase getTimeBase() {
         return null;
+    }
+
+    @Override
+    public void setTimeBase(TimeBase master) throws IncompatibleTimeBaseException {
     }
 
     @Override

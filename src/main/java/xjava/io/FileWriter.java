@@ -20,7 +20,6 @@ import java.io.IOException;
  */
 public class FileWriter extends java.io.FileWriter {
 
-
     public FileWriter(String fileName) throws IOException {
         super(FileSystem.getFile(fileName));
     }
@@ -36,5 +35,4 @@ public class FileWriter extends java.io.FileWriter {
     public FileWriter(FileDescriptor fd) throws IOException {
         super(FileSystem.getFile(fd));
     }
-
 }

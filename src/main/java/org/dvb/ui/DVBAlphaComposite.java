@@ -70,26 +70,6 @@ public final class DVBAlphaComposite {
         this.extraAlpha = alpha;
     }
 
-    public boolean equals(Object obj) {
-        if (!(obj instanceof DVBAlphaComposite ac)) {
-            return false;
-        }
-
-        if (rule != ac.rule) {
-            return false;
-        }
-
-        if (extraAlpha != ac.extraAlpha) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public float getAlpha() {
-        return extraAlpha;
-    }
-
     public static DVBAlphaComposite getInstance(int rule) {
         return switch (rule) {
             case CLEAR -> Clear;
@@ -109,6 +89,26 @@ public final class DVBAlphaComposite {
             return getInstance(rule);
         }
         return new DVBAlphaComposite(rule, alpha);
+    }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof DVBAlphaComposite ac)) {
+            return false;
+        }
+
+        if (rule != ac.rule) {
+            return false;
+        }
+
+        if (extraAlpha != ac.extraAlpha) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public float getAlpha() {
+        return extraAlpha;
     }
 
     public int getRule() {

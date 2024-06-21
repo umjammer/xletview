@@ -18,8 +18,7 @@ public interface HItemValue extends HNavigable, HSelectionInputPreferred {
 
     void removeItemListener(org.havi.ui.event.HItemListener l);
 
-    void setSelectionSound(HSound sound);
-
     HSound getSelectionSound();
 
+    void setSelectionSound(HSound sound);
 }

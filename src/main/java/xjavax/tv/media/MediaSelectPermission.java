@@ -35,7 +35,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * @param locator The locator for which to create the permission. A value of null indicates permission for all locators.
      */
     public MediaSelectPermission(Locator locator) {
-        //TODO implement MediaSelectPermission
+        // TODO implement MediaSelectPermission
         super(null);
     }
 
@@ -50,7 +50,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
      * @param actions Should be null.
      */
     public MediaSelectPermission(java.lang.String locator, java.lang.String actions) {
-        //TODO implement MediaSelectPermission
+        // TODO implement MediaSelectPermission
         super(null);
     }
 
@@ -72,7 +72,7 @@ public final class MediaSelectPermission extends java.security.Permission implem
     @Override
     public boolean implies(java.security.Permission p) {
         return false;
-        //TODO implement implies
+        // TODO implement implies
     }
 
     /**
@@ -113,5 +113,4 @@ public final class MediaSelectPermission extends java.security.Permission implem
     public java.lang.String getActions() {
         return this.actions;
     }
-
 }

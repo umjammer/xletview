@@ -24,5 +24,4 @@ public class InvalidLocatorException extends Exception {
     public InvalidLocatorException(String reason) {
         super(reason);
     }
-
 }

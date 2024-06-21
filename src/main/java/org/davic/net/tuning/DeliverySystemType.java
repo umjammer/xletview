@@ -18,5 +18,4 @@ public interface DeliverySystemType {
     int CABLE_DELIVERY_SYSTEM = 1;
 
     int TERRESTRIAL_DELIVERY_SYSTEM = 2;
-
 }

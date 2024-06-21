@@ -24,5 +24,4 @@ public class ModuleUnavailableException extends CAException {
     public ModuleUnavailableException(String reason) {
         super(reason);
     }
-
 }

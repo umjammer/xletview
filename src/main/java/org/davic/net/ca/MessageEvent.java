@@ -36,5 +36,4 @@ public abstract class MessageEvent extends java.util.EventObject {
     public Object getSource() {
         return super.getSource();
     }
-
 }

@@ -15,10 +15,10 @@
 package org.dvb.net.rc;
 
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.System.Logger;
 
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
@@ -36,20 +36,19 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
 
     /** Debugging facility. */
     private final static Logger logger = getLogger(ConnectionRCInterface.class.getName());
-
-    private boolean connected;
-    private List<ConnectionListener> listenerObjects;
     private static final ConnectionParameters defaultTarget;
-    private ConnectionParameters currentTarget;
-    private ResourceClient resourceClient; //only one client...
-    private long starttime;
-
     /** To fake the time it takes to make a connection with a modem */
-    public static int FAKED_CONNECION_TIME = 1000;
+    public static final int FAKED_CONNECION_TIME = 1000;
 
     static {
         defaultTarget = new ConnectionParameters("12345", "user", "pw");
     }
+
+    private boolean connected;
+    private final List<ConnectionListener> listenerObjects;
+    private ConnectionParameters currentTarget;
+    private ResourceClient resourceClient; //only one client...
+    private long starttime;
 
     protected ConnectionRCInterface() {
         this.connected = false;
@@ -62,21 +61,19 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
     }
 
     public float getSetupTimeEstimate() {
-        return 10.0f; //immediate connection
+        return 10.0f; // immediate connection
     }
 
     public void reserve(ResourceClient c, Object requestData) throws PermissionDeniedException {
         if (this.resourceClient == null) {
             this.resourceClient = c;
-            RCInterfaceManager.getInstance().fireResorceStatusChanged(new RCInterfaceReservedEvent(this));
+            RCInterfaceManager.getInstance().fireResourceStatusChanged(new RCInterfaceReservedEvent(this));
         } else {
             boolean releaseOk = this.resourceClient.requestRelease(this, null);
-            /*
-             * We don't really care about if the ResourceClient
-             * wants to give up the resource or not, if another
-             * ResourceClient needs it we give it to that one
-             * instead.
-             */
+            // We don't really care about if the ResourceClient
+            // wants to give up the resource or not, if another
+            // ResourceClient needs it we give it to that one
+            // instead.
 
             // tell the ResourceClient that it's about to lose the resource
             this.resourceClient.release(this);
@@ -86,17 +83,16 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
 
             // give the resource to the new ResourceClient
             this.resourceClient = c;
-        }
-//        // not used since we always give permission
-//        else {
+//        } else {
+//            // not used since we always give permission
 //            throw new PermissionDeniedException("ConnectionRCInterface already reserved");
-//        }
+        }
     }
 
     public void release() {
         if (this.resourceClient != null) {
             this.resourceClient = null;
-            RCInterfaceManager.getInstance().fireResorceStatusChanged(new RCInterfaceReleasedEvent(this));
+            RCInterfaceManager.getInstance().fireResourceStatusChanged(new RCInterfaceReleasedEvent(this));
         }
     }
 

@@ -14,5 +14,4 @@ package org.dvb.si;
 public interface SIIterator extends java.util.Enumeration<Object> {
 
     int numberOfRemainingObjects();
-
 }

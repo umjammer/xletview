@@ -22,7 +22,7 @@ public class HBackgroundConfigTemplate extends HScreenConfigTemplate {
 
     public static final int CHANGEABLE_SINGLE_COLOR = 10;
     public static final int STILL_IMAGE = 11;
-    private int[] preferences;
+    private final int[] preferences;
 
     public HBackgroundConfigTemplate() {
         preferences = new int[12];

@@ -24,5 +24,4 @@ public class NotTunedException extends NetworkInterfaceException {
     public NotTunedException(String reason) {
         super(reason);
     }
-
 }

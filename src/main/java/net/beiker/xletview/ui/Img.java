@@ -17,9 +17,9 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.lang.System.Logger;
 
 import static java.lang.System.getLogger;
 
@@ -28,11 +28,11 @@ public class Img extends Component {
 
     private static final Logger logger = getLogger(Img.class.getName());
 
-    private Image image;
+    private final Image image;
     private String imageUrl;
 
-    private int width;
-    private int height;
+    private final int width;
+    private final int height;
 
     /**
      * Creates an image at x=0, y=0
@@ -147,7 +147,7 @@ public class Img extends Component {
         try {
             mediatracker.waitForID(0);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.ERROR, ex.getMessage(), ex);
         }
         return image;
     }
@@ -155,7 +155,7 @@ public class Img extends Component {
     @Override
     public void paint(Graphics g) {
         if (this.image != null) {
-            //g.drawImage(image, 0, 0,this);
+//            g.drawImage(image, 0, 0,this);
             g.drawImage(this.image, 0, 0, this.width, this.height, this);
         }
     }

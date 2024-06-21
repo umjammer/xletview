@@ -40,7 +40,7 @@ import xjavax.tv.locator.Locator;
  */
 public final class SelectPermission extends java.security.Permission implements java.io.Serializable {
 
-    //following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private java.lang.String actions;
 
     /**
@@ -50,7 +50,7 @@ public final class SelectPermission extends java.security.Permission implements 
      * @param actions The actions string, as detailed in the class description.
      */
     public SelectPermission(Locator locator, java.lang.String actions) {
-        //TODO implement SelectPermission
+        // TODO implement SelectPermission
         super(null);
     }
 
@@ -63,7 +63,7 @@ public final class SelectPermission extends java.security.Permission implements 
      * @param actions The actions string, as detailed in the class description.
      */
     public SelectPermission(java.lang.String locator, java.lang.String actions) {
-        //TODO implement SelectPermission
+        // TODO implement SelectPermission
         super(null);
     }
 
@@ -85,7 +85,7 @@ public final class SelectPermission extends java.security.Permission implements 
     @Override
     public boolean implies(java.security.Permission p) {
         return false;
-        //TODO implement implies
+        // TODO implement implies
     }
 
     /**
@@ -100,7 +100,7 @@ public final class SelectPermission extends java.security.Permission implements 
      */
     public boolean equals(java.lang.Object other) {
         return false;
-        //TODO implement equals
+        // TODO implement equals
     }
 
     /**
@@ -111,7 +111,7 @@ public final class SelectPermission extends java.security.Permission implements 
      */
     public int hashCode() {
         return 0;
-        //TODO implement hashCode
+        // TODO implement hashCode
     }
 
     /**
@@ -124,5 +124,4 @@ public final class SelectPermission extends java.security.Permission implements 
     public java.lang.String getActions() {
         return this.actions;
     }
-
 }

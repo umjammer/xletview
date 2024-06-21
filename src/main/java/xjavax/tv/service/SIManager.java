@@ -47,7 +47,7 @@ public abstract class SIManager {
      * Constructs an <code>SIManager</code> object.</DL>
      */
     protected SIManager() {
-        //TODO implement SIManager
+        // TODO implement SIManager
     }
 
     /**
@@ -57,8 +57,18 @@ public abstract class SIManager {
      */
     public static SIManager createInstance() {
         return null;
-        //TODO implement createInstance
+        // TODO implement createInstance
     }
+
+    /**
+     * Reports the preferred language for this <code>SIManager</code>.
+     * The resulting string is a language code indicating
+     * the language desired when retrieving multilingual text.  This
+     * is typically a three-character code as specified by ISO 639.2/B.
+     *
+     * @return A string representing a language code defining the language used to retrieve multilingual strings.  If no language preference is in effect, null is returned.
+     */
+    public abstract java.lang.String getPreferredLanguage();
 
     /**
      * Overrides the system-level preferred language for objects
@@ -80,16 +90,6 @@ public abstract class SIManager {
     public abstract void setPreferredLanguage(java.lang.String language);
 
     /**
-     * Reports the preferred language for this <code>SIManager</code>.
-     * The resulting string is a language code indicating
-     * the language desired when retrieving multilingual text.  This
-     * is typically a three-character code as specified by ISO 639.2/B.
-     *
-     * @return A string representing a language code defining the language used to retrieve multilingual strings.  If no language preference is in effect, null is returned.
-     */
-    public abstract java.lang.String getPreferredLanguage();
-
-    /**
      * Provides a hint to the SI database that the application desires
      * SI information as complete as possible about the specified
      * <code>SIElement</code>. As a result, the SI database might tune
@@ -109,9 +109,9 @@ public abstract class SIManager {
      * specific behavior for this method is guaranteed.
      *
      * @param locator A locator referencing the SIElement for which complete information is desired.
-     * @param active A flag indicating whether this interest is active or not. A value of true means that the application is interested in the SIElement; false means that the application wants to cancel a previously shown interest for the SIElement.
-     * @throws InvalidLocatorException     - If locator does not reference a valid SIElement.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @param active  A flag indicating whether this interest is active or not. A value of true means that the application is interested in the SIElement; false means that the application wants to cancel a previously shown interest for the SIElement.
+     * @throws InvalidLocatorException     If locator does not reference a valid SIElement.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see ReadPermission
      */
     public abstract void registerInterest(Locator locator, boolean active) throws InvalidLocatorException, java.lang.SecurityException;
@@ -132,7 +132,7 @@ public abstract class SIManager {
      *
      * @param name The name of the requested rating dimension.
      * @return The requested RatingDimension.
-     * @throws SIException - If name is not a supported rating dimension, as returned by getSupportedDimensions().
+     * @throws SIException If name is not a supported rating dimension, as returned by getSupportedDimensions().
      * @see #getSupportedDimensions()
      */
     public abstract RatingDimension getRatingDimension(java.lang.String name) throws SIException;
@@ -169,11 +169,11 @@ public abstract class SIManager {
      *
      * <p>This method delivers its results asynchronously.
      *
-     * @param locator A locator referencing one or more SIElements.
+     * @param locator   A locator referencing one or more SIElements.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid SIElement.
-     * @throws java.lang.SecurityException - if the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid SIElement.
+     * @throws java.lang.SecurityException if the caller does not have javax.tv.service.ReadPermission(locator).
      * @see SIElement
      */
     public abstract SIRequest retrieveSIElement(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
@@ -185,8 +185,8 @@ public abstract class SIManager {
      *
      * @param locator A locator specifying a service.
      * @return The Service object corresponding to the specified locator.
-     * @throws InvalidLocatorException     - If locator does not reference a valid Service.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid Service.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see ReadPermission
      */
     public abstract Service getService(Locator locator) throws InvalidLocatorException, java.lang.SecurityException;
@@ -212,11 +212,11 @@ public abstract class SIManager {
      * <p>
      * This method delivers its results asynchronously.
      *
-     * @param locator A locator referencing a Service
+     * @param locator   A locator referencing a Service
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid Service.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid Service.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see Locator, ServiceDetails, ReadPermission
      */
     public abstract SIRequest retrieveServiceDetails(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
@@ -230,11 +230,11 @@ public abstract class SIManager {
      * <p>
      * This method delivers its results asynchronously.
      *
-     * @param locator A locator referencing a ProgramEvent
+     * @param locator   A locator referencing a ProgramEvent
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid ProgramEvent.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid ProgramEvent.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see xjavax.tv.service.guide.ProgramEvent, ReadPermission
      */
     public abstract SIRequest retrieveProgramEvent(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;

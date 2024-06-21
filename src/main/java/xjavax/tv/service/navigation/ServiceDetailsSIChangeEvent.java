@@ -34,8 +34,8 @@ public abstract class ServiceDetailsSIChangeEvent extends SIChangeEvent {
      * Constructs a <code>ServiceDetailsSIChangeEvent</code>.
      *
      * @param service The ServiceDetails in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param e The SIElement that changed.
+     * @param type    The type of change that occurred.
+     * @param e       The SIElement that changed.
      */
     public ServiceDetailsSIChangeEvent(ServiceDetails service, SIChangeType type, SIElement e) {
         super(service, type, e);
@@ -51,5 +51,4 @@ public abstract class ServiceDetailsSIChangeEvent extends SIChangeEvent {
     public ServiceDetails getServiceDetails() {
         return (ServiceDetails) super.getSource();
     }
-
 }

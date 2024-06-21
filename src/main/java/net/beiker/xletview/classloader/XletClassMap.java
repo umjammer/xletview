@@ -21,7 +21,7 @@ public class XletClassMap extends ClassMap {
     @Override
     public String get(Object jvmClassName) {
         String name = toJavaName((String) jvmClassName);
-        //System.out.println("checking " + name);
+//logger.log(Level.TRACE, "checking " + name);
         if (name.startsWith("javax.tv.")) {
             return toJvmName("xjavax.tv." + name.substring(9));
         } else {

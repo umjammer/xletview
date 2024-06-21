@@ -17,8 +17,8 @@ package org.dvb.user;
  */
 public class Facility {
 
-    private String preference;
-    private String[] values;
+    private final String preference;
+    private final String[] values;
 
     public Facility(String preference, String value) {
         this.preference = preference;

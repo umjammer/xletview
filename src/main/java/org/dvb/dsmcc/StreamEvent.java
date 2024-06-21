@@ -17,10 +17,10 @@ package org.dvb.dsmcc;
  */
 public class StreamEvent extends java.util.EventObject {
 
-    private long normalPlayTime;
-    private String eventName;
-    private int eventId;
-    private byte[] eventData;
+    private final long normalPlayTime;
+    private final String eventName;
+    private final int eventId;
+    private final byte[] eventData;
 
     public StreamEvent(DSMCCStreamEvent source, long npt, String name, int eventId, byte[] eventData) {
         super(source);
@@ -50,5 +50,4 @@ public class StreamEvent extends java.util.EventObject {
     public byte[] getEventData() {
         return eventData;
     }
-
 }

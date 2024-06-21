@@ -25,7 +25,6 @@ public class TimeOutEvent extends EndOfFilteringEvent {
     public Object getSource() {
         return super.getSource();
     }
-
 }
 
 

@@ -20,10 +20,10 @@ public class HFlatMatte implements HMatte {
     public HFlatMatte(float data) {
     }
 
-    public void setMatteData(float data) {
-    }
-
     public float getMatteData() {
         return (1.0f);
+    }
+
+    public void setMatteData(float data) {
     }
 }

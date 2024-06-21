@@ -15,6 +15,7 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.lang.reflect.Constructor;
 import java.net.URLClassLoader;
+import java.security.SecureClassLoader;
 
 import net.beiker.xletview.classloader.MainClassLoader;
 import net.beiker.xletview.util.CommandLine;
@@ -38,11 +39,18 @@ public class Main {
             System.exit(0);
         }
 
-        System.out.println(Constants.DISCLAIMER_MESSAGE);
+        logger.log(Level.DEBUG, Constants.DISCLAIMER_MESSAGE);
 
-        URLClassLoader systemLoader = (URLClassLoader) Main.class.getClassLoader();
-
-        MainClassLoader loader = new MainClassLoader(systemLoader.getURLs());
+        // TODO currently we use fat jar by maven-assembly-plugin, so MainClassLoader is not needed
+        ClassLoader systemLoader = Main.class.getClassLoader();
+        ClassLoader loader;
+        if (systemLoader instanceof URLClassLoader urlSystemLoader) {
+            loader = new MainClassLoader(urlSystemLoader.getURLs());
+        } else if (systemLoader instanceof SecureClassLoader) {
+            loader = systemLoader;
+        } else {
+            throw new IllegalStateException("unknown class loader: " + systemLoader.getClass().getName());
+        }
 
         try {
             Class<?> dynamicClass = Class.forName("net.beiker.xletview.Startup", false, loader);

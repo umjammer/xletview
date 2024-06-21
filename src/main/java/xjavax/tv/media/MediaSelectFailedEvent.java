@@ -29,11 +29,10 @@ public class MediaSelectFailedEvent extends MediaSelectEvent {
     /**
      * Creates a new <code>MediaSelectFailedEvent</code>.
      *
-     * @param source The Controller that generated this event.
+     * @param source    The Controller that generated this event.
      * @param selection The Locator instances on which selection was attempted.
      */
     public MediaSelectFailedEvent(javax.media.Controller source, Locator[] selection) {
         super(source, selection);
     }
-
 }

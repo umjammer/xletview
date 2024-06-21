@@ -36,5 +36,4 @@ public interface ServiceContentHandler {
      * @see ServiceContext#select(Locator[] components)
      */
     Locator[] getServiceContentLocators();
-
 }

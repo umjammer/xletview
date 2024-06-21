@@ -27,6 +27,13 @@ public class FileAttributes {
     FileAttributes(Date expiration_date, FileAccessPermissions p, int priority) {
     }
 
+    public static void setFileAttributes(FileAttributes p, File f) throws IOException {
+    }
+
+    public static FileAttributes getFileAttributes(File f) throws IOException {
+        return null;
+    }
+
     public Date getExpirationDate() {
         return null;
     }
@@ -46,12 +53,5 @@ public class FileAttributes {
     }
 
     public void setPriority(int priority) {
-    }
-
-    public static void setFileAttributes(FileAttributes p, File f) throws IOException {
-    }
-
-    public static FileAttributes getFileAttributes(File f) throws IOException {
-        return null;
     }
 }

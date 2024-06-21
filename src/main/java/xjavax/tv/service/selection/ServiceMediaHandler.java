@@ -23,5 +23,4 @@ package xjavax.tv.service.selection;
  * <HR>
  */
 public interface ServiceMediaHandler extends javax.media.Player, ServiceContentHandler {
-
 }

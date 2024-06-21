@@ -37,7 +37,7 @@ public class ProgramScheduleChangeType extends SIChangeType {
      * @param name The string name of this type (e.g. "CURRENT_PROGRAM_EVENT").
      */
     protected ProgramScheduleChangeType(java.lang.String name) {
-        //TODO implement ProgramScheduleChangeType
+        // TODO implement ProgramScheduleChangeType
         super(name);
     }
 
@@ -51,7 +51,6 @@ public class ProgramScheduleChangeType extends SIChangeType {
      */
     public java.lang.String toString() {
         return null;
-        //TODO implement toString
+        // TODO implement toString
     }
-
 }

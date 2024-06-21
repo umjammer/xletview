@@ -26,6 +26,4 @@ public class FileInputStream extends java.io.FileInputStream {
     public FileInputStream(XFile file) throws FileNotFoundException {
         super(FileSystem.getFile(file));
     }
-
-
 }

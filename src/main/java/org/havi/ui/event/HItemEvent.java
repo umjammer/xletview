@@ -34,7 +34,7 @@ public class HItemEvent extends java.awt.AWTEvent {
     public static final int ITEM_END_CHANGE = ITEM_FIRST + 12;
     public static final int ITEM_LAST = ITEM_FIRST + 12;
 
-    private Object item;
+    private final Object item;
 
     public HItemEvent(org.havi.ui.HSelectionInputPreferred source, int id, Object item) {
         super(source, id);
@@ -44,7 +44,6 @@ public class HItemEvent extends java.awt.AWTEvent {
     public Object getItem() {
         return item;
     }
-
 }
 
 

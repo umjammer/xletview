@@ -48,5 +48,4 @@ public interface CarouselFileListener extends java.util.EventListener {
      * @see CarouselFile#refreshCache()
      */
     void carouselFileChanged(CarouselFileChangeEvent event);
-
 }

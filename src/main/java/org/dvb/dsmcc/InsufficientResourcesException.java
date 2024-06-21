@@ -24,7 +24,6 @@ public class InsufficientResourcesException extends DSMCCException {
     public InsufficientResourcesException(String message) {
         super(message);
     }
-
 }
 
 

@@ -20,6 +20,5 @@ public class NoFreeInterfaceException extends NetworkInterfaceException {
     public NoFreeInterfaceException(String reason) {
         super(reason);
     }
-
 }
 

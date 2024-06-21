@@ -34,7 +34,7 @@ public abstract class ServiceFilter {
      * Constructs the filter.</DL>
      */
     protected ServiceFilter() {
-        //TODO implement ServiceFilter
+        // TODO implement ServiceFilter
     }
 
     /**
@@ -47,5 +47,4 @@ public abstract class ServiceFilter {
      * @return true if service satisfies the filtering algorithm; false otherwise.
      */
     public abstract boolean accept(Service service);
-
 }

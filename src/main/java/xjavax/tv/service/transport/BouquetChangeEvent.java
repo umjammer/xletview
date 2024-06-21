@@ -37,12 +37,11 @@ public class BouquetChangeEvent extends TransportSIChangeEvent {
      * Constructs a <code>BouquetChangeEvent</code>.
      *
      * @param collection The BouquetCollection in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param b The Bouquet that changed.
+     * @param type       The type of change that occurred.
+     * @param b          The Bouquet that changed.
      */
     public BouquetChangeEvent(BouquetCollection collection, SIChangeType type, Bouquet b) {
         super(collection, type, b);
-
     }
 
     /**
@@ -66,5 +65,4 @@ public class BouquetChangeEvent extends TransportSIChangeEvent {
     public Bouquet getBouquet() {
         return (Bouquet) super.getSIElement();
     }
-
 }

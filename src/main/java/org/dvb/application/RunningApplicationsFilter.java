@@ -21,5 +21,4 @@ public class RunningApplicationsFilter extends AppsDatabaseFilter {
     public boolean accept(AppID appid) {
         return false;
     }
-
 }

@@ -51,7 +51,7 @@ public interface ContentRatingAdvisory {
      *
      * @param dimensionName The name of the RatingDimension for which to obtain the rating level.
      * @return A number representing the rating level. The meaning is dependent on the associated rating dimension.
-     * @throws SIException - If dimensionName is not a valid name of a RatingDimension for the ProgramEvent.
+     * @throws SIException If dimensionName is not a valid name of a RatingDimension for the ProgramEvent.
      * @see RatingDimension#getDimensionName()
      */
     short getRatingLevel(java.lang.String dimensionName) throws SIException;
@@ -66,7 +66,7 @@ public interface ContentRatingAdvisory {
      *
      * @param dimensionName The name of the RatingDimension for which to obtain the rating level text.
      * @return A string representing the textual value of this rating level.
-     * @throws SIException - If dimensionName is not a valid RatingDimension name for the ProgramEvent.
+     * @throws SIException If dimensionName is not a valid RatingDimension name for the ProgramEvent.
      * @see RatingDimension#getDimensionName(), RatingDimension.getRatingLevelDescription(short)
      */
     java.lang.String getRatingLevelText(java.lang.String dimensionName) throws SIException;
@@ -94,5 +94,4 @@ public interface ContentRatingAdvisory {
      * @return true if the rating exceeds the current system rating ceiling; false otherwise.
      */
     boolean exceeds();
-
 }

@@ -35,10 +35,10 @@ public final class LocatorFilter extends ServiceFilter {
      * Constructs the filter based on a set of locators.
      *
      * @param locators An array of locators representing services to be included in a resulting ServiceList.
-     * @throws InvalidLocatorException - If one of the given locators does not reference a valid Service.
+     * @throws InvalidLocatorException If one of the given locators does not reference a valid Service.
      */
     public LocatorFilter(Locator[] locators) throws InvalidLocatorException {
-        //TODO implement LocatorFilter
+        // TODO implement LocatorFilter
     }
 
     /**
@@ -60,7 +60,6 @@ public final class LocatorFilter extends ServiceFilter {
     @Override
     public boolean accept(Service service) {
         return false;
-        //TODO implement accept
+        // TODO implement accept
     }
-
 }

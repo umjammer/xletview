@@ -29,11 +29,11 @@ public class HMultilineEntry extends HSinglelineEntry {
     public HMultilineEntry(int maxChars) {
     }
 
-    public static void setDefaultLook(HMultilineEntryLook look) {
-    }
-
     public static HSinglelineEntryLook getDefaultLook() {
         return (null);
+    }
+
+    public static void setDefaultLook(HMultilineEntryLook look) {
     }
 
     @Override

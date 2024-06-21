@@ -142,8 +142,8 @@ public interface ServiceContext {
      * <em>started</em> state.
      *
      * @param selection The Service to be selected.
-     * @throws java.lang.SecurityException     - If the caller owns this ServiceContext but does not have SelectPermission(selection.getLocator(), "own"), or if the caller does not own this ServiceContext and does not have SelectPermission(selection.getLocator(), "*").
-     * @throws java.lang.IllegalStateException - If the ServiceContext has been destroyed.
+     * @throws java.lang.SecurityException     If the caller owns this ServiceContext but does not have SelectPermission(selection.getLocator(), "own"), or if the caller does not own this ServiceContext and does not have SelectPermission(selection.getLocator(), "*").
+     * @throws java.lang.IllegalStateException If the ServiceContext has been destroyed.
      * @see NormalContentEvent, AlternativeContentEvent, SelectionFailedEvent, PresentationTerminatedEvent, Service, getService(), ServiceContentHandler, destroy()
      */
     void select(Service selection) throws java.lang.SecurityException;
@@ -198,10 +198,10 @@ public interface ServiceContext {
      * components for which a locator is not specified.
      *
      * @param components An array of Locator instances representing the parts of this service to be selected.  Each array element must be a locator to either a ServiceComponent or content within a service component (such as an Xlet).
-     * @throws InvalidLocatorException          - If a Locator provided does not reference a selectable service component or selectable content within a service component.
-     * @throws InvalidServiceComponentException - If a specified service component must be presented in conjunction with another service component not contained in components, if the specified components are not all members of the same service, or if the specified set of components cannot be presented as a coherent whole.
-     * @throws java.lang.SecurityException      - If, for any valid i, the caller owns this ServiceContext but does not have SelectPermission(components[i], "own"), or if the caller does not own this ServiceContext and does not have SelectPermission(components[i], "*").
-     * @throws java.lang.IllegalStateException  - If the ServiceContext has been destroyed.
+     * @throws InvalidLocatorException          If a Locator provided does not reference a selectable service component or selectable content within a service component.
+     * @throws InvalidServiceComponentException If a specified service component must be presented in conjunction with another service component not contained in components, if the specified components are not all members of the same service, or if the specified set of components cannot be presented as a coherent whole.
+     * @throws java.lang.SecurityException      If, for any valid i, the caller owns this ServiceContext but does not have SelectPermission(components[i], "own"), or if the caller does not own this ServiceContext and does not have SelectPermission(components[i], "*").
+     * @throws java.lang.IllegalStateException  If the ServiceContext has been destroyed.
      * @see NormalContentEvent, AlternativeContentEvent, SelectionFailedEvent, PresentationTerminatedEvent, ServiceContentHandler, ServiceComponent
      */
     void select(Locator[] components) throws InvalidLocatorException, InvalidServiceComponentException, java.lang.SecurityException;
@@ -219,8 +219,8 @@ public interface ServiceContext {
      * if the <code>ServiceContext</code> is already in the <em>not
      * presenting</em> state.
      *
-     * @throws java.lang.SecurityException     - If the caller owns this ServiceContext but does not have ServiceContextPermission("stop", "own"), or if the caller does not own this ServiceContext and does not have SelectPermission("stop", "*").
-     * @throws java.lang.IllegalStateException - If the ServiceContext has been destroyed.
+     * @throws java.lang.SecurityException     If the caller owns this ServiceContext but does not have ServiceContextPermission("stop", "own"), or if the caller does not own this ServiceContext and does not have SelectPermission("stop", "*").
+     * @throws java.lang.IllegalStateException If the ServiceContext has been destroyed.
      */
     void stop() throws java.lang.SecurityException;
 
@@ -245,7 +245,7 @@ public interface ServiceContext {
      * if the <code>ServiceContext</code> is already in the
      * <em>destroyed</em> state.
      *
-     * @throws java.lang.SecurityException - If the caller does not have permission to call stop() on this ServiceContext, or if the caller owns this ServiceContext but does not have ServiceContextPermission("destroy", "own"), or if the caller does not own this ServiceContext and does not have SelectPermission("destroy", "*").
+     * @throws java.lang.SecurityException If the caller does not have permission to call stop() on this ServiceContext, or if the caller owns this ServiceContext but does not have ServiceContextPermission("destroy", "own"), or if the caller does not own this ServiceContext and does not have SelectPermission("destroy", "*").
      * @see #stop()
      */
     void destroy() throws java.lang.SecurityException;
@@ -257,8 +257,8 @@ public interface ServiceContext {
      * pending</em> states.
      *
      * @return The current ServiceContentHandler instances.
-     * @throws java.lang.SecurityException     - If the caller owns this ServiceContext but does not have ServiceContextPermission("getServiceContentHandlers", "own"), or if the caller does not own this ServiceContext and does not have SelectPermission("getServiceContentHandlers", "*").
-     * @throws java.lang.IllegalStateException - If the ServiceContext has been destroyed.
+     * @throws java.lang.SecurityException     If the caller owns this ServiceContext but does not have ServiceContextPermission("getServiceContentHandlers", "own"), or if the caller does not own this ServiceContext and does not have SelectPermission("getServiceContentHandlers", "*").
+     * @throws java.lang.IllegalStateException If the ServiceContext has been destroyed.
      */
     ServiceContentHandler[] getServiceContentHandlers() throws java.lang.SecurityException;
 
@@ -273,7 +273,7 @@ public interface ServiceContext {
      * state then <code>null</code> is returned.
      *
      * @return The service currently being presented.
-     * @throws java.lang.IllegalStateException - If the ServiceContext has been destroyed.
+     * @throws java.lang.IllegalStateException If the ServiceContext has been destroyed.
      */
     Service getService();
 
@@ -283,7 +283,7 @@ public interface ServiceContext {
      * subscribed, no action is performed.
      *
      * @param listener The ServiceContextListener to subscribe.
-     * @throws java.lang.IllegalStateException - If the ServiceContext has been destroyed.
+     * @throws java.lang.IllegalStateException If the ServiceContext has been destroyed.
      * @see ServiceContextEvent
      */
     void addListener(ServiceContextListener listener);
@@ -294,8 +294,7 @@ public interface ServiceContext {
      * subscribed, no action is performed.
      *
      * @param listener The ServiceContextListener to unsubscribe.
-     * @throws java.lang.IllegalStateException - If the ServiceContext has been destroyed.
+     * @throws java.lang.IllegalStateException If the ServiceContext has been destroyed.
      */
     void removeListener(ServiceContextListener listener);
-
 }

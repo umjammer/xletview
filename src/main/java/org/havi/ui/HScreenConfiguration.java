@@ -17,7 +17,7 @@ import java.awt.Point;
 
 public abstract class HScreenConfiguration {
 
-    //package scope constructor to stop javadoc generating one
+    // package scope constructor to stop javadoc generating one
     HScreenConfiguration() {
     }
 

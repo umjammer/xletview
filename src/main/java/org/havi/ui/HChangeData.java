@@ -17,12 +17,11 @@ package org.havi.ui;
  */
 public class HChangeData {
 
-    public int hint;
-    public Object data;
+    public final int hint;
+    public final Object data;
 
     public HChangeData(int hint, Object data) {
         this.hint = hint;
         this.data = data;
     }
-
 }

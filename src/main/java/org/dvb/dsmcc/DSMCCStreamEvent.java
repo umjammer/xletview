@@ -38,10 +38,8 @@ public class DSMCCStreamEvent extends DSMCCStream {
     public synchronized void unsubscribe(String eventName, StreamEventListener l) throws UnknownEventException {
     }
 
-
     public String[] getEventList() {
         return null;
     }
-
 }
 

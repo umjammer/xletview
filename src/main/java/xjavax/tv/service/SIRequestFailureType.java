@@ -57,7 +57,7 @@ public class SIRequestFailureType {
      * @param name The string name of this type (e.g., "CANCELED").
      */
     protected SIRequestFailureType(java.lang.String name) {
-        //TODO implement SIRequestFailureType
+        // TODO implement SIRequestFailureType
     }
 
     /**
@@ -70,7 +70,6 @@ public class SIRequestFailureType {
      */
     public java.lang.String toString() {
         return null;
-        //TODO implement toString
+        // TODO implement toString
     }
-
 }

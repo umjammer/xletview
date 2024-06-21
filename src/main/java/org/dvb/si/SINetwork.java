@@ -29,7 +29,6 @@ public interface SINetwork extends SIInformation {
     String getShortNetworkName();
 
     SIRequest retrieveSITransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
-
 }
 
 

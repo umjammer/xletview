@@ -47,11 +47,11 @@ public class ClassWindow extends JDialog implements ActionListener {
 
     private static final Logger logger = getLogger(ClassWindow.class.getName());
 
-    private Container content;
-    private JList<String> list;
+    private final Container content;
+    private final JList<String> list;
     private int dirCount;
-    private List<String> classes;
-    private File homeDir;
+    private final List<String> classes;
+    private final File homeDir;
 
     public ClassWindow(Frame owner, File dir) {
         super(owner, true);
@@ -102,6 +102,11 @@ public class ClassWindow extends JDialog implements ActionListener {
         setVisible(true);
     }
 
+    public static void main(String[] args) {
+        File f = new File("C:\\myIconDocs\\projects\\Mediaset\\Peugeot\\classes");
+        new ClassWindow(null, f);
+    }
+
     /**
      * Works through a directory recursivly to find all class files
      *
@@ -125,7 +130,7 @@ public class ClassWindow extends JDialog implements ActionListener {
                     String unformattedClassName = file.getPath().substring(homeDir.getPath().length() + 1);
                     String formattedClassName = getClassName(unformattedClassName);
                     classes.add(formattedClassName);
-                    logger.log(Level.DEBUG, formattedClassName);
+logger.log(Level.DEBUG, formattedClassName);
                 }
             }
         }
@@ -160,10 +165,5 @@ public class ClassWindow extends JDialog implements ActionListener {
 
     private void doClose() {
         dispose();
-    }
-
-    public static void main(String[] args) {
-        File f = new File("C:\\myIconDocs\\projects\\Mediaset\\Peugeot\\classes");
-        new ClassWindow(null, f);
     }
 }

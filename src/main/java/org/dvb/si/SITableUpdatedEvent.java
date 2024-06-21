@@ -20,5 +20,4 @@ public class SITableUpdatedEvent extends SIRetrievalEvent {
     public SITableUpdatedEvent(Object appData, SIRequest request) {
         super(appData, request);
     }
-
 }

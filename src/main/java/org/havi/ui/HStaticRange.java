@@ -27,15 +27,15 @@ public class HStaticRange extends HVisible implements HNoInputPreferred, HOrient
     public HStaticRange(int orientation, int minimum, int maximum, int value) {
     }
 
-    @Override
-    public void setLook(HLook hlook) throws HInvalidLookException {
+    public static HRangeLook getDefaultLook() {
+        return (null);
     }
 
     public static void setDefaultLook(HRangeLook look) {
     }
 
-    public static HRangeLook getDefaultLook() {
-        return (null);
+    @Override
+    public void setLook(HLook hlook) throws HInvalidLookException {
     }
 
     @Override
@@ -59,11 +59,11 @@ public class HStaticRange extends HVisible implements HNoInputPreferred, HOrient
         return (0);
     }
 
-    public void setValue(int value) {
-    }
-
     public int getValue() {
         return (0);
+    }
+
+    public void setValue(int value) {
     }
 
     public void setThumbOffsets(int minOffset, int maxOffset) {
@@ -77,17 +77,10 @@ public class HStaticRange extends HVisible implements HNoInputPreferred, HOrient
         return (0);
     }
 
-    public void setBehavior(int behavior) {
-    }
-
     public int getBehavior() {
         return (0);
     }
 
+    public void setBehavior(int behavior) {
+    }
 }
-
-
-
-
-
-

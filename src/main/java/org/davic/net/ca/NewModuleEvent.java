@@ -17,7 +17,7 @@ package org.davic.net.ca;
  */
 public class NewModuleEvent extends CAEvent {
 
-    private CAModule caModule;
+    private final CAModule caModule;
 
     public NewModuleEvent(CAModule caModule, Object caModuleManager) {
         super(caModuleManager);
@@ -32,5 +32,4 @@ public class NewModuleEvent extends CAEvent {
     public Object getSource() {
         return super.getSource();
     }
-
 }

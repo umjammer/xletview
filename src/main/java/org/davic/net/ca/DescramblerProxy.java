@@ -22,7 +22,6 @@ public class DescramblerProxy implements ResourceProxy {
     public DescramblerProxy(ResourceClient c) {
     }
 
-
     public void startDescramblingDialog(Service s) throws CAException, org.davic.mpeg.NotAuthorizedException {
     }
 
@@ -68,6 +67,5 @@ public class DescramblerProxy implements ResourceProxy {
     public ElementaryStream[] getElementaryStreams() {
         return null;
     }
-
 }
 

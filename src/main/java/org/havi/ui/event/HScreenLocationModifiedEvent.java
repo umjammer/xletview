@@ -25,5 +25,4 @@ public class HScreenLocationModifiedEvent extends java.util.EventObject {
     public Object getSource() {
         return super.getSource();
     }
-
 }

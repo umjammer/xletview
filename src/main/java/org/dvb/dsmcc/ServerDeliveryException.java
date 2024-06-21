@@ -24,5 +24,4 @@ public class ServerDeliveryException extends DSMCCException {
     public ServerDeliveryException(String s) {
         super(s);
     }
-
 }

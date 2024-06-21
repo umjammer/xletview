@@ -20,8 +20,7 @@ public interface HActionable extends HNavigable, HActionInputPreferred {
 
     void setActionCommand(String command);
 
-    void setActionSound(HSound sound);
-
     HSound getActionSound();
 
+    void setActionSound(HSound sound);
 }

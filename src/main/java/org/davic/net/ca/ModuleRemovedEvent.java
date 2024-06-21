@@ -17,7 +17,7 @@ package org.davic.net.ca;
  */
 public class ModuleRemovedEvent extends CAEvent {
 
-    private int slotNumber;
+    private final int slotNumber;
 
     public ModuleRemovedEvent(int slotNumber, Object caModuleManager) {
         super(caModuleManager);

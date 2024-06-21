@@ -16,10 +16,9 @@ package org.dvb.ui;
  * @statuscode 4
  */
 public class DVBColor extends java.awt.Color {
-    /*
-     Should inherit from javax.tv.graphics.AlphaColor but since we use the Java 2(tm) platform
-     we can use the java.awt.Color
-     */
+
+    // Should inherit from javax.tv.graphics.AlphaColor but since we use the Java 2(tm) platform
+    // we can use the java.awt.Color
 
     public DVBColor(float r, float g, float b, float a) {
         super(r, g, b, a);
@@ -35,7 +34,7 @@ public class DVBColor extends java.awt.Color {
 
     public DVBColor(java.awt.Color c) {
         super(c.getRed(), c.getGreen(), c.getBlue());
-        //super(c);
+//        super(c);
     }
 
     @Override

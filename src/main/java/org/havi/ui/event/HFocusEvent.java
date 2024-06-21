@@ -64,7 +64,5 @@ public class HFocusEvent extends java.awt.event.FocusEvent {
         } else {
             return result;
         }
-
     }
-
 }

@@ -22,5 +22,4 @@ package xjavax.tv.service;
  * <HR>
  */
 public interface SIChangeListener extends java.util.EventListener {
-
 }

@@ -25,6 +25,4 @@ public class NetworkInterfaceException extends java.lang.Exception {
     public NetworkInterfaceException(String reason) {
         super(reason);
     }
-
-
 }

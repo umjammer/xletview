@@ -26,6 +26,4 @@ public class FileOutputStream extends java.io.FileOutputStream {
     public FileOutputStream(java.io.File file) throws FileNotFoundException {
         super(FileSystem.getFile(file));
     }
-
-
 }

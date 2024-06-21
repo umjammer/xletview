@@ -29,7 +29,6 @@ public class VersionChangeDetectedEvent extends SectionFilterEvent {
     public int getNewVersion() {
         return 0;
     }
-
 }
 
 

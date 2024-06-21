@@ -30,13 +30,8 @@ import static java.lang.System.getLogger;
 public class HIcon extends HStaticIcon implements HNavigable {
 
     private static final Logger logger = getLogger(HIcon.class.getName());
-
-
-    private HNavigableHelper helper;
-
-
     private static HGraphicLook defaultHLook = new HGraphicLook();
-
+    private HNavigableHelper helper;
 
     public HIcon() {
         super();
@@ -59,19 +54,18 @@ public class HIcon extends HStaticIcon implements HNavigable {
         init();
 
     }
-    // constructors end //
 
-    private void init() {
-        helper = new HNavigableHelper(this);
-        logger.log(Level.DEBUG, "HIcon - init");
+    public static HGraphicLook getDefaultLook() {
+        return HIcon.defaultHLook;
     }
 
     public static void setDefaultLook(HGraphicLook hGraphicLook) {
         HIcon.defaultHLook = hGraphicLook;
     }
 
-    public static HGraphicLook getDefaultLook() {
-        return HIcon.defaultHLook;
+    private void init() {
+        helper = new HNavigableHelper(this);
+        logger.log(Level.DEBUG, "HIcon - init");
     }
 
     @Override
@@ -95,23 +89,23 @@ public class HIcon extends HStaticIcon implements HNavigable {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-        helper.setGainFocusSound(sound);
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-        helper.setLoseFocusSound(sound);
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+        helper.setGainFocusSound(sound);
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
+        helper.setLoseFocusSound(sound);
     }
 
     @Override
@@ -130,7 +124,7 @@ public class HIcon extends HStaticIcon implements HNavigable {
     }
 
     /**
-     Overloaded from HVisible, is true for HNavigable
+     * Overloaded from HVisible, is true for HNavigable
      */
     @Override
     public boolean isFocusTraversable() {

@@ -45,7 +45,7 @@ public class ServiceInformationType {
      * @param name The string name of this type (e.g., "ATSC_PSIP").
      */
     protected ServiceInformationType(java.lang.String name) {
-        //TODO implement ServiceInformationType
+        // TODO implement ServiceInformationType
     }
 
     /**
@@ -58,7 +58,6 @@ public class ServiceInformationType {
      */
     public java.lang.String toString() {
         return null;
-        //TODO implement toString
+        // TODO implement toString
     }
-
 }

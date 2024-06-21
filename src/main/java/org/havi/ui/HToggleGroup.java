@@ -24,18 +24,18 @@ public class HToggleGroup {
     public void setCurrent(HToggleButton selection) {
     }
 
-    public void setForcedSelection(boolean forceSelection) {
-    }
-
     public boolean getForcedSelection() {
         return (false);
     }
 
-    public void setEnabled(boolean enable) {
+    public void setForcedSelection(boolean forceSelection) {
     }
 
     public boolean isEnabled() {
         return (true);
+    }
+
+    public void setEnabled(boolean enable) {
     }
 
     protected void add(HToggleButton button) {
@@ -43,6 +43,4 @@ public class HToggleGroup {
 
     protected void remove(HToggleButton button) {
     }
-
 }
-

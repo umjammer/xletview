@@ -21,14 +21,13 @@ import java.io.FileFilter;
 public class DirFilter implements FileFilter {
 
     String filter;
-    String[] filters;
+    final String[] filters;
 
     public DirFilter(String filter) {
         this.filter = filter;
         filters = new String[1];
         filters[0] = filter;
     }
-
 
     public DirFilter(String[] filters) {
         this.filters = filters;
@@ -48,5 +47,4 @@ public class DirFilter implements FileFilter {
         }
         return false;
     }
-
 }

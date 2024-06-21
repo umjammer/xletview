@@ -24,5 +24,4 @@ public class NoFreeCapacityException extends CAException {
     public NoFreeCapacityException(String reason) {
         super(reason);
     }
-
 }

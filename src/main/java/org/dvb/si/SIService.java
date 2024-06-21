@@ -49,5 +49,4 @@ public interface SIService extends SIInformation, TextualServiceIdentifierQuery 
 
     @Override
     String[] getTextualServiceIdentifiers();
-
 }

@@ -42,5 +42,4 @@ public class PresentationChangedEvent extends ServiceContextEvent {
     public PresentationChangedEvent(ServiceContext source) {
         super(source);
     }
-
 }

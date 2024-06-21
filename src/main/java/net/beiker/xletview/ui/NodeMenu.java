@@ -19,7 +19,7 @@ import javax.swing.tree.TreeNode;
 
 public class NodeMenu extends JPopupMenu {
 
-    JTree tree;
+    final JTree tree;
     TreeNode node;
 
     public NodeMenu(JTree tree) {
@@ -39,7 +39,6 @@ public class NodeMenu extends JPopupMenu {
             // delete the node
         });
         add(delete);
-
     }
 
     public void setNode(TreeNode nd) {

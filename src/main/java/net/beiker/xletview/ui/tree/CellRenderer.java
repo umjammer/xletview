@@ -32,11 +32,11 @@ import net.beiker.xletview.util.Constants;
  */
 public class CellRenderer extends JLabel implements TreeCellRenderer {
 
-    protected Color m_textSelectionColor;
-    protected Color m_textNonSelectionColor;
-    protected Color m_bkSelectionColor;
-    protected Color m_bkNonSelectionColor;
-    protected Color m_borderSelectionColor;
+    protected final Color m_textSelectionColor;
+    protected final Color m_textNonSelectionColor;
+    protected final Color m_bkSelectionColor;
+    protected final Color m_bkNonSelectionColor;
+    protected final Color m_borderSelectionColor;
 
     protected boolean m_selected;
 
@@ -53,7 +53,7 @@ public class CellRenderer extends JLabel implements TreeCellRenderer {
     @Override
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean sel, boolean expanded, boolean leaf, int row, boolean hasFocus) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
-        //BeikerTreeNode node = (BeikerTreeNode) value;
+//        BeikerTreeNode node = (BeikerTreeNode) value;
         Object obj = node.getUserObject();
         setText(obj.toString());
 

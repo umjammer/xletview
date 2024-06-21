@@ -29,7 +29,7 @@ public class HBackgroundImageEvent extends java.util.EventObject {
 
     public static final int BACKGROUNDIMAGE_LAST = 4;
 
-    private int id;
+    private final int id;
 
     public HBackgroundImageEvent(Object source, int id) {
         super(source);

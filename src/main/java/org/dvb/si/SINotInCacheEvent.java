@@ -20,5 +20,4 @@ public class SINotInCacheEvent extends SIRetrievalEvent {
     public SINotInCacheEvent(Object appData, SIRequest request) {
         super(appData, request);
     }
-
 }

@@ -27,5 +27,4 @@ public abstract class ElementaryStream {
     public Integer getAssociationTag() {
         return null;
     }
-
 }

@@ -56,18 +56,6 @@ public class HEventMulticaster implements
         this.b = b;
     }
 
-    protected EventListener remove(EventListener oldl) {
-        if (oldl == a) return b;
-        if (oldl == b) return a;
-        EventListener a2 = removeInternal(a, oldl);
-        EventListener b2 = removeInternal(b, oldl);
-        if (a2 == a && b2 == b) {
-            return this;    // it's not here
-        }
-        return addInternal(a2, b2);
-    }
-
-
     protected static EventListener addInternal(EventListener a, EventListener b) {
         if (a == null) return b;
         if (b == null) return a;
@@ -120,6 +108,73 @@ public class HEventMulticaster implements
 
     public static HScreenLocationModifiedListener remove(HScreenLocationModifiedListener l, HScreenLocationModifiedListener oldl) {
         return (HScreenLocationModifiedListener) removeInternal(l, oldl);
+    }
+
+    public static HTextListener add(HTextListener a, HTextListener b) {
+        return (HTextListener) addInternal(a, b);
+    }
+
+    public static HTextListener remove(HTextListener l, HTextListener oldl) {
+        return (HTextListener) removeInternal(l, oldl);
+    }
+
+    public static HItemListener add(HItemListener a, HItemListener b) {
+        return (HItemListener) addInternal(a, b);
+    }
+
+    public static HItemListener remove(HItemListener l, HItemListener oldl) {
+        return (HItemListener) removeInternal(l, oldl);
+    }
+
+    public static HFocusListener add(HFocusListener a, HFocusListener b) {
+        return (HFocusListener) addInternal(a, b);
+    }
+
+    public static HFocusListener remove(HFocusListener l, HFocusListener oldl) {
+        return (HFocusListener) removeInternal(l, oldl);
+    }
+
+    public static HAdjustmentListener add(HAdjustmentListener a, HAdjustmentListener b) {
+        return (HAdjustmentListener) addInternal(a, b);
+    }
+
+    public static HAdjustmentListener remove(HAdjustmentListener l, HAdjustmentListener oldl) {
+        return (HAdjustmentListener) removeInternal(l, oldl);
+    }
+
+    public static HActionListener add(HActionListener a, HActionListener b) {
+        return (HActionListener) addInternal(a, b);
+    }
+
+    public static HActionListener remove(HActionListener l, HActionListener oldl) {
+        return (HActionListener) removeInternal(l, oldl);
+    }
+
+    public static HKeyListener add(HKeyListener a, HKeyListener b) {
+        return (HKeyListener) addInternal(a, b);
+    }
+
+    public static HKeyListener remove(HKeyListener l, HKeyListener oldl) {
+        return (HKeyListener) removeInternal(l, oldl);
+    }
+
+    public static ResourceStatusListener add(ResourceStatusListener a, ResourceStatusListener b) {
+        return (ResourceStatusListener) addInternal(a, b);
+    }
+
+    public static ResourceStatusListener remove(ResourceStatusListener l, ResourceStatusListener oldl) {
+        return (ResourceStatusListener) removeInternal(l, oldl);
+    }
+
+    protected EventListener remove(EventListener oldl) {
+        if (oldl == a) return b;
+        if (oldl == b) return a;
+        EventListener a2 = removeInternal(a, oldl);
+        EventListener b2 = removeInternal(b, oldl);
+        if (a2 == a && b2 == b) {
+            return this;    // it's not here
+        }
+        return addInternal(a2, b2);
     }
 
     @Override
@@ -254,66 +309,10 @@ public class HEventMulticaster implements
         ((KeyListener) b).keyReleased(e);
     }
 
-    public static HTextListener add(HTextListener a, HTextListener b) {
-        return (HTextListener) addInternal(a, b);
-    }
-
-    public static HTextListener remove(HTextListener l, HTextListener oldl) {
-        return (HTextListener) removeInternal(l, oldl);
-    }
-
-    public static HItemListener add(HItemListener a, HItemListener b) {
-        return (HItemListener) addInternal(a, b);
-    }
-
-    public static HItemListener remove(HItemListener l, HItemListener oldl) {
-        return (HItemListener) removeInternal(l, oldl);
-    }
-
-    public static HFocusListener add(HFocusListener a, HFocusListener b) {
-        return (HFocusListener) addInternal(a, b);
-    }
-
-    public static HFocusListener remove(HFocusListener l, HFocusListener oldl) {
-        return (HFocusListener) removeInternal(l, oldl);
-    }
-
-    public static HAdjustmentListener add(HAdjustmentListener a, HAdjustmentListener b) {
-        return (HAdjustmentListener) addInternal(a, b);
-    }
-
-    public static HAdjustmentListener remove(HAdjustmentListener l, HAdjustmentListener oldl) {
-        return (HAdjustmentListener) removeInternal(l, oldl);
-    }
-
-    public static HActionListener add(HActionListener a, HActionListener b) {
-        return (HActionListener) addInternal(a, b);
-    }
-
-    public static HActionListener remove(HActionListener l, HActionListener oldl) {
-        return (HActionListener) removeInternal(l, oldl);
-    }
-
-    public static HKeyListener add(HKeyListener a, HKeyListener b) {
-        return (HKeyListener) addInternal(a, b);
-    }
-
-    public static HKeyListener remove(HKeyListener l, HKeyListener oldl) {
-        return (HKeyListener) removeInternal(l, oldl);
-    }
-
     @Override
     public void statusChanged(ResourceStatusEvent e) {
         ((ResourceStatusListener) a).statusChanged(e);
         ((ResourceStatusListener) b).statusChanged(e);
-    }
-
-    public static ResourceStatusListener add(ResourceStatusListener a, ResourceStatusListener b) {
-        return (ResourceStatusListener) addInternal(a, b);
-    }
-
-    public static ResourceStatusListener remove(ResourceStatusListener l, ResourceStatusListener oldl) {
-        return (ResourceStatusListener) removeInternal(l, oldl);
     }
 }
 

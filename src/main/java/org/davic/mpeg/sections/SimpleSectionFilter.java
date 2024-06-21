@@ -19,5 +19,4 @@ public class SimpleSectionFilter extends org.davic.mpeg.sections.SectionFilter {
     public Section getSection() throws FilteringInterruptedException {
         return null;
     }
-
 }

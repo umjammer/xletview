@@ -34,7 +34,7 @@ public class TVTimerImpl extends TVTimer {
     private static TVTimerImpl THE_INSTANCE;
 
     // the queue
-    private Q theQ;
+    private final Q theQ;
 
     private TVTimerImpl() {
 
@@ -49,6 +49,10 @@ public class TVTimerImpl extends TVTimer {
             THE_INSTANCE = new TVTimerImpl();
         }
         return THE_INSTANCE;
+    }
+
+    public static void main(String[] args) {
+        TVTimerImpl timer = new TVTimerImpl();
     }
 
     @Override
@@ -167,7 +171,8 @@ public class TVTimerImpl extends TVTimer {
                 return 1;
             } else if (a == b) {
                 return 0;
-            } if (a < b) {
+            }
+            if (a < b) {
                 return -1;
             }
             return 0;
@@ -181,8 +186,8 @@ public class TVTimerImpl extends TVTimer {
      */
     private static class TimerThread extends Thread {
 
-        private TVTimer tvTimer;
         private final Q q;
+        private final TVTimer tvTimer;
 
         TimerThread(TVTimer tvTimer, Q q) {
             super("TimerThread");
@@ -193,7 +198,7 @@ public class TVTimerImpl extends TVTimer {
 
         @Override
         public void run() {
-//            logger.log(Level.TRACE, "TimerThread run");
+//logger.log(Level.TRACE, "TimerThread run");
             try {
                 while (true) {
                     synchronized (q) {
@@ -246,9 +251,5 @@ public class TVTimerImpl extends TVTimer {
                 logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        TVTimerImpl timer = new TVTimerImpl();
     }
 }

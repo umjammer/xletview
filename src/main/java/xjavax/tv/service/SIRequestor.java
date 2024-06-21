@@ -44,5 +44,4 @@ public interface SIRequestor {
      * @param reason The reason why the asynchronous request failed.
      */
     void notifyFailure(SIRequestFailureType reason);
-
 }

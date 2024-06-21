@@ -37,7 +37,7 @@ package xjavax.tv.locator;
  */
 public class InvalidLocatorException extends java.lang.Exception {
 
-    private Locator invalidLocator;
+    private final Locator invalidLocator;
 
     /**
      * Constructs an <code>InvalidLocatorException</code> with no
@@ -55,7 +55,7 @@ public class InvalidLocatorException extends java.lang.Exception {
      * specified detail message.
      *
      * @param locator The offending Locator.
-     * @param reason The reason this Locator is invalid.
+     * @param reason  The reason this Locator is invalid.
      */
     public InvalidLocatorException(Locator locator, java.lang.String reason) {
         super(reason);
@@ -70,5 +70,4 @@ public class InvalidLocatorException extends java.lang.Exception {
     public Locator getInvalidLocator() {
         return invalidLocator;
     }
-
 }

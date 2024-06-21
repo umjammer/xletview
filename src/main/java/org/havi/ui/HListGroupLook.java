@@ -11,7 +11,7 @@ See LICENSE document for details.
 
 */
 
-package  org.havi.ui;
+package org.havi.ui;
 
 import java.awt.Dimension;
 import java.awt.Insets;
@@ -23,17 +23,15 @@ import java.awt.Insets;
  */
 public class HListGroupLook implements HAdjustableLook {
 
-    private Insets insets;
+    private final Insets insets;
 
-    private Insets elementInsets;
-
+    private final Insets elementInsets;
 
     public HListGroupLook() {
 
         insets = new Insets(2, 2, 2, 2);
 
         elementInsets = new Insets(2, 2, 2, 2);
-
     }
 
     @Override
@@ -58,9 +56,7 @@ public class HListGroupLook implements HAdjustableLook {
     @Override
     public Dimension getPreferredSize(HVisible visible) {
 
-
-        //         doing some work here, check
-
+        // doing some work here, check
 
         // get all sizes that are needed
         HListGroup hGroup = (HListGroup) visible;
@@ -73,7 +69,6 @@ public class HListGroupLook implements HAdjustableLook {
             preferredSize = min;
         } else {
 
-
             int orientation = hGroup.getOrientation();
             int sizeToNextElement;
             int sizeToPrevElement;
@@ -83,7 +78,6 @@ public class HListGroupLook implements HAdjustableLook {
             // adjust size in the case that the width or the height hasn't been set
             // minimun size should be 5 elemeents in the orientation that is set if there is no default value
             // set for the hlist group
-
 
             //
             // width
@@ -96,16 +90,12 @@ public class HListGroupLook implements HAdjustableLook {
                 } else {
                     preferredSize.width = min.width;
                 }
-
             } else {
-
 
                 // check so that atleast 1 element is with the size
                 if (preferredSize.width < min.width) {
                     preferredSize.width = min.width;
                 } else {
-
-
                     // round to the nearest element
                     sizeToPrevElement = preferredSize.width % min.width;
                     if (sizeToPrevElement != 0) {
@@ -116,12 +106,8 @@ public class HListGroupLook implements HAdjustableLook {
                             preferredSize.width = preferredSize.width + sizeToNextElement;
                         }
                     }
-
                 }
-
-
             }
-
 
             //
             // height
@@ -134,10 +120,7 @@ public class HListGroupLook implements HAdjustableLook {
                 } else {
                     preferredSize.height = min.height;
                 }
-
             } else {
-
-
                 // check so that atleast 1 element is with the size
                 if (preferredSize.height < min.height) {
                     preferredSize.height = min.height;
@@ -152,17 +135,11 @@ public class HListGroupLook implements HAdjustableLook {
                             preferredSize.height = preferredSize.height + sizeToNextElement;
                         }
                     }
-
                 }
-
-
             }
-
-
         }
 
-
-        return (null);
+        return null;
     }
 
     @Override
@@ -187,7 +164,6 @@ public class HListGroupLook implements HAdjustableLook {
             width += itemDim.width * elements.length;
         }
 
-
         return new Dimension(width, height);
     }
 
@@ -209,7 +185,6 @@ public class HListGroupLook implements HAdjustableLook {
 
         return new Dimension(itemWidth, itemHeight);
     }
-
 
     @Override
     public boolean isOpaque(HVisible visible) {

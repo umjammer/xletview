@@ -19,10 +19,9 @@ import org.davic.resources.ResourceStatusEvent;
  * @version 14.9.03
  * @statuscode 4
  */
-public class RCInterfaceReleasedEvent
-        extends ResourceStatusEvent {
+public class RCInterfaceReleasedEvent extends ResourceStatusEvent {
 
-    private Object connection;
+    private final Object connection;
 
     public RCInterfaceReleasedEvent(Object bg) {
         super(bg);

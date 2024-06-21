@@ -36,10 +36,9 @@ public class XletStateChangeException extends java.lang.Exception {
     /**
      * Constructs an exception with the specified detail message.
      *
-     * @param s *          the detail message
+     * @param s the detail message
      */
     public XletStateChangeException(java.lang.String s) {
         super(s);
     }
-
 }

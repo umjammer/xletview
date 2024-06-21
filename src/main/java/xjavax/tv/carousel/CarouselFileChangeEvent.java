@@ -43,5 +43,4 @@ public class CarouselFileChangeEvent extends java.util.EventObject {
     public CarouselFile getCarouselFile() {
         return this.carouselFile;
     }
-
 }

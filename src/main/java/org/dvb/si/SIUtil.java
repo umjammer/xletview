@@ -19,5 +19,4 @@ public class SIUtil {
     public static String convertSIStringToJavaString(byte[] dvbSIText, int offset, int length, boolean emphasizedPartOnly) throws SIIllegalArgumentException {
         return null;
     }
-
 }

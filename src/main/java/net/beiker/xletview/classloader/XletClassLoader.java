@@ -46,22 +46,10 @@ public final class XletClassLoader extends MainClassLoader {
     /** Debugging facility */
     private static final Logger logger = getLogger(XletClassLoader.class.getName());
 
-    private Map<String, Class<?>> loadedClasses;
-    private ClassPool pool;
-    private ClassLoader parent;
-    private ClassMap xletClassMap;
-
-
-    public static void main(String[] args) {
-        try {
-            URL url = new URL(args[0]);
-
-            logger.log(Level.DEBUG, "url=" + url);
-            logger.log(Level.DEBUG, url.getFile());
-        } catch (MalformedURLException e) {
-            logger.log(Level.ERROR, e.getMessage(), e);
-        }
-    }
+    private final Map<String, Class<?>> loadedClasses;
+    private final ClassPool pool;
+    private final ClassLoader parent;
+    private final ClassMap xletClassMap;
 
     /**
      * Creates a classloader for an Xlet
@@ -80,7 +68,6 @@ public final class XletClassLoader extends MainClassLoader {
             logger.log(Level.DEBUG, url.getPath());
         }
 
-
         this.pool = new ClassPool();
         this.parent = getClass().getClassLoader();
         this.loadedClasses = new HashMap<>();
@@ -98,8 +85,19 @@ public final class XletClassLoader extends MainClassLoader {
 //        try {
 //            loadClass("xjava.io.XFile");
 //        } catch (ClassNotFoundException e) {
-//            logger.log(Level.ERROR, e.getMessage(), e);
+//logger.log(Level.ERROR, e.getMessage(), e);
 //        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            URL url = new URL(args[0]);
+
+            logger.log(Level.DEBUG, "url=" + url);
+            logger.log(Level.DEBUG, url.getFile());
+        } catch (MalformedURLException e) {
+            logger.log(Level.ERROR, e.getMessage(), e);
+        }
     }
 
     @Override
@@ -145,7 +143,7 @@ public final class XletClassLoader extends MainClassLoader {
         } else if (newClass) {
             // it wasn't previously loaded
             this.loadedClasses.put(name, theClass);
-            logger.log(Level.DEBUG, "loaded class - " + name + ", " + this);
+logger.log(Level.DEBUG, "loaded class - " + name + ", " + this);
         }
         return theClass;
 
@@ -166,11 +164,11 @@ public final class XletClassLoader extends MainClassLoader {
 
         try {
 
-            logger.log(Level.DEBUG, "Loading Xlet class '" + name + "'.");
+logger.log(Level.DEBUG, "Loading Xlet class '" + name + "'.");
 
             CtClass cc = this.pool.get(name);
 
-            logger.log(Level.DEBUG, "CHANGING BYTECODE IN " + name);
+logger.log(Level.DEBUG, "CHANGING BYTECODE IN " + name);
             if (!this.xletClassMap.containsKey(name)) {
                 cc.replaceClassName(this.xletClassMap);
             }
@@ -182,15 +180,15 @@ public final class XletClassLoader extends MainClassLoader {
             // uncomment to see what the manipulation did
 //            CtMethod[] methods = cc.getMethods();
 //
-//            logger.log(Level.DEBUG, "methods in " + name + " ----------------------- ");
-//            logger.log(Level.DEBUG, "methods.length=" + methods.length);
+//logger.log(Level.DEBUG, "methods in " + name + " ----------------------- ");
+//logger.log(Level.DEBUG, "methods.length=" + methods.length);
 //            for (int i = 0; i < methods.length; i++) {
 //                String n = methods[i].getName();
 //                String n2 = methods[i].getSignature();
-//                logger.log(Level.DEBUG, "name:" + n);
-//                logger.log(Level.DEBUG, "sign:" + n2);
+//logger.log(Level.DEBUG, "name:" + n);
+//logger.log(Level.DEBUG, "sign:" + n2);
 //            }
-//            logger.log(Level.DEBUG, "end methods ----------------------- ");
+//logger.log(Level.DEBUG, "end methods ----------------------- ");
 
             byte[] b = cc.toBytecode();
 
@@ -213,7 +211,7 @@ public final class XletClassLoader extends MainClassLoader {
     @Override
     public URL getResource(String resource) {
         URL ret = null;
-        logger.log(Level.DEBUG, "Locating RESOURCE '" + resource + "'.");
+logger.log(Level.DEBUG, "Locating RESOURCE '" + resource + "'.");
         for (URL url : getURLs()) {
             Path path = Paths.get(url.getPath(), resource);
             logger.log(Level.DEBUG, "path: " + path);
@@ -226,7 +224,7 @@ public final class XletClassLoader extends MainClassLoader {
                 break;
             }
         }
-        logger.log(Level.DEBUG, ret == null ? "Resource was NOT FOUND." : "Resource was found.");
+logger.log(Level.DEBUG, ret == null ? "Resource was NOT FOUND." : "Resource was found.");
         return ret;
     }
 
@@ -242,10 +240,10 @@ public final class XletClassLoader extends MainClassLoader {
     @Override
     public InputStream getResourceAsStream(String name) {
         InputStream ret = null;
-        logger.log(Level.DEBUG, "Locating RESOURCE '" + name + "'.");
+logger.log(Level.DEBUG, "Locating RESOURCE '" + name + "'.");
         for (URL url : getURLs()) {
             Path path = Paths.get(url.getPath(), name);
-            logger.log(Level.DEBUG, "path: " + path);
+logger.log(Level.DEBUG, "path: " + path);
             if (Files.exists(path)) {
                 try {
                     ret = Files.newInputStream(path);
@@ -255,7 +253,7 @@ public final class XletClassLoader extends MainClassLoader {
                 break;
             }
         }
-        logger.log(Level.DEBUG, ret == null ? "Resource was NOT FOUND." : "Resource was found.");
+logger.log(Level.DEBUG, ret == null ? "Resource was NOT FOUND." : "Resource was found.");
         return ret;
     }
 }

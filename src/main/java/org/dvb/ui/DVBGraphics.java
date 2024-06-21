@@ -23,6 +23,10 @@ public abstract class DVBGraphics extends Graphics {
     protected DVBGraphics() {
     }
 
+    public static DVBGraphics getDVBGraphics(Graphics graphics) {
+        return new DVBGraphicsImpl(graphics);
+    }
+
     public abstract int[] getAvailableCompositeRules();
 
     public DVBColor getBestColorMatch(java.awt.Color c) {
@@ -32,22 +36,18 @@ public abstract class DVBGraphics extends Graphics {
     @Override
     public abstract java.awt.Color getColor();
 
+    @Override
+    public abstract void setColor(java.awt.Color c);
+
     public abstract DVBAlphaComposite getDVBComposite();
+
+    public abstract void setDVBComposite(DVBAlphaComposite comp) throws UnsupportedDrawingOperationException;
 
     public int getType() {
         return 0;
     }
 
-    @Override
-    public abstract void setColor(java.awt.Color c);
-
-    public abstract void setDVBComposite(DVBAlphaComposite comp) throws UnsupportedDrawingOperationException;
-
     public String toString() {
         return getClass().getName() + "[font=" + getFont() + ",color=" + getColor() + "]";
-    }
-
-    public static DVBGraphics getDVBGraphics(Graphics graphics) {
-        return new DVBGraphicsImpl(graphics);
     }
 }

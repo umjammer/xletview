@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class UserObjectImpl implements UserObject {
 
-    private Object object;
+    private final Object object;
     private String name;
     private File[] children;
     private boolean isRoot;
@@ -104,5 +104,4 @@ public class UserObjectImpl implements UserObject {
     public boolean isBranch() {
         return true;
     }
-
 }

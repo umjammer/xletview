@@ -21,15 +21,14 @@ import java.util.Date;
 public class SIMonitoringEvent extends java.util.EventObject {
 
     private SIDatabase source;
-    private byte objectType;
-    private int networkId;
-    private int bouquetId;
-    private int originalNetworkId;
-    private int transportStreamId;
-    private int serviceId;
-    private Date startTime;
-    private Date endTime;
-
+    private final byte objectType;
+    private final int networkId;
+    private final int bouquetId;
+    private final int originalNetworkId;
+    private final int transportStreamId;
+    private final int serviceId;
+    private final Date startTime;
+    private final Date endTime;
 
     public SIMonitoringEvent(SIDatabase source, byte objectType, int networkId, int bouquetId, int originalNetworkId, int transportStreamId, int serviceId, java.util.Date startTime, java.util.Date endTime) {
         super(source);

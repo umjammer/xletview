@@ -6,15 +6,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.lang.reflect.Field;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.lang.System.Logger;
 
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.ui.Img;
@@ -38,7 +36,7 @@ public class RemoteControl extends Container implements KeyListener {
 
     private String imgRoot;
 
-    private Map<String, RemoteButton> buttons;
+    private final Map<String, RemoteButton> buttons;
 
     private RemoteControl() {
         this.buttons = new HashMap<>();
@@ -49,6 +47,34 @@ public class RemoteControl extends Container implements KeyListener {
             THE_INSTANCE = new RemoteControl();
         }
         return THE_INSTANCE;
+    }
+
+    public static void main(String[] args) {
+        String s = "KeyEvent.VK_UP";
+        int i = KeyEvent.VK_0;
+        String[] ss = s.split("\\.");
+
+        getFieldValue(HRcEvent.class, ss[1]);
+    }
+
+    private static int getFieldValue(Class<HRcEvent> c, String fieldName) {
+        int result = -1000;
+        Field[] publicFields = c.getFields();
+        for (Field publicField : publicFields) {
+            if (publicField.getName().equals(fieldName)) {
+
+                Class<?> typeClass = publicField.getType();
+
+                try {
+                    result = publicField.getInt(c);
+                } catch (IllegalArgumentException | IllegalAccessException e) {
+                    logger.log(Level.ERROR, e.getMessage(), e);
+                }
+                String fieldType = typeClass.getName();
+//logger.log(Level.DEBUG, "FOUND - Name: " + fieldName + ", Type: " + fieldType + ", Value: " + result);
+            }
+        }
+        return result;
     }
 
     public void make(IXMLElement root) {
@@ -78,7 +104,6 @@ public class RemoteControl extends Container implements KeyListener {
         add(bgImg);
         //
     }
-
 
     private void resolveGroup(IXMLElement group, Container cont) {
         IXMLElement element = null;
@@ -117,7 +142,7 @@ public class RemoteControl extends Container implements KeyListener {
             try {
                 keyCode = Integer.parseInt(strKey);
             } catch (NumberFormatException e) {
-                //logger.log(Level.ERROR, e.getMessage(), e);
+//logger.log(Level.ERROR, e.getMessage(), e);
             }
 
             try {
@@ -159,7 +184,6 @@ public class RemoteControl extends Container implements KeyListener {
         return new Dimension(getWidth(), getHeight());
     }
 
-
     @Override
     public void paint(Graphics g) {
         Color bg = getBackground();
@@ -170,57 +194,29 @@ public class RemoteControl extends Container implements KeyListener {
         super.paint(g);
     }
 
-    public static void main(String[] args) {
-        String s = "KeyEvent.VK_UP";
-        int i = KeyEvent.VK_0;
-        String[] ss = s.split("\\.");
-
-        getFieldValue(HRcEvent.class, ss[1]);
-    }
-
-    private static int getFieldValue(Class<HRcEvent> c, String fieldName) {
-        int result = -1000;
-        Field[] publicFields = c.getFields();
-        for (Field publicField : publicFields) {
-            if (publicField.getName().equals(fieldName)) {
-
-                Class<?> typeClass = publicField.getType();
-
-                try {
-                    result = publicField.getInt(c);
-                } catch (IllegalArgumentException | IllegalAccessException e) {
-                    logger.log(Level.ERROR, e.getMessage(), e);
-                }
-                String fieldType = typeClass.getName();
-//                logger.log(Level.DEBUG, "FOUND - Name: " + fieldName + ", Type: " + fieldType + ", Value: " + result);
-            }
-        }
-        return result;
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
-//        logger.log(Level.DEBUG, this, "keyTyped " + e);
+//logger.log(Level.TRACE, this, "keyTyped " + e);
         fireEvent(e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-//        logger.log(Level.DEBUG, this, "keyPressed " + e);
+//logger.log(Level.TRACE, this, "keyPressed " + e);
         fireEvent(e);
     }
 
 
     @Override
     public void keyReleased(KeyEvent e) {
-//        logger.log(Level.DEBUG, this, "keyReleased " + e);
+//logger.log(Level.TRACE, this, "keyReleased " + e);
         fireEvent(e);
     }
 
     public void setPressed(int keyCode) {
-        logger.log(Level.DEBUG, "RemoteControl, keyCode=" + keyCode);
+logger.log(Level.DEBUG, "RemoteControl, keyCode=" + keyCode);
         RemoteButton obj = this.buttons.get(keyCode + "");
-        logger.log(Level.DEBUG, "RemoteControl, obj=" + obj);
+logger.log(Level.DEBUG, "RemoteControl, obj=" + obj);
         if (obj instanceof RemoteButton) {
             obj.setOn();
         }

@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  org.dvb.event;
+package org.dvb.event;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -33,9 +33,9 @@ public class EventManager implements ResourceServer {
 
     private static EventManager THE_INSTANCE;
 
-    private List<ListenerItem> listenerObjects;
-    private List<AwtListenerItem> awtListenerObjects;
-    private List<ResourceStatusListener> resourceStatusListeners;
+    private final List<ListenerItem> listenerObjects;
+    private final List<AwtListenerItem> awtListenerObjects;
+    private final List<ResourceStatusListener> resourceStatusListeners;
 
     private EventManager() {
         listenerObjects = new ArrayList<>();
@@ -111,7 +111,6 @@ public class EventManager implements ResourceServer {
         resourceStatusListeners.remove(listener);
     }
 
-
     /**
      * All key events are passed to this method that fires them
      *
@@ -141,7 +140,7 @@ public class EventManager implements ResourceServer {
             focusOwner = scene.getFocusOwner();
         }
         if (focusOwner != null) {
-            //logger.log(Level.DEBUG, this, "focusOwner = " + focusOwner);
+//logger.log(Level.DEBUG, this, "focusOwner = " + focusOwner);
 
 
             // awt event
@@ -152,11 +151,9 @@ public class EventManager implements ResourceServer {
                 } else if (keyEvent.getID() == KeyEvent.KEY_RELEASED) {
                     keyListener.keyReleased(new KeyEvent(focusOwner, KeyEvent.KEY_RELEASED, 0L, 0, keyCode, keyChar));
                 }
-
-
             }
         } else {
-            //logger.log(Level.DEBUG, this, "focus owner is null");
+//logger.log(Level.DEBUG, this, "focus owner is null");
         }
     }
 
@@ -168,15 +165,14 @@ public class EventManager implements ResourceServer {
         }
     }
 
-
     /*
      * Class that makes it easier to handle the listener/events-from-repository
      *
      * */
     private static class ListenerItem {
 
-        private UserEventListener listener;
-        private UserEvent[] events;
+        private final UserEventListener listener;
+        private final UserEvent[] events;
         private ResourceClient client;
 
         private ListenerItem(UserEventListener listener, UserEvent[] events, ResourceClient client) {
@@ -187,7 +183,7 @@ public class EventManager implements ResourceServer {
         private ListenerItem(UserEventListener listener, UserEvent[] events) {
             this.listener = listener;
             this.events = events;
-//            logger.log(Level.DEBUG, this, "events.length = " + events.length);
+//logger.log(Level.DEBUG, this, "events.length = " + events.length);
         }
 
         private UserEventListener getListener() {
@@ -205,8 +201,8 @@ public class EventManager implements ResourceServer {
 
     private static class AwtListenerItem {
 
-        private ResourceClient resourceClient;
-        private UserEvent[] events;
+        private final ResourceClient resourceClient;
+        private final UserEvent[] events;
 
         private AwtListenerItem(ResourceClient resourceClient, UserEvent[] events) {
             this.resourceClient = resourceClient;
@@ -222,13 +218,10 @@ public class EventManager implements ResourceServer {
         }
     }
 
-
 //    public void toString(){
 //        String s = "" +
 //        "EventManager: UserEventListeners=" + u
 //    }
-
-
 }
 
 

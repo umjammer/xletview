@@ -29,7 +29,7 @@ public class HSceneTemplate {
     public static final int SCENE_SCREEN_DIMENSION = 0x04;
     public static final int SCENE_SCREEN_LOCATION = 0x08;
 
-    private Map<?, ?> prefs;
+    private final Map<?, ?> prefs;
 
     public HSceneTemplate() {
         prefs = new HashMap<>();

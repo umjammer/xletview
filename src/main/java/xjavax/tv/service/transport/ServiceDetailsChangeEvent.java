@@ -35,8 +35,8 @@ public class ServiceDetailsChangeEvent extends TransportSIChangeEvent {
      * Constructs a <code>ServiceDetailsChangeEvent</code>.
      *
      * @param transport The Transport on which the change occurred.
-     * @param type The type of change that occurred.
-     * @param s The ServiceDetails that changed.
+     * @param type      The type of change that occurred.
+     * @param s         The ServiceDetails that changed.
      */
     public ServiceDetailsChangeEvent(Transport transport, SIChangeType type, ServiceDetails s) {
         super(transport, type, s);
@@ -52,5 +52,4 @@ public class ServiceDetailsChangeEvent extends TransportSIChangeEvent {
     public ServiceDetails getServiceDetails() {
         return (ServiceDetails) super.getSIElement();
     }
-
 }

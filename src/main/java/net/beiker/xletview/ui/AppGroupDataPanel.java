@@ -37,15 +37,15 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 
     public final static int NAME = 0;
 
-    private AppTreeWindow appWin;
+    private final AppTreeWindow appWin;
 
     private AppGroup group;
     private DefaultMutableTreeNode node;
 
-    private Container content;
-    private JTextField[] fields;
-    private JButton[] fieldButtons;
-    private JLabel[] fieldLabels;
+    private final Container content;
+    private final JTextField[] fields;
+    private final JButton[] fieldButtons;
+    private final JLabel[] fieldLabels;
 
     public AppGroupDataPanel(AppTreeWindow appWin) {
         this.appWin = appWin;
@@ -72,13 +72,11 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         rows[0].add(fields[NAME]);
         container.add(rows[0]);
 
-
         //content.add(BorderLayout.NORTH, container);
         inputs.add(container);
         content.add(BorderLayout.CENTER, inputs);
 
         add(content);
-
     }
 
 //    public AppGroupDataPanel() {
@@ -98,7 +96,6 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 //
 //    }
 
-
     /**
      * Saves the data for previous App and displays the data for the new one.
      *
@@ -116,14 +113,13 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
      */
     public void save() {
         if (this.group != null) {
-            //node.setUserObject(new IconData(null, null, group, group.getName()));
+//            node.setUserObject(new IconData(null, null, group, group.getName()));
             this.group.setName(fields[NAME].getText());
         }
     }
 
-
     public boolean isOk() {
-        //int option = JOptionPane.showConfirmDialog(this, "nu blev det fel", "Remove", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
+//        int option = JOptionPane.showConfirmDialog(this, "nu blev det fel", "Remove", JOptionPane.OK_OPTION, JOptionPane.WARNING_MESSAGE);
         String message = "The following field(s) can not be empty:\n";
         boolean ok = true;
         if (fields[NAME].getText().trim().isEmpty()) {
@@ -137,12 +133,10 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent arg0) {
-
     }
 
     @Override
     public void keyPressed(KeyEvent arg0) {
-
     }
 
     @Override
@@ -150,5 +144,4 @@ public class AppGroupDataPanel extends JPanel implements KeyListener {
         save();
         appWin.updateNodeText();
     }
-
 }

@@ -34,8 +34,20 @@ public class FileReader extends java.io.FileReader {
 //        return new java.io.FileReader(File.getVirtualRoot() + fileName);
 //    }
 
+    public FileReader(XFile f) throws FileNotFoundException {
+        super(FileSystem.getFile(f));
+    }
+
+    public FileReader(String fileName) throws FileNotFoundException {
+        super(FileSystem.getFile(fileName));
+    }
+
+    public FileReader(FileDescriptor fd) {
+        super(fd);
+    }
+
     public static java.io.FileReader create(xjava.io.XFile f) throws FileNotFoundException {
-        //return new java.io.FileInputStream(f);
+//        return new java.io.FileInputStream(f);
         return FileReader.create(f.getPath());
     }
 
@@ -52,21 +64,9 @@ public class FileReader extends java.io.FileReader {
 //            fis = new java.io.FileInputStream(File.getVirtualRoot() + fileName);
 //        } catch (FileNotFoundException e) {
 //            String s = e.getMessage();
-//            logger.log(Level.WARNING, s);
+//logger.log(Level.WARNING, s);
 //        }
 
         return result;
-    }
-
-    public FileReader(XFile f) throws FileNotFoundException {
-        super(FileSystem.getFile(f));
-    }
-
-    public FileReader(String fileName) throws FileNotFoundException {
-        super(FileSystem.getFile(fileName));
-    }
-
-    public FileReader(FileDescriptor fd) {
-        super(fd);
     }
 }

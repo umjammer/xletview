@@ -58,5 +58,4 @@ public class TVContainer {
         }
         return (java.awt.Container) ctx.getXletProperty("javax.tv.xlet.container");
     }
-
 }

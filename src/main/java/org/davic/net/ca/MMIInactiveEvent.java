@@ -25,5 +25,4 @@ public class MMIInactiveEvent extends CAEvent {
     public Object getSource() {
         return super.getSource();
     }
-
 }

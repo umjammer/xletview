@@ -27,7 +27,7 @@ import xjavax.tv.service.Service;
  */
 public final class PreferenceFilter extends ServiceFilter {
 
-    //following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private FavoriteServicesName filterValue;
 
     /**
@@ -35,11 +35,11 @@ public final class PreferenceFilter extends ServiceFilter {
      * for favorite services.
      *
      * @param preference A named user preference, obtained from the listPreferences() method, representing favorite Services to be included in a resulting service list.
-     * @throws java.lang.IllegalArgumentException - If the specified preference is not obtainable from the listPreferences() method.
+     * @throws java.lang.IllegalArgumentException If the specified preference is not obtainable from the listPreferences() method.
      * @see #listPreferences()
      */
     public PreferenceFilter(FavoriteServicesName preference) {
-        //TODO implement PreferenceFilter
+        // TODO implement PreferenceFilter
     }
 
     /**
@@ -50,7 +50,7 @@ public final class PreferenceFilter extends ServiceFilter {
      */
     public static FavoriteServicesName[] listPreferences() {
         return null;
-        //TODO implement listPreferences
+        // TODO implement listPreferences
     }
 
     /**
@@ -72,7 +72,6 @@ public final class PreferenceFilter extends ServiceFilter {
     @Override
     public boolean accept(Service service) {
         return false;
-        //TODO implement accept
+        // TODO implement accept
     }
-
 }

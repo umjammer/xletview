@@ -26,7 +26,7 @@ public class TVTimerWentOffEvent extends java.util.EventObject {
 
     // following variables are implicitly defined by getter- or
     // setter-methods:
-    private TVTimerSpec timerSpec;
+    private final TVTimerSpec timerSpec;
 
     /**
      * Creates a new TVTimerWentOffEvent with the specified timer and timer
@@ -48,5 +48,4 @@ public class TVTimerWentOffEvent extends java.util.EventObject {
     public TVTimerSpec getTimerSpec() {
         return this.timerSpec;
     }
-
 }

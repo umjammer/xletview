@@ -66,7 +66,7 @@ public class TVTimerSpec {
     private boolean repeat;
     private boolean regular;
     private long time;
-    private List<TVTimerWentOffListener> listeners;
+    private final List<TVTimerWentOffListener> listeners;
 
     /**
      * Creates a timer specification. It initially is absolute, non-repeating,
@@ -82,6 +82,15 @@ public class TVTimerSpec {
     }
 
     /**
+     * Checks if this specification is absolute.
+     *
+     * @return true if this specification is absolute; false if it is delayed.
+     */
+    public boolean isAbsolute() {
+        return absolute;
+    }
+
+    /**
      * Sets this specification to be absolute or delayed.
      *
      * @param absolute Flag to indicate that this specification is either absolute
@@ -93,12 +102,13 @@ public class TVTimerSpec {
     }
 
     /**
-     * Checks if this specification is absolute.
+     * Checks if this specification is repeating.
      *
-     * @return true if this specification is absolute; false if it is delayed.
+     * @return true if this specification is repeating; false if it is
+     * non-repeating.
      */
-    public boolean isAbsolute() {
-        return absolute;
+    public boolean isRepeat() {
+        return repeat;
     }
 
     /**
@@ -113,13 +123,13 @@ public class TVTimerSpec {
     }
 
     /**
-     * Checks if this specification is repeating.
+     * Checks if this specification is regular.
      *
-     * @return true if this specification is repeating; false if it is
-     * non-repeating.
+     * @return true if this specification is regular; false if it is
+     * non-regular.
      */
-    public boolean isRepeat() {
-        return repeat;
+    public boolean isRegular() {
+        return regular;
     }
 
     /**
@@ -134,13 +144,12 @@ public class TVTimerSpec {
     }
 
     /**
-     * Checks if this specification is regular.
+     * Returns the absolute or delay time when this specification will go off.
      *
-     * @return true if this specification is regular; false if it is
-     * non-regular.
+     * @return The time when this specification will go off.
      */
-    public boolean isRegular() {
-        return regular;
+    public long getTime() {
+        return this.time;
     }
 
     /**
@@ -152,15 +161,6 @@ public class TVTimerSpec {
      */
     public void setTime(long time) {
         this.time = time;
-    }
-
-    /**
-     * Returns the absolute or delay time when this specification will go off.
-     *
-     * @return The time when this specification will go off.
-     */
-    public long getTime() {
-        return this.time;
     }
 
     /**

@@ -17,7 +17,7 @@ package org.davic.net.ca;
  */
 public class CAMessage {
 
-    private byte[] data;
+    private final byte[] data;
 
     public CAMessage(byte[] data) {
         this.data = data;

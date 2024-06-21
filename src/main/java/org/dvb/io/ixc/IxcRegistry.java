@@ -59,18 +59,6 @@ import xjavax.tv.xlet.XletContext;
  */
 public class IxcRegistry {
 
-    private static class RegistryEntry {
-
-        public RegistryEntry(Remote obj, boolean external) {
-            this.object = obj;
-            this.external = external;
-        }
-
-        Remote object;
-
-        boolean external;
-    }
-
     private static final Map<String, RegistryEntry> registry = new HashMap<>();
 
     private IxcRegistry() {
@@ -93,8 +81,7 @@ public class IxcRegistry {
             throw new NotBoundException();
     }
 
-    public static void bind(xjavax.tv.xlet.XletContext xc, String name,
-                            Remote obj) throws AlreadyBoundException {
+    public static void bind(xjavax.tv.xlet.XletContext xc, String name, Remote obj) throws AlreadyBoundException {
         bind(xc, name, obj, true);
     }
 
@@ -111,13 +98,11 @@ public class IxcRegistry {
         }
     }
 
-    public static void rebind(xjavax.tv.xlet.XletContext xc, String name,
-                              Remote obj) {
+    public static void rebind(xjavax.tv.xlet.XletContext xc, String name, Remote obj) {
         rebind(xc, name, obj, true);
     }
 
-    public static void unbind(xjavax.tv.xlet.XletContext xc, String name)
-            throws NotBoundException {
+    public static void unbind(xjavax.tv.xlet.XletContext xc, String name) throws NotBoundException {
         AppID thisAppId = getAppID(xc);
         name = "/" + Integer.toHexString(thisAppId.getOID()) + "/"
                 + Integer.toHexString(thisAppId.getAID()) + "/" + name;
@@ -127,8 +112,7 @@ public class IxcRegistry {
         }
     }
 
-    public static void rebind(xjavax.tv.xlet.XletContext xc, String name,
-                              Remote obj, boolean external) {
+    public static void rebind(xjavax.tv.xlet.XletContext xc, String name, Remote obj, boolean external) {
         AppID thisAppId = getAppID(xc);
         name = "/" + Integer.toHexString(thisAppId.getOID()) + "/"
                 + Integer.toHexString(thisAppId.getAID()) + "/" + name;
@@ -148,10 +132,8 @@ public class IxcRegistry {
 
     private static AppID getAppID(XletContext xc) {
         try {
-            int orgid = Integer.parseInt((String) xc
-                    .getXletProperty("dvb.org.id"), 16);
-            int appid = Integer.parseInt((String) xc
-                    .getXletProperty("dvb.app.id"), 16);
+            int orgid = Integer.parseInt((String) xc.getXletProperty("dvb.org.id"), 16);
+            int appid = Integer.parseInt((String) xc.getXletProperty("dvb.app.id"), 16);
             return new AppID(orgid, appid);
         } catch (NumberFormatException e) {
             return null;
@@ -167,6 +149,17 @@ public class IxcRegistry {
             return new AppID(orgid, appid);
         } catch (NumberFormatException e) {
             return null;
+        }
+    }
+
+    private static class RegistryEntry {
+
+        final Remote object;
+        final boolean external;
+
+        public RegistryEntry(Remote obj, boolean external) {
+            this.object = obj;
+            this.external = external;
         }
     }
 }

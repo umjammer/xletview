@@ -24,6 +24,5 @@ public class CAException extends java.lang.Exception {
     public CAException(String reason) {
         super(reason);
     }
-
 }
 

@@ -31,5 +31,4 @@ public interface ServiceProviderInformation {
      * @return A string representing the service provider's name. It returns an empty string if no provider information is available.
      */
     java.lang.String getProviderName();
-
 }

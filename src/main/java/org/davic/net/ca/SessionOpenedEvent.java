@@ -25,5 +25,4 @@ public class SessionOpenedEvent extends MessageEvent {
     public Object getSource() {
         return super.getSource();
     }
-
 }

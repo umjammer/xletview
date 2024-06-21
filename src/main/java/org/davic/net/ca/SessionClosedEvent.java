@@ -25,5 +25,4 @@ public class SessionClosedEvent extends MessageEvent {
     public Object getSource() {
         return super.getSource();
     }
-
 }

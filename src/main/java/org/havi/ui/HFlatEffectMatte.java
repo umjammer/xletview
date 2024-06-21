@@ -20,11 +20,11 @@ public class HFlatEffectMatte implements HMatte, HAnimateEffect {
     public HFlatEffectMatte(float[] data) {
     }
 
-    public void setMatteData(float[] data) {
-    }
-
     public float[] getMatteData() {
         return (null);
+    }
+
+    public void setMatteData(float[] data) {
     }
 
     @Override
@@ -41,16 +41,12 @@ public class HFlatEffectMatte implements HMatte, HAnimateEffect {
     }
 
     @Override
-    public void setPosition(int position) {
-    }
-
-    @Override
     public int getPosition() {
         return (0);
     }
 
     @Override
-    public void setRepeatCount(int count) {
+    public void setPosition(int position) {
     }
 
     @Override
@@ -59,7 +55,7 @@ public class HFlatEffectMatte implements HMatte, HAnimateEffect {
     }
 
     @Override
-    public void setDelay(int count) {
+    public void setRepeatCount(int count) {
     }
 
     @Override
@@ -68,11 +64,15 @@ public class HFlatEffectMatte implements HMatte, HAnimateEffect {
     }
 
     @Override
-    public void setPlayMode(int mode) {
+    public void setDelay(int count) {
     }
 
     @Override
     public int getPlayMode() {
         return (0);
+    }
+
+    @Override
+    public void setPlayMode(int mode) {
     }
 }

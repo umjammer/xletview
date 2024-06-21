@@ -34,11 +34,11 @@ public interface BouquetCollection extends Transport {
      * <p>
      * This method delivers its results asynchronously.
      *
-     * @param locator A Locator referencing the Bouquet of interest.
+     * @param locator   A Locator referencing the Bouquet of interest.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid bouquet.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid bouquet.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see Bouquet, ReadPermission
      */
     SIRequest retrieveBouquet(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
@@ -95,5 +95,4 @@ public interface BouquetCollection extends Transport {
      * @param listener A previously registered listener.
      */
     void removeBouquetChangeListener(BouquetChangeListener listener);
-
 }

@@ -33,7 +33,7 @@ public abstract class MediaSelectEvent extends java.util.EventObject {
      * Creates a new <code>MediaSelectEvent</code>.
      *
      * @param controller The Controller that generated this event.
-     * @param selection The Locator instances on which selection was attempted.
+     * @param selection  The Locator instances on which selection was attempted.
      */
     public MediaSelectEvent(javax.media.Controller controller, Locator[] selection) {
         super(controller);
@@ -56,5 +56,4 @@ public abstract class MediaSelectEvent extends java.util.EventObject {
     public Locator[] getSelection() {
         return this.selection;
     }
-
 }

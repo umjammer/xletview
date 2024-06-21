@@ -30,11 +30,10 @@ import static java.lang.System.getLogger;
  * @author Martin Sveden
  */
 public class XFile extends java.io.File {
-    /*
-     * The reason why this class is not called File is because there are some classes that
-     * uses both java.io.File and this one and if both were called File it might create
-     * unnecessary confusion.
-     */
+
+    // The reason why this class is not called File is because there are some classes that
+    // uses both java.io.File and this one and if both were called File it might create
+    // unnecessary confusion.
 
     /** Debugging facility */
     private static final Logger logger = getLogger(XFile.class.getName());
@@ -48,8 +47,6 @@ public class XFile extends java.io.File {
     private String absolutePath;
 
     private String parentPath;
-
-    // constructors -->
 
     /**
      * Overrides constructor in java.io.File
@@ -83,7 +80,21 @@ public class XFile extends java.io.File {
         // TODO fix
     }
 
-    // constructors end //
+    public static java.io.File[] listRoots() {
+        return FileSystem.listRoots();
+    }
+
+    public static java.io.File createTempFile(String prefix, String suffix, java.io.File directory) throws IOException {
+logger.log(Level.DEBUG, "createTempFile");
+        return null;
+    }
+
+    // java.io.File stuff -->
+
+    public static java.io.File createTempFile(String prefix, String suffix) throws IOException {
+logger.log(Level.DEBUG, "createTempFile");
+        return null;
+    }
 
     private void init(java.io.File parent, String path) {
         if (parent != null) {
@@ -102,8 +113,6 @@ public class XFile extends java.io.File {
         }
     }
 
-    // java.io.File stuff -->
-
     /**
      * The path is the same path that was used creating the file but
      * with the slashes fixed in a platform dependent way.
@@ -115,14 +124,13 @@ public class XFile extends java.io.File {
 
     @Override
     public String getAbsolutePath() {
-//        logger.log(Level.DEBUG, "getAbsolutePath");
+//logger.log(Level.DEBUG, "getAbsolutePath");
         return FileSystem.resolveAbsolutePath(getParent(), getName());
     }
 
     @Override
     public boolean exists() {
         return FileSystem.exists(this);
-
     }
 
     /**
@@ -145,10 +153,10 @@ public class XFile extends java.io.File {
     @Override
     public String getParent() {
         String result = null;
-        logger.log(Level.DEBUG, "getParent(), start");
+logger.log(Level.DEBUG, "getParent(), start");
 
         int index = this.path.lastIndexOf(FileSystem.separatorChar);
-        logger.log(Level.DEBUG, "index=" + index + ", path=" + this.path + " separatorChar = " + FileSystem.separatorChar);
+logger.log(Level.DEBUG, "index=" + index + ", path=" + this.path + " separatorChar = " + FileSystem.separatorChar);
         if (index > 1) {
             result = this.path.substring(0, index);
         }
@@ -158,7 +166,7 @@ public class XFile extends java.io.File {
 //        } else {
 //            result = parentPath;
 //        }
-        logger.log(Level.DEBUG, "getParent(), result=" + result);
+logger.log(Level.DEBUG, "getParent(), result=" + result);
         return result;
     }
 
@@ -169,7 +177,7 @@ public class XFile extends java.io.File {
 
     @Override
     public boolean isAbsolute() {
-        logger.log(Level.DEBUG, "isAbsolute");
+logger.log(Level.DEBUG, "isAbsolute");
         return false;
     }
 
@@ -235,13 +243,13 @@ public class XFile extends java.io.File {
 
     @Override
     public boolean createNewFile() throws IOException {
-        logger.log(Level.DEBUG, "createNewFile");
+logger.log(Level.DEBUG, "createNewFile");
         return false;
     }
 
     @Override
     public boolean delete() {
-        logger.log(Level.DEBUG, "delete");
+logger.log(Level.DEBUG, "delete");
         return false;
     }
 
@@ -257,90 +265,76 @@ public class XFile extends java.io.File {
 
     @Override
     public String[] list(FilenameFilter filter) {
-        logger.log(Level.DEBUG, "list");
+logger.log(Level.DEBUG, "list");
         return null;
     }
 
     @Override
     public java.io.File[] listFiles() {
-        logger.log(Level.DEBUG, "listFiles");
+logger.log(Level.DEBUG, "listFiles");
         return null;
     }
 
     @Override
     public java.io.File[] listFiles(FilenameFilter filter) {
-        logger.log(Level.DEBUG, "listFiles");
+logger.log(Level.DEBUG, "listFiles");
         return null;
     }
 
     @Override
     public java.io.File[] listFiles(FileFilter filter) {
-        logger.log(Level.DEBUG, "listFiles");
+logger.log(Level.DEBUG, "listFiles");
         return null;
     }
 
     @Override
     public boolean mkdir() {
-        logger.log(Level.DEBUG, "mkdir");
+logger.log(Level.DEBUG, "mkdir");
         return false;
     }
 
     @Override
     public boolean mkdirs() {
-        logger.log(Level.DEBUG, "mkdirs");
+logger.log(Level.DEBUG, "mkdirs");
         return false;
     }
 
     @Override
     public boolean renameTo(java.io.File dest) {
-        logger.log(Level.DEBUG, "renameTo");
+logger.log(Level.DEBUG, "renameTo");
         return false;
     }
 
     @Override
     public boolean setLastModified(long time) {
-        logger.log(Level.DEBUG, "setLastModified");
+logger.log(Level.DEBUG, "setLastModified");
         return false;
     }
 
     @Override
     public boolean setReadOnly() {
-        logger.log(Level.DEBUG, "setReadOnly");
+logger.log(Level.DEBUG, "setReadOnly");
         return false;
-    }
-
-    public static java.io.File[] listRoots() {
-        return FileSystem.listRoots();
-    }
-
-    public static java.io.File createTempFile(String prefix, String suffix, java.io.File directory) throws IOException {
-        logger.log(Level.DEBUG, "createTempFile");
-        return null;
-    }
-
-    public static java.io.File createTempFile(String prefix, String suffix) throws IOException {
-        logger.log(Level.DEBUG, "createTempFile");
-        return null;
     }
 
     @Override
     public int compareTo(File o) {
-        logger.log(Level.DEBUG, "compareTo");
+logger.log(Level.DEBUG, "compareTo");
         return 0;
     }
 
     public boolean equals(Object obj) {
-        logger.log(Level.DEBUG, "equals");
+logger.log(Level.DEBUG, "equals");
         return false;
     }
 
     public int hashCode() {
-        logger.log(Level.DEBUG, "hashCode");
+logger.log(Level.DEBUG, "hashCode");
         return 0;
     }
 
     public String toString() {
-        logger.log(Level.DEBUG, "toString");
+logger.log(Level.DEBUG, "toString");
         return null;
     }
 }

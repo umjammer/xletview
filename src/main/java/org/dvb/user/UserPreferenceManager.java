@@ -34,9 +34,6 @@ public class UserPreferenceManager {
     private static final Logger logger = getLogger(UserPreferenceManager.class.getName());
 
     private static final Map<String, String[]> prefs;
-
-    private static UserPreferenceManager THE_INSTANCE;
-
     private static final String USER_LANGUAGE = "User Language";
     private static final String PARENTAL_RATING = "Parental Rating";
     private static final String USERNAME = "User Name";
@@ -44,18 +41,14 @@ public class UserPreferenceManager {
     private static final String EMAIL = "User @";
     private static final String COUNTRYCODE = "Country Code";
     private static final String FONTSIZE = "Default Font Size";
-
     private static final String settingsPath = "config/user.preference";
-
-    private List<UserPreferenceChangeListener> listeners;
+    private static UserPreferenceManager THE_INSTANCE;
 
     static {
         prefs = new HashMap<>();
     }
 
-    static boolean isValidPrefName(String name) {
-        return prefs.containsKey(name);
-    }
+    private final List<UserPreferenceChangeListener> listeners;
 
     private UserPreferenceManager() {
         listeners = new ArrayList<>();
@@ -89,6 +82,10 @@ public class UserPreferenceManager {
 
         string = props.getProperty("font.size");
         prefs.put(FONTSIZE, getPrefArr(string));
+    }
+
+    static boolean isValidPrefName(String name) {
+        return prefs.containsKey(name);
     }
 
     private static String[] getPrefArr(String s) {

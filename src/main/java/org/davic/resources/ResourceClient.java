@@ -18,6 +18,5 @@ public interface ResourceClient {
     void release(ResourceProxy proxy);
 
     void notifyRelease(ResourceProxy proxy);
-
 }
 

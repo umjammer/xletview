@@ -24,5 +24,4 @@ public class ResourceException extends java.lang.Exception {
     public ResourceException(String s) {
         super(s);
     }
-
 }

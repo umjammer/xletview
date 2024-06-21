@@ -133,5 +133,4 @@ public class DVBBufferedImage extends java.awt.Image {
     public java.awt.Image getScaledInstance(int width, int height, int hints) {
         return bimg == null ? null : bimg.getScaledInstance(width, height, hints);
     }
-
 }

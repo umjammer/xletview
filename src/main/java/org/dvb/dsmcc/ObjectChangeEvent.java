@@ -17,7 +17,7 @@ package org.dvb.dsmcc;
  */
 public class ObjectChangeEvent extends java.util.EventObject {
 
-    private int versionNumber;
+    private final int versionNumber;
 
     public ObjectChangeEvent(DSMCCObject source, int versionNumber) {
         super(source);

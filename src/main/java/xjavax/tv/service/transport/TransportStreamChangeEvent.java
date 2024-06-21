@@ -34,8 +34,8 @@ public class TransportStreamChangeEvent extends TransportSIChangeEvent {
      * Constructs a <code>TransportStreamChangeEvent</code>.
      *
      * @param collection The transport stream collection in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param ts The TransportStream that changed.
+     * @param type       The type of change that occurred.
+     * @param ts         The TransportStream that changed.
      */
     public TransportStreamChangeEvent(TransportStreamCollection collection, SIChangeType type, TransportStream ts) {
         super(collection, type, ts);
@@ -62,5 +62,4 @@ public class TransportStreamChangeEvent extends TransportSIChangeEvent {
     public TransportStream getTransportStream() {
         return (TransportStream) super.getSIElement();
     }
-
 }

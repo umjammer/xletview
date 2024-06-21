@@ -23,11 +23,11 @@ public class HRangeValue extends HRange implements HAdjustmentValue {
     public HRangeValue(int orientation, int minimum, int maximum, int value) {
     }
 
-    public static void setDefaultLook(HRangeLook look) {
-    }
-
     public static HRangeLook getDefaultLook() {
         return (null);
+    }
+
+    public static void setDefaultLook(HRangeLook look) {
     }
 
     @Override
@@ -49,21 +49,21 @@ public class HRangeValue extends HRange implements HAdjustmentValue {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return (null);
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return (null);
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
     }
 
     @Override
@@ -85,21 +85,21 @@ public class HRangeValue extends HRange implements HAdjustmentValue {
     }
 
     @Override
-    public void setUnitIncrement(int increment) {
-    }
-
-    @Override
     public int getUnitIncrement() {
         return (1);
     }
 
     @Override
-    public void setBlockIncrement(int increment) {
+    public void setUnitIncrement(int increment) {
     }
 
     @Override
     public int getBlockIncrement() {
         return (1);
+    }
+
+    @Override
+    public void setBlockIncrement(int increment) {
     }
 
     @Override
@@ -111,12 +111,12 @@ public class HRangeValue extends HRange implements HAdjustmentValue {
     }
 
     @Override
-    public void setAdjustmentSound(HSound sound) {
+    public HSound getAdjustmentSound() {
+        return (null);
     }
 
     @Override
-    public HSound getAdjustmentSound() {
-        return (null);
+    public void setAdjustmentSound(HSound sound) {
     }
 
     @Override

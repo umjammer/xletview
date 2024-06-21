@@ -31,9 +31,4 @@ public interface HState {
 
     int ALL_STATES = 0x07; // 7
     int LAST_STATE = 0x87; // 135
-
-
 }
-
-
-

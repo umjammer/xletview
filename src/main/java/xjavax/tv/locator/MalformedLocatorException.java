@@ -41,5 +41,4 @@ public class MalformedLocatorException extends java.lang.Exception {
     public MalformedLocatorException(String reason) {
         super(reason);
     }
-
 }

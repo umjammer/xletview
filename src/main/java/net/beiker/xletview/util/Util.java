@@ -23,11 +23,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.lang.System.Logger;
 
 import static java.lang.System.getLogger;
 
@@ -43,7 +43,6 @@ public class Util {
         s = s.replace('/', File.separatorChar);
         return s;
     }
-
 
     public static Frame getParentFrame(Component component) {
         Frame frame;
@@ -135,7 +134,6 @@ public class Util {
     public static Image loadImage(String name, Component component) {
         Image image = null;
 
-
         URL url = null;
         try {
             url = new URL(name);
@@ -143,33 +141,31 @@ public class Util {
 
             // it's not very interesting to print this exception
 
-//            e1.printStackTrace();
-//            System.err.println(name + " was not a java.net.URL");
+//logger.log(Level.TRACE, name + " was not a java.net.URL", e1);
         }
 
         MediaTracker mediatracker = new MediaTracker(component);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
 
-
-//        log.print(url.toString());
+//logger.log(Level.TRACE, url.toString());
         if (url == null) {
             image = toolkit.getImage(name);
-            logger.log(Level.DEBUG, "loading image by string - " + name);
+logger.log(Level.DEBUG, "loading image by string - " + name);
 
             java.io.File f = new java.io.File(name);
             if (!f.exists()) {
-                logger.log(Level.WARNING, name + " was not found + " + f.getAbsolutePath());
+logger.log(Level.WARNING, name + " was not found + " + f.getAbsolutePath());
             }
         } else {
             image = toolkit.getImage(url);
-            logger.log(Level.DEBUG, "loading image by URL - " + url);
+logger.log(Level.DEBUG, "loading image by URL - " + url);
         }
 
         mediatracker.addImage(image, 0);
         try {
             mediatracker.waitForID(0);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.ERROR, ex.getMessage(), ex);
         }
 
         return image;
@@ -185,10 +181,9 @@ public class Util {
 
         URL url = theClass.getClassLoader().getResource(path);
 
-        logger.log(Level.DEBUG, url != null ? "URL found for '" + path + "': it's '" + url + "'." : "Could not find URL for '" + path + "'.");
+logger.log(Level.DEBUG, url != null ? "URL found for '" + path + "': it's '" + url + "'." : "Could not find URL for '" + path + "'.");
 
         if (url == null) {
-
             throw new RuntimeException("the file " + path + " does not exist in the classpath");
         } else {
             return url;

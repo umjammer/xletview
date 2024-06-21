@@ -14,15 +14,15 @@ package org.dvb.application;
 
 public class AppID {
 
+    public AppID(int oid, int aid) {
+    }
+
     public int getOID() {
         return 1;
     }
 
     public int getAID() {
         return 1;
-    }
-
-    public AppID(int oid, int aid) {
     }
 
     public String toString() {
@@ -36,5 +36,4 @@ public class AppID {
     public int hashCode() {
         return 0;
     }
-
 }

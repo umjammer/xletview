@@ -31,5 +31,4 @@ public interface ProgramEventDescription extends SIRetrievable {
      * @return A textual description of the ProgramEvent, or an empty string if no description is available.
      */
     java.lang.String getProgramEventDescription();
-
 }

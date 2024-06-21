@@ -33,9 +33,15 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
 
     private static AWTVideoSizeControlImpl THE_INSTANCE;
 
-    private AWTVideoSize defaultSize;
+    private final AWTVideoSize defaultSize;
     private AWTVideoSize currentSize;
     private ScreenContainer tv;
+
+    private AWTVideoSizeControlImpl() {
+logger.log(Level.DEBUG, "---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
+        defaultSize = new AWTVideoSize(new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT), new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT));
+        currentSize = defaultSize;
+    }
 
     public static AWTVideoSizeControlImpl getInstance() {
         if (THE_INSTANCE == null) {
@@ -43,13 +49,6 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
         }
         return THE_INSTANCE;
     }
-
-    private AWTVideoSizeControlImpl() {
-        logger.log(Level.DEBUG, "---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
-        defaultSize = new AWTVideoSize(new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT), new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT));
-        currentSize = defaultSize;
-    }
-
 
     @Override
     public AWTVideoSize checkSize(AWTVideoSize awtvideosize) {
@@ -77,7 +76,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
     public boolean setSize(AWTVideoSize awtvideosize) {
         currentSize = awtvideosize;
 
-        logger.log(Level.DEBUG, "setSize");
+logger.log(Level.DEBUG, "setSize");
         MediaPlayer.getInstance().setSize(awtvideosize);
         return true;
     }
@@ -86,5 +85,4 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
     public Component getControlComponent() {
         return null;
     }
-
 }

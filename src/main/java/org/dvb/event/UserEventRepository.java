@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  org.dvb.event;
+package org.dvb.event;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -24,8 +24,7 @@ import org.havi.ui.event.HRcEvent;
  */
 public class UserEventRepository extends RepositoryDescriptor {
 
-
-    private List<UserEvent> userEvents;
+    private final List<UserEvent> userEvents;
 
     public UserEventRepository(String name) {
         super(name, null);
@@ -38,7 +37,7 @@ public class UserEventRepository extends RepositoryDescriptor {
      *  and type(KeyEvent.KeyPressed) we only check the code.
      * */
     public void addUserEvent(UserEvent event) {
-        //logger.log(Level.DEBUG, this, "event code = " + event.getCode());
+//logger.log(Level.DEBUG, this, "event code = " + event.getCode());
         for (UserEvent userEvent : userEvents) {
             UserEvent ue = userEvent;
             if (ue.getCode() == event.getCode()) {
@@ -133,13 +132,12 @@ public class UserEventRepository extends RepositoryDescriptor {
         removeKey(KeyEvent.VK_RIGHT);
     }
 
-    /* for making it simpler*/
+    /** for making it simpler */
     private void addKeyCode(int keyCode) {
-        //logger.log(Level.DEBUG, this, "addKeyCode = " + keyCode);
+//logger.log(Level.DEBUG, this, "addKeyCode = " + keyCode);
         UserEvent ue = new UserEvent(this, UserEvent.UEF_KEY_EVENT, KeyEvent.KEY_PRESSED, keyCode, KeyEvent.CHAR_UNDEFINED, -1);
         userEvents.add(ue);
     }
-
 }
 
 

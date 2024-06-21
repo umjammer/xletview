@@ -41,13 +41,12 @@ import xjavax.tv.service.SIChangeType;
  */
 public class ProgramScheduleEvent extends SIChangeEvent {
 
-
     /**
      * Constructs a <code>ProgramScheduleEvent</code>.
      *
      * @param schedule The schedule in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param e The ProgramEvent that changed.
+     * @param type     The type of change that occurred.
+     * @param e        The ProgramEvent that changed.
      */
     public ProgramScheduleEvent(ProgramSchedule schedule, SIChangeType type, ProgramEvent e) {
         super(schedule, type, e);
@@ -80,5 +79,4 @@ public class ProgramScheduleEvent extends SIChangeEvent {
     public ProgramEvent getProgramEvent() {
         return (ProgramEvent) super.getSIElement();
     }
-
 }

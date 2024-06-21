@@ -20,7 +20,7 @@ import org.davic.net.Locator;
  */
 public class ServiceXFRException extends DSMCCException {
 
-    private ServiceXFRReference ref;
+    private final ServiceXFRReference ref;
 
     public ServiceXFRException(Locator service, int carouselId, String pathName) {
         ref = new ServiceXFRReference(service, carouselId, pathName);

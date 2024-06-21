@@ -24,6 +24,5 @@ public class IncorrectLocatorException extends NetworkInterfaceException {
     public IncorrectLocatorException(String reason) {
         super(reason);
     }
-
 }
 

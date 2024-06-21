@@ -56,5 +56,4 @@ public class CAModuleManager implements ResourceServer {
     @Override
     public void removeResourceStatusEventListener(ResourceStatusListener l) {
     }
-
 }

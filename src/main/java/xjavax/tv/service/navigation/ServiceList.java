@@ -53,7 +53,7 @@ public interface ServiceList {
      * order by service number.
      *
      * @return A ServiceList sorted by service number.
-     * @throws SortNotAvailableException - If any of the Service objects in this ServiceList do not implement the ServiceNumber interface.
+     * @throws SortNotAvailableException If any of the Service objects in this ServiceList do not implement the ServiceNumber interface.
      * @see ServiceNumber
      */
     ServiceList sortByNumber() throws SortNotAvailableException;
@@ -64,7 +64,7 @@ public interface ServiceList {
      *
      * @param locator Specifies the Service to be searched for.
      * @return The Service corresponding to locator, or null if the Service is not a member of this list.
-     * @throws InvalidLocatorException - If locator does not reference a valid Service.
+     * @throws InvalidLocatorException If locator does not reference a valid Service.
      */
     Service findService(Locator locator) throws InvalidLocatorException;
 
@@ -126,7 +126,7 @@ public interface ServiceList {
      *
      * @param index A position in the ServiceList.
      * @return The Service at the specified index.
-     * @throws java.lang.IndexOutOfBoundsException - If index index > size()-1.
+     * @throws java.lang.IndexOutOfBoundsException If index index > size()-1.
      */
     Service getService(int index);
 
@@ -155,5 +155,4 @@ public interface ServiceList {
      * @see #hashCode in class java.lang.Object
      */
     int hashCode();
-
 }

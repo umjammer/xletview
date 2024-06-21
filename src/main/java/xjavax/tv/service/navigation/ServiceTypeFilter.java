@@ -28,7 +28,7 @@ import xjavax.tv.service.ServiceType;
  */
 public final class ServiceTypeFilter extends ServiceFilter {
 
-    //following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private ServiceType filterValue;
 
     /**
@@ -37,7 +37,7 @@ public final class ServiceTypeFilter extends ServiceFilter {
      * @param type A ServiceType object indicating the type of services to be included in a resulting service list.
      */
     public ServiceTypeFilter(ServiceType type) {
-        //TODO implement ServiceTypeFilter
+        // TODO implement ServiceTypeFilter
     }
 
     /**
@@ -59,7 +59,6 @@ public final class ServiceTypeFilter extends ServiceFilter {
     @Override
     public boolean accept(Service service) {
         return false;
-        //TODO implement accept
+        // TODO implement accept
     }
-
 }

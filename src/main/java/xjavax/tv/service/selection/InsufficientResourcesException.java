@@ -40,5 +40,4 @@ public class InsufficientResourcesException extends ServiceContextException {
     public InsufficientResourcesException(String s) {
         super(s);
     }
-
 }

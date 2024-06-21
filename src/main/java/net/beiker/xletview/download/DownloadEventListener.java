@@ -17,6 +17,4 @@ package net.beiker.xletview.download;
 public interface DownloadEventListener {
 
     void downloadUpdate(DownloadEvent downloader);
-
-
 }

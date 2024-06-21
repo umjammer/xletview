@@ -23,25 +23,18 @@ import java.util.Properties;
  */
 public class System {
 
-    /** Don't let anyone instantiate this class */
-    private System() {
-    }
-
     /*
      * Has to be public like in java.lang.System
      */
     public static Properties props;
-
     /**
      *
      */
     public static InputStream in = null;
-
     /**
      *
      */
     public static PrintStream out = null;
-
     /**
      *
      */
@@ -49,6 +42,10 @@ public class System {
 
     static {
         initSystem();
+    }
+
+    /** Don't let anyone instantiate this class */
+    private System() {
     }
 
     /**
@@ -59,39 +56,31 @@ public class System {
         initProperties(props);
         setIn(java.lang.System.in);
 
-
-        /*try {
-            OutputRedirector or = new OutputRedirector(new OutputServer(9999, System.out));
-            PrintStream ps = new PrintStream(or);
-            //setOut(ps);
-            //setErr(ps);
-        }
-        catch (IOException e) {
-
-            logger.log(Level.ERROR, e.getMessage(), e);
-        }*/
+//        try {
+//            OutputRedirector or = new OutputRedirector(new OutputServer(9999, System.out));
+//            PrintStream ps = new PrintStream(or);
+////            setOut(ps);
+////            setErr(ps);
+//        } catch (IOException e) {
+////logger.log(Level.ERROR, e.getMessage(), e);
+//        }
 
         setOut(java.lang.System.out);
         setErr(java.lang.System.err);
 
-        /*
-         Uncomment to send the Xlet's output to a file
-        try {
-            File logFile = new File("application_out.txt");
-            logFile.createNewFile();
-            Log log = new Log(new File("application_out.txt"));
-            PrintStream out = new PrintStream(log);
-            setOut(out);
-            setErr(out);
-        }
-        catch (IOException e) {
-          setOut(java.lang.System.out);
-          setErr(java.lang.System.err);
-            logger.log(Level.ERROR, e.getMessage(), e);
-        }
-        */
-
-
+//        Uncomment to send the Xlet 's output to a file
+//        try {
+//            File logFile = new File("application_out.txt");
+//logFile.createNewFile();
+//            Log log = new Log(new File("application_out.txt"));
+//            PrintStream out = new PrintStream(log);
+//            setOut(out);
+//            setErr(out);
+//        } catch (IOException e) {
+//            setOut(java.lang.System.out);
+//            setErr(java.lang.System.err);
+//logger.log(Level.ERROR, e.getMessage(), e);
+//        }
     }
 
     /**
@@ -150,8 +139,6 @@ public class System {
      * <dt>user.dir     <dd>User's current working directory
      * </dl>
      */
-
-
     private static Properties initProperties(Properties props) {
         Properties real = java.lang.System.getProperties();
         props.setProperty("java.version", real.getProperty("java.version"));
@@ -177,7 +164,7 @@ public class System {
         props.setProperty("user.name", real.getProperty("user.name"));
         props.setProperty("user.home", real.getProperty("user.home"));
         props.setProperty("user.dir", real.getProperty("user.dir"));
-        //props.list(java.lang.System.out);
+//        props.list(java.lang.System.out);
         return props;
     }
 
@@ -227,16 +214,16 @@ public class System {
         throw new Error("getenv no longer supported, use properties and -D instead: " + name);
     }
 
-    /*
-     11.3.1.1 java.lang package
-     The java.lang package is supported with the following modi?cations.
-     a) The following methods shall always throw a SecurityException when called by inter-operable applications:
-     Runtime.exec,
-     Runtime.load,
-     Runtime.loadLibrary,
-     System.exit,
-     System.load,
-     System.loadLibrary,
+    /**
+     * 11.3.1.1 java.lang package
+     * The java.lang package is supported with the following modifications.
+     * a) The following methods shall always throw a SecurityException when called by inter-operable applications:
+     *  Runtime.exec,
+     *  Runtime.load,
+     *  Runtime.loadLibrary,
+     *  System.exit,
+     *  System.load,
+     *  System.loadLibrary,
      */
     public static void exit(int status) {
         throw new SecurityException("see spec 11.3.1.1");
@@ -249,38 +236,38 @@ public class System {
 
     public static void runFinalization() {
         // check the MHP spec
-        //Runtime.getRuntime().runFinalization();
+//        Runtime.getRuntime().runFinalization();
     }
 
     public static void runFinalizersOnExit(boolean value) {
-        //Runtime.getRuntime().runFinalizersOnExit(value);
+//        Runtime.getRuntime().runFinalizersOnExit(value);
     }
 
-    /*
-    11.3.1.1 java.lang package
-    The java.lang package is supported with the following modi?cations.
-    a) The following methods shall always throw a SecurityException when called by inter-operable applications:
-       Runtime.exec,
-       Runtime.load,
-       Runtime.loadLibrary,
-       System.exit,
-       System.load,
-       System.loadLibrary,
-    */
+    /**
+     * 11.3.1.1 java.lang package
+     * The java.lang package is supported with the following modifications.
+     * a) The following methods shall always throw a SecurityException when called by inter-operable applications:
+     *  Runtime.exec,
+     *  Runtime.load,
+     *  Runtime.loadLibrary,
+     *  System.exit,
+     *  System.load,
+     *  System.loadLibrary,
+     */
     public static void load(String filename) {
         throw new SecurityException("see spec 11.3.1.1");
     }
 
-    /*
-     11.3.1.1 java.lang package
-     The java.lang package is supported with the following modi?cations.
-     a) The following methods shall always throw a SecurityException when called by inter-operable applications:
-     Runtime.exec,
-     Runtime.load,
-     Runtime.loadLibrary,
-     System.exit,
-     System.load,
-     System.loadLibrary,
+    /**
+     * 11.3.1.1 java.lang package
+     * The java.lang package is supported with the following modifications.
+     * a) The following methods shall always throw a SecurityException when called by inter-operable applications:
+     *  Runtime.exec,
+     *  Runtime.load,
+     *  Runtime.loadLibrary,
+     *  System.exit,
+     *  System.load,
+     *  System.loadLibrary,
      */
     public static void loadLibrary(String libname) {
         throw new SecurityException("see spec 11.3.1.1");
@@ -290,5 +277,4 @@ public class System {
         // check MHP spec
         return java.lang.System.mapLibraryName(libname);
     }
-
 }

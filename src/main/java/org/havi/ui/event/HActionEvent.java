@@ -17,7 +17,6 @@ package org.havi.ui.event;
  */
 public class HActionEvent extends java.awt.event.ActionEvent {
 
-
     public HActionEvent(org.havi.ui.HActionInputPreferred source, int id, String command) {
         super(source, id, command);
     }

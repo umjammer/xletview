@@ -16,11 +16,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.System.Logger;
 
 import static java.lang.System.getLogger;
 
@@ -33,35 +33,34 @@ import static java.lang.System.getLogger;
 public class Downloader {
 
     private static final Logger logger = getLogger(Downloader.class.getName());
-
+    private static final long maxByteSize = 8000000;
 //    private URL url;
     private File source;
-    private File destination;
-    private List<RelFile> relFiles;
-//    private  final String destinationPath;
+    private final File destination;
+    private final List<RelFile> relFiles;
+//    private final String destinationPath;
     private long byteLength;
-    private static final long maxByteSize = 8000000;
-    private List<DownloadEventListener> listeners;
+    private final List<DownloadEventListener> listeners;
 
 //    public Downloader(URL url) {
 //        this.url = url;
 //        String protocol = url.getProtocol();
-//        System.out.println("protocol=" + protocol);
+//logger.log(Level.DEBUG, "protocol=" + protocol);
 //        if (protocol.equals("file")) {
 //            String file = url.getFile();
 //            String host = url.getHost();
 //            String path = host + url.getFile().replace('/', File.separatorChar);
 //
-//            System.out.println("host=" + host);
-//            System.out.println("file=" + file);
-//            System.out.println("path=" + path);
+//logger.log(Level.DEBUG, "host=" + host);
+//logger.log(Level.DEBUG, "file=" + file);
+//logger.log(Level.DEBUG, "path=" + path);
 //
 //            File f = new File(path);
-//            System.out.println(path + ", exist? " + f.exists());
+//logger.log(Level.DEBUG, path + ", exist? " + f.exists());
 //
 //            path = host + ":" + url.getFile().replace('/', File.separatorChar);
 //            f = new File(path);
-//            System.out.println(path + ", exist? " + f.exists());
+//logger.log(Level.DEBUG, path + ", exist? " + f.exists());
 //        }
 //    }
 
@@ -171,7 +170,7 @@ public class Downloader {
      * Copies the files from source to destination
      */
     private void copy() throws AppSizeExceededException {
-        logger.log(Level.INFO, "downloading resources...");
+logger.log(Level.INFO, "downloading resources...");
         for (int i = 0; i < relFiles.size(); i++) {
             RelFile relFile = relFiles.get(i);
             File file = relFile.getFile();
@@ -199,7 +198,7 @@ public class Downloader {
                 }
             }
         }
-        logger.log(Level.INFO, "download finished");
+logger.log(Level.INFO, "download finished");
     }
 
     /**
@@ -231,7 +230,7 @@ public class Downloader {
      * @param files The files to delete
      */
     private void deleteFiles(File[] files) {
-        logger.log(Level.INFO, "unloading any previous application...");
+logger.log(Level.INFO, "unloading any previous application...");
         boolean success = true;
         // do it backwards, because it will not delete non empty directories
         for (int i = files.length - 1; i >= 0; i--) {
@@ -242,13 +241,13 @@ public class Downloader {
             } else {
                 //could not delete
                 success = false;
-                logger.log(Level.DEBUG, files[i].getAbsolutePath() + " could not be removed");
+logger.log(Level.DEBUG, files[i].getAbsolutePath() + " could not be removed");
             }
         }
         if (!success) {
-            logger.log(Level.INFO, "some resources of the previous application could not be unloaded");
+logger.log(Level.INFO, "some resources of the previous application could not be unloaded");
         } else {
-            logger.log(Level.INFO, "unloading successful");
+logger.log(Level.INFO, "unloading successful");
         }
     }
 

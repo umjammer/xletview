@@ -17,7 +17,7 @@ package org.davic.mpeg.sections;
  */
 public class SectionFilterEvent extends java.util.EventObject {
 
-    private Object appData;
+    private final Object appData;
 
     public SectionFilterEvent(SectionFilter sectionFilter, Object appData) {
         super(sectionFilter);
@@ -32,5 +32,4 @@ public class SectionFilterEvent extends java.util.EventObject {
     public Object getAppData() {
         return appData;
     }
-
 }

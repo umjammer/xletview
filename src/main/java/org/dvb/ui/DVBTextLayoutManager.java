@@ -66,7 +66,7 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
     private int textHeight;
     private int textWidth;
 
-    private List<TextOverflowListener> listeners;
+    private final List<TextOverflowListener> listeners;
 
     public DVBTextLayoutManager() {
         this(HORIZONTAL_START_ALIGN, VERTICAL_START_ALIGN, LINE_ORIENTATION_HORIZONTAL, START_CORNER_UPPER_LEFT, true, -1234, 0, 56);
@@ -104,76 +104,90 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         this.listeners = new ArrayList<>();
     }
 
-    public void setHorizontalAlign(int horizontalAlign) {
-        this.horizontalAlign = horizontalAlign;
+    private static String[] addToStringArr(String[] strings, String string) {
+        String[] newArr = new String[strings.length + 1];
+        System.arraycopy(strings, 0, newArr, 0, strings.length);
+        newArr[newArr.length - 1] = string;
+        return newArr;
     }
 
-    public void setVerticalAlign(int verticalAlign) {
-        this.verticalAlign = verticalAlign;
-    }
-
-    public void setLineOrientation(int lineOrientation) {
-        this.lineOrientation = lineOrientation;
-    }
-
-    public void setStartCorner(int startCorner) {
-        this.startCorner = startCorner;
-    }
-
-    public void setTextWrapping(boolean wrap) {
-        this.textWrap = wrap;
-    }
-
-    public void setLineSpace(int lineSpace) {
-        this.lineSpace = lineSpace;
-    }
-
-    public void setLetterSpace(int letterSpace) {
-        this.letterSpace = letterSpace;
-    }
-
-    public void setHorizontalTabSpacing(int horizontalTabSpace) {
-        this.horizontalTabSpace = horizontalTabSpace;
+    private static int[] addToIntArr(int[] ints, int theInt) {
+        int[] newArr = new int[ints.length + 1];
+        System.arraycopy(ints, 0, newArr, 0, ints.length);
+        newArr[newArr.length - 1] = theInt;
+        return newArr;
     }
 
     public int getHorizontalAlign() {
         return horizontalAlign;
     }
 
+    public void setHorizontalAlign(int horizontalAlign) {
+        this.horizontalAlign = horizontalAlign;
+    }
+
     public int getVerticalAlign() {
         return verticalAlign;
+    }
+
+    public void setVerticalAlign(int verticalAlign) {
+        this.verticalAlign = verticalAlign;
     }
 
     public int getLineOrientation() {
         return lineOrientation;
     }
 
+    public void setLineOrientation(int lineOrientation) {
+        this.lineOrientation = lineOrientation;
+    }
+
     public int getStartCorner() {
         return startCorner;
+    }
+
+    public void setStartCorner(int startCorner) {
+        this.startCorner = startCorner;
     }
 
     public boolean getTextWrapping() {
         return textWrap;
     }
 
+    public void setTextWrapping(boolean wrap) {
+        this.textWrap = wrap;
+    }
+
     public int getLineSpace() {
         return lineSpace;
+    }
+
+    public void setLineSpace(int lineSpace) {
+        this.lineSpace = lineSpace;
     }
 
     public int getLetterSpace() {
         return letterSpace;
     }
 
+    public void setLetterSpace(int letterSpace) {
+        this.letterSpace = letterSpace;
+    }
+
     public int getHorizontalTabSpacing() {
         return horizontalTabSpace;
     }
 
-    public void setInsets(Insets insets) {
-        this.insets = insets;
+    public void setHorizontalTabSpacing(int horizontalTabSpace) {
+        this.horizontalTabSpace = horizontalTabSpace;
     }
 
     public Insets getInsets() {
         return insets;
+    }
+
+    public void setInsets(Insets insets) {
+        this.insets = insets;
     }
 
     public void addTextOverflowListener(TextOverflowListener listener) {
@@ -312,19 +326,5 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
             }
             rowWidths = addToIntArr(rowWidths, rowWidth);
         }
-    }
-
-    private static String[] addToStringArr(String[] strings, String string) {
-        String[] newArr = new String[strings.length + 1];
-        System.arraycopy(strings, 0, newArr, 0, strings.length);
-        newArr[newArr.length - 1] = string;
-        return newArr;
-    }
-
-    private static int[] addToIntArr(int[] ints, int theInt) {
-        int[] newArr = new int[ints.length + 1];
-        System.arraycopy(ints, 0, newArr, 0, ints.length);
-        newArr[newArr.length - 1] = theInt;
-        return newArr;
     }
 }

@@ -12,5 +12,4 @@
 package org.dvb.si;
 
 public interface SITransportStreamDescription extends SIInformation {
-
 }

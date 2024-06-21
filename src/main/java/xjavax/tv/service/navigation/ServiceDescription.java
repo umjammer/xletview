@@ -31,5 +31,4 @@ public interface ServiceDescription extends SIRetrievable {
      * @return A textual description of the Service, or an empty string if no description is available.
      */
     java.lang.String getServiceDescription();
-
 }

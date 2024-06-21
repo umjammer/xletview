@@ -27,10 +27,8 @@ import org.havi.ui.event.HFocusListener;
  */
 public class HText extends HStaticText implements HNavigable {
 
-    private HNavigableHelper helper;
-
     private static HTextLook defaultHLook = new HTextLook();
-
+    private HNavigableHelper helper;
 
     public HText() {
         super();
@@ -80,18 +78,17 @@ public class HText extends HStaticText implements HNavigable {
         this.setTextContent(textFocus, HVisible.FOCUSED_STATE);
         init();
     }
-    // constructors end //
 
-    private void init() {
-        helper = new HNavigableHelper(this);
+    public static HTextLook getDefaultLook() {
+        return HText.defaultHLook;
     }
 
     public static void setDefaultLook(HTextLook defaultHLook) {
         HText.defaultHLook = defaultHLook;
     }
 
-    public static HTextLook getDefaultLook() {
-        return HText.defaultHLook;
+    private void init() {
+        helper = new HNavigableHelper(this);
     }
 
     @Override
@@ -115,23 +112,23 @@ public class HText extends HStaticText implements HNavigable {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-        helper.setGainFocusSound(sound);
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-        helper.setLoseFocusSound(sound);
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return helper.getGainFocusSound();
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+        helper.setGainFocusSound(sound);
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return helper.getLoseFocusSound();
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
+        helper.setLoseFocusSound(sound);
     }
 
     @Override
@@ -149,9 +146,8 @@ public class HText extends HStaticText implements HNavigable {
         return helper.getNavigationKeys();
     }
 
-    /*
-        Overloaded from HVisible, is true for HNavigable
-    */
+    // Overloaded from HVisible, is true for HNavigable
+
     @Override
     public boolean isFocusTraversable() {
         return true;
@@ -163,7 +159,7 @@ public class HText extends HStaticText implements HNavigable {
      * helper.
      * We don't want this secret one to be returned when someone
      * asks for the FocusListener objects.
-     * This mehod overrides Component.getFocusListeners()
+     * This method overrides Component.getFocusListeners()
      * and takes care of that.
      */
     @Override
@@ -171,15 +167,12 @@ public class HText extends HStaticText implements HNavigable {
         return helper.getFocusListeners();
     }
 
-
     @Override
     public void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
         processHFocusEvent(event);
-
     }
-
 
     @Override
     public void processHFocusEvent(HFocusEvent evt) {

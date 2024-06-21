@@ -22,10 +22,10 @@ import javax.swing.JPanel;
  */
 public class ProgressBar extends JPanel {
 
-    private int width;
-    private int height;
-    private Color foreground;
-    private Color background;
+    private final int width;
+    private final int height;
+    private final Color foreground;
+    private final Color background;
     private int procent;
 
     public ProgressBar(int width, int height, Color foreground, Color background) {
@@ -41,7 +41,6 @@ public class ProgressBar extends JPanel {
     public Dimension getPreferredSize() {
         return new Dimension(getSize().width, height);
     }
-
 
     public void update(int procent) {
         this.procent = procent;
@@ -63,5 +62,4 @@ public class ProgressBar extends JPanel {
         g.setColor(foreground);
         g.fillRect(0, 0, width * procent / 100, getSize().height);
     }
-
 }

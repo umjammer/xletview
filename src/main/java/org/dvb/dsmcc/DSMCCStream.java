@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class DSMCCStream {
 
-
     public DSMCCStream(DSMCCObject aDSMCCObject) throws NotLoadedException, IllegalObjectTypeException {
     }
 
@@ -26,11 +25,9 @@ public class DSMCCStream {
     public DSMCCStream(String path, String name) throws IOException {
     }
 
-
     public long getDuration() {
         return 0;
     }
-
 
     public long getNPT() throws MPEGDeliveryException {
         return 0;

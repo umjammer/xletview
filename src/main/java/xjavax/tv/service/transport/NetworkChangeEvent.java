@@ -30,13 +30,12 @@ import xjavax.tv.service.SIChangeType;
  */
 public class NetworkChangeEvent extends TransportSIChangeEvent {
 
-
     /**
      * Constructs a <code>NetworkChangeEvent</code>.
      *
      * @param collection The network collection in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param n The Network that changed.
+     * @param type       The type of change that occurred.
+     * @param n          The Network that changed.
      */
     public NetworkChangeEvent(NetworkCollection collection, SIChangeType type, Network n) {
         super(collection, type, n);
@@ -63,5 +62,4 @@ public class NetworkChangeEvent extends TransportSIChangeEvent {
     public Network getNetwork() {
         return (Network) super.getSIElement();
     }
-
 }

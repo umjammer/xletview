@@ -36,12 +36,10 @@ import static java.lang.System.getLogger;
 public class AppManager {
 
     private static final Logger logger = getLogger(AppManager.class.getName());
-
-    private static AppManager THE_INSTANCE;
-    private URL appURL;
-    private AppGroup defaultGroup;
-
     private final static String FILE_APPLICATIONS = "file.applications";
+    private static AppManager THE_INSTANCE;
+    private final URL appURL;
+    private final AppGroup defaultGroup;
 
     private AppManager() {
         this.appURL = Util.getURL(AppManager.class, Settings.getProperty(FILE_APPLICATIONS));
@@ -54,6 +52,20 @@ public class AppManager {
             THE_INSTANCE = new AppManager();
         }
         return THE_INSTANCE;
+    }
+
+    public static void main(String[] args) {
+        AppManager.getInstance().parse();
+        AppGroup defaultGroup = AppManager.getInstance().getDefaultGroup();
+
+        for (int i = 0; i < defaultGroup.getApps().size(); i++) {
+            App app = defaultGroup.getApps().get(i);
+        }
+        for (int i = 0; i < defaultGroup.getSubGroups().size(); i++) {
+            AppGroup app = defaultGroup.getSubGroups().get(i);
+        }
+//logger.log(Level.DEBUG, defaultGroup.getName());
+//logger.log(Level.DEBUG, defaultGroup.getSubGroups().size());
     }
 
     private void parse() {
@@ -117,19 +129,5 @@ public class AppManager {
 
     public void update() {
         AppWriter.write(this.appURL, this.defaultGroup);
-    }
-
-    public static void main(String[] args) {
-        AppManager.getInstance().parse();
-        AppGroup defaultGroup = AppManager.getInstance().getDefaultGroup();
-
-        for (int i = 0; i < defaultGroup.getApps().size(); i++) {
-            App app = defaultGroup.getApps().get(i);
-        }
-        for (int i = 0; i < defaultGroup.getSubGroups().size(); i++) {
-            AppGroup app = defaultGroup.getSubGroups().get(i);
-        }
-//logger.log(Level.DEBUG, defaultGroup.getName());
-//logger.log(Level.DEBUG, defaultGroup.getSubGroups().size());
     }
 }

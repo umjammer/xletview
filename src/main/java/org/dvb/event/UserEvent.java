@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  org.dvb.event;
+package org.dvb.event;
 
 import java.awt.event.KeyEvent;
 import java.util.EventObject;
@@ -22,11 +22,11 @@ import java.util.EventObject;
 public class UserEvent extends EventObject {
 
     public static final int UEF_KEY_EVENT = 1;
-    private int family;
+    private final int family;
     private int type;
     private int code;
     private int modifiers;
-    private long when;
+    private final long when;
     private char keyChar;
 
     public UserEvent(Object source, int family, int type, int code, int modifiers, long when) {
@@ -66,27 +66,26 @@ public class UserEvent extends EventObject {
     }
 
     public boolean isShiftDown() {
-        boolean is = (KeyEvent.SHIFT_DOWN_MASK == modifiers) ? true : false;
+        boolean is = KeyEvent.SHIFT_DOWN_MASK == modifiers;
         return is;
     }
 
     public boolean isControlDown() {
-        boolean is = (KeyEvent.CTRL_DOWN_MASK == modifiers) ? true : false;
+        boolean is = KeyEvent.CTRL_DOWN_MASK == modifiers;
         return is;
     }
 
     public boolean isMetaDown() {
-        boolean is = (KeyEvent.META_DOWN_MASK == modifiers) ? true : false;
+        boolean is = KeyEvent.META_DOWN_MASK == modifiers;
         return is;
     }
 
     public boolean isAltDown() {
-        boolean is = (KeyEvent.ALT_DOWN_MASK == modifiers) ? true : false;
+        boolean is = KeyEvent.ALT_DOWN_MASK == modifiers;
         return is;
     }
 
     public long getWhen() {
         return when;
     }
-
 }

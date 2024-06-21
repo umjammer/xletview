@@ -17,7 +17,7 @@ package org.dvb.media;
  */
 public class ActiveFormatDescriptionChangedEvent extends VideoFormatEvent {
 
-    private int newFormat;
+    private final int newFormat;
 
     public ActiveFormatDescriptionChangedEvent(Object source, int newFormat) {
         super(source);
@@ -27,5 +27,4 @@ public class ActiveFormatDescriptionChangedEvent extends VideoFormatEvent {
     public int getNewFormat() {
         return newFormat;
     }
-
 }

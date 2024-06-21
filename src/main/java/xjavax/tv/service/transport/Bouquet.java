@@ -42,5 +42,4 @@ public interface Bouquet extends SIElement {
      * @return A string representing the name of this bouquet, or an empty string if the name is not available.
      */
     java.lang.String getName();
-
 }

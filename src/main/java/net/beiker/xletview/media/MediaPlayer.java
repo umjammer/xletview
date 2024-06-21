@@ -12,9 +12,9 @@
 package net.beiker.xletview.media;
 
 import java.awt.Component;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.lang.System.Logger;
 import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
 import javax.media.EndOfMediaEvent;

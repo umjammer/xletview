@@ -26,14 +26,14 @@ public class HSceneFactory {
     private HSceneFactory() {
     }
 
+    public static HSceneFactory getInstance() {
+        return THEINSTANCE;
+    }
+
     private HScene createScene() {
         HScene scene = new HScene();
         scene.setBounds(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT);
         return scene;
-    }
-
-    public static HSceneFactory getInstance() {
-        return THEINSTANCE;
     }
 
     public HSceneTemplate getBestSceneTemplate(HSceneTemplate hst) {

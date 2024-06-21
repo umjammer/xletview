@@ -46,7 +46,7 @@ public class DeliverySystemType {
      * @param name The string name of this type (e.g., "SATELLITE").
      */
     protected DeliverySystemType(java.lang.String name) {
-        //TODO implement DeliverySystemType
+        // TODO implement DeliverySystemType
     }
 
     /**
@@ -59,7 +59,6 @@ public class DeliverySystemType {
      */
     public java.lang.String toString() {
         return null;
-        //TODO implement toString
+        // TODO implement toString
     }
-
 }

@@ -29,15 +29,4 @@ public interface HKeyboardInputPreferred {
     void processHTextEvent(org.havi.ui.event.HTextEvent evt);
 
     void processHKeyEvent(org.havi.ui.event.HKeyEvent evt);
-
-
 }
-
-
-
-
-
-
-
-
-

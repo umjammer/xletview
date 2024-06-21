@@ -26,5 +26,4 @@ public class MMIActiveEvent extends CAEvent {
     public Object getSource() {
         return null;
     }
-
 }

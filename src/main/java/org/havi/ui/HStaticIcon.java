@@ -36,6 +36,14 @@ public class HStaticIcon extends HVisible implements HNoInputPreferred {
         this.setGraphicContent(imageNormal, HVisible.NORMAL_STATE);
     }
 
+    public static HGraphicLook getDefaultLook() {
+        return HStaticIcon.defaultHLook;
+    }
+
+    public static void setDefaultLook(HGraphicLook hGraphicLook) {
+        HStaticIcon.defaultHLook = hGraphicLook;
+    }
+
     @Override
     public void setLook(HLook hLook) throws HInvalidLookException {
         if (hLook instanceof HGraphicLook || hLook == null) {
@@ -43,14 +51,6 @@ public class HStaticIcon extends HVisible implements HNoInputPreferred {
         } else {
             throw new HInvalidLookException("HLook was not a org.havi.ui.HGraphicLook");
         }
-    }
-
-    public static void setDefaultLook(HGraphicLook hGraphicLook) {
-        HStaticIcon.defaultHLook = hGraphicLook;
-    }
-
-    public static HGraphicLook getDefaultLook() {
-        return HStaticIcon.defaultHLook;
     }
 
     public String toString() {

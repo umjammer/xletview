@@ -35,9 +35,7 @@ import java.text.AttributedCharacterIterator;
  */
 class DVBGraphicsImpl extends DVBGraphics {
 
-    private Graphics2D graphics2d;
-    private DVBAlphaComposite dvbAlphaComposite;
-    private static int[] availableCompositeRules = new int[] {
+    private static final int[] availableCompositeRules = new int[] {
             DVBAlphaComposite.CLEAR,
             DVBAlphaComposite.DST_IN,
             DVBAlphaComposite.DST_OUT,
@@ -47,6 +45,8 @@ class DVBGraphicsImpl extends DVBGraphics {
             DVBAlphaComposite.SRC_OUT,
             DVBAlphaComposite.SRC_OVER
     };
+    private final Graphics2D graphics2d;
+    private DVBAlphaComposite dvbAlphaComposite;
 
     public DVBGraphicsImpl(Graphics2D graphics2d) {
         this.graphics2d = graphics2d;
@@ -83,32 +83,32 @@ class DVBGraphicsImpl extends DVBGraphics {
     public void setDVBComposite(DVBAlphaComposite comp) throws UnsupportedDrawingOperationException {
         this.dvbAlphaComposite = comp;
         switch (comp.getRule()) {
-        case DVBAlphaComposite.CLEAR:
-            graphics2d.setComposite(AlphaComposite.Clear);
-            break;
-        case DVBAlphaComposite.DST_IN:
-            graphics2d.setComposite(AlphaComposite.DstIn);
-            break;
-        case DVBAlphaComposite.DST_OUT:
-            graphics2d.setComposite(AlphaComposite.DstOut);
-            break;
-        case DVBAlphaComposite.DST_OVER:
-            graphics2d.setComposite(AlphaComposite.DstOver);
-            break;
-        case DVBAlphaComposite.SRC:
-            graphics2d.setComposite(AlphaComposite.Src);
-            break;
-        case DVBAlphaComposite.SRC_IN:
-            graphics2d.setComposite(AlphaComposite.SrcIn);
-            break;
-        case DVBAlphaComposite.SRC_OUT:
-            graphics2d.setComposite(AlphaComposite.SrcOut);
-            break;
-        case DVBAlphaComposite.SRC_OVER:
-            graphics2d.setComposite(AlphaComposite.SrcOver);
-            break;
-        default:
-            throw new UnsupportedDrawingOperationException(comp.toString());
+            case DVBAlphaComposite.CLEAR:
+                graphics2d.setComposite(AlphaComposite.Clear);
+                break;
+            case DVBAlphaComposite.DST_IN:
+                graphics2d.setComposite(AlphaComposite.DstIn);
+                break;
+            case DVBAlphaComposite.DST_OUT:
+                graphics2d.setComposite(AlphaComposite.DstOut);
+                break;
+            case DVBAlphaComposite.DST_OVER:
+                graphics2d.setComposite(AlphaComposite.DstOver);
+                break;
+            case DVBAlphaComposite.SRC:
+                graphics2d.setComposite(AlphaComposite.Src);
+                break;
+            case DVBAlphaComposite.SRC_IN:
+                graphics2d.setComposite(AlphaComposite.SrcIn);
+                break;
+            case DVBAlphaComposite.SRC_OUT:
+                graphics2d.setComposite(AlphaComposite.SrcOut);
+                break;
+            case DVBAlphaComposite.SRC_OVER:
+                graphics2d.setComposite(AlphaComposite.SrcOver);
+                break;
+            default:
+                throw new UnsupportedDrawingOperationException(comp.toString());
         }
     }
 
@@ -443,5 +443,4 @@ class DVBGraphicsImpl extends DVBGraphics {
             img = ((DVBBufferedImage) img).getImage();
         return graphics2d.drawImage(img, x, y, bgcolor, observer);
     }
-
 }

@@ -18,6 +18,12 @@ import org.havi.ui.HScreenRectangle;
 
 public interface VideoPresentationControl extends Control {
 
+    byte POS_CAP_FULL = 0;
+    byte POS_CAP_FULL_IF_ENTIRE_VIDEO_ON_SCREEN = 1;
+    byte POS_CAP_FULL_EVEN_LINES = 3;
+    byte POS_CAP_FULL_EVEN_LINES_IF_ENTIRE_VIDEO_ON_SCREEN = 4;
+    byte POS_CAP_OTHER = -1;
+
     java.awt.Dimension getInputVideoSize();
 
     java.awt.Dimension getVideoSize();
@@ -43,16 +49,6 @@ public interface VideoPresentationControl extends Control {
     float[] getHorizontalScalingFactors();
 
     float[] getVerticalScalingFactors();
-
-    byte POS_CAP_FULL = 0;
-
-    byte POS_CAP_FULL_IF_ENTIRE_VIDEO_ON_SCREEN = 1;
-
-    byte POS_CAP_FULL_EVEN_LINES = 3;
-
-    byte POS_CAP_FULL_EVEN_LINES_IF_ENTIRE_VIDEO_ON_SCREEN = 4;
-
-    byte POS_CAP_OTHER = -1;
 
     byte getPositioningCapability();
 }

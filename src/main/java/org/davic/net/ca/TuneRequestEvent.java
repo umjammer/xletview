@@ -20,7 +20,7 @@ import org.davic.net.Locator;
  */
 public class TuneRequestEvent extends CAEvent {
 
-    private Locator locator;
+    private final Locator locator;
 
     public TuneRequestEvent(Locator locator, Object caModule) {
         super(caModule);
@@ -35,5 +35,4 @@ public class TuneRequestEvent extends CAEvent {
     public Object getSource() {
         return super.getSource();
     }
-
 }

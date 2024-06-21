@@ -23,21 +23,21 @@ public interface HAnimateEffect {
 
     boolean isAnimated();
 
-    void setPosition(int position);
-
     int getPosition();
 
-    void setRepeatCount(int count);
+    void setPosition(int position);
 
     int getRepeatCount();
 
-    void setDelay(int count);
+    void setRepeatCount(int count);
 
     int getDelay();
 
-    void setPlayMode(int mode);
+    void setDelay(int count);
 
     int getPlayMode();
+
+    void setPlayMode(int mode);
 }
 
 

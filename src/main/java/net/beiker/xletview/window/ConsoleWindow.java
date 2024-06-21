@@ -33,25 +33,13 @@ public class ConsoleWindow extends JFrame implements ActionListener {
 //    private static final Logger logger = getLogger(ConsoleWindow.class.getName());
 
     private static ConsoleWindow THE_INSTANCE;
-
-    private Container content;
-    private JButton toggleButton;
-    private JButton clearButton;
-    private static int STOP = 0;
-    private static int START = 1;
-    private String[] toggleText = {"STOP OUTPUT", "START OUTPUT"};
-    private Color[] toggleColor = {Color.RED, new Color(0, 80, 0)};
-
-    public static void main(String[] args) {
-//        new ConsoleWindow();
-    }
-
-    public static ConsoleWindow getInstance() {
-        if (THE_INSTANCE == null) {
-            THE_INSTANCE = new ConsoleWindow();
-        }
-        return THE_INSTANCE;
-    }
+    private static final int STOP = 0;
+    private static final int START = 1;
+    private final Container content;
+    private final JButton toggleButton;
+    private final JButton clearButton;
+    private static final String[] toggleText = {"STOP OUTPUT", "START OUTPUT"};
+    private static final Color[] toggleColor = {Color.RED, new Color(0, 80, 0)};
 
     private ConsoleWindow() {
         content = this.getContentPane();
@@ -96,6 +84,17 @@ public class ConsoleWindow extends JFrame implements ActionListener {
         int height = Util.parseInt(Settings.getProperty("console.height"));
         setLocation(x, y);
         setSize(width, height);
+    }
+
+    public static void main(String[] args) {
+//        new ConsoleWindow();
+    }
+
+    public static ConsoleWindow getInstance() {
+        if (THE_INSTANCE == null) {
+            THE_INSTANCE = new ConsoleWindow();
+        }
+        return THE_INSTANCE;
     }
 
     /**

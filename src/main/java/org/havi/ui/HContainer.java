@@ -162,13 +162,12 @@ public class HContainer extends Container {
         }
     }
 
+    public HMatte getMatte() {
+        return hMatte;
+    }
 
     public void setMatte(HMatte m) {
         hMatte = m;
-    }
-
-    public HMatte getMatte() {
-        return hMatte;
     }
 
     public void group() {
@@ -182,6 +181,5 @@ public class HContainer extends Container {
     public boolean isGrouped() {
         return grouped;
     }
-
 }
 

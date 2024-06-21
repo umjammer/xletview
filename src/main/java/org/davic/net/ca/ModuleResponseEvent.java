@@ -17,7 +17,7 @@ package org.davic.net.ca;
  */
 public abstract class ModuleResponseEvent extends MessageEvent {
 
-    private byte[] data;
+    private final byte[] data;
 
     protected ModuleResponseEvent(CAModule caModule, byte[] data) {
         super(caModule);
@@ -32,6 +32,4 @@ public abstract class ModuleResponseEvent extends MessageEvent {
     public byte[] getData() {
         return data;
     }
-
-
 }

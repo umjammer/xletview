@@ -23,6 +23,5 @@ public class SIRequest {
     public boolean cancelRequest() {
         return true;
     }
-
 }
 

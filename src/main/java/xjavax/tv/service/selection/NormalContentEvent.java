@@ -54,5 +54,4 @@ public class NormalContentEvent extends PresentationChangedEvent {
     public NormalContentEvent(ServiceContext source) {
         super(source);
     }
-
 }

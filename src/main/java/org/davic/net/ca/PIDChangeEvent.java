@@ -17,8 +17,8 @@ package org.davic.net.ca;
  */
 public class PIDChangeEvent extends CAEvent {
 
-    private short oldPid;
-    private short newPid;
+    private final short oldPid;
+    private final short newPid;
 
     public PIDChangeEvent(short oldPid, short newPid, Object caModule) {
         super(caModule);

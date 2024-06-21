@@ -13,7 +13,7 @@
  14.9.03 Bengt Skogvall
 */
 
-package  org.dvb.net.rc;
+package org.dvb.net.rc;
 
 /**
  * @author Martin Sveden

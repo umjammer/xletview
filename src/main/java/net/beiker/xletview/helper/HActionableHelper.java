@@ -14,7 +14,7 @@ public class HActionableHelper {
     transient HActionListener hActionListener;
     private HSound actionSound;
     private String actionCommand;
-    private HVisible hVisible;
+    private final HVisible hVisible;
 
     public HActionableHelper(HVisible hVisible) {
         this.hVisible = hVisible;
@@ -43,10 +43,10 @@ public class HActionableHelper {
     }
 
     /* (non-Javadoc)
-     * @see org.havi.ui.HActionable#setActionCommand(java.lang.String)
+     * @see org.havi.ui.HActionable#getActionSound()
      */
-    public void setActionCommand(String command) {
-        actionCommand = command;
+    public HSound getActionSound() {
+        return actionSound;
     }
 
     /* (non-Javadoc)
@@ -55,21 +55,6 @@ public class HActionableHelper {
     public void setActionSound(HSound sound) {
         actionSound = sound;
     }
-
-    /* (non-Javadoc)
-     * @see org.havi.ui.HActionable#getActionSound()
-     */
-    public HSound getActionSound() {
-        return actionSound;
-    }
-
-//    /* (non-Javadoc)
-//     * @see org.havi.ui.HActionInputPreferred#processHActionEvent(org.havi.ui.event.HActionEvent)
-//     */
-//    public void processHActionEvent(HActionEvent evt) {
-//        // TODO Auto-generated method stub
-//
-//    }
 
     public int getHActionEventResult(org.havi.ui.event.HActionEvent evt) {
         // get state
@@ -81,11 +66,26 @@ public class HActionableHelper {
         return state;
     }
 
+//    /* (non-Javadoc)
+//     * @see org.havi.ui.HActionInputPreferred#processHActionEvent(org.havi.ui.event.HActionEvent)
+//     */
+//    public void processHActionEvent(HActionEvent evt) {
+//        // TODO Auto-generated method stub
+//
+//    }
+
     /* (non-Javadoc)
      * @see org.havi.ui.HActionInputPreferred#getActionCommand()
      */
     public String getActionCommand() {
         return actionCommand;
+    }
+
+    /* (non-Javadoc)
+     * @see org.havi.ui.HActionable#setActionCommand(java.lang.String)
+     */
+    public void setActionCommand(String command) {
+        actionCommand = command;
     }
 
 
@@ -191,6 +191,4 @@ public class HActionableHelper {
 //    public void processHFocusEvent(HFocusEvent evt) {
 //        navHelper.processHFocusEvent(evt);
 //    }
-
-
 }

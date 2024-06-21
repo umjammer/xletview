@@ -20,6 +20,5 @@ public class HScreenConfigurationEvent extends java.util.EventObject {
     public HScreenConfigurationEvent(Object source) {
         super(source);
     }
-
 }
 

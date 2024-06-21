@@ -148,5 +148,4 @@ public interface ServiceDetails extends SIElement, CAIdentification {
      * @return The delivery system type of this service.
      */
     DeliverySystemType getDeliverySystemType();
-
 }

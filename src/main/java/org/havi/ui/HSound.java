@@ -34,39 +34,16 @@ import static java.lang.System.getLogger;
  */
 public class HSound {
 
+    private static final Logger logger = getLogger(HSound.class.getName());
     private boolean isLooping;
     private Player player;
-
-    private static Logger logger = getLogger(HSound.class.getName());
-    private MediaControllerListner playerListner;
-
-    // Handles events that are created by the mediaplayer
-    private class MediaControllerListner implements ControllerListener {
-
-        @Override
-        public void controllerUpdate(ControllerEvent event) {
-            logger.log(Level.DEBUG, event.toString());
-            if (event instanceof EndOfMediaEvent) {
-                // check if the sound clip should be looped
-                if (isLooping) {
-                    player.setMediaTime(new Time(0));
-                    player.start();
-                } else {
-                    stop();
-                }
-            } else if (event instanceof StartEvent) {
-                if (player.getState() == Controller.Started) {
-                    player.setMediaTime(new Time(0));
-                }
-            }
-        }
-    }
+    private final MediaControllerListner playerListner;
 
     public HSound() {
-        logger.log(Level.DEBUG, "Constructor");
+logger.log(Level.DEBUG, "Constructor");
         isLooping = false; // used for when the method loop() is called.
 
-        // create listner for the player
+        // create listener for the player
         playerListner = new MediaControllerListner();
     }
 
@@ -113,12 +90,34 @@ public class HSound {
     }
 
     public void dispose() {
-        logger.log(Level.DEBUG, "dispose");
+logger.log(Level.DEBUG, "dispose");
         if (player != null) {
             player.removeControllerListener(playerListner);
             player.stop();
             player.close();
             player.deallocate();
+        }
+    }
+
+    // Handles events that are created by the mediaplayer
+    private class MediaControllerListner implements ControllerListener {
+
+        @Override
+        public void controllerUpdate(ControllerEvent event) {
+logger.log(Level.DEBUG, event.toString());
+            if (event instanceof EndOfMediaEvent) {
+                // check if the sound clip should be looped
+                if (isLooping) {
+                    player.setMediaTime(new Time(0));
+                    player.start();
+                } else {
+                    stop();
+                }
+            } else if (event instanceof StartEvent) {
+                if (player.getState() == Controller.Started) {
+                    player.setMediaTime(new Time(0));
+                }
+            }
         }
     }
 }

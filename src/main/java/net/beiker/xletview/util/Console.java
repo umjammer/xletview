@@ -35,7 +35,7 @@ public class Console extends Container implements OutputPrinter {
     private static JScrollPane scroll;
     private static boolean isPrinting;
     private static String[] string;
-    private static int size = 10;
+    private static final int size = 10;
 
 
     public Console() {

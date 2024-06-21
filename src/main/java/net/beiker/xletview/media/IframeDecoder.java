@@ -89,46 +89,6 @@ import static java.lang.System.getLogger;
  */
 public class IframeDecoder {
 
-    /** Debugging facility. */
-    private final static Logger logger = getLogger(IframeDecoder.class.getName());
-
-    int width = 720;
-    int height = 576;
-
-    private int[] pixels2 = new int[this.width * this.height];
-    private Image image;
-    private MemoryImageSource source;
-    private boolean FAST = false;
-
-    public IframeDecoder() {
-
-        java.util.Arrays.fill(this.pixels2, 0xFF505050);
-
-        this.source = new MemoryImageSource(this.width, this.height, this.pixels2, 0, this.width);
-        this.source.setAnimated(true);
-        Container cont = new Container();
-        this.image = cont.createImage(this.source);
-    }
-
-    private long cutfiles_length = 0;
-    private long[] cutfiles_points = null;
-    private StringBuilder info_4 = new StringBuilder();
-    private StringBuilder info_3 = new StringBuilder();
-    private StringBuilder info_2 = new StringBuilder();
-    private StringBuilder info_1 = new StringBuilder();
-
-    private String file = "";
-    private int Fault_Flag = 0;
-    private boolean[] Bits = new boolean[0];
-    private byte[] buf = new byte[0];
-    private int BitPos = 0;
-    private int BufferPos = 0;
-    private int[] pixels = new int[250];
-    private boolean PLAY = true, DIRECTION = false, ERROR1 = false, ERROR2 = false;
-    private long StartPos = 0;
-    private int SequenceHeader = 0; //DM28112003 081.5++
-    public boolean viewGOP = true;
-
     static final int PICTURE_START_CODE = 0x100;
     static final int SLICE_START_CODE_MIN = 0x101;
     static final int SLICE_START_CODE_MAX = 0x1AF;
@@ -140,18 +100,7 @@ public class IframeDecoder {
     static final int SYSTEM_END_CODE = 0x1B9;
     static final int PACK_START_CODE = 0x1BA;
     static final int SYSTEM_START_CODE = 0x1BB;
-
-    private int File_Flag;
-    private int File_Limit;
-    private int FO_Flag;
-    private int IDCT_Flag;
-    private int Luminance_Flag;
-    private int Scale_Flag;
-    private int SystemStream_Flag;
-    private int ERROR_CODE = 0;
-    private int ERROR_CODE1 = 0;
-
-    /* extension start code IDs */
+    // extension start code IDs
     static final int SEQUENCE_EXTENSION_ID = 1;
     static final int SEQUENCE_DISPLAY_EXTENSION_ID = 2;
     static final int QUANT_MATRIX_EXTENSION_ID = 3;
@@ -182,64 +131,12 @@ public class IframeDecoder {
     static final int CHROMA422 = 2;
     static final int CHROMA444 = 3;
     static final int IDCT_CLIP_TABLE_OFFSET = 512;
-
-    private int q_scale_type = 0; //1
-    private int quantizer_scale = 0, alternate_scan = 0; //1
-    private int Coded_Picture_Width = 0, Coded_Picture_Height = 0, Chroma_Width = 0, Chroma_Height = 0;
-    private int block_count = 0, Second_Field = 0;
-    private int horizontal_size = 0, vertical_size = 0, mb_width = 0, mb_height = 0;
-
-    /* ISO/IEC 13818-2 section 6.2.2.1:  sequence_header() */
-    private int frame_rate_code = 0;
-    private int aspect_ratio_information = 0;
-
-    /* ISO/IEC 13818-2 section 6.2.2.3:  sequence_extension() */
-    private int progressive_sequence = 1; //prog.s std
-    private int chroma_format = 1; //4:2:0std
-    private int profile_and_level_indication;
-    private int video_format;
-    private String[] video_format_S = {"comp", "PAL", "NTSC", "SECAM", "MAC", "unspec", "res", "res"};
-    private String[] prof = {"res", "HP", "SS", "SNR", "MP", "SP", "res", "res"};
-    private String[] lev = {
-            "res", "res", "res", "res", "HL", "res", "HL1440", "res", "ML", "res", "LL", "res", "res", "res", "res"
-    };
-
-    /* ISO/IEC 13818-2 section 6.2.3: picture_header() */
-    private int picture_coding_type = 0;
-    private int temporal_reference = 0;
-
-    /* ISO/IEC 13818-2 section 6.2.3.1: picture_coding_extension() header */
-    private int[][] f_code = new int[2][2];
-    private int picture_structure = 3; //0
-    private int frame_pred_frame_dct = 1; //0
-    private int progressive_frame = 1; //0
-    private int concealment_motion_vectors = 0;
-    private int intra_dc_precision = 0; //8bit
-    private int top_field_first = 0;
-    private int repeat_first_field = 0;
-    private int intra_vlc_format = 0; //
-
-    private int[] intra_quantizer_matrix = new int[64];
-    private int[] non_intra_quantizer_matrix = new int[64];
-    private int[] chroma_intra_quantizer_matrix = new int[64];
-    private int[] chroma_non_intra_quantizer_matrix = new int[64];
-
-    private int load_intra_quantizer_matrix = 0;
-    private int load_non_intra_quantizer_matrix = 0;
-    private int load_chroma_intra_quantizer_matrix = 0;
-    private int load_chroma_non_intra_quantizer_matrix = 0;
-
-    private short[][] block = new short[12][64]; // macroblocks
-
     static final String[] picture_coding_type_string = {"bad", "I", "P", "B", "D"};
-
     static final String[] progressive_string = {"i", "p"};
-
     static final String[] aspect_ratio_string = {
             "bad", "(1:1)", "(4:3)", "(16:9)", "(2.21:1)", "(0.8055)", "(0.8437)", "(0.9375)",
             "(0.9815)", "(1.0255)", "(1.0695)", "(1.1250)", "(1.1575)", "(1.2015)"
     };
-
     /* cosine transform matrix for 8x1 IDCT */
     static final float[][] ref_dct_matrix = {{ /* [0][0-7] */
             3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f, 3.5355339059327379e-001f,
@@ -266,7 +163,6 @@ public class IframeDecoder {
             9.7545161008064166e-002f, -2.7778511650980109e-001f, 4.1573480615127273e-001f, -4.9039264020161533e-001f,
             4.9039264020161522e-001f, -4.1573480615127251e-001f, 2.7778511650980076e-001f, -9.7545161008064291e-002f,
     }};
-
     static final short[] idct_clip_table = {
             -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256,
             -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256, -256,
@@ -333,23 +229,20 @@ public class IframeDecoder {
             255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
             255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
     };
-
+    /** Debugging facility. */
+    private final static Logger logger = getLogger(IframeDecoder.class.getName());
     final byte[] cc_table = {0, 0, 0, 0, 1, 2, 1, 2, 1, 2, 1, 2};
-
     final int[] ChromaFormat = {0, 6, 8, 12};
-
-    /* non-linear quantization coefficient table */
+    /** non-linear quantization coefficient table */
     final byte[] Non_Linear_quantizer_scale = {
             0, 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14, 16, 18, 20, 22,
             24, 28, 32, 36, 40, 44, 48, 52, 56, 64, 72, 80, 88, 96, 104, 112
     };
-
     /** VLCtab val,len */
     final byte[][] MBAtab1 = {
             {-1, 0}, {-1, 0}, {7, 5}, {6, 5}, {5, 4}, {5, 4}, {4, 4}, {4, 4},
             {3, 3}, {3, 3}, {3, 3}, {3, 3}, {2, 3}, {2, 3}, {2, 3}, {2, 3}
     };
-
     /** Table B-1, macroblock_address_increment, codes 00000011000 ... 0000111xxxx */
     final byte[][] MBAtab2 = { //VLCtab val,len
             {33, 11}, {32, 11}, {31, 11}, {30, 11}, {29, 11}, {28, 11}, {27, 11}, {26, 11},
@@ -366,7 +259,6 @@ public class IframeDecoder {
             {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7},
             {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {8, 7}
     };
-
     /** default intra quantization matrix */
     final int[] default_intra_quantizer_matrix = {
             8, 16, 19, 22, 26, 27, 29, 34, 16, 16, 22, 24, 27, 29, 34, 37,
@@ -374,7 +266,6 @@ public class IframeDecoder {
             22, 26, 27, 29, 32, 35, 40, 48, 26, 27, 29, 32, 35, 40, 48, 58,
             26, 27, 29, 34, 38, 46, 56, 69, 27, 29, 35, 38, 46, 56, 69, 83
     };
-
     /** zig-zag and alternate scan patterns */
     final byte[][] scan = {{ /* Zig-Zag scan pattern  */
             0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5,
@@ -387,15 +278,6 @@ public class IframeDecoder {
             51, 59, 20, 28, 5, 13, 6, 14, 21, 29, 36, 44, 52, 60, 37, 45,
             53, 61, 22, 30, 7, 15, 23, 31, 38, 46, 54, 62, 39, 47, 55, 63
     }};
-
-//    typedef struct {
-//        char run, level, len;
-//    } DCTtab;
-//
-//    typedef struct {
-//        char val, len;
-//    } VLCtab;
-
     /**
      * Table B-14, DCT coefficients table zero,
      * codes 000001xx ... 00111xxx
@@ -418,7 +300,6 @@ public class IframeDecoder {
             {3, 1, 5}, {3, 1, 5}, {3, 1, 5}, {3, 1, 5},
             {3, 1, 5}, {3, 1, 5}, {3, 1, 5}, {3, 1, 5}
     };
-
     /**
      * Table B-15, DCT coefficients table one,
      * codes 000001xx ... 11111111
@@ -490,7 +371,6 @@ public class IframeDecoder {
             {0, 9, 7}, {0, 9, 7}, {0, 12, 8}, {0, 13, 8},
             {2, 3, 8}, {4, 2, 8}, {0, 14, 8}, {0, 15, 8}
     };
-
     /**
      * Table B-14, DCT coefficients table zero,
      * codes 0000001000 ... 0000001111
@@ -498,7 +378,6 @@ public class IframeDecoder {
     final byte[][] DCTtab1 = {
             {16, 1, 10}, {5, 2, 10}, {0, 7, 10}, {2, 3, 10}, {1, 4, 10}, {15, 1, 10}, {14, 1, 10}, {4, 2, 10}
     };
-
     /**
      * Table B-15, DCT coefficients table one,
      * codes 000000100x ... 000000111x
@@ -506,7 +385,6 @@ public class IframeDecoder {
     final byte[][] DCTtab1a = {
             {5, 2, 9}, {5, 2, 9}, {14, 1, 9}, {14, 1, 9}, {2, 4, 10}, {16, 1, 10}, {15, 1, 9}, {15, 1, 9}
     };
-
     /**
      * Table B-14/15, DCT coefficients table zero / one,
      * codes 000000010000 ... 000000011111
@@ -515,7 +393,6 @@ public class IframeDecoder {
             {0, 11, 12}, {8, 2, 12}, {4, 3, 12}, {0, 10, 12}, {2, 4, 12}, {7, 2, 12}, {21, 1, 12}, {20, 1, 12},
             {0, 9, 12}, {19, 1, 12}, {18, 1, 12}, {1, 5, 12}, {3, 3, 12}, {0, 8, 12}, {6, 2, 12}, {17, 1, 12}
     };
-
     /**
      * Table B-14/15, DCT coefficients table zero / one,
      * codes 0000000010000 ... 0000000011111
@@ -524,7 +401,6 @@ public class IframeDecoder {
             {10, 2, 13}, {9, 2, 13}, {5, 3, 13}, {3, 4, 13}, {2, 5, 13}, {1, 7, 13}, {1, 6, 13}, {0, 15, 13},
             {0, 14, 13}, {0, 13, 13}, {0, 12, 13}, {26, 1, 13}, {25, 1, 13}, {24, 1, 13}, {23, 1, 13}, {22, 1, 13}
     };
-
     /**
      * Table B-14/15, DCT coefficients table zero / one,
      * codes 00000000010000 ... 00000000011111
@@ -533,7 +409,6 @@ public class IframeDecoder {
             {0, 31, 14}, {0, 30, 14}, {0, 29, 14}, {0, 28, 14}, {0, 27, 14}, {0, 26, 14}, {0, 25, 14}, {0, 24, 14},
             {0, 23, 14}, {0, 22, 14}, {0, 21, 14}, {0, 20, 14}, {0, 19, 14}, {0, 18, 14}, {0, 17, 14}, {0, 16, 14}
     };
-
     /**
      * Table B-14/15, DCT coefficients table zero / one,
      * codes 000000000010000 ... 000000000011111
@@ -542,7 +417,6 @@ public class IframeDecoder {
             {0, 40, 15}, {0, 39, 15}, {0, 38, 15}, {0, 37, 15}, {0, 36, 15}, {0, 35, 15}, {0, 34, 15}, {0, 33, 15},
             {0, 32, 15}, {1, 14, 15}, {1, 13, 15}, {1, 12, 15}, {1, 11, 15}, {1, 10, 15}, {1, 9, 15}, {1, 8, 15}
     };
-
     /**
      * Table B-14/15, DCT coefficients table zero / one,
      * codes 0000000000010000 ... 0000000000011111
@@ -551,7 +425,6 @@ public class IframeDecoder {
             {1, 18, 16}, {1, 17, 16}, {1, 16, 16}, {1, 15, 16}, {6, 3, 16}, {16, 2, 16}, {15, 2, 16}, {14, 2, 16},
             {13, 2, 16}, {12, 2, 16}, {11, 2, 16}, {31, 1, 16}, {30, 1, 16}, {29, 1, 16}, {28, 1, 16}, {27, 1, 16}
     };
-
     /**
      * Table B-14, DCT coefficients table zero,
      * codes 0100 ... 1xxx (used for first (DC) coefficient)
@@ -560,7 +433,6 @@ public class IframeDecoder {
             {0, 2, 4}, {2, 1, 4}, {1, 1, 3}, {1, 1, 3}, {0, 1, 1}, {0, 1, 1}, {0, 1, 1}, {0, 1, 1},
             {0, 1, 1}, {0, 1, 1}, {0, 1, 1}, {0, 1, 1}
     };
-
     /**
      * Table B-14, DCT coefficients table zero,
      * codes 0100 ... 1xxx (used for all other coefficients)
@@ -570,7 +442,6 @@ public class IframeDecoder {
             /* EOB */
             {0, 1, 2}, {0, 1, 2}, {0, 1, 2}, {0, 1, 2}
     };
-
     /** Table B-9, coded_block_pattern, codes 01000 ... 111xx */
     final byte[][] CBPtab0 = {
             {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0},
@@ -578,52 +449,42 @@ public class IframeDecoder {
             {40, 5}, {20, 5}, {48, 5}, {12, 5}, {32, 4}, {32, 4}, {16, 4}, {16, 4},
             {8, 4}, {8, 4}, {4, 4}, {4, 4}, {60, 3}, {60, 3}, {60, 3}, {60, 3}
     };
-
     /** Table B-9, coded_block_pattern, codes 00000100 ... 001111xx */
     final byte[][] CBPtab1 = {
             {-1, 0}, {-1, 0}, {-1, 0}, {-1, 0}, {58, 8}, {54, 8}, {46, 8}, {30, 8}, {57, 8}, {53, 8}, {45, 8}, {29, 8}, {38, 8}, {26, 8}, {37, 8}, {25, 8}, {43, 8}, {23, 8}, {51, 8}, {15, 8}, {42, 8}, {22, 8}, {50, 8}, {14, 8}, {41, 8}, {21, 8}, {49, 8}, {13, 8}, {35, 8}, {19, 8}, {11, 8}, {7, 8}, {34, 7}, {34, 7}, {18, 7}, {18, 7}, {10, 7}, {10, 7}, {6, 7}, {6, 7}, {33, 7}, {33, 7}, {17, 7}, {17, 7}, {9, 7}, {9, 7}, {5, 7}, {5, 7}, {63, 6}, {63, 6}, {63, 6}, {63, 6}, {3, 6}, {3, 6}, {3, 6}, {3, 6}, {36, 6}, {36, 6}, {36, 6}, {36, 6}, {24, 6}, {24, 6}, {24, 6}, {24, 6}
     };
-
     /** Table B-9, coded_block_pattern, codes 000000001 ... 000000111 */
     final byte[][] CBPtab2 = {
             {-1, 0}, {0, 9}, {39, 9}, {27, 9}, {59, 9}, {55, 9}, {47, 9}, {31, 9}
     };
-
     /** Table B-12, dct_dc_size_luminance, codes 00xxx ... 11110 */
     final byte[][] DClumtab0 = {
             {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {0, 3}, {0, 3}, {0, 3}, {0, 3}, {3, 3}, {3, 3}, {3, 3}, {3, 3}, {4, 3}, {4, 3}, {4, 3}, {4, 3}, {5, 4}, {5, 4}, {6, 5}, {-1, 0}
     };
-
     /* Table B-12, dct_dc_size_luminance, codes 111110xxx ... 111111111 */
     final byte[][] DClumtab1 = {
             {7, 6}, {7, 6}, {7, 6}, {7, 6}, {7, 6}, {7, 6}, {7, 6}, {7, 6}, {8, 7}, {8, 7}, {8, 7}, {8, 7}, {9, 8}, {9, 8}, {10, 9}, {11, 9}
     };
-
     /* Table B-13, dct_dc_size_chrominance, codes 00xxx ... 11110 */
     final byte[][] DCchromtab0 = {
             {0, 2}, {0, 2}, {0, 2}, {0, 2}, {0, 2}, {0, 2}, {0, 2}, {0, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {1, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {2, 2}, {3, 3}, {3, 3}, {3, 3}, {3, 3}, {4, 4}, {4, 4}, {5, 5}, {-1, 0}
     };
-
     /* Table B-13, dct_dc_size_chrominance, codes 111110xxxx ... 1111111111 */
     final byte[][] DCchromtab1 = {
             {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {6, 6}, {7, 7}, {7, 7}, {7, 7}, {7, 7}, {7, 7}, {7, 7}, {7, 7}, {7, 7}, {8, 8}, {8, 8}, {8, 8}, {8, 8}, {9, 9}, {9, 9}, {10, 10}, {11, 10}
     };
-
     /* Table B-10, motion_code, codes 0001 ... 01xx */
     final byte[][] MVtab0 = {
             {-1, 0}, {3, 3}, {2, 2}, {2, 2}, {1, 1}, {1, 1}, {1, 1}, {1, 1}
     };
-
     /* Table B-10, motion_code, codes 0000011 ... 000011x */
     final byte[][] MVtab1 = {
             {-1, 0}, {-1, 0}, {-1, 0}, {7, 6}, {6, 6}, {5, 6}, {4, 5}, {4, 5}
     };
-
     /* Table B-10, motion_code, codes 0000001100 ... 000001011x */
     final byte[][] MVtab2 = {
             {16, 9}, {15, 9}, {14, 9}, {13, 9}, {12, 9}, {11, 9}, {10, 8}, {10, 8}, {9, 8}, {9, 8}, {8, 8}, {8, 8}
     };
-
     /* Table B-3, macroblock_type in P-pictures, codes 001..1xx */
     final byte[][] PMBtab0 = {
             {-1, 0},
@@ -635,7 +496,6 @@ public class IframeDecoder {
             {MACROBLOCK_MOTION_FORWARD | MACROBLOCK_PATTERN, 1},
             {MACROBLOCK_MOTION_FORWARD | MACROBLOCK_PATTERN, 1}
     };
-
     /* Table B-3, macroblock_type in P-pictures, codes 000001..00011x */
     final byte[][] PMBtab1 = {
             {-1, 0},
@@ -647,7 +507,6 @@ public class IframeDecoder {
             {MACROBLOCK_INTRA, 5},
             {MACROBLOCK_INTRA, 5}
     };
-
     /* Table B-4, macroblock_type in B-pictures, codes 0010..11xx */
     final byte[][] BMBtab0 = {
             {-1, 0},
@@ -667,7 +526,6 @@ public class IframeDecoder {
             {MACROBLOCK_MOTION_FORWARD | MACROBLOCK_MOTION_BACKWARD | MACROBLOCK_PATTERN, 2},
             {MACROBLOCK_MOTION_FORWARD | MACROBLOCK_MOTION_BACKWARD | MACROBLOCK_PATTERN, 2}
     };
-
     /* Table B-4, macroblock_type in B-pictures, codes 000001..00011x */
     final byte[][] BMBtab1 = {{-1, 0}, {
             MACROBLOCK_QUANT | MACROBLOCK_INTRA, 6}, {
@@ -678,17 +536,97 @@ public class IframeDecoder {
             MACROBLOCK_INTRA, 5}, {
             MACROBLOCK_INTRA, 5}
     };
-
     final double[] frame_rate_Table = {
             0.0, ((24.0 * 1000.0) / 1001.0), 24.0, 25.0,
             ((30.0 * 1000.0) / 1001.0), 30.0, 50.0, ((60.0 * 1000.0) / 1001.0), 60.0, -1,
             // reserved
             -1, -1, -1, -1, -1, -1
     };
+    public boolean viewGOP = true;
+    final int width = 720;
+    final int height = 576;
+    private final int[] pixels2 = new int[this.width * this.height];
+    private final Image image;
+    private final MemoryImageSource source;
+    private boolean FAST = false;
+    private long cutfiles_length = 0;
+    private long[] cutfiles_points = null;
+    private final StringBuilder info_4 = new StringBuilder();
+    private final StringBuilder info_3 = new StringBuilder();
+    private final StringBuilder info_2 = new StringBuilder();
+    private final StringBuilder info_1 = new StringBuilder();
+    private final String file = "";
+    private int Fault_Flag = 0;
+    private final boolean[] Bits = new boolean[0];
+    private byte[] buf = new byte[0];
+    private int BitPos = 0;
+    private int BufferPos = 0;
+    private int[] pixels = new int[250];
+    private boolean PLAY = true, DIRECTION = false, ERROR1 = false, ERROR2 = false;
+    private long StartPos = 0;
+    private int SequenceHeader = 0; //DM28112003 081.5++
+    private int File_Flag;
+    private int File_Limit;
+    private int FO_Flag;
+    private int IDCT_Flag;
+    private int Luminance_Flag;
+    private int Scale_Flag;
+    private int SystemStream_Flag;
+    private final int ERROR_CODE = 0;
+    private int ERROR_CODE1 = 0;
+    private int q_scale_type = 0; //1
+    private int quantizer_scale = 0, alternate_scan = 0; //1
+    private int Coded_Picture_Width = 0, Coded_Picture_Height = 0, Chroma_Width = 0, Chroma_Height = 0;
+    private int block_count = 0, Second_Field = 0;
+    private int horizontal_size = 0, vertical_size = 0, mb_width = 0, mb_height = 0;
+    /* ISO/IEC 13818-2 section 6.2.2.1:  sequence_header() */
+    private int frame_rate_code = 0;
+    private int aspect_ratio_information = 0;
+    /* ISO/IEC 13818-2 section 6.2.2.3:  sequence_extension() */
+    private int progressive_sequence = 1; //prog.s std
+    private int chroma_format = 1; //4:2:0std
 
+//    typedef struct {
+//        char run, level, len;
+//    } DCTtab;
+//
+//    typedef struct {
+//        char val, len;
+//    } VLCtab;
+    private int profile_and_level_indication;
+    private int video_format;
+    private final String[] video_format_S = {"comp", "PAL", "NTSC", "SECAM", "MAC", "unspec", "res", "res"};
+    private final String[] prof = {"res", "HP", "SS", "SNR", "MP", "SP", "res", "res"};
+    private final String[] lev = {
+            "res", "res", "res", "res", "HL", "res", "HL1440", "res", "ML", "res", "LL", "res", "res", "res", "res"
+    };
+    /* ISO/IEC 13818-2 section 6.2.3: picture_header() */
+    private int picture_coding_type = 0;
+    private int temporal_reference = 0;
+    /* ISO/IEC 13818-2 section 6.2.3.1: picture_coding_extension() header */
+    private final int[][] f_code = new int[2][2];
+    private int picture_structure = 3; //0
+    private int frame_pred_frame_dct = 1; //0
+    private int progressive_frame = 1; //0
+    private int concealment_motion_vectors = 0;
+    private int intra_dc_precision = 0; //8bit
+    private int top_field_first = 0;
+    private int repeat_first_field = 0;
+    private int intra_vlc_format = 0; //
+    private final int[] intra_quantizer_matrix = new int[64];
+    private final int[] non_intra_quantizer_matrix = new int[64];
+    private final int[] chroma_intra_quantizer_matrix = new int[64];
+    private final int[] chroma_non_intra_quantizer_matrix = new int[64];
+    private int load_intra_quantizer_matrix = 0;
+    private int load_non_intra_quantizer_matrix = 0;
+    private int load_chroma_intra_quantizer_matrix = 0;
+    private int load_chroma_non_intra_quantizer_matrix = 0;
+    private final short[][] block = new short[12][64]; // macroblocks
     /* global value */
-    private byte[] backward_reference_frame = new byte[3], forward_reference_frame = new byte[3];
-    private byte[] auxframe = new byte[3], current_frame = new byte[3];
+    private final byte[] backward_reference_frame = new byte[3];
+    private final byte[] forward_reference_frame = new byte[3];
+    private final byte[] auxframe = new byte[3];
+    private final byte[] current_frame = new byte[3];
     private byte u422, v422, u444, v444, rgb24, lum;
     private int pf_backward, pf_forward, pf_current;
     private float frame_rate, Frame_Rate;
@@ -700,12 +638,37 @@ public class IframeDecoder {
     private int drop_flag;
     private int closed_gop;
     private int broken_link;
+    private final byte[] bmpHead = {0x42, 0x4D, //'B','M'
+            0, 0, 0, 0, // real filesize 32bit, little endian (real size*3 +
+            // header(0x36))
+            0, 0, 0, 0, 0x36, 0, 0, 0, // bitmap info size
+            0x28, 0, 0, 0, 0, 0, 0, 0, // hsize
+            0, 0, 0, 0, // vsize
+            1, 0, // nplane
+            0x18, 0, // bitcount 24b
+            0, 0, 0, 0, // ncompr
+            0, 0, 0, 0, // image bytesize
+            (byte) 0x88, 0xB, 0, 0, // nxpm
+            (byte) 0x88, 0xB, 0, 0, // nypm
+            0, 0, 0, 0, // nclrused,
+            0, 0, 0, 0 // nclrimp
+    };
+
+    public IframeDecoder() {
+
+        java.util.Arrays.fill(this.pixels2, 0xFF505050);
+
+        this.source = new MemoryImageSource(this.width, this.height, this.pixels2, 0, this.width);
+        this.source.setAnimated(true);
+        Container cont = new Container();
+        this.image = cont.createImage(this.source);
+    }
 
     public void Clear_Block(int comp) { // assembler?
         java.util.Arrays.fill(block[comp], (short) 0); //clear macroblaock
     }
 
-    /**  */
+    /** */
     public void loadbits(int size) {
         BitPos = BufferPos << 3;
         BufferPos += size;
@@ -731,65 +694,65 @@ public class IframeDecoder {
         return Val;
     }
 
-    /**  */
-    public void Flush_Bits(int N) {
+    /** */
+    public void flushBits(int N) {
         this.BitPos += N;
         this.BufferPos = this.BitPos >>> 3;
     }
 
     /* decode headers from one input stream */
-    public int extern_Get_Hdr() {
-        int start_code;
+    public int getHdrExtern() {
+        int startCode;
 
-        for (; ; ) {
+        for (;;) {
             // look for next_start_code
             if (DIRECTION)
-                previous_start_code();
+                previousStartCode();
             else
-                next_start_code();
+                nextStartCode();
 
-            if ((start_code = Get_Bits(32)) == SEQUENCE_HEADER_CODE) {
+            if ((startCode = Get_Bits(32)) == SEQUENCE_HEADER_CODE) {
                 resetDecoder();
                 StartPos = BufferPos - 4;
-                sequence_header();
-                next_start_code();
+                sequenceHeader();
+                nextStartCode();
 
-                if ((start_code = Get_Bits(32)) == GROUP_START_CODE) {
+                if ((startCode = Get_Bits(32)) == GROUP_START_CODE) {
                     group_of_pictures_header();
-                    next_start_code();
+                    nextStartCode();
 
-                    if ((start_code = Get_Bits(32)) == PICTURE_START_CODE) {
+                    if ((startCode = Get_Bits(32)) == PICTURE_START_CODE) {
                         picture_header();
                         return 1;
                     }
                 }
-            } else if (viewGOP && start_code == GROUP_START_CODE) {
+            } else if (viewGOP && startCode == GROUP_START_CODE) {
                 StartPos = BufferPos - 4;
                 group_of_pictures_header();
-                next_start_code();
-                if ((start_code = Get_Bits(32)) == PICTURE_START_CODE) {
+                nextStartCode();
+                if ((startCode = Get_Bits(32)) == PICTURE_START_CODE) {
                     picture_header();
                     return 1;
                 }
             } else if (DIRECTION)
-                Flush_Bits(-40);
+                flushBits(-40);
         }
     }
 
     /** decode headers from one input stream */
-    public int Get_Hdr() {
+    public int getHdr() {
         video_format = 5;
 
-        for (; ; ) {
+        for (;;) {
             // look for next_start_code
 
-            next_start_code();
+            nextStartCode();
 
             switch (Get_Bits(32)) {
                 case SEQUENCE_HEADER_CODE:
                     resetDecoder(); // DM26112003 081.5++
                     StartPos = BufferPos - 4;
-                    sequence_header();
+                    sequenceHeader();
                     break;
 
                 case GROUP_START_CODE:
@@ -807,21 +770,21 @@ public class IframeDecoder {
     }
 
     /** align to start of next next_start_code */
-    public void next_start_code() {
-        Flush_Bits((8 - (BitPos & 7)) & 7);
+    public void nextStartCode() {
+        flushBits((8 - (BitPos & 7)) & 7);
         while (Show_Bits(24) != 1)
-            Flush_Bits(8);
+            flushBits(8);
     }
 
     /** align to start of next next_start_code */
-    public void previous_start_code() {
-        Flush_Bits((8 - (BitPos & 7)) & 7);
+    public void previousStartCode() {
+        flushBits((8 - (BitPos & 7)) & 7);
         while (Show_Bits(24) != 1)
-            Flush_Bits(-8);
+            flushBits(-8);
     }
 
     /** decode sequence header */
-    public void sequence_header() {
+    public void sequenceHeader() {
         int constrained_parameters_flag;
         int bit_rate_value;
         int vbv_buffer_size;
@@ -832,7 +795,7 @@ public class IframeDecoder {
         aspect_ratio_information = Get_Bits(4);
         frame_rate_code = Get_Bits(4);
         bit_rate_value = Get_Bits(18);
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         vbv_buffer_size = Get_Bits(10);
         constrained_parameters_flag = Get_Bits(1);
 
@@ -858,7 +821,7 @@ public class IframeDecoder {
 
         info_4.setLength(0);
 
-        extension_and_user_data();
+        extensionAndUserData();
 
         info_3.append(", ").append(bit_rate_value * 400)
                 .append("bps, vbv ").append(vbv_buffer_size)
@@ -873,32 +836,32 @@ public class IframeDecoder {
         drop_flag = Get_Bits(1);
         gop_hour = Get_Bits(5);
         gop_minute = Get_Bits(6);
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         gop_sec = Get_Bits(6);
         gop_frame = Get_Bits(6);
         closed_gop = Get_Bits(1);
         broken_link = Get_Bits(1);
 
-        extension_and_user_data();
+        extensionAndUserData();
     }
 
     /**
      * decode extension and user data
      * ISO/IEC 13818-2 section 6.2.2.2
      */
-    public void extension_and_user_data() {
+    public void extensionAndUserData() {
         int code, ext_ID;
 
-        next_start_code();
+        nextStartCode();
 
         while ((code = Show_Bits(32)) == EXTENSION_START_CODE || code == USER_DATA_START_CODE) {
             if (code == EXTENSION_START_CODE) {
-                Flush_Bits(32);
+                flushBits(32);
                 ext_ID = Get_Bits(4);
 
                 switch (ext_ID) {
                     case SEQUENCE_EXTENSION_ID:
-                        sequence_extension();
+                        sequenceExtension();
                         break;
                     case SEQUENCE_DISPLAY_EXTENSION_ID:
                         sequence_display_extension();
@@ -916,11 +879,11 @@ public class IframeDecoder {
                         copyright_extension();
                         break;
                 }
-                next_start_code();
+                nextStartCode();
             } else {
                 info_4.append(", user_data"); //DM06052004 081.7 int02 add
-                Flush_Bits(32); // ISO/IEC 13818-2  sections 6.3.4.1 and 6.2.2.2.2
-                next_start_code(); // skip user data
+                flushBits(32); // ISO/IEC 13818-2  sections 6.3.4.1 and 6.2.2.2.2
+                nextStartCode(); // skip user data
             }
         }
     }
@@ -934,9 +897,9 @@ public class IframeDecoder {
         int vbv_delay;
         int full_pel_forward_vector;
         int forward_f_code;
-        int full_pel_backward_vector;
-        int backward_f_code;
-        int Extra_Information_Byte_Count;
+        int fullPelBackwardVector;
+        int backwardFCode;
+        int extraInformationByteCount;
 
         temporal_reference = Get_Bits(10);
         picture_coding_type = Get_Bits(3);
@@ -949,19 +912,19 @@ public class IframeDecoder {
         }
 
         if (picture_coding_type == B_TYPE) {
-            full_pel_backward_vector = Get_Bits(1);
-            backward_f_code = Get_Bits(3);
+            fullPelBackwardVector = Get_Bits(1);
+            backwardFCode = Get_Bits(3);
         }
 
-        Extra_Information_Byte_Count = extra_bit_information();
-        extension_and_user_data();
+        extraInformationByteCount = extra_bit_information();
+        extensionAndUserData();
     }
 
     /**
      * decode sequence extension
      * ISO/IEC 13818-2 section 6.2.2.3
      */
-    public void sequence_extension() {
+    public void sequenceExtension() {
         int low_delay;
         int frame_rate_extension_n;
         int frame_rate_extension_d;
@@ -977,7 +940,7 @@ public class IframeDecoder {
         horizontal_size_extension = Get_Bits(2);
         vertical_size_extension = Get_Bits(2);
         bit_rate_extension = Get_Bits(12);
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         vbv_buffer_size_extension = Get_Bits(8);
         low_delay = Get_Bits(1);
 
@@ -1010,7 +973,7 @@ public class IframeDecoder {
         }
 
         display_horizontal_size = Get_Bits(14);
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         display_vertical_size = Get_Bits(14);
 
         // DM06052004 081.7 int02 add
@@ -1077,10 +1040,10 @@ public class IframeDecoder {
         // now parse
         for (i = 0; i < number_of_frame_center_offsets; i++) {
             frame_center_horizontal_offset[i] = Get_Bits(16);
-            Flush_Bits(1); // marker bit
+            flushBits(1); // marker bit
 
             frame_center_vertical_offset[i] = Get_Bits(16);
-            Flush_Bits(1); // marker bit
+            flushBits(1); // marker bit
         }
     }
 
@@ -1143,11 +1106,11 @@ public class IframeDecoder {
         // reserved
         reserved_data = Get_Bits(7);
 
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         copyright_number_1 = Get_Bits(20);
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         copyright_number_2 = Get_Bits(22);
-        Flush_Bits(1); // marker bit
+        flushBits(1); // marker bit
         copyright_number_3 = Get_Bits(22);
     }
 
@@ -1322,7 +1285,7 @@ public class IframeDecoder {
         int Byte_Count = 0;
 
         while (Get_Bits(1) > 0) {
-            Flush_Bits(8);
+            flushBits(8);
             Byte_Count++;
         }
 
@@ -1463,7 +1426,7 @@ public class IframeDecoder {
             return 0; // trigger: go to next slice
 
         if (((macroblock_type[0] & MACROBLOCK_INTRA) > 0) && (concealment_motion_vectors > 0))
-            Flush_Bits(1); // marker bit
+            flushBits(1); // marker bit
 
         // macroblock_pattern
         // ISO/IEC 13818-2 section 6.3.17.4: Coded block pattern
@@ -1585,7 +1548,7 @@ public class IframeDecoder {
                 return;
             }
 
-            Flush_Bits(tab[2]);
+            flushBits(tab[2]);
 
             if (tab[0] < 64) {
                 i += tab[0];
@@ -1663,7 +1626,7 @@ public class IframeDecoder {
                 return;
             }
 
-            Flush_Bits(tab[2]);
+            flushBits(tab[2]);
 
             if (tab[0] < 64) {
                 i += tab[0];
@@ -1701,11 +1664,11 @@ public class IframeDecoder {
 
         if (code < 31) {
             size = DClumtab0[code][0];
-            Flush_Bits(DClumtab0[code][1]);
+            flushBits(DClumtab0[code][1]);
         } else {
             code = Show_Bits(9) - 0x1f0;
             size = DClumtab1[code][0];
-            Flush_Bits(DClumtab1[code][1]);
+            flushBits(DClumtab1[code][1]);
         }
 
         if (size == 0)
@@ -1728,11 +1691,11 @@ public class IframeDecoder {
 
         if (code < 31) {
             size = DCchromtab0[code][0];
-            Flush_Bits(DCchromtab0[code][1]);
+            flushBits(DCchromtab0[code][1]);
         } else {
             code = Show_Bits(10) - 0x3e0;
             size = DCchromtab1[code][0];
-            Flush_Bits(DCchromtab1[code][1]);
+            flushBits(DCchromtab1[code][1]);
         }
 
         if (size == 0)
@@ -1752,14 +1715,14 @@ public class IframeDecoder {
 
         if ((code = Show_Bits(9)) >= 128) {
             code >>= 4;
-            Flush_Bits(CBPtab0[code][1]);
+            flushBits(CBPtab0[code][1]);
 
             return CBPtab0[code][0];
         }
 
         if (code >= 8) {
             code >>= 1;
-            Flush_Bits(CBPtab1[code][1]);
+            flushBits(CBPtab1[code][1]);
 
             return CBPtab1[code][0];
         }
@@ -1769,7 +1732,7 @@ public class IframeDecoder {
             return 0;
         }
 
-        Flush_Bits(CBPtab2[code][1]);
+        flushBits(CBPtab2[code][1]);
 
         return CBPtab2[code][0];
     }
@@ -1781,7 +1744,7 @@ public class IframeDecoder {
      */
     public int start_of_slice(int[] MBA, int[] MBAinc, int[] dc_dct_pred, int[][][] PMV) {
 
-        next_start_code();
+        nextStartCode();
         int code = Get_Bits(32);
 
         if (code < SLICE_START_CODE_MIN || code > SLICE_START_CODE_MAX) {
@@ -1829,13 +1792,13 @@ public class IframeDecoder {
                     return 1;
                 }
             }
-            Flush_Bits(11);
+            flushBits(11);
         }
 
         // macroblock_address_increment == 1
         // ('1' is in the MSB position of the lookahead)
         if (code >= 1024) {
-            Flush_Bits(1);
+            flushBits(1);
             return (val + 1);
         }
 
@@ -1843,14 +1806,14 @@ public class IframeDecoder {
         if (code >= 128) {
             // remove leading zeros
             code >>= 6;
-            Flush_Bits(MBAtab1[code][1]);
+            flushBits(MBAtab1[code][1]);
 
             return (val + MBAtab1[code][0]);
         }
 
         // codes 00000011000 ... 0000111xxxx
         code -= 24; // remove common base
-        Flush_Bits(MBAtab2[code][1]);
+        flushBits(MBAtab2[code][1]);
 
         return (val + MBAtab2[code][0]);
     }
@@ -2034,6 +1997,8 @@ public class IframeDecoder {
             java.util.Arrays.fill(block, block[0]);
     }
 
+    // DM02092003
+
     /**
      * move/add 8x8-Block from block[comp] to backward_reference_frame
      * copy reconstructed 8x8 block from block[comp] to current_frame[]
@@ -2134,8 +2099,6 @@ public class IframeDecoder {
         }
     }
 
-    // DM02092003
-
     /** ISO/IEC 13818-2 section 6.3.17.1: Macroblock modes */
     public void macroblock_modes(int[] pmacroblock_type, int[] pmotion_type, int[] pmotion_vector_count,
                                  int[] pmv_format, int[] pdmv, int[] pmvscale, int[] pdct_type) {
@@ -2212,7 +2175,7 @@ public class IframeDecoder {
 
         if ((code = Show_Bits(6)) >= 8) {
             code >>= 3;
-            Flush_Bits(PMBtab0[code][1]);
+            flushBits(PMBtab0[code][1]);
 
             return PMBtab0[code][0];
         }
@@ -2222,7 +2185,7 @@ public class IframeDecoder {
             return 0;
         }
 
-        Flush_Bits(PMBtab1[code][1]);
+        flushBits(PMBtab1[code][1]);
 
         return PMBtab1[code][0];
     }
@@ -2232,7 +2195,7 @@ public class IframeDecoder {
 
         if ((code = Show_Bits(6)) >= 8) {
             code >>= 2;
-            Flush_Bits(BMBtab0[code][1]);
+            flushBits(BMBtab0[code][1]);
 
             return BMBtab0[code][0];
         }
@@ -2242,7 +2205,7 @@ public class IframeDecoder {
             return 0;
         }
 
-        Flush_Bits(BMBtab1[code][1]);
+        flushBits(BMBtab1[code][1]);
 
         return BMBtab1[code][0];
     }
@@ -2255,14 +2218,14 @@ public class IframeDecoder {
 
         if ((code = Show_Bits(9)) >= 64) {
             code >>= 6;
-            Flush_Bits(MVtab0[code][1]);
+            flushBits(MVtab0[code][1]);
 
             return ((Get_Bits(1) > 0) ? -MVtab0[code][0] : MVtab0[code][0]);
         }
 
         if (code >= 24) {
             code >>= 3;
-            Flush_Bits(MVtab1[code][1]);
+            flushBits(MVtab1[code][1]);
 
             return ((Get_Bits(1) > 0) ? -MVtab1[code][0] : MVtab1[code][0]);
         }
@@ -2272,7 +2235,7 @@ public class IframeDecoder {
             return 0;
         }
 
-        Flush_Bits(MVtab2[code][1]);
+        flushBits(MVtab2[code][1]);
 
         return ((Get_Bits(1) > 0) ? -MVtab2[code][0] : MVtab2[code][0]);
     }
@@ -2302,7 +2265,6 @@ public class IframeDecoder {
             for (int x = x_offset; X < horizontal_size && x < nx; X += Xdecimate, x++)
                 pixels2[x + (y * scanline)] = 0xFF000000 | pixels[(int) X + ((int) Y * horizontal_size)];
     }
-
 
     public void showCut(boolean play, long[] cutPoints, java.util.ArrayList<Object[]> previewList) {
         PLAY = play;
@@ -2336,7 +2298,7 @@ public class IframeDecoder {
 
         try {
             while (BufferPos < buf.length && BufferPos >= 0) {
-                ERROR_CODE1 = extern_Get_Hdr();
+                ERROR_CODE1 = getHdrExtern();
                 if (ERROR_CODE1 == 1) {
                     if (picture_coding_type != I_TYPE) {
                         BufferPos += 2048;
@@ -2364,6 +2326,8 @@ public class IframeDecoder {
         decodeFile(file);
     }
 
+    // DM02092003+
+
     /** call **/
     public void decodeFile(File file) {
         try {
@@ -2382,17 +2346,17 @@ public class IframeDecoder {
             in.read(buf);
 
             while (BytePos < file.length()) {
-                ERROR_CODE1 = Get_Hdr();
+                ERROR_CODE1 = getHdr();
                 if (ERROR_CODE1 == 1) {
                     InitialDecoder();
                     Decode_Picture();
-//                    logger.log(Level.DEBUG, " a" + (BytePos * 101 / file.length()) + "%  F#" + (Frame++));
-//                    logger.log(Level.DEBUG, "ph " + temporal_reference + "/" + picture_coding_type);
+//logger.log(Level.DEBUG, " a" + (BytePos * 101 / file.length()) + "%  F#" + (Frame++));
+//logger.log(Level.DEBUG, "ph " + temporal_reference + "/" + picture_coding_type);
                 } else if (ERROR_CODE1 == 2) {
                     logger.log(Level.DEBUG, " " + (BytePos * 101 / file.length()) + "%  end");
                     break;
                 } else {
-//                    logger.log(Level.DEBUG, " b" + (BytePos * 101 / file.length()) + "%  a/ " + ERROR_CODE + "/" + ERROR_CODE1 + " /" + Fault_Flag);
+//logger.log(Level.DEBUG, " b" + (BytePos * 101 / file.length()) + "%  a/ " + ERROR_CODE + "/" + ERROR_CODE1 + " /" + Fault_Flag);
                     BufferPos++;
                 }
                 if (buf.length - BufferPos < 512000) {
@@ -2409,27 +2373,9 @@ public class IframeDecoder {
         } catch (IOException e) {
             logger.log(Level.DEBUG, "IO " + e);
 //        } catch (Exception e1) {
-//            logger.log(Level.WARNING, " " + e1 + "/" + ERROR_CODE + " /" + ERROR_CODE1 + " /" + Fault_Flag);
+//logger.log(Level.WARNING, " " + e1 + "/" + ERROR_CODE + " /" + ERROR_CODE1 + " /" + Fault_Flag);
         }
     }
-
-    // DM02092003+
-
-    private byte[] bmpHead = {0x42, 0x4D, //'B','M'
-            0, 0, 0, 0, // real filesize 32bit, little endian (real size*3 +
-            // header(0x36))
-            0, 0, 0, 0, 0x36, 0, 0, 0, // bitmap info size
-            0x28, 0, 0, 0, 0, 0, 0, 0, // hsize
-            0, 0, 0, 0, // vsize
-            1, 0, // nplane
-            0x18, 0, // bitcount 24b
-            0, 0, 0, 0, // ncompr
-            0, 0, 0, 0, // image bytesize
-            (byte) 0x88, 0xB, 0, 0, // nxpm
-            (byte) 0x88, 0xB, 0, 0, // nypm
-            0, 0, 0, 0, // nclrused,
-            0, 0, 0, 0 // nclrimp
-    };
 
     public void littleEndian(byte[] array, int aPos, int value) {
         for (int a = 0; a < 4; a++)
@@ -2522,10 +2468,10 @@ public class IframeDecoder {
 
 //    public static void main(String arg[]) throws IOException {
 //
-//        System.out.println("MPEG test Video Decoder; v0.02  01.06.03");
-//        System.out.println("");
-//        System.out.println(">java MPVD <infile>");
-//        System.out.println("");
+//logger.log(Level.DEBUG, "MPEG test Video Decoder; v0.02  01.06.03");
+//logger.log(Level.DEBUG, "");
+//logger.log(Level.DEBUG, ">java MPVD <infile>");
+//logger.log(Level.DEBUG, "");
 //
 //        arg = new String[1];
 ////        arg[0] = "E:/myIconDocs/projects/Mediaset/Campioni/implementation/src/campioni/img_static/iFrame.mpg";

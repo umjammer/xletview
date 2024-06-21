@@ -21,10 +21,9 @@ import org.davic.net.Locator;
 public class ServiceXFRReference {
 
     private byte[] nsapAddress;
-    private String pathName;
+    private final String pathName;
     private Locator locator;
     private int carouselId;
-
 
     public ServiceXFRReference(Locator serviceLocator, int carouselId, String pathName) {
         this.locator = serviceLocator;
@@ -52,5 +51,4 @@ public class ServiceXFRReference {
     public byte[] getNSAPAddress() {
         return nsapAddress;
     }
-
 }

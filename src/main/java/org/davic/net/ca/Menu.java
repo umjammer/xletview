@@ -18,5 +18,4 @@ public class Menu extends List {
 
     final public void setChoice(short choice) throws CAException {
     }
-
 }

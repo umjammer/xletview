@@ -27,10 +27,8 @@ import static java.lang.System.getLogger;
 public class HGraphicButton extends HIcon implements HActionable {
 
     private static final Logger logger = getLogger(HGraphicButton.class.getName());
-
-    private HActionableHelper helper;
-
     private static HGraphicLook defaultHLook = new HGraphicLook();
+    private HActionableHelper helper;
 
     public HGraphicButton() {
         super();
@@ -60,17 +58,17 @@ public class HGraphicButton extends HIcon implements HActionable {
 
     // constructors end
 
-    private void init() {
-        helper = new HActionableHelper(this);
-        logger.log(Level.DEBUG, "HGraphicButton - init");
+    public static HGraphicLook getDefaultLook() {
+        return HGraphicButton.defaultHLook;
     }
 
     public static void setDefaultLook(HGraphicLook hlook) {
         HGraphicButton.defaultHLook = hlook;
     }
 
-    public static HGraphicLook getDefaultLook() {
-        return HGraphicButton.defaultHLook;
+    private void init() {
+        helper = new HActionableHelper(this);
+        logger.log(Level.DEBUG, "HGraphicButton - init");
     }
 
     @Override
@@ -84,8 +82,8 @@ public class HGraphicButton extends HIcon implements HActionable {
     }
 
     @Override
-    public void setActionCommand(String command) {
-        helper.setActionCommand(command);
+    public HSound getActionSound() {
+        return helper.getActionSound();
     }
 
     @Override
@@ -94,13 +92,8 @@ public class HGraphicButton extends HIcon implements HActionable {
     }
 
     @Override
-    public HSound getActionSound() {
-        return helper.getActionSound();
-    }
-
-    @Override
     public void processHActionEvent(org.havi.ui.event.HActionEvent evt) {
-//        logger.log(Level.TRACE, this, "processHActionEvent");
+//logger.log(Level.TRACE, this, "processHActionEvent");
         int state = getInteractionState();
         int newState = helper.getHActionEventResult(evt);
 
@@ -112,5 +105,10 @@ public class HGraphicButton extends HIcon implements HActionable {
     @Override
     public java.lang.String getActionCommand() {
         return helper.getActionCommand();
+    }
+
+    @Override
+    public void setActionCommand(String command) {
+        helper.setActionCommand(command);
     }
 }

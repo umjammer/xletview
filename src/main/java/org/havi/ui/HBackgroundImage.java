@@ -34,17 +34,15 @@ import static java.lang.System.getLogger;
 public class HBackgroundImage extends Component {
 
     private static final Logger logger = getLogger(HBackgroundImage.class.getName());
-
+    private static final IframeDecoder decoder = new IframeDecoder();
     private Image image;
     private int width;
     private int height;
 
-    private static final IframeDecoder decoder = new IframeDecoder();
-
     public HBackgroundImage(String filename) {
 
 //        if(filename.indexOf(".mpg") > -1){
-//            logger.log(Level.INFO, "Display of .mpg is not yet supported.\n" +
+//logger.log(Level.INFO, "Display of .mpg is not yet supported.\n" +
 //                "A workaround for now is to use a .jpg with the same name.");
 //            filename = filename.substring(0, filename.length() - 4) + ".jpg";
 //        }

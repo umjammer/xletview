@@ -8,8 +8,8 @@ import java.io.File;
  */
 public class RelFile {
 
-    private File file;
-    private String relPath;
+    private final File file;
+    private final String relPath;
 
     public RelFile(File file, String relPath) {
         this.file = file;
@@ -23,5 +23,4 @@ public class RelFile {
     public String getRelPath() {
         return relPath;
     }
-
 }

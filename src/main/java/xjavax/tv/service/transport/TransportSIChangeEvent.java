@@ -40,8 +40,8 @@ public abstract class TransportSIChangeEvent extends SIChangeEvent {
      * Constructs an <code>TransportSIChangeEvent</code>.
      *
      * @param transport The Transport on which the change occurred.
-     * @param type The type of change that occurred.
-     * @param e The SIElement that changed.
+     * @param type      The type of change that occurred.
+     * @param e         The SIElement that changed.
      */
     public TransportSIChangeEvent(Transport transport, SIChangeType type, SIElement e) {
         super(transport, type, e);
@@ -57,5 +57,4 @@ public abstract class TransportSIChangeEvent extends SIChangeEvent {
     public Transport getTransport() {
         return (Transport) super.getSource();
     }
-
 }

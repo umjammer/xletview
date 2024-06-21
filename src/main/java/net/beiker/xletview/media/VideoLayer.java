@@ -99,8 +99,8 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
 //    }
 
 //    public void paint(Graphics g){
-//        logger.log(Level.DEBUG, this, "paint");
-//        logger.log(Level.DEBUG, this, "this = " + this);
+//logger.log(Level.DEBUG, this, "paint");
+//logger.log(Level.DEBUG, this, "this = " + this);
 //        super.paint(g);
 //    }
 
@@ -241,12 +241,6 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     }
 
     @Override
-    public void setTimeBase(TimeBase arg0) throws IncompatibleTimeBaseException {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "setTimeBase");
-    }
-
-    @Override
     public void syncStart(Time arg0) {
         // TODO Auto-generated method stub
         logger.log(Level.TRACE, "syncStart");
@@ -259,12 +253,6 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     }
 
     @Override
-    public void setStopTime(Time arg0) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "setStopTime");
-    }
-
-    @Override
     public Time getStopTime() {
         // TODO Auto-generated method stub
         logger.log(Level.TRACE, "getStopTime");
@@ -272,9 +260,9 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
     }
 
     @Override
-    public void setMediaTime(Time arg0) {
+    public void setStopTime(Time arg0) {
         // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "setMediaTime");
+        logger.log(Level.TRACE, "setStopTime");
     }
 
     @Override
@@ -282,6 +270,12 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
         // TODO Auto-generated method stub
         logger.log(Level.TRACE, "getMediaTime");
         return null;
+    }
+
+    @Override
+    public void setMediaTime(Time arg0) {
+        // TODO Auto-generated method stub
+        logger.log(Level.TRACE, "setMediaTime");
     }
 
     @Override
@@ -303,6 +297,12 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
         // TODO Auto-generated method stub
         logger.log(Level.TRACE, "getTimeBase");
         return null;
+    }
+
+    @Override
+    public void setTimeBase(TimeBase arg0) throws IncompatibleTimeBaseException {
+        // TODO Auto-generated method stub
+        logger.log(Level.TRACE, "setTimeBase");
     }
 
     @Override

@@ -81,5 +81,4 @@ public interface Transport {
      * @return The delivery system type of this transport.
      */
     DeliverySystemType getDeliverySystemType();
-
 }

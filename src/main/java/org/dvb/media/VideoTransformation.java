@@ -38,12 +38,12 @@ public class VideoTransformation {
         this.location = location;
     }
 
-    public void setClipRegion(Rectangle clipRect) {
-        this.clipRegion = clipRect;
-    }
-
     public Rectangle getClipRegion() {
         return clipRegion;
+    }
+
+    public void setClipRegion(Rectangle clipRect) {
+        this.clipRegion = clipRect;
     }
 
     public void setScalingFactors(float horizontalScalingFactor, float verticalScalingFactor) {
@@ -56,12 +56,12 @@ public class VideoTransformation {
         return scalingFactors;
     }
 
-    public void setVideoPosition(HScreenPoint location) {
-        this.location = location;
-    }
-
     public HScreenPoint getVideoPosition() {
         return location;
+    }
+
+    public void setVideoPosition(HScreenPoint location) {
+        this.location = location;
     }
 
     public boolean isPanAndScan() {

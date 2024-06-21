@@ -23,51 +23,9 @@ import java.awt.Insets;
  */
 public class HGraphicLook implements HLook {
 
-    private static Insets insets = new Insets(2, 2, 2, 2);
+    private static final Insets insets = new Insets(2, 2, 2, 2);
 
     public HGraphicLook() {
-    }
-
-
-    @Override
-    public void showLook(java.awt.Graphics g, HVisible hVisible, int state) {
-        Dimension dimension = hVisible.getSize();
-
-        if (hVisible.getBackgroundMode() == HVisible.BACKGROUND_FILL) {
-            Color bg = hVisible.getBackground();
-            if (bg != null) {
-                g.setColor(bg);
-                g.fillRect(0, 0, dimension.width, dimension.height);
-            }
-        }
-
-        // this is the image to be drawn in the state
-        Image imageToDraw = hVisible.getGraphicContent(state);
-        if (imageToDraw != null) {
-            drawImage(g, imageToDraw, hVisible);
-
-        }
-
-        // border
-        if (hVisible.getInteractionState() == HState.FOCUSED_STATE) {
-            Color fg = hVisible.getForeground();
-            if (fg != null) {
-                g.setColor(fg);
-
-                // top
-                g.fillRect(0, 0, dimension.width, insets.top);
-
-                // right
-                g.fillRect(dimension.width - insets.right, 0, insets.right, dimension.height);
-
-                // bottom
-                g.fillRect(0, dimension.height - insets.bottom, dimension.width, insets.bottom);
-
-                // left
-                g.fillRect(0, 0, insets.left, dimension.height);
-            }
-        }
-
     }
 
     /**
@@ -128,6 +86,47 @@ public class HGraphicLook implements HLook {
     }
 
     @Override
+    public void showLook(java.awt.Graphics g, HVisible hVisible, int state) {
+        Dimension dimension = hVisible.getSize();
+
+        if (hVisible.getBackgroundMode() == HVisible.BACKGROUND_FILL) {
+            Color bg = hVisible.getBackground();
+            if (bg != null) {
+                g.setColor(bg);
+                g.fillRect(0, 0, dimension.width, dimension.height);
+            }
+        }
+
+        // this is the image to be drawn in the state
+        Image imageToDraw = hVisible.getGraphicContent(state);
+        if (imageToDraw != null) {
+            drawImage(g, imageToDraw, hVisible);
+
+        }
+
+        // border
+        if (hVisible.getInteractionState() == HState.FOCUSED_STATE) {
+            Color fg = hVisible.getForeground();
+            if (fg != null) {
+                g.setColor(fg);
+
+                // top
+                g.fillRect(0, 0, dimension.width, insets.top);
+
+                // right
+                g.fillRect(dimension.width - insets.right, 0, insets.right, dimension.height);
+
+                // bottom
+                g.fillRect(0, dimension.height - insets.bottom, dimension.width, insets.bottom);
+
+                // left
+                g.fillRect(0, 0, insets.left, dimension.height);
+            }
+        }
+
+    }
+
+    @Override
     public void widgetChanged(HVisible hVisible, HChangeData[] changes) {
         /*
             " Note that implementations of HLook may not actually implement more efficient
@@ -172,12 +171,4 @@ public class HGraphicLook implements HLook {
     public Insets getInsets(HVisible hVisible) {
         return insets;
     }
-
 }
-
-
-
-
-
-
-

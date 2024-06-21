@@ -62,7 +62,6 @@ public class TvWindow extends JFrame implements ActionListener {
 
     private static final Logger logger = getLogger(TvWindow.class.getName());
 
-
     public TvWindow() {
         super();
 
@@ -155,14 +154,12 @@ public class TvWindow extends JFrame implements ActionListener {
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
-
             }
         });
 
         this.setIconImage(Constants.ICON_TVWINDOW);
         this.setTitle(Constants.TITLE);
         this.setResizable(true);
-
 
         if (doCenter) {
             Util.center(this);
@@ -172,7 +169,7 @@ public class TvWindow extends JFrame implements ActionListener {
 
         // set the first channel
         ChannelManager.getInstance().setChannel(0);
-//        System.out.println("<end log file>");
+//logger.log(Level.DEBUG, "<end log file>");
 //        ConsoleWindow.getInstance();
 
         // visibility is set in the startup class

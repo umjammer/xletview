@@ -40,21 +40,21 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
     }
 
     @Override
-    public void setMatte(HMatte hmatte) throws HMatteException {
-        hMatte = hmatte;
-    }
-
-    @Override
     public HMatte getMatte() {
         return hMatte;
     }
 
-    /*
-        "true if all the drawing done during the update and paint methods for this
-        specific HComponent object is automatically double buffered, or false if
-        drawing is not double buffered. The default value for the double buffering
-        setting is platform-specific"
-    */
+    @Override
+    public void setMatte(HMatte hmatte) throws HMatteException {
+        hMatte = hmatte;
+    }
+
+    /**
+     * "true if all the drawing done during the update and paint methods for this
+     * specific HComponent object is automatically double buffered, or false if
+     * drawing is not double buffered. The default value for the double buffering
+     * setting is platform-specific"
+     */
     @Override
     public boolean isDoubleBuffered() {
         return false;
@@ -62,22 +62,20 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
 
     @Override
     public boolean isOpaque() {
-        /*
-            " By default, the return value is false. The return value should be overridden by
-            subclasses that can guarantee full opacity. The consequences of an invalid
-            overridden value are implementation specific. "
-        */
+        // " By default, the return value is false. The return value should be overridden by
+        //  subclasses that can guarantee full opacity. The consequences of an invalid
+        //  overridden value are implementation specific. "
         return false;
-    }
-
-    @Override
-    public void setEnabled(boolean b) {
-        enabled = b;
     }
 
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    @Override
+    public void setEnabled(boolean b) {
+        enabled = b;
     }
 
     @Override
@@ -92,5 +90,4 @@ public abstract class HComponent extends Component implements HMatteLayer, TestO
     public Graphics getGraphics() {
         return DVBGraphics.getDVBGraphics(super.getGraphics());
     }
-
 }

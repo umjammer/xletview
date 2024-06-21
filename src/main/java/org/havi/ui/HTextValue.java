@@ -20,8 +20,4 @@ public interface HTextValue extends HNavigable, HKeyboardInputPreferred {
     void addHTextListener(org.havi.ui.event.HTextListener l);
 
     void removeHTextListener(org.havi.ui.event.HTextListener l);
-
 }
-
-
-

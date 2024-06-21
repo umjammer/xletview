@@ -27,9 +27,7 @@ public class ServiceManager {
     private static final ServiceManager THE_INSTANCE = new ServiceManager();
 
     private ServiceManager() {
-
     }
-
 
     /**
      * Returns the singelton system-wide ServiceManager object.
@@ -48,5 +46,4 @@ public class ServiceManager {
     public Service getCurrentService() {
         return null;
     }
-
 }

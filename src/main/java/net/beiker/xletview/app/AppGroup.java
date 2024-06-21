@@ -28,10 +28,10 @@ public class AppGroup implements UserObject /*, Transferable*/ {
 //    final public static DataFlavor DATAFLAVOR = new DataFlavor(AppGroup.class, "Application Group");
 //    static DataFlavor[] flavors = { DATAFLAVOR };
 
-    private List<AppGroup> subGroups;
-    private List<App> apps;
-    private String name;
     private static int count;
+    private final List<AppGroup> subGroups;
+    private final List<App> apps;
+    private String name;
 
     private AppGroup() {
         subGroups = new ArrayList<>();
@@ -62,12 +62,12 @@ public class AppGroup implements UserObject /*, Transferable*/ {
         return (subGroups.size() + apps.size()) > 0;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void addApp(App app) {

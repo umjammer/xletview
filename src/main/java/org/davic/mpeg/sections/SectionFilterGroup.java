@@ -65,5 +65,4 @@ public class SectionFilterGroup implements org.davic.resources.ResourceProxy, or
     @Override
     public void removeResourceStatusEventListener(org.davic.resources.ResourceStatusListener listener) {
     }
-
 }

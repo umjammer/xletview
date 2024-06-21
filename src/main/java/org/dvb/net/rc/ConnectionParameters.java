@@ -21,9 +21,9 @@ import java.net.InetAddress;
  */
 public class ConnectionParameters {
 
-    private String target;
-    private String userName;
-    private String passWord;
+    private final String target;
+    private final String userName;
+    private final String passWord;
 
     public ConnectionParameters(String number, String username, String password) {
         target = number;
@@ -35,7 +35,7 @@ public class ConnectionParameters {
         target = number;
         userName = username;
         passWord = password;
-        //ignore dns
+        // ignore dns
     }
 
     public String getTarget() {
@@ -51,6 +51,6 @@ public class ConnectionParameters {
     }
 
     public InetAddress[] getDNSServer() {
-        return null;   //not implemented
+        return null; // not implemented
     }
 }

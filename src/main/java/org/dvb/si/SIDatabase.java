@@ -111,5 +111,4 @@ public class SIDatabase {
 
     public void removeEventScheduleMonitoringListener(SIMonitoringListener listener, int originalNetworkId, int transportStreamId, int serviceId) throws SIIllegalArgumentException {
     }
-
 }

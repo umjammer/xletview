@@ -20,7 +20,6 @@ public interface SITransportStream extends SIInformation {
     int getTransportStreamID();
 
     SIRequest retrieveSIServices(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
-
 }
 
 

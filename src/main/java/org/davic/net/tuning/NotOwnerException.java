@@ -24,6 +24,5 @@ public class NotOwnerException extends NetworkInterfaceException {
     public NotOwnerException(String reason) {
         super(reason);
     }
-
 }
 

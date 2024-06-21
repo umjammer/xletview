@@ -34,7 +34,6 @@ public interface XletContext {
      */
     java.lang.String ARGS = "javax.tv.xlet.args";
 
-
     /**
      * Used by an application to notify its manager that it
      * has entered into the
@@ -82,5 +81,4 @@ public interface XletContext {
      * @see Xlet#startXlet()
      */
     void resumeRequest();
-
 }

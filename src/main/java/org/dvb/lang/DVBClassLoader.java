@@ -39,11 +39,11 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
 
     static final Logger logger = getLogger(DVBClassLoader.class.getName());
 
-    private URL[] urls;
+    private final URL[] urls;
     private ClassLoader parent;
-    private Map<String, Class<?>> loaded;
-    private ClassPool pool;
-    private ClassMap xletClassMap;
+    private final Map<String, Class<?>> loaded;
+    private final ClassPool pool;
+    private final ClassMap xletClassMap;
 
     public DVBClassLoader(URL[] urls) {
         this.urls = urls;
@@ -61,6 +61,14 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         this.parent = parent;
     }
 
+    public static DVBClassLoader newInstance(URL[] urls) {
+        return new DVBClassLoaderImpl(urls);
+    }
+
+    public static DVBClassLoader newInstance(URL[] urls, ClassLoader parent) {
+        return new DVBClassLoaderImpl(urls, parent);
+    }
+
     private void addUrls(URL[] urls) {
         for (URL url : urls) {
             try {
@@ -74,19 +82,11 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         }
     }
 
-    public static DVBClassLoader newInstance(URL[] urls) {
-        return new DVBClassLoaderImpl(urls);
-    }
-
-    public static DVBClassLoader newInstance(URL[] urls, ClassLoader parent) {
-        return new DVBClassLoaderImpl(urls, parent);
-    }
-
     @Override
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         name = name.replaceAll("/", ".");
 
-//        logger.log(Level.DEBUG, "loading - " + name);
+//logger.log(Level.DEBUG, "loading - " + name);
         Class<?> theClass = null;
         boolean newClass = false;
 
@@ -120,7 +120,7 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
         } else if (newClass) {
             // it wasn't previously loaded
             loaded.put(name, theClass);
-//            logger.log(Level.DEBUG, this, "name=" + name);
+//logger.log(Level.DEBUG, this, "name=" + name);
         }
         return theClass;
 

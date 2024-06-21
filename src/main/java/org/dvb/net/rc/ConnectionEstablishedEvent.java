@@ -20,5 +20,4 @@ public class ConnectionEstablishedEvent extends ConnectionRCEvent {
     public ConnectionEstablishedEvent(Object source) {
         super(source);
     }
-
 }

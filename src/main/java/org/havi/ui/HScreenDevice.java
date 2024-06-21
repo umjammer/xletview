@@ -57,8 +57,7 @@ public class HScreenDevice implements org.davic.resources.ResourceProxy, org.dav
     }
 
     public boolean reserveDevice(ResourceClient client) {
-        /* "Requests the right to call any method which may otherwise throw an HPermissionDeniedException."
-         * */
+        // "Requests the right to call any method which may otherwise throw an HPermissionDeniedException."
         // at the moment anyone gets the right to call any method, why not?
         currentResourceClient = client;
         if (resourceStatusListener != null) {

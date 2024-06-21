@@ -32,25 +32,15 @@ public class SplashWindow extends JWindow implements Runnable {
 
     /** Debugging facility. */
     private static final Logger logger = getLogger(SplashWindow.class.getName());
-
+    private static boolean doRun;
+    private static boolean success;
     private JLabel label;
     private ImageIcon icon;
-    private static boolean doRun;
-    private int maxWait = 2400000;
+    private static final int maxWait = 2400000;
     private long start;
     private long end;
     private String message;
-    private static boolean success;
 
-
-    public void showSplash() {
-        new SplashWindow();
-    }
-
-    public void hideSplash() {
-        dispose();
-        success = true;
-    }
 
     public SplashWindow() {
         Img img = new Img(Constants.IMAGE_SPLASH);
@@ -61,6 +51,15 @@ public class SplashWindow extends JWindow implements Runnable {
         setSize(237, 175);
         setLocationRelativeTo(null);
         new Thread(this).start();
+    }
+
+    public void showSplash() {
+        new SplashWindow();
+    }
+
+    public void hideSplash() {
+        dispose();
+        success = true;
     }
 
     public void setMessage(String s) {
@@ -84,7 +83,7 @@ public class SplashWindow extends JWindow implements Runnable {
             logger.log(Level.ERROR, e.getMessage(), e);
         }
         if (!success) {
-            logger.log(Level.ERROR, "The program failed to start after " + this.maxWait + " ms and will now exit");
+logger.log(Level.ERROR, "The program failed to start after " + this.maxWait + " ms and will now exit");
             System.exit(0);
         }
     }

@@ -30,5 +30,4 @@ public interface NetworkChangeListener extends SIChangeListener {
      * @param event A NetworkChangeEvent describing what changed and how.
      */
     void notifyChange(NetworkChangeEvent event);
-
 }

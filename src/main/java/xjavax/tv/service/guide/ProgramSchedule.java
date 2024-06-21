@@ -62,10 +62,10 @@ public interface ProgramSchedule {
      * <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param time The time of the program event to be retrieved.
+     * @param time      The time of the program event to be retrieved.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws SIException - If time does not represent a future time value.
+     * @throws SIException If time does not represent a future time value.
      * @see ProgramEvent, ReadPermission
      */
     SIRequest retrieveFutureProgramEvent(java.util.Date time, SIRequestor requestor) throws SIException;
@@ -86,11 +86,11 @@ public interface ProgramSchedule {
      * this method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param begin Time identifying the beginning of the interval.
-     * @param end Time identifying the end of the interval.
+     * @param begin     Time identifying the beginning of the interval.
+     * @param end       Time identifying the end of the interval.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws SIException - If end represents a time value before begin, or if end does not represent a future time value.
+     * @throws SIException If end represents a time value before begin, or if end does not represent a future time value.
      * @see ProgramEvent, ReadPermission
      */
     SIRequest retrieveFutureProgramEvents(java.util.Date begin, java.util.Date end, SIRequestor requestor) throws SIException;
@@ -105,10 +105,10 @@ public interface ProgramSchedule {
      * method will result in an <code>SIRequestFailureType</code> of
      * <code>DATA_UNAVAILABLE</code>.
      *
-     * @param event A reference event.
+     * @param event     A reference event.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws SIException - If event does not belong to this ProgramSchedule.
+     * @throws SIException If event does not belong to this ProgramSchedule.
      * @see ProgramEvent, ReadPermission
      */
     SIRequest retrieveNextProgramEvent(ProgramEvent event, SIRequestor requestor) throws SIException;
@@ -119,11 +119,11 @@ public interface ProgramSchedule {
      * <p>
      * This method returns data asynchronously.
      *
-     * @param locator Locator referencing the ProgramEvent of interest.
+     * @param locator   Locator referencing the ProgramEvent of interest.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid ProgramEvent in this ProgramSchedule.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid ProgramEvent in this ProgramSchedule.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see ProgramEvent, ReadPermission
      */
     SIRequest retrieveProgramEvent(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
@@ -174,5 +174,4 @@ public interface ProgramSchedule {
      * @see ProgramScheduleEvent#getProgramSchedule()
      */
     Locator getServiceLocator();
-
 }

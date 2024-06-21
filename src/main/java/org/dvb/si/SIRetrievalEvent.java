@@ -17,7 +17,7 @@ package org.dvb.si;
  */
 public abstract class SIRetrievalEvent extends java.util.EventObject {
 
-    private Object appData;
+    private final Object appData;
 
     public SIRetrievalEvent(Object appData, SIRequest request) {
         super(request);
@@ -32,5 +32,4 @@ public abstract class SIRetrievalEvent extends java.util.EventObject {
     public Object getSource() {
         return super.getSource();
     }
-
 }

@@ -37,7 +37,7 @@ public class Font {
     public static java.awt.Font create(String name, int type, int size) {
         int resolution = Toolkit.getDefaultToolkit().getScreenResolution();
 
-        //int newSize = (int)Math.round(size * resolution / 72.0);
+//        int newSize = (int)Math.round(size * resolution / 72.0);
         int newSize = size;
         newSize = newSize + offset;
 

@@ -33,18 +33,16 @@ public class HAnimateLook implements HLook {
     private static final Logger logger = getLogger(HAnimateLook.class.getName());
 
     /* PLATFORM SPECIFIC */
-    private static Insets insets = new Insets(2, 2, 2, 2);
+    private static final Insets insets = new Insets(2, 2, 2, 2);
 
     public HAnimateLook() {
     }
 
     @Override
     public void showLook(java.awt.Graphics g, HVisible hVisible, int state) {
-//        logger.log(Level.DEBUG, "Repaiting animation");
-
+//logger.log(Level.DEBUG, "Repaiting animation");
 
         HStaticAnimation animation = (HStaticAnimation) hVisible;
-
 
         Dimension dimension = animation.getSize();
 
@@ -64,11 +62,9 @@ public class HAnimateLook implements HLook {
             int position = 0;
             Image currentImage = null;
 
-            /*
-             * If the image does not exist it should
-             * draw the next one. Make sure it breaks
-             * the loop if all images are null.
-             */
+            // If the image does not exist it should
+            // draw the next one. Make sure it breaks
+            // the loop if all images are null.
             int count = 0;
             while (count < images.length) {
                 position = animation.getPosition();
@@ -79,7 +75,7 @@ public class HAnimateLook implements HLook {
                 if (ok) {
                     break;
                 } else {
-                    logger.log(Level.INFO, "image for position " + position + " is not drawable");
+logger.log(Level.INFO, "image for position " + position + " is not drawable");
                     count++;
                     animation.setPosition(++position);
                 }
@@ -105,7 +101,6 @@ public class HAnimateLook implements HLook {
                 g.fillRect(0, 0, insets.left, dimension.height);
             }
         }
-
     }
 
     @Override

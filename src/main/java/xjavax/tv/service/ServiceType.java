@@ -76,7 +76,7 @@ public class ServiceType {
      * @param name The string name of this type (e.g., "DIGITAL_TV").
      */
     protected ServiceType(java.lang.String name) {
-        //TODO implement ServiceType
+        // TODO implement ServiceType
     }
 
     /**
@@ -89,7 +89,6 @@ public class ServiceType {
      */
     public java.lang.String toString() {
         return null;
-        //TODO implement toString
+        // TODO implement toString
     }
-
 }

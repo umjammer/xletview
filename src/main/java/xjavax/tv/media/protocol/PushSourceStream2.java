@@ -47,10 +47,9 @@ public interface PushSourceStream2 extends javax.media.protocol.PushSourceStream
      * @param offset The offset into the buffer at which to begin writing data.
      * @param length The number of bytes to read.
      * @return The number of bytes read or -1 when the end of stream is reached.
-     * @throws java.io.IOException            - If an I/O error occurs.
-     * @throws DataLostException              - If data from the stream has been lost.
-     * @throws ArrayIndexOutOfBoundsException - If offset , length , or offset+length > buffer.length.
+     * @throws java.io.IOException            If an I/O error occurs.
+     * @throws DataLostException              If data from the stream has been lost.
+     * @throws ArrayIndexOutOfBoundsException If offset , length , or offset+length > buffer.length.
      */
     int readStream(byte[] buffer, int offset, int length) throws java.io.IOException, DataLostException;
-
 }

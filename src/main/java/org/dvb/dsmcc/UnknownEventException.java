@@ -24,5 +24,4 @@ public class UnknownEventException extends DSMCCException {
     public UnknownEventException(String s) {
         super(s);
     }
-
 }

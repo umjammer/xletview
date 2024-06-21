@@ -22,6 +22,5 @@ public interface DVBMediaSelectControl extends xjavax.tv.media.MediaSelectContro
     void selectServiceMediaComponents(Locator l) throws
             InvalidLocatorException, InvalidServiceComponentException,
             InsufficientResourcesException;
-
 }
 

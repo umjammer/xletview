@@ -14,6 +14,5 @@ package org.davic.net.ca;
 public interface DescramblerListener extends java.util.EventListener {
 
     void receiveDescramblerEvent(DescramblerEvent anEvent);
-
 }
 

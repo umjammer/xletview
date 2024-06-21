@@ -24,5 +24,4 @@ public class NotEntitledException extends DSMCCException {
     public NotEntitledException(String s) {
         super(s);
     }
-
 }

@@ -31,7 +31,6 @@ public interface SIBouquet extends SIInformation {
     SIRequest retrieveSIBouquetTransportStreams(short retrieveMode, Object appData, SIRetrievalListener listener, short[] someDescriptorTags) throws SIIllegalArgumentException;
 
     org.davic.net.dvb.DvbLocator[] getSIServiceLocators();
-
 }
 
 

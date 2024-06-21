@@ -20,5 +20,4 @@ public class DVBRasterFormatException extends java.lang.Exception {
     public DVBRasterFormatException(String s) {
         super(s);
     }
-
 }

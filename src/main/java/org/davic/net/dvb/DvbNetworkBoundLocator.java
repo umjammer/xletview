@@ -21,7 +21,7 @@ import org.davic.net.TransportDependentLocator;
  */
 public class DvbNetworkBoundLocator extends DvbLocator implements TransportDependentLocator {
 
-    private int networkId;
+    private final int networkId;
 
     public DvbNetworkBoundLocator(DvbLocator unboundLocator, int networkId) throws InvalidLocatorException {
         super(unboundLocator.toExternalForm());
@@ -31,6 +31,5 @@ public class DvbNetworkBoundLocator extends DvbLocator implements TransportDepen
     public int getNetworkId() {
         return networkId;
     }
-
 }
 

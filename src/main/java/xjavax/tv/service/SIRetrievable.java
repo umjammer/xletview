@@ -27,5 +27,4 @@ public interface SIRetrievable {
      * @return The date of the last update in UTC format, or null if unknown.
      */
     java.util.Date getUpdateTime();
-
 }

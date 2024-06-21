@@ -23,11 +23,11 @@ public class HImageEffectMatte implements HMatte, HAnimateEffect {
     public HImageEffectMatte(Image[] data) {
     }
 
-    public void setMatteData(Image[] data) {
-    }
-
     public Image[] getMatteData() {
         return (null);
+    }
+
+    public void setMatteData(Image[] data) {
     }
 
     public void setOffset(Point p, int index) {
@@ -51,16 +51,12 @@ public class HImageEffectMatte implements HMatte, HAnimateEffect {
     }
 
     @Override
-    public void setPosition(int position) {
-    }
-
-    @Override
     public int getPosition() {
         return (0);
     }
 
     @Override
-    public void setRepeatCount(int count) {
+    public void setPosition(int position) {
     }
 
     @Override
@@ -69,7 +65,7 @@ public class HImageEffectMatte implements HMatte, HAnimateEffect {
     }
 
     @Override
-    public void setDelay(int count) {
+    public void setRepeatCount(int count) {
     }
 
     @Override
@@ -78,7 +74,7 @@ public class HImageEffectMatte implements HMatte, HAnimateEffect {
     }
 
     @Override
-    public void setPlayMode(int mode) {
+    public void setDelay(int count) {
     }
 
     @Override
@@ -86,4 +82,7 @@ public class HImageEffectMatte implements HMatte, HAnimateEffect {
         return (0);
     }
 
+    @Override
+    public void setPlayMode(int mode) {
+    }
 }

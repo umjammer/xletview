@@ -14,5 +14,4 @@ package org.dvb.si;
 public interface SITransportStreamBAT extends SITransportStream {
 
     int getBouquetID();
-
 }

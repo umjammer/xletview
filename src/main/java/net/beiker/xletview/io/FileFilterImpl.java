@@ -24,14 +24,13 @@ import javax.swing.filechooser.FileFilter;
 public class FileFilterImpl extends FileFilter implements FilenameFilter {
 
     String filter;
-    String[] filters;
+    final String[] filters;
 
     public FileFilterImpl(String filter) {
         this.filter = filter;
         filters = new String[1];
         filters[0] = filter;
     }
-
 
     public FileFilterImpl(String[] filters) {
         this.filters = filters;
@@ -72,5 +71,4 @@ public class FileFilterImpl extends FileFilter implements FilenameFilter {
         }
         return new File(dir, name).isDirectory();
     }
-
 }

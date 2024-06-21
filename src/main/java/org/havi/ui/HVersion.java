@@ -7,14 +7,14 @@
  * certain conditions;
  *
  * See LICENSE document for details.
- */
-
-package org.havi.ui;
-
-/*
+ *
+ * ----
+ *
  * Copyright 2002 by HAVi, Inc. Java is a trademark of Sun
  * Microsystems, Inc. All rights reserved.
  */
+
+package org.havi.ui;
 
 public interface HVersion {
 
@@ -29,10 +29,4 @@ public interface HVersion {
     String HAVI_IMPLEMENTATION_VERSION = "havi.implementation.version";
 
     String HAVI_IMPLEMENTATION_NAME = "havi.implementation.name";
-
 }
-
-
-
-
-

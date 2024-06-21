@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  net.beiker.xletview.ui;
+package net.beiker.xletview.ui;
 
 import java.awt.AWTEventMulticaster;
 import java.awt.Component;
@@ -27,16 +27,16 @@ import java.net.URL;
  */
 public class KeyButton extends Container implements MouseListener {
 
-    private Img image;
+    private final Img image;
     private KeyListener keyListener;
     private Component listenerComponent;
 
-    private int keyCode;
-    private char theChar;
+    private final int keyCode;
+    private final char theChar;
 
     public KeyButton(URL imgUrl, int width, int height, int keyCode, char ch) {
         image = new Img(imgUrl, width, height);
-        //setSize(getPrefferedSize());
+//        setSize(getPreferredSize());
         setSize(image.getSize());
         add(image);
 
@@ -54,19 +54,20 @@ public class KeyButton extends Container implements MouseListener {
         image.setLocation(1, 1);
     }
 
-    public Dimension getPrefferedSize() {
-        //return new Dimension(image.getWidth(), image.getHeight());
+    @Override
+    public Dimension getPreferredSize() {
+//        return new Dimension(image.getWidth(), image.getHeight());
         return new Dimension(getWidth(), getHeight());
     }
 
     @Override
     public Dimension getMinimumSize() {
-        return getPrefferedSize();
+        return getPreferredSize();
     }
 
     @Override
     public Dimension getMaximumSize() {
-        return getPrefferedSize();
+        return getPreferredSize();
     }
 
     @Override
@@ -81,28 +82,27 @@ public class KeyButton extends Container implements MouseListener {
     private void fireKeyEvent(int eventType) {
         if (keyListener != null) {
 
-            //KeyEvent keyEvent = new KeyEvent(this, keyCode, 0L, 0, keyCode);
+//            KeyEvent keyEvent = new KeyEvent(this, keyCode, 0L, 0, keyCode);
             KeyEvent keyEvent = null;
             switch (eventType) {
-            case KeyEvent.KEY_PRESSED:
-                keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char) keyCode);
-                keyListener.keyPressed(keyEvent);
-                break;
-            case KeyEvent.KEY_RELEASED:
-                keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char) keyCode);
-                keyListener.keyReleased(keyEvent);
-                break;
-                /*
-                case KeyEvent.KEY_TYPED:
-                    keyEvent = new KeyEvent(this, eventType, 0L, 0, KeyEvent.VK_UNDEFINED);
-                    keyListener.keyTyped(keyEvent);
-                break;
-                */
+                case KeyEvent.KEY_PRESSED:
+                    keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char) keyCode);
+                    keyListener.keyPressed(keyEvent);
+                    break;
+                case KeyEvent.KEY_RELEASED:
+                    keyEvent = new KeyEvent(this, eventType, 0L, 0, keyCode, (char) keyCode);
+                    keyListener.keyReleased(keyEvent);
+                    break;
+//                case KeyEvent.KEY_TYPED:
+//                    keyEvent = new KeyEvent(this, eventType, 0L, 0, KeyEvent.VK_UNDEFINED);
+//                    keyListener.keyTyped(keyEvent);
+//                break;
             }
         }
     }
 
-    // implementing MouseListener -->
+//#region implementing MouseListener
+
     @Override
     public void mouseClicked(MouseEvent e) {
         fireKeyEvent(KeyEvent.KEY_TYPED);
@@ -128,6 +128,5 @@ public class KeyButton extends Container implements MouseListener {
     public void mouseExited(MouseEvent e) {
     }
 
-
-    // implementing MouseListener //
+//#endregion
 }

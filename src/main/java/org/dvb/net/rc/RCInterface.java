@@ -12,7 +12,7 @@
 
 */
 
-package  org.dvb.net.rc;
+package org.dvb.net.rc;
 
 /**
  * @author Bengt Skogvall
@@ -38,19 +38,19 @@ public class RCInterface {
 
     private int type;
 
-    /**
-     * Added method so we can make different RCInterfaces from
-     * the RCInterfaceManager
-     */
-    protected void setType(int type) {
-        this.type = type;
+    protected RCInterface() {
     }
 
     public int getType() {
         return type;
     }
 
-    protected RCInterface() {
+    /**
+     * Added method so we can make different RCInterfaces from
+     * the RCInterfaceManager
+     */
+    protected void setType(int type) {
+        this.type = type;
     }
 
     public int getDataRate() {

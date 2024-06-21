@@ -63,5 +63,4 @@ public interface ServiceComponent extends SIElement {
      * @return The Service to which this ServiceComponent belongs.
      */
     Service getService();
-
 }

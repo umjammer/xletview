@@ -16,24 +16,24 @@ package net.beiker.xletview.io;
 import java.io.IOException;
 import java.io.OutputStream;
 
-/*
-    Based on code by Greg Travis. You can find the original code
-    and how to write a custom console here:
-    http://www.developer.com/tech/article.php/630821
-*/
-
 /**
  * Redirects an Outputstream to a class implementing OutputPrinter
+ * <p>
+ * Based on code by Greg Travis. You can find the original code
+ * and how to write a custom console here:
+ * http://www.developer.com/tech/article.php/630821
+ * </p>
  */
 public class OutputRedirector extends OutputStream {
 
-    private OutputPrinter outputPrinter;
+    private final OutputPrinter outputPrinter;
 
-    // we keep a buffer around for creating 1-char strings, to
-    // avoid the potential horror of thousads of array allocations
-    // per second
-    private byte[] littlebuf = new byte[1];
-
+    /**
+     * we keep a buffer around for creating 1-char strings, to
+     * avoid the potential horror of thousads of array allocations
+     * per second
+     */
+    private final byte[] littleBuf = new byte[1];
 
     /**
      * @param printer The OutputPrinter to redirect to
@@ -42,34 +42,34 @@ public class OutputRedirector extends OutputStream {
         outputPrinter = printer;
     }
 
-    // Redirect output to the console
+    /** Redirect output to the console */
     @Override
     public void write(int b) throws IOException {
-        littlebuf[0] = (byte) b;
-        String s = new String(littlebuf, 0, 1);
+        littleBuf[0] = (byte) b;
+        String s = new String(littleBuf, 0, 1);
         outputPrinter.print(s);
     }
 
-    // Redirect output to the console
+    /** Redirect output to the console */
     @Override
     public void write(byte[] b) throws IOException {
         String s = new String(b);
         outputPrinter.print(s);
     }
 
-    // Redirect output to the console
+    /** Redirect output to the console */
     @Override
     public void write(byte[] b, int off, int len) throws IOException {
         String s = new String(b, off, len);
         outputPrinter.print(s);
     }
 
-    // nothing need be done here
+    /** nothing need be done here */
     @Override
     public void flush() throws IOException {
     }
 
-    // nothing need be done here
+    /** nothing need be done here */
     @Override
     public void close() throws IOException {
     }

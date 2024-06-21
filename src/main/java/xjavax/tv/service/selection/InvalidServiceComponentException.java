@@ -28,7 +28,7 @@ import xjavax.tv.locator.Locator;
  */
 public class InvalidServiceComponentException extends ServiceContextException {
 
-    private Locator invalidServiceComponent;
+    private final Locator invalidServiceComponent;
 
     /**
      * Constructs an <code>InvalidServiceComponentException</code>
@@ -45,7 +45,7 @@ public class InvalidServiceComponentException extends ServiceContextException {
      * the specified detail message.
      *
      * @param component A locator indicating the offending service component.
-     * @param reason The reason why this component is invalid.
+     * @param reason    The reason why this component is invalid.
      */
     public InvalidServiceComponentException(Locator component, String reason) {
         super(reason);
@@ -60,5 +60,4 @@ public class InvalidServiceComponentException extends ServiceContextException {
     public Locator getInvalidServiceComponent() {
         return invalidServiceComponent;
     }
-
 }

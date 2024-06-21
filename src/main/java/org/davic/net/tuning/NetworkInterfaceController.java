@@ -44,5 +44,4 @@ public class NetworkInterfaceController implements ResourceProxy {
     public ResourceClient getClient() {
         return null;
     }
-
 }

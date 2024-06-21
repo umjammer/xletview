@@ -20,5 +20,4 @@ public class SITableNotFoundEvent extends SIRetrievalEvent {
     public SITableNotFoundEvent(Object appData, SIRequest request) {
         super(appData, request);
     }
-
 }

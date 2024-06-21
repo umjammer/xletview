@@ -54,7 +54,7 @@ public interface Xlet {
      * <b>Note:</b> This method shall only be called once.<p>
      *
      * @param ctx The XletContext of this Xlet.
-     * @throws XletStateChangeException - If the Xlet cannot be initialized.
+     * @throws XletStateChangeException If the Xlet cannot be initialized.
      * @see XletContext
      */
     void initXlet(XletContext ctx) throws XletStateChangeException;
@@ -107,5 +107,4 @@ public interface Xlet {
      * @throws XletStateChangeException - is thrown if the Xlet wishes to continue to execute (Not enter the Destroyed state). This exception is ignored if unconditional is equal to true.
      */
     void destroyXlet(boolean unconditional) throws XletStateChangeException;
-
 }

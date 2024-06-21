@@ -20,5 +20,4 @@ public class UnsupportedDrawingOperationException extends java.lang.Exception {
     public UnsupportedDrawingOperationException(String s) {
         super(s);
     }
-
 }

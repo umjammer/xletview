@@ -19,7 +19,7 @@ package xjavax.tv.util;
  */
 class TimeKeeper {
 
-    private TVTimerSpec spec;
+    private final TVTimerSpec spec;
 
     /**
      * Used by TVTimerImpl, is set to
@@ -57,11 +57,11 @@ class TimeKeeper {
         scheduled = true;
     }
 
-    void setScheduled(boolean b) {
-        scheduled = b;
-    }
-
     boolean isScheduled() {
         return scheduled;
+    }
+
+    void setScheduled(boolean b) {
+        scheduled = b;
     }
 }

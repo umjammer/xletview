@@ -28,5 +28,4 @@ public interface MediaSelectListener extends java.util.EventListener {
      * @param event MediaSelectEvent describing the completion of a selection operation.
      */
     void selectionComplete(MediaSelectEvent event);
-
 }

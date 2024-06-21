@@ -37,5 +37,4 @@ public interface TransportStream extends SIElement {
      * @return A string representing the name of this transport stream, or an empty string if no information is available.
      */
     java.lang.String getDescription();
-
 }

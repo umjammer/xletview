@@ -13,9 +13,9 @@ package net.beiker.xletview.media;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.lang.System.Logger;
 import javax.swing.ImageIcon;
 
 import net.beiker.xletview.ui.XContainer;
@@ -33,13 +33,13 @@ public class ImagePlayerVisualComponent extends XContainer {
 
     public ImagePlayerVisualComponent(String imageUrl) {
         icon = new ImageIcon(imageUrl);
-        logger.log(Level.DEBUG, imageUrl + " - " + icon);
+logger.log(Level.DEBUG, imageUrl + " - " + icon);
         repaint();
     }
 
     public ImagePlayerVisualComponent(URL imageUrl) {
         icon = new ImageIcon(imageUrl);
-        logger.log(Level.DEBUG, imageUrl + " - " + icon);
+logger.log(Level.DEBUG, imageUrl + " - " + icon);
         repaint();
     }
 
@@ -49,7 +49,7 @@ public class ImagePlayerVisualComponent extends XContainer {
     public void destroy() {
         icon.getImage().flush();
         icon = null;
-        logger.log(Level.DEBUG, "destroy");
+logger.log(Level.DEBUG, "destroy");
     }
 
     @Override
@@ -59,17 +59,17 @@ public class ImagePlayerVisualComponent extends XContainer {
 
     @Override
     public void paint(Graphics g) {
-//        logger.log(Level.DEBUG, this, "paint, width height = " + getWidth() + "," + getHeight());
-//        logger.log(Level.DEBUG, this, "paint, icon = " + icon);
-//        logger.log(Level.DEBUG, this, "paint, this = " + this);
+//logger.log(Level.TRACE, this, "paint, width height = " + getWidth() + "," + getHeight());
+//logger.log(Level.TRACE, this, "paint, icon = " + icon);
+//logger.log(Level.TRACE, this, "paint, this = " + this);
         if (icon != null) {
             int x = getX();
             int y = getY();
-//            logger.log(Level.DEBUG, this, "x=" + x + ", y=" + y);
+//logger.log(Level.TRACE, this, "x=" + x + ", y=" + y);
             g.drawImage(icon.getImage(), x, y, getWidth(), getHeight(), this);
 
         }
-//        logger.log(Level.DEBUG, this, "paint");
+//logger.log(Level.TRACE, this, "paint");
 //        if (icon != null) {
 //
 //            AWTVideoSizeControlImpl awtVideoSizeControl = AWTVideoSizeControlImpl.getInstance();
@@ -80,7 +80,6 @@ public class ImagePlayerVisualComponent extends XContainer {
 //            int videoHeight     = size.getDestination().height;
 //
 //            g.drawImage(icon.getImage(), videoX, videoY, videoWidth, videoHeight, this);
-//
 //        }
     }
 }

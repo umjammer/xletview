@@ -50,7 +50,7 @@ public interface ServiceIterator {
      * method may be called repeatedly to iterate through the list.
      *
      * @return The Service object at the next position in the list.
-     * @throws java.util.NoSuchElementException - If the iteration has no next Service.
+     * @throws java.util.NoSuchElementException If the iteration has no next Service.
      */
     Service nextService();
 
@@ -60,7 +60,7 @@ public interface ServiceIterator {
      * in reverse order.
      *
      * @return The Service object at the previous position in the list.
-     * @throws java.util.NoSuchElementException - If the iteration has no previous Service.
+     * @throws java.util.NoSuchElementException If the iteration has no previous Service.
      */
     Service previousService();
 
@@ -79,5 +79,4 @@ public interface ServiceIterator {
      * @return true if there is a Service in the previous position in the list; false otherwise.
      */
     boolean hasPrevious();
-
 }

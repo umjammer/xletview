@@ -35,5 +35,4 @@ public class HTextEvent extends java.awt.AWTEvent {
     public HTextEvent(org.havi.ui.HKeyboardInputPreferred source, int id) {
         super(source, id);
     }
-
 }

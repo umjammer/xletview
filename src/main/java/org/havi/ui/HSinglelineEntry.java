@@ -36,20 +36,16 @@ import static java.lang.System.getLogger;
 public class HSinglelineEntry extends HVisible implements HTextValue {
 
     private static final Logger logger = getLogger(HSinglelineEntry.class.getName());
-
+    private static HSinglelineEntryLook defaultHLook = new HSinglelineEntryLook();
+    transient HKeyListener hKeyListener;
+    transient HTextListener hTextListener;
     private int caretPosition;
     private int maxChars = 16;
     private int inputType = HKeyboardInputPreferred.INPUT_ANY;
     private char[] validInputChars;
     private char echoChar = '\0';
     private boolean edit;
-
     private HNavigableHelper navHelper;
-
-    transient HKeyListener hKeyListener;
-    transient HTextListener hTextListener;
-
-    private static HSinglelineEntryLook defaultHLook = new HSinglelineEntryLook();
 
     public HSinglelineEntry() {
         super(defaultHLook);
@@ -91,6 +87,14 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
 
     // constructors end //
 
+    public static HSinglelineEntryLook getDefaultLook() {
+        return HSinglelineEntry.defaultHLook;
+    }
+
+    public static void setDefaultLook(HSinglelineEntryLook look) {
+        HSinglelineEntry.defaultHLook = look;
+    }
+
     private void init() {
         navHelper = new HNavigableHelper(this);
     }
@@ -105,10 +109,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return super.getTextContent(HState.NORMAL_STATE);
     }
 
-    public void setType(int type) {
-        this.inputType = type;
-    }
-
     public boolean echoCharIsSet() {
         return (echoChar != '\0');
     }
@@ -121,14 +121,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         echoChar = c;
     }
 
-    public static void setDefaultLook(HSinglelineEntryLook look) {
-        HSinglelineEntry.defaultHLook = look;
-    }
-
-    public static HSinglelineEntryLook getDefaultLook() {
-        return HSinglelineEntry.defaultHLook;
-    }
-
     @Override
     public void setLook(HLook hLook) throws HInvalidLookException {
         if (hLook instanceof HSinglelineEntryLook || hLook == null) {
@@ -138,7 +130,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         }
     }
 
-
     /**
      * Insert a character at the current caret position, subject to the maximum number of input characters.
      *
@@ -146,11 +137,9 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
      * @return true if the character was inserted, false otherwise.
      */
     public boolean insertChar(char c) {
-        /*
-         * While in the editing mode, the component will generate an HTextEvent event with an
-         * id of TEXT_CHANGE whenever the text content of the HSinglelineEntry changes
-         * (e.g. a character is inserted).
-         */
+        // While in the editing mode, the component will generate an HTextEvent event with an
+        // id of TEXT_CHANGE whenever the text content of the HSinglelineEntry changes
+        // (e.g. a character is inserted).
         char[] chars = this.getTextContent(HState.NORMAL_STATE).toCharArray();
 
         if (chars.length < this.maxChars && edit) {
@@ -258,12 +247,12 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return caretPosition;
     }
 
-    public void setMaxChars(int maxChars) {
-        this.maxChars = maxChars;
-    }
-
     public int getMaxChars() {
         return maxChars;
+    }
+
+    public void setMaxChars(int maxChars) {
+        this.maxChars = maxChars;
     }
 
     @Override
@@ -287,23 +276,23 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-        navHelper.setGainFocusSound(sound);
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-        navHelper.setLoseFocusSound(sound);
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return navHelper.getGainFocusSound();
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+        navHelper.setGainFocusSound(sound);
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return navHelper.getLoseFocusSound();
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
+        navHelper.setLoseFocusSound(sound);
     }
 
     @Override
@@ -409,14 +398,8 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return this.inputType;
     }
 
-    /**
-     * Defines the set of the characters which are valid for customized keyboard input,
-     * i.e. when the input type is set to HKeyboardInputPreferred.INPUT_CUSTOMIZED.
-     *
-     * @param inputChars
-     */
-    public void setValidInput(char[] inputChars) {
-        this.validInputChars = inputChars;
+    public void setType(int type) {
+        this.inputType = type;
     }
 
     /**
@@ -435,20 +418,28 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return this.validInputChars;
     }
 
+    /**
+     * Defines the set of the characters which are valid for customized keyboard input,
+     * i.e. when the input type is set to HKeyboardInputPreferred.INPUT_CUSTOMIZED.
+     *
+     * @param inputChars
+     */
+    public void setValidInput(char[] inputChars) {
+        this.validInputChars = inputChars;
+    }
+
     @Override
     public void processHTextEvent(HTextEvent evt) {
         Object source = evt.getSource();
         switch (evt.getID()) {
             case HTextEvent.TEXT_START_CHANGE:
-                /*
-                 * switch into edit mode and accept key presses
-                 *
-                 * On entering its editable mode the component will send an HTextEvent
-                 * event with an id of TEXT_START_CHANGE to all registered HTextListener listeners.
-                 * The HSinglelineEntry will then respond to key events by inserting characters
-                 * into the text string or positioning the insertion point (caret) via further
-                 * HTextEvent events.
-                 */
+                // switch into edit mode and accept key presses
+                //
+                // On entering its editable mode the component will send an HTextEvent
+                // event with an id of TEXT_START_CHANGE to all registered HTextListener listeners.
+                // The HSinglelineEntry will then respond to key events by inserting characters
+                // into the text string or positioning the insertion point (caret) via further
+                // HTextEvent events.
 
                 this.setEditMode(true);
 
@@ -459,12 +450,10 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
 
                 break;
             case HTextEvent.TEXT_END_CHANGE:
-                /*
-                 * On receiving an HTextEvent event with an id of TEXT_END_CHANGE the component
-                 * shall leave its editable mode and send an HTextEvent event with an id of
-                 * TEXT_END_CHANGE to all registered HTextListener listeners. The user can then
-                 * navigate out of the HSinglelineEntry.
-                 */
+                // On receiving an HTextEvent event with an id of TEXT_END_CHANGE the component
+                // shall leave its editable mode and send an HTextEvent event with an id of
+                // TEXT_END_CHANGE to all registered HTextListener listeners. The user can then
+                // navigate out of the HSinglelineEntry.
 
                 this.setEditMode(false);
 
@@ -485,7 +474,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
             case HTextEvent.CARET_NEXT_CHAR:
                 this.caretNextCharacter();
                 break;
-//
+
 //            case HTextEvent.CARET_NEXT_LINE :
 //                break;
 //
@@ -495,7 +484,7 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
             case HTextEvent.CARET_PREV_CHAR:
                 this.caretPreviousCharacter();
                 break;
-//
+
 //            case HTextEvent.CARET_PREV_LINE :
 //                break;
 //

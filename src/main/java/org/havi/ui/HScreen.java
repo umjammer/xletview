@@ -24,12 +24,12 @@ public class HScreen {
     private static final HScreen DEFAULT_HSCREEN = new HScreen();
 
     private static List<HScreen> hScreens;
-    private HVideoDevice hVideoDevice;
-    private HVideoDevice[] hVideoDevices;
-    private HGraphicsDevice hGraphicsDevice;
-    private HGraphicsDevice[] hGraphicsDevices;
-    private HBackgroundDevice hBackgroundDevice;
-    private HBackgroundDevice[] hBackgroundDevices;
+    private final HVideoDevice hVideoDevice;
+    private final HVideoDevice[] hVideoDevices;
+    private final HGraphicsDevice hGraphicsDevice;
+    private final HGraphicsDevice[] hGraphicsDevices;
+    private final HBackgroundDevice hBackgroundDevice;
+    private final HBackgroundDevice[] hBackgroundDevices;
 
     private HScreen() {
         //hScreens = new HScreen[1];
@@ -105,6 +105,6 @@ public class HScreen {
     public boolean setCoherentScreenConfigurations(HScreenConfiguration[] hsca) throws java.lang.SecurityException,
             org.havi.ui.HPermissionDeniedException,
             org.havi.ui.HConfigurationException {
-        return (false);
+        return false;
     }
 }

@@ -36,5 +36,4 @@ public interface AppProxy {
     void addAppStateChangeEventListener(AppStateChangeEventListener listener);
 
     void removeAppStateChangeEventListener(AppStateChangeEventListener listener);
-
 }

@@ -23,7 +23,7 @@ import xjavax.tv.locator.Locator;
  */
 public final class ReadPermission extends java.security.Permission implements java.io.Serializable {
 
-    // following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private java.lang.String actions;
 
     /**
@@ -109,5 +109,4 @@ public final class ReadPermission extends java.security.Permission implements ja
     public java.lang.String getActions() {
         return this.actions;
     }
-
 }

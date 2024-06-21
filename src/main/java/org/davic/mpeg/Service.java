@@ -31,6 +31,5 @@ public class Service {
     public ElementaryStream[] retrieveElementaryStreams() {
         return null;
     }
-
 }
 

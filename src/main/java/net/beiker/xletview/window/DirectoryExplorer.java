@@ -53,18 +53,13 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
     private static final Logger logger = getLogger(DirectoryExplorer.class.getName());
 
-    //private JDialog frame;
-    private JTree tree;
-    private DefaultTreeModel model;
-    private JLabel pathLabel;
-    private JButton okButton;
-    private JButton cancelButton;
+//    private JDialog frame;
+    private final JTree tree;
+    private final DefaultTreeModel model;
+    private final JLabel pathLabel;
+    private final JButton okButton;
+    private final JButton cancelButton;
     private String chosenPath;
-
-    public static void main(String[] argv) {
-        //        String[] s = { "C:\\", "progs", "editplus" };
-        //        new DirectoryExplorer(s);
-    }
 
     public DirectoryExplorer(Frame owner, String[] path) {
         super(owner, "Application's root", true);
@@ -72,7 +67,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                //System.exit(0);
+//                System.exit(0);
                 doClose();
             }
         });
@@ -87,7 +82,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
             root.add(node);
         }
 
-        //TreeNode root = new TreeNode("kamel");
+//        TreeNode root = new TreeNode("kamel");
 
         // tree
         tree = new JTree(root);
@@ -107,7 +102,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
         tree.addTreeSelectionListener(this);
         tree.addTreeExpansionListener(this);
 
-        //        frame.getContentPane().add(new JScrollPane(tree));
+//        frame.getContentPane().add(new JScrollPane(tree));
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(new JScrollPane(tree), BorderLayout.CENTER);
 
@@ -140,6 +135,11 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
     }
 
+    public static void main(String[] argv) {
+//        String[] s = { "C:\\", "progs", "editplus" };
+//        new DirectoryExplorer(s);
+    }
+
     private boolean expand(String[] path) {
         boolean result = false;
         int nextSearchRow = 0;
@@ -149,7 +149,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
             tp = tree.getNextMatch(s, nextSearchRow, Position.Bias.Forward);
             if (tp != null) {
                 tree.expandPath(tp);
-                logger.log(Level.DEBUG, "match");
+logger.log(Level.DEBUG, "match");
                 nextSearchRow = tree.getRowForPath(tp);
                 tmp = tp;
             } else {
@@ -176,7 +176,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
     }
 
     public void pathChanged(TreePath path) {
-        logger.log(Level.DEBUG, path.toString());
+logger.log(Level.DEBUG, path.toString());
         StringBuilder filePath = new StringBuilder();
         for (int i = 1; i < path.getPathCount(); i++) {
             String s = path.getPathComponent(i).toString();
@@ -192,13 +192,13 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
     @Override
     public void treeExpanded(TreeExpansionEvent event) {
-        //logger.log(Level.DEBUG, this, "expanded");
+//logger.log(Level.DEBUG, this, "expanded");
         TreePath treePath = event.getPath();
         Object lastInPath = treePath.getLastPathComponent();
         if (lastInPath instanceof BeikerTreeNode treeNode) {
-            //logger.log(Level.DEBUG, this, treeNode.getUserObject().toString());
+//logger.log(Level.DEBUG, this, treeNode.getUserObject().toString());
 
-            //treeNode.expand();
+//            treeNode.expand();
 
             SwingUtilities.invokeLater(() -> {
                 Cursor cursor = new Cursor(Cursor.WAIT_CURSOR);
@@ -207,13 +207,11 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
                 model.reload(treeNode);
                 tree.setCursor(Cursor.getDefaultCursor());
             });
-
         }
     }
 
     @Override
     public void treeCollapsed(TreeExpansionEvent event) {
-
     }
 
     @Override
@@ -233,7 +231,6 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
     private void doClose() {
         dispose();
-        //        System.exit(0);
+//        System.exit(0);
     }
-
 }

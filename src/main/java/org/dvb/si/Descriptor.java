@@ -31,5 +31,4 @@ public class Descriptor {
     public byte[] getContent() {
         return (null);
     }
-
 }

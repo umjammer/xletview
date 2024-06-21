@@ -18,22 +18,16 @@ import org.davic.mpeg.TransportStream;
 
 public abstract class CAModule {
 
+    public final static int CA0 = 0x00;
+    public final static int CA1 = 0x01;
+    public final static int PROPRIETARY = 0xFF;
+    public final static int ENTITLEMENT_UNKNOWN = 0x00;
+    public final static int ENTITLEMENT_AVAILABLE = 0x01;
+    public final static int ENTITLEMENT_NOT_AVAILABLE = 0x02;
+    public final static int MMI_DIALOGUE_REQUIRED = 0x03;
+
     public CAModule() {
     }
-
-    public final static int CA0 = 0x00;
-
-    public final static int CA1 = 0x01;
-
-    public final static int PROPRIETARY = 0xFF;
-
-    public final static int ENTITLEMENT_UNKNOWN = 0x00;
-
-    public final static int ENTITLEMENT_AVAILABLE = 0x01;
-
-    public final static int ENTITLEMENT_NOT_AVAILABLE = 0x02;
-
-    public final static int MMI_DIALOGUE_REQUIRED = 0x03;
 
     public int queryEntitlement(org.davic.net.Locator locator) throws CAException, org.davic.net.InvalidLocatorException {
         return 0;

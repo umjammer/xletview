@@ -51,6 +51,20 @@ public class Toolkit {
     }
 
     /**
+     * @see java.awt.Toolkit#getDefaultToolkit()
+     */
+    public static Toolkit getDefaultToolkit() {
+        if (thisToolkit == null) {
+            thisToolkit = new Toolkit();
+        }
+        return thisToolkit;
+    }
+
+    public static String getProperty(String key, String defaultValue) {
+        return java.awt.Toolkit.getProperty(key, defaultValue);
+    }
+
+    /**
      * @see java.awt.Toolkit#getScreenSize()
      */
     public Dimension getScreenSize() {
@@ -90,16 +104,6 @@ public class Toolkit {
      */
     public void sync() {
         realToolkit.sync();
-    }
-
-    /**
-     * @see java.awt.Toolkit#getDefaultToolkit()
-     */
-    public static Toolkit getDefaultToolkit() {
-        if (thisToolkit == null) {
-            thisToolkit = new Toolkit();
-        }
-        return thisToolkit;
     }
 
     /**
@@ -201,20 +205,16 @@ public class Toolkit {
         return realToolkit.getSystemClipboard();
     }
 
-    /**
-     * @see java.awt.Toolkit#getMenuShortcutKeyMask()
-     */
-    public int getMenuShortcutKeyMask() {
-        return realToolkit.getMenuShortcutKeyMask();
-    }
-
     /*
      * The methods below exist since 1.2(not part of MHP) but are here
      * because they must be if the JVM is newer than 1.1.8
      */
 
-    public static String getProperty(String key, String defaultValue) {
-        return java.awt.Toolkit.getProperty(key, defaultValue);
+    /**
+     * @see java.awt.Toolkit#getMenuShortcutKeyMask()
+     */
+    public int getMenuShortcutKeyMask() {
+        return realToolkit.getMenuShortcutKeyMask();
     }
 
     public final EventQueue getSystemEventQueue() {

@@ -30,6 +30,10 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     private ServiceContextImpl() {
     }
 
+    public static ServiceContext getInstance() {
+        return THEINSTANCE;
+    }
+
     @Override
     public ServiceContentHandler[] getServiceContentHandlers() throws SecurityException {
         ServiceContentHandler[] aservicecontenthandler = new ServiceContentHandler[1];
@@ -42,6 +46,7 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     }
 
     // implementing ServiceContext
+
     @Override
     public void addListener(xjavax.tv.service.selection.ServiceContextListener scl) {
     }
@@ -66,11 +71,12 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
     public void destroy() {
     }
 
+    // implementing ServiceContext ends
+
     @Override
     public Service getService() {
         return THEINSTANCE;
     }
-    // implementing ServiceContext ends
 
     // implementing Service
     public boolean equals(java.lang.Object obj) {
@@ -89,7 +95,7 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
 
     @Override
     public ServiceType getServiceType() {
-        return null;//new ServiceType("DIGITAL_TV");
+        return null; //new ServiceType("DIGITAL_TV");
     }
 
     public int hashCode() {
@@ -101,22 +107,25 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
         return false;
     }
 
+    // implementing Service ends
+
     @Override
     public SIRequest retrieveDetails(SIRequestor requestor) {
         return THEINSTANCE;
     }
-    // implementing Service ends
 
     // implementing Locator
-    /* already exist
-    public boolean equals(java.lang.Object o){
-        return false;
-    }*/
-    /* already exist
-    public int hashCode(){
-        return 0;
-    }
-    */
+
+//    // already exist
+//    public boolean equals(java.lang.Object o){
+//        return false;
+//    }
+
+//    // already exist
+//    public int hashCode(){
+//        return 0;
+//    }
+
     @Override
     public boolean hasMultipleTransformations() {
         return false;
@@ -127,21 +136,16 @@ public class ServiceContextImpl implements ServiceContext, Service, Locator, SIR
         return "";
     }
 
+    // implementing Locator end
+
     public java.lang.String toString() {
         return "ServiceContextImpl";
     }
-    // implementing Locator end
 
     // implementing SIRequestor
+
     @Override
     public boolean cancel() {
         return false;
     }
-
-
-    public static ServiceContext getInstance() {
-        return THEINSTANCE;
-    }
-
-
 }

@@ -13,7 +13,7 @@
 
 */
 
-package  org.dvb.net.rc;
+package org.dvb.net.rc;
 
 import org.davic.resources.ResourceStatusEvent;
 
@@ -26,7 +26,7 @@ import org.davic.resources.ResourceStatusEvent;
 public class RCInterfaceReservedEvent
         extends ResourceStatusEvent {
 
-    private Object connection;
+    private final Object connection;
 
     public RCInterfaceReservedEvent(Object bg) {
         super(bg);

@@ -11,7 +11,7 @@ See LICENSE document for details.
 
 */
 
-package  org.dvb.application;
+package org.dvb.application;
 
 import java.util.BitSet;
 

@@ -53,12 +53,12 @@ public class AppWizardWindow extends JFrame implements ActionListener {
     private static final int STATE_CHOOSE_XLET = 2;
     private static final int STATE_FINNISHED = 3;
 
-    private Container content;
-    private JButton continueLabel;
-    private JButton cancelLabel;
-    private JButton backLabel;
-    private JPanel mainPanel;
-    private JPanel[] mainPanels;
+    private final Container content;
+    private final JButton continueLabel;
+    private final JButton cancelLabel;
+    private final JButton backLabel;
+    private final JPanel mainPanel;
+    private final JPanel[] mainPanels;
     private int state;
 
     private JTextField nameField;
@@ -119,6 +119,15 @@ public class AppWizardWindow extends JFrame implements ActionListener {
         setSize(400, 400);
         setVisible(true);
 
+    }
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new MetouiaLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            logger.log(Level.ERROR, e.getMessage(), e);
+        }
+        new AppWizardWindow();
     }
 
     private void setInit() {
@@ -282,47 +291,47 @@ public class AppWizardWindow extends JFrame implements ActionListener {
 
     private void next() {
         switch (state) {
-        case STATE_INIT:
-            logger.log(Level.DEBUG, "time to choose path");
-            backLabel.setEnabled(true);
-            setChoosePath();
-            state = STATE_CHOOSE_PATH;
-            break;
-        case STATE_CHOOSE_PATH:
-            logger.log(Level.DEBUG, "time to choose xlet");
-            setChooseXlet();
-            state = STATE_CHOOSE_XLET;
-            break;
-        case STATE_CHOOSE_XLET:
-            logger.log(Level.DEBUG, "finnished");
-            setFinnished();
-            continueLabel.setText("CLOSE");
-            cancelLabel.setEnabled(false);
-            state = STATE_FINNISHED;
-            break;
+            case STATE_INIT:
+logger.log(Level.DEBUG, "time to choose path");
+                backLabel.setEnabled(true);
+                setChoosePath();
+                state = STATE_CHOOSE_PATH;
+                break;
+            case STATE_CHOOSE_PATH:
+logger.log(Level.DEBUG, "time to choose xlet");
+                setChooseXlet();
+                state = STATE_CHOOSE_XLET;
+                break;
+            case STATE_CHOOSE_XLET:
+logger.log(Level.DEBUG, "finnished");
+                setFinnished();
+                continueLabel.setText("CLOSE");
+                cancelLabel.setEnabled(false);
+                state = STATE_FINNISHED;
+                break;
         }
     }
 
     private void back() {
         switch (state) {
-        case STATE_CHOOSE_PATH:
-            logger.log(Level.DEBUG, "init");
-            backLabel.setEnabled(false);
-            setInit();
-            state = STATE_INIT;
-            break;
-        case STATE_CHOOSE_XLET:
-            logger.log(Level.DEBUG, "choose path");
-            setChoosePath();
-            state = STATE_CHOOSE_PATH;
-            break;
-        case STATE_FINNISHED:
-            logger.log(Level.DEBUG, "choose xlet");
-            setChooseXlet();
-            cancelLabel.setEnabled(true);
-            continueLabel.setText("NEXT >>");
-            state = STATE_CHOOSE_XLET;
-            break;
+            case STATE_CHOOSE_PATH:
+logger.log(Level.DEBUG, "init");
+                backLabel.setEnabled(false);
+                setInit();
+                state = STATE_INIT;
+                break;
+            case STATE_CHOOSE_XLET:
+logger.log(Level.DEBUG, "choose path");
+                setChoosePath();
+                state = STATE_CHOOSE_PATH;
+                break;
+            case STATE_FINNISHED:
+logger.log(Level.DEBUG, "choose xlet");
+                setChooseXlet();
+                cancelLabel.setEnabled(true);
+                continueLabel.setText("NEXT >>");
+                state = STATE_CHOOSE_XLET;
+                break;
         }
     }
 
@@ -330,45 +339,45 @@ public class AppWizardWindow extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         String command = event.getActionCommand();
         switch (command) {
-        case "cancel" -> doClose();
-        case "next" -> {
-            if (state == STATE_FINNISHED) {
-                doClose();
-            } else {
-                next();
+            case "cancel" -> doClose();
+            case "next" -> {
+                if (state == STATE_FINNISHED) {
+                    doClose();
+                } else {
+                    next();
+                }
             }
-        }
-        case "back" -> back();
-        case "classpath" -> {
-            File[] roots = File.listRoots();
-        }
+            case "back" -> back();
+            case "classpath" -> {
+                File[] roots = File.listRoots();
+            }
 //            DirectoryWindow dirWin = new DirectoryWindow(this, roots, false);
 //            if (dirWin.getPath().length() > 0) {
 //                pathField.setText(dirWin.getPath());
-//                logger.log(Level.DEBUG, this, pathField.getText());
+//logger.log(Level.DEBUG, this, pathField.getText());
 //            }
-        case "xlet" -> {
-            JFileChooser fc = new JFileChooser(pathField.getText());
-            FileFilterImpl filter = new FileFilterImpl(".class");
-            fc.setFileFilter(filter);
-            fc.setCurrentDirectory(new File(pathField.getText()));
-            fc.setDialogType(JFileChooser.OPEN_DIALOG);
-            fc.showOpenDialog(this);
-            String selectedPath = fc.getSelectedFile().getAbsolutePath();
-            logger.log(Level.DEBUG, "chosen file " + fc.getSelectedFile());
-            String className = "";
-            className = selectedPath.substring(pathField.getText().length());
-            className = className.replace(File.separatorChar, '.');
-            className = className.replaceAll(".class", "");
-            className = className.replaceAll(".CLASS", "");
-            if (!className.isEmpty()) {
-                xletField.setText(className);
+            case "xlet" -> {
+                JFileChooser fc = new JFileChooser(pathField.getText());
+                FileFilterImpl filter = new FileFilterImpl(".class");
+                fc.setFileFilter(filter);
+                fc.setCurrentDirectory(new File(pathField.getText()));
+                fc.setDialogType(JFileChooser.OPEN_DIALOG);
+                fc.showOpenDialog(this);
+                String selectedPath = fc.getSelectedFile().getAbsolutePath();
+logger.log(Level.DEBUG, "chosen file " + fc.getSelectedFile());
+                String className = "";
+                className = selectedPath.substring(pathField.getText().length());
+                className = className.replace(File.separatorChar, '.');
+                className = className.replaceAll(".class", "");
+                className = className.replaceAll(".CLASS", "");
+                if (!className.isEmpty()) {
+                    xletField.setText(className);
+                }
             }
-        }
 
 //            File[] files = new File[1];
 //            files[0] = new File(pathField.getText());
-//            logger.log(Level.DEBUG, this, pathField.getText() + ", exist? " + files[0].exists());
+//logger.log(Level.DEBUG, this, pathField.getText() + ", exist? " + files[0].exists());
 //            DirectoryWindow dirWin = new DirectoryWindow(this, files, true);
 //            String className = dirWin.getPath();
 //            className = className.replaceAll(".class", "");
@@ -390,14 +399,5 @@ public class AppWizardWindow extends JFrame implements ActionListener {
 
     private void doClose() {
         System.exit(0);
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new MetouiaLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        new AppWizardWindow();
     }
 }

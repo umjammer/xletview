@@ -36,23 +36,21 @@ import static java.lang.System.getLogger;
 
 public class Startup {
 
-    SplashWindow splash;
-    protected int minSplashMs = 0;//2000;
-    protected long start;
-    protected long end;
-
     /** Debugging facility. */
     private final static Logger logger = getLogger(Startup.class.getName());
+    protected final int minSplashMs = 0; // 2000;
+    protected long start;
+    protected long end;
+    SplashWindow splash;
 
     public Startup(String[] args) {
 
         try {
             UIManager.setLookAndFeel(new MetouiaLookAndFeel());
             UIManager.getLookAndFeelDefaults().put("ClassLoader", this.getClass().getClassLoader());
-        } catch (UnsupportedLookAndFeelException exception) {
-            exception.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
-
 
         String xPath = "";
         String[] xExtraPaths = null;
@@ -74,7 +72,6 @@ public class Startup {
             Startup.this.start = System.currentTimeMillis();
         });
 
-
         this.splash.setMessage("Setting system variables...");
 
         setProperties();
@@ -95,17 +92,17 @@ public class Startup {
             if (xExtraPaths != null) {
 
                 int numExtraPaths = xExtraPaths.length;
-                Startup.logger.log(Level.DEBUG, "Xlet has '" + numExtraPaths + "' extra paths...");
+logger.log(Level.DEBUG, "Xlet has '" + numExtraPaths + "' extra paths...");
 
                 URL[] xExtraPathURLs = new URL[numExtraPaths];
                 for (int i = 0; i < numExtraPaths; i++) {
-                    Startup.logger.log(Level.DEBUG, "Processing extra path '" + xExtraPaths[i] + "'.");
+logger.log(Level.DEBUG, "Processing extra path '" + xExtraPaths[i] + "'.");
                     xExtraPathURLs[i] = pathString2URL(xExtraPaths[i]);
                 }
-                logger.log(Level.DEBUG, "Processed all extra paths.");
+logger.log(Level.DEBUG, "Processed all extra paths.");
                 XletManager.getInstance().setXlet(url, xExtraPathURLs, xName);
             } else { // no Extra paths
-                logger.log(Level.DEBUG, "Xlet has NO extra paths.");
+logger.log(Level.DEBUG, "Xlet has NO extra paths.");
                 XletManager.getInstance().setXlet(url, xName);
             }
         }
@@ -133,6 +130,7 @@ public class Startup {
 
     /**
      * TODO: Move somewhere appropriate
+     *
      * @param path
      * @return
      */
@@ -141,11 +139,10 @@ public class Startup {
         try {
             url = new URL(path);
         } catch (MalformedURLException mue) {
-            logger.log(Level.DEBUG, "Xlet Path is not an URL, trying to prefix with 'file:'.");
+logger.log(Level.DEBUG, "Xlet Path is not an URL, trying to prefix with 'file:'.");
             try {
                 url = new URL("file:" + path);
             } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
                 logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
@@ -175,16 +172,13 @@ public class Startup {
             InputStream settingsInputStream = Util.getURLConnection(Startup.class, Constants.PATH_SETTINGS).getInputStream();
             Settings.load(settingsInputStream);
 
-
-            /*
-             * I removed the file name normalization here because I found that the Win32 version would no
-             * longer be able to find the resources. [Enver <enver.haase@gmx.de> on 07-Jan-2004]
-             * See ChannelManager's
-             * "media = new Media(Util.getURL(ChannelManager.class, Settings.getProperty("file.defaultbg")));"
-             * which would result in "config\defaultbg.jpg" NOT to be found, but "config/defaultbg.jpg" is okay
-             * even on a Win32 platform.
-             * Funny thing is that under Linux, both variants would be found. Maybe it's an error in the JDK.
-             */
+            // I removed the file name normalization here because I found that the Win32 version would no
+            // longer be able to find the resources. [Enver <enver.haase@gmx.de> on 07-Jan-2004]
+            // See ChannelManager's
+            // "media = new Media(Util.getURL(ChannelManager.class, Settings.getProperty("file.defaultbg")));"
+            // which would result in "config\defaultbg.jpg" NOT to be found, but "config/defaultbg.jpg" is okay
+            // even on a Win32 platform.
+            // Funny thing is that under Linux, both variants would be found. Maybe it's an error in the JDK.
             Settings.setProperty("path.home", new File("").getAbsolutePath() + File.separator);
 //            Settings.setProperty("path.home", Util.normalizePath(new File("").getAbsolutePath() + File.separator));
 //            Settings.setProperty("file.settings", Util.normalizePath(Settings.getProperty("file.settings")));

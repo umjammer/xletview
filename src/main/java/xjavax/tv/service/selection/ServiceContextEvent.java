@@ -42,5 +42,4 @@ public class ServiceContextEvent extends java.util.EventObject {
     public ServiceContext getServiceContext() {
         return (ServiceContext) super.getSource();
     }
-
 }

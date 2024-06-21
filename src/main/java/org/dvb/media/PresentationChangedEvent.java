@@ -26,8 +26,8 @@ public class PresentationChangedEvent extends ControllerEvent {
     public static final int CA_FAILURE = 0x01;
     public static final int CA_RETURNED = 0x02;
 
-    private MediaLocator stream;
-    private int reason;
+    private final MediaLocator stream;
+    private final int reason;
 
     public PresentationChangedEvent(Controller source, MediaLocator stream, int reason) {
         super(source);

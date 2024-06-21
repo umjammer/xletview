@@ -35,7 +35,6 @@ public class NetworkInterfaceManager implements ResourceServer {
         return THE_INSTANCE;
     }
 
-
     public NetworkInterface[] getNetworkInterfaces() {
         return null;
     }
@@ -51,8 +50,6 @@ public class NetworkInterfaceManager implements ResourceServer {
     @Override
     public void removeResourceStatusEventListener(ResourceStatusListener listener) {
     }
-
-
 }
 
 

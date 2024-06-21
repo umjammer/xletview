@@ -24,5 +24,4 @@ public class NoCapacityException extends CAException {
     public NoCapacityException(String reason) {
         super(reason);
     }
-
 }

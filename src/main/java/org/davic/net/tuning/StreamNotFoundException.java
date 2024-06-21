@@ -24,5 +24,4 @@ public class StreamNotFoundException extends NetworkInterfaceException {
     public StreamNotFoundException(String reason) {
         super(reason);
     }
-
 }

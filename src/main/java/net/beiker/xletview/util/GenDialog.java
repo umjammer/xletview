@@ -28,9 +28,9 @@ import javax.swing.JDialog;
 
 public class GenDialog extends JDialog implements ActionListener {
 
-    private Frame owner;
+    private final Frame owner;
     private boolean isOk;
-    private GenDialogComponent component;
+    private final GenDialogComponent component;
 
     public GenDialog(GenDialogComponent component, Frame owner, String title) {
         super(owner, true);
@@ -38,7 +38,6 @@ public class GenDialog extends JDialog implements ActionListener {
         this.owner = owner;
 
         Container content = this.getContentPane();
-
 
         // buttons
         Box buttonBox = new Box(BoxLayout.X_AXIS);
@@ -55,8 +54,7 @@ public class GenDialog extends JDialog implements ActionListener {
         content.add(component, BorderLayout.CENTER);
         content.add(buttonBox, BorderLayout.SOUTH);
 
-        addWindowListener(
-                new WindowAdapter() {
+        addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosing(WindowEvent we) {
                         doClose();
@@ -94,6 +92,6 @@ public class GenDialog extends JDialog implements ActionListener {
 
     public void doClose() {
         dispose();
-        //System.exit(0);
+//        System.exit(0);
     }
 }

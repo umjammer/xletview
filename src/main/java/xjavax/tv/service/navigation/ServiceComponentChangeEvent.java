@@ -28,20 +28,19 @@ import xjavax.tv.service.SIChangeType;
  */
 public class ServiceComponentChangeEvent extends ServiceDetailsSIChangeEvent {
 
-    //following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private ServiceComponent serviceComponent;
 
     /**
      * Constructs a <code>ServiceComponentChangeEvent</code>.
      *
      * @param service The ServiceDetails in which the change occurred.
-     * @param type The type of change that occurred.
-     * @param c The ServiceComponent that changed.
+     * @param type    The type of change that occurred.
+     * @param c       The ServiceComponent that changed.
      */
     public ServiceComponentChangeEvent(ServiceDetails service, SIChangeType type, ServiceComponent c) {
-        //TODO implement ServiceComponentChangeEvent
+        // TODO implement ServiceComponentChangeEvent
         super(null, null, null);
-
     }
 
     /**
@@ -54,5 +53,4 @@ public class ServiceComponentChangeEvent extends ServiceDetailsSIChangeEvent {
     public ServiceComponent getServiceComponent() {
         return this.serviceComponent;
     }
-
 }

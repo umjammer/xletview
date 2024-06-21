@@ -20,10 +20,10 @@ import java.util.EventObject;
  */
 public class AppStateChangeEvent extends EventObject {
 
-    private AppID appId;
-    private int fromState;
-    private int toState;
-    private boolean hasFailed;
+    private final AppID appId;
+    private final int fromState;
+    private final int toState;
+    private final boolean hasFailed;
 
     public AppStateChangeEvent(AppID appId, int fromState, int toState, Object source, boolean hasFailed) {
         super(source);

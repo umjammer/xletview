@@ -17,13 +17,12 @@ package org.davic.net.ca;
  */
 public class StartMMIEvent extends MMIEvent {
 
-    private MMIObject mmiObject;
+    private final MMIObject mmiObject;
 
     public StartMMIEvent(MMIObject mmiObject, int dialogueId, Object caModule) {
         super(caModule, dialogueId);
         this.mmiObject = mmiObject;
     }
-
 
     public MMIObject getMMIObject() {
         return mmiObject;

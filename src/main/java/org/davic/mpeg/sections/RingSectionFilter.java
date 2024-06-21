@@ -19,5 +19,4 @@ public class RingSectionFilter extends org.davic.mpeg.sections.SectionFilter {
     public Section[] getSections() {
         return null;
     }
-
 }

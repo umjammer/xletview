@@ -26,5 +26,4 @@ public class LocatorFactoryImpl extends LocatorFactory {
     public Locator[] transformLocator(Locator source) throws InvalidLocatorException {
         return null;
     }
-
 }

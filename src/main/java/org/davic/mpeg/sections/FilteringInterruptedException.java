@@ -25,5 +25,4 @@ public class FilteringInterruptedException extends SectionFilterException {
     public FilteringInterruptedException(String s) {
         super(s);
     }
-
 }

@@ -31,64 +31,19 @@ import static java.lang.System.getLogger;
  */
 public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAnimateEffect {
 
-    private static Logger logger = getLogger(HStaticAnimation.class.getName());
-
+    private static final Logger logger = getLogger(HStaticAnimation.class.getName());
+    private static HAnimateLook defaultLook = new HAnimateLook();
     private int delay;
     private int position;
     private int playMode;
     private int repeatCount;
     private boolean isRunning;
-    private static HAnimateLook defaultLook = new HAnimateLook();
     private HLook hlook;
 
-    private TVTimerSpec paintTask = new TVTimerSpec();
-    private AnimationTimerListner animationListner = new AnimationTimerListner();
+    private final TVTimerSpec paintTask = new TVTimerSpec();
+    private final AnimationTimerListner animationListner = new AnimationTimerListner();
     private int playDirection = 1; // if the animation is playing for forward or backward currently, 1 = forward, -1 backward
     private int currentRepeatCount = 0; // how many times the movie has been repeated
-
-    /*
-     *
-     * @author Cristian Suazo
-     *
-     * inner class used for animation to handle event TVTimer handle. This
-     * is a XleTView specific implementation. The TVTimer is used to create
-     * the animation.
-     */
-    private class AnimationTimerListner implements TVTimerWentOffListener {
-
-        @Override
-        public void timerWentOff(TVTimerWentOffEvent e) {
-            boolean hasNewRepeat = false; // used to indicate if the animation has reached the end/start of loop
-//            logger.log(Level.DEBUG, "animate event");
-            Image[] images = getAnimateContent(getInteractionState());
-
-            // check what next position is and if the loop is "repeated"
-            if (position + playDirection >= images.length || position + playDirection < 0) {
-                if (playMode == HAnimateEffect.PLAY_ALTERNATING) {
-                    // change play direction
-                    playDirection = -playDirection;
-                    position += playDirection;
-                    hasNewRepeat = true;
-                } else if (playMode == HAnimateEffect.PLAY_REPEATING) {
-                    hasNewRepeat = true;
-                    position = 0;
-                }
-            } else position += playDirection;
-
-            // check if the animation has a limited amount of repeats, if so stop it if
-            // the repeat count has reached the end.
-            if (hasNewRepeat && repeatCount != HAnimateEffect.REPEAT_INFINITE) {
-                currentRepeatCount++;
-                if (currentRepeatCount > repeatCount) {
-                    stop();
-                }
-            }
-            if (isRunning) {
-//                logger.log(Level.DEBUG,  "new position=" + position );
-                repaint();
-            }
-        }
-    }
 
     public HStaticAnimation() {
         this(null, 1, HAnimateEffect.PLAY_REPEATING, HAnimateEffect.REPEAT_INFINITE);
@@ -117,12 +72,12 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
         this(imagesNormal, delay, playMode, repeatCount, 0, 0, 0, 0);
     }
 
-    @Override
-    public void setLook(HLook hlook) throws HInvalidLookException {
-        if (!(hlook instanceof HAnimateLook)) {
-            throw new HInvalidLookException("Invalid HLook datatype. Must be of type HAnimateLook.");
-        }
-        this.hlook = hlook;
+    public static HAnimateLook getDefaultLook() {
+        return HStaticAnimation.defaultLook;
+    }
+
+    public static void setDefaultLook(HAnimateLook hlook) {
+        HStaticAnimation.defaultLook = hlook;
     }
 
     @Override
@@ -130,12 +85,12 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
         return hlook;
     }
 
-    public static void setDefaultLook(HAnimateLook hlook) {
-        HStaticAnimation.defaultLook = hlook;
-    }
-
-    public static HAnimateLook getDefaultLook() {
-        return HStaticAnimation.defaultLook;
+    @Override
+    public void setLook(HLook hlook) throws HInvalidLookException {
+        if (!(hlook instanceof HAnimateLook)) {
+            throw new HInvalidLookException("Invalid HLook datatype. Must be of type HAnimateLook.");
+        }
+        this.hlook = hlook;
     }
 
     @Override
@@ -173,6 +128,11 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
     }
 
     @Override
+    public int getPosition() {
+        return this.position;
+    }
+
+    @Override
     public void setPosition(int position) {
         // make check so that position is not set outside the bounds of the image array
         if (getAnimateContent(getInteractionState()) != null && position > -1 && position < getAnimateContent(getInteractionState()).length) {
@@ -183,8 +143,8 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
     }
 
     @Override
-    public int getPosition() {
-        return this.position;
+    public int getRepeatCount() {
+        return this.repeatCount;
     }
 
     @Override
@@ -196,8 +156,9 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
     }
 
     @Override
-    public int getRepeatCount() {
-        return this.repeatCount;
+    public int getDelay() {
+        // convert it to: 1 unit = 0.1, delay currently has milliseconds
+        return this.delay / 100;
     }
 
     @Override
@@ -208,9 +169,8 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
     }
 
     @Override
-    public int getDelay() {
-        // convert it to: 1 unit = 0.1, delay currently has milliseconds
-        return this.delay / 100;
+    public int getPlayMode() {
+        return this.playMode;
     }
 
     @Override
@@ -219,8 +179,47 @@ public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAn
         this.playMode = mode;
     }
 
-    @Override
-    public int getPlayMode() {
-        return this.playMode;
+    /*
+     *
+     * @author Cristian Suazo
+     *
+     * inner class used for animation to handle event TVTimer handle. This
+     * is a XleTView specific implementation. The TVTimer is used to create
+     * the animation.
+     */
+    private class AnimationTimerListner implements TVTimerWentOffListener {
+
+        @Override
+        public void timerWentOff(TVTimerWentOffEvent e) {
+            boolean hasNewRepeat = false; // used to indicate if the animation has reached the end/start of loop
+//logger.log(Level.DEBUG, "animate event");
+            Image[] images = getAnimateContent(getInteractionState());
+
+            // check what next position is and if the loop is "repeated"
+            if (position + playDirection >= images.length || position + playDirection < 0) {
+                if (playMode == HAnimateEffect.PLAY_ALTERNATING) {
+                    // change play direction
+                    playDirection = -playDirection;
+                    position += playDirection;
+                    hasNewRepeat = true;
+                } else if (playMode == HAnimateEffect.PLAY_REPEATING) {
+                    hasNewRepeat = true;
+                    position = 0;
+                }
+            } else position += playDirection;
+
+            // check if the animation has a limited amount of repeats, if so stop it if
+            // the repeat count has reached the end.
+            if (hasNewRepeat && repeatCount != HAnimateEffect.REPEAT_INFINITE) {
+                currentRepeatCount++;
+                if (currentRepeatCount > repeatCount) {
+                    stop();
+                }
+            }
+            if (isRunning) {
+//logger.log(Level.DEBUG,  "new position=" + position );
+                repaint();
+            }
+        }
     }
 }

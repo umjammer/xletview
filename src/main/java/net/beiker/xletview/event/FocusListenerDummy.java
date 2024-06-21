@@ -28,6 +28,6 @@ public class FocusListenerDummy implements FocusListener {
 
     @Override
     public void focusLost(FocusEvent e) {
-//        logger.log(Level.DEBUG, this, "focusLost-" + e);
+//logger.log(Level.DEBUG, this, "focusLost-" + e);
     }
 }

@@ -33,8 +33,8 @@ public abstract class HScreenConfigTemplate {
     public static final int PIXEL_RESOLUTION = 8;
     public static final int SCREEN_RECTANGLE = 9;
 
-    private int[] preferences;
-    private Object[] preferenceObjects;
+    private final int[] preferences;
+    private final Object[] preferenceObjects;
 
     public HScreenConfigTemplate() {
         preferences = new int[10];

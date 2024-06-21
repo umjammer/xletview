@@ -17,7 +17,7 @@ package org.dvb.si;
  */
 public class SISuccessfulRetrieveEvent extends SIRetrievalEvent {
 
-    private SIIterator iterator;
+    private final SIIterator iterator;
 
     public SISuccessfulRetrieveEvent(Object appData, SIRequest request, SIIterator result) {
         super(appData, request);
@@ -27,6 +27,4 @@ public class SISuccessfulRetrieveEvent extends SIRetrievalEvent {
     public SIIterator getResult() {
         return iterator;
     }
-
-
 }

@@ -13,7 +13,6 @@ package org.dvb.si;
 
 public interface SIInformation {
 
-
     short FROM_CACHE_ONLY = 0;
 
     short FROM_CACHE_OR_STREAM = 1;
@@ -33,7 +32,6 @@ public interface SIInformation {
     boolean fromActual();
 
     org.davic.mpeg.TransportStream getDataSource();
-
 }
 
 

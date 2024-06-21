@@ -82,6 +82,5 @@ public interface DescriptorTag {
     short PARTIAL_TRANSPORT_STREAM = 0x63;
 
     short DATA_BROADCAST = 0x64;
-
 }
 

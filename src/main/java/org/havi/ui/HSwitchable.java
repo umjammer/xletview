@@ -18,7 +18,7 @@ public interface HSwitchable extends HActionable {
 
     void setSwitchableState(boolean state);
 
-    void setUnsetActionSound(HSound sound);
-
     HSound getUnsetActionSound();
+
+    void setUnsetActionSound(HSound sound);
 }

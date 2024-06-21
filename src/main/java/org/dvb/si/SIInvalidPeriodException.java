@@ -24,5 +24,4 @@ public class SIInvalidPeriodException extends SIException {
     public SIInvalidPeriodException(String reason) {
         super(reason);
     }
-
 }

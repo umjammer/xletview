@@ -36,5 +36,4 @@ public interface ServiceMinorNumber extends ServiceNumber {
      * @return The minor number of this service.
      */
     int getMinorNumber();
-
 }

@@ -16,9 +16,9 @@ package net.beiker.xletview.download;
  */
 public class DownloadEvent {
 
-    private Downloader dwnLoader;
-    private int procentLoaded;
-    private String fileName;
+    private final Downloader dwnLoader;
+    private final int procentLoaded;
+    private final String fileName;
 
     public DownloadEvent(Downloader dwnLoader, int procent, String fileName) {
         this.dwnLoader = dwnLoader;
@@ -37,5 +37,4 @@ public class DownloadEvent {
     public String getFileName() {
         return fileName;
     }
-
 }

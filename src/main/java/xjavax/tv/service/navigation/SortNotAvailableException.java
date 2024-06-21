@@ -29,7 +29,7 @@ public class SortNotAvailableException extends SIException {
      * detail message.</DL>
      */
     public SortNotAvailableException() {
-        //TODO implement SortNotAvailableException
+        // TODO implement SortNotAvailableException
     }
 
     /**
@@ -39,7 +39,6 @@ public class SortNotAvailableException extends SIException {
      * @param reason The reason this exception was thrown.
      */
     public SortNotAvailableException(java.lang.String reason) {
-        //TODO implement SortNotAvailableException
+        // TODO implement SortNotAvailableException
     }
-
 }

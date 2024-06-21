@@ -30,11 +30,10 @@ public class MediaSelectSucceededEvent extends MediaSelectEvent {
     /**
      * Creates a new <code>MediaSelectSucceededEvent</code>.
      *
-     * @param source The Controller that generated this event.
+     * @param source    The Controller that generated this event.
      * @param selection The Locator instances on which selection occurred.
      */
     public MediaSelectSucceededEvent(javax.media.Controller source, Locator[] selection) {
         super(source, selection);
     }
-
 }

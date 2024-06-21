@@ -48,6 +48,4 @@ public final class AppsControlPermission extends java.security.BasicPermission {
     public int hashCode() {
         return hash;
     }
-
-
 }

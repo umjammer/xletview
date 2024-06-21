@@ -33,12 +33,11 @@ public class HStillImageBackgroundConfiguration extends HBackgroundConfiguration
             org.havi.ui.HConfigurationException {
         net.beiker.xletview.media.BackgroundLayer bl = net.beiker.xletview.media.BackgroundLayer.getInstance();
 
-
         bl.removeAll();
-        // if(bl.getComponent(0) != imgComponent){
+//        if(bl.getComponent(0) != imgComponent){
         bl.add(image);
 
-        //}
+//        }
         image.setBounds(r);
         image.setVisible(true);
     }

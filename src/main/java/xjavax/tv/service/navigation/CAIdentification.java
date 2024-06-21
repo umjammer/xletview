@@ -38,5 +38,4 @@ public interface CAIdentification {
      * @return true if this Service is not protected by a conditional access; false if one or more components is protected by conditional access.
      */
     boolean isFree();
-
 }

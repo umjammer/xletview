@@ -17,6 +17,5 @@ public interface HItemListener extends java.util.EventListener {
     void selectionChanged(org.havi.ui.event.HItemEvent e);
 
     void currentItemChanged(org.havi.ui.event.HItemEvent e);
-
 }
 

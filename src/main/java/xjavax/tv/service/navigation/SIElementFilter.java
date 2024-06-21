@@ -40,17 +40,17 @@ import xjavax.tv.service.Service;
  */
 public final class SIElementFilter extends ServiceFilter {
 
-    //following variables are implicitely defined by getter- or setter-methods:
+    // following variables are implicitly defined by getter- or setter-methods:
     private SIElement filterValue;
 
     /**
      * Constructs the filter based on a particular <code>SIElement</code>.
      *
      * @param element An SIElement indicating the services to be included in a resulting service list.
-     * @throws FilterNotSupportedException - If element is not supported for filtering.
+     * @throws FilterNotSupportedException If element is not supported for filtering.
      */
     public SIElementFilter(SIElement element) throws FilterNotSupportedException {
-        //TODO implement SIElementFilter
+        // TODO implement SIElementFilter
     }
 
     /**
@@ -72,7 +72,6 @@ public final class SIElementFilter extends ServiceFilter {
     @Override
     public boolean accept(Service service) {
         return false;
-        //TODO implement accept
+        // TODO implement accept
     }
-
 }

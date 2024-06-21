@@ -67,7 +67,7 @@ public class SelectionFailedEvent extends ServiceContextEvent {
      */
     public static final int INSUFFICIENT_RESOURCES = 6;
 
-    private int reason;
+    private final int reason;
 
     /**
      * Constructs the event with a reason code.
@@ -88,5 +88,4 @@ public class SelectionFailedEvent extends ServiceContextEvent {
     public int getReason() {
         return reason;
     }
-
 }

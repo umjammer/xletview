@@ -16,39 +16,24 @@ public class EmulatorFile {
 
     private static final Logger logger = getLogger(EmulatorFile.class.getName());
 
+    private final List<EmulatorFile> children;
     private static EmulatorFile ROOT = getRoot();
-
-    private List<EmulatorFile> children;
-
     private EmulatorFile parent;
-
     /*
      * The name of this file
      */
     private String name;
-
     /*
      * The virtual absolute path
      */
     private String absolutePath;
-
     /*
      * The physical file we map to
      */
     private java.io.File realFile;
 
-
     private EmulatorFile() {
         children = new ArrayList<>();
-    }
-
-    static EmulatorFile getRoot() {
-        if (ROOT == null) {
-            ROOT = new EmulatorFile();
-            ROOT.name = "";
-            ROOT.absolutePath = "/";
-        }
-        return ROOT;
     }
 
     EmulatorFile(String name, java.io.File realFile) {
@@ -91,6 +76,14 @@ public class EmulatorFile {
         parent.addChild(this);
     }
 
+    static EmulatorFile getRoot() {
+        if (ROOT == null) {
+            ROOT = new EmulatorFile();
+            ROOT.name = "";
+            ROOT.absolutePath = "/";
+        }
+        return ROOT;
+    }
 
     /**
      * One file can only be added one time.
@@ -100,7 +93,7 @@ public class EmulatorFile {
     void addChild(EmulatorFile file) {
         logger.log(Level.DEBUG, "addChild(" + file.getAbsolutePath() + ")");
         if (children.contains(file)) {
-//            logger.log(Level.DEBUG, "child already exist");
+//logger.log(Level.DEBUG, "child already exist");
             try {
                 throw new IOException("child already exist");
             } catch (IOException e) {
@@ -109,7 +102,6 @@ public class EmulatorFile {
         }
 
         children.add(file);
-
     }
 
     void removeChild(EmulatorFile file) {
@@ -120,13 +112,13 @@ public class EmulatorFile {
         children.clear();
     }
 
-//    void setParent(EmulatorFile parent){
-//        this.parent = parent;
-//    }
-
     EmulatorFile getParent() {
         return parent;
     }
+
+//    void setParent(EmulatorFile parent){
+//        this.parent = parent;
+//    }
 
     List<EmulatorFile> getChildren() {
         return children;
@@ -134,11 +126,11 @@ public class EmulatorFile {
 
     EmulatorFile getChild(String name) {
         EmulatorFile result = null;
-        logger.log(Level.DEBUG, this.name + ", children.size() = " + children.size());
+logger.log(Level.DEBUG, this.name + ", children.size() = " + children.size());
         for (EmulatorFile child : children) {
             EmulatorFile ef = child;
             String s = ef.getName();
-            logger.log(Level.DEBUG, "checking in " + getName() + " if there is a child with the name " + name + ", child has name " + s);
+logger.log(Level.DEBUG, "checking in " + getName() + " if there is a child with the name " + name + ", child has name " + s);
             if (s.equals(name)) {
                 result = ef;
                 break;
@@ -156,16 +148,11 @@ public class EmulatorFile {
         return name;
     }
 
-//    void setRealFile(java.io.File file){
-//        realFile = file;
-//    }
-
     java.io.File getRealFile() {
         return realFile;
     }
 
-
+//    void setRealFile(java.io.File file){
+//        realFile = file;
+//    }
 }
-
-
-

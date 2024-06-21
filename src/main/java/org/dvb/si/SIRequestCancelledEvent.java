@@ -20,5 +20,4 @@ public class SIRequestCancelledEvent extends SIRetrievalEvent {
     public SIRequestCancelledEvent(Object appData, SIRequest request) {
         super(appData, request);
     }
-
 }

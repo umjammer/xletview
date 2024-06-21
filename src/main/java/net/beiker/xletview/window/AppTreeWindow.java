@@ -57,11 +57,11 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
 
     private static final Logger logger = getLogger(AppTreeWindow.class.getName());
 
-    //private AppTree tree;
-    private AppTreePanel tree;
+//    private AppTree tree;
+    private final AppTreePanel tree;
     private JTextField currentSelectionField;
     private JPopupMenu popup;
-    private Container content;
+    private final Container content;
 
     private JButton newGroupButton;
     private JButton newAppButton;
@@ -74,10 +74,10 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         content = getContentPane();
 
         AppManager manager = AppManager.getInstance();
-        //manager.parse();
+//        manager.parse();
         AppGroup defaultGroup = manager.getDefaultGroup();
 
-        //tree = new AppTree(defaultGroup);
+//        tree = new AppTree(defaultGroup);
         tree = new AppTreePanel(defaultGroup);
         tree.setPreferredSize(new Dimension(300, 300));
         tree.addTreeListener(this);
@@ -103,6 +103,15 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         Util.center(this);
 
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(new MetouiaLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            logger.log(Level.ERROR, e.getMessage(), e);
+        }
+        new AppTreeWindow();
     }
 
     public Container getButtonPanel() {
@@ -172,26 +181,26 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         switch (command) {
-        case "newgroup" -> {
-            AppGroup group = new AppGroup(null);
-            tree.insertGroup(group);
-        }
-        case "newapp" -> {
-            App app = new App(null, null, null);
-            tree.insertApp(app);
-        }
-        case "delete" -> {
-            logger.log(Level.DEBUG, "delete");
-            tree.removeSelected();
-        }
-        case "ok" -> {
-            appPanel.save();
-            groupPanel.save();
-            AppManager.getInstance().update();
-            AppMenu.getInstance().update();
-            doClose();
-        }
-        case "cancel" -> logger.log(Level.DEBUG, "cancel");
+            case "newgroup" -> {
+                AppGroup group = new AppGroup(null);
+                tree.insertGroup(group);
+            }
+            case "newapp" -> {
+                App app = new App(null, null, null);
+                tree.insertApp(app);
+            }
+            case "delete" -> {
+logger.log(Level.DEBUG, "delete");
+                tree.removeSelected();
+            }
+            case "ok" -> {
+                appPanel.save();
+                groupPanel.save();
+                AppManager.getInstance().update();
+                AppMenu.getInstance().update();
+                doClose();
+            }
+            case "cancel" -> logger.log(Level.DEBUG, "cancel");
         }
     }
 
@@ -202,11 +211,11 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
             if (object instanceof AppGroup group) {
                 tree.getSelectedNode().setUserObject(group);
                 tree.getModel().nodeStructureChanged(tree.getSelectedNode());
-                //tree.getModel().reload();
+//                tree.getModel().reload();
             } else if (object instanceof App app) {
                 tree.getSelectedNode().setUserObject(app);
                 tree.getModel().nodeStructureChanged(tree.getSelectedNode());
-                //tree.getModel().reload();
+//                tree.getModel().reload();
             }
         }
     }
@@ -235,19 +244,9 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
                 appPanel.setApp(app);
             }
         }
-
     }
 
     private void doClose() {
         this.dispose();
-    }
-
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new MetouiaLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-        new AppTreeWindow();
     }
 }

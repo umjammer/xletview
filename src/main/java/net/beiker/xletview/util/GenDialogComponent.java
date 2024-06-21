@@ -9,5 +9,4 @@ import javax.swing.JComponent;
 public abstract class GenDialogComponent extends JComponent {
 
     public abstract boolean isOk();
-
 }

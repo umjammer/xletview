@@ -23,7 +23,7 @@ import java.util.List;
 public abstract class Preference {
 
     private String name;
-    private List<String> values;
+    private final List<String> values;
 
     protected Preference() {
         values = new ArrayList<>();
@@ -82,6 +82,11 @@ public abstract class Preference {
         return result;
     }
 
+    public void setMostFavourite(String value) {
+        values.remove(value);
+        values.add(0, value);
+    }
+
     public String getName() {
         return name;
     }
@@ -102,11 +107,6 @@ public abstract class Preference {
         values.clear();
     }
 
-    public void setMostFavourite(String value) {
-        values.remove(value);
-        values.add(0, value);
-    }
-
     public String toString() {
         StringBuilder result = new StringBuilder(name + " [");
         for (int i = 0; i < values.size(); i++) {
@@ -118,8 +118,6 @@ public abstract class Preference {
         result.append("]");
         return result.toString();
     }
-
-
 }
 
 

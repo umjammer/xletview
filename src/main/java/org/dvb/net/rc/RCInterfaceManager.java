@@ -11,12 +11,13 @@
 
 package org.dvb.net.rc;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.lang.System.Logger;
 
 import org.davic.resources.ResourceStatusEvent;
 import org.davic.resources.ResourceStatusListener;
@@ -35,11 +36,11 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
     private static final Logger logger = getLogger(RCInterfaceManager.class.getName());
 
     private static RCInterfaceManager THE_INSTANCE;
-    private RCInterface[] rcInterfaces;
-    private List<ResourceStatusListener> resourceStatusEventObjects;
+    private final RCInterface[] rcInterfaces;
+    private final List<ResourceStatusListener> resourceStatusEventObjects;
 
     private RCInterfaceManager() {
-        System.out.println("XleTView: instanciate RCInterfaceManager");
+logger.log(Level.DEBUG, "XleTView: instanciate RCInterfaceManager");
 
         // One interface for every kind to not break
         // any box specific Xlet code.
@@ -63,7 +64,7 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
     }
 
     public static RCInterfaceManager getInstance() {
-        System.out.println("XleTView: RCInterfaceManager getInstance");
+logger.log(Level.DEBUG, "XleTView: RCInterfaceManager getInstance");
         if (THE_INSTANCE == null) {
             THE_INSTANCE = new RCInterfaceManager();
         }
@@ -71,7 +72,7 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
     }
 
     public RCInterface[] getInterfaces() {
-        System.out.println("XleTView: getInterfaces");
+logger.log(Level.DEBUG, "XleTView: getInterfaces");
         return this.rcInterfaces;
     }
 
@@ -99,7 +100,7 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
         this.resourceStatusEventObjects.remove(listener);
     }
 
-    protected void fireResorceStatusChanged(ResourceStatusEvent po) {
+    protected void fireResourceStatusChanged(ResourceStatusEvent po) {
         // backwards so we get the last added
         for (int i = this.resourceStatusEventObjects.size() - 1; i > -1; i--) {
             ResourceStatusListener li = this.resourceStatusEventObjects.get(i);

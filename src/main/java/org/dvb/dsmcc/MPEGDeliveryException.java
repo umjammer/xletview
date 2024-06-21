@@ -24,6 +24,4 @@ public class MPEGDeliveryException extends DSMCCException {
     public MPEGDeliveryException(String s) {
         super(s);
     }
-
-
 }

@@ -20,5 +20,4 @@ public class SILackOfResourcesEvent extends SIRetrievalEvent {
     public SILackOfResourcesEvent(Object appData, SIRequest request) {
         super(appData, request);
     }
-
 }

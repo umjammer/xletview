@@ -20,7 +20,7 @@ public class NetworkInterfaceTuningOverEvent extends NetworkInterfaceEvent {
     public final static int SUCCEEDED = 0;
     public final static int FAILED = 1;
 
-    private int status;
+    private final int status;
 
     public NetworkInterfaceTuningOverEvent(Object networkInterface, int status) {
         super(networkInterface);
@@ -30,7 +30,6 @@ public class NetworkInterfaceTuningOverEvent extends NetworkInterfaceEvent {
     public int getStatus() {
         return status;
     }
-
 }
 
 

@@ -14,7 +14,6 @@ package org.dvb.ui;
 public interface TextOverflowListener {
 
     void notifyTextOverflow(java.lang.String markedUpString, org.havi.ui.HVisible v, boolean overflowedHorizontally, boolean overflowedVertically);
-
 }
 
 

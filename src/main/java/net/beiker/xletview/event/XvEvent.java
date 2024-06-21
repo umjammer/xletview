@@ -19,5 +19,4 @@ package net.beiker.xletview.event;
 public abstract class XvEvent {
 
     public static final int VK_RELOAD = 1000;
-
 }

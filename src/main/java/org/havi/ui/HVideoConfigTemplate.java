@@ -35,5 +35,4 @@ public class HVideoConfigTemplate extends HScreenConfigTemplate {
     public Object getPreferenceObject(int preference) {
         return (null);
     }
-
 }

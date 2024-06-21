@@ -17,5 +17,4 @@ public interface HTextListener extends java.util.EventListener {
     void textChanged(org.havi.ui.event.HTextEvent e);
 
     void caretMoved(org.havi.ui.event.HTextEvent e);
-
 }

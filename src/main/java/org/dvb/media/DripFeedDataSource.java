@@ -58,6 +58,5 @@ public class DripFeedDataSource extends javax.media.protocol.DataSource {
     public Object getControl(String controlType) {
         return null;
     }
-
 }
 

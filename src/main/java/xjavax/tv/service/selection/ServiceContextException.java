@@ -39,5 +39,4 @@ public class ServiceContextException extends java.lang.Exception {
     public ServiceContextException(String reason) {
         super(reason);
     }
-
 }

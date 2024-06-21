@@ -19,11 +19,9 @@ public class AppsDatabase {
     AppsDatabase() {
     }
 
-
     static public AppsDatabase getAppsDatabase() {
         return null;
     }
-
 
     public int size() {
         return 0;
@@ -50,5 +48,4 @@ public class AppsDatabase {
 
     public void removeListener(AppsDatabaseEventListener listener) {
     }
-
 }

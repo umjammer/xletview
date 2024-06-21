@@ -35,14 +35,14 @@ public interface NetworkCollection extends Transport {
      * <p>
      * This method delivers its results asynchronously.
      *
-     * @param locator Locator referencing the Network of interest.
-     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
+     * @param locator   Locator referencing the Network of interest.
+     * @param requester The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid network.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid network.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see Network, ReadPermission
      */
-    SIRequest retrieveNetwork(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
+    SIRequest retrieveNetwork(Locator locator, SIRequestor requester) throws InvalidLocatorException, java.lang.SecurityException;
 
     /**
      * Retrieves an array of all the <code>Network</code> objects in
@@ -56,11 +56,11 @@ public interface NetworkCollection extends Transport {
      * <p>
      * This method delivers its results asynchronously.
      *
-     * @param requestor The SIRequestor to be notified when this retrieval operation completes.
+     * @param requester The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
      * @see Network, ReadPermission
      */
-    SIRequest retrieveNetworks(SIRequestor requestor);
+    SIRequest retrieveNetworks(SIRequestor requester);
 
     /**
      * Registers a <code>NetworkChangeListener</code> to be notified of
@@ -97,5 +97,4 @@ public interface NetworkCollection extends Transport {
      * @param listener A previously registered listener.
      */
     void removeNetworkChangeListener(NetworkChangeListener listener);
-
 }

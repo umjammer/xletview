@@ -39,5 +39,4 @@ public class DataLostException extends java.io.IOException {
     public DataLostException(String reason) {
         super(reason);
     }
-
 }

@@ -57,5 +57,4 @@ public class CurrentServiceFilter extends AppsDatabaseFilter {
 
         return false;
     }
-
 }

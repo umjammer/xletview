@@ -28,43 +28,39 @@ public final class GeneralPreference extends Preference {
             throw new IllegalArgumentException(
                     name + " the preference's name is not supported");
         }
-
     }
 
-    /*
-    public static void main(String[] args) {
-
-        UserPreferenceManager man = UserPreferenceManager.getInstance();
-        Preference p;
-
-        p = new GeneralPreference("User Language");
-        man.read(p);
-        System.out.println(p.toString());
-
-        p = new GeneralPreference("Parental Rating");
-        man.read(p);
-        System.out.println(p.toString());
-
-        p = new GeneralPreference("User Name");
-        man.read(p);
-        System.out.println(p.toString());
-
-        p = new GeneralPreference("User Address");
-        man.read(p);
-        System.out.println(p.toString());
-
-        p = new GeneralPreference("User @");
-        man.read(p);
-        System.out.println(p.toString());
-
-        p = new GeneralPreference("Country Code");
-        man.read(p);
-        System.out.println(p.toString());
-
-        p = new GeneralPreference("Default Font Size");
-        man.read(p);
-        System.out.println(p.toString());
-
-    }
-    */
+//    public static void main(String[] args) {
+//
+//        UserPreferenceManager man = UserPreferenceManager.getInstance();
+//        Preference p;
+//
+//        p = new GeneralPreference("User Language");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//
+//        p = new GeneralPreference("Parental Rating");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//
+//        p = new GeneralPreference("User Name");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//
+//        p = new GeneralPreference("User Address");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//
+//        p = new GeneralPreference("User @");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//
+//        p = new GeneralPreference("Country Code");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//
+//        p = new GeneralPreference("Default Font Size");
+//        man.read(p);
+//logger.log(Level.DEBUG, p.toString());
+//    }
 }

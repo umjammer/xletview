@@ -24,6 +24,5 @@ public class ModuleResourceNonExistentException extends CAException {
     public ModuleResourceNonExistentException(String reason) {
         super(reason);
     }
-
 }
 

@@ -81,5 +81,4 @@ public interface SIElement extends SIRetrievable {
      * @return The SI format in which this SI element was delivered.
      */
     ServiceInformationType getServiceInformationType();
-
 }

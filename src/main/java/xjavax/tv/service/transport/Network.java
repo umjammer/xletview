@@ -59,5 +59,4 @@ public interface Network extends SIElement {
      * @see TransportStream, ReadPermission
      */
     SIRequest retrieveTransportStreams(SIRequestor requestor);
-
 }

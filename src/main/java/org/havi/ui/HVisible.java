@@ -26,28 +26,20 @@ import static java.lang.System.getLogger;
  */
 public class HVisible extends HComponent implements HState {
 
-    /** Debugging facility. */
-    private static final Logger logger = getLogger(HVisible.class.getName());
-
     public static final int HALIGN_LEFT = 0;
     public static final int HALIGN_CENTER = 1;
     public static final int HALIGN_RIGHT = 2;
     public static final int HALIGN_JUSTIFY = 3;
-
     public static final int VALIGN_TOP = 0;
     public static final int VALIGN_CENTER = 4;
     public static final int VALIGN_BOTTOM = 8;
     public static final int VALIGN_JUSTIFY = 12;
-
     public final static int RESIZE_NONE = 0;
     public static final int RESIZE_PRESERVE_ASPECT = 1;
     public static final int RESIZE_ARBITRARY = 2;
-
     public static final int NO_BACKGROUND_FILL = 0;
     public static final int BACKGROUND_FILL = 1;
-
     public static final int FIRST_CHANGE = 0;
-
     public static final int TEXT_CONTENT_CHANGE = 0;
     public static final int GRAPHIC_CONTENT_CHANGE = 1;
     public static final int ANIMATE_CONTENT_CHANGE = 2;
@@ -74,10 +66,11 @@ public class HVisible extends HComponent implements HState {
     public static final int LIST_SELECTION_CHANGE = 23;
     public static final int UNKNOWN_CHANGE = 24;
     public static final int LAST_CHANGE = UNKNOWN_CHANGE;
-
     public static final int NO_DEFAULT_WIDTH = -1;
     public static final int NO_DEFAULT_HEIGHT = -1;
-
+    public static final Dimension NO_DEFAULT_SIZE = new Dimension(NO_DEFAULT_WIDTH, NO_DEFAULT_HEIGHT);
+    /** Debugging facility. */
+    private static final Logger logger = getLogger(HVisible.class.getName());
     private HLook hLook;
     private Dimension defaultSize;
     private int backgroundMode;
@@ -85,16 +78,13 @@ public class HVisible extends HComponent implements HState {
     private HMatte hMatte;
     private int horizontalAlignment;
     private int verticalAlignment;
-    private int resizeMode;
+    private final int resizeMode;
     private int state;
     private boolean bordersEnabled;
-
-    private Object[] contents;
-    private String[] textContents;
-    private Image[] graphicContents;
-    private Image[][] animateContents;
-
-    public static final Dimension NO_DEFAULT_SIZE = new Dimension(NO_DEFAULT_WIDTH, NO_DEFAULT_HEIGHT);
+    private final Object[] contents;
+    private final String[] textContents;
+    private final Image[] graphicContents;
+    private final Image[][] animateContents;
 
     public HVisible() {
         this(null, 0, 0, 0, 0);
@@ -124,7 +114,7 @@ public class HVisible extends HComponent implements HState {
         setInteractionState(HVisible.NORMAL_STATE);
         setBounds(x, y, width, height);
 
-//        logger.log(Level.DEBUG, this, "default fontsize = " + getFont().getSize());
+//logger.log(Level.DEBUG, this, "default fontsize = " + getFont().getSize());
 
 //        hMatte = null; // set in HComponent
         callWidgetChanged();
@@ -256,12 +246,12 @@ public class HVisible extends HComponent implements HState {
         return obj;
     }
 
-    public void setLook(HLook hLook) throws HInvalidLookException {
-        this.hLook = hLook;
-    }
-
     public HLook getLook() {
         return this.hLook;
+    }
+
+    public void setLook(HLook hLook) throws HInvalidLookException {
+        this.hLook = hLook;
     }
 
     @Override
@@ -297,22 +287,22 @@ public class HVisible extends HComponent implements HState {
         return dimension;
     }
 
+    public int getInteractionState() {
+        return this.state;
+    }
+
     protected void setInteractionState(int state) throws java.lang.IllegalArgumentException {
         checkStateArgument(state);
         this.state = state;
         callWidgetChanged();
     }
 
-    public int getInteractionState() {
-        return this.state;
+    public HTextLayoutManager getTextLayoutManager() {
+        return this.hTextLayoutManager;
     }
 
     public void setTextLayoutManager(HTextLayoutManager manager) {
         this.hTextLayoutManager = manager;
-    }
-
-    public HTextLayoutManager getTextLayoutManager() {
-        return this.hTextLayoutManager;
     }
 
     public int getBackgroundMode() {
@@ -338,12 +328,12 @@ public class HVisible extends HComponent implements HState {
         return this.backgroundMode != HVisible.NO_BACKGROUND_FILL;
     }
 
-    public void setDefaultSize(Dimension defaultSize) {
-        this.defaultSize = defaultSize;
-    }
-
     public java.awt.Dimension getDefaultSize() {
         return this.defaultSize;
+    }
+
+    public void setDefaultSize(Dimension defaultSize) {
+        this.defaultSize = defaultSize;
     }
 
     /**
@@ -364,12 +354,30 @@ public class HVisible extends HComponent implements HState {
     }
 
     /**
+     * Get the horizontal alignment of any state-based content rendered by an associated HLook.
+     * If content is not used in the rendering of this HVisible the value returned shall be valid,
+     * but has no effect on the rendered representation.
+     */
+    public int getHorizontalAlignment() {
+        return this.horizontalAlignment;
+    }
+
+    /**
      * Set the horizontal alignment of any state-based content rendered by an associated HLook.
      * If content is not used in the rendering of this HVisible calls to this method shall
      * change the current alignment mode, but this will not affect the rendered representation
      */
     public void setHorizontalAlignment(int hAlign) {
         this.horizontalAlignment = hAlign;
+    }
+
+    /**
+     * Get the vertical alignment of any state-based content rendered by an associated HLook.
+     * If content is not used in the rendering of this HVisible the value returned shall be valid,
+     * but has no effect on the rendered representation.
+     */
+    public int getVerticalAlignment() {
+        return this.verticalAlignment;
     }
 
     /**
@@ -382,22 +390,8 @@ public class HVisible extends HComponent implements HState {
         callWidgetChanged();
     }
 
-    /**
-     * Get the horizontal alignment of any state-based content rendered by an associated HLook.
-     * If content is not used in the rendering of this HVisible the value returned shall be valid,
-     * but has no effect on the rendered representation.
-     */
-    public int getHorizontalAlignment() {
-        return this.horizontalAlignment;
-    }
-
-    /**
-     * Get the vertical alignment of any state-based content rendered by an associated HLook.
-     * If content is not used in the rendering of this HVisible the value returned shall be valid,
-     * but has no effect on the rendered representation.
-     */
-    public int getVerticalAlignment() {
-        return this.verticalAlignment;
+    public int getResizeMode() {
+        return this.resizeMode;
     }
 
     /**
@@ -411,10 +405,6 @@ public class HVisible extends HComponent implements HState {
                     " scaling mode. Platforms are not required to support scaling of textual content by default.";
             logger.log(Level.WARNING, "setResizeMode(" + resize + ") is not supported, only HVisible.RESIZE_NONE is." + msg);
         }
-    }
-
-    public int getResizeMode() {
-        return this.resizeMode;
     }
 
     @Override
@@ -432,13 +422,13 @@ public class HVisible extends HComponent implements HState {
         callWidgetChanged();
     }
 
+    public boolean getBordersEnabled() {
+        return this.bordersEnabled;
+    }
+
     public void setBordersEnabled(boolean enable) {
         this.bordersEnabled = enable;
         callWidgetChanged();
-    }
-
-    public boolean getBordersEnabled() {
-        return this.bordersEnabled;
     }
 
     /**

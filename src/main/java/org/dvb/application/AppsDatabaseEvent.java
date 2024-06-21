@@ -24,8 +24,8 @@ public class AppsDatabaseEvent extends java.util.EventObject {
     static public final int APP_ADDED = 2;
     static public final int APP_DELETED = 3;
 
-    private int eventId;
-    private AppID appId;
+    private final int eventId;
+    private final AppID appId;
 
     public AppsDatabaseEvent(int id, AppID appId, Object source) {
         super(source);
@@ -40,5 +40,4 @@ public class AppsDatabaseEvent extends java.util.EventObject {
     public int getEventId() {
         return eventId;
     }
-
 }

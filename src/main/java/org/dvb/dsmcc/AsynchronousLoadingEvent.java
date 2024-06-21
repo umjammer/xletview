@@ -27,5 +27,4 @@ public abstract class AsynchronousLoadingEvent extends java.util.EventObject {
     public Object getSource() {
         return super.getSource();
     }
-
 }

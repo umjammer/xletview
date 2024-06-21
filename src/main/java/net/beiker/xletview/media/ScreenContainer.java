@@ -39,49 +39,22 @@ import static java.lang.System.getLogger;
  */
 public class ScreenContainer extends Container {
 
-    private static final Logger logger = getLogger(ScreenContainer.class.getName());
-
-    private static ScreenContainer THE_INSTANCE;
-
     // index 3 adds it last and therefore in the background
     public final static int BACKGROUND_LAYER = 3;
-
     public final static int VIDEO_LAYER = 2;
-
     // index 1 adds it first and therefore in the foreground
     public final static int GRAPHICS_LAYER = 1;
-
+    private static final Logger logger = getLogger(ScreenContainer.class.getName());
     // layer on top of everything that belongs to the emulator, for safe area marking etc.
     private final static int EMULATOR_LAYER = 0;
-
-    private XContainer[] layers;
-
-    private static int screenX = 0;
-    private static int screenY = 0;
-
-    public static int SCREEN_WIDTH = Util.parseInt(Settings.getProperty("tv.screenwidth"));
-    public static int SCREEN_HEIGHT = Util.parseInt(Settings.getProperty("tv.screenheight"));
-
-    private boolean eventEnabled;
-
+    public static final int SCREEN_WIDTH = Util.parseInt(Settings.getProperty("tv.screenwidth"));
+    public static final int SCREEN_HEIGHT = Util.parseInt(Settings.getProperty("tv.screenheight"));
+    private static ScreenContainer THE_INSTANCE;
+    private static final int screenX = 0;
+    private static final int screenY = 0;
     private static ProgressBar progressBar;
-
-    /**
-     * Gets the instance attribute of the TV class
-     *
-     * @return The instance value
-     */
-    public static ScreenContainer getInstance() {
-        if (THE_INSTANCE == null) {
-            THE_INSTANCE = new ScreenContainer();
-        }
-        return THE_INSTANCE;
-    }
-
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(720, 576);
-    }
+    private XContainer[] layers;
+    private final boolean eventEnabled;
 
     /**
      * Constructor for the TV object
@@ -136,6 +109,35 @@ public class ScreenContainer extends Container {
         eventEnabled = true;
     }
 
+    /**
+     * Gets the instance attribute of the TV class
+     *
+     * @return The instance value
+     */
+    public static ScreenContainer getInstance() {
+        if (THE_INSTANCE == null) {
+            THE_INSTANCE = new ScreenContainer();
+        }
+        return THE_INSTANCE;
+    }
+
+    public static void showProgressBar() {
+        progressBar.setVisible(true);
+    }
+
+    public static void hideProgressBar() {
+        progressBar.setVisible(false);
+    }
+
+    public static void updateProgressBar(int procent) {
+        progressBar.update(procent);
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(720, 576);
+    }
+
     public void addToXletContainer(HScene scene) {
 
         // because there can only be one scene
@@ -155,18 +157,6 @@ public class ScreenContainer extends Container {
 
     public Container getBackgroundLayer() {
         return layers[ScreenContainer.BACKGROUND_LAYER];
-    }
-
-    public static void showProgressBar() {
-        progressBar.setVisible(true);
-    }
-
-    public static void hideProgressBar() {
-        progressBar.setVisible(false);
-    }
-
-    public static void updateProgressBar(int procent) {
-        progressBar.update(procent);
     }
 
     @Override

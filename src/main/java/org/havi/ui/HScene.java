@@ -40,15 +40,13 @@ import static java.lang.System.getLogger;
  */
 public class HScene extends Container implements HComponentOrdering, ImageObserver, MenuContainer, Serializable {
 
-    private static final Logger logger = getLogger(HScene.class.getName());
-
     public static final int IMAGE_NONE = 0;
     public static final int IMAGE_STRETCH = 1;
     public static final int IMAGE_CENTER = 2;
     public static final int IMAGE_TILE = 3;
     public static final int NO_BACKGROUND_FILL = 0;
     public static final int BACKGROUND_FILL = 1;
-
+    private static final Logger logger = getLogger(HScene.class.getName());
     private int backgroundMode;
     private int renderMode;
     private boolean shortCutsEnabled;
@@ -62,8 +60,7 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
 
         setLayout(null);
 
-        /* The default value of isVisible() should be false
-         */
+        // The default value of isVisible() should be false
         setVisible(false);
         this.requestFocus();
 
@@ -208,64 +205,55 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     }
 
     @Override
+    public boolean isVisible() {
+        return super.isVisible();
+    }
+
+    @Override
     public void setVisible(boolean visible) {
         super.setVisible(visible);
     }
 
     @Override
-    public boolean isVisible() {
-        return super.isVisible();
-    }
-
-
-    @Override
     public void paint(java.awt.Graphics g) {
         super.paint(g);
 
-        /*
-         * 1. If the current background mode is BACKGROUND_FILL, the entire HScene is
-         * first filled using the current background color
-         */
+        // 1. If the current background mode is BACKGROUND_FILL, the entire HScene is
+        //    first filled using the current background color
         if (this.backgroundMode == BACKGROUND_FILL) {
             g.setColor(this.getBackground());
             g.fillRect(0, 0, this.getWidth(), this.getHeight());
         }
 
-        /*
-         * 2. If a background image has been set using the setBackgroundImage method, and
-         * the current image rendering mode as set using setRenderMode is not IMAGE_NONE,
-         * the specified image is painted. Scaling and tiling are performed according to
-         * the render mode set.
-         *
-         * AT THE MOMENT WE DON'T SUPPORT ANY OTHER BACKGROUND MODE THAT IMAGE_NONE
-         */
+        // 2. If a background image has been set using the setBackgroundImage method, and
+        //    the current image rendering mode as set using setRenderMode is not IMAGE_NONE,
+        //    the specified image is painted. Scaling and tiling are performed according to
+        //    the render mode set.
+        //
+        //    AT THE MOMENT WE DON'T SUPPORT ANY OTHER BACKGROUND MODE THAT IMAGE_NONE
 
-        /*
-         * 3. Finally any children of the HScene are rendered in z-order.
-         */
-    }
-
-    public void setBackgroundMode(int i) {
-        this.backgroundMode = i;
+        // 3. Finally any children of the HScene are rendered in z-order.
     }
 
     public int getBackgroundMode() {
         return this.backgroundMode;
     }
 
-    public void setBackgroundImage(Image image) {
-        this.bgImage = image;
+    public void setBackgroundMode(int i) {
+        this.backgroundMode = i;
     }
 
     public java.awt.Image getBackgroundImage() {
         return this.bgImage;
     }
 
+    public void setBackgroundImage(Image image) {
+        this.bgImage = image;
+    }
+
     public boolean setRenderMode(int mode) {
 
-        /*
-         * Note that the minimum requirement is to support only the IMAGE_NONE mode
-         */
+        // Note that the minimum requirement is to support only the IMAGE_NONE mode
 
         if (mode == IMAGE_NONE) {
             this.renderMode = mode;
@@ -300,19 +288,19 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     protected void processWindowEvent(WindowEvent we) {
         int id = we.getID();
         switch (id) {
-        case WindowEvent.WINDOW_ACTIVATED:
-            this.windowListener.windowActivated(we);
-            logger.log(Level.DEBUG, "processWindowEvent, activated");
-            break;
-        case WindowEvent.WINDOW_DEACTIVATED:
-            this.windowListener.windowDeactivated(we);
-            logger.log(Level.DEBUG, "processWindowEvent, deactivated");
-            break;
+            case WindowEvent.WINDOW_ACTIVATED:
+                this.windowListener.windowActivated(we);
+                logger.log(Level.DEBUG, "processWindowEvent, activated");
+                break;
+            case WindowEvent.WINDOW_DEACTIVATED:
+                this.windowListener.windowDeactivated(we);
+                logger.log(Level.DEBUG, "processWindowEvent, deactivated");
+                break;
         }
     }
 
 //    protected void processFocusEvent(FocusEvent event){
-//        logger.log(Level.DEBUG, this, "focus event");
+//logger.log(Level.DEBUG, this, "focus event");
 //        super.processFocusEvent(event);
 //    }
 
@@ -379,12 +367,11 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
     public void setActive(boolean focus) {
     }
 
-    public void setKeyEvents(HEventGroup keyCodes) {
-        this.eventGroup = keyCodes;
-    }
-
     public HEventGroup getKeyEvents() {
         return this.eventGroup;
     }
 
+    public void setKeyEvents(HEventGroup keyCodes) {
+        this.eventGroup = keyCodes;
+    }
 }

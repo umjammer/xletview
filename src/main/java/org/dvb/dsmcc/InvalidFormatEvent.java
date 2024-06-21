@@ -25,6 +25,4 @@ public class InvalidFormatEvent extends AsynchronousLoadingEvent {
     public java.lang.Object getSource() {
         return super.getSource();
     }
-
-
 }

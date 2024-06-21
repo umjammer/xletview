@@ -21,23 +21,17 @@ import static java.lang.System.getLogger;
  */
 public class FileSystem {
 
-    private static final Logger logger = getLogger(FileSystem.class.getName());
-
     static final char separatorChar = '/';
-
     static final char pathSeparatorChar = java.io.File.pathSeparatorChar;
-
-    private static EmulatorFile[] roots;
-
+    private static final Logger logger = getLogger(FileSystem.class.getName());
+    private static final Map<?, ?> files = new HashMap<>();
+    private static final EmulatorFile[] roots;
     private static EmulatorFile mpDsmcc;
-
     /*
      * The current MountPoint
      */
     private static EmulatorFile currentMountPoint;
     private static EmulatorFile previousMountPoint;
-
-    private static final Map<?, ?> files = new HashMap<>();
 
     static {
         roots = new EmulatorFile[1];
@@ -49,7 +43,6 @@ public class FileSystem {
 
     private FileSystem() {
     }
-
 
 //    /**
 //     * Mounts a MountPoint to the carousel mount point.
@@ -70,15 +63,6 @@ public class FileSystem {
         return currentMountPoint;
     }
 
-
-    char getSeparatorChar() {
-        return separatorChar;
-    }
-
-    char getPathSeparatorChar() {
-        return pathSeparatorChar;
-    }
-
     static String fixPath(String path) {
 
         String result = "";
@@ -88,21 +72,14 @@ public class FileSystem {
             path = path.substring(2);
         }
 
-        logger.log(Level.DEBUG, "fixPath incoming=" + path);
+logger.log(Level.DEBUG, "fixPath incoming=" + path);
 
         result = path.replaceAll("\\\\", "\\/");
         result = result.replaceAll("\\//", "\\/");
 
-        logger.log(Level.DEBUG, "fixPath outgoing=" + result);
+logger.log(Level.DEBUG, "fixPath outgoing=" + result);
 
         return result;
-    }
-
-
-    int prefixLength(String path) {
-        // TODO Auto-generated method stub
-        logger.log(Level.INFO, "unimplemented");
-        return 0;
     }
 
     /**
@@ -113,12 +90,11 @@ public class FileSystem {
      * @return
      */
     static String resolvePath(String parent, String child) {
-        logger.log(Level.DEBUG, "resolvePath(" + parent + ", " + child + ")");
+logger.log(Level.DEBUG, "resolvePath(" + parent + ", " + child + ")");
         String result = parent + separatorChar + child;
         result = fixPath(result);
         return result;
     }
-
 
     /**
      * Resolves the absolute path, returns null if it turns
@@ -127,7 +103,7 @@ public class FileSystem {
      * @return
      */
     static String resolveAbsolutePath(String parent, String child) {
-        logger.log(Level.DEBUG, "resolveAbsolutePath(" + parent + ", " + child + ")");
+logger.log(Level.DEBUG, "resolveAbsolutePath(" + parent + ", " + child + ")");
         String fullPath = "";
 
         if (parent == null) {
@@ -144,38 +120,12 @@ public class FileSystem {
             } else {
                 fullPath = currentMountPoint.getAbsolutePath() + separatorChar + parent + separatorChar + child;
             }
-
         }
 
         fullPath = fixPath(fullPath);
         String result = fullPath;
-        logger.log(Level.DEBUG, "absolute path resolved");
+logger.log(Level.DEBUG, "absolute path resolved");
         return result;
-    }
-
-//    static String resolveParent(String path){
-//        logger.log(Level.DEBUG, "resolveParent(" + path + ")");
-//        String result = "";
-//
-//        if(currentMountPoint != null){
-//            String mpPath = currentMountPoint.getAbsolutePath();
-//            String tmp = fixPath(mpPath + separatorChar + path);
-//
-//            int index = tmp.lastIndexOf(separatorChar);
-//
-//            if (index > 1) {
-//                result = tmp.substring(0, index);
-//            }
-//
-//        }
-//
-//        return result;
-//    }
-
-    String fromURIPath(String path) {
-        // TODO Auto-generated method stub
-        logger.log(Level.DEBUG, "fromURIPath");
-        return null;
     }
 
     static boolean isAbsolute(File f) {
@@ -199,6 +149,24 @@ public class FileSystem {
         }
         return f != null && f.isFile();
     }
+
+//    static String resolveParent(String path){
+//logger.log(Level.DEBUG, "resolveParent(" + path + ")");
+//        String result = "";
+//
+//        if(currentMountPoint != null){
+//            String mpPath = currentMountPoint.getAbsolutePath();
+//            String tmp = fixPath(mpPath + separatorChar + path);
+//
+//            int index = tmp.lastIndexOf(separatorChar);
+//
+//            if (index > 1) {
+//                result = tmp.substring(0, index);
+//            }
+//        }
+//
+//        return result;
+//    }
 
     static boolean isHidden(java.io.File file) {
         java.io.File f = null;
@@ -283,24 +251,6 @@ public class FileSystem {
         return f != null && f.canWrite();
     }
 
-    int getBooleanAttributes(File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "getBooleanAttributes");
-        return 0;
-    }
-
-    boolean checkAccess(File f, boolean write) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "checkAccess");
-        return false;
-    }
-
-    long getLastModifiedTime(File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "getLastModifiedTime");
-        return 0;
-    }
-
     static long getLength(java.io.File file) {
         long result = 0;
         java.io.File f = null;
@@ -312,24 +262,6 @@ public class FileSystem {
             result = f.length();
         }
         return result;
-    }
-
-    boolean createFileExclusively(String pathname) throws IOException {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "createFileExclusively");
-        return false;
-    }
-
-    boolean delete(File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "delete");
-        return false;
-    }
-
-    boolean deleteOnExit(File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.DEBUG, "deleteOnExit");
-        return false;
     }
 
     static String[] list(java.io.File f) {
@@ -354,48 +286,12 @@ public class FileSystem {
         return result;
     }
 
-    boolean createDirectory(File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "createDirectory");
-        return false;
-    }
-
-    boolean rename(File f1, File f2) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "rename");
-        return false;
-    }
-
-    boolean setLastModifiedTime(File f, long time) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "setLastModifiedTime");
-        return false;
-    }
-
-    boolean setReadOnly(File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.DEBUG, "setReadOnly");
-        return false;
-    }
-
     static java.io.File[] listRoots() {
         java.io.File[] result = new java.io.File[roots.length];
         for (int i = 0; i < result.length; i++) {
             result[i] = new File(roots[i].getAbsolutePath());
         }
         return result;
-    }
-
-    int compare(File f1, File f2) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "compare");
-        return 0;
-    }
-
-    int hashCode(java.io.File f) {
-        // TODO Auto-generated method stub
-        logger.log(Level.TRACE, "hashCode");
-        return 0;
     }
 
     static boolean exists(java.io.File file) {
@@ -413,11 +309,11 @@ public class FileSystem {
         EmulatorFile currentFile = roots[0];
 
         String absolutePath = file.getAbsolutePath();
-        logger.log(Level.DEBUG, "checking if the file " + absolutePath + " exists...");
+logger.log(Level.DEBUG, "checking if the file " + absolutePath + " exists...");
         String[] names = absolutePath.split("\\" + separatorChar);
 
         if (currentMountPoint != null) {
-            logger.log(Level.DEBUG, "currentMountPoint.getName()=" + currentMountPoint.getName());
+logger.log(Level.DEBUG, "currentMountPoint.getName()=" + currentMountPoint.getName());
         }
 
         // do the loop starting from index 1 because the first
@@ -425,23 +321,22 @@ public class FileSystem {
 
         for (int i = 0; i < names.length; i++) {
             if (i < 1) {
-                logger.log(Level.DEBUG, "skipping names[" + i + "] = _" + names[i] + "_");
+logger.log(Level.DEBUG, "skipping names[" + i + "] = _" + names[i] + "_");
                 continue;
             }
-            logger.log(Level.DEBUG, "names[" + i + "] = _" + names[i] + "_");
+logger.log(Level.DEBUG, "names[" + i + "] = _" + names[i] + "_");
             currentFile = currentFile.getChild(names[i]);
 
             if (currentFile != null) {
-                logger.log(Level.DEBUG, names[i] + " did exist");
+logger.log(Level.DEBUG, names[i] + " did exist");
             } else {
-                logger.log(Level.DEBUG, names[i] + " did NOT exist");
+logger.log(Level.DEBUG, names[i] + " did NOT exist");
                 break;
             }
         }
 
         return currentFile;
     }
-
 
     public static java.io.File getFile(String path) throws FileNotFoundException {
         return getFile(new XFile(path));
@@ -452,7 +347,7 @@ public class FileSystem {
 
         EmulatorFile fp = getEmulatorFile(file);
 
-        logger.log(Level.DEBUG, "fp=" + fp);
+logger.log(Level.DEBUG, "fp=" + fp);
 
         if (fp != null) {
             result = fp.getRealFile();
@@ -463,7 +358,6 @@ public class FileSystem {
         }
 
         return result;
-
     }
 
     public static java.io.File getFile(FileDescriptor fd) {
@@ -473,5 +367,83 @@ public class FileSystem {
 
     public static void main(String[] args) {
         new FileSystem();
+    }
+
+    char getSeparatorChar() {
+        return separatorChar;
+    }
+
+    char getPathSeparatorChar() {
+        return pathSeparatorChar;
+    }
+
+    int prefixLength(String path) {
+logger.log(Level.INFO, "unimplemented");
+        return 0;
+    }
+
+    String fromURIPath(String path) {
+logger.log(Level.DEBUG, "fromURIPath");
+        return null;
+    }
+
+    int getBooleanAttributes(File f) {
+logger.log(Level.TRACE, "getBooleanAttributes");
+        return 0;
+    }
+
+    boolean checkAccess(File f, boolean write) {
+logger.log(Level.TRACE, "checkAccess");
+        return false;
+    }
+
+    long getLastModifiedTime(File f) {
+logger.log(Level.TRACE, "getLastModifiedTime");
+        return 0;
+    }
+
+    boolean createFileExclusively(String pathname) throws IOException {
+logger.log(Level.TRACE, "createFileExclusively");
+        return false;
+    }
+
+    boolean delete(File f) {
+logger.log(Level.TRACE, "delete");
+        return false;
+    }
+
+    boolean deleteOnExit(File f) {
+logger.log(Level.DEBUG, "deleteOnExit");
+        return false;
+    }
+
+    boolean createDirectory(File f) {
+logger.log(Level.TRACE, "createDirectory");
+        return false;
+    }
+
+    boolean rename(File f1, File f2) {
+logger.log(Level.TRACE, "rename");
+        return false;
+    }
+
+    boolean setLastModifiedTime(File f, long time) {
+logger.log(Level.TRACE, "setLastModifiedTime");
+        return false;
+    }
+
+    boolean setReadOnly(File f) {
+logger.log(Level.DEBUG, "setReadOnly");
+        return false;
+    }
+
+    int compare(File f1, File f2) {
+logger.log(Level.TRACE, "compare");
+        return 0;
+    }
+
+    int hashCode(java.io.File f) {
+logger.log(Level.TRACE, "hashCode");
+        return 0;
     }
 }

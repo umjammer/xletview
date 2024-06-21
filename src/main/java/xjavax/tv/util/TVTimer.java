@@ -88,7 +88,7 @@ public abstract class TVTimer {
      * are unspecified.
      * </p>
      *
-     * @param t *          The timer specification to begin monitoring.
+     * @param t The timer specification to begin monitoring.
      * @return The real TVTimerSpec that was scheduled.
      * @throws TVTimerScheduleFailedException -
      *                                        is thrown when the scheduled specification cannot be
@@ -102,7 +102,7 @@ public abstract class TVTimer {
      * immediately. If the timer specification has been scheduled multiple
      * times with this timer, all the schedulings are canceled.
      *
-     * @param t *          The timer specification to end monitoring.
+     * @param t The timer specification to end monitoring.
      */
     public abstract void deschedule(TVTimerSpec t);
 

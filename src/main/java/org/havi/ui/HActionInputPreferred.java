@@ -16,7 +16,6 @@ public interface HActionInputPreferred {
     void processHActionEvent(org.havi.ui.event.HActionEvent evt);
 
     java.lang.String getActionCommand();
-
 }
 
 

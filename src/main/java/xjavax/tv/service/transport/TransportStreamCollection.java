@@ -32,11 +32,11 @@ public interface TransportStreamCollection extends Transport {
      * Retrieves the specified <code>TransportStream</code> from the
      * collection.
      *
-     * @param locator Locator referencing the TransportStream of interest.
+     * @param locator   Locator referencing the TransportStream of interest.
      * @param requestor The SIRequestor to be notified when this retrieval operation completes.
      * @return An SIRequest object identifying this asynchronous retrieval request.
-     * @throws InvalidLocatorException     - If locator does not reference a valid transport stream.
-     * @throws java.lang.SecurityException - If the caller does not have javax.tv.service.ReadPermission(locator).
+     * @throws InvalidLocatorException     If locator does not reference a valid transport stream.
+     * @throws java.lang.SecurityException If the caller does not have javax.tv.service.ReadPermission(locator).
      * @see TransportStream, ReadPermission
      */
     SIRequest retrieveTransportStream(Locator locator, SIRequestor requestor) throws InvalidLocatorException, java.lang.SecurityException;
@@ -94,5 +94,4 @@ public interface TransportStreamCollection extends Transport {
      * @param listener A previously registered listener.
      */
     void removeTransportStreamChangeListener(TransportStreamChangeListener listener);
-
 }

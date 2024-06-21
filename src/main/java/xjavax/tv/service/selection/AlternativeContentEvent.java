@@ -63,5 +63,4 @@ public class AlternativeContentEvent extends PresentationChangedEvent {
     public AlternativeContentEvent(ServiceContext source) {
         super(source);
     }
-
 }

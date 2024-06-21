@@ -14,13 +14,11 @@ package org.havi.ui;
 
 public class HGraphicsConfigTemplate extends HScreenConfigTemplate {
 
-
     public static final int VIDEO_MIXING = 0x0C;
 
     public static final int MATTE_SUPPORT = 0x0D;
 
     public static final int IMAGE_SCALING_SUPPORT = 0x0E;
-
 
     public HGraphicsConfigTemplate() {
     }

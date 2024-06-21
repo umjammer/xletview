@@ -20,5 +20,4 @@ public class ConnectionFailedEvent extends ConnectionRCEvent {
     public ConnectionFailedEvent(Object source) {
         super(source);
     }
-
 }

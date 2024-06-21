@@ -18,8 +18,8 @@ import java.awt.Graphics;
 
 public class SafeArea extends Component {
 
-    private int x, y, width, height, border;
-    private Color color;
+    private final int x, y, width, height, border;
+    private final Color color;
 
     public SafeArea(int x, int y, int width, int height, int border, Color color) {
         this.x = x;
@@ -40,7 +40,7 @@ public class SafeArea extends Component {
         g.fillRect(border, 0, width + border, border);
 
         // right
-        //g.fillRect(width+border, 0, border, height*2);
+//        g.fillRect(width+border, 0, border, height*2);
         g.fillRect(width + border, 0, border, height + border * 2);
 
         // bottom
@@ -61,7 +61,5 @@ public class SafeArea extends Component {
 //
 //        // left
 //        g.fillRect(x - border, y - border, border, height+border*2);
-
     }
-
 }

@@ -20,5 +20,4 @@ public class SIObjectNotInTableEvent extends SIRetrievalEvent {
     public SIObjectNotInTableEvent(Object appData, SIRequest request) {
         super(appData, request);
     }
-
 }

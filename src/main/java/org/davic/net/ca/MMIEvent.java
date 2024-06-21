@@ -17,7 +17,7 @@ package org.davic.net.ca;
  */
 public abstract class MMIEvent extends java.util.EventObject {
 
-    private int dialogueId;
+    private final int dialogueId;
 
     MMIEvent(Object source, int dialogueId) {
         super(source);
@@ -32,5 +32,4 @@ public abstract class MMIEvent extends java.util.EventObject {
     public Object getSource() {
         return super.getSource();
     }
-
 }

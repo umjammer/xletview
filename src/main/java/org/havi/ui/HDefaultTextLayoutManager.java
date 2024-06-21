@@ -43,12 +43,12 @@ public class HDefaultTextLayoutManager implements HTextLayoutManager {
         return hVisible.getPreferredSize();
     }
 
-    /*
-        " The string passed to the render method may be multi-line, where each line
-        is separated by a "\n" (0x0A). If the string does not fit in the space
-        available, the string shall be truncated and an ellipsis ("...") appended to
-        indicate the truncation "
-    */
+    /**
+     * " The string passed to the render method may be multi-line, where each line
+     * is separated by a "\n" (0x0A). If the string does not fit in the space
+     * available, the string shall be truncated and an ellipsis ("...") appended to
+     * indicate the truncation "
+     */
     @Override
     public void render(String string, Graphics g, HVisible hVisible, Insets insets) {
         String lb = System.getProperty("line.separator");
@@ -117,14 +117,10 @@ public class HDefaultTextLayoutManager implements HTextLayoutManager {
             // draw the String
             g.drawString(strings[i], x, y);
 
-            /*//////////////////////////////////////
-             *
-             * added stuff for HSinglelineInput
-             *
-             *//////////////////////////////////////
+             // added stuff for HSinglelineInput
 
-            //showCaret = true;
-            //caretPosition = 3;
+//            showCaret = true;
+//            caretPosition = 3;
             if (showCaret) {
                 if (caretPosition > -1 && caretPosition < strings[i].length() + 1) {
 
@@ -148,9 +144,7 @@ public class HDefaultTextLayoutManager implements HTextLayoutManager {
         }
     }
 
-    /*
-     * Added stuff for HSinglelineInput
-     */
+    // Added stuff for HSinglelineInput
 
     void setCaretVisible(boolean b) {
         showCaret = b;
@@ -159,6 +153,4 @@ public class HDefaultTextLayoutManager implements HTextLayoutManager {
     void setCaretPosition(int i) {
         caretPosition = i;
     }
-
-
 }

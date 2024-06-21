@@ -42,6 +42,14 @@ public class DSMCCObject extends xjava.io.XFile {
         super(dir, name);
     }
 
+    public static boolean prefetch(String path, byte priority) {
+        return true;
+    }
+
+    public static boolean prefetch(DSMCCObject dir, String path, byte priority) {
+        return true;
+    }
+
     public boolean isLoaded() {
         return true;
     }
@@ -58,23 +66,14 @@ public class DSMCCObject extends xjava.io.XFile {
         return true;
     }
 
-    public void synchronousLoad()
-            throws InvalidFormatException, InterruptedIOException, MPEGDeliveryException, ServerDeliveryException,
-            InvalidPathNameException, NotEntitledException, ServiceXFRException {
+    public void synchronousLoad() throws InvalidFormatException, InterruptedIOException, MPEGDeliveryException,
+            ServerDeliveryException, InvalidPathNameException, NotEntitledException, ServiceXFRException {
     }
 
     public void asynchronousLoad(AsynchronousLoadingEventListener l) throws InvalidPathNameException {
     }
 
     public void abort() throws NothingToAbortException {
-    }
-
-    public static boolean prefetch(String path, byte priority) {
-        return true;
-    }
-
-    public static boolean prefetch(DSMCCObject dir, String path, byte priority) {
-        return true;
     }
 
     public void unload() throws NotLoadedException {
@@ -96,12 +95,9 @@ public class DSMCCObject extends xjava.io.XFile {
     public void setRetrievalMode(int retrieval_mode) {
     }
 
-
     public X509Certificate[][] getSigners() {
         return null;
     }
-
-
 }
 
 

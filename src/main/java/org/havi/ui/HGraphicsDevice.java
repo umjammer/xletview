@@ -13,8 +13,8 @@ package org.havi.ui;
 
 public class HGraphicsDevice extends HScreenDevice {
 
-    private HGraphicsConfiguration hGraphicsConfiguration;
-    private HGraphicsConfiguration[] hGraphicsConfigurations;
+    private final HGraphicsConfiguration hGraphicsConfiguration;
+    private final HGraphicsConfiguration[] hGraphicsConfigurations;
 
     protected HGraphicsDevice() {
         hGraphicsConfiguration = new HGraphicsConfiguration();

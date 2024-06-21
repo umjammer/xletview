@@ -23,11 +23,11 @@ public class HRange extends HStaticRange implements HNavigable {
     public HRange(int orientation, int minimum, int maximum, int value) {
     }
 
-    public static void setDefaultLook(HRangeLook look) {
-    }
-
     public static HRangeLook getDefaultLook() {
         return (null);
+    }
+
+    public static void setDefaultLook(HRangeLook look) {
     }
 
     @Override
@@ -49,21 +49,21 @@ public class HRange extends HStaticRange implements HNavigable {
     }
 
     @Override
-    public void setGainFocusSound(HSound sound) {
-    }
-
-    @Override
-    public void setLoseFocusSound(HSound sound) {
-    }
-
-    @Override
     public HSound getGainFocusSound() {
         return (null);
     }
 
     @Override
+    public void setGainFocusSound(HSound sound) {
+    }
+
+    @Override
     public HSound getLoseFocusSound() {
         return (null);
+    }
+
+    @Override
+    public void setLoseFocusSound(HSound sound) {
     }
 
     @Override

@@ -9,7 +9,7 @@
  * See LICENSE document for details.
  */
 
-package  org.dvb.event;
+package org.dvb.event;
 
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
@@ -21,8 +21,8 @@ import org.davic.resources.ResourceProxy;
  */
 public class RepositoryDescriptor implements ResourceProxy {
 
-    private String repositoryName;
-    private ResourceClient client;
+    private final String repositoryName;
+    private final ResourceClient client;
 
     /*
      * There are no public constructors in the API
@@ -40,8 +40,4 @@ public class RepositoryDescriptor implements ResourceProxy {
     public ResourceClient getClient() {
         return client;
     }
-
 }
-
-
-

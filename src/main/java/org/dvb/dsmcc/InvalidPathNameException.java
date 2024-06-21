@@ -24,5 +24,4 @@ public class InvalidPathNameException extends DSMCCException {
     public InvalidPathNameException(String s) {
         super(s);
     }
-
 }
