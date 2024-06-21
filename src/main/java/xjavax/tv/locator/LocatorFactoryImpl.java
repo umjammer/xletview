@@ -17,17 +17,11 @@ package xjavax.tv.locator;
  */
 public class LocatorFactoryImpl extends LocatorFactory {
 
-    /* (non-Javadoc)
-     * @see javax.tv.locator.LocatorFactory#createLocator(java.lang.String)
-     */
     @Override
     public Locator createLocator(String locatorString) throws MalformedLocatorException {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.tv.locator.LocatorFactory#transformLocator(javax.tv.locator.Locator)
-     */
     @Override
     public Locator[] transformLocator(Locator source) throws InvalidLocatorException {
         return null;

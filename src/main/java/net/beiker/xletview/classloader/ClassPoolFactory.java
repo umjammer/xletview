@@ -1,10 +1,13 @@
 package net.beiker.xletview.classloader;
 
 import java.io.File;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import javassist.ClassPool;
 import javassist.NotFoundException;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -15,7 +18,7 @@ import javassist.NotFoundException;
 class ClassPoolFactory {
 
     /** Debugging facility. */
-    private final static Logger logger = Logger.getLogger(ClassPoolFactory.class.getName());
+    private final static Logger logger = getLogger(ClassPoolFactory.class.getName());
 
     /**
      * Creates and returns a javassist.ClassPool
@@ -41,7 +44,7 @@ class ClassPoolFactory {
             try {
                 pool.insertClassPath(path);
             } catch (NotFoundException e) {
-                logger.warning("The extra classpath " + path + " was not found");
+                logger.log(Level.WARNING, "The extra classpath " + path + " was not found");
 
             }
         }

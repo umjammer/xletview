@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -36,13 +38,15 @@ import net.beiker.xletview.ui.Img;
 import net.beiker.xletview.util.Constants;
 import net.sourceforge.mlf.metouia.MetouiaLookAndFeel;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class AppWizardWindow extends JFrame implements ActionListener {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AppWizardWindow.class.getName());
+    private static final Logger logger = getLogger(AppWizardWindow.class.getName());
 
     private static final int STATE_INIT = 0;
     private static final int STATE_CHOOSE_PATH = 1;
@@ -103,7 +107,6 @@ public class AppWizardWindow extends JFrame implements ActionListener {
 
         content.add(navPanel, BorderLayout.SOUTH);
 
-
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
@@ -138,8 +141,6 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             cont.add(top, BorderLayout.CENTER);
 
             mainPanels[STATE_INIT].add(cont);
-
-
         }
         mainPanel.add(mainPanels[STATE_INIT]);
         mainPanel.validate();
@@ -179,7 +180,7 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             cont.add(row, BorderLayout.CENTER);
             mainPanels[STATE_CHOOSE_PATH].add(cont);
 
-            //mainPanels[STATE_CHOOSE_PATH].add(box);
+//            mainPanels[STATE_CHOOSE_PATH].add(box);
 //            mainPanels[STATE_CHOOSE_PATH] = new JPanel();
 //            Box box = new Box(BoxLayout.Y_AXIS);
 //            JLabel label = new JLabel("choose path", JLabel.RIGHT);
@@ -204,7 +205,6 @@ public class AppWizardWindow extends JFrame implements ActionListener {
 //            box.add(rows[0]);
 //            box.add(rows[1]);
 //            mainPanels[STATE_CHOOSE_PATH].add(box);
-
         }
         mainPanel.add(mainPanels[STATE_CHOOSE_PATH]);
         mainPanel.validate();
@@ -230,10 +230,9 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             top.add(header, BorderLayout.NORTH);
             top.add(text, BorderLayout.CENTER);
 
-
             JPanel row = new JPanel();
             JLabel xletLabel = new JLabel("Xlet: ", JLabel.RIGHT);
-            //pathLabel.setPreferredSize(new Dimension(60, 20));
+//            pathLabel.setPreferredSize(new Dimension(60, 20));
             xletField = new JTextField(20);
             JButton xletButton = new JButton("..");
             xletButton.setActionCommand("xlet");
@@ -266,7 +265,9 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             text.setBackground(null);
             text.setPreferredSize(new Dimension(300, 100));
             text.setEditable(false);
-            text.setText("Check that the info about your Xlet is correct, if not you can step back and correct.\nWhen you click on 'FINISH' this window will close and the data will be written to a file. If everything went well you should be able to run the Xlet from the menu.");
+            text.setText("Check that the info about your Xlet is correct, if not you can step back and correct.\n" +
+                    "When you click on 'FINISH' this window will close and the data will be written to a file." +
+                    " If everything went well you should be able to run the Xlet from the menu.");
             top.add(header, BorderLayout.NORTH);
             top.add(text, BorderLayout.CENTER);
 
@@ -282,18 +283,18 @@ public class AppWizardWindow extends JFrame implements ActionListener {
     private void next() {
         switch (state) {
         case STATE_INIT:
-            log.fine("time to choose path");
+            logger.log(Level.DEBUG, "time to choose path");
             backLabel.setEnabled(true);
             setChoosePath();
             state = STATE_CHOOSE_PATH;
             break;
         case STATE_CHOOSE_PATH:
-            log.fine("time to choose xlet");
+            logger.log(Level.DEBUG, "time to choose xlet");
             setChooseXlet();
             state = STATE_CHOOSE_XLET;
             break;
         case STATE_CHOOSE_XLET:
-            log.fine("finnished");
+            logger.log(Level.DEBUG, "finnished");
             setFinnished();
             continueLabel.setText("CLOSE");
             cancelLabel.setEnabled(false);
@@ -305,18 +306,18 @@ public class AppWizardWindow extends JFrame implements ActionListener {
     private void back() {
         switch (state) {
         case STATE_CHOOSE_PATH:
-            log.fine("init");
+            logger.log(Level.DEBUG, "init");
             backLabel.setEnabled(false);
             setInit();
             state = STATE_INIT;
             break;
         case STATE_CHOOSE_XLET:
-            log.fine("choose path");
+            logger.log(Level.DEBUG, "choose path");
             setChoosePath();
             state = STATE_CHOOSE_PATH;
             break;
         case STATE_FINNISHED:
-            log.fine("choose xlet");
+            logger.log(Level.DEBUG, "choose xlet");
             setChooseXlet();
             cancelLabel.setEnabled(true);
             continueLabel.setText("NEXT >>");
@@ -324,7 +325,6 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             break;
         }
     }
-
 
     @Override
     public void actionPerformed(ActionEvent event) {
@@ -343,9 +343,9 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             File[] roots = File.listRoots();
         }
 //            DirectoryWindow dirWin = new DirectoryWindow(this, roots, false);
-//            if(dirWin.getPath().length() > 0){
+//            if (dirWin.getPath().length() > 0) {
 //                pathField.setText(dirWin.getPath());
-//                Debug.write(this, pathField.getText());
+//                logger.log(Level.DEBUG, this, pathField.getText());
 //            }
         case "xlet" -> {
             JFileChooser fc = new JFileChooser(pathField.getText());
@@ -355,7 +355,7 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             fc.setDialogType(JFileChooser.OPEN_DIALOG);
             fc.showOpenDialog(this);
             String selectedPath = fc.getSelectedFile().getAbsolutePath();
-            log.fine("chosen file " + fc.getSelectedFile());
+            logger.log(Level.DEBUG, "chosen file " + fc.getSelectedFile());
             String className = "";
             className = selectedPath.substring(pathField.getText().length());
             className = className.replace(File.separatorChar, '.');
@@ -366,18 +366,16 @@ public class AppWizardWindow extends JFrame implements ActionListener {
             }
         }
 
-            /*
-            File[] files = new File[1];
-            files[0] = new File(pathField.getText());
-            Debug.write(this, pathField.getText() + ", exist? " + files[0].exists());
-            DirectoryWindow dirWin = new DirectoryWindow(this, files, true);
-            String className = dirWin.getPath();
-            className = className.replaceAll(".class", "");
-            className = className.replaceAll(".CLASS", "");
-            if(className.length() > 0){
-                xletField.setText(className);
-
-            } */
+//            File[] files = new File[1];
+//            files[0] = new File(pathField.getText());
+//            logger.log(Level.DEBUG, this, pathField.getText() + ", exist? " + files[0].exists());
+//            DirectoryWindow dirWin = new DirectoryWindow(this, files, true);
+//            String className = dirWin.getPath();
+//            className = className.replaceAll(".class", "");
+//            className = className.replaceAll(".CLASS", "");
+//            if (className.length() > 0) {
+//                xletField.setText(className);
+//            }
         }
     }
 
@@ -394,12 +392,11 @@ public class AppWizardWindow extends JFrame implements ActionListener {
         System.exit(0);
     }
 
-
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new MetouiaLookAndFeel());
-        } catch (UnsupportedLookAndFeelException exception) {
-            exception.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
         new AppWizardWindow();
     }

@@ -9,8 +9,7 @@
  * See LICENSE document for details.
  */
 
-
-package net.beiker.xletview.ui;
+package  net.beiker.xletview.ui;
 
 import java.awt.AWTEventMulticaster;
 import java.awt.Component;

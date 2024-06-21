@@ -12,6 +12,7 @@
 package net.beiker.xletview.classloader;
 
 import java.io.File;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -31,7 +34,7 @@ import java.util.logging.Logger;
 public class MainClassLoader extends URLClassLoader {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(MainClassLoader.class.getName());
+    private static final Logger logger = getLogger(MainClassLoader.class.getName());
 
     private Map<String, Class<?>> loadedClasses;
 
@@ -49,9 +52,9 @@ public class MainClassLoader extends URLClassLoader {
             try {
                 URL url = new File(string).toURI().toURL();
                 super.addURL(url);
-                logger.fine("added " + url);
+                logger.log(Level.DEBUG, "added " + url);
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
     }
@@ -78,7 +81,7 @@ public class MainClassLoader extends URLClassLoader {
                 urls[i] = f.toURI().toURL();
                 super.addURL(urls[i]);
             } catch (MalformedURLException e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
         return urls;

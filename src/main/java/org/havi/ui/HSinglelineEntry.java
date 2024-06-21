@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
 
@@ -18,7 +15,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HFocusEvent;
@@ -28,6 +25,8 @@ import org.havi.ui.event.HKeyListener;
 import org.havi.ui.event.HTextEvent;
 import org.havi.ui.event.HTextListener;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
@@ -36,7 +35,7 @@ import org.havi.ui.event.HTextListener;
  */
 public class HSinglelineEntry extends HVisible implements HTextValue {
 
-    private static final Logger log = Logger.getLogger(HSinglelineEntry.class.getName());
+    private static final Logger logger = getLogger(HSinglelineEntry.class.getName());
 
     private int caretPosition;
     private int maxChars = 16;
@@ -170,8 +169,8 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
 
             repaint();
 
-//            |x|x|x|x|
-//            |x|o|x|x|x|
+            // |x|x|x|x|
+            // |x|o|x|x|x|
 
             HTextEvent eChanged = new HTextEvent(this, HTextEvent.TEXT_CHANGE);
             if (hTextListener != null) {
@@ -312,7 +311,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         navHelper.addHFocusListener(listener);
     }
 
-
     @Override
     public void removeHFocusListener(HFocusListener listener) {
         navHelper.removeHFocusListener(listener);
@@ -323,8 +321,8 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return navHelper.getNavigationKeys();
     }
 
-    /*
-     Overloaded from HVisible, is true for HNavigable
+    /**
+     * Overloaded from HVisible, is true for HNavigable
      */
     @Override
     public boolean isFocusTraversable() {
@@ -345,7 +343,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return navHelper.getFocusListeners();
     }
 
-
     @Override
     public void processFocusEvent(FocusEvent e) {
         super.processFocusEvent(e);
@@ -364,7 +361,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         }
     }
 
-
     @Override
     public void addHKeyListener(HKeyListener listener) {
         if (listener == null) {
@@ -372,7 +368,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         }
         hKeyListener = HEventMulticaster.add(hKeyListener, listener);
     }
-
 
     @Override
     public void removeHKeyListener(HKeyListener listener) {
@@ -414,7 +409,6 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
         return this.inputType;
     }
 
-
     /**
      * Defines the set of the characters which are valid for customized keyboard input,
      * i.e. when the input type is set to HKeyboardInputPreferred.INPUT_CUSTOMIZED.
@@ -445,52 +439,52 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
     public void processHTextEvent(HTextEvent evt) {
         Object source = evt.getSource();
         switch (evt.getID()) {
-        case HTextEvent.TEXT_START_CHANGE:
-            /*
-             * switch into edit mode and accept key presses
-             *
-             * On entering its editable mode the component will send an HTextEvent
-             * event with an id of TEXT_START_CHANGE to all registered HTextListener listeners.
-             * The HSinglelineEntry will then respond to key events by inserting characters
-             * into the text string or positioning the insertion point (caret) via further
-             * HTextEvent events.
-             */
+            case HTextEvent.TEXT_START_CHANGE:
+                /*
+                 * switch into edit mode and accept key presses
+                 *
+                 * On entering its editable mode the component will send an HTextEvent
+                 * event with an id of TEXT_START_CHANGE to all registered HTextListener listeners.
+                 * The HSinglelineEntry will then respond to key events by inserting characters
+                 * into the text string or positioning the insertion point (caret) via further
+                 * HTextEvent events.
+                 */
 
-            this.setEditMode(true);
+                this.setEditMode(true);
 
-            HTextEvent eStart = new HTextEvent(this, HTextEvent.TEXT_START_CHANGE);
-            if (hTextListener != null) {
-                hTextListener.textChanged(eStart);
-            }
+                HTextEvent eStart = new HTextEvent(this, HTextEvent.TEXT_START_CHANGE);
+                if (hTextListener != null) {
+                    hTextListener.textChanged(eStart);
+                }
 
-            break;
-        case HTextEvent.TEXT_END_CHANGE:
-            /*
-             * On receiving an HTextEvent event with an id of TEXT_END_CHANGE the component
-             * shall leave its editable mode and send an HTextEvent event with an id of
-             * TEXT_END_CHANGE to all registered HTextListener listeners. The user can then
-             * navigate out of the HSinglelineEntry.
-             */
+                break;
+            case HTextEvent.TEXT_END_CHANGE:
+                /*
+                 * On receiving an HTextEvent event with an id of TEXT_END_CHANGE the component
+                 * shall leave its editable mode and send an HTextEvent event with an id of
+                 * TEXT_END_CHANGE to all registered HTextListener listeners. The user can then
+                 * navigate out of the HSinglelineEntry.
+                 */
 
-            this.setEditMode(false);
+                this.setEditMode(false);
 
-            HTextEvent eEnd = new HTextEvent(this, HTextEvent.TEXT_END_CHANGE);
+                HTextEvent eEnd = new HTextEvent(this, HTextEvent.TEXT_END_CHANGE);
 
-            if (hTextListener != null) {
-                hTextListener.textChanged(eEnd);
-            }
+                if (hTextListener != null) {
+                    hTextListener.textChanged(eEnd);
+                }
 
-            break;
+                break;
 
-        case HTextEvent.TEXT_CHANGE:
-            break;
+            case HTextEvent.TEXT_CHANGE:
+                break;
 
 //            case HTextEvent.TEXT_CARET_CHANGE :
 //                break;
 //
-        case HTextEvent.CARET_NEXT_CHAR:
-            this.caretNextCharacter();
-            break;
+            case HTextEvent.CARET_NEXT_CHAR:
+                this.caretNextCharacter();
+                break;
 //
 //            case HTextEvent.CARET_NEXT_LINE :
 //                break;
@@ -498,9 +492,9 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
 //            case HTextEvent.CARET_NEXT_PAGE :
 //                break;
 //
-        case HTextEvent.CARET_PREV_CHAR:
-            this.caretPreviousCharacter();
-            break;
+            case HTextEvent.CARET_PREV_CHAR:
+                this.caretPreviousCharacter();
+                break;
 //
 //            case HTextEvent.CARET_PREV_LINE :
 //                break;
@@ -508,12 +502,10 @@ public class HSinglelineEntry extends HVisible implements HTextValue {
 //            case HTextEvent.CARET_PREV_PAGE :
 //                break;
         }
-
     }
 
     @Override
     public void processHKeyEvent(HKeyEvent evt) {
     }
-
 }
 

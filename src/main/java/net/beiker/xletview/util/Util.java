@@ -23,16 +23,19 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+
+import static java.lang.System.getLogger;
 
 
 public class Util {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(Util.class.getName());
+    private static final Logger logger = getLogger(Util.class.getName());
 
     public static String normalizePath(String path) {
         String s;
@@ -64,11 +67,10 @@ public class Util {
         try {
             i = Integer.parseInt(s.trim());
         } catch (NumberFormatException e) {
-            logger.severe(e.toString());
+            logger.log(Level.ERROR, e.toString());
         }
         return i;
     }
-
 
     /**
      * Centers the component
@@ -97,10 +99,9 @@ public class Util {
             result = getURL(theClass, path).openConnection();
             return result;
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
             throw new RuntimeException("Could not open URL connection of '" + getURL(theClass, path) + "'.");
         }
-
     }
 
     public static boolean isChildOf(Container possibleParent, Component comp) {
@@ -142,28 +143,27 @@ public class Util {
 
             // it's not very interesting to print this exception
 
-            //e1.printStackTrace();
-            //System.err.println(name + " was not a java.net.URL");
+//            e1.printStackTrace();
+//            System.err.println(name + " was not a java.net.URL");
         }
 
         MediaTracker mediatracker = new MediaTracker(component);
         Toolkit toolkit = Toolkit.getDefaultToolkit();
 
 
-        //log.print(url.toString());
+//        log.print(url.toString());
         if (url == null) {
             image = toolkit.getImage(name);
-            logger.fine("loading image by string - " + name);
+            logger.log(Level.DEBUG, "loading image by string - " + name);
 
             java.io.File f = new java.io.File(name);
             if (!f.exists()) {
-                logger.warning(name + " was not found + " + f.getAbsolutePath());
+                logger.log(Level.WARNING, name + " was not found + " + f.getAbsolutePath());
             }
         } else {
             image = toolkit.getImage(url);
-            logger.fine("loading image by URL - " + url);
+            logger.log(Level.DEBUG, "loading image by URL - " + url);
         }
-
 
         mediatracker.addImage(image, 0);
         try {
@@ -172,10 +172,8 @@ public class Util {
             ex.printStackTrace();
         }
 
-
         return image;
     }
-
 
     /**
      * @param theClass
@@ -187,7 +185,7 @@ public class Util {
 
         URL url = theClass.getClassLoader().getResource(path);
 
-        logger.fine(url != null ? "URL found for '" + path + "': it's '" + url + "'." : "Could not find URL for '" + path + "'.");
+        logger.log(Level.DEBUG, url != null ? "URL found for '" + path + "': it's '" + url + "'." : "Could not find URL for '" + path + "'.");
 
         if (url == null) {
 
@@ -195,7 +193,6 @@ public class Util {
         } else {
             return url;
         }
-
     }
 
     /**

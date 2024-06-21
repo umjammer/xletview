@@ -1,24 +1,23 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
-
 
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -28,7 +27,7 @@ import java.util.logging.Logger;
 public class HVisible extends HComponent implements HState {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(HVisible.class.getName());
+    private static final Logger logger = getLogger(HVisible.class.getName());
 
     public static final int HALIGN_LEFT = 0;
     public static final int HALIGN_CENTER = 1;
@@ -95,9 +94,7 @@ public class HVisible extends HComponent implements HState {
     private Image[] graphicContents;
     private Image[][] animateContents;
 
-
-    public static final java.awt.Dimension NO_DEFAULT_SIZE =
-            new java.awt.Dimension(NO_DEFAULT_WIDTH, NO_DEFAULT_HEIGHT);
+    public static final Dimension NO_DEFAULT_SIZE = new Dimension(NO_DEFAULT_WIDTH, NO_DEFAULT_HEIGHT);
 
     public HVisible() {
         this(null, 0, 0, 0, 0);
@@ -127,9 +124,9 @@ public class HVisible extends HComponent implements HState {
         setInteractionState(HVisible.NORMAL_STATE);
         setBounds(x, y, width, height);
 
-        //Debug.write(this, "default fontsize = " + getFont().getSize());
+//        logger.log(Level.DEBUG, this, "default fontsize = " + getFont().getSize());
 
-        //hMatte = null; // set in HComponent
+//        hMatte = null; // set in HComponent
         callWidgetChanged();
     }
 
@@ -138,18 +135,16 @@ public class HVisible extends HComponent implements HState {
      */
     private void callWidgetChanged() {
         if (this.hLook != null) {
-            /*
-             * Since we pass null as the second argument
-             * instead of a HChangeData[] a full repaint
-             * will be made
-             */
+            // Since we pass null as the second argument
+            // instead of a HChangeData[] a full repaint
+            // will be made
             this.hLook.widgetChanged(this, null);
         }
     }
 
-    /*
-        By default an HVisible component is not focus-traversable.
-    */
+    /**
+     * By default an HVisible component is not focus-traversable.
+     */
     @Override
     public boolean isFocusTraversable() {
         return false;
@@ -328,18 +323,18 @@ public class HVisible extends HComponent implements HState {
         this.backgroundMode = mode;
     }
 
+    /**
+     * Normally the associated HLook does not paint the background of the HVisible,
+     * allowing for non-rectangular components and text overlaying bitmaps.
+     * However, HVisible provides for components which require their background
+     * to be painted through the setBackgroundMode method. Note that if the mode
+     * is set to BACKGROUND_FILL the return value of the isOpaque method may
+     * be true, depending on whether the current background color of the HVisible
+     * is opaque. If the background mode is set to NO_BACKGROUND_FILL the isOpaque
+     * method must return false.
+     */
     @Override
     public boolean isOpaque() {
-        /*
-            Normally the associated HLook does not paint the background of the HVisible,
-            allowing for non-rectangular components and text overlaying bitmaps.
-            However, HVisible provides for components which require their background
-            to be painted through the setBackgroundMode method. Note that if the mode
-            is set to BACKGROUND_FILL the return value of the isOpaque method may
-            be true, depending on whether the current background color of the HVisible
-            is opaque. If the background mode is set to NO_BACKGROUND_FILL the isOpaque
-            method must return false.
-        */
         return this.backgroundMode != HVisible.NO_BACKGROUND_FILL;
     }
 
@@ -351,68 +346,70 @@ public class HVisible extends HComponent implements HState {
         return this.defaultSize;
     }
 
-
+    /**
+     * Use of this mechanism is an implementation option. If this mechanism is not used
+     * by an implementation, getLookData shall always return null and setLookData shall
+     * do nothing. Interoperable systems shall not assume that this mechanism is implemented.
+     */
     public java.lang.Object getLookData(java.lang.Object key) {
-        /*
-            " Use of this mechanism is an implementation option. If this mechanism is not used
-            by an implementation, getLookData shall always return null and setLookData shall
-            do nothing. Interoperable systems shall not assume that this mechanism is implemented. "
-        */
         return null;
     }
 
+    /**
+     * Use of this mechanism is an implementation option. If this mechanism is not used
+     * by an implementation, getLookData shall always return null and setLookData shall
+     * do nothing. Interoperable systems shall not assume that this mechanism is implemented.
+     */
     public void setLookData(java.lang.Object key, java.lang.Object data) {
-        /*
-            " Use of this mechanism is an implementation option. If this mechanism is not used
-            by an implementation, getLookData shall always return null and setLookData shall
-            do nothing. Interoperable systems shall not assume that this mechanism is implemented. "
-        */
     }
 
+    /**
+     * Set the horizontal alignment of any state-based content rendered by an associated HLook.
+     * If content is not used in the rendering of this HVisible calls to this method shall
+     * change the current alignment mode, but this will not affect the rendered representation
+     */
     public void setHorizontalAlignment(int hAlign) {
-        /*
-            " Set the horizontal alignment of any state-based content rendered by an associated HLook.
-            If content is not used in the rendering of this HVisible calls to this method shall
-            change the current alignment mode, but this will not affect the rendered representation "
-        */
         this.horizontalAlignment = hAlign;
     }
 
+    /**
+     * Set the vertical alignment of any state-based content rendered by an associated HLook.
+     * If content is not used in the rendering of this HVisible calls to this method shall
+     * change the current alignment mode, but this will not affect the rendered representation.
+     */
     public void setVerticalAlignment(int vAlign) {
-        /*
-            " Set the vertical alignment of any state-based content rendered by an associated HLook.
-            If content is not used in the rendering of this HVisible calls to this method shall
-            change the current alignment mode, but this will not affect the rendered representation. "
-        */
         this.verticalAlignment = vAlign;
         callWidgetChanged();
     }
 
+    /**
+     * Get the horizontal alignment of any state-based content rendered by an associated HLook.
+     * If content is not used in the rendering of this HVisible the value returned shall be valid,
+     * but has no effect on the rendered representation.
+     */
     public int getHorizontalAlignment() {
-        /*
-            " Get the horizontal alignment of any state-based content rendered by an associated HLook. If content is not used in the rendering of this HVisible the value returned shall be valid, but has no effect on the rendered representation. "
-        */
         return this.horizontalAlignment;
     }
 
+    /**
+     * Get the vertical alignment of any state-based content rendered by an associated HLook.
+     * If content is not used in the rendering of this HVisible the value returned shall be valid,
+     * but has no effect on the rendered representation.
+     */
     public int getVerticalAlignment() {
-        /*
-            " Get the vertical alignment of any state-based content rendered by an associated HLook.
-            If content is not used in the rendering of this HVisible the value returned shall be valid,
-            but has no effect on the rendered representation."
-        */
         return this.verticalAlignment;
     }
 
+    /**
+     * Scaling support is optional, however all implementations must support the
+     * RESIZE_NONE scaling mode. Platforms are not required to support scaling of
+     * textual content by default.
+     */
     public void setResizeMode(int resize) {
-        /*
-            " Scaling support is optional, however all implementations must support the
-            RESIZE_NONE scaling mode. Platforms are not required to support scaling of
-            textual content by default. "
-        */
         if (resize != HVisible.RESIZE_NONE) {
-            String msg = "\nScaling support is optional, however all implementations must support the RESIZE_NONE scaling mode. Platforms are not required to support scaling of textual content by default.";
-            logger.warning("setResizeMode(" + resize + ") is not supported, only HVisible.RESIZE_NONE is." + msg);
+            String msg = "\nScaling support is optional, however all implementations must support the RESIZE_NONE" +
+                    " scaling mode. Platforms are not required to support scaling of textual content by default.";
+            logger.log(Level.WARNING, "setResizeMode(" + resize + ") is not supported, only HVisible.RESIZE_NONE is." + msg);
         }
     }
 
@@ -440,20 +437,18 @@ public class HVisible extends HComponent implements HState {
         callWidgetChanged();
     }
 
-
     public boolean getBordersEnabled() {
         return this.bordersEnabled;
     }
 
-    /*
-        Draws the current state of the component, by calling the showLook method of
-        the associated HLook. If no HLook is associated with the
-        component, (i.e. the HVisible was created with a null HLook or the look
-        has been set to null using setLook) then the paint method should do nothing.
-        This mechanism may be used for components that wish to extend HVisible,
-        and override the paint method, without supporting the HLook interface.
-
-    */
+    /**
+     * Draws the current state of the component, by calling the showLook method of
+     * the associated HLook. If no HLook is associated with the
+     * component, (i.e. the HVisible was created with a null HLook or the look
+     * has been set to null using setLook) then the paint method should do nothing.
+     * This mechanism may be used for components that wish to extend HVisible,
+     * and override the paint method, without supporting the HLook interface.
+     */
     @Override
     public void paint(Graphics g) {
         if (this.hLook != null) {
@@ -461,16 +456,15 @@ public class HVisible extends HComponent implements HState {
         }
     }
 
-    /*
-        The update() method in HVisible overrides that in Component and does not
-        clear the background of the component, it simply modifies the current
-        Color of the Graphics object to match that of the components background
-        Color, and calls the paint() method.
-    */
+    /**
+     * The update() method in HVisible overrides that in Component and does not
+     * clear the background of the component, it simply modifies the current
+     * Color of the Graphics object to match that of the components background
+     * Color, and calls the paint() method.
+     */
     @Override
     public void update(java.awt.Graphics g) {
         g.setColor(this.getBackground());
         paint(g);
     }
-
 }

@@ -1,21 +1,23 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.dvb.application;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
 import net.beiker.xletview.service.ServiceManager;
 import xjavax.tv.locator.Locator;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -27,7 +29,7 @@ import xjavax.tv.locator.Locator;
  */
 public class CurrentServiceFilter extends AppsDatabaseFilter {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(CurrentServiceFilter.class.getName());
+    private static final Logger logger = getLogger(CurrentServiceFilter.class.getName());
 
     public CurrentServiceFilter() {
         super();
@@ -50,7 +52,7 @@ public class CurrentServiceFilter extends AppsDatabaseFilter {
             //TODO this will throw a nullpointer, implement the rest to make it work
             currentServiceLocator.equals(appServiceLocator);
         } catch (NullPointerException e) {
-            log.fine("accept(AppID) not implemented");
+            logger.log(Level.DEBUG, "accept(AppID) not implemented");
         }
 
         return false;

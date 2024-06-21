@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.util;
 
@@ -18,16 +15,20 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Font;
 import java.io.PrintStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import net.beiker.xletview.io.OutputPrinter;
 import net.beiker.xletview.io.OutputRedirector;
 
+import static java.lang.System.getLogger;
+
 
 public class Console extends Container implements OutputPrinter {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Console.class.getName());
+    private static final Logger logger = getLogger(Console.class.getName());
 
     //JTextArea textArea;
     private static JTextArea ta;
@@ -50,9 +51,8 @@ public class Console extends Container implements OutputPrinter {
             int fontSize = Integer.parseInt(strFontSize);
             ta.setFont(new Font(font, Font.PLAIN, fontSize));
         } catch (Exception e) {
-            log.severe("The font properties for the console is not working");
+            logger.log(Level.ERROR, "The font properties for the console is not working", e);
         }
-
 
         scroll = new JScrollPane(ta);
         add(scroll, BorderLayout.CENTER);
@@ -98,15 +98,11 @@ public class Console extends Container implements OutputPrinter {
         System.setErr(out);
     }
 
-    /* (non-Javadoc)
-     * @see net.beiker.xletview.io.OutputPrinter#print(java.lang.String)
-     */
     @Override
     public void print(String s) {
         if (isPrinting) {
             ta.append(s);
             ta.setCaretPosition(ta.getDocument().getLength());
         }
-
     }
 }

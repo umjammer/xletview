@@ -1,15 +1,22 @@
 package net.beiker.xletview.classloader;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
 import javassist.ClassPool;
 import javassist.CodeConverter;
 import javassist.CtClass;
 import javassist.NotFoundException;
+
+import static java.lang.System.getLogger;
 
 
 /**
  * @author Martin Sveden
  */
 public class XletCodeConverter extends CodeConverter {
+
+    private static final Logger logger = getLogger(XletCodeConverter.class.getName());
 
     public XletCodeConverter() {
         try {
@@ -18,7 +25,7 @@ public class XletCodeConverter extends CodeConverter {
             CtClass singleton = tempPool.get("xjava.awt.Font");
             replaceNew(font, singleton, "create");
         } catch (NotFoundException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
 }

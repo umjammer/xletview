@@ -9,8 +9,7 @@
  * See LICENSE document for details.
  */
 
-
-package org.dvb.event;
+package  org.dvb.event;
 
 import java.awt.event.KeyEvent;
 import java.util.EventObject;

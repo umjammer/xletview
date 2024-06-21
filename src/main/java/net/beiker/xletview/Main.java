@@ -11,12 +11,16 @@
 
 package net.beiker.xletview;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Constructor;
 import java.net.URLClassLoader;
 
 import net.beiker.xletview.classloader.MainClassLoader;
 import net.beiker.xletview.util.CommandLine;
 import net.beiker.xletview.util.Constants;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -25,6 +29,8 @@ import net.beiker.xletview.util.Constants;
  * @author Martin Sveden
  */
 public class Main {
+
+    private static final Logger logger = getLogger(Main.class.getName());
 
     public static void main(String[] args) {
         int command = CommandLine.check(args);
@@ -44,7 +50,7 @@ public class Main {
             Object[] constructorArgs = {args};
             classConstructor.newInstance(constructorArgs);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
 }

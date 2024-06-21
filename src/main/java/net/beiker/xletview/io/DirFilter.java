@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.io;
 
@@ -43,7 +40,7 @@ public class DirFilter implements FileFilter {
             return true;
         }
         String s = file.getName();
-        //Debug.write(this, s);
+        //logger.log(Level.DEBUG, this, s);
         for (String string : filters) {
             if (s.indexOf(string) == s.length() - string.length()) {
                 return true;

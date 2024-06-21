@@ -13,6 +13,8 @@ package net.beiker.xletview.classloader;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -21,7 +23,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import javassist.CannotCompileException;
 import javassist.ClassMap;
@@ -29,6 +30,8 @@ import javassist.ClassPool;
 import javassist.CodeConverter;
 import javassist.CtClass;
 import javassist.NotFoundException;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -41,7 +44,7 @@ import javassist.NotFoundException;
 public final class XletClassLoader extends MainClassLoader {
 
     /** Debugging facility */
-    private static final Logger logger = Logger.getLogger(XletClassLoader.class.getName());
+    private static final Logger logger = getLogger(XletClassLoader.class.getName());
 
     private Map<String, Class<?>> loadedClasses;
     private ClassPool pool;
@@ -53,10 +56,10 @@ public final class XletClassLoader extends MainClassLoader {
         try {
             URL url = new URL(args[0]);
 
-            logger.fine("url=" + url);
-            logger.fine(url.getFile());
+            logger.log(Level.DEBUG, "url=" + url);
+            logger.log(Level.DEBUG, url.getFile());
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
 
@@ -72,9 +75,9 @@ public final class XletClassLoader extends MainClassLoader {
         super(virtualRoot);
 
         // deprecated warning: we should consider extra class paths
-//logger.fine("XletClassLoader's URL ("+(virtualRoot.length==1?"OK: it's exactly one URL":"WARNING: should only be one URL")+"):");
+//logger.log(Level.DEBUG, "XletClassLoader's URL ("+(virtualRoot.length==1?"OK: it's exactly one URL":"WARNING: should only be one URL")+"):");
         for (URL url : virtualRoot) {
-            logger.fine(url.getPath());
+            logger.log(Level.DEBUG, url.getPath());
         }
 
 
@@ -95,7 +98,7 @@ public final class XletClassLoader extends MainClassLoader {
 //        try {
 //            loadClass("xjava.io.XFile");
 //        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
+//            logger.log(Level.ERROR, e.getMessage(), e);
 //        }
     }
 
@@ -103,7 +106,7 @@ public final class XletClassLoader extends MainClassLoader {
     public Class<?> loadClass(String name) throws ClassNotFoundException {
 
         name = name.replaceAll("/", ".");
-        logger.finer("try to load: " + name);
+        logger.log(Level.TRACE, "try to load: " + name);
         Class<?> theClass = null;
         boolean newClass = false;
 
@@ -120,7 +123,7 @@ public final class XletClassLoader extends MainClassLoader {
 
             } catch (ClassNotFoundException | java.lang.NoClassDefFoundError e) {
                 // do nothing
-                logger.finer(e.toString());
+                logger.log(Level.TRACE, e.toString());
             }
         }
 
@@ -131,7 +134,7 @@ public final class XletClassLoader extends MainClassLoader {
                 newClass = true;
             } catch (ClassNotFoundException e) {
                 // do nothing
-                logger.finer(e.toString());
+                logger.log(Level.TRACE, e.toString());
             }
         }
 
@@ -142,7 +145,7 @@ public final class XletClassLoader extends MainClassLoader {
         } else if (newClass) {
             // it wasn't previously loaded
             this.loadedClasses.put(name, theClass);
-            logger.fine("loaded class - " + name + ", " + this);
+            logger.log(Level.DEBUG, "loaded class - " + name + ", " + this);
         }
         return theClass;
 
@@ -163,11 +166,11 @@ public final class XletClassLoader extends MainClassLoader {
 
         try {
 
-            logger.fine("Loading Xlet class '" + name + "'.");
+            logger.log(Level.DEBUG, "Loading Xlet class '" + name + "'.");
 
             CtClass cc = this.pool.get(name);
 
-            logger.fine("CHANGING BYTECODE IN " + name);
+            logger.log(Level.DEBUG, "CHANGING BYTECODE IN " + name);
             if (!this.xletClassMap.containsKey(name)) {
                 cc.replaceClassName(this.xletClassMap);
             }
@@ -179,15 +182,15 @@ public final class XletClassLoader extends MainClassLoader {
             // uncomment to see what the manipulation did
 //            CtMethod[] methods = cc.getMethods();
 //
-//            logger.fine("methods in " + name + " ----------------------- ");
-//            logger.fine("methods.length=" + methods.length);
+//            logger.log(Level.DEBUG, "methods in " + name + " ----------------------- ");
+//            logger.log(Level.DEBUG, "methods.length=" + methods.length);
 //            for (int i = 0; i < methods.length; i++) {
 //                String n = methods[i].getName();
 //                String n2 = methods[i].getSignature();
-//                logger.fine("name:" + n);
-//                logger.fine("sign:" + n2);
+//                logger.log(Level.DEBUG, "name:" + n);
+//                logger.log(Level.DEBUG, "sign:" + n2);
 //            }
-//            logger.fine("end methods ----------------------- ");
+//            logger.log(Level.DEBUG, "end methods ----------------------- ");
 
             byte[] b = cc.toBytecode();
 
@@ -197,7 +200,7 @@ public final class XletClassLoader extends MainClassLoader {
                 theClass = super.defineClass(name, b, 0, b.length);
             } catch (SecurityException e) {
                 // do nothing
-                logger.warning(e.toString());
+                logger.log(Level.WARNING, e.toString());
             }
 
             return theClass;
@@ -210,10 +213,10 @@ public final class XletClassLoader extends MainClassLoader {
     @Override
     public URL getResource(String resource) {
         URL ret = null;
-        logger.fine("Locating RESOURCE '" + resource + "'.");
+        logger.log(Level.DEBUG, "Locating RESOURCE '" + resource + "'.");
         for (URL url : getURLs()) {
             Path path = Paths.get(url.getPath(), resource);
-            logger.fine("path: " + path);
+            logger.log(Level.DEBUG, "path: " + path);
             if (Files.exists(path)) {
                 try {
                     ret = path.toUri().toURL();
@@ -223,7 +226,7 @@ public final class XletClassLoader extends MainClassLoader {
                 break;
             }
         }
-        logger.fine(ret == null ? "Resource was NOT FOUND." : "Resource was found.");
+        logger.log(Level.DEBUG, ret == null ? "Resource was NOT FOUND." : "Resource was found.");
         return ret;
     }
 
@@ -239,10 +242,10 @@ public final class XletClassLoader extends MainClassLoader {
     @Override
     public InputStream getResourceAsStream(String name) {
         InputStream ret = null;
-        logger.fine("Locating RESOURCE '" + name + "'.");
+        logger.log(Level.DEBUG, "Locating RESOURCE '" + name + "'.");
         for (URL url : getURLs()) {
             Path path = Paths.get(url.getPath(), name);
-            logger.fine("path: " + path);
+            logger.log(Level.DEBUG, "path: " + path);
             if (Files.exists(path)) {
                 try {
                     ret = Files.newInputStream(path);
@@ -252,7 +255,7 @@ public final class XletClassLoader extends MainClassLoader {
                 break;
             }
         }
-        logger.fine(ret == null ? "Resource was NOT FOUND." : "Resource was found.");
+        logger.log(Level.DEBUG, ret == null ? "Resource was NOT FOUND." : "Resource was found.");
         return ret;
     }
 }

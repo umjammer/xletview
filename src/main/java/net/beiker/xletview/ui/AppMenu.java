@@ -14,8 +14,9 @@ package net.beiker.xletview.ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.lang.System.Logger.Level;
 import java.util.List;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
@@ -27,13 +28,15 @@ import net.beiker.xletview.util.Constants;
 import net.beiker.xletview.window.AppTreeWindow;
 import net.beiker.xletview.xlet.XletManager;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class AppMenu extends JMenu implements ActionListener {
 
-    private static final Logger log = Logger.getLogger(AppMenu.class.getName());
+    private static final Logger logger = getLogger(AppMenu.class.getName());
 
     private static AppMenu THE_INSTANCE;
 
@@ -61,7 +64,7 @@ public class AppMenu extends JMenu implements ActionListener {
         AppManager.getInstance().update();
         AppGroup defGroup = AppManager.getInstance().getDefaultGroup();
         List<?> applications = defGroup.getApps();
-        log.fine("projects.size() = " + applications.size());
+        logger.log(Level.DEBUG, "projects.size() = " + applications.size());
 
 
 //        menuItem = new JMenuItem("Add new...");
@@ -119,8 +122,9 @@ public class AppMenu extends JMenu implements ActionListener {
         }
         return menu;
     }
+
 //    private void buildAppMenu(AppGroup group){
-//        Debug.write(this, group.getName());
+//        logger.log(Level.DEBUG, this, group.getName());
 //        AppMenuItem item;
 //        JMenu submenu;
 //        List subGroups = group.getChildren();
@@ -145,7 +149,7 @@ public class AppMenu extends JMenu implements ActionListener {
         String command = event.getActionCommand();
         if (event.getSource() instanceof AppMenuItem item) {
             App app = item.getApp();
-            log.fine(app.getPath());
+            logger.log(Level.DEBUG, app.getPath());
             XletManager.getInstance().setXlet(app.getPath(), app.getXletName());
         } else if (command.equals("reload")) {
             XletManager.getInstance().reloadActiveXlet();
@@ -153,7 +157,5 @@ public class AppMenu extends JMenu implements ActionListener {
             //new AppWizardWindow();
             new AppTreeWindow();
         }
-
     }
-
 }

@@ -84,9 +84,7 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
             this.lineSpace = linespace;
         } else {
 
-            /*
-             * point size of the default font for HVisible + 7
-             */
+            // point size of the default font for HVisible + 7
 
             UserPreferenceManager man = UserPreferenceManager.getInstance();
             Preference p;
@@ -104,7 +102,6 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         this.horizontalTabSpace = horizontalTabSpace;
 
         this.listeners = new ArrayList<>();
-
     }
 
     public void setHorizontalAlign(int horizontalAlign) {
@@ -203,8 +200,7 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         String lb = System.getProperty("line.separator");
         String string = markedUpString;
 
-        //        String[] strings = string.split("\n");
-
+//        String[] strings = string.split("\n");
 
         int x = 0;
         int y = 0;
@@ -316,7 +312,6 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
             }
             rowWidths = addToIntArr(rowWidths, rowWidth);
         }
-
     }
 
     private static String[] addToStringArr(String[] strings, String string) {
@@ -332,5 +327,4 @@ public class DVBTextLayoutManager implements org.havi.ui.HTextLayoutManager {
         newArr[newArr.length - 1] = theInt;
         return newArr;
     }
-
 }

@@ -13,13 +13,16 @@ package net.beiker.xletview.window;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
 
 import net.beiker.xletview.ui.Img;
 import net.beiker.xletview.util.Constants;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -28,7 +31,7 @@ import net.beiker.xletview.util.Constants;
 public class SplashWindow extends JWindow implements Runnable {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(SplashWindow.class.getName());
+    private static final Logger logger = getLogger(SplashWindow.class.getName());
 
     private JLabel label;
     private ImageIcon icon;
@@ -78,10 +81,10 @@ public class SplashWindow extends JWindow implements Runnable {
         try {
             Thread.sleep(this.maxWait);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
         if (!success) {
-            logger.severe("The program failed to start after " + this.maxWait + " ms and will now exit");
+            logger.log(Level.ERROR, "The program failed to start after " + this.maxWait + " ms and will now exit");
             System.exit(0);
         }
     }

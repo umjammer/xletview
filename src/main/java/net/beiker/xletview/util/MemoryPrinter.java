@@ -11,8 +11,10 @@
 
 package net.beiker.xletview.util;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
-import java.util.logging.Logger;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -21,7 +23,7 @@ import java.util.logging.Logger;
 public abstract class MemoryPrinter {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(MemoryPrinter.class.getName());
+    private static final Logger logger = getLogger(MemoryPrinter.class.getName());
 
     /**
      *
@@ -29,7 +31,7 @@ public abstract class MemoryPrinter {
     public static void print() {
         long total = Runtime.getRuntime().totalMemory();
         long free = Runtime.getRuntime().freeMemory();
-        logger.fine("free/used/total: " + format(free) + " / " + format(total - free) + " / " + format(total));
+        logger.log(Level.DEBUG, "free/used/total: " + format(free) + " / " + format(total - free) + " / " + format(total));
     }
 
     private static String format(long size) {
@@ -37,9 +39,8 @@ public abstract class MemoryPrinter {
         if (size < 1024) {
             result = "" + size;
         } else {
-            result = (new Float((float) size / 1024).intValue()) + " K";
+            result = (int) (size / 1024f) + " K";
         }
         return result;
     }
-
 }

@@ -11,11 +11,14 @@
 
 package xjavax.tv.util;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
-import net.beiker.xletview.util.ArraySorter;
-import net.beiker.xletview.util.Comparer;
+import static java.lang.System.getLogger;
 
 
 /**
@@ -25,6 +28,8 @@ import net.beiker.xletview.util.Comparer;
  * @statuscode 4
  */
 public class TVTimerImpl extends TVTimer {
+
+    private static final Logger logger = getLogger(TVTimerImpl.class.getName());
 
     private static TVTimerImpl THE_INSTANCE;
 
@@ -76,7 +81,7 @@ public class TVTimerImpl extends TVTimer {
      *
      * @author Martin Sveden
      */
-    private static class Q implements Comparer {
+    private static class Q implements Comparator<TimeKeeper> {
 
         /*
          * Each TimeKeeper holds a TVTimerSpec
@@ -93,7 +98,7 @@ public class TVTimerImpl extends TVTimer {
             System.arraycopy(timeKeepers, 0, newArr, 0, timeKeepers.length);
             newArr[newArr.length - 1] = new TimeKeeper(spec);
             timeKeepers = newArr;
-            ArraySorter.sort(timeKeepers, this);
+            Arrays.sort(timeKeepers, this);
 
             synchronized (this) {
                 notifyAll();
@@ -115,7 +120,6 @@ public class TVTimerImpl extends TVTimer {
                 System.arraycopy(timeKeepers, 1, newArr, 0, timeKeepers.length - 1);
                 timeKeepers = newArr;
             }
-
         }
 
         /**
@@ -156,15 +160,16 @@ public class TVTimerImpl extends TVTimer {
         }
 
         @Override
-        public int compare(Object oa, Object ob) {
-            long a = ((TimeKeeper) oa).getTimerTime();
-            long b = ((TimeKeeper) ob).getTimerTime();
-            if (a > b)
+        public int compare(TimeKeeper oa, TimeKeeper ob) {
+            long a = oa.getTimerTime();
+            long b = ob.getTimerTime();
+            if (a > b) {
                 return 1;
-            if (a == b)
+            } else if (a == b) {
                 return 0;
-            if (a < b)
+            } if (a < b) {
                 return -1;
+            }
             return 0;
         }
     }
@@ -188,7 +193,7 @@ public class TVTimerImpl extends TVTimer {
 
         @Override
         public void run() {
-            //System.out.println("TimerThread run");
+//            logger.log(Level.TRACE, "TimerThread run");
             try {
                 while (true) {
                     synchronized (q) {
@@ -201,8 +206,7 @@ public class TVTimerImpl extends TVTimer {
 
                             if (nextTime != null) {
 
-                                // the time to wait until the next spec goes
-                                // off
+                                // the time to wait until the next spec goes off
                                 long timeToGoOff = nextTime.getTimerTime() - System.currentTimeMillis();
 
                                 if (!nextTime.isScheduled()) {
@@ -217,7 +221,7 @@ public class TVTimerImpl extends TVTimer {
                                     // remove it from the queue
                                     q.removeFirst();
 
-                                    // After the event went off, check what to                                     *  with that spec
+                                    // After the event went off, check what to with that spec
                                     if (nextTime.getSpec().isRepeat() && !nextTime.getSpec().isAbsolute() && nextTime.isScheduled()) {
                                         // reschedule the spec
                                         nextTime.reschedule();
@@ -239,7 +243,7 @@ public class TVTimerImpl extends TVTimer {
                     }
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
     }

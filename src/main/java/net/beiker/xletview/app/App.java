@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.app;
 
@@ -82,33 +79,21 @@ public class App implements UserObject {
         return name;
     }
 
-    /* (non-Javadoc)
-     * @see net.beiker.xletview.ui.tree.UserObject#getObject()
-     */
     @Override
     public Object getObject() {
         return this;
     }
 
-    /* (non-Javadoc)
-     * @see net.beiker.xletview.ui.tree.UserObject#hasChildren()
-     */
     @Override
     public boolean hasChildren() {
         return false;
     }
 
-    /* (non-Javadoc)
-     * @see net.beiker.xletview.ui.tree.UserObject#getChildren()
-     */
     @Override
     public Object[] getChildren() {
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see net.beiker.xletview.ui.tree.UserObject#isLeaf()
-     */
     @Override
     public boolean isBranch() {
         return false;

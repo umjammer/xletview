@@ -9,15 +9,15 @@
  * See LICENSE document for details.
  */
 
-
-package net.beiker.xletview.event;
+package  net.beiker.xletview.event;
 
 import java.awt.AWTEvent;
 import java.awt.Component;
 import java.awt.event.AWTEventListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.media.ChannelManager;
 import net.beiker.xletview.media.ScreenContainer;
@@ -30,24 +30,23 @@ import org.havi.ui.event.HActionEvent;
 import org.havi.ui.event.HFocusEvent;
 import org.havi.ui.event.HRcEvent;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class EventManager implements AWTEventListener {
 
-    private static final Logger log = Logger.getLogger(EventManager.class.getName());
+    private static final Logger logger = getLogger(EventManager.class.getName());
 
     private static EventManager THE_INSTANCE;
     private boolean eventEnabled;
     private Component focusOwner;
 
-
 //    private KeyboardFocusManager kfm;
 
-    /**
-     *
-     */
+    /** */
     public static EventManager getInstance() {
         if (THE_INSTANCE == null) {
             THE_INSTANCE = new EventManager();
@@ -55,12 +54,9 @@ public class EventManager implements AWTEventListener {
         return THE_INSTANCE;
     }
 
-    /**
-     *
-     */
+    /** */
     private EventManager() {
 //        kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-
     }
 
     /**
@@ -105,7 +101,7 @@ public class EventManager implements AWTEventListener {
 
             // do HFocusEvent
             if (focusOwner != null && focusOwner instanceof HNavigable nav && event.getID() == KeyEvent.KEY_PRESSED) {
-                //logger.fine("focusOwner=" + focusOwner);
+//                logger.log(Level.DEBUG, "focusOwner=" + focusOwner);
 
 
                 HNavigable transferTo = nav.getMove(keyCode);
@@ -115,18 +111,16 @@ public class EventManager implements AWTEventListener {
                 } else {
                     hEvent = new HFocusEvent(focusOwner, HFocusEvent.FOCUS_TRANSFER, HFocusEvent.NO_TRANSFER_ID);
                 }
-                //Debug.write(this, "hEvent=" + hEvent);
+//                logger.log(Level.DEBUG, this, "hEvent=" + hEvent);
 
                 nav.processHFocusEvent(hEvent);
-//                Debug.write(this, "is HIcon? " + (focusOwner instanceof HIcon) + ", nav=" + nav);
+//                logger.log(Level.DEBUG, this, "is HIcon? " + (focusOwner instanceof HIcon) + ", nav=" + nav);
 
                 if (focusOwner instanceof HActionable act) {
                     HActionEvent haEvent = new HActionEvent(act, HActionEvent.ACTION_PERFORMED, act.getActionCommand());
                     act.processHActionEvent(haEvent);
                 }
-
             }
-
 
             // do emulator specific stuff
             if (event.getID() == KeyEvent.KEY_PRESSED) {
@@ -134,28 +128,26 @@ public class EventManager implements AWTEventListener {
                 RemoteControl.getInstance().setPressed(keyCode);
 
                 if (keyCode == HRcEvent.VK_CHANNEL_UP) {
-                    log.fine("channel up");
+                    logger.log(Level.DEBUG, "channel up");
                     ChannelManager.getInstance().nextChannel();
                 } else if (keyCode == HRcEvent.VK_CHANNEL_DOWN) {
-                    log.fine("channel down");
+                    logger.log(Level.DEBUG, "channel down");
                     ChannelManager.getInstance().previousChannel();
-                } else if (event.getModifiers() == HRcEvent.CTRL_MASK && keyCode == HRcEvent.VK_R) {
+                } else if (event.getModifiersEx() == HRcEvent.CTRL_DOWN_MASK && keyCode == HRcEvent.VK_R) {
                     XletManager.getInstance().reloadActiveXlet();
-                } else if (event.getModifiers() == HRcEvent.ALT_MASK && keyCode == HRcEvent.VK_F4) {
+                } else if (event.getModifiersEx() == HRcEvent.ALT_DOWN_MASK && keyCode == HRcEvent.VK_F4) {
                     System.exit(0);
                 }
-
             } else if (event.getID() == KeyEvent.KEY_RELEASED) {
 
                 RemoteControl.getInstance().setReleased(keyCode);
             }
-
         }
     }
 
     public void fireRemoteEvent(KeyEvent event) {
         if (focusOwner != null) {
-            //Debug.write(this, "keyCode:" + keyCode + ", focusOwner:" + focusOwner.getClass().getName());
+//            logger.log(Level.DEBUG, this, "keyCode:" + keyCode + ", focusOwner:" + focusOwner.getClass().getName());
             fireEvents(new KeyEvent(focusOwner, event.getID(), 0L, 0, event.getKeyCode(), event.getKeyChar()));
         } else {
             fireEvents(event);
@@ -171,7 +163,7 @@ public class EventManager implements AWTEventListener {
          */
         boolean ok = Util.isChildOf(ScreenContainer.getInstance(), c);
         if (ok) {
-            log.fine("new focus owner: " + c.toString());
+            logger.log(Level.DEBUG, "new focus owner: " + c.toString());
             focusOwner = c;
         }
     }
@@ -191,11 +183,10 @@ public class EventManager implements AWTEventListener {
     @Override
     public void eventDispatched(AWTEvent e) {
 
-        //Component fo = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+//        Component fo = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
 
-        //Debug.write(this, "fo=" + fo);
+//        logger.log(Level.DEBUG, this, "fo=" + fo);
         Object source = e.getSource();
-
 
         if (e instanceof KeyEvent ke) {
 
@@ -204,25 +195,21 @@ public class EventManager implements AWTEventListener {
             int newKeyCode = convertCode(keyCode);
             ke.setKeyCode(newKeyCode);
 
-
             // consume if it's the focus owner
             if (source == focusOwner) {
                 ke.consume();
             }
 
             fireEvents(ke);
-
         }
         if (e instanceof FocusEvent fe) {
-            //Debug.write(this, "event=" + e);
-            //Debug.write(this, "eventDispatched-" + e);
+//            logger.log(Level.DEBUG, this, "event=" + e);
+//            logger.log(Level.DEBUG, this, "eventDispatched-" + e);
             Component c = fe.getComponent();
 
             if (fe.getID() == FocusEvent.FOCUS_GAINED && c != null) {
                 setFocusOwner(c);
             }
         }
-
     }
-
 }

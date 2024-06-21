@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.ui;
 
@@ -20,13 +17,16 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.Toolkit;
+import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+
+import static java.lang.System.getLogger;
 
 
 public class Img extends Component {
 
-    private static final Logger log = Logger.getLogger(Img.class.getName());
+    private static final Logger logger = getLogger(Img.class.getName());
 
     private Image image;
     private String imageUrl;
@@ -56,6 +56,7 @@ public class Img extends Component {
     }
 
     public Img(Image image) {
+        assert image != null : "image is null";
         this.image = loadImage(image, this);
         this.width = image.getWidth(this);
         this.height = image.getHeight(this);
@@ -136,7 +137,7 @@ public class Img extends Component {
                 java.io.File f = new java.io.File(name);
                 java.io.FileReader fr = new java.io.FileReader(f);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         } else if (url != null) {
             image = toolkit.getImage(url);

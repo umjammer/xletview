@@ -9,8 +9,7 @@
  * See LICENSE document for details.
  */
 
-
-package org.dvb.event;
+package  org.dvb.event;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class UserEventRepository extends RepositoryDescriptor {
      *  and type(KeyEvent.KeyPressed) we only check the code.
      * */
     public void addUserEvent(UserEvent event) {
-        //Debug.write(this, "event code = " + event.getCode());
+        //logger.log(Level.DEBUG, this, "event code = " + event.getCode());
         for (UserEvent userEvent : userEvents) {
             UserEvent ue = userEvent;
             if (ue.getCode() == event.getCode()) {
@@ -136,7 +135,7 @@ public class UserEventRepository extends RepositoryDescriptor {
 
     /* for making it simpler*/
     private void addKeyCode(int keyCode) {
-        //Debug.write(this, "addKeyCode = " + keyCode);
+        //logger.log(Level.DEBUG, this, "addKeyCode = " + keyCode);
         UserEvent ue = new UserEvent(this, UserEvent.UEF_KEY_EVENT, KeyEvent.KEY_PRESSED, keyCode, KeyEvent.CHAR_UNDEFINED, -1);
         userEvents.add(ue);
     }

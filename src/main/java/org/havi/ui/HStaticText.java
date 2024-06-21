@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
 
@@ -36,7 +33,7 @@ public class HStaticText extends HVisible implements HNoInputPreferred {
         this.setTextLayoutManager(new HDefaultTextLayoutManager());
         this.setBackgroundMode(HVisible.BACKGROUND_FILL);
 
-        //logger.fine("constructor");
+        //logger.log(Level.DEBUG, "constructor");
     }
 
     public HStaticText(String textNormal, int x, int y, int width, int height, Font font, Color foreground, Color background, HTextLayoutManager tlm) {

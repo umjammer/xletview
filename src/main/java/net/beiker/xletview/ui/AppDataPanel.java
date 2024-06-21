@@ -20,7 +20,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -37,13 +38,15 @@ import net.beiker.xletview.window.AppTreeWindow;
 import net.beiker.xletview.window.ClassWindow;
 import net.beiker.xletview.window.DirectoryExplorer;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class AppDataPanel extends JPanel implements ActionListener, KeyListener {
 
-    private static final Logger log = Logger.getLogger(RemoteControl.class.getName());
+    private static final Logger logger = getLogger(RemoteControl.class.getName());
 
     private AppTreeWindow appWin;
     private App app;
@@ -188,11 +191,11 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
             } else {
                 treeData = fieldText.split("/");
             }
-            log.fine("### " + treeData.length);
+            logger.log(Level.DEBUG, "### " + treeData.length);
             DirectoryExplorer dirWin = dirWin = new DirectoryExplorer(Util.getParentFrame(this), treeData);
             if (dirWin != null && !dirWin.getPath().isEmpty()) {
                 fields[CLASSPATH].setText(dirWin.getPath());
-                log.fine(fields[CLASSPATH].getText());
+                logger.log(Level.DEBUG, fields[CLASSPATH].getText());
             }
         }
         case "xletname" -> {
@@ -200,7 +203,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
                 JOptionPane.showMessageDialog(null, "You must specify a directory!", "Alert", JOptionPane.ERROR_MESSAGE);
             } else {
                 ClassWindow classWindow = new ClassWindow(Util.getParentFrame(this), new File(fields[CLASSPATH].getText().trim()));
-                log.fine("value=" + classWindow.getValue());
+                logger.log(Level.DEBUG, "value=" + classWindow.getValue());
                 fields[XLETNAME].setText(classWindow.getValue());
             }
         }
@@ -209,13 +212,13 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
         //            FileFilterImpl filter = new FileFilterImpl(".class");
         //            fc.setFileFilter(filter);
         //            File dir = new File(fields[CLASSPATH].getText());
-        //            Debug.write(this, "** " + dir.isDirectory());
+        //            logger.log(Level.DEBUG, this, "** " + dir.isDirectory());
         //            fc.setCurrentDirectory( dir );
         //            fc.setDialogType(JFileChooser.OPEN_DIALOG);
         //            fc.showOpenDialog(this);
         //            String selectedPath = fc.getSelectedFile().getAbsolutePath();
-        //            Debug.write(this, "1 " + fc.getSelectedFile().getPath());
-        //            Debug.write(this, "2 " + fc.getSelectedFile().getAbsolutePath());
+        //            logger.log(Level.DEBUG, this, "1 " + fc.getSelectedFile().getPath());
+        //            logger.log(Level.DEBUG, this, "2 " + fc.getSelectedFile().getAbsolutePath());
         //
         //            String className = "";
         //            className = selectedPath.substring(fields[CLASSPATH].getText().length());
@@ -234,7 +237,7 @@ public class AppDataPanel extends JPanel implements ActionListener, KeyListener 
                 AppManager.getInstance().getDefaultGroup().addApp(app);
                 AppManager.getInstance().update();
                 AppMenu.getInstance().update();
-                log.fine("name=" + name + ", path=" + path + ", xlet=" + xlet);
+                logger.log(Level.DEBUG, "name=" + name + ", path=" + path + ", xlet=" + xlet);
 
             }
         }

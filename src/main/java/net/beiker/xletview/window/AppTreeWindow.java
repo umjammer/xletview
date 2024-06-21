@@ -20,6 +20,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -45,13 +47,15 @@ import net.beiker.xletview.util.Constants;
 import net.beiker.xletview.util.Util;
 import net.sourceforge.mlf.metouia.MetouiaLookAndFeel;
 
+import static java.lang.System.getLogger;
+
 
 /**
  *
  */
 public class AppTreeWindow extends JFrame implements ActionListener, TreeListener {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AppTreeWindow.class.getName());
+    private static final Logger logger = getLogger(AppTreeWindow.class.getName());
 
     //private AppTree tree;
     private AppTreePanel tree;
@@ -87,7 +91,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent we) {
-                //System.exit(0);
+//                System.exit(0);
                 doClose();
             }
         });
@@ -98,18 +102,17 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
 
         Util.center(this);
 
-        show();
+        setVisible(true);
     }
 
     public Container getButtonPanel() {
         Container cont = new Container();
         cont.setLayout(new BorderLayout());
 
-
-        //Box buttonBox = new Box(BoxLayout.Y_AXIS);
+//        Box buttonBox = new Box(BoxLayout.Y_AXIS);
         JPanel buttonCont = new JPanel();
         buttonCont.setPreferredSize(new Dimension(350, 60));
-        //buttonCont.setLayout(new FlowLayout());
+//        buttonCont.setLayout(new FlowLayout());
         buttonCont.setLayout(new GridLayout(3, 1));
 
         newGroupButton = new JButton("New Group");
@@ -178,7 +181,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
             tree.insertApp(app);
         }
         case "delete" -> {
-            log.fine("delete");
+            logger.log(Level.DEBUG, "delete");
             tree.removeSelected();
         }
         case "ok" -> {
@@ -188,7 +191,7 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
             AppMenu.getInstance().update();
             doClose();
         }
-        case "cancel" -> log.fine("cancel");
+        case "cancel" -> logger.log(Level.DEBUG, "cancel");
         }
     }
 
@@ -242,10 +245,9 @@ public class AppTreeWindow extends JFrame implements ActionListener, TreeListene
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new MetouiaLookAndFeel());
-        } catch (UnsupportedLookAndFeelException exception) {
-            exception.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
         new AppTreeWindow();
     }
-
 }

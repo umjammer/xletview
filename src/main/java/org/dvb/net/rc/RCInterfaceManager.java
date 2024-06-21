@@ -16,10 +16,12 @@ import java.net.Socket;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import org.davic.resources.ResourceStatusEvent;
 import org.davic.resources.ResourceStatusListener;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -30,7 +32,7 @@ import org.davic.resources.ResourceStatusListener;
 public class RCInterfaceManager implements org.davic.resources.ResourceServer {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(RCInterfaceManager.class.getName());
+    private static final Logger logger = getLogger(RCInterfaceManager.class.getName());
 
     private static RCInterfaceManager THE_INSTANCE;
     private RCInterface[] rcInterfaces;
@@ -39,10 +41,8 @@ public class RCInterfaceManager implements org.davic.resources.ResourceServer {
     private RCInterfaceManager() {
         System.out.println("XleTView: instanciate RCInterfaceManager");
 
-        /*
-         * One interface for every kind to not break
-         * any box specific Xlet code.
-         */
+        // One interface for every kind to not break
+        // any box specific Xlet code.
 
         this.rcInterfaces = new RCInterface[7];
         this.rcInterfaces[0] = new ConnectionRCInterface();

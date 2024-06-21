@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -11,14 +13,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class FileSystem {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(FileSystem.class.getName());
-
+    private static final Logger logger = getLogger(FileSystem.class.getName());
 
     static final char separatorChar = '/';
 
@@ -38,19 +41,17 @@ public class FileSystem {
 
     static {
         roots = new EmulatorFile[1];
-        //roots[0] = new MountPoint("", new java.io.File("filesystem"));
+//        roots[0] = new MountPoint("", new java.io.File("filesystem"));
         roots[0] = EmulatorFile.getRoot();
 
 //        currentMountPoint = mpDsmcc;
-
     }
-
 
     private FileSystem() {
     }
 
 
-    //    /**
+//    /**
 //     * Mounts a MountPoint to the carousel mount point.
 //     * @param mp The MountPoint to be mounted
 //     */
@@ -61,10 +62,11 @@ public class FileSystem {
 //        // mount the mount point
 //        mpDsmcc.mount(mp);
 //    }
+
     public synchronized static EmulatorFile mountCarousel(String name, java.io.File dir) {
         roots[0].removeAllChildren();
         currentMountPoint = new EmulatorFile(name, dir);
-//
+
         return currentMountPoint;
     }
 
@@ -86,22 +88,20 @@ public class FileSystem {
             path = path.substring(2);
         }
 
-
-        log.fine("fixPath incoming=" + path);
+        logger.log(Level.DEBUG, "fixPath incoming=" + path);
 
         result = path.replaceAll("\\\\", "\\/");
         result = result.replaceAll("\\//", "\\/");
 
-        log.fine("fixPath outgoing=" + result);
+        logger.log(Level.DEBUG, "fixPath outgoing=" + result);
 
         return result;
-
     }
 
 
     int prefixLength(String path) {
         // TODO Auto-generated method stub
-        log.info("unimplemented");
+        logger.log(Level.INFO, "unimplemented");
         return 0;
     }
 
@@ -113,7 +113,7 @@ public class FileSystem {
      * @return
      */
     static String resolvePath(String parent, String child) {
-        log.fine("resolvePath(" + parent + ", " + child + ")");
+        logger.log(Level.DEBUG, "resolvePath(" + parent + ", " + child + ")");
         String result = parent + separatorChar + child;
         result = fixPath(result);
         return result;
@@ -127,7 +127,7 @@ public class FileSystem {
      * @return
      */
     static String resolveAbsolutePath(String parent, String child) {
-        log.fine("resolveAbsolutePath(" + parent + ", " + child + ")");
+        logger.log(Level.DEBUG, "resolveAbsolutePath(" + parent + ", " + child + ")");
         String fullPath = "";
 
         if (parent == null) {
@@ -149,12 +149,12 @@ public class FileSystem {
 
         fullPath = fixPath(fullPath);
         String result = fullPath;
-        log.fine("absolute path resolved");
+        logger.log(Level.DEBUG, "absolute path resolved");
         return result;
     }
-//
+
 //    static String resolveParent(String path){
-//        log.fine("resolveParent(" + path + ")");
+//        logger.log(Level.DEBUG, "resolveParent(" + path + ")");
 //        String result = "";
 //
 //        if(currentMountPoint != null){
@@ -172,13 +172,11 @@ public class FileSystem {
 //        return result;
 //    }
 
-
     String fromURIPath(String path) {
         // TODO Auto-generated method stub
-        log.fine("fromURIPath");
+        logger.log(Level.DEBUG, "fromURIPath");
         return null;
     }
-
 
     static boolean isAbsolute(File f) {
         return (f.getPath().startsWith(separatorChar + ""));
@@ -249,7 +247,7 @@ public class FileSystem {
             result = f.toURL();
         }
 
-        log.fine("f=" + f);
+        logger.log(Level.DEBUG, "f=" + f);
 
         return result;
     }
@@ -285,27 +283,23 @@ public class FileSystem {
         return f != null && f.canWrite();
     }
 
-
     int getBooleanAttributes(File f) {
         // TODO Auto-generated method stub
-        log.fine("getBooleanAttributes");
+        logger.log(Level.TRACE, "getBooleanAttributes");
         return 0;
     }
-
 
     boolean checkAccess(File f, boolean write) {
         // TODO Auto-generated method stub
-        log.fine("checkAccess");
+        logger.log(Level.TRACE, "checkAccess");
         return false;
     }
 
-
     long getLastModifiedTime(File f) {
         // TODO Auto-generated method stub
-        log.fine("getLastModifiedTime");
+        logger.log(Level.TRACE, "getLastModifiedTime");
         return 0;
     }
-
 
     static long getLength(java.io.File file) {
         long result = 0;
@@ -320,27 +314,23 @@ public class FileSystem {
         return result;
     }
 
-
     boolean createFileExclusively(String pathname) throws IOException {
         // TODO Auto-generated method stub
-        log.fine("createFileExclusively");
+        logger.log(Level.TRACE, "createFileExclusively");
         return false;
     }
-
 
     boolean delete(File f) {
         // TODO Auto-generated method stub
-        log.fine("delete");
+        logger.log(Level.TRACE, "delete");
         return false;
     }
-
 
     boolean deleteOnExit(File f) {
         // TODO Auto-generated method stub
-        log.fine("deleteOnExit");
+        logger.log(Level.DEBUG, "deleteOnExit");
         return false;
     }
-
 
     static String[] list(java.io.File f) {
 
@@ -364,34 +354,29 @@ public class FileSystem {
         return result;
     }
 
-
     boolean createDirectory(File f) {
         // TODO Auto-generated method stub
-        log.fine("createDirectory");
+        logger.log(Level.TRACE, "createDirectory");
         return false;
     }
-
 
     boolean rename(File f1, File f2) {
         // TODO Auto-generated method stub
-        log.fine("rename");
+        logger.log(Level.TRACE, "rename");
         return false;
     }
-
 
     boolean setLastModifiedTime(File f, long time) {
         // TODO Auto-generated method stub
-        log.fine("setLastModifiedTime");
+        logger.log(Level.TRACE, "setLastModifiedTime");
         return false;
     }
-
 
     boolean setReadOnly(File f) {
         // TODO Auto-generated method stub
-        log.fine("setReadOnly");
+        logger.log(Level.DEBUG, "setReadOnly");
         return false;
     }
-
 
     static java.io.File[] listRoots() {
         java.io.File[] result = new java.io.File[roots.length];
@@ -401,17 +386,15 @@ public class FileSystem {
         return result;
     }
 
-
     int compare(File f1, File f2) {
         // TODO Auto-generated method stub
-        log.fine("compare");
+        logger.log(Level.TRACE, "compare");
         return 0;
     }
 
-
     int hashCode(java.io.File f) {
         // TODO Auto-generated method stub
-        log.fine("hashCode");
+        logger.log(Level.TRACE, "hashCode");
         return 0;
     }
 
@@ -430,33 +413,30 @@ public class FileSystem {
         EmulatorFile currentFile = roots[0];
 
         String absolutePath = file.getAbsolutePath();
-        log.fine("checking if the file " + absolutePath + " exists...");
+        logger.log(Level.DEBUG, "checking if the file " + absolutePath + " exists...");
         String[] names = absolutePath.split("\\" + separatorChar);
 
         if (currentMountPoint != null) {
-            log.fine("currentMountPoint.getName()=" + currentMountPoint.getName());
+            logger.log(Level.DEBUG, "currentMountPoint.getName()=" + currentMountPoint.getName());
         }
-
 
         // do the loop starting from index 1 because the first
         // position should always be empty when splitting like that
 
         for (int i = 0; i < names.length; i++) {
             if (i < 1) {
-                log.fine("skipping names[" + i + "] = _" + names[i] + "_");
+                logger.log(Level.DEBUG, "skipping names[" + i + "] = _" + names[i] + "_");
                 continue;
             }
-            log.fine("names[" + i + "] = _" + names[i] + "_");
+            logger.log(Level.DEBUG, "names[" + i + "] = _" + names[i] + "_");
             currentFile = currentFile.getChild(names[i]);
 
-
             if (currentFile != null) {
-                log.fine(names[i] + " did exist");
+                logger.log(Level.DEBUG, names[i] + " did exist");
             } else {
-                log.fine(names[i] + " did NOT exist");
+                logger.log(Level.DEBUG, names[i] + " did NOT exist");
                 break;
             }
-
         }
 
         return currentFile;
@@ -472,7 +452,7 @@ public class FileSystem {
 
         EmulatorFile fp = getEmulatorFile(file);
 
-        log.fine("fp=" + fp);
+        logger.log(Level.DEBUG, "fp=" + fp);
 
         if (fp != null) {
             result = fp.getRealFile();
@@ -487,14 +467,11 @@ public class FileSystem {
     }
 
     public static java.io.File getFile(FileDescriptor fd) {
-        log.info("not implemented");
+        logger.log(Level.INFO, "not implemented");
         return null;
     }
-
 
     public static void main(String[] args) {
         new FileSystem();
     }
-
-
 }

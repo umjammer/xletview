@@ -1,22 +1,23 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
 
 import java.awt.Image;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.helper.HActionableHelper;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -25,7 +26,7 @@ import net.beiker.xletview.helper.HActionableHelper;
  */
 public class HGraphicButton extends HIcon implements HActionable {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HGraphicButton.class.getName());
+    private static final Logger logger = getLogger(HGraphicButton.class.getName());
 
     private HActionableHelper helper;
 
@@ -56,11 +57,12 @@ public class HGraphicButton extends HIcon implements HActionable {
     public HGraphicButton(Image imageNormal, Image imageFocused, Image imageActioned) {
         this(imageNormal, imageFocused, imageActioned, 0, 0, 0, 0);
     }
-    // constructors end //
+
+    // constructors end
 
     private void init() {
         helper = new HActionableHelper(this);
-        log.fine("HGraphicButton - init");
+        logger.log(Level.DEBUG, "HGraphicButton - init");
     }
 
     public static void setDefaultLook(HGraphicLook hlook) {
@@ -98,7 +100,7 @@ public class HGraphicButton extends HIcon implements HActionable {
 
     @Override
     public void processHActionEvent(org.havi.ui.event.HActionEvent evt) {
-        //Debug.write(this, "processHActionEvent");
+//        logger.log(Level.TRACE, this, "processHActionEvent");
         int state = getInteractionState();
         int newState = helper.getHActionEventResult(evt);
 

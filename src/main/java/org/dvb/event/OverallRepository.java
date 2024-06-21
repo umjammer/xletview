@@ -9,8 +9,7 @@
  * See LICENSE document for details.
  */
 
-
-package org.dvb.event;
+package  org.dvb.event;
 
 /**
  * @author Martin Sveden

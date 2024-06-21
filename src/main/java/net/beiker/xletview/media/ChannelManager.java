@@ -12,9 +12,10 @@
 package net.beiker.xletview.media;
 
 import java.io.InputStream;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
@@ -24,13 +25,15 @@ import net.n3.nanoxml.IXMLReader;
 import net.n3.nanoxml.StdXMLReader;
 import net.n3.nanoxml.XMLParserFactory;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class ChannelManager {
 
-    private static final Logger log = Logger.getLogger(ChannelManager.class.getName());
+    private static final Logger logger = getLogger(ChannelManager.class.getName());
 
     private static ChannelManager THE_INSTANCE;
 
@@ -44,7 +47,7 @@ public class ChannelManager {
 
         // if there is no channels, add the default one
         if (this.channels.isEmpty()) {
-            //Media media = new Media(Util.getURLConnection(ChannelManager.class, Settings.getProperty("file.defaultbg")) );
+//            Media media = new Media(Util.getURLConnection(ChannelManager.class, Settings.getProperty("file.defaultbg")));
 
             Media media;
             try {
@@ -53,7 +56,7 @@ public class ChannelManager {
                 this.channels.add(channel);
             } catch (RuntimeException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
 
@@ -70,12 +73,12 @@ public class ChannelManager {
     public void setChannel(int channel) {
         // check if it is a valid channel number
         if (isValidNumber(channel)) {
-            log.fine("current channel is now " + this.channels.get(channel).getName());
+            logger.log(Level.DEBUG, "current channel is now " + this.channels.get(channel).getName());
             this.currentChannelNumber = channel;
             Media media = this.channels.get(channel).getMedia();
             MediaPlayer.getInstance().setMedia(media);
         } else {
-            log.fine("not a valid channel number");
+            logger.log(Level.DEBUG, "not a valid channel number");
         }
     }
 
@@ -95,8 +98,8 @@ public class ChannelManager {
         setChannel(this.currentChannelNumber);
     }
 
-    /*
-     * / checks if it is a valid channel number
+    /**
+     * checks if it is a valid channel number
      */
     private boolean isValidNumber(int i) {
         boolean result = i > -1 && i < this.channels.size();
@@ -147,14 +150,13 @@ public class ChannelManager {
                     }
 
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    logger.log(Level.ERROR, e.getMessage(), e);
                 }
-                log.fine(element.getName());
+                logger.log(Level.DEBUG, element.getName());
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
-
 }

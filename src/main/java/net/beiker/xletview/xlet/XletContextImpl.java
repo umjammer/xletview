@@ -1,19 +1,18 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.xlet;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.media.ScreenContainer;
 import xjava.io.EmulatorFile;
@@ -21,13 +20,13 @@ import xjavax.tv.service.selection.ServiceContextImpl;
 import xjavax.tv.xlet.Xlet;
 import xjavax.tv.xlet.XletContext;
 
+import static java.lang.System.getLogger;
+
 
 public class XletContextImpl implements XletContext {
 
-    /**
-     * Debugging
-     */
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(XletContextImpl.class.getName());
+    /** Debugging */
+    private static final Logger logger = getLogger(XletContextImpl.class.getName());
 
     // javaTV
     public static final String CONTAINER = "javax.tv.xlet.container";
@@ -79,64 +78,52 @@ public class XletContextImpl implements XletContext {
     }
 
 
-    /* (non-Javadoc)
-     * @see xjavax.tv.xlet.XletContext#getXletProperty(java.lang.String)
-     */
     @Override
     public Object getXletProperty(String key) {
-        log.fine("getXletProperty(" + key + ")");
+        logger.log(Level.DEBUG, "getXletProperty(" + key + ")");
         switch (key) {
-        case XletContext.ARGS -> {
-            return xletArgs;
-        }
-        case PROPERTY_CALLER_PARAMS -> {
-            return callerArgs;
-        }
-        case CONTAINER -> {
-            return ScreenContainer.getInstance().getXletContainer();
-        }
-        case SERVICE_CONTEXT -> {
-            return ServiceContextImpl.getInstance();
-        }
-        case APP_DIR -> {
-            return applicationDirectory;
-        }
-        case PROPERTY_APP_ID -> {
-            log.fine("NOT IMPLEMENTED - RETURNING '0' AS APP_ID STRING.");
-            return "0";
-        }
-        case PROPERTY_ORG_ID -> {
-            log.fine("NOT IMPLEMENTED - RETURNING '0' AS ORG_ID STRING.");
-            return "0";
-        }
-        default -> {
-            log.fine("getXletProperty() for a key '" + key + "' that is unknown. Returning null.");
-            return null;
-        }
+            case XletContext.ARGS -> {
+                return xletArgs;
+            }
+            case PROPERTY_CALLER_PARAMS -> {
+                return callerArgs;
+            }
+            case CONTAINER -> {
+                return ScreenContainer.getInstance().getXletContainer();
+            }
+            case SERVICE_CONTEXT -> {
+                return ServiceContextImpl.getInstance();
+            }
+            case APP_DIR -> {
+                return applicationDirectory;
+            }
+            case PROPERTY_APP_ID -> {
+                logger.log(Level.DEBUG, "NOT IMPLEMENTED - RETURNING '0' AS APP_ID STRING.");
+                return "0";
+            }
+            case PROPERTY_ORG_ID -> {
+                logger.log(Level.DEBUG, "NOT IMPLEMENTED - RETURNING '0' AS ORG_ID STRING.");
+                return "0";
+            }
+            default -> {
+                logger.log(Level.DEBUG, "getXletProperty() for a key '" + key + "' that is unknown. Returning null.");
+                return null;
+            }
         }
     }
 
-    /* (non-Javadoc)
-     * @see xjavax.tv.xlet.XletContext#notifyDestroyed()
-     */
     @Override
     public void notifyDestroyed() {
         setState(DESTROYED);
         manager.notifyDestroyed(this);
     }
 
-    /* (non-Javadoc)
-     * @see xjavax.tv.xlet.XletContext#notifyPaused()
-     */
     @Override
     public void notifyPaused() {
         setState(PAUSED);
         manager.notifyPaused(this);
     }
 
-    /* (non-Javadoc)
-     * @see xjavax.tv.xlet.XletContext#resumeRequest()
-     */
     @Override
     public void resumeRequest() {
         manager.resumeRequest(this);
@@ -151,9 +138,7 @@ public class XletContextImpl implements XletContext {
     }
 
     Xlet getXlet() {
-        log.fine("xlet=" + xlet);
+        logger.log(Level.DEBUG, "xlet=" + xlet);
         return xlet;
     }
-
-
 }

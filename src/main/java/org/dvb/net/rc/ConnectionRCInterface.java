@@ -15,12 +15,15 @@
 package org.dvb.net.rc;
 
 import java.io.IOException;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import org.davic.resources.ResourceClient;
 import org.davic.resources.ResourceProxy;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -32,7 +35,7 @@ import org.davic.resources.ResourceProxy;
 public class ConnectionRCInterface extends RCInterface implements ResourceProxy, Runnable {
 
     /** Debugging facility. */
-    private final static Logger logger = Logger.getLogger(ConnectionRCInterface.class.getName());
+    private final static Logger logger = getLogger(ConnectionRCInterface.class.getName());
 
     private boolean connected;
     private List<ConnectionListener> listenerObjects;
@@ -84,12 +87,10 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
             // give the resource to the new ResourceClient
             this.resourceClient = c;
         }
-        /*
-        // not used since we always give permission
-        else {
-            throw new PermissionDeniedException("ConnectionRCInterface already reserved");
-        }
-        */
+//        // not used since we always give permission
+//        else {
+//            throw new PermissionDeniedException("ConnectionRCInterface already reserved");
+//        }
     }
 
     public void release() {
@@ -109,7 +110,7 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
             this.connected = false;
             fireConnectionEvent(new ConnectionTerminatedEvent(this));
         } else {
-            logger.warning("ConnectionRCInterface: was not connected");
+            logger.log(Level.WARNING, "ConnectionRCInterface: was not connected");
         }
     }
 
@@ -177,12 +178,11 @@ public class ConnectionRCInterface extends RCInterface implements ResourceProxy,
         try {
             Thread.sleep(FAKED_CONNECION_TIME);
         } catch (InterruptedException ex) {
-            logger.warning("XleTView: Exception in Timer Thread");
+            logger.log(Level.WARNING, "XleTView: Exception in Timer Thread");
             ex.printStackTrace();
         }
         this.starttime = System.currentTimeMillis();
         this.connected = true;
         fireConnectionEvent(new ConnectionEstablishedEvent(this));
     }
-
 }

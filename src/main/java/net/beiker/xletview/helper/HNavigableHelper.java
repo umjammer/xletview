@@ -4,9 +4,10 @@ import java.awt.Component;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.lang.System.Logger.Level;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import org.havi.ui.HEventMulticaster;
 import org.havi.ui.HNavigable;
@@ -16,6 +17,8 @@ import org.havi.ui.HVisible;
 import org.havi.ui.event.HFocusEvent;
 import org.havi.ui.event.HFocusListener;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
@@ -23,7 +26,7 @@ import org.havi.ui.event.HFocusListener;
 //public final class HNavigableHelper implements HNavigable{
 public final class HNavigableHelper {
 
-    private static final Logger log = Logger.getLogger(HNavigableHelper.class.getName());
+    private static final Logger logger = getLogger(HNavigableHelper.class.getName());
 
     private Map<Integer, HNavigable> navTargets;
     private HSound gainFocusSound;
@@ -132,15 +135,12 @@ public final class HNavigableHelper {
         }
         hFocusListener = HEventMulticaster.add(hFocusListener, listener);
 
-        /*
-         * To make the AWT focus mechanism trigger a focus event
-         * on this Component it needs to have a FocusListener.
-         * So, we add a dummy.
-         */
+        // To make the AWT focus mechanism trigger a focus event
+        // on this Component it needs to have a FocusListener.
+        // So, we add a dummy.
 //        if(hVisible.getFocusListeners().length == 0){
 //            hVisible.addFocusListener(net.beiker.xletview.event.FocusListenerDummy.getInstance());
 //        }
-
     }
 
     /* (non-Javadoc)
@@ -210,7 +210,7 @@ public final class HNavigableHelper {
 
             if (newNav instanceof Component) {
                 ((Component) newNav).requestFocus();
-                log.fine("requested focus on newNav");
+                logger.log(Level.DEBUG, "requested focus on newNav");
             }
         }
 
@@ -238,6 +238,4 @@ public final class HNavigableHelper {
 //     */
 //    public void processHFocusEvent(HFocusEvent evt) {
 //    }
-
-
 }

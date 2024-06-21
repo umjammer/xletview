@@ -13,7 +13,6 @@
 
 package xjavax.tv.service.selection;
 
-
 import net.beiker.xletview.xlet.XletContextImpl;
 import xjavax.tv.xlet.XletContext;
 

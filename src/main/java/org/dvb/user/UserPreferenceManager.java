@@ -13,11 +13,15 @@ package org.dvb.user;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -26,6 +30,8 @@ import java.util.Properties;
  * @comment The preferences are hardcoded - fix, write not implemented
  */
 public class UserPreferenceManager {
+
+    private static final Logger logger = getLogger(UserPreferenceManager.class.getName());
 
     private static final Map<String, String[]> prefs;
 
@@ -58,7 +64,7 @@ public class UserPreferenceManager {
         try {
             props.load(new FileInputStream(settingsPath));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
         String string;
@@ -115,7 +121,6 @@ public class UserPreferenceManager {
         String name = p.getName();
         String fName = facility.getPreference();
 
-
         if (name != null && name.equals(fName)) {
             String[] s = prefs.get(name);
             String[] wanted = facility.getValues();
@@ -130,11 +135,9 @@ public class UserPreferenceManager {
                 }
             }
         }
-
     }
 
-    public void write(Preference p)
-            throws UnsupportedPreferenceException, IOException {
+    public void write(Preference p) throws UnsupportedPreferenceException, IOException {
     }
 
     public void addUserPreferenceChangeListener(UserPreferenceChangeListener listener) {
@@ -154,5 +157,4 @@ public class UserPreferenceManager {
             listener.receiveUserPreferenceChangeEvent(event);
         }
     }
-
 }

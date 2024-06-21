@@ -39,7 +39,7 @@ public class UserObjectImpl implements UserObject {
             name = (!file.getName().isEmpty()) ? file.getName() : file.getPath();
             name = name.replaceAll("\\\\", "");
             name = name.replaceAll("/", "");
-            //Debug.write(this, name);
+            //logger.log(Level.DEBUG, this, name);
         }
     }
 
@@ -100,9 +100,6 @@ public class UserObjectImpl implements UserObject {
         return name;
     }
 
-    /* (non-Javadoc)
-     * @see net.beiker.xletview.ui.tree.UserObject#isLeaf()
-     */
     @Override
     public boolean isBranch() {
         return true;

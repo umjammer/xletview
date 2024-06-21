@@ -1,18 +1,21 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
+
+
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -22,7 +25,7 @@ package org.havi.ui;
  */
 public class HBackgroundDevice extends HScreenDevice {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HBackgroundDevice.class.getName());
+    private static final Logger logger = getLogger(HBackgroundDevice.class.getName());
 
     private HBackgroundConfiguration hBackgroundConfiguration;
     private HBackgroundConfiguration[] hBackgroundConfigurations;
@@ -42,8 +45,8 @@ public class HBackgroundDevice extends HScreenDevice {
     }
 
     public HBackgroundConfiguration getBestConfiguration(HBackgroundConfigTemplate hbc) {
-        /* At the moment we always return a HStillImageBackgroundConfiguration */
-        log.info("\n---\nAt the moment XleTView always return a HStillImageBackgroundConfiguration here\n---");
+        // At the moment we always return a HStillImageBackgroundConfiguration
+        logger.log(Level.INFO, "\n---\nAt the moment XleTView always return a HStillImageBackgroundConfiguration here\n---");
         return new HStillImageBackgroundConfiguration();
     }
 

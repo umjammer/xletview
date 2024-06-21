@@ -21,6 +21,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -44,10 +46,12 @@ import net.beiker.xletview.ui.tree.CellRenderer;
 import net.beiker.xletview.ui.tree.UserObjectImpl;
 import net.beiker.xletview.util.Util;
 
+import static java.lang.System.getLogger;
+
 
 public class DirectoryExplorer extends JDialog implements TreeSelectionListener, TreeExpansionListener, ActionListener {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(DirectoryExplorer.class.getName());
+    private static final Logger logger = getLogger(DirectoryExplorer.class.getName());
 
     //private JDialog frame;
     private JTree tree;
@@ -145,7 +149,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
             tp = tree.getNextMatch(s, nextSearchRow, Position.Bias.Forward);
             if (tp != null) {
                 tree.expandPath(tp);
-                log.fine("match");
+                logger.log(Level.DEBUG, "match");
                 nextSearchRow = tree.getRowForPath(tp);
                 tmp = tp;
             } else {
@@ -172,7 +176,7 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
     }
 
     public void pathChanged(TreePath path) {
-        log.fine(path.toString());
+        logger.log(Level.DEBUG, path.toString());
         StringBuilder filePath = new StringBuilder();
         for (int i = 1; i < path.getPathCount(); i++) {
             String s = path.getPathComponent(i).toString();
@@ -188,11 +192,11 @@ public class DirectoryExplorer extends JDialog implements TreeSelectionListener,
 
     @Override
     public void treeExpanded(TreeExpansionEvent event) {
-        //Debug.write(this, "expanded");
+        //logger.log(Level.DEBUG, this, "expanded");
         TreePath treePath = event.getPath();
         Object lastInPath = treePath.getLastPathComponent();
         if (lastInPath instanceof BeikerTreeNode treeNode) {
-            //Debug.write(this, treeNode.getUserObject().toString());
+            //logger.log(Level.DEBUG, this, treeNode.getUserObject().toString());
 
             //treeNode.expand();
 

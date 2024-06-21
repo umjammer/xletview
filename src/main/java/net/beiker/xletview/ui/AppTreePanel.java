@@ -16,10 +16,13 @@ import java.awt.Cursor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragGestureRecognizer;
 import java.awt.dnd.DragSource;
+import java.awt.dnd.DropTarget;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -44,10 +47,12 @@ import net.beiker.xletview.ui.tree.CellRenderer;
 import net.beiker.xletview.ui.tree.TreeListener;
 import net.beiker.xletview.ui.tree.UserObject;
 
+import static java.lang.System.getLogger;
+
 
 public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeExpansionListener/*, DragGestureListener, DropTargetListener, DragSourceListener */ {
 
-    private static final Logger log = Logger.getLogger(AppTreePanel.class.getName());
+    private static final Logger logger = getLogger(AppTreePanel.class.getName());
 
     protected JTree tree;
     protected DefaultTreeModel model;
@@ -70,9 +75,9 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
     public AppTreePanel(AppGroup parentGroup) {
         this();
 
-        //DefaultMutableTreeNode root = new DefaultMutableTreeNode("Applications");
-        //BeikerTreeNode node = new BeikerTreeNode(parentGroup);
-        //root.add(node);
+//        DefaultMutableTreeNode root = new DefaultMutableTreeNode("Applications");
+//        BeikerTreeNode node = new BeikerTreeNode(parentGroup);
+//        root.add(node);
 
         BeikerTreeNode root = new BeikerTreeNode(parentGroup);
         root.expand();
@@ -98,15 +103,12 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
         s.getViewport().add(tree);
         add(s, BorderLayout.CENTER);
 
-        /*
-        // drag n drop stuff not yet implemented
-
-        dragSource = DragSource.getDefaultDragSource();
-        DragGestureRecognizer dgr = dragSource.createDefaultDragGestureRecognizer(tree, //DragSource
-        DnDConstants.ACTION_COPY_OR_MOVE, this);
-        DropTarget dropTarget = new DropTarget(tree, this);
-        */
-
+//        // drag n drop stuff not yet implemented
+//
+//        dragSource = DragSource.getDefaultDragSource();
+//        DragGestureRecognizer dgr = dragSource.createDefaultDragGestureRecognizer(tree, //DragSource
+//        DnDConstants.ACTION_COPY_OR_MOVE, this);
+//        DropTarget dropTarget = new DropTarget(tree, this);
     }
 
     public DefaultTreeModel getModel() {
@@ -115,11 +117,11 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 
     @Override
     public void treeExpanded(TreeExpansionEvent event) {
-        //Debug.write(this, "expanded");
+//        logger.log(Level.TRACE, this, "expanded");
         TreePath treePath = event.getPath();
         Object lastInPath = treePath.getLastPathComponent();
         if (lastInPath instanceof BeikerTreeNode treeNode) {
-            //Debug.write(this, treeNode.getUserObject().toString());
+//            logger.log(Level.DEBUG, this, treeNode.getUserObject().toString());
             treeNode.expand();
             model.reload(treeNode);
 
@@ -147,16 +149,16 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
      * @param group the AppGroup to be added
      */
     public void insertGroup(AppGroup group) {
-        log.fine("insert group");
+        logger.log(Level.TRACE, "insert group");
         if (selectedPath != null) {
             BeikerTreeNode node = (BeikerTreeNode) selectedPath.getLastPathComponent();
             TreePath selectedPath = new TreePath(node.getPath());
             Object userObject = node.getUserObject();
             Object object = ((UserObject) userObject).getObject();
-            log.fine("userObject is " + userObject.getClass().getName());
+            logger.log(Level.DEBUG, "userObject is " + userObject.getClass().getName());
 
             if (object instanceof AppGroup parentGroup) {
-                log.fine("userObject is AppGroup");
+                logger.log(Level.DEBUG, "userObject is AppGroup");
                 parentGroup.addChild(group);
                 BeikerTreeNode childNode = new BeikerTreeNode(group);
                 model.insertNodeInto(childNode, node, node.getChildCount());
@@ -172,16 +174,16 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
      * @param app the App to be added
      */
     public void insertApp(App app) {
-        log.fine("insert app");
+        logger.log(Level.DEBUG, "insert app");
         if (selectedPath != null) {
             BeikerTreeNode node = (BeikerTreeNode) selectedPath.getLastPathComponent();
 
             Object userObject = node.getUserObject();
             Object object = ((UserObject) userObject).getObject();
-            log.fine("userObject is " + userObject.getClass().getName());
+            logger.log(Level.DEBUG, "userObject is " + userObject.getClass().getName());
 
             if (object instanceof AppGroup parentGroup) {
-                log.fine("userObject is AppGroup");
+                logger.log(Level.DEBUG, "userObject is AppGroup");
                 parentGroup.addApp(app);
 
                 BeikerTreeNode childNode = new BeikerTreeNode(app);
@@ -198,7 +200,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 
             Object userObject = node.getUserObject();
 
-            log.fine("userObject is " + userObject.getClass().getName());
+            logger.log(Level.DEBUG, "userObject is " + userObject.getClass().getName());
             if (userObject instanceof UserObject) {
                 Object object = ((UserObject) userObject).getObject();
                 if (object != AppManager.getInstance().getDefaultGroup()) {
@@ -226,7 +228,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
                         ((AppGroup) parentObject).removeApp((App) childObject);
                     }
                 } else {
-                    log.fine("it's not possible to delete default group");
+                    logger.log(Level.DEBUG, "it's not possible to delete default group");
                 }
             }
         }
@@ -246,18 +248,14 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
         }
     }
 
-
-
-    /*
-        Drag n Drop is not yet implemented
-     */
+    // Drag n Drop is not yet implemented
 
     /* (non-Javadoc)
      * @see java.awt.dnd.DragGestureListener#dragGestureRecognized(java.awt.dnd.DragGestureEvent)
      */
     public void dragGestureRecognized(DragGestureEvent e) {
         Object obj = e.getSource();
-        log.fine("dragGestureRecognized, " + obj.getClass().getName());
+        logger.log(Level.DEBUG, "dragGestureRecognized, " + obj.getClass().getName());
 
         DefaultMutableTreeNode dragNode = getSelectedNode();
         if (dragNode != null) {
@@ -279,7 +277,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragEnter(DropTargetDragEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragEnter, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragEnter, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -287,7 +285,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragOver(DropTargetDragEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragOver, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragOver, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -295,7 +293,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dropActionChanged(DropTargetDragEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dropActionChanged, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dropActionChanged, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -303,7 +301,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragExit(DropTargetEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragExit, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragExit, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -311,7 +309,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void drop(DropTargetDropEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "drop, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "drop, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -319,7 +317,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragEnter(DragSourceDragEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragEnter, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragEnter, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -327,7 +325,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragOver(DragSourceDragEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragOver, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragOver, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -335,7 +333,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dropActionChanged(DragSourceDragEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dropActionChanged, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dropActionChanged, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -343,7 +341,7 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragExit(DragSourceEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragExit, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragExit, " + obj.getClass().getName());
 //    }
 //
 //    /* (non-Javadoc)
@@ -351,7 +349,6 @@ public class AppTreePanel extends JPanel implements TreeSelectionListener, TreeE
 //     */
 //    public void dragDropEnd(DragSourceDropEvent e) {
 //        Object obj = e.getSource();
-//        Debug.write(this, "dragDropEnd, " + obj.getClass().getName());
+//        logger.log(Level.DEBUG, this, "dragDropEnd, " + obj.getClass().getName());
 //    }
-
 }

@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URLConnection;
 import java.util.Arrays;
 import java.util.Collections;
@@ -26,18 +28,20 @@ import java.util.Properties;
 import net.beiker.xletview.Startup;
 import net.beiker.xletview.window.ConsoleWindow;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * Parses a settings file and holds the values.
  */
 public class Settings {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Settings.class.getName());
+    private static final Logger logger = getLogger(Settings.class.getName());
 
     private static Properties properties;
-    //    private static File file;
-    private static String instruction = "#Mind that paths can not contain backslash" + System.getProperty("line.separator") +
-            "#Make sure there are no spaces after the values" + System.getProperty("line.separator");
+//    private static File file;
+    private static String instruction = "#Mind that paths can not contain backslash" + System.lineSeparator() +
+            "#Make sure there are no spaces after the values" + System.lineSeparator();
 
     private static String[] exclude = {"path.home"};
 
@@ -45,15 +49,15 @@ public class Settings {
     }
 
     public static void load(InputStream is) {
-        //Settings.file = file;
+//        Settings.file = file;
         Properties p = new Properties();
         properties = p;
         try {
-            //InputStream fis = Settings.class.getClassLoader().getResourceAsStream(Constants.PATH_SETTINGS);
-            //FileInputStream fis = new FileInputStream(file);
+//            InputStream fis = Settings.class.getClassLoader().getResourceAsStream(Constants.PATH_SETTINGS);
+//            FileInputStream fis = new FileInputStream(file);
             p.load(is);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
     }
 
@@ -66,12 +70,12 @@ public class Settings {
 
     public static void save() {
         beforeSave();
-        //try {
+//        try {
         URLConnection settingsPath = Util.getURLConnection(Startup.class, Constants.PATH_SETTINGS);
-        //String settingsPath = Settings.getProperty("path.home") + Constants.PATH_SETTINGS;
-        //File file2 = new File(settingsPath);
-        //System.out.println(file.getAbsolutePath());
-        //FileOutputStream os = new FileOutputStream(settingsPath);
+//        String settingsPath = Settings.getProperty("path.home") + Constants.PATH_SETTINGS;
+//        File file2 = new File(settingsPath);
+//        System.out.println(file.getAbsolutePath());
+//        FileOutputStream os = new FileOutputStream(settingsPath);
         OutputStream os = null;
         try {
             os = settingsPath.getOutputStream();
@@ -83,11 +87,11 @@ public class Settings {
 
 
         // Sort
-        List<String> v = Arrays.asList(properties.keySet().toArray(String[]::new));
+        List<String> v = List.of(properties.keySet().toArray(String[]::new));
         Collections.sort(v);
 
         try {
-            osw.write(instruction + System.getProperty("line.separator"));
+            osw.write(instruction + System.lineSeparator());
             for (String name : v) {
                 boolean include = true;
                 for (String s : exclude) {
@@ -98,9 +102,9 @@ public class Settings {
                 }
                 if (include) {
                     String value = properties.getProperty(name);
-                    log.fine(name + "=" + value);
+                    logger.log(Level.DEBUG, name + "=" + value);
 
-                    osw.write(name + "=" + fixPath(value) + System.getProperty("line.separator"));
+                    osw.write(name + "=" + fixPath(value) + System.lineSeparator());
                 }
             }
         } catch (IOException e1) {
@@ -111,10 +115,8 @@ public class Settings {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-
-        //}
-//        catch (FileNotFoundException e) {
-//            e.printStackTrace();
+//        } catch (FileNotFoundException e) {
+//            logger.log(Level.ERROR, e.getMessage(), e);
 //        }
     }
 
@@ -136,7 +138,7 @@ public class Settings {
     }
 
     public static String getProperty(String key) {
-        //Debug.write(Settings.class, key);
+//        logger.log(Level.DEBUG, Settings.class, key);
         return properties.getProperty(key);
     }
 

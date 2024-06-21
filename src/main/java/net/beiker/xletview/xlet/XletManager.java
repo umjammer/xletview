@@ -13,12 +13,13 @@ package net.beiker.xletview.xlet;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import net.beiker.xletview.Startup;
 import net.beiker.xletview.classloader.XletClassLoader;
@@ -38,11 +39,13 @@ import xjavax.tv.util.TVTimerImpl;
 import xjavax.tv.xlet.Xlet;
 import xjavax.tv.xlet.XletStateChangeException;
 
+import static java.lang.System.getLogger;
+
 
 public class XletManager implements Runnable, DownloadEventListener {
 
     /** Debugging facility. */
-    private static final Logger logger = Logger.getLogger(XletManager.class.getName());
+    private static final Logger logger = getLogger(XletManager.class.getName());
 
 
     private static XletManager THE_INSTANCE;
@@ -76,12 +79,12 @@ public class XletManager implements Runnable, DownloadEventListener {
         String extra = Settings.getProperty("extra.classpath");
         if (extra != null) {
             // TODO: test
-            logger.fine("Adding extra class paths from extra.classpath property.");
+            logger.log(Level.DEBUG, "Adding extra class paths from extra.classpath property.");
             StringTokenizer st = new StringTokenizer(extra, File.pathSeparator, false);
             int numTokens = st.countTokens();
             for (int i = 0; i < numTokens; i++) {
                 String token = st.nextToken();
-                logger.fine("Adding '" + token + "' class path.");
+                logger.log(Level.DEBUG, "Adding '" + token + "' class path.");
                 URL path = Startup.pathString2URL(token);
                 this.xletExtraPaths.add(path);
             }
@@ -97,18 +100,18 @@ public class XletManager implements Runnable, DownloadEventListener {
             url = new URL("file:" + xletHome);
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
         this.setXlet(url, xletClassName);
     }
 
     public void setXlet(URL xletHome, URL[] xletExPaths, String xletClassName) {
-        logger.fine("Adding Xlet's extra paths...");
+        logger.log(Level.DEBUG, "Adding Xlet's extra paths...");
         for (URL xletExPath : xletExPaths) {
-            logger.fine(xletExPath.toString());
+            logger.log(Level.DEBUG, xletExPath.toString());
             this.xletExtraPaths.add(xletExPath);
         }
-        logger.fine("Done adding Xlet's extra paths.");
+        logger.log(Level.DEBUG, "Done adding Xlet's extra paths.");
 
         // Also runs the Xlet, so do this last.
         setXlet(xletHome, xletClassName);
@@ -135,7 +138,7 @@ public class XletManager implements Runnable, DownloadEventListener {
                 xletHome = new URL(xletHome.toExternalForm()+File.separator);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         */
 
@@ -174,30 +177,30 @@ public class XletManager implements Runnable, DownloadEventListener {
         try {
             xletLoader = new XletClassLoader(xletURLs);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
-        logger.info("loading Xlet... [" + this.xletClassName + "]");
+        logger.log(Level.INFO, "loading Xlet... [" + this.xletClassName + "]");
         try {
-            logger.fine(this.xletClassName);
+            logger.log(Level.DEBUG, this.xletClassName);
             //xletClass = Class.forName(xletClassName, true, loader);
             this.xletClass = xletLoader.loadClass(this.xletClassName);
             this.xletThread = new Thread(this.xletThreadGroup, this, "xletThread-" + this.xletContexts.size());
             this.xletThread.start();
-            logger.info("XLET started... [" + this.xletClassName + "]");
+            logger.log(Level.INFO, "XLET started... [" + this.xletClassName + "]");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
             cleanup();
-            logger.info("Application not loaded!");
+            logger.log(Level.INFO, "Application not loaded!");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
             cleanup();
         }
     }
 
     public void reloadActiveXlet() {
         if (this.activeContext != null) {
-            logger.info("reloading xlet " + this.xletHome + ", " + this.xletClassName);
+            logger.log(Level.INFO, "reloading xlet " + this.xletHome + ", " + this.xletClassName);
             setXlet(this.xletHome, this.xletClassName);
         }
     }
@@ -233,11 +236,11 @@ public class XletManager implements Runnable, DownloadEventListener {
                     try {
                         wait();
                     } catch (Exception ex) {
-                        logger.severe("error: " + ex);
+                        logger.log(Level.ERROR, "error: " + ex);
                     }
                 }
             }
-            logger.fine("xxxxx " + this.xletThread.getName() + " just died xxxxx");
+            logger.log(Level.DEBUG, "xxxxx " + this.xletThread.getName() + " just died xxxxx");
             this.xletThread = null;
         }
     }
@@ -245,14 +248,14 @@ public class XletManager implements Runnable, DownloadEventListener {
     public void destroyActiveXlet() {
         // only if a Xlet is running
         if (this.activeContext != null) {
-            logger.fine("CURRENT THREAD IS " + Thread.currentThread().getName());
+            logger.log(Level.DEBUG, "CURRENT THREAD IS " + Thread.currentThread().getName());
 
-            logger.fine("############### " + Thread.activeCount() + " threads active ###############");
+            logger.log(Level.DEBUG, "############### " + Thread.activeCount() + " threads active ###############");
             synchronized (this) {
                 try {
                     notifyAll();
                 } catch (Exception ex) {
-                    logger.severe("error: " + ex);
+                    logger.log(Level.ERROR, "error: " + ex);
                 }
             }
             destroyXlet(this.activeContext);
@@ -262,18 +265,18 @@ public class XletManager implements Runnable, DownloadEventListener {
             int threadCount = Thread.enumerate(threads);
             for (int i = 0; i < threadCount; i++) {
                 ThreadGroup group = threads[i].getThreadGroup();
-                logger.fine("subthread=" + threads[i].getName() + " in group=" + threads[i].getThreadGroup());
+                logger.log(Level.DEBUG, "subthread=" + threads[i].getName() + " in group=" + threads[i].getThreadGroup());
                 //threads[i].stop();
                 if (group == this.xletThreadGroup && threads[i] != this.xletThread) {
-                    //logger.fine("subthread=" + threads[k].getName() +  " in group=" + threads[k].getThreadGroup());
+                    //logger.log(Level.DEBUG, "subthread=" + threads[k].getName() +  " in group=" + threads[k].getThreadGroup());
                     //threads[k].interrupt();
-                    logger.fine(threads[i] + " is still alive, trying to stop it... ");
+                    logger.log(Level.DEBUG, threads[i] + " is still alive, trying to stop it... ");
                     threads[i] = null;
                     //threads[i].stop(); unsafe
                 }
             }
             this.activeContext = null;
-            logger.fine("###############" + Thread.activeCount() + " threads active ###############");
+            logger.log(Level.DEBUG, "###############" + Thread.activeCount() + " threads active ###############");
 
             /*
              * Remove all UserEvent listeners, just to not
@@ -287,9 +290,9 @@ public class XletManager implements Runnable, DownloadEventListener {
             TVTimerImpl.getInstance().descheduleAll(this);
         }
         MemoryPrinter.print();
-        logger.fine("running gc...");
+        logger.log(Level.DEBUG, "running gc...");
         System.gc();
-        logger.fine("after gc...");
+        logger.log(Level.DEBUG, "after gc...");
         MemoryPrinter.print();
     }
 
@@ -302,14 +305,13 @@ public class XletManager implements Runnable, DownloadEventListener {
 //        mountPoint.mount(new File(xletHome));
         EmulatorFile mountPoint = xjava.io.FileSystem.mountCarousel("apploc" + (appCount++), new File(this.xletHome.getFile()));
 
-
         try {
-            newObj = this.xletClass.newInstance();
+            newObj = this.xletClass.getDeclaredConstructor().newInstance();
             Xlet xlet = null;
             try {
                 xlet = (Xlet) newObj;
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
 
 
@@ -319,65 +321,61 @@ public class XletManager implements Runnable, DownloadEventListener {
             this.activeContext = xci;
             xci.setState(XletContextImpl.INITIALIZED);
         } catch (NoClassDefFoundError e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
             cleanup();
-            logger.info("Application not loaded!");
+            logger.log(Level.INFO, "Application not loaded!");
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
             cleanup();
         }
-
     }
 
     private void destroyXlet(XletContextImpl context) {
-        //logger.fine("§####§§" + Thread.currentThread().getName());
+//        logger.log(Level.DEBUG, "§####§§" + Thread.currentThread().getName());
 
         if (this.activeContext != null) {
-            logger.fine("About to destroy Xlet [" + context.getXlet().toString() + "]");
+            logger.log(Level.DEBUG, "About to destroy Xlet [" + context.getXlet().toString() + "]");
             TVContainer.getRootContainer(context).removeAll();
             Xlet xlet = this.activeContext.getXlet();
             try {
                 xlet.destroyXlet(true);
             } catch (XletStateChangeException e) {
-                //                logger.fine("###############\n###############\n###############\n###############\n");
+//                logger.log(Level.DEBUG, "###############\n###############\n###############\n###############\n");
                 cleanup();
-                /* XletStateChangeException - is thrown if the Xlet wishes to continue to execute
-                 * (Not enter the Destroyed  state). This exception is ignored if unconditional is equal to true.
-                 * So, we ignore it.
-                 * */
+                // XletStateChangeException - is thrown if the Xlet wishes to continue to execute
+                // (Not enter the Destroyed  state). This exception is ignored if unconditional is equal to true.
+                // So, we ignore it.
             } catch (NoClassDefFoundError | Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
                 cleanup();
             }
             BackgroundLayer.getInstance().removeAll();
             ScreenContainer.getInstance().repaint();
-            //logger.fine("compcount=" + BackgroundLayer.getInstance().getComponentCount());
+//            logger.log(Level.DEBUG, "compcount=" + BackgroundLayer.getInstance().getComponentCount());
             TVContainer.getRootContainer(context).repaint();
-            logger.info("Xlet destroyed");
+            logger.log(Level.INFO, "Xlet destroyed");
         }
 
-        //        Thread[] threads = new Thread[Thread.activeCount()];
-        //        int threadCount = Thread.enumerate(threads);
-        //        for(int i = 0; i < threadCount; i++){
-        //            logger.fine("thread=" + threads[i].getThreadGroup().getName());
-        ////            ThreadGroup tGroup = threads[i].getThreadGroup();
-        ////            if(tGroup != null){
-        ////                logger.fine("this group=" + Thread.currentThread().getThreadGroup() + ", thread's group" + threads[i].getThreadGroup());
-        ////            }
-        //        }
-        //
-        //        xletThreadGroup.list();
-        //
-        //
-        //      Thread[] threads = new Thread[xletThreadGroup.activeCount()];
-        //      int threadCount = Thread.enumerate(threads);
-        //      logger.fine("threadCount=" + threadCount);
-        //      for(int i = 0; i < threadCount; i++){
-        //          logger.fine("thread=" + threads[i].getName());
-        //      }
-        //
+//        Thread[] threads = new Thread[Thread.activeCount()];
+//        int threadCount = Thread.enumerate(threads);
+//        for(int i = 0; i < threadCount; i++) {
+//            logger.log(Level.DEBUG, "thread=" + threads[i].getThreadGroup().getName());
+////            ThreadGroup tGroup = threads[i].getThreadGroup();
+////            if (tGroup != null) {
+////                logger.log(Level.DEBUG, "this group=" + Thread.currentThread().getThreadGroup() + ", thread's group" + threads[i].getThreadGroup());
+////            }
+//        }
+//
+//        xletThreadGroup.list();
+//
+//      Thread[] threads = new Thread[xletThreadGroup.activeCount()];
+//      int threadCount = Thread.enumerate(threads);
+//      logger.log(Level.DEBUG, "threadCount=" + threadCount);
+//      for (int i = 0; i < threadCount; i++){
+//          logger.log(Level.DEBUG, "thread=" + threads[i].getName());
+//      }
 
-        logger.fine("Threads running=" + Thread.activeCount());
+        logger.log(Level.DEBUG, "Threads running=" + Thread.activeCount());
     }
 
     void notifyDestroyed(XletContextImpl xc) {
@@ -389,9 +387,9 @@ public class XletManager implements Runnable, DownloadEventListener {
             this.activeContext = null;
         }
         MemoryPrinter.print();
-        logger.fine("running gc...");
+        logger.log(Level.DEBUG, "running gc...");
         System.gc();
-        logger.fine("after gc...");
+        logger.log(Level.DEBUG, "after gc...");
         MemoryPrinter.print();
     }
 
@@ -411,28 +409,26 @@ public class XletManager implements Runnable, DownloadEventListener {
             this.activeContext = xc;
             try {
 
-                /*
-                 * request focus on the ScreenContainer, because
-                 * if a component in the previous loaded Xlet
-                 * had the focus no component has the focus right
-                 * now and the event mechanism doesn't work
-                 */
+                // request focus on the ScreenContainer, because
+                // if a component in the previous loaded Xlet
+                // had the focus no component has the focus right
+                // now and the event mechanism doesn't work
                 ScreenContainer.getInstance().requestFocus();
 
                 this.activeContext.getXlet().startXlet();
                 this.activeContext.setState(XletContextImpl.ACTIVE);
 
             } catch (XletStateChangeException e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
                 cleanup();
             }
         } else if (xc.getState() == XletContextImpl.ACTIVE) {
-            logger.fine("Xlet was already active");
+            logger.log(Level.DEBUG, "Xlet was already active");
         }
     }
 
     private void cleanup() {
-        logger.fine("Something went wrong, cleaning up errors...");
+        logger.log(Level.DEBUG, "Something went wrong, cleaning up errors...");
         ScreenContainer.getInstance().getXletContainer().removeAll();
         ScreenContainer.getInstance().getXletContainer().repaint();
         this.xletContexts.clear();
@@ -447,7 +443,7 @@ public class XletManager implements Runnable, DownloadEventListener {
                 @Override
                 public void uncaughtException(Thread t, Throwable e) {
                     if (!(e instanceof ThreadDeath)) {
-                        logger.severe(Util.getStackTrace(e) + "\n>>>>> error <<<<<");
+                        logger.log(Level.ERROR, Util.getStackTrace(e) + "\n>>>>> error <<<<<");
                         cleanup();
                     }
                 }
@@ -458,9 +454,9 @@ public class XletManager implements Runnable, DownloadEventListener {
 
     @Override
     public void downloadUpdate(DownloadEvent e) {
-        //logger.fine(e.getProcent() + "%" + ", file=" + e.getFileName() );
+//        logger.log(Level.DEBUG, e.getProcent() + "%" + ", file=" + e.getFileName() );
 
-        //logger.info(e.getFileName() + ", " + e.getProcent() + "% finished");
+//        logger.log(Level.INFO, e.getFileName() + ", " + e.getProcent() + "% finished");
         ScreenContainer.showProgressBar();
         ScreenContainer.updateProgressBar(e.getProcent());
         if (e.getProcent() == 100) {

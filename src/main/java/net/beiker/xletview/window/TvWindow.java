@@ -22,6 +22,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.InputStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -48,6 +50,8 @@ import net.n3.nanoxml.IXMLReader;
 import net.n3.nanoxml.StdXMLReader;
 import net.n3.nanoxml.XMLParserFactory;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * This is the main window of the emulator
@@ -56,7 +60,7 @@ import net.n3.nanoxml.XMLParserFactory;
  */
 public class TvWindow extends JFrame implements ActionListener {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(TvWindow.class.getName());
+    private static final Logger logger = getLogger(TvWindow.class.getName());
 
 
     public TvWindow() {
@@ -80,11 +84,11 @@ public class TvWindow extends JFrame implements ActionListener {
             screenHeight = Integer.parseInt(strHeight);
             String strX = Settings.getProperty("tv.x");
             String strY = Settings.getProperty("tv.y");
-            doCenter = (Settings.getProperty("tv.center").equals("true")) ? true : false;
+            doCenter = Settings.getProperty("tv.center").equals("true");
             x = Integer.parseInt(strX);
             y = Integer.parseInt(strY);
         } catch (Exception e) {
-            log.severe(e.toString());
+            logger.log(Level.ERROR, e.getMessage(), e);
             screenWidth = Util.parseInt(Settings.getProperty("tv.screenwidth"));
             screenHeight = Util.parseInt(Settings.getProperty("tv.screenheight"));
             doCenter = true;
@@ -99,11 +103,9 @@ public class TvWindow extends JFrame implements ActionListener {
         centerCont.add(tv);
         container.add(centerCont, BorderLayout.CENTER);
 
-        //container.add(tv, BorderLayout.CENTER);
+//        container.add(tv, BorderLayout.CENTER);
 
         if (Settings.getProperty("remote.show").equalsIgnoreCase("true")) {
-
-
             try {
                 InputStream in = Util.getURLConnection(ChannelManager.class, "config/remote_control.xml").getInputStream();
                 IXMLReader reader = new StdXMLReader(in);
@@ -115,10 +117,8 @@ public class TvWindow extends JFrame implements ActionListener {
                 container.add(remote, BorderLayout.EAST);
 
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
-
-
         }
 
         this.pack();
@@ -172,13 +172,11 @@ public class TvWindow extends JFrame implements ActionListener {
 
         // set the first channel
         ChannelManager.getInstance().setChannel(0);
-        //System.out.println("<end log file>");
-        //ConsoleWindow.getInstance();
+//        System.out.println("<end log file>");
+//        ConsoleWindow.getInstance();
 
         // visibility is set in the startup class
-
     }
-
 
     public void doClose() {
         setVisible(false);
@@ -187,7 +185,7 @@ public class TvWindow extends JFrame implements ActionListener {
 
     private void createMenu() {
         // menu
-        //        menuItems = new Map();
+//        menuItems = new Map();
         JMenuBar menuBar = null;
         JMenu menu = null;
         JMenuItem menuItem = null;
@@ -237,6 +235,4 @@ public class TvWindow extends JFrame implements ActionListener {
             ConsoleWindow.getInstance().setVisible(true);
         }
     }
-
-
 }

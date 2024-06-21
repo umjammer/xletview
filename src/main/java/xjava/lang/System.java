@@ -68,7 +68,7 @@ public class System {
         }
         catch (IOException e) {
 
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }*/
 
         setOut(java.lang.System.out);
@@ -87,7 +87,7 @@ public class System {
         catch (IOException e) {
           setOut(java.lang.System.out);
           setErr(java.lang.System.err);
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
         */
 

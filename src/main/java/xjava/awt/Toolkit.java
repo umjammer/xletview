@@ -24,10 +24,14 @@ import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.util.Properties;
 
 import xjava.io.FileSystem;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -37,7 +41,7 @@ import xjava.io.FileSystem;
  */
 public class Toolkit {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Toolkit.class.getName());
+    private static final Logger logger = getLogger(Toolkit.class.getName());
 
     private static Toolkit thisToolkit;
     private static java.awt.Toolkit realToolkit;
@@ -102,7 +106,7 @@ public class Toolkit {
      * @see java.awt.Toolkit#getImage(String filename)
      */
     public Image getImage(String filename) {
-        log.fine("getImage(" + filename + ")");
+        logger.log(Level.DEBUG, "getImage(" + filename + ")");
         File f = null;
         try {
             f = FileSystem.getFile(filename);
@@ -120,7 +124,7 @@ public class Toolkit {
      * @see java.awt.Toolkit#getImage(URL url)
      */
     public Image getImage(URL url) {
-        log.fine("getImage(" + url + ")");
+        logger.log(Level.DEBUG, "getImage(" + url + ")");
         // TODO fix
         return realToolkit.getImage(url);
     }
@@ -224,5 +228,4 @@ public class Toolkit {
     public void removeAWTEventListener(AWTEventListener listener) {
         realToolkit.removeAWTEventListener(listener);
     }
-
 }

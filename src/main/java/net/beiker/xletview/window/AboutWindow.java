@@ -9,8 +9,7 @@
  * See LICENSE document for details.
  */
 
-
-package net.beiker.xletview.window;
+package  net.beiker.xletview.window;
 
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -18,6 +17,10 @@ import java.awt.GraphicsConfiguration;
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 import javax.swing.JDialog;
 import javax.swing.JScrollPane;
@@ -25,10 +28,12 @@ import javax.swing.JTextPane;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
+import static java.lang.System.getLogger;
+
 
 public class AboutWindow extends JDialog implements HyperlinkListener {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AboutWindow.class.getName());
+    private static final Logger logger = getLogger(AboutWindow.class.getName());
 
     public AboutWindow(Frame owner) {
         super(owner, false);
@@ -41,8 +46,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
             webPage = new java.net.URL("http://xletview.sourceforge.net/client/aboutwindow.html");
             webPage.openStream();
 
-            java.io.BufferedReader in = new java.io.BufferedReader(
-                    new java.io.InputStreamReader(webPage.openStream())
+            BufferedReader in = new BufferedReader(new InputStreamReader(webPage.openStream())
             );
 
             String inputLine;
@@ -53,9 +57,8 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
 
             in.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
-
 
         JTextPane htmlPanel = new JTextPane();
         htmlPanel.setPreferredSize(new Dimension(550, 500));
@@ -76,7 +79,7 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
         });
 
         pack();
-        //setSize(100, 100);
+//        setSize(100, 100);
         GraphicsConfiguration gc = this.getGraphicsConfiguration();
         Rectangle bounds = gc.getBounds();
         int x = (int) (bounds.getWidth() - this.getWidth()) / 2;
@@ -89,14 +92,14 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
     public void hyperlinkUpdate(HyperlinkEvent e) {
         HyperlinkEvent.EventType eventType = e.getEventType();
         if (eventType == HyperlinkEvent.EventType.ACTIVATED) {
-            log.fine("" + e.getURL());
+            logger.log(Level.DEBUG, "" + e.getURL());
             try {
                 String url = e.getURL().toString();
-                log.fine("url = " + url);
+                logger.log(Level.DEBUG, "url = " + url);
                 String[] s = {"C:\\Program Files\\Internet Explorer\\iexplore.exe", url};
                 Runtime.getRuntime().exec(s);
             } catch (Exception ex) {
-                log.severe(ex.toString());
+                logger.log(Level.ERROR, ex.getMessage(), ex);
             }
         }
     }
@@ -104,5 +107,4 @@ public class AboutWindow extends JDialog implements HyperlinkListener {
     private void doClose() {
         this.dispose();
     }
-
 }

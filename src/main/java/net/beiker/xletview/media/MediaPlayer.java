@@ -1,22 +1,20 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.media;
 
 import java.awt.Component;
+import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 import javax.media.ControllerEvent;
 import javax.media.ControllerListener;
 import javax.media.EndOfMediaEvent;
@@ -29,10 +27,12 @@ import javax.media.Time;
 import xjavax.tv.media.AWTVideoSize;
 import xjavax.tv.media.AWTVideoSizeControlImpl;
 
+import static java.lang.System.getLogger;
+
 
 public class MediaPlayer implements ControllerListener {
 
-    private static final Logger log = Logger.getLogger(MediaPlayer.class.getName());
+    private static final Logger logger = getLogger(MediaPlayer.class.getName());
 
     private static MediaPlayer THE_INSTANCE;
     private Player player;
@@ -92,14 +92,13 @@ public class MediaPlayer implements ControllerListener {
                 createVideoPlayer(media.getURL());
 
             } else if (media.getType() == Media.TYPE_INVALID) {
-                log.fine("media type is invalid");
+                logger.log(Level.DEBUG, "media type is invalid");
             }
 
             // play
             play();
 
             // do other stuff
-
         }
     }
 
@@ -107,13 +106,13 @@ public class MediaPlayer implements ControllerListener {
         if (imageURL != null) {
             player = new ImagePlayer(imageURL);
             visualComponent = player.getVisualComponent();
-            //setSize(AWTVideoSizeControlImpl.getInstance().getSize());
+//            setSize(AWTVideoSizeControlImpl.getInstance().getSize());
             VideoLayer.getInstance().removeAll();
             VideoLayer.getInstance().add(visualComponent);
-            //VideoLayer2.getInstance().validate();
-            //VideoLayer2.getInstance().repaint();
+//            VideoLayer2.getInstance().validate();
+//            VideoLayer2.getInstance().repaint();
             setSize(AWTVideoSizeControlImpl.getInstance().getSize());
-            //TV.getInstance().repaint();
+//            TV.getInstance().repaint();
         }
         play();
     }
@@ -127,7 +126,7 @@ public class MediaPlayer implements ControllerListener {
                 player = Manager.createPlayer(mediaLocator);
                 player.addControllerListener(this);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
         play();
@@ -141,7 +140,7 @@ public class MediaPlayer implements ControllerListener {
             Component comp;
             if ((comp = player.getVisualComponent()) != null) {
                 visualComponent = player.getVisualComponent();
-                log.fine(VideoLayer.getInstance() + "");
+                logger.log(Level.DEBUG, VideoLayer.getInstance() + "");
                 VideoLayer.getInstance().removeAll();
                 VideoLayer.getInstance().add(comp);
                 VideoLayer.getInstance().validate();
@@ -164,13 +163,11 @@ public class MediaPlayer implements ControllerListener {
             int videoWidth = size.getDestination().width;
             int videoHeight = size.getDestination().height;
             visualComponent.setBounds(videoX, videoY, videoWidth, videoHeight);
-            log.fine("setSize " + size);
+            logger.log(Level.DEBUG, "setSize " + size);
         }
     }
 
     public Component getVisualComponent() {
         return visualComponent;
     }
-
-
 }

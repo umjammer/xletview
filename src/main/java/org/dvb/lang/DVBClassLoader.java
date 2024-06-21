@@ -12,6 +12,8 @@
 package org.dvb.lang;
 
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,6 +27,8 @@ import javassist.LoaderClassPath;
 import javassist.NotFoundException;
 import net.beiker.xletview.classloader.XletCodeConverter;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
@@ -33,14 +37,13 @@ import net.beiker.xletview.classloader.XletCodeConverter;
  */
 public abstract class DVBClassLoader extends java.security.SecureClassLoader {
 
-    java.util.logging.Logger log = java.util.logging.Logger.getLogger(DVBClassLoader.class.getName());
+    static final Logger logger = getLogger(DVBClassLoader.class.getName());
 
     private URL[] urls;
     private ClassLoader parent;
     private Map<String, Class<?>> loaded;
     private ClassPool pool;
     private ClassMap xletClassMap;
-
 
     public DVBClassLoader(URL[] urls) {
         this.urls = urls;
@@ -64,9 +67,9 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
                 String path = url.getPath();
                 path = path.substring(1);
                 pool.appendClassPath(path);
-                log.fine("DVBClassLoader, added " + path + " to the pool");
+                logger.log(Level.DEBUG, "DVBClassLoader, added " + path + " to the pool");
             } catch (NotFoundException e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
     }
@@ -83,23 +86,19 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
     public Class<?> loadClass(String name) throws ClassNotFoundException {
         name = name.replaceAll("/", ".");
 
-//        logger.fine("loading - " + name);
+//        logger.log(Level.DEBUG, "loading - " + name);
         Class<?> theClass = null;
         boolean newClass = false;
 
         // check if it's already loaded by this loader
         theClass = getLoadedClass(name);
 
-
         if (theClass == null) {
             try {
-                /*
-                 * try to load the class with the parent classloader
-                 */
+                // try to load the class with the parent classloader
                 if (parent != null) {
                     theClass = parent.loadClass(name);
                 }
-
             } catch (ClassNotFoundException e) {
                 // do nothing
             }
@@ -114,17 +113,14 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
             }
         }
 
-
         if (theClass == null) {
-            /*
-             * The class is still not found.
-             * Throw an Exception
-             */
+            // The class is still not found.
+            // Throw an Exception
             throw new ClassNotFoundException("not found -> " + name);
         } else if (newClass) {
             // it wasn't previously loaded
             loaded.put(name, theClass);
-            //Debug.write(this, "name=" + name);
+//            logger.log(Level.DEBUG, this, "name=" + name);
         }
         return theClass;
 
@@ -133,7 +129,6 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
     private Class<?> getLoadedClass(String name) {
         return loaded.get(name);
     }
-
 
     @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
@@ -144,7 +139,6 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
             CodeConverter conv = new XletCodeConverter();
             cc.instrument(conv);
 
-
             byte[] b = cc.toBytecode();
 
             return super.defineClass(name, b, 0, b.length);
@@ -152,6 +146,4 @@ public abstract class DVBClassLoader extends java.security.SecureClassLoader {
             throw new ClassNotFoundException();
         }
     }
-
-
 }

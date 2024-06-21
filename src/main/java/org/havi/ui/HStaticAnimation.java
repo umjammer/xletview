@@ -12,6 +12,8 @@
 package org.havi.ui;
 
 import java.awt.Image;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import xjavax.tv.util.TVTimer;
 import xjavax.tv.util.TVTimerScheduleFailedException;
@@ -19,17 +21,17 @@ import xjavax.tv.util.TVTimerSpec;
 import xjavax.tv.util.TVTimerWentOffEvent;
 import xjavax.tv.util.TVTimerWentOffListener;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Cristian Suazo
  * @author Martin Sveden
  * @statuscode 4
  */
-public class HStaticAnimation
-        extends HVisible
-        implements HNoInputPreferred, HAnimateEffect {
+public class HStaticAnimation extends HVisible implements HNoInputPreferred, HAnimateEffect {
 
-    private static java.util.logging.Logger log = java.util.logging.Logger.getLogger(HStaticAnimation.class.getName());
+    private static Logger logger = getLogger(HStaticAnimation.class.getName());
 
     private int delay;
     private int position;
@@ -57,7 +59,7 @@ public class HStaticAnimation
         @Override
         public void timerWentOff(TVTimerWentOffEvent e) {
             boolean hasNewRepeat = false; // used to indicate if the animation has reached the end/start of loop
-            //logger.fine("animate event");
+//            logger.log(Level.DEBUG, "animate event");
             Image[] images = getAnimateContent(getInteractionState());
 
             // check what next position is and if the loop is "repeated"
@@ -82,7 +84,7 @@ public class HStaticAnimation
                 }
             }
             if (isRunning) {
-                //logger.fine( "new position=" + position );
+//                logger.log(Level.DEBUG,  "new position=" + position );
                 repaint();
             }
         }
@@ -96,7 +98,7 @@ public class HStaticAnimation
         super(HStaticAnimation.getDefaultLook(), x, y, width, height);
         super.setAnimateContent(imagesNormal, HState.NORMAL_STATE);
 
-        log.fine("Constructor");
+        logger.log(Level.DEBUG, "Constructor");
         setDelay(delay);
         setPlayMode(playMode);
         setRepeatCount(repeatCount);
@@ -148,9 +150,9 @@ public class HStaticAnimation
         // add a timer to trigger paint event
         try {
             TVTimer.getTimer().scheduleTimerSpec(paintTask);
-            log.fine("Animation starting. delay = " + delay);
+            logger.log(Level.DEBUG, "Animation starting. delay = " + delay);
         } catch (TVTimerScheduleFailedException e) {
-            log.severe("Start animation failed. error: " + e.getMessage());
+            logger.log(Level.ERROR, "Start animation failed. error: " + e.getMessage());
             isRunning = false;
         }
     }
@@ -158,7 +160,7 @@ public class HStaticAnimation
     @Override
     public void stop() {
         if (isRunning) {
-            log.fine("Animation stopped");
+            logger.log(Level.DEBUG, "Animation stopped");
             isRunning = false;
             // deschedule animation event
             TVTimer.getTimer().deschedule(paintTask);
@@ -221,5 +223,4 @@ public class HStaticAnimation
     public int getPlayMode() {
         return this.playMode;
     }
-
 }

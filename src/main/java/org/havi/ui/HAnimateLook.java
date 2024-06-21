@@ -17,6 +17,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Insets;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -26,7 +30,7 @@ import java.awt.Insets;
  */
 public class HAnimateLook implements HLook {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HAnimateLook.class.getName());
+    private static final Logger logger = getLogger(HAnimateLook.class.getName());
 
     /* PLATFORM SPECIFIC */
     private static Insets insets = new Insets(2, 2, 2, 2);
@@ -36,7 +40,7 @@ public class HAnimateLook implements HLook {
 
     @Override
     public void showLook(java.awt.Graphics g, HVisible hVisible, int state) {
-//        logger.fine("Repaiting animation");
+//        logger.log(Level.DEBUG, "Repaiting animation");
 
 
         HStaticAnimation animation = (HStaticAnimation) hVisible;
@@ -75,7 +79,7 @@ public class HAnimateLook implements HLook {
                 if (ok) {
                     break;
                 } else {
-                    log.info("image for position " + position + " is not drawable");
+                    logger.log(Level.INFO, "image for position " + position + " is not drawable");
                     count++;
                     animation.setPosition(++position);
                 }
@@ -106,20 +110,18 @@ public class HAnimateLook implements HLook {
 
     @Override
     public void widgetChanged(HVisible visible, HChangeData[] changes) {
-        /*
-           " Note that implementations of HLook may not actually implement more efficient
-           drawing code for a given hint. In particular, simply repainting the entire
-           HVisible is a valid implementation option. "
 
-           " The implementation of this method should work out which graphical areas of
-           the HVisible have changed and make any relevant calls to trigger the repainting of those areas.
+        // Note that implementations of HLook may not actually implement more efficient
+        // drawing code for a given hint. In particular, simply repainting the entire
+        // HVisible is a valid implementation option. "
+        //
+        // " The implementation of this method should work out which graphical areas of
+        // the HVisible have changed and make any relevant calls to trigger the repainting of those areas.
+        //
+        // A minimum implementation of this method could simply call
+        //
+        // visible.repaint()
 
-           A minimum implementation of this method could simply call
-
-            visible.repaint()
-           "
-
-        */
         // so... at the moment we don't care about the HChangeData;
         // we're not allowed to call anything else than the hVisible repaint() method
         visible.repaint();

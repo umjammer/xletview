@@ -1,8 +1,12 @@
 package xjava.io;
 
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -10,7 +14,7 @@ import java.util.List;
  */
 public class EmulatorFile {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(EmulatorFile.class.getName());
+    private static final Logger logger = getLogger(EmulatorFile.class.getName());
 
     private static EmulatorFile ROOT = getRoot();
 
@@ -94,13 +98,13 @@ public class EmulatorFile {
      * @param file
      */
     void addChild(EmulatorFile file) {
-        log.fine("addChild(" + file.getAbsolutePath() + ")");
+        logger.log(Level.DEBUG, "addChild(" + file.getAbsolutePath() + ")");
         if (children.contains(file)) {
-            //log.fine("child already exist");
+//            logger.log(Level.DEBUG, "child already exist");
             try {
                 throw new IOException("child already exist");
             } catch (IOException e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         }
 
@@ -130,11 +134,11 @@ public class EmulatorFile {
 
     EmulatorFile getChild(String name) {
         EmulatorFile result = null;
-        log.fine(this.name + ", children.size() = " + children.size());
+        logger.log(Level.DEBUG, this.name + ", children.size() = " + children.size());
         for (EmulatorFile child : children) {
             EmulatorFile ef = child;
             String s = ef.getName();
-            log.fine("checking in " + getName() + " if there is a child with the name " + name + ", child has name " + s);
+            logger.log(Level.DEBUG, "checking in " + getName() + " if there is a child with the name " + name + ", child has name " + s);
             if (s.equals(name)) {
                 result = ef;
                 break;

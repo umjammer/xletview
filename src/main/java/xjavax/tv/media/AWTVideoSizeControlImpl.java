@@ -1,25 +1,26 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package xjavax.tv.media;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.media.MediaPlayer;
 import net.beiker.xletview.media.ScreenContainer;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -28,7 +29,7 @@ import net.beiker.xletview.media.ScreenContainer;
  */
 public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(AWTVideoSizeControlImpl.class.getName());
+    private static final Logger logger = getLogger(AWTVideoSizeControlImpl.class.getName());
 
     private static AWTVideoSizeControlImpl THE_INSTANCE;
 
@@ -44,7 +45,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
     }
 
     private AWTVideoSizeControlImpl() {
-        log.fine("---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
+        logger.log(Level.DEBUG, "---> " + ScreenContainer.SCREEN_WIDTH + ", " + ScreenContainer.SCREEN_HEIGHT);
         defaultSize = new AWTVideoSize(new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT), new Rectangle(0, 0, ScreenContainer.SCREEN_WIDTH, ScreenContainer.SCREEN_HEIGHT));
         currentSize = defaultSize;
     }
@@ -76,7 +77,7 @@ public class AWTVideoSizeControlImpl implements AWTVideoSizeControl {
     public boolean setSize(AWTVideoSize awtvideosize) {
         currentSize = awtvideosize;
 
-        log.fine("setSize");
+        logger.log(Level.DEBUG, "setSize");
         MediaPlayer.getInstance().setSize(awtvideosize);
         return true;
     }

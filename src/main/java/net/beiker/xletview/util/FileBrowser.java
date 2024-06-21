@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package net.beiker.xletview.util;
 
@@ -24,6 +21,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileFilter;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -31,10 +30,12 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
+import static java.lang.System.getLogger;
+
 
 public class FileBrowser extends GenDialogComponent implements MouseListener, ActionListener {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(FileBrowser.class.getName());
+    private static final Logger logger = getLogger(FileBrowser.class.getName());
 
     private static final int FOLDER = 0;
     private static final int FILE = 1;
@@ -67,7 +68,7 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         List<String> rootPaths = new ArrayList<>();
         for (File root : roots) {
             if (root.isDirectory()) {
-                log.fine(root.getPath());
+                logger.log(Level.DEBUG, root.getPath());
                 rootPaths.add(root.getPath());
             }
         }
@@ -95,9 +96,9 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
     public void openFolder(String path) {
         currentFolder = new File(path);
 
-        //if(!currentFolder.isDirectory()){
-        //currentFolder = roots[0];
-        //}
+//        if(!currentFolder.isDirectory()) {
+//            currentFolder = roots[0];
+//        }
 
         try {
             files = getFiles(currentFolder);
@@ -108,33 +109,31 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
                     currentFolder = root;
                     break;
                 } catch (Exception e2) {
-                    //Debug.severe(e2);
+//                    logger.log(Level.ERROR, e2.getMessage(), e2);
                 }
 
             }
-            //Debug.severe(e);
+//            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
-        log.fine("opened folder: " + currentFolder.getPath());
+        logger.log(Level.DEBUG, "opened folder: " + currentFolder.getPath());
 
         int totFiles = files.length;
         String[] names = new String[totFiles];
 
         for (int i = 0; i < names.length; i++) {
             names[i] = files[i].getName();
-            //Debug.write(this, names[i]);
+//            logger.log(Level.DEBUG, this, names[i]);
             if (i == 0 && currentFolder.getParentFile() != null) {
                 // it's the parent folder
                 names[i] = "..";
             }
-
         }
 
         pathLabel.setText(currentFolder.getPath());
         fileList.setListData(names);
         fileList.addMouseListener(this);
         scroll.revalidate();
-
     }
 
     /**
@@ -182,7 +181,6 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
             String path = (String) cb.getSelectedItem();
             openFolder(path);
         }
-
     }
 
     @Override
@@ -199,14 +197,13 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         if (selIndex != -1) {
             File selectedFile = files[selIndex];
             value = selectedFile.getPath();
-            //Debug.write(this, "" + selectedFile.getPath());
+//            logger.log(Level.DEBUG, this, "" + selectedFile.getPath());
             if (e.getClickCount() == 2) {
                 if (selectedFile.isDirectory()) {
                     openFolder(value);
                 }
             }
         }
-
     }
 
     @Override
@@ -234,7 +231,5 @@ public class FileBrowser extends GenDialogComponent implements MouseListener, Ac
         FileBrowser b = new FileBrowser(300, 250);
         b.openFolder("C:\\");
         new GenDialog(b, null, "File Browser");
-
-
     }
 }

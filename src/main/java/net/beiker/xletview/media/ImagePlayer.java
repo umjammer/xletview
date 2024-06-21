@@ -9,12 +9,12 @@
  * See LICENSE document for details.
  */
 
-
-package net.beiker.xletview.media;
+package  net.beiker.xletview.media;
 
 import java.awt.Component;
+import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 import javax.media.ClockStoppedException;
 import javax.media.Control;
 import javax.media.Controller;
@@ -27,10 +27,12 @@ import javax.media.Time;
 import javax.media.TimeBase;
 import javax.media.protocol.DataSource;
 
+import static java.lang.System.getLogger;
+
 
 public class ImagePlayer implements Player {
 
-    private static final Logger log = Logger.getLogger(ImagePlayer.class.getName());
+    private static final Logger logger = getLogger(ImagePlayer.class.getName());
 
     private ImagePlayerVisualComponent visualComponent;
     private ControllerListener controllerListener;
@@ -38,7 +40,7 @@ public class ImagePlayer implements Player {
     public ImagePlayer(URL imageURL) {
         visualComponent = new ImagePlayerVisualComponent(imageURL);
         visualComponent.setVisible(false);
-        log.fine("constructor");
+        logger.log(Level.DEBUG, "constructor");
     }
 
     @Override
@@ -66,9 +68,9 @@ public class ImagePlayer implements Player {
 
     @Override
     public void start() {
-        //imagePlayerThread = new Thread(this, "imagePlayerThread");
+//        imagePlayerThread = new Thread(this, "imagePlayerThread");
         visualComponent.setVisible(true);
-        //imagePlayerThread.start();
+//        imagePlayerThread.start();
     }
 
     @Override
@@ -76,21 +78,25 @@ public class ImagePlayer implements Player {
         visualComponent.setVisible(false);
     }
 
+//#region javax.media.MediaHandler
 
-    // Methods inherited from interface javax.media.MediaHandler -->
     @Override
     public void setSource(DataSource source) throws java.io.IOException, IncompatibleSourceException {
     }
-    // Methods inherited from interface javax.media.MediaHandler //
 
-    // Methods inherited from interface javax.media.Duration -->
+//#endregion
+
+//#region javax.media.Duration
+
     @Override
     public Time getDuration() {
         return null;
     }
-    // Methods inherited from interface javax.media.Duration //
 
-    // Methods inherited from interface javax.media.Clock -->
+//#endregion
+
+//#region javax.media.Clock
+
     @Override
     public void setTimeBase(TimeBase master) throws IncompatibleTimeBaseException {
     }
@@ -146,9 +152,11 @@ public class ImagePlayer implements Player {
     public float setRate(float factor) {
         return -1f;
     }
-    // Methods inherited from interface javax.media.Clock //
 
-    // Methods inherited from interface javax.media.Controller -->
+//#endregion
+
+//#region javax.media.Controller
+
     @Override
     public int getState() {
         return -1;
@@ -200,5 +208,5 @@ public class ImagePlayer implements Player {
         this.controllerListener = null;
     }
 
-
+//#endregion
 }

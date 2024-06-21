@@ -7,8 +7,11 @@ package net.beiker.xletview.net;
 import java.io.DataInputStream;
 import java.io.EOFException;
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.Socket;
-import java.util.logging.Logger;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -17,15 +20,15 @@ import java.util.logging.Logger;
 public class OutputServerThread extends Thread {
 
     /** Debugging facility. */
-    private final static Logger logger = Logger.getLogger(OutputServerThread.class.getName());
+    private final static Logger logger = getLogger(OutputServerThread.class.getName());
 
-    // The Server that spawned us
+    /** The Server that spawned us */
     private OutputServer server;
 
-    // The Socket connected to our client
+    /** The Socket connected to our client */
     private Socket socket;
 
-    // Constructor.
+    /** Constructor. */
     public OutputServerThread(OutputServer server, Socket socket) {
 
         // Save the parameters
@@ -36,38 +39,34 @@ public class OutputServerThread extends Thread {
         start();
     }
 
-    // This runs in a separate thread when start() is called in the
-    // constructor.
+    /**
+     * This runs in a separate thread when start() is called in the
+     * constructor.
+     */
     @Override
     public void run() {
-
         try {
-
             // Create a DataInputStream for communication; the client
             // is using a DataOutputStream to write to us
             DataInputStream din = new DataInputStream(this.socket.getInputStream());
 
             // Over and over, forever ...
             while (true) {
-
                 // ... read the next message ...
                 String message = din.readUTF();
 
                 // ... tell the world ...
-                logger.fine("Sending " + message);
+                logger.log(Level.DEBUG, "Sending " + message);
 
                 // ... and have the server send it to all clients
                 this.server.sendToAll(message);
             }
         } catch (EOFException ie) {
-
             // This doesn't need an error message
         } catch (IOException ie) {
-
             // This does; tell the world!
-            ie.printStackTrace();
+            logger.log(Level.ERROR, ie.getMessage(), ie);
         } finally {
-
             // The connection is closed for one reason or another,
             // so have the server dealing with it
             this.server.removeConnection(this.socket);

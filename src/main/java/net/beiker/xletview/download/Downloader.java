@@ -16,11 +16,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -30,7 +32,7 @@ import java.util.logging.Logger;
  */
 public class Downloader {
 
-    private static final Logger log = Logger.getLogger(Downloader.class.getName());
+    private static final Logger logger = getLogger(Downloader.class.getName());
 
 //    private URL url;
     private File source;
@@ -60,7 +62,6 @@ public class Downloader {
 //            path = host + ":" + url.getFile().replace('/', File.separatorChar);
 //            f = new File(path);
 //            System.out.println(path + ", exist? " + f.exists());
-//
 //        }
 //    }
 
@@ -74,7 +75,7 @@ public class Downloader {
             listeners = new ArrayList<>();
             relFiles = new ArrayList<>();
             destination = new File(destinationPath);
-            log.fine("dest exist? " + destination.exists());
+            logger.log(Level.DEBUG, "dest exist? " + destination.exists());
             if (!destination.exists()) {
                 destination.mkdirs();
                 if (!destination.exists()) {
@@ -109,7 +110,7 @@ public class Downloader {
                 throw new IOException("File " + f.toURI().toURL() + " does not exist or is not a valid resource directory");
             } else {
                 source = f;
-                log.info("checking resources...");
+                logger.log(Level.INFO, "checking resources...");
                 resolveSource(source);
                 copy();
             }
@@ -157,7 +158,7 @@ public class Downloader {
             File[] files = dir.listFiles();
             for (File file : files) {
                 String relPath = file.getAbsolutePath().substring(source.getAbsolutePath().length());
-//Debug.write(this, relPath);
+//logger.log(Level.DEBUG, this, relPath);
                 relFiles.add(new RelFile(file, relPath));
                 if (file.isDirectory()) {
                     resolveSource(file);
@@ -170,7 +171,7 @@ public class Downloader {
      * Copies the files from source to destination
      */
     private void copy() throws AppSizeExceededException {
-        log.info("downloading resources...");
+        logger.log(Level.INFO, "downloading resources...");
         for (int i = 0; i < relFiles.size(); i++) {
             RelFile relFile = relFiles.get(i);
             File file = relFile.getFile();
@@ -185,7 +186,7 @@ public class Downloader {
                          FileOutputStream os = new FileOutputStream(newFile)) {
                         byte[] bytes = new byte[is.available()];
                         byteLength += bytes.length;
-//Debug.write(this, file.getName() + ", byteLength = " + byteLength + " > " + bytes.length + " = " + (byteLength > bytes.length));
+//logger.log(Level.DEBUG, this, file.getName() + ", byteLength = " + byteLength + " > " + bytes.length + " = " + (byteLength > bytes.length));
                         if (byteLength > maxByteSize) {
                             throw new AppSizeExceededException("Application's size is too big![> " + maxByteSize + " bytes]");
                         }
@@ -194,11 +195,11 @@ public class Downloader {
                     }
                     notifyListeners(new DownloadEvent(this, getProcent(i), file.getName()));
                 } catch (IOException e) {
-                    log.log(Level.FINER, e.getMessage(), e);
+                    logger.log(Level.TRACE, e.getMessage(), e);
                 }
             }
         }
-        log.info("download finished");
+        logger.log(Level.INFO, "download finished");
     }
 
     /**
@@ -220,7 +221,7 @@ public class Downloader {
         for (int i = 0; i < v.size(); i++) {
             f[i] = v.get(i);
         }
-        //return (File[]) v.toArray();
+//        return (File[]) v.toArray();
         return f;
     }
 
@@ -230,24 +231,24 @@ public class Downloader {
      * @param files The files to delete
      */
     private void deleteFiles(File[] files) {
-        log.info("unloading any previous application...");
+        logger.log(Level.INFO, "unloading any previous application...");
         boolean success = true;
         // do it backwards, because it will not delete non empty directories
         for (int i = files.length - 1; i >= 0; i--) {
             boolean deleted = files[i].delete();
             if (deleted) {
                 // file deleted
-//Debug.write(this, files[i].getAbsolutePath() + " was deleted");
+//logger.log(Level.DEBUG, this, files[i].getAbsolutePath() + " was deleted");
             } else {
                 //could not delete
                 success = false;
-                log.fine(files[i].getAbsolutePath() + " could not be removed");
+                logger.log(Level.DEBUG, files[i].getAbsolutePath() + " could not be removed");
             }
         }
         if (!success) {
-            log.info("some resources of the previous application could not be unloaded");
+            logger.log(Level.INFO, "some resources of the previous application could not be unloaded");
         } else {
-            log.info("unloading successful");
+            logger.log(Level.INFO, "unloading successful");
         }
     }
 
@@ -259,7 +260,7 @@ public class Downloader {
         // only one file
 
         double procent = (index + 1) / tot * 100;
-//Debug.write(this, index + "/" + tot + " * 100 = " + procent);
+//logger.log(Level.DEBUG, this, index + "/" + tot + " * 100 = " + procent);
         return (int) procent;
     }
 

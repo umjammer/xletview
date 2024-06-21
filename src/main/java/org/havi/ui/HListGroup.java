@@ -11,8 +11,7 @@ See LICENSE document for details.
 
 */
 
-
-package org.havi.ui;
+package  org.havi.ui;
 
 import java.awt.Dimension;
 import java.util.ArrayList;

@@ -17,7 +17,8 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Toolkit;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.ui.ProgressBar;
@@ -28,6 +29,8 @@ import net.beiker.xletview.util.Util;
 import org.dvb.ui.DVBGraphics;
 import org.havi.ui.HScene;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * Has control over the background, video and graphics layer. There is also a
@@ -36,10 +39,9 @@ import org.havi.ui.HScene;
  */
 public class ScreenContainer extends Container {
 
-    private static final Logger log = Logger.getLogger(ScreenContainer.class.getName());
+    private static final Logger logger = getLogger(ScreenContainer.class.getName());
 
     private static ScreenContainer THE_INSTANCE;
-
 
     // index 3 adds it last and therefore in the background
     public final static int BACKGROUND_LAYER = 3;
@@ -63,7 +65,6 @@ public class ScreenContainer extends Container {
     private boolean eventEnabled;
 
     private static ProgressBar progressBar;
-
 
     /**
      * Gets the instance attribute of the TV class
@@ -125,13 +126,12 @@ public class ScreenContainer extends Container {
                     layers[ScreenContainer.EMULATOR_LAYER].add(new SafeArea(x, y, width, height, 3, Color.decode(hexColor)));
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
-
 
         eventEnabled = true;
     }
@@ -146,7 +146,7 @@ public class ScreenContainer extends Container {
 
         // repaint it
         layers[ScreenContainer.GRAPHICS_LAYER].repaint();
-        log.fine("layers[TV.GRAPHICS_LAYER].getComponentCount() = " + layers[ScreenContainer.GRAPHICS_LAYER].getComponentCount());
+        logger.log(Level.DEBUG, "layers[TV.GRAPHICS_LAYER].getComponentCount() = " + layers[ScreenContainer.GRAPHICS_LAYER].getComponentCount());
     }
 
     public Container getXletContainer() {
@@ -186,7 +186,5 @@ public class ScreenContainer extends Container {
         layers[ScreenContainer.VIDEO_LAYER].paint(g);
         layers[ScreenContainer.GRAPHICS_LAYER].paint(dvbg);
         layers[ScreenContainer.EMULATOR_LAYER].paint(g);
-
     }
-
 }

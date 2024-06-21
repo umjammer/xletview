@@ -1,25 +1,26 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
 
 import java.awt.Image;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.helper.HNavigableHelper;
 import org.havi.ui.event.HFocusEvent;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -28,7 +29,7 @@ import org.havi.ui.event.HFocusEvent;
  */
 public class HIcon extends HStaticIcon implements HNavigable {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HIcon.class.getName());
+    private static final Logger logger = getLogger(HIcon.class.getName());
 
 
     private HNavigableHelper helper;
@@ -62,7 +63,7 @@ public class HIcon extends HStaticIcon implements HNavigable {
 
     private void init() {
         helper = new HNavigableHelper(this);
-        log.fine("HIcon - init");
+        logger.log(Level.DEBUG, "HIcon - init");
     }
 
     public static void setDefaultLook(HGraphicLook hGraphicLook) {
@@ -128,7 +129,7 @@ public class HIcon extends HStaticIcon implements HNavigable {
         return helper.getNavigationKeys();
     }
 
-    /*
+    /**
      Overloaded from HVisible, is true for HNavigable
      */
     @Override
@@ -150,15 +151,12 @@ public class HIcon extends HStaticIcon implements HNavigable {
         return helper.getFocusListeners();
     }
 
-
     @Override
     public void processFocusEvent(FocusEvent e) {
         //super.processFocusEvent(e);
         HFocusEvent event = new HFocusEvent(this, e.getID());
         processHFocusEvent(event);
-
     }
-
 
     @Override
     public void processHFocusEvent(HFocusEvent evt) {

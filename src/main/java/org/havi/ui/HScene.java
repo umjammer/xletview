@@ -22,11 +22,15 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.ImageObserver;
 import java.io.Serializable;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.util.Util;
 import net.beiker.xletview.xlet.XletManager;
 import org.havi.ui.event.HEventGroup;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -36,7 +40,7 @@ import org.havi.ui.event.HEventGroup;
  */
 public class HScene extends Container implements HComponentOrdering, ImageObserver, MenuContainer, Serializable {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HScene.class.getName());
+    private static final Logger logger = getLogger(HScene.class.getName());
 
     public static final int IMAGE_NONE = 0;
     public static final int IMAGE_STRETCH = 1;
@@ -172,7 +176,6 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
             return null;
         } else {
             return add(component, getComponentIndex(behind));
-
         }
     }
 
@@ -194,7 +197,6 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
         } else {
             return null;
         }
-
     }
 
     /**
@@ -238,11 +240,9 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
          * AT THE MOMENT WE DON'T SUPPORT ANY OTHER BACKGROUND MODE THAT IMAGE_NONE
          */
 
-
         /*
          * 3. Finally any children of the HScene are rendered in z-order.
          */
-
     }
 
     public void setBackgroundMode(int i) {
@@ -302,19 +302,18 @@ public class HScene extends Container implements HComponentOrdering, ImageObserv
         switch (id) {
         case WindowEvent.WINDOW_ACTIVATED:
             this.windowListener.windowActivated(we);
-            log.fine("processWindowEvent, activated");
+            logger.log(Level.DEBUG, "processWindowEvent, activated");
             break;
         case WindowEvent.WINDOW_DEACTIVATED:
             this.windowListener.windowDeactivated(we);
-            log.fine("processWindowEvent, deactivated");
+            logger.log(Level.DEBUG, "processWindowEvent, deactivated");
             break;
         }
     }
 
 //    protected void processFocusEvent(FocusEvent event){
-//        Debug.write(this, "focus event");
+//        logger.log(Level.DEBUG, this, "focus event");
 //        super.processFocusEvent(event);
-//
 //    }
 
     public Component getFocusOwner() {

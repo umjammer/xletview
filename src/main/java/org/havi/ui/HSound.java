@@ -1,19 +1,18 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 import javax.media.Controller;
 import javax.media.ControllerEvent;
@@ -24,6 +23,8 @@ import javax.media.NoPlayerException;
 import javax.media.Player;
 import javax.media.StartEvent;
 import javax.media.Time;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -36,7 +37,7 @@ public class HSound {
     private boolean isLooping;
     private Player player;
 
-    private static java.util.logging.Logger logger = java.util.logging.Logger.getLogger(HSound.class.getName());
+    private static Logger logger = getLogger(HSound.class.getName());
     private MediaControllerListner playerListner;
 
     // Handles events that are created by the mediaplayer
@@ -44,7 +45,7 @@ public class HSound {
 
         @Override
         public void controllerUpdate(ControllerEvent event) {
-            logger.fine(event.toString());
+            logger.log(Level.DEBUG, event.toString());
             if (event instanceof EndOfMediaEvent) {
                 // check if the sound clip should be looped
                 if (isLooping) {
@@ -58,12 +59,11 @@ public class HSound {
                     player.setMediaTime(new Time(0));
                 }
             }
-
         }
     }
 
     public HSound() {
-        logger.fine("Constructor");
+        logger.log(Level.DEBUG, "Constructor");
         isLooping = false; // used for when the method loop() is called.
 
         // create listner for the player
@@ -81,14 +81,14 @@ public class HSound {
         try {
             player = Manager.createPlayer(contents);
         } catch (NoPlayerException e) {
-            logger.fine(e.getMessage());
-            e.printStackTrace();
+            logger.log(Level.DEBUG, e.getMessage());
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
         player.addControllerListener(playerListner);
     }
 
     public void set(byte[] data) {
-        logger.info("Has no implementation, so calling this will not do anything.");
+        logger.log(Level.INFO, "Has no implementation, so calling this will not do anything.");
     }
 
     public void play() {
@@ -113,7 +113,7 @@ public class HSound {
     }
 
     public void dispose() {
-        logger.fine("dispose");
+        logger.log(Level.DEBUG, "dispose");
         if (player != null) {
             player.removeControllerListener(playerListner);
             player.stop();
@@ -121,5 +121,4 @@ public class HSound {
             player.deallocate();
         }
     }
-
 }

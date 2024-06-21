@@ -5,10 +5,13 @@
 
 package net.beiker.xletview.ui.tree;
 
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 import net.beiker.xletview.app.AppGroup;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -16,7 +19,7 @@ import net.beiker.xletview.app.AppGroup;
  */
 public class BeikerTreeNode extends DefaultMutableTreeNode {
 
-    private static final Logger log = Logger.getLogger(BeikerTreeNode.class.getName());
+    private static final Logger logger = getLogger(BeikerTreeNode.class.getName());
 
     private UserObject userObject;
     private boolean childrenDefined;
@@ -35,11 +38,11 @@ public class BeikerTreeNode extends DefaultMutableTreeNode {
     }
 
     public void expand() {
-        //if(!childrenDefined){
+//        if (!childrenDefined) {
         this.removeAllChildren();
-        log.fine("expand");
+        logger.log(Level.DEBUG, "expand");
 
-        log.fine("is UserObject");
+        logger.log(Level.DEBUG, "is UserObject");
 
         Object[] objects = userObject.getChildren();
         if (userObject instanceof UserObjectImpl && objects != null) {
@@ -52,10 +55,9 @@ public class BeikerTreeNode extends DefaultMutableTreeNode {
             }
         }
 
-
         childrenDefined = true;
 
-        //}
+//        }
     }
 
 //    public void reload(){
@@ -73,5 +75,4 @@ public class BeikerTreeNode extends DefaultMutableTreeNode {
     public boolean isLeaf() {
         return !userObject.hasChildren();
     }
-
 }

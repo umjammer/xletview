@@ -1,23 +1,23 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.davic.net.dvb;
 
-
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import java.util.stream.Stream;
 
 import org.davic.net.InvalidLocatorException;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -27,7 +27,7 @@ import org.davic.net.InvalidLocatorException;
  */
 public class DvbLocator extends org.davic.net.Locator {
 
-    private static final Logger log = Logger.getLogger(DvbLocator.class.getName());
+    private static final Logger logger = getLogger(DvbLocator.class.getName());
 
     private String textualServiceIdentifier;
 
@@ -49,12 +49,11 @@ public class DvbLocator extends org.davic.net.Locator {
 
         } catch (InvalidLocatorException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
-        log.fine("toExternalForm - " + loc.toExternalForm());
-        log.fine("netLoc.getOriginalNetworkId() - " + netLoc.getNetworkId());
-
+        logger.log(Level.DEBUG, "toExternalForm - " + loc.toExternalForm());
+        logger.log(Level.DEBUG, "netLoc.getOriginalNetworkId() - " + netLoc.getNetworkId());
     }
 
     protected DvbLocator() {
@@ -70,61 +69,50 @@ public class DvbLocator extends org.davic.net.Locator {
         textualServiceIdentifier = url;
 
         String s = url.substring(6);// crop "dvb://"
-        log.fine(s);
+        logger.log(Level.DEBUG, s);
 
         // extract filepath
         int indexOfSlash = s.indexOf('/');
         if (indexOfSlash > -1) {
             filePath = s.substring(indexOfSlash);
             s = s.substring(0, indexOfSlash);
-            log.fine("filePath=" + filePath);
-            log.fine("s=" + s);
+            logger.log(Level.DEBUG, "filePath=" + filePath);
+            logger.log(Level.DEBUG, "s=" + s);
         }
 
-
         String[] ids = s.split("\\.");
-        log.fine("ids.length=" + ids.length);
-        /*
-         * check that the locator contains
-         * Original Network ID, Transport Stream ID and Service ID
-         */
+        logger.log(Level.DEBUG, "ids.length=" + ids.length);
+        // check that the locator contains
+        // Original Network ID, Transport Stream ID and Service ID
         if (ids.length < 2) {
             throw new InvalidLocatorException("Original Network ID and/or Transport Stream ID");
         }
 
-        /*
-         * check for event id
-         */
+        // check for event id
         String[] tmp = ids[ids.length - 1].split("\\;");
         if (tmp.length > 1) {
             ids[ids.length - 1] = tmp[0];
 
-            eventId = getIntFromParameter(tmp[1]);//Integer.parseInt(tmp[1]);
+            eventId = getIntFromParameter(tmp[1]); // Integer.parseInt(tmp[1]);
 
         }
-        log.fine(ids[ids.length - 1]);
-        log.fine("eventId=" + eventId);
+        logger.log(Level.DEBUG, ids[ids.length - 1]);
+        logger.log(Level.DEBUG, "eventId=" + eventId);
 
-        /*
-         * check for component tag id
-         */
+        // check for component tag id
         if (ids.length == 4) {
             componentTags = new int[1];
-            int componentTag = getIntFromParameter(ids[3]);//Integer.parseInt(ids[3]);
-            log.fine("componentTag=" + componentTag);
+            int componentTag = getIntFromParameter(ids[3]); // Integer.parseInt(ids[3]);
+            logger.log(Level.DEBUG, "componentTag=" + componentTag);
             componentTags[0] = componentTag;
 
         }
 
-        /*
-         * set Original Network ID, Transport Stream ID and Service ID
-         */
+        // set Original Network ID, Transport Stream ID and Service ID
 
-        orgNetworkId = getIntFromParameter(ids[0]);//Integer.parseInt(ids[0]);
-        trasportStreamId = getIntFromParameter(ids[1]);//Integer.parseInt(ids[1]);
-        serviceId = getIntFromParameter(ids[2]);//Integer.parseInt(ids[2]);
-
-
+        orgNetworkId = getIntFromParameter(ids[0]); // Integer.parseInt(ids[0]);
+        trasportStreamId = getIntFromParameter(ids[1]); // Integer.parseInt(ids[1]);
+        serviceId = getIntFromParameter(ids[2]); // Integer.parseInt(ids[2]);
     }
 
     public DvbLocator(int onid, int tsid) throws InvalidLocatorException {
@@ -191,12 +179,12 @@ public class DvbLocator extends org.davic.net.Locator {
 
     private int getIntFromParameter(String strInt) throws InvalidLocatorException {
         int result = -1;
-        log.fine("strInt=" + strInt);
+        logger.log(Level.DEBUG, "strInt=" + strInt);
         try {
-            //result = Integer.parseInt("0x" + strInt);
+//            result = Integer.parseInt("0x" + strInt);
             result = Integer.valueOf(strInt, 16);
-            //result = Integer.valueOf(strInt, 16);
-            log.fine("result=" + result);
+//            result = Integer.valueOf(strInt, 16);
+            logger.log(Level.DEBUG, "result=" + result);
 
         } catch (NumberFormatException e) {
             throw new InvalidLocatorException("invalid parameter");
@@ -223,9 +211,3 @@ public class DvbLocator extends org.davic.net.Locator {
         return result.toString();
     }
 }
-
-
-
-
-
-

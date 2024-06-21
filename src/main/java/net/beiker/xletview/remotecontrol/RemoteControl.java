@@ -6,12 +6,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
+import java.lang.System.Logger.Level;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 
 import net.beiker.xletview.event.EventManager;
 import net.beiker.xletview.ui.Img;
@@ -19,13 +22,15 @@ import net.beiker.xletview.util.Util;
 import net.n3.nanoxml.IXMLElement;
 import org.havi.ui.event.HRcEvent;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * @author Martin Sveden
  */
 public class RemoteControl extends Container implements KeyListener {
 
-    private static final Logger logger = Logger.getLogger(RemoteControl.class.getName());
+    private static final Logger logger = getLogger(RemoteControl.class.getName());
 
     private static RemoteControl THE_INSTANCE;
 
@@ -112,25 +117,24 @@ public class RemoteControl extends Container implements KeyListener {
             try {
                 keyCode = Integer.parseInt(strKey);
             } catch (NumberFormatException e) {
-                //e.printStackTrace();
+                //logger.log(Level.ERROR, e.getMessage(), e);
             }
-
 
             try {
                 String[] ss = strKey.split("\\.");
                 keyCode = getFieldValue(HRcEvent.class, ss[1]);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
 
             URL imgUrl = Util.getURL(RemoteControl.class, imgPath);
-            //File imgFile = new File(imgPath);
-            //URL imgUrl = null;
-            //try {
-            //    imgUrl = imgFile.toURL();
-            //} catch (MalformedURLException e1) {
-            //    e1.printStackTrace();
-            //}
+//            File imgFile = new File(imgPath);
+//            URL imgUrl = null;
+//            try {
+//                imgUrl = imgFile.toURL();
+//            } catch (MalformedURLException e1) {
+//                e1.printStackTrace();
+//            }
             button = new RemoteButton(imgUrl, x, y, w, h, keyCode, '\0');
             this.buttons.put(keyCode + "", button);
 
@@ -140,13 +144,12 @@ public class RemoteControl extends Container implements KeyListener {
         }
     }
 
-
     private int parseInt(String s) {
         int result = 0;
         try {
             result = Integer.parseInt(s);
         } catch (NumberFormatException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
         return result;
     }
@@ -173,8 +176,6 @@ public class RemoteControl extends Container implements KeyListener {
         String[] ss = s.split("\\.");
 
         getFieldValue(HRcEvent.class, ss[1]);
-
-
     }
 
     private static int getFieldValue(Class<HRcEvent> c, String fieldName) {
@@ -188,10 +189,10 @@ public class RemoteControl extends Container implements KeyListener {
                 try {
                     result = publicField.getInt(c);
                 } catch (IllegalArgumentException | IllegalAccessException e) {
-                    e.printStackTrace();
+                    logger.log(Level.ERROR, e.getMessage(), e);
                 }
                 String fieldType = typeClass.getName();
-                //logger.fine("FOUND - Name: " + fieldName + ", Type: " + fieldType + ", Value: " + result);
+//                logger.log(Level.DEBUG, "FOUND - Name: " + fieldName + ", Type: " + fieldType + ", Value: " + result);
             }
         }
         return result;
@@ -199,28 +200,27 @@ public class RemoteControl extends Container implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        //Debug.write(this, "keyTyped " + e);
+//        logger.log(Level.DEBUG, this, "keyTyped " + e);
         fireEvent(e);
     }
 
-
     @Override
     public void keyPressed(KeyEvent e) {
-        //Debug.write(this, "keyPressed " + e);
+//        logger.log(Level.DEBUG, this, "keyPressed " + e);
         fireEvent(e);
     }
 
 
     @Override
     public void keyReleased(KeyEvent e) {
-        //Debug.write(this, "keyReleased " + e);
+//        logger.log(Level.DEBUG, this, "keyReleased " + e);
         fireEvent(e);
     }
 
     public void setPressed(int keyCode) {
-        logger.fine("RemoteControl, keyCode=" + keyCode);
+        logger.log(Level.DEBUG, "RemoteControl, keyCode=" + keyCode);
         RemoteButton obj = this.buttons.get(keyCode + "");
-        logger.fine("RemoteControl, obj=" + obj);
+        logger.log(Level.DEBUG, "RemoteControl, obj=" + obj);
         if (obj instanceof RemoteButton) {
             obj.setOn();
         }

@@ -2,7 +2,10 @@ package net.beiker.xletview.event;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -10,7 +13,7 @@ import java.util.logging.Logger;
  */
 public class FocusListenerDummy implements FocusListener {
 
-    private static final Logger log = Logger.getLogger(FocusListenerDummy.class.getName());
+    private static final Logger logger = getLogger(FocusListenerDummy.class.getName());
 
     private static final FocusListenerDummy THE_INSTANCE = new FocusListenerDummy();
 
@@ -18,21 +21,13 @@ public class FocusListenerDummy implements FocusListener {
         return THE_INSTANCE;
     }
 
-    /* (non-Javadoc)
-     * @see java.awt.event.FocusListener#focusGained(java.awt.event.FocusEvent)
-     */
     @Override
     public void focusGained(FocusEvent e) {
-        log.fine("focusGained-" + e);
-
+        logger.log(Level.DEBUG, "focusGained-" + e);
     }
 
-    /* (non-Javadoc)
-     * @see java.awt.event.FocusListener#focusLost(java.awt.event.FocusEvent)
-     */
     @Override
     public void focusLost(FocusEvent e) {
-        //Debug.write(this, "focusLost-" + e);
+//        logger.log(Level.DEBUG, this, "focusLost-" + e);
     }
-
 }

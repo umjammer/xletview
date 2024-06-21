@@ -13,6 +13,12 @@
 
 package xjavax.tv.media;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+
+import static java.lang.System.getLogger;
+
+
 /**
  * <code>AWTVideoSize</code> is a data holder that represents the position,
  * scaling, and clipping of a JMF Player, as controlled via an
@@ -32,6 +38,8 @@ package xjavax.tv.media;
  * @statuscode 4
  */
 public class AWTVideoSize {
+
+    private static final Logger logger = getLogger(AWTVideoSize.class.getName());
 
     private java.awt.Rectangle source;
     private java.awt.Rectangle destination;
@@ -59,7 +67,7 @@ public class AWTVideoSize {
             xScale = (float) destination.width / source.width;
             yScale = (float) destination.height / source.height;
         } catch (ArithmeticException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
     }
@@ -154,5 +162,4 @@ public class AWTVideoSize {
         String result = theSource + ", " + theDestination + ", " + theXScale + ", " + theYScale;
         return result;
     }
-
 }

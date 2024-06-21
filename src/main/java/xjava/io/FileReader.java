@@ -13,7 +13,9 @@ package xjava.io;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -22,7 +24,7 @@ import java.util.logging.Logger;
 public class FileReader extends java.io.FileReader {
 
     /** Debugging facility */
-    private static final Logger logger = Logger.getLogger(FileReader.class.getName());
+    private static final Logger logger = getLogger(FileReader.class.getName());
 
 //    public static java.io.FileReader create(java.io.File f) throws FileNotFoundException{
 //        return new java.io.FileReader(File.getVirtualRoot() + f.getPath());
@@ -46,15 +48,12 @@ public class FileReader extends java.io.FileReader {
 
         result = new java.io.FileReader(file);
 
-        /*
-         try {
-         fis = new java.io.FileInputStream(File.getVirtualRoot() + fileName);
-         } catch (FileNotFoundException e) {
-         String s = e.getMessage();
-         logger.warning(s);
-
-         }
-         */
+//        try {
+//            fis = new java.io.FileInputStream(File.getVirtualRoot() + fileName);
+//        } catch (FileNotFoundException e) {
+//            String s = e.getMessage();
+//            logger.log(Level.WARNING, s);
+//        }
 
         return result;
     }

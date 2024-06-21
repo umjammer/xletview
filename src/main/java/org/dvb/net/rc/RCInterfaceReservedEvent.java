@@ -13,8 +13,7 @@
 
 */
 
-
-package org.dvb.net.rc;
+package  org.dvb.net.rc;
 
 import org.davic.resources.ResourceStatusEvent;
 

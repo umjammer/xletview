@@ -12,8 +12,7 @@
 
 */
 
-
-package org.dvb.net.rc;
+package  org.dvb.net.rc;
 
 /**
  * @author Bengt Skogvall

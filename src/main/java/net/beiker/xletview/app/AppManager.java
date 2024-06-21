@@ -12,10 +12,10 @@
 package net.beiker.xletview.app;
 
 import java.io.InputStream;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import net.beiker.xletview.util.Settings;
 import net.beiker.xletview.util.Util;
@@ -25,6 +25,8 @@ import net.n3.nanoxml.IXMLReader;
 import net.n3.nanoxml.StdXMLReader;
 import net.n3.nanoxml.XMLParserFactory;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * AppManager
@@ -33,7 +35,7 @@ import net.n3.nanoxml.XMLParserFactory;
  */
 public class AppManager {
 
-    private static final Logger log = Logger.getLogger(AppManager.class.getName());
+    private static final Logger logger = getLogger(AppManager.class.getName());
 
     private static AppManager THE_INSTANCE;
     private URL appURL;
@@ -58,9 +60,9 @@ public class AppManager {
         IXMLElement xml;
         try {
             IXMLParser parser = XMLParserFactory.createDefaultXMLParser();
-            //FileInputStream in = new FileInputStream(new File("config/applications.xml"));
+//            FileInputStream in = new FileInputStream(new File("config/applications.xml"));
 
-            //FileInputStream in = new FileInputStream(this.appFile);
+//            FileInputStream in = new FileInputStream(this.appFile);
             InputStream in = AppManager.class.getClassLoader().getResourceAsStream(Settings.getProperty(FILE_APPLICATIONS));
             IXMLReader reader = new StdXMLReader(in);
             parser.setReader(reader);
@@ -69,9 +71,9 @@ public class AppManager {
                 resolve(xml, this.defaultGroup);
             }
         } catch (Exception e) {
-            log.log(Level.FINE, e.toString(), e);
-//Debug.println("####");
-//Debug.println("Error reading " + appFile.getPath());
+            logger.log(Level.DEBUG, e.toString(), e);
+//logger.log(Level.DEBUG, "####");
+//logger.log(Level.DEBUG, "Error reading " + appFile.getPath());
         }
     }
 
@@ -127,7 +129,7 @@ public class AppManager {
         for (int i = 0; i < defaultGroup.getSubGroups().size(); i++) {
             AppGroup app = defaultGroup.getSubGroups().get(i);
         }
-//Debug.println(defaultGroup.getName());
-//Debug.println(defaultGroup.getSubGroups().size());
+//logger.log(Level.DEBUG, defaultGroup.getName());
+//logger.log(Level.DEBUG, defaultGroup.getSubGroups().size());
     }
 }

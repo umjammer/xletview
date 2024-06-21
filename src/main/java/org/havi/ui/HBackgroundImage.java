@@ -1,16 +1,13 @@
 /*
-
- This file is part of XleTView
- Copyright (C) 2003 Martin SvedÈn
-
- This is free software, and you are
- welcome to redistribute it under
- certain conditions;
-
- See LICENSE document for details.
-
-*/
-
+ * This file is part of XleTView
+ * Copyright (C) 2003 Martin SvedÈn
+ *
+ * This is free software, and you are
+ * welcome to redistribute it under
+ * certain conditions;
+ *
+ * See LICENSE document for details.
+ */
 
 package org.havi.ui;
 
@@ -19,10 +16,14 @@ import java.awt.Image;
 import java.awt.MediaTracker;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.URL;
 
 import net.beiker.xletview.media.IframeDecoder;
 import org.havi.ui.event.HBackgroundImageListener;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -32,7 +33,7 @@ import org.havi.ui.event.HBackgroundImageListener;
  */
 public class HBackgroundImage extends Component {
 
-    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(HBackgroundImage.class.getName());
+    private static final Logger logger = getLogger(HBackgroundImage.class.getName());
 
     private Image image;
     private int width;
@@ -43,13 +44,13 @@ public class HBackgroundImage extends Component {
     public HBackgroundImage(String filename) {
 
 //        if(filename.indexOf(".mpg") > -1){
-//            log.info("Display of .mpg is not yet supported.\n" +
+//            logger.log(Level.INFO, "Display of .mpg is not yet supported.\n" +
 //                "A workaround for now is to use a .jpg with the same name.");
 //            filename = filename.substring(0, filename.length() - 4) + ".jpg";
 //        }
 //        image = loadImage(filename, null, this);
 
-        log.fine(filename);
+        logger.log(Level.DEBUG, filename);
 
         IframeDecoder decoder = new IframeDecoder();
 
@@ -59,7 +60,7 @@ public class HBackgroundImage extends Component {
         try {
             iframeFile = xjava.io.FileSystem.getFile(virtualFile);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
         decoder.decodeFile(iframeFile);
@@ -69,7 +70,6 @@ public class HBackgroundImage extends Component {
         net.beiker.xletview.media.BackgroundLayer bl = net.beiker.xletview.media.BackgroundLayer.getInstance();
         bl.setBgImage(image);
         bl.repaint();
-
     }
 
     public HBackgroundImage(byte[] pixels) {
@@ -106,7 +106,7 @@ public class HBackgroundImage extends Component {
                 xjava.io.FileReader fr = new xjava.io.FileReader(f);
                 image = toolkit.getImage(name);
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.log(Level.ERROR, e.getMessage(), e);
             }
         } else if (url != null) {
             image = toolkit.getImage(url);
@@ -116,7 +116,7 @@ public class HBackgroundImage extends Component {
         try {
             mediatracker.waitForID(0);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.ERROR, ex.getMessage(), ex);
         }
         return image;
     }
@@ -133,7 +133,5 @@ public class HBackgroundImage extends Component {
 //        if(image != null){
 //            g.drawImage(image, 0, 0, getWidth(), getHeight(), this);
 //        }
-//
 //    }
-
 }

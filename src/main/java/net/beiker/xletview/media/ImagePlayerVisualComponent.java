@@ -13,16 +13,19 @@ package net.beiker.xletview.media;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.lang.System.Logger.Level;
 import java.net.URL;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
 import javax.swing.ImageIcon;
 
 import net.beiker.xletview.ui.XContainer;
 
+import static java.lang.System.getLogger;
+
 
 public class ImagePlayerVisualComponent extends XContainer {
 
-    private static final Logger log = Logger.getLogger(ImagePlayerVisualComponent.class.getName());
+    private static final Logger logger = getLogger(ImagePlayerVisualComponent.class.getName());
 
     private ImageIcon icon;
     private Image image;
@@ -30,13 +33,13 @@ public class ImagePlayerVisualComponent extends XContainer {
 
     public ImagePlayerVisualComponent(String imageUrl) {
         icon = new ImageIcon(imageUrl);
-        log.fine(imageUrl + " - " + icon);
+        logger.log(Level.DEBUG, imageUrl + " - " + icon);
         repaint();
     }
 
     public ImagePlayerVisualComponent(URL imageUrl) {
         icon = new ImageIcon(imageUrl);
-        log.fine(imageUrl + " - " + icon);
+        logger.log(Level.DEBUG, imageUrl + " - " + icon);
         repaint();
     }
 
@@ -46,7 +49,7 @@ public class ImagePlayerVisualComponent extends XContainer {
     public void destroy() {
         icon.getImage().flush();
         icon = null;
-        log.fine("destroy");
+        logger.log(Level.DEBUG, "destroy");
     }
 
     @Override
@@ -56,17 +59,17 @@ public class ImagePlayerVisualComponent extends XContainer {
 
     @Override
     public void paint(Graphics g) {
-        //Debug.write(this, "paint, width height = " + getWidth() + "," + getHeight());
-        //Debug.write(this, "paint, icon = " + icon);
-        //Debug.write(this, "paint, this = " + this);
+//        logger.log(Level.DEBUG, this, "paint, width height = " + getWidth() + "," + getHeight());
+//        logger.log(Level.DEBUG, this, "paint, icon = " + icon);
+//        logger.log(Level.DEBUG, this, "paint, this = " + this);
         if (icon != null) {
             int x = getX();
             int y = getY();
-            //Debug.write(this, "x=" + x + ", y=" + y);
+//            logger.log(Level.DEBUG, this, "x=" + x + ", y=" + y);
             g.drawImage(icon.getImage(), x, y, getWidth(), getHeight(), this);
 
         }
-//        Debug.write(this, "paint");
+//        logger.log(Level.DEBUG, this, "paint");
 //        if (icon != null) {
 //
 //            AWTVideoSizeControlImpl awtVideoSizeControl = AWTVideoSizeControlImpl.getInstance();
@@ -80,5 +83,4 @@ public class ImagePlayerVisualComponent extends XContainer {
 //
 //        }
     }
-
 }

@@ -9,8 +9,7 @@
  * See LICENSE document for details.
  */
 
-
-package org.dvb.event;
+package  org.dvb.event;
 
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -142,7 +141,7 @@ public class EventManager implements ResourceServer {
             focusOwner = scene.getFocusOwner();
         }
         if (focusOwner != null) {
-            //Debug.write(this, "focusOwner = " + focusOwner);
+            //logger.log(Level.DEBUG, this, "focusOwner = " + focusOwner);
 
 
             // awt event
@@ -157,7 +156,7 @@ public class EventManager implements ResourceServer {
 
             }
         } else {
-            //Debug.write(this, "focus owner is null");
+            //logger.log(Level.DEBUG, this, "focus owner is null");
         }
     }
 
@@ -188,7 +187,7 @@ public class EventManager implements ResourceServer {
         private ListenerItem(UserEventListener listener, UserEvent[] events) {
             this.listener = listener;
             this.events = events;
-//            Debug.write(this, "events.length = " + events.length);
+//            logger.log(Level.DEBUG, this, "events.length = " + events.length);
         }
 
         private UserEventListener getListener() {

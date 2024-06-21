@@ -14,7 +14,8 @@ package net.beiker.xletview.media;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.io.IOException;
-import java.util.logging.Logger;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.media.ClockStoppedException;
 import javax.media.Control;
 import javax.media.Controller;
@@ -33,6 +34,8 @@ import xjavax.tv.locator.Locator;
 import xjavax.tv.media.AWTVideoSizeControlImpl;
 import xjavax.tv.service.selection.ServiceContentHandler;
 
+import static java.lang.System.getLogger;
+
 
 /**
  * Displays the video, or an image symbolizing video
@@ -40,7 +43,7 @@ import xjavax.tv.service.selection.ServiceContentHandler;
 public class VideoLayer extends XContainer implements ServiceContentHandler, Player {
 
     /** Debugging facility */
-    private final static Logger logger = Logger.getLogger(VideoLayer.class.getName());
+    private final static Logger logger = getLogger(VideoLayer.class.getName());
 
     private static VideoLayer THE_INSTANCE;
     private AWTVideoSizeControlImpl awtVideoSizeControl;
@@ -70,7 +73,7 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
             try {
                 throw new Exception("Component already added, can only contain one component");
             } catch (Exception e) {
-                logger.warning(Util.getStackTrace(e));
+                logger.log(Level.WARNING, Util.getStackTrace(e));
             }
         }
         return added;
@@ -86,20 +89,20 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
         return add(comp);
     }
 
-    //    public void setSize(AWTVideoSize size){
-    //        int videoX          = size.getDestination().x;
-    //        int videoY          = size.getDestination().y;
-    //        int videoWidth      = size.getDestination().width;
-    //        int videoHeight     = size.getDestination().height;
-    //        setBounds(videoX, videoY, videoWidth, videoHeight);
-    //        validate();
-    //    }
+//    public void setSize(AWTVideoSize size){
+//        int videoX          = size.getDestination().x;
+//        int videoY          = size.getDestination().y;
+//        int videoWidth      = size.getDestination().width;
+//        int videoHeight     = size.getDestination().height;
+//        setBounds(videoX, videoY, videoWidth, videoHeight);
+//        validate();
+//    }
 
-    //    public void paint(Graphics g){
-    //        Debug.write(this, "paint");
-    //        Debug.write(this, "this = " + this);
-    //        super.paint(g);
-    //    }
+//    public void paint(Graphics g){
+//        logger.log(Level.DEBUG, this, "paint");
+//        logger.log(Level.DEBUG, this, "this = " + this);
+//        super.paint(g);
+//    }
 
     @Override
     public void paint(Graphics g) {
@@ -108,169 +111,112 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
         }
     }
 
-    /* (non-Javadoc)
-     * @see xjavax.tv.service.selection.ServiceContentHandler#getServiceContentLocators()
-     */
     @Override
     public Locator[] getServiceContentLocators() {
         // TODO Auto-generated method stub
-        logger.fine("getServiceContentLocators");
+        logger.log(Level.TRACE, "getServiceContentLocators");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Player#getVisualComponent()
-     */
     @Override
     public Component getVisualComponent() {
         // TODO Auto-generated method stub
-        logger.fine("getVisualComponent");
+        logger.log(Level.TRACE, "getVisualComponent");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Player#getGainControl()
-     */
     @Override
     public GainControl getGainControl() {
         // TODO Auto-generated method stub
-        logger.fine("getGainControl");
+        logger.log(Level.TRACE, "getGainControl");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Player#getControlPanelComponent()
-     */
     @Override
     public Component getControlPanelComponent() {
         // TODO Auto-generated method stub
-        logger.fine("getControlPanelComponent");
+        logger.log(Level.TRACE, "getControlPanelComponent");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Player#start()
-     */
     @Override
     public void start() {
         // TODO Auto-generated method stub
-        logger.fine("start");
-
+        logger.log(Level.TRACE, "start");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Player#addController(javax.media.Controller)
-     */
     @Override
     public void addController(Controller arg0) throws IncompatibleTimeBaseException {
         // TODO Auto-generated method stub
-        logger.fine("addController");
-
+        logger.log(Level.TRACE, "addController");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Player#removeController(javax.media.Controller)
-     */
     @Override
     public void removeController(Controller arg0) {
         // TODO Auto-generated method stub
-        logger.fine("removeController");
-
+        logger.log(Level.TRACE, "removeController");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.MediaHandler#setSource(javax.media.protocol.DataSource)
-     */
     @Override
     public void setSource(DataSource arg0) throws IOException, IncompatibleSourceException {
         // TODO Auto-generated method stub
-        logger.fine("setSource");
-
+        logger.log(Level.TRACE, "setSource");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#getState()
-     */
     @Override
     public int getState() {
         // TODO Auto-generated method stub
-        logger.fine("getState");
+        logger.log(Level.TRACE, "getState");
         return 0;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#getTargetState()
-     */
     @Override
     public int getTargetState() {
         // TODO Auto-generated method stub
-        logger.fine("getTargetState");
+        logger.log(Level.TRACE, "getTargetState");
         return 0;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#realize()
-     */
     @Override
     public void realize() {
         // TODO Auto-generated method stub
-        logger.fine("realize");
+        logger.log(Level.TRACE, "realize");
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#prefetch()
-     */
     @Override
     public void prefetch() {
         // TODO Auto-generated method stub
-        logger.fine("prefetch");
-
+        logger.log(Level.TRACE, "prefetch");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#deallocate()
-     */
     @Override
     public void deallocate() {
         // TODO Auto-generated method stub
-        logger.fine("deallocate");
+        logger.log(Level.TRACE, "deallocate");
 
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#close()
-     */
     @Override
     public void close() {
         // TODO Auto-generated method stub
-        logger.fine("close");
-
+        logger.log(Level.TRACE, "close");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#getStartLatency()
-     */
     @Override
     public Time getStartLatency() {
         // TODO Auto-generated method stub
-        logger.fine("getStartLatency");
+        logger.log(Level.TRACE, "getStartLatency");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#getControls()
-     */
     @Override
     public Control[] getControls() {
         // TODO Auto-generated method stub
-        logger.fine("getControls");
+        logger.log(Level.TRACE, "getControls");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#getControl(java.lang.String)
-     */
     @Override
     public Control getControl(String s) {
         Control result = null;
@@ -282,163 +228,108 @@ public class VideoLayer extends XContainer implements ServiceContentHandler, Pla
         return result;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#addControllerListener(javax.media.ControllerListener)
-     */
     @Override
     public void addControllerListener(ControllerListener arg0) {
         // TODO Auto-generated method stub
-        logger.fine("addControllerListener");
-
+        logger.log(Level.TRACE, "addControllerListener");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Controller#removeControllerListener(javax.media.ControllerListener)
-     */
     @Override
     public void removeControllerListener(ControllerListener arg0) {
         // TODO Auto-generated method stub
-        logger.fine("removeControllerListener");
-
+        logger.log(Level.TRACE, "removeControllerListener");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#setTimeBase(javax.media.TimeBase)
-     */
     @Override
     public void setTimeBase(TimeBase arg0) throws IncompatibleTimeBaseException {
         // TODO Auto-generated method stub
-        logger.fine("setTimeBase");
-
+        logger.log(Level.TRACE, "setTimeBase");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#syncStart(javax.media.Time)
-     */
     @Override
     public void syncStart(Time arg0) {
         // TODO Auto-generated method stub
-        logger.fine("syncStart");
-
+        logger.log(Level.TRACE, "syncStart");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#stop()
-     */
     @Override
     public void stop() {
         // TODO Auto-generated method stub
-        logger.fine("stop");
-
+        logger.log(Level.TRACE, "stop");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#setStopTime(javax.media.Time)
-     */
     @Override
     public void setStopTime(Time arg0) {
         // TODO Auto-generated method stub
-        logger.fine("setStopTime");
-
+        logger.log(Level.TRACE, "setStopTime");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#getStopTime()
-     */
     @Override
     public Time getStopTime() {
         // TODO Auto-generated method stub
-        logger.fine("getStopTime");
+        logger.log(Level.TRACE, "getStopTime");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#setMediaTime(javax.media.Time)
-     */
     @Override
     public void setMediaTime(Time arg0) {
         // TODO Auto-generated method stub
-        logger.fine("setMediaTime");
-
+        logger.log(Level.TRACE, "setMediaTime");
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#getMediaTime()
-     */
     @Override
     public Time getMediaTime() {
         // TODO Auto-generated method stub
-        logger.fine("getMediaTime");
+        logger.log(Level.TRACE, "getMediaTime");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#getMediaNanoseconds()
-     */
     @Override
     public long getMediaNanoseconds() {
         // TODO Auto-generated method stub
-        logger.fine("getMediaNanoseconds");
+        logger.log(Level.TRACE, "getMediaNanoseconds");
         return 0;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#getSyncTime()
-     */
     @Override
     public Time getSyncTime() {
         // TODO Auto-generated method stub
-        logger.fine("getSyncTime");
+        logger.log(Level.TRACE, "getSyncTime");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#getTimeBase()
-     */
     @Override
     public TimeBase getTimeBase() {
         // TODO Auto-generated method stub
-        logger.fine("getTimeBase");
+        logger.log(Level.TRACE, "getTimeBase");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#mapToTimeBase(javax.media.Time)
-     */
     @Override
     public Time mapToTimeBase(Time arg0) throws ClockStoppedException {
         // TODO Auto-generated method stub
-        logger.fine("mapToTimeBase");
+        logger.log(Level.TRACE, "mapToTimeBase");
         return null;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#getRate()
-     */
     @Override
     public float getRate() {
         // TODO Auto-generated method stub
-        logger.fine("getRate");
+        logger.log(Level.TRACE, "getRate");
         return 0;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Clock#setRate(float)
-     */
     @Override
     public float setRate(float arg0) {
         // TODO Auto-generated method stub
-        logger.fine("setRate");
+        logger.log(Level.TRACE, "setRate");
         return 0;
     }
 
-    /* (non-Javadoc)
-     * @see javax.media.Duration#getDuration()
-     */
     @Override
     public Time getDuration() {
         // TODO Auto-generated method stub
-        logger.fine("getDuration");
+        logger.log(Level.TRACE, "getDuration");
         return null;
     }
 }

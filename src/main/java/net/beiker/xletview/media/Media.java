@@ -12,9 +12,12 @@
 package net.beiker.xletview.media;
 
 import java.io.IOException;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Logger;
+
+import static java.lang.System.getLogger;
 
 
 /**
@@ -25,7 +28,7 @@ import java.util.logging.Logger;
 public class Media {
 
     /** Debugging facility */
-    private final static Logger logger = Logger.getLogger(Media.class.getName());
+    private final static Logger logger = getLogger(Media.class.getName());
 
     public static final int TYPE_VIDEO = 0;
     public static final int TYPE_IMAGE = 1;
@@ -44,7 +47,7 @@ public class Media {
             this.media = new URL("file:" + path);
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
         this.type = resolveType(path);
     }
@@ -67,7 +70,7 @@ public class Media {
         try {
             type = url.openConnection().getContentType();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, e.getMessage(), e);
         }
 
         if (type.startsWith("image")) {
@@ -75,7 +78,7 @@ public class Media {
         } else if (type.startsWith("video")) {
             return TYPE_VIDEO;
         } else {
-            logger.warning("Could not understand content type '" + type + "'.\nWARNING: 'invalid' CONTENT TYPE RETURNED.");
+            logger.log(Level.WARNING, "Could not understand content type '" + type + "'.\nWARNING: 'invalid' CONTENT TYPE RETURNED.");
             // TODO: This is fake.
             return TYPE_INVALID;
         }
