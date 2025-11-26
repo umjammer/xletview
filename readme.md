@@ -1,8 +1,13 @@
+[![Release](https://jitpack.io/v/umjammer/xletview.svg)](https://jitpack.io/#umjammer/xletview)
+[![Java CI](https://github.com/umjammer/xletview/actions/workflows/maven.yml/badge.svg)](https://github.com/umjammer/xletview/actions/workflows/maven.yml)
+[![CodeQL](https://github.com/umjammer/xletview/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/umjammer/xletview/actions/workflows/codeql-analysis.yml)
+![Java](https://img.shields.io/badge/Java-17-b07219)
+
 # XleTView
 
-<img width="640" alt="2022-03-25 21 04 57" src="https://user-images.githubusercontent.com/493908/160117781-eb885602-c32d-4146-ba81-bddb678a99fd.png">
+<img width="320" alt="2022-03-25 21 04 57" src="https://user-images.githubusercontent.com/493908/160117781-eb885602-c32d-4146-ba81-bddb678a99fd.png">
 
-XleTView is distributed under the The GNU General Public License (GPL) wich can be found in a separate document.
+XleTView is distributed under the *The GNU General Public License (GPL)* witch can be found in a separate document.
 
 This is a software for viewing MHP Xlets on a PC. It is NOT a complete MHP implementation and shall not be treated as such.
 
@@ -22,27 +27,13 @@ DVB and MHP are registered trademarks of the DVB Project.
 JavaTV is a Sun Microsystems, Inc. trademark.
 
 When XleTView loads your Xlet it modifies the Xlet's bytecode.
-These modifications happens only in the memory of the Virtual Machine, but you should be aware of it.
+These modifications happen only in the memory of the Virtual Machine, but you should be aware of it.
 
-## Change Log
+## Install
 
-### 0.3.6 vavi-patch
+ * [maven](https://jitpack.io/#umjammer/xletview)
 
- * works w/ jdk8
- * fix about classloader
-
-### 0.3.6
-
-- implementations of HText, HIcon, HAnimation, HStaticAnimation, HAnimateLook, HGraphicButton, HTextButton
-  HSinglelineEntryLook, HSinglelineEntry + more...
-- New customizable remote control
-- fixed bugs in org.dvb.net.rc.ConnectionRCInterface, HStaticText, HStaticIcon + more
-
-## Requirements:
-
-- Sun's sdk 1.4
-
-## Install:
+## Usage
 
 - Put the files where you want them.
 - Double click on xletview.jar (Windows) or run from console
@@ -51,13 +42,20 @@ These modifications happens only in the memory of the Virtual Machine, but you s
 (If you have Sun's sdk 1.4 but not as the default runtime you need to start from console)
 - Some settings can be changed in config/settings.txt
 
-## Misc
+## References
 
-Thanks to Cristian Suazo, Christian Köberl and Bengt Skogvall 
-for code contributions and Oskar Goransson for graphics. 
+ * https://www.videolan.org/developers/libbluray.html
+ * https://phonej2me.github.io/downloads_page.html
+ * https://github.com/zathras/java.net
+ * https://github.com/TheOfficialFloW/bd-jb
 
-Others I'd like to thank are Per Bjork, Fred Grott, Kirk Bateman, Mikael Ostberg, 
-Davy De Schrijver, Mattias Bergstrom, Emmanuele Brunelli, Pehr Assarsson, Emanuele Casiraghi, 
+### Misc
+
+Thanks to Cristian Suazo, Christian Köberl and Bengt Skogvall
+for code contributions and Oskar Goransson for graphics.
+
+Others I'd like to thank are Per Bjork, Fred Grott, Kirk Bateman, Mikael Ostberg,
+Davy De Schrijver, Mattias Bergstrom, Emmanuele Brunelli, Pehr Assarsson, Emanuele Casiraghi,
 Moreno Marasco, Henrik Grehn, Igor Calic, Andrea Passerini and Giorgio Giunta.
 
 
@@ -67,10 +65,7 @@ beiker@users.sourceforge.net
 Read more on the website: <br/>
 http://xletview.sourceforge.net
 
+## TODO
 
-## References
-
- * https://www.videolan.org/developers/libbluray.html
- * https://phonej2me.github.io/downloads_page.html
-
-
+ * separate resources strictly for internal/external use
+ * vlc bd-j

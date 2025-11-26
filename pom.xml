@@ -22,6 +22,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
+            <version>3.1.0</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -40,17 +41,18 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.12.1</version>
         <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-          <encoding>UTF-8</encoding>
+          <release>17</release>
         </configuration>
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0-M5</version>
+        <version>3.2.5</version>
         <configuration>
           <argLine>
             -Djava.util.logging.config.file=${project.build.testOutputDirectory}/logging.properties
@@ -60,7 +62,9 @@
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
         <configuration>
           <archive>
             <manifest>
@@ -83,7 +87,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.4</version>
+        <version>3.6.0</version>
         <executions>
           <execution>
             <id>assembly1</id>
@@ -110,7 +114,7 @@
             </goals>
             <configuration>
               <descriptors>
-                <descriptor>assembly2.xml</descriptor>
+                <descriptor>src/main/assembly/assembly2.xml</descriptor>
               </descriptors>
             </configuration>
           </execution>
@@ -119,12 +123,19 @@
     </plugins>
   </build>
 
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+  </repositories>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.8.1</version>
+        <version>5.13.4</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -140,7 +151,7 @@
     <dependency>
       <groupId>org.javassist</groupId>
       <artifactId>javassist</artifactId>
-      <version>3.28.0-GA</version>
+      <version>3.30.2-GA</version>
     </dependency>
     <dependency>
       <groupId>javax.media</groupId>
@@ -151,11 +162,7 @@
       <groupId>org.codehaus.griffon.plugins</groupId>
       <artifactId>griffon-lookandfeel-metouia</artifactId>
       <version>2.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>vavi</groupId> <!-- com.github.umjammer -->
-      <artifactId>vavi-commons</artifactId>
-      <version>1.1.7-SNAPSHOT</version>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
@@ -173,6 +180,12 @@
       <artifactId>junit-platform-commons</artifactId>
       <scope>test</scope>
     </dependency>
-  </dependencies>
 
+    <dependency>
+      <groupId>com.github.umjammer</groupId> <!-- vavi / com.github.umjammer -->
+      <artifactId>vavi-commons</artifactId>
+      <version>1.1.16</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
