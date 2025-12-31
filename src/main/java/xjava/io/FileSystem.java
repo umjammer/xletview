@@ -9,6 +9,7 @@ import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -266,7 +267,7 @@ logger.log(Level.DEBUG, "absolute path resolved");
 
     static String[] list(java.io.File f) {
 
-        String[] result = new String[0];
+        String[] result;
 
         EmulatorFile fp = getEmulatorFile(f);
 

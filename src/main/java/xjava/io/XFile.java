@@ -20,6 +20,7 @@ import java.lang.System.Logger.Level;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.Arrays;
 
 import static java.lang.System.getLogger;
 
@@ -54,6 +55,10 @@ public class XFile extends java.io.File {
     public XFile(java.io.File parent, String child) {
         super(parent, child);
         init(parent, child);
+    }
+
+    public XFile(XFile parent, String path) {
+        this(parent.getAbsoluteFile(), path);
     }
 
     /**
@@ -270,21 +275,21 @@ logger.log(Level.DEBUG, "list");
     }
 
     @Override
-    public java.io.File[] listFiles() {
+    public XFile[] listFiles() {
 logger.log(Level.DEBUG, "listFiles");
-        return null;
+        return Arrays.stream(FileSystem.list(this)).map(XFile::new).toArray(XFile[]::new);
     }
 
     @Override
-    public java.io.File[] listFiles(FilenameFilter filter) {
+    public XFile[] listFiles(FilenameFilter filter) {
 logger.log(Level.DEBUG, "listFiles");
-        return null;
+        return Arrays.stream(FileSystem.list(this)).filter(f -> filter.accept(this, f)).map(XFile::new).toArray(XFile[]::new);
     }
 
     @Override
-    public java.io.File[] listFiles(FileFilter filter) {
+    public XFile[] listFiles(FileFilter filter) {
 logger.log(Level.DEBUG, "listFiles");
-        return null;
+        return Arrays.stream(FileSystem.list(this)).filter(f -> filter.accept(new File(this.getPath() + FileSystem.separatorChar + f))).map(XFile::new).toArray(XFile[]::new);
     }
 
     @Override
@@ -302,6 +307,11 @@ logger.log(Level.DEBUG, "mkdirs");
     @Override
     public boolean renameTo(java.io.File dest) {
 logger.log(Level.DEBUG, "renameTo");
+        return false;
+    }
+
+    public boolean renameTo(XFile dest) {
+        logger.log(Level.DEBUG, "renameTo");
         return false;
     }
 

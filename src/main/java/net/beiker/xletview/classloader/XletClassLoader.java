@@ -68,7 +68,7 @@ public final class XletClassLoader extends MainClassLoader {
             logger.log(Level.DEBUG, url.getPath());
         }
 
-        this.pool = new ClassPool();
+        this.pool = new ClassPool(true);
         this.parent = getClass().getClassLoader();
         this.loadedClasses = new HashMap<>();
         this.xletClassMap = new XletClassMap();

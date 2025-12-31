@@ -20,8 +20,24 @@ public class XletClassMap extends ClassMap {
 
     @Override
     public String get(Object jvmClassName) {
-        String name = toJavaName((String) jvmClassName);
-//logger.log(Level.TRACE, "checking " + name);
+        String jvmName = (String) jvmClassName;
+        if (jvmName.startsWith("[")) {
+            // Handle array types like [Ljava/io/File;
+            int dims = 0;
+            while (jvmName.charAt(dims) == '[') {
+                dims++;
+            }
+            if (jvmName.charAt(dims) == 'L') {
+                String elementJvmName = jvmName.substring(dims + 1, jvmName.length() - 1);
+                String mappedElementJvmName = get(elementJvmName);
+                if (mappedElementJvmName != null) {
+                    return jvmName.substring(0, dims + 1) + mappedElementJvmName + ";";
+                }
+            }
+            return super.get(jvmClassName);
+        }
+
+        String name = toJavaName(jvmName);
         if (name.startsWith("javax.tv.")) {
             return toJvmName("xjavax.tv." + name.substring(9));
         } else {
